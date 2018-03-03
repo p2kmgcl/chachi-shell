@@ -33,6 +33,7 @@
   brd = branch --delete
   brD = branch -D
   brt = branch --track
+  bru = branch -u
 
   ch = checkout
 
