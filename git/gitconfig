@@ -1,0 +1,83 @@
+[color]
+  ui = auto
+
+[user]
+  name = Pablo Molina
+  email = contact@pablomolina.me
+
+[push]
+  default = current
+
+[core]
+  editor = vim
+  ignorecase = false
+  pager = less -x4
+  excludesfile = ~/.gitignore-global
+
+[merge]
+  tool = vimdiff
+
+[help]
+  autocorrect = 1
+
+[alias]
+  h = "! cat ~/.gitconfig"
+
+  # List of shortcuts
+
+  ad = add
+  ada = add .
+
+  br = branch
+  bra = branch --all
+  brd = branch --delete
+  brD = branch -D
+  brt = branch --track
+
+  ch = checkout
+
+  cl = clean
+  cls = clean -d -n
+  clu = clean -d -f
+  clx = clean -fdX
+
+  cm = commit
+  cmf = commit --fixup
+  cmn = commit --no-verify
+  cms = commit --squash
+
+  fe = fetch
+  fea = fetch --all
+
+  lg = log
+  lgs = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate
+  lgl = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --stat
+  lgg = log --pretty=format:'%cr%Cred%d%Creset %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --graph --abbrev-commit
+
+  mr = merge
+
+  pl = pull
+  plo = pull origin
+  plu = pull upstream
+
+  ps = push
+  psd = push --delete
+
+  rb = rebase
+  rbi = rebase --interactive
+  rbo = rebase --onto
+  rbs = rebase --autosquash --interactive
+
+  rs = reset
+  rsh = reset --hard
+
+  sh = stash
+  sha = stash apply
+  shu = stash -u
+  shl = stash list
+  shp = stash pop
+  shd = stash drop
+
+  st = status
+
+  uiau = update-index --assume-unchanged
