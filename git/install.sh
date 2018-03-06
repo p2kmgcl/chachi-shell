@@ -1,6 +1,5 @@
 #!/bin/bash
 
-sudo apt-get install -y git
-
+echo Copying git configuration
 cp ./git/gitconfig ~/.gitconfig
 cp ./git/gitignore-global ~/.gitignore-global

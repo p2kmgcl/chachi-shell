@@ -1,7 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install -y git
-
+echo Copying bash scripts
 cp ./bash/main.sh ~/.bashrc--main.sh
 cp ./bash/aliases.sh ~/.bashrc--aliases.sh
 cp ./bash/prompt.sh ~/.bashrc--prompt.sh
