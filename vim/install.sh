@@ -32,5 +32,13 @@ addVimPlugin editorconfig editorconfig-vim
 addVimPlugin tpope vim-fugitive
 addVimPlugin christoomey vim-tmux-navigator
 
+if [ ! -d ~/.vim/bundle/youcompleteme ]; then
+  addVimPlugin valloric youcompleteme
+  echo Installing youcompleteme
+  cd ~/.vim/bundle/youcompleteme && \
+    git submodule update --init --recursive && \
+    python3 ./install.py --java-completer --js-completer
+fi
+
 echo Copying vim configuration
 cd $HERE && cp ./vim/vimrc ~/.vimrc

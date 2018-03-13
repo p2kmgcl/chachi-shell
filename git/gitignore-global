@@ -1,1 +1,5 @@
-.idea
+*.jar
+
+.idea/
+.gradle/
+modules/apps/.editorconfig
