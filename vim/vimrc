@@ -1,3 +1,14 @@
 execute pathogen#infect()
 syntax on
 filetype plugin indent on
+
+set termguicolors
+set t_Co=256
+colorscheme afterglow
+
+let g:Lf_WildIgnore = {
+  \ 'dir': ['build', 'classes', 'gradle', 'node_modules', 'tmp', '.gradle', '.idea', '.sass-cache'],
+  \ 'file': []
+  \ }
+
+let g:Lf_ShortcutF = '<C-P>'

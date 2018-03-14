@@ -19,7 +19,6 @@ function addVimPlugin {
 }
 
 addVimPlugin rafi awesome-vim-colorschemes
-addVimPlugin ctrlpvim ctrlp.vim
 addVimPlugin raimondi delimitmate
 addVimPlugin mattn emmet-vim
 addVimPlugin scrooloose nerdcommenter
@@ -31,6 +30,7 @@ addVimPlugin mxw vim-jsx
 addVimPlugin editorconfig editorconfig-vim
 addVimPlugin tpope vim-fugitive
 addVimPlugin christoomey vim-tmux-navigator
+addVimPlugin yggdroot leaderf
 
 if [ ! -d ~/.vim/bundle/youcompleteme ]; then
   addVimPlugin valloric youcompleteme
