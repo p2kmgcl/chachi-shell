@@ -2,9 +2,9 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-set termguicolors
-set t_Co=256
-colorscheme afterglow
+" set termguicolors
+" set t_Co=256
+" colorscheme afterglow
 
 set number
 
