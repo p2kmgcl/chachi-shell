@@ -31,6 +31,8 @@ addVimPlugin editorconfig editorconfig-vim
 addVimPlugin tpope vim-fugitive
 addVimPlugin christoomey vim-tmux-navigator
 addVimPlugin yggdroot leaderf
+addVimPlugin dkprice vim-easygrep
+addVimPlugin junegunn fzf
 
 if [ ! -d ~/.vim/bundle/youcompleteme ]; then
   addVimPlugin valloric youcompleteme
