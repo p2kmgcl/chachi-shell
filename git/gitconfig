@@ -65,6 +65,7 @@
   psd = push --delete
 
   rb = rebase
+  rbc = rebase --continue
   rbi = rebase --interactive
   rbo = rebase --onto
   rbs = rebase --autosquash --interactive
