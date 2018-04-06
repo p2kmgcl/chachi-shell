@@ -1,7 +1,9 @@
 *.jar
+*.project
 *.soy.js
 
 .idea/
 .gradle/
+.vscode/
 .tern-project
 modules/apps/.editorconfig
