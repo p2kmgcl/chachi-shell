@@ -25,61 +25,20 @@
 
   # List of shortcuts
 
-  ad = add
-  ada = add .
+  do-add-all = add .
+  do-back-latest-commits = back
+  do-fetch-all = fetch --all
+  do-fetch-pull-request = pr
+  do-remove-all-non-git-files = clean --force -d -X
+  do-send-pull-request = pull-request
+  do-short-log = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --graph --all
+  do-ignore-changes-on-file = update-index --assume-unchanged
 
   br = branch
   bra = branch --all
-  brd = branch --delete
-  brD = branch -D
-  brt = branch --track
-  bru = branch -u
-
   ch = checkout
-
-  cl = clean
-  cls = clean -d -n
-  clu = clean -d -f
-  clx = clean -fdX
-
   cm = commit
-  cmf = commit --fixup
-  cmn = commit --no-verify
-  cms = commit --squash
-
-  fe = fetch
-  fea = fetch --all
-
-  lg = log
-  lgs = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate
-  lgl = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --stat
-  lgg = log --pretty=format:'%cr%Cred%d%Creset %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --graph --abbrev-commit
-
-  mr = merge
-
-  pl = pull
-  plo = pull origin
-  plu = pull upstream
-
   ps = push
-  psd = push --delete
-
   rb = rebase
-  rbc = rebase --continue
   rbi = rebase --interactive
-  rbo = rebase --onto
-  rbs = rebase --autosquash --interactive
-
-  rs = reset
-  rsh = reset --hard
-
-  sh = stash
-  sha = stash apply
-  shu = stash -u
-  shl = stash list
-  shp = stash pop
-  shd = stash drop
-
   st = status
-
-  uiau = update-index --assume-unchanged
