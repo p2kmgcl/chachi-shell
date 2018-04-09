@@ -7,6 +7,7 @@ clear
 
 ./bash/install.sh
 ./editorconfig/install.sh
+./fonts/install.sh
 ./git/install.sh
 ./npm/install.sh
 ./vim/install.sh
