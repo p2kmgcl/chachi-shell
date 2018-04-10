@@ -25,20 +25,21 @@
 
   # List of shortcuts
 
-  do-add-all = add .
   do-back-latest-commits = back
-  do-fetch-all = fetch --all
-  do-fetch-pull-request = pr
+  do-checkout-pull-request = pr
   do-remove-all-non-git-files = clean --force -d -X
   do-send-pull-request = pull-request
-  do-short-log = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --graph --all
   do-ignore-changes-on-file = update-index --assume-unchanged
 
+  ada = add .
   br = branch
   bra = branch --all
   ch = checkout
   cm = commit
+  fea = fetch --all
+  lg = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate
   ps = push
   rb = rebase
+  rbc = rebase --continue
   rbi = rebase --interactive
   st = status
