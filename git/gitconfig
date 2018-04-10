@@ -42,4 +42,5 @@
   rb = rebase
   rbc = rebase --continue
   rbi = rebase --interactive
+  rsh = reset --hard
   st = status
