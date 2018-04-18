@@ -5,5 +5,8 @@
 .idea/
 .gradle/
 .vscode/
+
+bin/
+
 .tern-project
 modules/apps/.editorconfig
