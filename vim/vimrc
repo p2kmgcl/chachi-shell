@@ -11,6 +11,7 @@ set ignorecase smartcase
 set mouse=a
 set nobackup
 set noswapfile
+set nowrap
 set nowritebackup
 set number
 set showmatch
