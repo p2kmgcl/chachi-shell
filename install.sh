@@ -2,7 +2,7 @@
 
 echo Updating repositories
 sudo apt-get -q -y update
-sudo apt-get install -q -y git git-extras vim wget build-essential cmake python3-dev python-dev
+sudo apt-get install -q -y git git-extras vim vim-gtk wget build-essential cmake python3-dev python-dev
 clear
 
 ./bash/install.sh

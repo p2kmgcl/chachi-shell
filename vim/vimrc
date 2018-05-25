@@ -2,12 +2,30 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+set autoindent smartindent
+set clipboard=unnamedplus
+set colorcolumn=+1
+set cursorline
+set hlsearch
+set ignorecase smartcase
+set mouse=a
+set nobackup
+set noswapfile
+set nowritebackup
 set number
+set showmatch
 set t_Co=256
-colorscheme afterglow
+set textwidth=80
 
-let g:Lf_WildIgnore = {
-  \ 'dir': ['build', 'classes', 'gradle', 'node_modules', 'tmp', '.gradle', '.idea', '.sass-cache'],
-  \ 'file': []
-  \ }
-let g:Lf_ShortcutF = '<C-P>'
+set wildmenu
+set wildignore+=*/.git/*,
+set wildignore+=*/.sass-cache/*,
+set wildignore+=*/build/*
+set wildignore+=*/classes/*
+set wildignore+=*/gradle/*
+set wildignore+=*/node_modules/*
+set wildignore+=*/tmp/*
+
+let g:ctrlp_root_markers = ['.git', 'package.json', 'bnd.bnd']
+
+colorscheme github
