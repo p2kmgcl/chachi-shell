@@ -37,6 +37,7 @@
   bra = branch --all
   ch = checkout
   cm = commit
+  dn = diff --name-only
   fea = fetch --all
   lg = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate
   ps = push
