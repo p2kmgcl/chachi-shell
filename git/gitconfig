@@ -4,6 +4,7 @@
 [user]
   name = Pablo Molina
   email = contact@pablomolina.me
+  username = p2kmgcl
 
 [push]
   default = current
@@ -18,7 +19,7 @@
   tool = vimdiff
 
 [help]
-  autocorrect = 1
+  autocorrect = 0
 
 [alias]
   h = "! cat ~/.gitconfig"
@@ -32,17 +33,43 @@
   do-send-pull-request = pull-request
   do-ignore-changes-on-file = update-index --assume-unchanged
 
+  ad = add
   ada = add .
+
+  ba = back
+
   br = branch
   bra = branch --all
+
   ch = checkout
+  chb = checkout --branch
+
   cm = commit
-  dn = diff --name-only
+  cma = commit --amend
+  cmp = commit --patch
+
+  di = diff
+  dih = diff HEAD
+  din = diff --name-only
+
+  fe = fetch
   fea = fetch --all
+
   lg = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate
+  lgs = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --max-count 20
+
   ps = push
+  psf = push --force
+  psfo = push --force origin
+  pso = push origin
+
   rb = rebase
+  rba = rebase --abort
   rbc = rebase --continue
   rbi = rebase --interactive
+
+  rs = reset
   rsh = reset --hard
+
   st = status
+  sts = status --short
