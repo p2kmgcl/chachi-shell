@@ -59,6 +59,8 @@
   lgs = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --max-count 20
 
   ps = push
+  psd = push --delete
+  psdo = push --delete origin
   psf = push --force
   psfo = push --force origin
   pso = push origin
