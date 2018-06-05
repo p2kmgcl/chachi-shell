@@ -40,6 +40,8 @@
 
   br = branch
   bra = branch --all
+  brd = branch --delete
+  brD = branch -D
 
   ch = checkout
   chb = checkout --branch
