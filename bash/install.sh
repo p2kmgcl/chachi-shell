@@ -3,6 +3,7 @@
 echo Copying bash scripts
 cp ./bash/main.sh ~/.bashrc--main.sh
 cp ./bash/aliases.sh ~/.bashrc--aliases.sh
+cp ./bash/liferay.sh ~/.bashrc--liferay.sh
 cp ./bash/prompt.sh ~/.bashrc--prompt.sh
 
 if [ -z "$(grep "bashrc--main.sh" ~/.bashrc)" ]; then

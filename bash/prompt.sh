@@ -14,4 +14,4 @@ prompt_gits() {
   fi
 }
 
-export PS1="\[\033[35m\]\$(prompt_user) \$(prompt_dir) \$(prompt_gits) \n: \[\033[00m\]"
+export PS1="\[\033[35m\]\$(prompt_dir) \$(prompt_gits) \$(prompt_user)\n: \[\033[00m\]"
