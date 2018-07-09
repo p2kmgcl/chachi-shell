@@ -1,6 +1,12 @@
 [color]
   ui = auto
 
+[diff]
+  tool = default-difftool
+
+[difftool "default-difftool"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+
 [user]
   name = Pablo Molina
   email = contact@pablomolina.me
@@ -10,13 +16,13 @@
   default = current
 
 [core]
-  editor = vim
+  editor = code --wait
   ignorecase = false
   pager = less -x4
   excludesfile = ~/.gitignore-global
 
 [merge]
-  tool = vimdiff
+  tool = code --wait --diff
 
 [help]
   autocorrect = 0
