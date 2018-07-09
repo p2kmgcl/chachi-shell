@@ -12,12 +12,18 @@ function createMySQLServer() {
     -e MYSQL_ROOT_PASSWORD=root \
     -e MYSQL_ROOT_HOST=172.17.0.1 \
     -d mysql/mysql-server:5.7 \
-    --character-set-server=utf8mb4 \
-    --collation-server=utf8mb4_unicode_ci
+    --character-set-server=utf8 \
+    --collation-server=utf8_general_ci
 }
 
 function startMySQLServer () {
   docker start $(docker ps -a -q -f name=liferay_portal_database)
+}
+
+function connectToMySQLServer () {
+  docker exec -it \
+    $(docker ps -a -q -f name=liferay_portal_database) \
+    mysql -u root -proot
 }
 
 function stopMySQLServer () {
