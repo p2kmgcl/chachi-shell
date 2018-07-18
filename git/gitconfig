@@ -1,31 +1,37 @@
 [color]
   ui = auto
 
-[diff]
-  tool = default-difftool
-
-[difftool "default-difftool"]
-  cmd = code --wait --diff $LOCAL $REMOTE
-
-[user]
-  name = Pablo Molina
-  email = contact@pablomolina.me
-  username = p2kmgcl
-
-[push]
-  default = current
-
 [core]
   editor = code --wait
   ignorecase = false
   pager = less -x4
   excludesfile = ~/.gitignore-global
 
-[merge]
-  tool = code --wait --diff
+[diff]
+  tool = default-difftool
+
+[difftool "default-difftool"]
+  cmd = code --wait --diff $LOCAL $REMOTE
 
 [help]
   autocorrect = 0
+
+[merge]
+  tool = code --wait --diff
+
+[pull]
+  rebase = true
+
+[push]
+  default = current
+
+[rebase]
+  autoStash = true
+
+[user]
+  name = Pablo Molina
+  email = contact@pablomolina.me
+  username = p2kmgcl
 
 [alias]
   h = "! cat ~/.gitconfig"
