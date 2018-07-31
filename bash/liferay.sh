@@ -52,7 +52,7 @@ function gradlewDeploy () {
   gradlew deploy -a
 }
 
-function gradlewFullDeploy () {
+function gradlewCleanDeploy () {
   gradlew clean deploy -Dbuild=portal
 }
 
