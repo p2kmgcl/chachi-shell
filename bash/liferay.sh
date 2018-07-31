@@ -79,7 +79,7 @@ export -f buildPortal
 export -f runPortal
 
 export -f gradlewDeploy
-export -f gradlewFullDeploy
+export -f gradlewCleanDeploy
 export -f gradlewBuildLang
 export -f gradlewFormatSource
 export -f gradlewNpmInstall
