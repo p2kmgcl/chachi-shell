@@ -68,6 +68,17 @@ function gradlewNpmInstall () {
   gradlew npmInstall
 }
 
+# Morning
+
+function morning () {
+  cd ~/Projects/community-portal/liferay-portal && \
+    git cifuentes && \
+    buildPortal && \
+    destroyMySQLServer && \
+    createMySQLServer && \
+    runPortal
+}
+
 # Export
 
 export -f createMySQLServer
@@ -83,3 +94,5 @@ export -f gradlewCleanDeploy
 export -f gradlewBuildLang
 export -f gradlewFormatSource
 export -f gradlewNpmInstall
+
+export -f morning
