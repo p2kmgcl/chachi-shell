@@ -2,13 +2,12 @@
 
 echo Updating repositories
 sudo apt-get -q -y update
-sudo apt-get install -q -y git git-extras vim vim-gtk wget build-essential cmake python3-dev python-dev
-sudo pacman -Syy base-devel cmake git vim wget
+sudo apt-get install -q -y git git-extras vim vim-gtk wget build-essential cmake powerline-fonts python3-dev python-dev
+sudo pacman -Syy base-devel cmake git powerline-fonts vim wget
 clear
 
 ./bash/install.sh
 ./editorconfig/install.sh
-./fonts/install.sh
 ./git/install.sh
 ./npm/install.sh
 ./vim/install.sh
