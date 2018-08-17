@@ -42,7 +42,7 @@ function buildPortal () {
 }
 
 function runPortal () {
-  cd ~/Projects/community-portal/bundles/tomcat-9.0.6/bin && \
+  cd ~/Projects/community-portal/bundles/tomcat-9.0.10/bin && \
     ./catalina.sh jpda run
 }
 
