@@ -1,5 +1,6 @@
 export ANT_HOME="/usr/bin/ant"
 export ANT_OPTS="-XX:-UseGCOverheadLimit -Xmx8192m -XX:MaxMetaspaceSize=1024m"
+export JAVA_HOME="/usr/lib/jvm/default"
 export NODE_PATH="/usr/lib/node_modules:~/.npm-global/lib/node_modules"
 
 # Database
