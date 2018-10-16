@@ -74,9 +74,9 @@ function gradlewNpmInstall () {
 function morning () {
   cd ~/Projects/community-portal/liferay-portal && \
     git cifuentes && \
-    buildPortal && \
     destroyMySQLServer && \
     createMySQLServer && \
+    buildPortal && \
     runPortal
 }
 
