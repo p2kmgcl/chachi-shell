@@ -8,6 +8,7 @@ clear
 
 ./bash/install.sh
 ./editorconfig/install.sh
+./eslint/install.sh
 ./git/install.sh
 ./npm/install.sh
 ./vim/install.sh

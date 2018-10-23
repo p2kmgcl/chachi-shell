@@ -17,6 +17,10 @@ function createMySQLServer() {
     --collation-server=utf8_general_ci
 }
 
+function copyLiferayESLint() {
+  cp ~/.liferay-eslintrc ./.eslintrc
+}
+
 function startMySQLServer () {
   docker start $(docker ps -a -q -f name=liferay_portal_database)
 }
