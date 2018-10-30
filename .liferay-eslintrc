@@ -12,8 +12,11 @@
 		"AUI": true
 	},
 	"rules": {
-    "brace-style": ["error", "stroustrup"],
+		"arrow-parens": ["error", "as-needed"],
+		"class-methods-use-this": "warn",
+		"dot-location": ["error", "property"],
 		"eol-last": ["error", "never"],
+		"func-names": ["error", "never"],
 		"func-style": "off",
 		"function-paren-newline": ["error", "consistent"],
 		"id-length": "off",
@@ -21,10 +24,14 @@
 		"max-len": ["error", 100],
 		"max-lines": "off",
 		"max-params": "off",
+		"max-statements": ["warn", 15],
+		"multiline-ternary": ["error", "always-multiline"],
+		"new-cap": "off",
 		"no-extra-parens": "off",
 		"no-magic-numbers": ["error", { "ignore": [0, 1] }],
 		"no-tabs": "off",
-    	"no-underscore-dangle": "off",
+		"no-ternary": "off",
+		"no-underscore-dangle": "off",
 		"no-use-before-define": "off",
 		"object-curly-newline": ["error", {
 			"ObjectExpression": "always",
@@ -36,6 +43,7 @@
 				"multiline": true
 			}
 		}],
+		"operator-linebreak": ["error", "after"],
 		"one-var": ["error", "never"],
 		"padded-blocks": ["error", {
 			"blocks": "never",
@@ -52,8 +60,8 @@
 				"FunctionExpression": true
 			}
 		}],
-    	"sort-keys": "off",
 		"sort-imports": "off",
+		"sort-keys": "off",
 		"space-before-function-paren": ["error", "never"],
 		"valid-jsdoc": ["error", {
 			"requireParamDescription": false,
