@@ -13,6 +13,7 @@
 	},
 	"rules": {
 		"arrow-parens": ["error", "as-needed"],
+		"brace-style": ["error", "stroustrup"],
 		"class-methods-use-this": "warn",
 		"dot-location": ["error", "property"],
 		"eol-last": ["error", "never"],
