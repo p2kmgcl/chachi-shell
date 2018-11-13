@@ -6,9 +6,10 @@ set autoindent smartindent
 set clipboard=unnamedplus
 set colorcolumn=+1
 set cursorline
+set noeol
 set hlsearch
 set ignorecase smartcase
-set mouse=a
+"set mouse=a
 set nobackup
 set noswapfile
 set nowrap
