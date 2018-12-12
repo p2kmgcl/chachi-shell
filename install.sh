@@ -12,7 +12,6 @@ clear
 ./git/install.sh
 ./npm/install.sh
 ./vim/install.sh
-./z/install.sh
 
 echo ""
 echo "done ('source ~/.bashrc' needed)"

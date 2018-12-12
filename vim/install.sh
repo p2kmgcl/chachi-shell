@@ -32,14 +32,13 @@ addVimPlugin tpope vim-fugitive
 addVimPlugin christoomey vim-tmux-navigator
 addVimPlugin dkprice vim-easygrep
 addVimPlugin junegunn fzf
-addVimPlugin ctrlpvim ctrlp.vim
 
 if [ ! -d ~/.vim/bundle/youcompleteme ]; then
   addVimPlugin valloric youcompleteme
   echo Installing youcompleteme
   cd ~/.vim/bundle/youcompleteme && \
-    git submodule update --init --recursive && \
-    python3 ./install.py --java-completer --js-completer
+  git submodule update --init --recursive && \
+  python3 ./install.py --java-completer --js-completer
 fi
 
 echo Copying vim configuration

@@ -4,19 +4,16 @@ filetype plugin indent on
 
 set autoindent smartindent
 set clipboard=unnamedplus
-set colorcolumn=+1
 set cursorline
 set noeol
 set hlsearch
 set ignorecase smartcase
-"set mouse=a
+set mouse=a
 set nobackup
 set noswapfile
 set nowrap
 set nowritebackup
-set number
 set showmatch
-set t_Co=256
 set textwidth=80
 
 set wildmenu
@@ -28,6 +25,10 @@ set wildignore+=*/gradle/*
 set wildignore+=*/node_modules/*
 set wildignore+=*/tmp/*
 
-let g:ctrlp_root_markers = ['.git', 'package.json', 'bnd.bnd']
+nm <silent> <C-t> :FZF<CR>
 
-colorscheme github
+set termguicolors
+set background=light
+let g:one_allow_italics = 1
+let g:airline_theme='one'
+colorscheme one
