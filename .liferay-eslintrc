@@ -9,6 +9,8 @@
 	},
 	"globals": {
 		"Liferay": true,
+    "Promise": true,
+    "$": true,
 		"AUI": true
 	},
 	"rules": {
@@ -35,14 +37,10 @@
 		"no-underscore-dangle": "off",
 		"no-use-before-define": "off",
 		"object-curly-newline": ["error", {
-			"ObjectExpression": "always",
+			"ObjectExpression": { "minProperties": 1, "multiline": true },
 			"ObjectPattern": { "multiline": true },
-			"ImportDeclaration": {
-				"multiline": true
-			},
-			"ExportDeclaration": {
-				"multiline": true
-			}
+			"ImportDeclaration": { "multiline": true },
+			"ExportDeclaration": { "multiline": true }
 		}],
 		"operator-linebreak": ["error", "after"],
 		"one-var": ["error", "never"],
