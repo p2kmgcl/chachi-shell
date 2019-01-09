@@ -66,7 +66,10 @@ function gradlewBuildLang () {
 }
 
 function gradlewFormatSource () {
-  gradlew formatSource && npm run csf -- -q
+  npx eslint src/**/*.js && \
+    npx check-source-formatting --fail-on-errors -q src/**/*.js src/**/*.scss src/**/*.soy && \
+    npx metal-soy-critic src/ && \
+    gradlew formatSource
 }
 
 function gradlewNpmInstall () {
