@@ -3,6 +3,14 @@ export ANT_OPTS="-XX:-UseGCOverheadLimit -Xmx8192m -XX:MaxMetaspaceSize=1024m"
 export JAVA_HOME="/usr/lib/jvm/default"
 export NODE_PATH="/usr/lib/node_modules:~/.npm-global/lib/node_modules"
 
+# Config
+
+function copyLiferayModuleConfig() {
+  npm install --no-save eslint eslint-plugin-jsdoc eslint-plugin-react eslint-plugin-sort-imports-es6-autofix
+  cp ~/.liferay-module-config/* .
+  mv ./gitignore ./.gitignore
+}
+
 # Database
 
 function createMySQLServer() {
@@ -15,10 +23,6 @@ function createMySQLServer() {
     -d mysql/mysql-server:5.7 \
     --character-set-server=utf8 \
     --collation-server=utf8_general_ci
-}
-
-function copyLiferayESLint() {
-  cp ~/.liferay-eslintrc ./.eslintrc
 }
 
 function startMySQLServer () {
@@ -88,6 +92,8 @@ function morning () {
 }
 
 # Export
+
+export -f copyLiferayModuleConfig
 
 export -f createMySQLServer
 export -f startMySQLServer

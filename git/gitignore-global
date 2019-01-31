@@ -10,5 +10,3 @@
 bin/
 
 .tern-project
-modules/apps/.editorconfig
-modules/apps/**/.eslintrc

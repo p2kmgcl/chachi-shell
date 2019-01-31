@@ -1,0 +1,16 @@
+{
+	"include": [
+		"*",
+		"**/*"
+	],
+	"exclude": [
+		"build/*",
+		"classes/*",
+		"node_modules/*"
+	],
+	"compileOnSave": false,
+	"compilerOptions": {
+		"allowJs": true,
+		"noEmit": true
+	}
+}

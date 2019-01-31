@@ -1,0 +1,211 @@
+{
+	"extends": "eslint:all",
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"sourceType": "module"
+	},
+	"env": {
+		"browser": true
+	},
+	"globals": {
+		"Liferay": true,
+		"Promise": true,
+		"$": true,
+		"AUI": true
+	},
+	"plugins": [
+		"jsdoc",
+		"react",
+		"sort-imports-es6-autofix"
+	],
+	"settings": {
+		"jsdoc": {
+			"additionalTagNames": {
+				"customTags": ["review"]
+			},
+			"tagNamePreference": {
+				"returns":"return"
+			}
+		}
+	},
+	"rules": {
+		"arrow-body-style": [0, "as-needed"],
+		"arrow-parens": [2, "as-needed"],
+		"brace-style": [2, "stroustrup"],
+		"class-methods-use-this": 0,
+		"display-name": 0,
+		"dot-location": [2, "property"],
+		"eol-last": [2, "never"],
+		"forbid-prop-types": 0,
+		"func-names": [2, "never"],
+		"func-style": 0,
+		"function-paren-newline": [2, "consistent"],
+		"id-length": 0,
+		"jsdoc/check-param-names": 2,
+		"jsdoc/check-tag-names": 2,
+		"jsdoc/no-undefined-types": 2,
+		"jsdoc/require-param": 2,
+		"jsdoc/require-param-name": 2,
+		"jsdoc/require-param-type": 2,
+		"jsdoc/require-returns": 2,
+		"jsdoc/require-returns-check": 2,
+		"jsdoc/require-returns-type": 2,
+		"jsdoc/valid-types": 2,
+		"jsx-boolean-value": 0,
+		"jsx-handler-names": 0,
+		"jsx-max-props-per-line": 0,
+		"max-len": [2, 100],
+		"max-lines": 0,
+		"max-params": 0,
+		"max-statements": ["warn", 15],
+		"multiline-ternary": [2, "always-multiline"],
+		"new-cap": 0,
+		"newline-per-chained-call": [2, { "ignoreChainWithDepth": 1 }],
+		"no-alert": 0,
+		"no-danger": 0,
+		"no-deprecated": 0,
+		"no-did-mount-set-state": 0,
+		"no-did-update-set-state": 0,
+		"no-extra-parens": 0,
+		"no-is-mounted": 0,
+		"no-magic-numbers": [2, { "ignore": [-1, 0, 1] }],
+		"no-multiple-empty-lines": [2, { "max": 1 }],
+		"no-new-symbol": 2,
+		"no-set-state": 0,
+		"no-string-refs": 0,
+		"no-tabs": 0,
+		"no-ternary": 0,
+		"no-use-before-define": 0,
+		"one-var": [2, "never"],
+		"operator-linebreak": [2, "after"],
+		"prefer-const": 2,
+		"prefer-es6-class": 0,
+		"prefer-rest-params": 2,
+		"prefer-spread": 2,
+		"prefer-stateless-function": 0,
+		"prefer-template": 2,
+		"quote-props": [2, "consistent-as-needed"],
+		"quotes": [2, "single"],
+		"react-in-jsx-scope": 0,
+		"react/sort-comp": [
+			2,
+			{
+				"groups": {
+					"lifecycle": [
+						"constructor",
+						"attached",
+						"created",
+						"disposed",
+						"prepareStateForRender",
+						"rendered",
+						"shouldUpdate"
+					],
+					"sync": [
+						"/^sync.+$/"
+					],
+					"handlers": [
+						"/^_handle.+$/"
+					]
+				},
+				"order": [
+					"static-methods",
+					"lifecycle",
+					"sync",
+					"handlers",
+					"everything-else",
+					"render"
+				]
+			}
+		],
+		"require-extension": 0,
+		"sort-imports": 0,
+		"sort-keys": 2,
+		"sort-vars": 2,
+		"indent": [2, "tab"],
+		"jsx-quotes": [2, "prefer-double"],
+		"no-underscore-dangle": 0,
+		"object-property-newline": 0,
+		"prop-types": 0,
+		"space-before-function-paren": [2, "never"],
+		"object-curly-newline": [2, {
+			"ObjectExpression": { "minProperties": 1, "multiline": true },
+			"ObjectPattern": { "multiline": true },
+			"ImportDeclaration": { "multiline": true },
+			"ExportDeclaration": { "multiline": true }
+		}],
+		"object-shorthand": [
+			2,
+			"always",
+			{
+				"ignoreConstructors": true
+			}
+		],
+		"padded-blocks": [2, {
+			"blocks": "never",
+			"classes": "always"
+		}],
+		"padding-line-between-statements": [
+			"error",
+			{
+				"blankLine": "always",
+				"prev": "*",
+				"next": "return"
+			},
+			{
+				"blankLine": "always",
+				"prev": ["const", "let", "var"],
+				"next": "*"
+			},
+			{
+				"blankLine": "any",
+				"prev": ["const", "let", "var"],
+				"next": ["const", "let", "var"]
+			}
+		],
+		"prefer-arrow-callback": [
+			2,
+			{
+				"allowNamedFunctions": true
+			}
+		],
+		"sort-comp": [
+			0,
+			{
+				"groups": {
+					"lifecycle": [
+						"constructor",
+						"displayName",
+						"mixins",
+						"propTypes",
+						"statics",
+						"defaultProps",
+						"getDefaultProps",
+						"getInitialState",
+						"state",
+						"componentWillMount",
+						"componentDidMount",
+						"componentWillReceiveProps",
+						"componentWillUpdate",
+						"componentDidUpdate",
+						"componentWillUnmount",
+						"shouldComponentUpdate",
+						"getChildContext",
+						"childContextTypes",
+						"contextTypes"
+					]
+				},
+				"order": [
+					"static-methods",
+					"lifecycle",
+					"everything-else",
+					"render"
+				]
+			}
+		],
+		"sort-imports-es6-autofix/sort-imports-es6": [2, {
+			"ignoreCase": true,
+			"ignoreMemberSort": false,
+			"memberSyntaxSortOrder": ["none", "all", "single", "multiple"]
+		}]
+	}
+}
