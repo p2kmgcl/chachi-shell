@@ -8,6 +8,7 @@ export NODE_PATH="/usr/lib/node_modules:~/.npm-global/lib/node_modules"
 function copyLiferayModuleConfig() {
   npm install --no-save eslint eslint-plugin-jsdoc eslint-plugin-react eslint-plugin-sort-imports-es6-autofix
   cp ~/.liferay-module-config/* .
+  cp ~/.liferay-module-config/.* .
   mv ./gitignore ./.gitignore
 }
 
