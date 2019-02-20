@@ -3,7 +3,9 @@
 export FZF_DEFAULT_COMMAND='rg --color=never --files --glob "!.git/*,!.gradle/*,!.hg/*,!.sass-cache/*,!.svn/*,!bower_components/*,!build/*,!classes/*,!CVS/*,!node_modules/*,!tmp/*"'
 
 function cdd() {
-  cd $(rg --color=never --files --null --glob '!{.git,.gradle,.hg,.sass-cache,.svn,bower_components,build,classes,CVS,node_modules,tmp}/*' ~ | xargs -0 dirname | sort -u | fzf)
+  DIR=$(rg --color=never --files --null --glob '!{.git,.gradle,.hg,.sass-cache,.svn,bower_components,build,classes,CVS,node_modules,tmp}/*' ~ | xargs -0 dirname | sort -u | fzf)
+  echo $DIR
+  cd $DIR
 }
 
 alias ls='ls --color=auto'

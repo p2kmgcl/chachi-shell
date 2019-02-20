@@ -1,12 +1,17 @@
+# Temporary files
 *.hprof
 *.jar
 *.project
 *.soy.js
 
+# Common configurations
+bin/
 .idea/
 .gradle/
 .vscode/
-
-bin/
-
 .tern-project
+
+
+# Liferay related
+modules/apps/.editorconfig
+modules/apps/tsconfig.json

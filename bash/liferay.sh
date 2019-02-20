@@ -3,15 +3,6 @@ export ANT_OPTS="-XX:-UseGCOverheadLimit -Xmx8192m -XX:MaxMetaspaceSize=1024m"
 export JAVA_HOME="/usr/lib/jvm/default"
 export NODE_PATH="/usr/lib/node_modules:~/.npm-global/lib/node_modules"
 
-# Config
-
-function copyLiferayModuleConfig() {
-  npm install --no-save eslint eslint-plugin-jsdoc eslint-plugin-react eslint-plugin-sort-imports-es6-autofix
-  cp ~/.liferay-module-config/* .
-  cp ~/.liferay-module-config/.* .
-  mv ./gitignore ./.gitignore
-}
-
 # Database
 
 function createMySQLServer() {
@@ -71,9 +62,8 @@ function gradlewBuildLang () {
 }
 
 function gradlewFormatSource () {
-  npx eslint src/**/*.js && \
-    npx check-source-formatting --fail-on-errors -q src/**/*.js src/**/*.scss src/**/*.soy && \
-    npx metal-soy-critic src/ && \
+  npx check-source-formatting@latest --fail-on-errors --quiet --show-columns --lint-ids src/**/*.jsp src/**/*.js src/**/*.scss src/**/*.soy && \
+    npx metal-soy-critic@latest src/ && \
     gradlew formatSource
 }
 
@@ -93,8 +83,6 @@ function morning () {
 }
 
 # Export
-
-export -f copyLiferayModuleConfig
 
 export -f createMySQLServer
 export -f startMySQLServer
