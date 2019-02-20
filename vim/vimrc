@@ -4,7 +4,6 @@ filetype plugin indent on
 
 set autoindent smartindent
 set clipboard=unnamedplus
-set cursorline
 set noeol
 set hlsearch
 set ignorecase smartcase
@@ -28,7 +27,4 @@ set wildignore+=*/tmp/*
 nm <silent> <C-t> :FZF<CR>
 
 set termguicolors
-set background=light
-let g:one_allow_italics = 1
-let g:airline_theme='one'
-colorscheme one
+set background=dark
