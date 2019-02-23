@@ -27,4 +27,4 @@ set wildignore+=*/tmp/*
 nm <silent> <C-t> :FZF<CR>
 
 set termguicolors
-set background=dark
+set background=light
