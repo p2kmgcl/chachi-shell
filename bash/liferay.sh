@@ -62,9 +62,7 @@ function gradlewBuildLang () {
 }
 
 function gradlewFormatSource () {
-  npx check-source-formatting@latest --fail-on-errors --quiet --show-columns --lint-ids src/**/*.jsp src/**/*.js src/**/*.scss src/**/*.soy & \
-    npx metal-soy-critic@latest src/ & \
-    wait && \
+  npx check-source-formatting@latest --fail-on-errors --quiet --show-columns --lint-ids src/**/*.jsp src/**/*.js src/**/*.scss src/**/*.soy && \
     gradlew -q formatSource
 }
 
