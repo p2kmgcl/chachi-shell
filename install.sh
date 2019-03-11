@@ -8,8 +8,10 @@ clear
 
 ./bash/install.sh
 ./editorconfig/install.sh
+./fzf/install.sh
 ./git/install.sh
 ./npm/install.sh
+./ripgrep/install.sh
 ./vim/install.sh
 
 echo ""
