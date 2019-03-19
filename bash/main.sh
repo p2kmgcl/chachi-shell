@@ -13,3 +13,4 @@ fi
 source ~/.bashrc--aliases.sh
 source ~/.bashrc--liferay.sh
 source ~/.bashrc--prompt.sh
+source ~/.bashrc--pending.sh
