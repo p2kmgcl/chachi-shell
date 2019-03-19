@@ -73,12 +73,15 @@ function gradlewNpmInstall () {
 # Morning
 
 function morning () {
-  cd ~/Projects/community-portal/liferay-portal && \
-    git cifuentes && \
-    destroyMySQLServer && \
-    createMySQLServer && \
-    buildPortal && \
-    runPortal
+  destroyMySQLServer
+  createMySQLServer
+  cd ~/Projects/community-portal/liferay-portal && git cifuentes && buildPortal
+}
+
+function tomorrow() {
+  echo morning > ~/.bashrc--pending-tasks/morning
+  sudo shutdown -c
+  sudo shutdown -r 07:30
 }
 
 # Export
