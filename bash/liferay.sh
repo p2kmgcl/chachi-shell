@@ -80,8 +80,7 @@ function morning () {
 
 function tomorrow() {
   echo morning > ~/.bashrc--pending-tasks/morning
-  sudo shutdown -c
-  sudo shutdown -r 07:30
+  sudo rtcwake -m off -s $(($(date -d "tomorrow 07:30" +%s) - $(date +%s)))
 }
 
 # Export
