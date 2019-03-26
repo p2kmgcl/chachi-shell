@@ -24,7 +24,8 @@ set wildignore+=*/gradle/*
 set wildignore+=*/node_modules/*
 set wildignore+=*/tmp/*
 
-nm <silent> <C-t> :call fzf#run({ 'sink': 'tabedit' })<CR>
+nm <silent> <C-t> :FZF<CR>
+nm <silent> <C-t><C-t> :call fzf#run({ 'sink': 'tabedit' })<CR>
 
 let g:airline_theme='minimalist'
 let g:airline_section_c='%t'
