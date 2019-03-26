@@ -3,7 +3,6 @@
 echo Updating repositories
 sudo apt-get -q -y update
 sudo apt-get install -q -y cmake git git-extras vim vim-gtk wget build-essential cmake python3-dev python-dev terminator
-sudo pacman -Syy bat base-devel cmake git terminator ttf-anonymous-pro ttf-fira-code ttf-fira-mono ttf-fira-sans vim wget
 clear
 
 ./bash/install.sh

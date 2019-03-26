@@ -26,5 +26,10 @@ set wildignore+=*/tmp/*
 
 nm <silent> <C-t> :FZF<CR>
 
+let g:airline_theme='minimalist'
+let g:airline_section_c='%t'
+let g:airline_section_z=''
+let g:airline_skip_empty_sections=1
+
 set termguicolors
 set background=light
