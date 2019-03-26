@@ -16,3 +16,5 @@ bin/
 modules/apps/.editorconfig
 modules/apps/tsconfig.json
 modules/apps/jsconfig.json
+modules/apps/**/*/tsconfig.json
+modules/apps/**/*/jsconfig.json
