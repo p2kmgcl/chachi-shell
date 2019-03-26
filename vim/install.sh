@@ -38,7 +38,7 @@ if [ ! -d ~/.vim/bundle/youcompleteme ]; then
   echo Installing youcompleteme
   cd ~/.vim/bundle/youcompleteme && \
   git submodule update --init --recursive && \
-  python3 ./install.py --js-completer
+  python3 ./install.py --ts-completer
 fi
 
 echo Copying vim configuration

@@ -7,4 +7,5 @@ alias f="${FZF_DEFAULT_COMMAND} --null ~ | xargs -0 dirname | sort -u | fzf --co
 alias ls='ls --color=auto'
 alias ll='ls --color=auto -lh'
 alias lla='ls --color=auto -lha'
+alias treeg='tree -I $(grep -hvE "^$|^#" {,$(git rev-parse --show-toplevel)/}.gitignore|sed "s:/$::"|tr \\n "\|")'
 alias serve='python3 -m http.server 8080'
