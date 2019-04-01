@@ -32,6 +32,7 @@ addVimPlugin tpope vim-fugitive
 addVimPlugin christoomey vim-tmux-navigator
 addVimPlugin dkprice vim-easygrep
 addVimPlugin junegunn fzf
+addVimPlugin junegunn fzf.vim
 
 if [ ! -d ~/.vim/bundle/youcompleteme ]; then
   addVimPlugin valloric youcompleteme
