@@ -25,7 +25,7 @@ set wildignore+=*/node_modules/*
 set wildignore+=*/tmp/*
 
 let g:fzf_command_prefix = 'Fzf'
-nm <silent> <C-p> :FzfGFiles<CR>
+nm <silent> <C-p> :FzfFiles<CR>
 nm <silent> <C-f> :FzfRg<CR>
 
 let g:airline_theme='minimalist'
