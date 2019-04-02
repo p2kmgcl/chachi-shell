@@ -72,8 +72,9 @@
   din = diff --name-only
   fe = fetch
   fea = fetch --all
-  lg = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate
-  lgs = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --max-count 20
+  lg = log --pretty=format:'%s' --decorate --graph
+  lgl = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --patch --minimal
+  prr = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --patch --minimal master..HEAD
   ps = push
   psf = push --force
   rb = rebase
