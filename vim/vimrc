@@ -44,4 +44,4 @@ let g:airline_section_z=''
 let g:airline_skip_empty_sections=1
 
 set termguicolors
-set background=light
+set background=dark
