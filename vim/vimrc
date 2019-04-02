@@ -24,6 +24,16 @@ set wildignore+=*/gradle/*
 set wildignore+=*/node_modules/*
 set wildignore+=*/tmp/*
 
+let g:gitgutter_sign_added = '█  '
+let g:gitgutter_sign_modified = '█  '
+let g:gitgutter_sign_removed = '█  '
+let g:gitgutter_sign_removed_first_line = '▀  '
+let g:gitgutter_sign_modified_removed = '█  '
+
+highlight GitGutterAdd guifg=#009900
+highlight GitGutterChange guifg=#bbbb00
+highlight GitGutterDelete guifg=#ff2222
+
 let g:fzf_command_prefix = 'Fzf'
 nm <silent> <C-p> :FzfFiles<CR>
 nm <silent> <C-f> :FzfRg<CR>

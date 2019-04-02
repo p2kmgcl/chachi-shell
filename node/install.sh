@@ -5,3 +5,6 @@ if [ -f /usr/bin/npm ]; then
   mkdir -p ~/.npm-global
 fi
 
+npm i -g npm
+npm i -g diff-so-fancy
+
