@@ -3,7 +3,7 @@
 echo Updating repositories
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get -q -y update
-sudo apt-get install -q -y cmake git git-extras vim vim-gtk wget build-essential cmake nodejs python3-dev python-dev terminator
+sudo apt-get install -q -y cmake git git-extras vim vim-gtk wget build-essential cmake nodejs python3-dev python-dev terminator tig
 clear
 
 ./bash/install.sh
