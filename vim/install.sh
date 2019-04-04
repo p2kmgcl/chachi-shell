@@ -32,6 +32,7 @@ addVimPlugin tpope vim-fugitive
 addVimPlugin junegunn fzf
 addVimPlugin junegunn fzf.vim
 addVimPlugin scrooloose nerdtree
+addVimPlugin terryma vim-multiple-cursors
 
 if [ ! -d ~/.vim/bundle/youcompleteme ]; then
   addVimPlugin valloric youcompleteme
