@@ -29,10 +29,9 @@ addVimPlugin pangloss vim-javascript
 addVimPlugin mxw vim-jsx
 addVimPlugin editorconfig editorconfig-vim
 addVimPlugin tpope vim-fugitive
-addVimPlugin christoomey vim-tmux-navigator
-addVimPlugin dkprice vim-easygrep
 addVimPlugin junegunn fzf
 addVimPlugin junegunn fzf.vim
+addVimPlugin scrooloose nerdtree
 
 if [ ! -d ~/.vim/bundle/youcompleteme ]; then
   addVimPlugin valloric youcompleteme
