@@ -37,12 +37,12 @@ function destroyMySQLServer () {
 
 # Portal
 
-function JuanAntol () {
+function JuanAntol👨 () {
   cd ~/Projects/community-portal/liferay-portal && \
     ant all
 }
 
-function CatalinaRun () {
+function CatalinaRun👩 () {
   cd ~/Projects/community-portal/bundles/tomcat-9.0.10/bin && \
     ./catalina.sh jpda run
 }
@@ -75,7 +75,7 @@ function gradlewNpmInstall () {
 function morning () {
   destroyMySQLServer
   createMySQLServer
-  cd ~/Projects/community-portal/liferay-portal && git cifuentes && JuanAntol
+  cd ~/Projects/community-portal/liferay-portal && git cifuentes && JuanAntol👨
 }
 
 function tomorrow() {
@@ -90,8 +90,8 @@ export -f startMySQLServer
 export -f stopMySQLServer
 export -f destroyMySQLServer
 
-export -f JuanAntol
-export -f CatalinaRun
+export -f JuanAntol👨
+export -f CatalinaRun👩
 
 export -f gradlewDeploy
 export -f gradlewCleanDeploy
