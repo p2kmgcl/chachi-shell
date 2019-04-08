@@ -77,6 +77,7 @@
   lgl = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --patch --minimal
   prr = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --patch --minimal master..HEAD
   ps = push
+  pom = push origin master
   psf = push --force
   rb = rebase
   rba = rebase --abort
