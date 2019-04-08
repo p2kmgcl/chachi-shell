@@ -43,7 +43,7 @@ function JuanAntol👨 () {
 }
 
 function CatalinaRun👩 () {
-  cd ~/Projects/community-portal/bundles/tomcat-9.0.10/bin && \
+  cd ~/Projects/community-portal/bundles/tomcat-9.0.17/bin && \
     ./catalina.sh jpda run
 }
 
