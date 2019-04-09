@@ -5,6 +5,10 @@
       "error",
       "never"
     ],
+    "eol-last": [
+      "error",
+      "never"
+    ],
     "max-len": [
       "off",
       100
