@@ -3,6 +3,15 @@ export ANT_OPTS="-XX:-UseGCOverheadLimit -Xmx8192m -XX:MaxMetaspaceSize=1024m"
 export JAVA_HOME="/usr/lib/jvm/default-java"
 export NODE_PATH="/usr/lib/node_modules:/home/p2kmgcl/.npm-global/lib/node_modules"
 
+# Config
+
+function copyLiferayConfig() {
+  cp ~/Projects/community-portal/liferay-portal/modules/apps/.editorconfig .
+  cp ~/Projects/community-portal/liferay-portal/modules/apps/.eslintrc .
+  cp ~/Projects/community-portal/liferay-portal/modules/apps/jsconfig.json .
+  cp ~/Projects/community-portal/liferay-portal/modules/apps/tsconfig.json .
+}
+
 # Database
 
 function createMySQLServer() {

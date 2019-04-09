@@ -1,0 +1,20 @@
+{
+  "extends": "eslint-config-liferay",
+  "rules": {
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "max-len": [
+      "off",
+      100
+    ],
+    "padded-blocks": [
+      "off",
+      "never"
+    ],
+    "valid-jsdoc": [
+      "off"
+    ]
+  }
+}
