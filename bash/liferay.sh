@@ -59,11 +59,11 @@ function CatalinaRun👩 () {
 # Gradlew
 
 function gradlewDeploy () {
-  gradlew deploy -a
+  NODE_ENV=development gradlew deploy -a
 }
 
 function gradlewCleanDeploy () {
-  gradlew clean deploy -Dbuild=portal
+  NODE_ENV=development gradlew clean deploy -Dbuild=portal
 }
 
 function gradlewBuildLang () {
@@ -71,8 +71,7 @@ function gradlewBuildLang () {
 }
 
 function gradlewFormatSource () {
-  npx check-source-formatting@latest --fail-on-errors --quiet --show-columns --lint-ids src/**/*.jsp src/**/*.js src/**/*.scss src/**/*.soy && \
-    gradlew -q formatSource
+  gradlew formatSource
 }
 
 function gradlewNpmInstall () {
