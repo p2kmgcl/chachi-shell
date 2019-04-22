@@ -5,7 +5,7 @@ syntax on
 filetype plugin indent on
 
 set autoindent smartindent
-set background=dark
+set background=light
 set clipboard=unnamedplus
 set noeol
 set hlsearch

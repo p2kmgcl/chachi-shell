@@ -12,4 +12,5 @@ function main() {
   mkdir -p ./.bashrc--pending-tasks
 }
 
-cd ~ && main
+PREVIOUS_PWD=$(pwd)
+cd ~ && main && cd ${PREVIOUS_PWD}
