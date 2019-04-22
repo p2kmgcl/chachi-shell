@@ -7,4 +7,5 @@ fi
 
 npm i -g npm
 npm i -g diff-so-fancy
-
+npm i -g gradle-launcher
+npm i -g gh gh-jira
