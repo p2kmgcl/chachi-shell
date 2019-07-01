@@ -1,5 +1,4 @@
 #!/bin/bash
 
-echo Copying git configuration
-cp ./git/gitconfig ~/.gitconfig
-cp ./git/gitignore-global ~/.gitignore-global
+ln -sf $HOME/chachi-shell/git/gitconfig $HOME/.gitconfig
+ln -sf $HOME/chachi-shell/git/gitignore-global $HOME/.gitignore-global

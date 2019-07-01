@@ -1,11 +1,9 @@
 #!/bin/bash
 
-HERE=`pwd`
+mkdir -p $HOME/.vim/bundle
+mkdir -p $HOME/.vim/autoload
 
-mkdir -p ~/.vim/bundle
-mkdir -p ~/.vim/autoload
-
-if [ ! -f ~/.vim/autoload/pathogen.vim ]; then
+if [ ! -f $HOME/.vim/autoload/pathogen.vim ]; then
   echo Adding vim pathogen
   wget -q https://tpo.pe/pathogen.vim
   mv pathogen.vim ~/.vim/autoload/pathogen.vim
@@ -13,9 +11,8 @@ fi
 
 function addVimPlugin {
   echo Adding vim plugin $1/$2
-  if [ ! -d ~/.vim/bundle/${2} ]; then
-    git clone -q git@github.com:$1/$2.git ~/.vim/bundle/$2
-  fi
+  rm -rf $HOME/.vim/bundle/${2}
+  git clone -q git@github.com:$1/$2.git $HOME/.vim/bundle/$2
 }
 
 addVimPlugin rafi awesome-vim-colorschemes
@@ -34,13 +31,12 @@ addVimPlugin junegunn fzf.vim
 addVimPlugin scrooloose nerdtree
 addVimPlugin terryma vim-multiple-cursors
 
-if [ ! -d ~/.vim/bundle/youcompleteme ]; then
+if [ ! -d $HOME/.vim/bundle/youcompleteme ]; then
   addVimPlugin valloric youcompleteme
   echo Installing youcompleteme
-  cd ~/.vim/bundle/youcompleteme && \
-  git submodule update --init --recursive && \
-  python3 ./install.py --ts-completer
+  cd $HOME/.vim/bundle/youcompleteme && \
+    git submodule update --init --recursive && \
+    python3 ./install.py --ts-completer
 fi
 
-echo Copying vim configuration
-cd $HERE && cp ./vim/vimrc ~/.vimrc
+ln -sf $HOME/chachi-shell/vim/vimrc $HOME/.vimrc

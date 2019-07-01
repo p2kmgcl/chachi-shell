@@ -1,4 +1,3 @@
 #!/bin/bash
 
-echo Copying editorconfig file
-cp ./.editorconfig ~/.editorconfig
+ln -s $HOME/chachi-shell/.editorconfig $HOME/.editorconfig

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp ./liferay/editorconfig ~/Projects/community-portal/liferay-portal/modules/apps/.editorconfig
-cp ./liferay/eslintrc.json ~/Projects/community-portal/liferay-portal/modules/apps/.eslintrc
-cp ./liferay/jsconfig.json ~/Projects/community-portal/liferay-portal/modules/apps/jsconfig.json
-cp ./liferay/tsconfig.json ~/Projects/community-portal/liferay-portal/modules/apps/tsconfig.json
+ln -sf $HOME/chachi-shell/liferay/editorconfig $HOME/Projects/community-portal/liferay-portal/modules/apps/.editorconfig
+
+npm i -g gradle-launcher
+npm i -g gh@1.13.0 gh-jira@1.0.5

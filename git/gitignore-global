@@ -11,13 +11,6 @@ bin/
 .vscode/
 .tern-project
 
-
 # Liferay related
 modules/apps/.editorconfig
-modules/apps/.eslintrc
-modules/apps/tsconfig.json
-modules/apps/jsconfig.json
 modules/apps/**/*.editorconfig
-modules/apps/**/*/.eslintrc
-modules/apps/**/*/tsconfig.json
-modules/apps/**/*/jsconfig.json
