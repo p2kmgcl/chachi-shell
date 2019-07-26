@@ -18,7 +18,6 @@
 [core]
   editor = vim
   ignorecase = false
-  pager = diff-so-fancy | less --tabs=4 -RFX
   excludesfile = ~/.gitignore-global
 
 [diff]
@@ -72,10 +71,9 @@
   din = diff --name-only
   fe = fetch
   fea = fetch --all
-  lg = log --pretty=format:'%h %s' --decorate --color --graph HEAD~100..HEAD
-  lga = log --pretty=format:'%h %s' --decorate --color --graph
+  lg = log --pretty=format:'%h %s' --decorate --color --graph
+  lgg = !git --no-pager log --pretty=oneline --abbrev-commit --grep
   lgl = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --patch --minimal
-  prr = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --patch --minimal master..HEAD
   ps = push
   pom = push origin master
   psf = push --force
