@@ -30,6 +30,7 @@ addVimPlugin junegunn fzf
 addVimPlugin junegunn fzf.vim
 addVimPlugin scrooloose nerdtree
 addVimPlugin terryma vim-multiple-cursors
+addVimPlugin prettier vim-prettier
 
 if [ ! -d $HOME/.vim/bundle/youcompleteme ]; then
   addVimPlugin valloric youcompleteme

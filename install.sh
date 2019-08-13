@@ -11,6 +11,7 @@ if [ -f /usr/bin/npm ]; then
 fi
 
 npm i -g npm
+npm i -g prettier http-server browser-sync
 
 for installFile in `find $HOME/chachi-shell -mindepth 2 -maxdepth 2 -name "install.sh"`; do
   echo $installFile
