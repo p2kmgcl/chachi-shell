@@ -63,24 +63,14 @@
   ada = add .
   back = reset HEAD~1
   br = branch
-  brd = branch --delete
   ch = checkout
   cm = commit
-  di = diff
-  dih = diff HEAD
   din = diff --name-only
-  fe = fetch
   fea = fetch --all
   lg = log --pretty=format:'%h %s' --decorate --color --graph
-  lgg = !git --no-pager log --pretty=oneline --abbrev-commit --grep
-  lgl = log --pretty=format:'%cr%Cred%d%Creset%  %Cgreen[%h]%Creset %Cblue[%ce]%Creset %s' --decorate --patch --minimal
-  ps = push
-  pom = push origin master
-  psf = push --force
   rb = rebase
   rba = rebase --abort
   rbc = rebase --continue
   rbi = rebase --interactive
-  rs = reset
   rsh = reset --hard
   st = status --short

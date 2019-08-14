@@ -65,21 +65,21 @@ function gradlewFormatSource () {
   gradlew formatSource
 }
 
-function gradlewNpmInstall () {
-  gradlew npmInstall
-}
+# Pulls
 
-# Morning
+function sendPullTo () {
+  BRANCH=`git branch | grep \* | cut -d ' ' -f2`
 
-function morning () {
-  destroyMySQLServer
-  createMySQLServer
-  cd $HOME/Projects/community-portal/liferay-portal && git cifuentes && buildPortal
+  git push && \
+    git ch master && \
+    git br -D $BRANCH && \
+    xdg-open "https://github.com/${1}/liferay-portal/compare/master...${whoami}:${BRANCH}"
 }
 
 # Export
 
 export -f createMySQLServer
+export -f connectToMySQLServer
 export -f startMySQLServer
 export -f stopMySQLServer
 export -f destroyMySQLServer
@@ -91,6 +91,5 @@ export -f gradlewDeploy
 export -f gradlewCleanDeploy
 export -f gradlewBuildLang
 export -f gradlewFormatSource
-export -f gradlewNpmInstall
 
-export -f morning
+export -f sendPullTo
