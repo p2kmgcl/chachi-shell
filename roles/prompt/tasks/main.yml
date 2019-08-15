@@ -1,0 +1,11 @@
+---
+- name: Copy .bashrc-prompt file
+  copy:
+    src: bashrc-prompt
+    dest: "{{ ansible_env.HOME }}/.bashrc-prompt"
+
+- name: Link .bashrc to prompt
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    state: present
+    line: "source ~/.bashrc-prompt"
