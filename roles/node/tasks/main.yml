@@ -28,7 +28,11 @@
   file:
     path: "{{ ansible_env.HOME }}/.npm-global"
     state: directory
-    mode: '0755'
+
+- name: Create .npmrc
+  file:
+    path: "{{ ansible_env.HOME }}"/.npmrc
+    state: touch
 
 - name: Set npm prefix to .npm-global
   lineinfile:
