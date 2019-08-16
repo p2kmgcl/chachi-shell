@@ -1,7 +1,6 @@
 export ANT_HOME="/usr/bin/ant"
 export ANT_OPTS="-XX:-UseGCOverheadLimit -Xmx8192m -XX:MaxMetaspaceSize=1024m"
 export JAVA_HOME="/usr/lib/jvm/default-java"
-export NODE_PATH="/usr/lib/node_modules:/home/p2kmgcl/.npm-global/lib/node_modules"
 
 # Database
 
@@ -71,8 +70,8 @@ function sendPullTo () {
   BRANCH=`git branch | grep \* | cut -d ' ' -f2`
 
   git push && \
-    git ch master && \
-    git br -D $BRANCH && \
+    git checkout master && \
+    git branch -D $BRANCH && \
     xdg-open "https://github.com/${1}/liferay-portal/compare/master...p2kmgcl:${BRANCH}?quick_pull=1&title=LPS-&body=/cc%20@ealonso"
 }
 

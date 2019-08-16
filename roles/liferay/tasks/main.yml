@@ -1,0 +1,63 @@
+---
+
+- name: Create Projects/community-portal
+  file:
+    path: "{{ ansible_env.HOME }}/Projects/community-portal"
+    state: directory
+
+- name: Install gradle-launcher
+  npm:
+    name: gradle-launcher
+    global: yes
+    state: latest
+
+- name: Install Java
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - openjdk-8-jdk
+    - openjdk-8-dbg
+    - openjdk-8-doc
+    - openjdk-8-jre
+    - openjdk-8-source
+
+- name: Install Apache ANT
+  become: yes
+  apt:
+    name: ant
+    state: latest
+
+- name: Clone liferay-portal
+  git:
+    repo: git@github.com:p2kmgcl/liferay-portal.git
+    dest: "{{ ansible_env.HOME }}/Projects/community-portal/liferay-portal"
+    update: false
+
+- name: Clone liferay-binaries-2017
+  git:
+    repo: https://github.com/liferay/liferay-binaries-cache-2017.git
+    dest: "{{ ansible_env.HOME }}/Projects/community-portal/liferay-binaries-cache-2017"
+    update: false
+
+- name: Copy editorconfig to modules/apps/.editorconfig
+  copy:
+    src: editorconfig
+    dest: "{{ ansible_env.HOME }}/Projects/community-portal/liferay-portal/modules/apps/.editorconfig"
+
+- name: Copy portal-ext.properties
+  copy:
+    src: portal-ext.properties
+    dest: "{{ ansible_env.HOME }}/Projects/community-portal/portal-ext.properties"
+
+- name: Copy .bashrc-liferay file
+  copy:
+    src: bashrc-liferay
+    dest: "{{ ansible_env.HOME }}/.bashrc-liferay"
+
+- name: Link .bashrc to liferay
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    state: present
+    line: "source ~/.bashrc-liferay"

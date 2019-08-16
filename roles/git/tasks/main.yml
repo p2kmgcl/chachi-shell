@@ -1,0 +1,18 @@
+---
+-name: Install git and git-extras
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - git
+    - git-extras
+
+- name: Copy .gitconfig file
+  copy:
+    src: gitconfig
+    dest: "{{ ansible_env.HOME }}/.gitconfig"
+
+- name: Copy .gitignore-global file
+  copy:
+    src: gitignore-global
+    dest: "{{ ansible_env.HOME }}/.gitignore-global"

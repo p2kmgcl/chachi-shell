@@ -1,5 +1,10 @@
 ---
 - hosts: localhost
   roles:
-    - prompt
+    - editorconfig
+    - docker
+    - fzf
+    - git
     - node
+    - prompt
+    - ripgrep

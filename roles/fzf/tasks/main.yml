@@ -1,0 +1,23 @@
+---
+- name: Clone fzf repository
+  git:
+    repo: https://github.com/junegunn/fzf.git
+    dest: "{{ ansible_env.HOME }}/.fzf"
+  register: fzf_updated
+
+- name: Install fzf
+  shell: ./install --all
+  args:
+    chdir: "{{ ansible_env.HOME }}/.fzf"
+  when: fzf_updated
+
+- name: Copy .bashrc-fzf file
+  copy:
+    src: bashrc-fzf
+    dest: "{{ ansible_env.HOME }}/.bashrc-fzf"
+
+- name: Link .bashrc to fzf
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    state: present
+    line: "source ~/.bashrc-fzf"
