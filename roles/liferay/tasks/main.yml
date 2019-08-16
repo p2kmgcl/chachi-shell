@@ -9,20 +9,20 @@
   npm:
     name: gradle-launcher
     global: yes
-    state: latest
+    state: present
 
 - name: Install Java
   become: yes
   apt:
     name: ['openjdk-8-jdk', 'openjdk-8-dbg', 'openjdk-8-doc', 'openjdk-8-jre', 'openjdk-8-source']
-    state: latest
+    state: present
     update_cache: yes
 
 - name: Install Apache ANT
   become: yes
   apt:
     name: ant
-    state: latest
+    state: present
     update_cache: yes
 
 - name: Clone liferay-portal

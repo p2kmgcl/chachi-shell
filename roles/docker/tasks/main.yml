@@ -3,7 +3,7 @@
   become: yes
   apt:
     name: apt-transport-https
-    state: latest
+    state: present
     update_cache: yes
 
 - name: Add Docker GPG key
@@ -20,5 +20,5 @@
   become: yes
   apt:
     name: docker-ce
-    state: latest
+    state: present
     update_cache: yes
