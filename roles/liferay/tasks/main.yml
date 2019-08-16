@@ -14,14 +14,8 @@
 - name: Install Java
   become: yes
   apt:
-    name: "{{ item }}"
+    name: ['openjdk-8-jdk', 'openjdk-8-dbg', 'openjdk-8-doc', 'openjdk-8-jre', 'openjdk-8-source']
     state: latest
-  with_items:
-    - openjdk-8-jdk
-    - openjdk-8-dbg
-    - openjdk-8-doc
-    - openjdk-8-jre
-    - openjdk-8-source
 
 - name: Install Apache ANT
   become: yes

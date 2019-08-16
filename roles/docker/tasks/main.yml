@@ -2,14 +2,8 @@
 - name: Install docker dependencies
   become: yes
   apt:
-    name: "{{ item }}"
-    update_cache: yes
-  with_items:
-    - apt-transport-https
-    - ca-certificates
-    - curl
-    - gnupg2
-    - software-properties-common
+    name: ['apt-transport-https', 'ca-certificates', 'curl', 'gnupg2', 'software-properties-common']
+    state: latest
 
 - name: Add Docker GPG key
   become: yes
@@ -25,3 +19,4 @@
   become: yes
   apt:
     name: docker-ce
+    state: latest

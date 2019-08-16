@@ -1,11 +1,9 @@
 ---
 - name: Install git and git-extras
+  become: yes
   apt:
-    name: "{{ item }}"
+    name: ['git', 'git-extras']
     state: latest
-  with_items:
-    - git
-    - git-extras
 
 - name: Copy .gitconfig file
   copy:
