@@ -49,6 +49,7 @@ highlight GitGutterDelete guifg=#ff2222
 nm <silent> <C-p> :FzfFiles<CR>
 nm <silent> <C-g> :FzfGFiles<CR>
 nm <silent> <C-f> :FzfRg<CR>
+nm <silent> <C-j> :FzfHistory<CR>
 nm <silent> <C-b> :NERDTreeToggle<CR>
 
 let g:prettier#autoformat = 0

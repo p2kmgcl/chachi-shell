@@ -73,7 +73,7 @@ function sendPullTo () {
   git push && \
     git ch master && \
     git br -D $BRANCH && \
-    xdg-open "https://github.com/${1}/liferay-portal/compare/master...${whoami}:${BRANCH}"
+    xdg-open "https://github.com/${1}/liferay-portal/compare/master...p2kmgcl:${BRANCH}?quick_pull=1&title=LPS-&body=/cc%20@ealonso"
 }
 
 # Export
