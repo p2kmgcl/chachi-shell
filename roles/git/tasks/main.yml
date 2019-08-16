@@ -1,5 +1,5 @@
 ---
--name: Install git and git-extras
+- name: Install git and git-extras
   apt:
     name: "{{ item }}"
     state: latest
