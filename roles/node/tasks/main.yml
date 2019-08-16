@@ -4,6 +4,7 @@
   apt:
     name: apt-transport-https
     state: latest
+    update_cache: yes
 
 - name: Add Nodesource apt key
   become: yes
@@ -27,6 +28,7 @@
   apt:
     name: nodejs
     state: latest
+    update_cache: yes
 
 - name: Create .npm-global directory
   file:

@@ -2,8 +2,9 @@
 - name: Install docker dependencies
   become: yes
   apt:
-    name: 'apt-transport-https'
+    name: apt-transport-https
     state: latest
+    update_cache: yes
 
 - name: Add Docker GPG key
   become: yes
@@ -20,3 +21,4 @@
   apt:
     name: docker-ce
     state: latest
+    update_cache: yes

@@ -4,6 +4,7 @@
   apt:
     name: ['git', 'git-extras']
     state: latest
+    update_cache: yes
 
 - name: Copy .gitconfig file
   copy:

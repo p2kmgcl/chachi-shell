@@ -16,12 +16,14 @@
   apt:
     name: ['openjdk-8-jdk', 'openjdk-8-dbg', 'openjdk-8-doc', 'openjdk-8-jre', 'openjdk-8-source']
     state: latest
+    update_cache: yes
 
 - name: Install Apache ANT
   become: yes
   apt:
     name: ant
     state: latest
+    update_cache: yes
 
 - name: Clone liferay-portal
   git:
