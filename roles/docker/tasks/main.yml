@@ -2,7 +2,7 @@
 - name: Install docker dependencies
   become: yes
   apt:
-    name: ['apt-transport-https', 'ca-certificates', 'curl', 'gnupg2', 'software-properties-common']
+    name: 'apt-transport-https'
     state: latest
 
 - name: Add Docker GPG key
