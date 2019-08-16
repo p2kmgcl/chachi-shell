@@ -46,14 +46,19 @@
     line: "export PATH=$HOME/.npm-global/bin:$PATH"
     state: present
 
-- name: Upgrade NPM.
+- name: Upgrade NPM
   npm:
     name: npm
     global: yes
     state: latest
 
-- name: Install some utils.
+- name: Install some utils
   npm:
-    name: prettier http-server browser-sync eslint
+    name: "{{ item }}"
     global: yes
     state: latest
+  with_items:
+    - prettier
+    - http-server
+    - browser-sync
+    - eslint
