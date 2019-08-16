@@ -1,6 +1,8 @@
 ---
-- name: Ensure apt-transport-https is installed.
-  apt: name=apt-transport-https state=present
+- name: Install apt-transport-https.
+  apt:
+    name: apt-transport-https
+    state: latest
 
 - name: Add Nodesource apt key.
   apt_key:
@@ -12,15 +14,42 @@
   apt_repository:
     repo: "{{ item }}"
     state: present
+    update_cache: yes
   with_items:
-    - "deb https://deb.nodesource.com/node_{{ nodejs_version }} {{ ansible_distribution_release }} main"
-    - "deb-src https://deb.nodesource.com/node_{{ nodejs_version }} {{ ansible_distribution_release }} main"
-  register: node_repo
+    - "deb https://deb.nodesource.com/node_10.x {{ ansible_distribution_release }} main"
+    - "deb-src https://deb.nodesource.com/node_10.x {{ ansible_distribution_release }} main"
 
-- name: Update apt cache if repo was added.
-  apt: update_cache=yes
-  when: node_repo.changed
-  tags: ['skip_ansible_lint']
+- name: Install NodeJS and NPM
+  apt:
+    name: nodejs
+    state: latest
 
-- name: Ensure Node.js and npm are installed.
-  apt: "name=nodejs={{ nodejs_version|regex_replace('x', '') }}* state=present"
+- name: Create .npm-global directory
+  file:
+    path: "{{ ansible_env.HOME }}/.npm-global"
+    state: directory
+    mode: '0755'
+
+- name: Set npm prefix to .npm-global
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.npmrc"
+    line: "prefix={{ ansible_env.HOME }}/.npm-global"
+    state: present
+
+- name: Add .npm-global to $PATH
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    line: "export PATH=$HOME/.npm-global/bin:$PATH"
+    state: present
+
+- name: Upgrade NPM.
+  npm:
+    name: npm
+    global: yes
+    state: latest
+
+- name: Install some utils.
+  npm:
+    name: prettier http-server browser-sync eslint
+    global: yes
+    state: latest
