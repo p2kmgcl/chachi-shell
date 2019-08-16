@@ -3,13 +3,13 @@
   git:
     repo: https://github.com/junegunn/fzf.git
     dest: "{{ ansible_env.HOME }}/.fzf"
-  register: fzf_updated
+  register: fzf_repo_status
 
 - name: Install fzf
   shell: ./install --all
   args:
     chdir: "{{ ansible_env.HOME }}/.fzf"
-  when: fzf_updated
+  when: fzf_repo_status.changed
 
 - name: Copy .bashrc-fzf file
   copy:
