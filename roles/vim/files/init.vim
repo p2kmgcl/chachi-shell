@@ -1,5 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'philip-karlsson/bolt.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -45,7 +45,7 @@ let g:LanguageClient_rootMarkers = {
     \ 'typescript': ['package.json'],
     \ }
 
+let g:fzf_command_prefix = 'Fzf'
 nm <silent> <C-p> :FzfFiles<CR>
 nm <silent> <C-g> :FzfGFiles?<CR>
 nm <silent> <C-f> :FzfRg<CR>
-nm <silent> <C-b> :NERDTreeToggle<CR>
