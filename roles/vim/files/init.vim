@@ -1,4 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
+Plug '~/.fzf/bin/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'HerringtonDarkholme/yats.vim'
