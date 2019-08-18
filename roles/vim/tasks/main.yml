@@ -17,25 +17,12 @@
     path: "{{ ansible_env.HOME }}/.config/nvim/autoload"
     state: directory
 
-- name: Create .config/nvim/bundle
-  file:
-    path: "{{ ansible_env.HOME }}/.config/nvim/bundle"
-    state: directory
-
 - name: Copy init.vim
   copy:
     src: init.vim
     dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
 
-- name: Download pathogen
+- name: Download vim-plug
   get_url:
-    url: https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-    dest: "{{ ansible_env.HOME }}/.config/nvim/autoload/pathogen.vim"
-
-- name: Download vim plugins
-  git:
-    repo: "{{ item.repo }}"
-    dest: "{{ ansible_env.HOME }}/.config/nvim/bundle/{{ item.name }}"
-  with_items:
-    - name: autojump
-      repo: https://github.com/philip-karlsson/aerojump.nvim
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: "{{ ansible_env.HOME }}/.config/nvim/autoload/plug.vim"
