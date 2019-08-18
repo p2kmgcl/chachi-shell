@@ -6,10 +6,16 @@
     repo: ppa:neovim-ppa/stable
     update_cache: yes
 
-- name: Install neovim, python-dev and python-pip
+- name: Install neovim
   become: yes
   apt:
-    name: ['neovim', 'python-dev', 'python-pip', 'python3-dev', 'python3-pip']
+    name: ['neovim']
+    state: present
+
+- name: Install python-dev and pip (2 and 3)
+  become: yes
+  apt:
+    name: ['python-dev', 'python-pip', 'python3-dev', 'python3-pip']
     state: present
 
 - name: Add neovim python support
@@ -21,6 +27,12 @@
   with_items:
     - pip2
     - pip3
+
+- name: Install ruby
+  become: yes
+  apt:
+    name: ['ruby-full']
+    state: present
 
 - name: Add neovim ruby support
   gem:
