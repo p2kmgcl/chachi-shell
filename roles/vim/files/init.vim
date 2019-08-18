@@ -1,5 +1,3 @@
-execute pathogen#infect()
-
 syntax on
 
 filetype plugin indent on
@@ -27,30 +25,3 @@ set wildignore+=*/classes/*
 set wildignore+=*/gradle/*
 set wildignore+=*/node_modules/*
 set wildignore+=*/tmp/*
-
-let g:airline_theme='minimalist'
-let g:airline_section_c='%t'
-let g:airline_section_z=''
-let g:airline_skip_empty_sections=1
-let g:fzf_command_prefix = 'Fzf'
-let g:gitgutter_sign_added = '█  '
-let g:gitgutter_sign_modified = '█  '
-let g:gitgutter_sign_removed = '█  '
-let g:gitgutter_sign_removed_first_line = '▀  '
-let g:gitgutter_sign_modified_removed = '█  '
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeDirArrows = 1
-let NERDTreeMinimalUI = 1
-
-highlight GitGutterAdd guifg=#009900
-highlight GitGutterChange guifg=#bbbb00
-highlight GitGutterDelete guifg=#ff2222
-
-nm <silent> <C-p> :FzfFiles<CR>
-nm <silent> <C-g> :FzfGFiles<CR>
-nm <silent> <C-f> :FzfRg<CR>
-nm <silent> <C-j> :FzfHistory<CR>
-nm <silent> <C-b> :NERDTreeToggle<CR>
-
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
