@@ -1,5 +1,5 @@
+execute pathogen#infect('~/.config/nvim/bundle/{}')
 syntax on
-
 filetype plugin indent on
 
 set autoindent smartindent

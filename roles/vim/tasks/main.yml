@@ -12,9 +12,14 @@
     name: ['neovim', 'python-dev', 'python-pip', 'python3-dev', 'python3-pip']
     state: present
 
-- name: Create .config/nvim/
+- name: Create .config/nvim/autoload
   file:
-    path: "{{ ansible_env.HOME }}/.config/nvim"
+    path: "{{ ansible_env.HOME }}/.config/nvim/autoload"
+    state: directory
+
+- name: Create .config/nvim/bundle
+  file:
+    path: "{{ ansible_env.HOME }}/.config/nvim/bundle"
     state: directory
 
 - name: Copy init.vim
@@ -22,12 +27,15 @@
     src: init.vim
     dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
 
-- name: Create .local/share/nvim/site/autoload/
-  file:
-    path: "{{ ansible_env.HOME }}/.local/share/nvim/site/autoload"
-    state: directory
-
-- name: Download vim-plug
+- name: Download pathogen
   get_url:
-    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    dest: "{{ ansible_env.HOME }}/.local/share/nvim/site/autoload/plug.vim"
+    url: https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+    dest: "{{ ansible_env.HOME }}/.config/nvim/autoload/pathogen.vim"
+
+- name: Download vim plugins
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ ansible_env.HOME }}/.config/nvim/bundle/{{ item.name }}"
+  with_items:
+    - name: autojump
+      repo: https://github.com/philip-karlsson/aerojump.nvim
