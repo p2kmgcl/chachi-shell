@@ -1,7 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
-Plug 'https://github.com/philip-karlsson/aerojump.nvim.git'
-Plug 'https://github.com/philip-karlsson/bolt.nvim.git'
-Plug 'https://github.com/Shougo/deoplete.nvim.git'
+Plug 'philip-karlsson/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'philip-karlsson/bolt.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 syntax on
