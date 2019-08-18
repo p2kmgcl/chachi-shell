@@ -17,7 +17,7 @@
     executable: "{{ item }}"
     name: neovim
     state: present
-    extra-args: --user
+    extra_args: --user
   with_items:
     - pip2
     - pip3
