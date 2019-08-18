@@ -31,14 +31,17 @@
 - name: Install ruby
   become: yes
   apt:
-    name: ['ruby-full']
+    name: ['ruby', 'rubygems', 'vim-nox']
     state: present
 
 - name: Add neovim ruby support
   gem:
-    name: neovim
+    name: "{{ item }}"
     state: present
     user_install: yes
+  with_items:
+    - neovim
+    - json_pure
 
 - name: Create .config/nvim/
   file:
