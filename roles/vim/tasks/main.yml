@@ -28,20 +28,20 @@
     - pip2
     - pip3
 
-- name: Install ruby
+- name: Install ruby and rubygems
   become: yes
   apt:
-    name: ['ruby', 'rubygems', 'vim-nox']
+    name: ['ruby', 'rubygems']
     state: present
 
 - name: Add neovim ruby support
+  become: yes
   gem:
-    name: "{{ item }}"
+    name: neovim
     state: present
-    user_install: yes
+    user_install: no
   with_items:
     - neovim
-    - json_pure
 
 - name: Create .config/nvim/
   file:
