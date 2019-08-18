@@ -33,4 +33,19 @@ set wildignore+=*/gradle/*
 set wildignore+=*/node_modules/*
 set wildignore+=*/tmp/*
 
-let g:deoplete#enable_at_startup = 1
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'typescript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'typescript.tsx': ['javascript-typescript-stdio'],
+    \ }
+
+let g:LanguageClient_rootMarkers = {
+    \ 'javascript': ['package.json'],
+    \ 'typescript': ['package.json'],
+    \ }
+
+nm <silent> <C-p> :FzfFiles<CR>
+nm <silent> <C-g> :FzfGFiles?<CR>
+nm <silent> <C-f> :FzfRg<CR>
+nm <silent> <C-b> :NERDTreeToggle<CR>
