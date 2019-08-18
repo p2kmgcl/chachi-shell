@@ -28,10 +28,10 @@
     - pip2
     - pip3
 
-- name: Install ruby and rubygems
+- name: Install ruby
   become: yes
   apt:
-    name: ['ruby', 'rubygems']
+    name: ['ruby-full']
     state: present
 
 - name: Add neovim ruby support
