@@ -22,6 +22,12 @@
     - pip2
     - pip3
 
+- name: Add neovim ruby support
+  gem:
+    name: neovim
+    state: present
+    user_install: yes
+
 - name: Create .config/nvim/
   file:
     path: "{{ ansible_env.HOME }}/.config/nvim"
