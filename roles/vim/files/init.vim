@@ -1,5 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+Plug 'https://github.com/autozimu/LanguageClient-neovim.git'
 call plug#end()
 
 syntax on
