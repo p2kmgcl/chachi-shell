@@ -12,9 +12,9 @@
     name: ['neovim', 'python-dev', 'python-pip', 'python3-dev', 'python3-pip']
     state: present
 
-- name: Create .config/nvim/autoload
+- name: Create .config/nvim/
   file:
-    path: "{{ ansible_env.HOME }}/.config/nvim/autoload"
+    path: "{{ ansible_env.HOME }}/.config/nvim"
     state: directory
 
 - name: Copy init.vim
@@ -22,7 +22,17 @@
     src: init.vim
     dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
 
+- name: Create .local/share/nvim/site/autoload/
+  file:
+    path: "{{ ansible_env.HOME }}/.local/share/nvim/site/autoload"
+    state: directory
+
+- name: Create .config/nvim/plugged/
+  file:
+    path: "{{ ansible_env.HOME }}/.config/nvim/plugged"
+    state: directory
+
 - name: Download vim-plug
   get_url:
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    dest: "{{ ansible_env.HOME }}/.config/nvim/autoload/plug.vim"
+    dest: "{{ ansible_env.HOME }}/.local/share/nvim/site/autoload/plug.vim"

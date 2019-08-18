@@ -1,4 +1,7 @@
-execute pathogen#infect('~/.config/nvim/bundle/{}')
+call plug#begin('~/.config/nvim/plugged')
+Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+call plug#end()
+
 syntax on
 filetype plugin indent on
 
