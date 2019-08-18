@@ -74,3 +74,4 @@
     - http-server
     - browser-sync
     - eslint
+    - javascript-typescript-langserver
