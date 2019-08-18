@@ -75,3 +75,5 @@
     - browser-sync
     - eslint
     - javascript-typescript-langserver
+    - typescript
+    - neovim

@@ -1,7 +1,10 @@
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'philip-karlsson/bolt.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
@@ -32,6 +35,8 @@ set wildignore+=*/classes/*
 set wildignore+=*/gradle/*
 set wildignore+=*/node_modules/*
 set wildignore+=*/tmp/*
+
+let g:deoplete#enable_at_startup = 1
 
 let g:LanguageClient_serverCommands = {
     \ 'javascript': ['javascript-typescript-stdio'],
