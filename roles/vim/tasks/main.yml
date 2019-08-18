@@ -12,6 +12,16 @@
     name: ['neovim', 'python-dev', 'python-pip', 'python3-dev', 'python3-pip']
     state: present
 
+- name: Add neovim python support
+  pip:
+    executable: "{{ item }}"
+    name: neovim
+    state: present
+    extra-args: --user
+  with_items:
+    - pip2
+    - pip3
+
 - name: Create .config/nvim/
   file:
     path: "{{ ansible_env.HOME }}/.config/nvim"
