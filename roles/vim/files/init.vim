@@ -1,7 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
-Plug 'philip-karlsson/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'philip-karlsson/bolt.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'junegunn/vim-slash'
 call plug#end()
 
 syntax on
@@ -30,3 +30,5 @@ set wildignore+=*/classes/*
 set wildignore+=*/gradle/*
 set wildignore+=*/node_modules/*
 set wildignore+=*/tmp/*
+
+let g:deoplete#enable_at_startup = 1
