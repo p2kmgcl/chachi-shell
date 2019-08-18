@@ -1,7 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
-Plug 'https://github.com/janko/vim-test.git'
 Plug 'https://github.com/philip-karlsson/aerojump.nvim.git'
-Plug 'https://github.com/autozimu/LanguageClient-neovim.git'
+Plug 'https://github.com/philip-karlsson/bolt.nvim.git'
+Plug 'https://github.com/Shougo/deoplete.nvim.git'
 call plug#end()
 
 syntax on
