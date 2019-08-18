@@ -1,4 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
+Plug 'https://github.com/janko/vim-test.git'
 Plug 'https://github.com/autozimu/LanguageClient-neovim.git'
 call plug#end()
 
