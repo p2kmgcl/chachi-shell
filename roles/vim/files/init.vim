@@ -14,6 +14,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'cormacrelf/vim-colors-github'
 Plug 'joshdick/onedark.vim'
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 call plug#end()
 
 syntax on
