@@ -1,11 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
-Plug '~/.fzf/bin/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
 Plug 'junegunn/vim-slash'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'philip-karlsson/bolt.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
