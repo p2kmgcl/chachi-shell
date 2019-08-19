@@ -13,13 +13,14 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Misc
 Plug 'editorconfig/editorconfig-vim'
 Plug 'cormacrelf/vim-colors-github'
+Plug 'joshdick/onedark.vim'
 call plug#end()
 
 syntax on
 filetype plugin indent on
 
-set background=light
-colorscheme github
+set background=dark
+colorscheme onedark
 
 set autoindent smartindent
 set clipboard=unnamedplus
