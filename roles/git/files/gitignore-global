@@ -14,3 +14,4 @@ bin/
 # Liferay related
 modules/apps/.editorconfig
 modules/apps/**/*.editorconfig
+TEST-frontend-js.xml
