@@ -7,8 +7,7 @@ Plug 'eugen0329/vim-esearch'
 Plug 'philip-karlsson/bolt.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Completion
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Misc
 Plug 'editorconfig/editorconfig-vim'
@@ -55,22 +54,6 @@ let g:esearch = {
   \ 'use':              ['visual', 'hlsearch', 'last'],
   \ 'default_mappings': 1,
   \}
-
-let g:deoplete#enable_at_startup = 1
-
-let g:LanguageClient_diagnosticsSignsMax = 0
-
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['javascript-typescript-stdio'],
-    \ 'typescript.tsx': ['javascript-typescript-stdio'],
-    \ }
-
-let g:LanguageClient_rootMarkers = {
-    \ 'javascript': ['package.json'],
-    \ 'typescript': ['package.json'],
-    \ }
 
 let g:fzf_command_prefix = 'Fzf'
 nm <silent> <C-p> :FzfFiles<CR>
