@@ -3,6 +3,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/vim-slash'
 Plug 'philip-karlsson/bolt.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'editorconfig/editorconfig-vim'
+Plug 'eugen0329/vim-esearch'
 call plug#end()
 
 syntax on
