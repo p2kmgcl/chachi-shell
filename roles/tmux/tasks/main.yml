@@ -1,0 +1,11 @@
+---
+- name: Install tmux
+  apt:
+    name: tmux
+    state: present
+
+- name: Copy tmux.conf
+  copy:
+    src: tmux.conf
+    dest: "{{ ansible_env.HOME }}/.tmux.conf"
+
