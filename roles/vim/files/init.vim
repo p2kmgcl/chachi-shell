@@ -76,3 +76,7 @@ let g:fzf_command_prefix = 'Fzf'
 nm <silent> <C-p> :FzfFiles<CR>
 nm <silent> <C-g> :FzfGFiles?<CR>
 nm <silent> <C-f> :FzfRg<CR>
+
+let g:prettier#quickfix_enabled = 0
+let g:prettier#autoformat = 0
+autocmd BufWritePre,TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
