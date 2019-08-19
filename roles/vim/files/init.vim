@@ -37,6 +37,15 @@ set wildignore+=*/tmp/*
 
 let g:deoplete#enable_at_startup = 1
 
+let g:esearch = {
+  \ 'adapter': 'rg',
+  \ 'backend': 'nvim',
+  \ 'out': 'win',
+  \ 'batch_size': 1000,
+  \ 'use': ['visual', 'hlsearch', 'last'],
+  \ 'default_mappings': 1,
+  \}
+
 let g:LanguageClient_serverCommands = {
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'typescript': ['javascript-typescript-stdio'],
