@@ -1,17 +1,27 @@
 call plug#begin('~/.config/nvim/plugged')
+" Navigation
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/vim-slash'
-Plug 'philip-karlsson/bolt.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'editorconfig/editorconfig-vim'
 Plug 'eugen0329/vim-esearch'
+Plug 'philip-karlsson/bolt.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Completion
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Misc
+Plug 'editorconfig/editorconfig-vim'
+Plug 'cormacrelf/vim-colors-github'
 call plug#end()
 
 syntax on
 filetype plugin indent on
 
+set background=light
+colorscheme github
+
 set autoindent smartindent
-set background=dark
 set clipboard=unnamedplus
 set noeol
 set hidden
@@ -35,16 +45,18 @@ set wildignore+=*/gradle/*
 set wildignore+=*/node_modules/*
 set wildignore+=*/tmp/*
 
-let g:deoplete#enable_at_startup = 1
-
 let g:esearch = {
-  \ 'adapter': 'rg',
-  \ 'backend': 'nvim',
-  \ 'out': 'win',
-  \ 'batch_size': 1000,
-  \ 'use': ['visual', 'hlsearch', 'last'],
+  \ 'adapter':          'rg',
+  \ 'backend':          'nvim',
+  \ 'out':              'win',
+  \ 'batch_size':       1000,
+  \ 'use':              ['visual', 'hlsearch', 'last'],
   \ 'default_mappings': 1,
   \}
+
+let g:deoplete#enable_at_startup = 1
+
+let g:LanguageClient_diagnosticsSignsMax = 0
 
 let g:LanguageClient_serverCommands = {
     \ 'javascript': ['javascript-typescript-stdio'],
