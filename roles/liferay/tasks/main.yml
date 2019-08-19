@@ -42,6 +42,11 @@
     src: editorconfig
     dest: "{{ ansible_env.HOME }}/Projects/community-portal/liferay-portal/modules/apps/.editorconfig"
 
+- name: Copy jsconfig.json to modules/apps/jsconfig.json
+  copy:
+    src: jsconfig.json
+    dest: "{{ ansible_env.HOME }}/Projects/community-portal/liferay-portal/modules/apps/jsconfig.json"
+
 - name: Copy portal-ext.properties
   copy:
     src: portal-ext.properties
