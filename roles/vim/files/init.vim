@@ -1,15 +1,23 @@
 call plug#begin('~/.config/nvim/plugged')
+" Moving through files
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/vim-slash'
 Plug 'eugen0329/vim-esearch'
-Plug 'philip-karlsson/bolt.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'scrooloose/nerdtree'
 
+" Project management
+Plug 'jreybert/vimagit'
+Plug 'rhysd/git-messenger.vim'
+Plug 'airblade/vim-gitgutter'
+
+" Completion and formatting
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-Plug 'chriskempson/base16-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+
+" Colors
+Plug 'chriskempson/base16-vim'
 call plug#end()
 
 syntax on
@@ -21,22 +29,22 @@ colorscheme base16-onedark
 
 set autoindent smartindent
 set clipboard=unnamedplus
-set noeol
+set cmdheight=2
 set hidden
 set hlsearch
 set ignorecase smartcase
 set mouse=a
 set nobackup
+set noeol
 set noswapfile
 set nowrap
 set nowritebackup
-set showmatch
-set textwidth=80
-set cmdheight=2
-set updatetime=300
-set shortmess+=c
-set signcolumn=yes
 set number
+set shortmess+=c
+set showmatch
+set signcolumn=yes
+set textwidth=80
+set updatetime=300
 
 set wildmenu
 set wildignore+=*/.git/*,
@@ -48,6 +56,8 @@ set wildignore+=*/node_modules/*
 set wildignore+=*/tmp/*
 
 inoremap <silent><expr> <c-space> coc#refresh()
+
+nnoremap <silent> <C-b> :NERDTreeToggle<CR>
 
 let g:esearch = {
   \ 'adapter':          'rg',
