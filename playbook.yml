@@ -1,12 +1,13 @@
 ---
 - hosts: localhost
   roles:
-    - docker
-    - editorconfig
-    - fzf
-    - git
-    - node
-    - prompt
-    - ripgrep
-    - vim
-    - tmux
+    - { role: docker, tags: ['docker'] }
+    - { role: editorconfig, tags: ['editorconfig'] }
+    - { role: fzf, tags: ['fzf'] }
+    - { role: git, tags: ['git'] }
+    - { role: node, tags: ['node'] }
+    - { role: prompt, tags: ['prompt'] }
+    - { role: ripgrep, tags: ['ripgrep'] }
+    - { role: vim, tags: ['vim'] }
+    - { role: tmux, tags: ['tmux'] }
+    - { role: jsconfig, tags: ['jsconfig'] }
