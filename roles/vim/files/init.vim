@@ -1,25 +1,23 @@
 call plug#begin('~/.config/nvim/plugged')
-" Navigation
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/vim-slash'
 Plug 'eugen0329/vim-esearch'
 Plug 'philip-karlsson/bolt.nvim', { 'do': ':UpdateRemotePlugins' }
 
-" Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Misc
+Plug 'chriskempson/base16-vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'cormacrelf/vim-colors-github'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 call plug#end()
 
 syntax on
 filetype plugin indent on
 
-set background=light
-colorscheme github
+set background=dark
+set termguicolors
+colorscheme base16-onedark
 
 set autoindent smartindent
 set clipboard=unnamedplus
@@ -33,12 +31,12 @@ set noswapfile
 set nowrap
 set nowritebackup
 set showmatch
-set termguicolors
 set textwidth=80
 set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
+set number
 
 set wildmenu
 set wildignore+=*/.git/*,
