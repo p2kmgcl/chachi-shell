@@ -12,15 +12,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Misc
 Plug 'editorconfig/editorconfig-vim'
 Plug 'cormacrelf/vim-colors-github'
-Plug 'joshdick/onedark.vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 call plug#end()
 
 syntax on
 filetype plugin indent on
 
-set background=dark
-colorscheme onedark
+set background=light
+colorscheme github
 
 set autoindent smartindent
 set clipboard=unnamedplus
@@ -36,6 +35,10 @@ set nowritebackup
 set showmatch
 set termguicolors
 set textwidth=80
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
 
 set wildmenu
 set wildignore+=*/.git/*,
@@ -45,6 +48,8 @@ set wildignore+=*/classes/*
 set wildignore+=*/gradle/*
 set wildignore+=*/node_modules/*
 set wildignore+=*/tmp/*
+
+inoremap <silent><expr> <c-space> coc#refresh()
 
 let g:esearch = {
   \ 'adapter':          'rg',
