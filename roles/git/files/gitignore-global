@@ -10,9 +10,8 @@ bin/
 .gradle/
 .vscode/
 .tern-project
+jsconfig.json
 
 # Liferay related
 modules/apps/.editorconfig
-modules/apps/jsconfig.json
-modules/apps/**/jsconfig.json
 modules/apps/**/TEST-frontend-js.xml

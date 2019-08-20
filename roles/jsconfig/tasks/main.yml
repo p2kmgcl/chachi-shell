@@ -1,0 +1,5 @@
+---
+- name: Copy .jsconfig.json file
+  copy:
+    src: jsconfig.json
+    dest: "{{ ansible_env.HOME }}/.jsconfig.json"
