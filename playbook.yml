@@ -11,3 +11,4 @@
     - { role: vim, tags: ['vim'] }
     - { role: tmux, tags: ['tmux'] }
     - { role: jsconfig, tags: ['jsconfig'] }
+    - { role: fonts, tags: ['fonts'] }

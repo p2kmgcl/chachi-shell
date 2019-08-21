@@ -1,0 +1,13 @@
+---
+- name: Create .fonts/VictorMono directory
+  file:
+    path: "{{ ansible_env.HOME }}/.fonts/VictorMono"
+    state: directory
+  register: victor_mono_font
+
+- name: Download Victor Mono font
+  unarchive:
+    src: https://rubjo.github.io/victor-mono/VictorMonoAll.zip
+    remote_src: yes
+    dest: "{{ ansible_env.HOME }}/.fonts/VictorMono"
+  when: victor_mono_font.changed
