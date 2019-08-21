@@ -11,3 +11,16 @@
     remote_src: yes
     dest: "{{ ansible_env.HOME }}/.fonts/VictorMono"
   when: victor_mono_font.changed
+
+- name: Create .fonts/FiraCode directory
+  file:
+    path: "{{ ansible_env.HOME }}/.fonts/FiraCode"
+    state: directory
+  register: fira_code_font
+
+- name: Download Fira Code font
+  unarchive:
+    src: https://github.com/tonsky/FiraCode/releases/download/1.207/FiraCode_1.207.zip
+    remote_src: yes
+    dest: "{{ ansible_env.HOME }}/.fonts/FiraCode"
+  when: fira_code_font.changed
