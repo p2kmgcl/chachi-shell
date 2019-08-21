@@ -57,7 +57,7 @@ set wildignore+=*/tmp/*
 
 inoremap <silent><expr> <c-space> coc#refresh()
 
-nnoremap <silent> <C-b> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
 
 let g:esearch = {
   \ 'adapter':          'rg',
