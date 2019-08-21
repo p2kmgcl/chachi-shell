@@ -1,17 +1,4 @@
 ---
-- name: Create .fonts/VictorMono directory
-  file:
-    path: "{{ ansible_env.HOME }}/.fonts/VictorMono"
-    state: directory
-  register: victor_mono_font
-
-- name: Download Victor Mono font
-  unarchive:
-    src: https://rubjo.github.io/victor-mono/VictorMonoAll.zip
-    remote_src: yes
-    dest: "{{ ansible_env.HOME }}/.fonts/VictorMono"
-  when: victor_mono_font.changed
-
 - name: Create .fonts/FiraCode directory
   file:
     path: "{{ ansible_env.HOME }}/.fonts/FiraCode"
@@ -24,3 +11,31 @@
     remote_src: yes
     dest: "{{ ansible_env.HOME }}/.fonts/FiraCode"
   when: fira_code_font.changed
+
+- name: Create .fonts/Inconsolata directory
+  file:
+    path: "{{ ansible_env.HOME }}/.fonts/Inconsolata"
+    state: directory
+  register: inconsolata_font
+
+- name: Download Inconsolata font
+  get_url:
+    url: "{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.fonts/Inconsolata"
+  when: inconsolata_font.changed
+  with_items:
+    - https://github.com/googlefonts/Inconsolata/releases/download/v2.012/Inconsolata-Bold.ttf
+    - https://github.com/googlefonts/Inconsolata/releases/download/v2.012/Inconsolata-Regular.ttf
+
+- name: Create .fonts/VictorMono directory
+  file:
+    path: "{{ ansible_env.HOME }}/.fonts/VictorMono"
+    state: directory
+  register: victor_mono_font
+
+- name: Download Victor Mono font
+  unarchive:
+    src: https://rubjo.github.io/victor-mono/VictorMonoAll.zip
+    remote_src: yes
+    dest: "{{ ansible_env.HOME }}/.fonts/VictorMono"
+  when: victor_mono_font.changed
