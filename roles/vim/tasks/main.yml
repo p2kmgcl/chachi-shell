@@ -1,16 +1,17 @@
 ---
 
-- name: Add neovim ppa
+- name: Add Neovim ppa
   become: yes
   apt_repository:
-    repo: ppa:neovim-ppa/stable
+    repo: ppa:neovim-ppa/unstable
+    state: present
     update_cache: yes
 
 - name: Install neovim
   become: yes
   apt:
     name: ['neovim']
-    state: present
+    state: latest
 
 - name: Install python-dev and pip (2 and 3)
   become: yes
