@@ -1,0 +1,12 @@
+---
+- name: Copy .bashrc-jumps file
+  copy:
+    src: bashrc-jumps
+    dest: "{{ ansible_env.HOME }}/.bashrc-jumps"
+
+- name: Link .bashrc to jumps
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    state: present
+    line: "source ~/.bashrc-jumps"
+

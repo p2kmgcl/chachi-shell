@@ -12,3 +12,4 @@
     - { role: tmux, tags: ['tmux'] }
     - { role: jsconfig, tags: ['jsconfig'] }
     - { role: fonts, tags: ['fonts'] }
+    - { role: jumps, tags: ['jumps'] }
