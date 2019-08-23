@@ -75,6 +75,18 @@ function sendPullTo () {
     xdg-open "https://github.com/${1}/liferay-portal/compare/master...p2kmgcl:${BRANCH}?quick_pull=1&title=LPS-&body=/cc%20@ealonso"
 }
 
+# Workspace
+
+function liferayWorkspace() {
+  tmux new-session \; \
+    rename-window liferay \; \
+    send-keys 'cdPortal && destroyMySQLServer && createMySQLServer && git cifuentes && buildPortal && runPortal' C-m \; \
+    split-window -v \; \
+    send-keys 'cdPageEditor && nvim .' C-m \; \
+    split-window -h \; \
+    send-keys 'cdPageEditor' C-m \;
+}
+
 # Export
 
 export -f createMySQLServer
@@ -92,3 +104,5 @@ export -f gradlewBuildLang
 export -f gradlewFormatSource
 
 export -f sendPullTo
+
+export -f liferayWorkspace
