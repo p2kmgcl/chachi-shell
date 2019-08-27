@@ -1,36 +1,23 @@
 [color]
   ui = true
 
-[color "diff-highlight"]
-  oldNormal = red bold
-  oldHighlight = red bold 52
-  newNormal = green bold
-  newHighlight = green bold 22
-
-[color "diff"]
-  meta = yellow
-  frag = magenta bold
-  commit = yellow bold
-  old = red bold
-  new = green bold
-  whitespace = red reverse
-
 [core]
-  editor = vim
+  editor = nvim
   ignorecase = false
   excludesfile = ~/.gitignore-global
 
 [diff]
-  tool = default-difftool
-
-[difftool "default-difftool"]
-  cmd = code --wait --diff $LOCAL $REMOTE
+  tool = vimdiff
 
 [help]
   autocorrect = 0
 
 [merge]
-  tool = code --wait --diff
+  tool = vimdiff
+  conflictstyle = diff3
+
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [pull]
   rebase = true
