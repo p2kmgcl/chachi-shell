@@ -7,8 +7,7 @@ Plug 'eugen0329/vim-esearch'
 Plug 'scrooloose/nerdtree'
 
 " Project management
-Plug 'jreybert/vimagit'
-Plug 'rhysd/git-messenger.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " Completion and formatting
