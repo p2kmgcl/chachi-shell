@@ -63,10 +63,10 @@ inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() 
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -80,10 +80,13 @@ let g:esearch = {
   \}
 
 let g:fzf_command_prefix = 'Fzf'
-nm <silent> <C-p> :FzfFiles<CR>
-nm <silent> <C-g> :FzfBuffers<CR>
-nm <silent> <C-f> :FzfRg<CR>
+nnoremap <silent> <C-p> :FzfFiles<CR>
+nnoremap <silent> <C-g> :FzfBuffers<CR>
+nnoremap <silent> <C-f> :FzfRg<CR>
 
 let g:prettier#quickfix_enabled = 0
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
+command GradlewCleanDeploy :te gradlewCleanDeploy<CR>
+command GradlewFormatSource :te gradlewFormatSource<CR>
