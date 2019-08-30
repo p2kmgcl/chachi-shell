@@ -6,6 +6,9 @@ Plug 'junegunn/vim-slash'
 Plug 'eugen0329/vim-esearch'
 Plug 'scrooloose/nerdtree'
 
+" Split navigation
+Plug 'christoomey/vim-tmux-navigator'
+
 " Project management
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
