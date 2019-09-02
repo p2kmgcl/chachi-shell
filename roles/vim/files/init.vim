@@ -18,6 +18,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
+" Snippets
+Plug 'SirVer/ultisnips'
+
 " Colors
 Plug 'chriskempson/base16-vim'
 call plug#end()
@@ -93,3 +96,5 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 
 command GradlewCleanDeploy :te gradlewCleanDeploy<CR>
 command GradlewFormatSource :te gradlewFormatSource<CR>
+
+let g:UltiSnipsSnippetsDir = '~/.neovim-snippets'

@@ -70,6 +70,16 @@
     dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
   register: copy_init_vim
 
+- name: Create snippets directory
+  file:
+    path: "{{ ansible_env.HOME }}/.neovim-snippets"
+    state: directory
+
+- name: Copy snippets
+  copy:
+    src: snippets/
+    dest: "{{ ansible_env.HOME }}/.neovim-snippets"
+
 - name: Update vim plugins
-  shell: nvim --headless -c "PlugClean!" +PlugUpdate -c "CocInstall -sync coc-tsserver | q" +qa
+  shell: nvim --headless -c "PlugClean!" +PlugUpdate -c "CocInstall -sync coc-tsserver coc-ultisnips | q" +qa
   when: copy_init_vim.changed
