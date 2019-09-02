@@ -13,3 +13,4 @@
     - { role: jsconfig, tags: ['jsconfig'] }
     - { role: fonts, tags: ['fonts'] }
     - { role: jumps, tags: ['jumps'] }
+    - { role: elixir, tags: ['elixir'] }

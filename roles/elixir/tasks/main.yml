@@ -1,0 +1,21 @@
+---
+- name: Install erlang-solutions
+  become: yes
+  apt:
+    deb: https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
+    state: present
+    update_cache: yes
+
+- name: Install esl-erlang
+  become: yes
+  apt:
+    name: esl-erlang
+    state: present
+    update_cache: yes
+
+- name: Install elixir
+  become: yes
+  apt:
+    name: elixir
+    state: present
+    update_cache: yes
