@@ -25,9 +25,9 @@ call plug#end()
 syntax on
 filetype plugin indent on
 
-set background=dark
+set background=light
 set termguicolors
-colorscheme base16-onedark
+colorscheme base16-one-light
 
 set autoindent smartindent
 set clipboard=unnamedplus
