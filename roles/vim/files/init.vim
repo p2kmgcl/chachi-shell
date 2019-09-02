@@ -85,7 +85,7 @@ let g:esearch = {
 let g:fzf_command_prefix = 'Fzf'
 nnoremap <silent> <C-p> :FzfFiles<CR>
 nnoremap <silent> <C-g> :FzfBuffers<CR>
-nnoremap <silent> <C-f> :FzfRg<CR>
+nmap <silent> <C-f> \ff
 
 let g:prettier#quickfix_enabled = 0
 let g:prettier#autoformat = 0
