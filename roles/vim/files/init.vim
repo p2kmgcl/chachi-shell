@@ -33,22 +33,26 @@ set termguicolors
 colorscheme base16-one-light
 
 set autoindent smartindent
+set expandtab
+set nobackup
+set noeol
+set noswapfile
+set nowrap
+set nowritebackup
+set shiftwidth=2
+set tabstop=2
+set textwidth=80
+
 set clipboard=unnamedplus
 set cmdheight=2
 set hidden
 set hlsearch
 set ignorecase smartcase
 set mouse=a
-set nobackup
-set noeol
-set noswapfile
-set nowrap
-set nowritebackup
 set number
 set shortmess+=c
 set showmatch
 set signcolumn=yes
-set textwidth=80
 set updatetime=300
 
 set wildmenu
