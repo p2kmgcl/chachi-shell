@@ -5,6 +5,11 @@
     name: tmux
     state: present
 
+- name: Clone tmux plugin manager
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: "{{ ansible_env.HOME }}/.tmux-plugin-manager"
+
 - name: Copy tmux.conf
   copy:
     src: tmux.conf

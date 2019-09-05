@@ -1,0 +1,19 @@
+---
+- name: Install terminator
+  become: yes
+  apt:
+    name: terminator
+    state: present
+    update_cache: yes
+
+- name: Create ~./config/terminator directory
+  file:
+    path: "{{ ansible_env.HOME }}/.config/terminator"
+    state: directory
+  register: terminator_directory
+
+- name: Download terminator config
+  get_url:
+    url: https://raw.githubusercontent.com/arcticicestudio/nord-terminator/develop/src/config
+    dest: "{{ ansible_env.HOME }}/.config/terminator/config"
+  when: terminator_directory.changed

@@ -22,16 +22,13 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'SirVer/ultisnips'
 
 " Colors
-Plug 'chriskempson/base16-vim'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 syntax on
 filetype plugin indent on
 
-set background=light
-set termguicolors
-colorscheme base16-one-light
-
+colorscheme nord
 set autoindent smartindent
 set expandtab
 set nobackup
