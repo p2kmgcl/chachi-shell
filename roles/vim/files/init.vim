@@ -17,6 +17,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
 
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -31,6 +33,7 @@ filetype plugin indent on
 colorscheme nord
 set autoindent smartindent
 set expandtab
+set cursorline
 set nobackup
 set noeol
 set noswapfile
@@ -41,7 +44,7 @@ set tabstop=2
 set textwidth=80
 
 set clipboard=unnamedplus
-set cmdheight=2
+set cmdheight=1
 set hidden
 set hlsearch
 set ignorecase smartcase
@@ -74,6 +77,7 @@ nnoremap <silent> gd <Plug>(coc-definition)
 nnoremap <silent> gy <Plug>(coc-type-definition)
 nnoremap <silent> gi <Plug>(coc-implementation)
 nnoremap <silent> gr <Plug>(coc-references)
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 map <C-n> :NERDTreeToggle<CR>
 
