@@ -39,3 +39,9 @@
     remote_src: yes
     dest: "{{ ansible_env.HOME }}/.fonts/VictorMono"
   when: victor_mono_font.changed
+
+- name: Download powerline fonts
+  git:
+    repo: https://github.com/powerline/fonts.git
+    dest: "{{ ansible_env.HOME }}/.fonts/powerline"
+    update: true
