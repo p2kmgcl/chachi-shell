@@ -1,0 +1,20 @@
+#!/bin/bash
+
+function jump {
+  if [ ! -z "$1" ]; then
+    path=`realpath $1`
+
+    if [ -d "$path" ]; then
+      echo "$path" >> ~/.visited-paths
+      sort -u -o ~/.visited-paths ~/.visited-paths
+      cd $path
+    else
+      echo Path does not exist
+    fi
+  else
+    cd `cat ~/.visited-paths | fzf`
+  fi
+}
+
+alias cd=jump
+export -f jump
