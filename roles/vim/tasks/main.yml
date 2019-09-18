@@ -76,5 +76,5 @@
     dest: "{{ ansible_env.HOME }}/.neovim-snippets"
 
 - name: Update vim plugins
-  shell: nvim --headless -c "PlugClean!" +PlugUpdate +UpdateRemotePlugins +qa
+  shell: nvim --headless -c "PlugClean!" +PlugUpdate +UpdateRemotePlugins -c "CocInstall -sync coc-tsserver coc-html coc-json coc-css coc-ultisnips | q" +qa
   when: copy_init_vim.changed
