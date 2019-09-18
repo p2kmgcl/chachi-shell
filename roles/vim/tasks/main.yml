@@ -1,17 +1,12 @@
 ---
 
-- name: Add Neovim ppa
-  become: yes
-  apt_repository:
-    repo: ppa:neovim-ppa/unstable
-    state: present
-    update_cache: yes
-
 - name: Install neovim
   become: yes
-  apt:
-    name: ['neovim']
-    state: latest
+  get_url:
+    url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+    dest: /usr/bin/nvim
+    mode: '0755'
+    owner: root
 
 - name: Install python-dev and pip (2 and 3)
   become: yes
