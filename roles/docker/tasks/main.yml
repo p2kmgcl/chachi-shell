@@ -8,7 +8,7 @@
 
 - name: Add Docker GPG key
   become: yes
-  apt_key: url=https://download.docker.com/linux/ubuntu/gpg
+  apt_key: url=https://download.docker.com/linux/{{ansible_distribution|lower}}/gpg
 
 - name: Add Docker APT repository
   become: yes
@@ -22,3 +22,10 @@
     name: docker-ce
     state: present
     update_cache: yes
+
+- name: "Add {{ ansible_user }} to docker group"
+  become: yes
+  user:
+    user: "{{ ansible_user }}"
+    append: yes
+    groups: docker
