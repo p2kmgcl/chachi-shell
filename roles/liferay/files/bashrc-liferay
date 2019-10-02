@@ -56,6 +56,10 @@ function gradlewCleanDeploy () {
   NODE_ENV=development gradlew clean deploy -Dbuild=portal
 }
 
+function gradlewFastDeploy () {
+  NODE_ENV=development gradlew deploy && NODE_ENV=development gradlew fastDeploy -at
+}
+
 function gradlewBuildLang () {
   gradlew buildLang
 }
