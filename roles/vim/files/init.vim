@@ -17,7 +17,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
-Plug 'SirVer/ultisnips'
 
 " Formatting and fixing
 Plug 'editorconfig/editorconfig-vim'
