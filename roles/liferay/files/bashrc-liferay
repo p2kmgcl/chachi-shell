@@ -57,7 +57,7 @@ function gradlewCleanDeploy () {
 }
 
 function gradlewFastDeploy () {
-  NODE_ENV=development gradlew deploy && NODE_ENV=development gradlew fastDeploy -at
+  NODE_ENV=development gradlew deploy && NODE_ENV=development gradlew deployFast -at
 }
 
 function gradlewBuildLang () {
