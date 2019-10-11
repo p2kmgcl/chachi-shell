@@ -15,8 +15,6 @@ Plug 'airblade/vim-gitgutter'
 
 " Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'leafgarland/typescript-vim'
-Plug 'ianks/vim-tsx'
 
 " Formatting and fixing
 Plug 'editorconfig/editorconfig-vim'
@@ -84,7 +82,6 @@ let g:gitgutter_sign_modified = '█ '
 let g:gitgutter_sign_removed = '█ '
 let g:gitgutter_sign_removed_first_line = '█ '
 let g:gitgutter_sign_modified_removed = '█ '
-let g:UltiSnipsSnippetsDir = '~/.neovim-snippets'
 let g:fzf_command_prefix = 'Fzf'
 let g:prettier#autoformat = 0
 let g:prettier#quickfix_enabled = 0

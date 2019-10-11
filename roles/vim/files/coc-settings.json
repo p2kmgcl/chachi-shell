@@ -1,0 +1,7 @@
+{
+  "diagnostic.errorSign": "⨂ ",
+  "diagnostic.infoSign": "⨀ ",
+  "diagnostic.warningSign": "⨀ ",
+  "diagnostic.hintSign": "⨀ ",
+  "diagnostic.checkCurrentLine": true
+}

@@ -65,6 +65,11 @@
     dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
   register: copy_init_vim
 
+- name: Copy coc-settings.json
+  copy:
+    src: coc-settings.json
+    dest: "{{ ansible_env.HOME }}/.config/nvim/coc-settings.json"
+
 - name: Update vim plugins
   shell: nvim --headless -c "PlugClean!" +PlugUpdate +UpdateRemotePlugins -c "CocInstall -sync coc-tsserver coc-html coc-json coc-css | q" +qa
   when: copy_init_vim.changed
