@@ -19,9 +19,10 @@ Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 Plug 'SirVer/ultisnips'
 
-" Formatting
+" Formatting and fixing
 Plug 'editorconfig/editorconfig-vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'dense-analysis/ale'
 
 " Colors
 Plug 'arcticicestudio/nord-vim'
@@ -76,6 +77,14 @@ function! s:check_back_space() abort
 endfunction
 
 " Global variables
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '⨂ '
+let g:ale_sign_warning = '⨀ '
+let g:gitgutter_sign_added = '█ '
+let g:gitgutter_sign_modified = '█ '
+let g:gitgutter_sign_removed = '█ '
+let g:gitgutter_sign_removed_first_line = '█ '
+let g:gitgutter_sign_modified_removed = '█ '
 let g:UltiSnipsSnippetsDir = '~/.neovim-snippets'
 let g:fzf_command_prefix = 'Fzf'
 let g:prettier#autoformat = 0
