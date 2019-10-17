@@ -15,8 +15,8 @@
     src: tmux.conf
     dest: "{{ ansible_env.HOME }}/.tmux.conf"
 
-- name: Autostart tmux
+- name: Don't autostart tmux
   lineinfile:
     path: "{{ ansible_env.HOME }}/.bashrc"
-    state: present
+    state: absent
     line: "if command -v tmux &> /dev/null && [ -z \"$TMUX\" ]; then tmux attach -t default || tmux new -s default; fi"
