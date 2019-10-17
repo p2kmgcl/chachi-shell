@@ -12,6 +12,18 @@
     dest: "{{ ansible_env.HOME }}/.fonts/FiraCode"
   when: fira_code_font.changed
 
+- name: Create .fonts/Unifont directory
+  file:
+    path: "{{ ansible_env.HOME }}/.fonts/Unifont"
+    state: directory
+  register: unifont_font
+
+- name: Download Unifont font
+  get_url:
+    url: http://www.unifoundry.com/pub/unifont/unifont-12.1.03/font-builds/unifont-12.1.03.ttf
+    dest: "{{ ansible_env.HOME }}/.fonts/Unifont"
+  when: unifont_font.changed
+
 - name: Create .fonts/Inconsolata directory
   file:
     path: "{{ ansible_env.HOME }}/.fonts/Inconsolata"
