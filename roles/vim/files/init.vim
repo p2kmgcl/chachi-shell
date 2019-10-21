@@ -4,10 +4,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/vim-slash'
 Plug 'eugen0329/vim-esearch'
-Plug 'scrooloose/nerdtree'
 
-" Split navigation
-Plug 'christoomey/vim-tmux-navigator'
+" UI
+Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdtree'
+Plug 'arcticicestudio/nord-vim'
 
 " Project management
 Plug 'tpope/vim-fugitive'
@@ -20,9 +21,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'dense-analysis/ale'
-
-" Colors
-Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 " Coloring
@@ -51,7 +49,7 @@ set hidden
 set hlsearch
 set ignorecase smartcase
 set mouse=a
-set number
+"set number
 set shortmess+=c
 set showmatch
 set signcolumn=yes
@@ -74,9 +72,18 @@ function! s:check_back_space() abort
 endfunction
 
 " Global variables
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline_section_b = ''
+let g:airline_section_x = ''
+let g:airline_section_y = airline#section#create(['linenr'])
+let g:airline_section_z = airline#section#create(['branch'])
+let g:airline_symbols.linenr = 'ln'
+let g:airline_section_error = ''
+let g:airline_section_warning = ''
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = '⨂ '
-let g:ale_sign_warning = '⨀ '
+let g:ale_sign_error = '! '
+let g:ale_sign_warning = '? '
 let g:gitgutter_sign_added = '█ '
 let g:gitgutter_sign_modified = '█ '
 let g:gitgutter_sign_removed = '█ '
