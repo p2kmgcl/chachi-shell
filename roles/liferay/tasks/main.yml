@@ -31,10 +31,10 @@
     dest: "{{ ansible_env.HOME }}/Projects/community-portal/liferay-portal"
     update: false
 
-- name: Clone liferay-binaries-2017
+- name: Clone liferay-binaries-2020
   git:
-    repo: https://github.com/liferay/liferay-binaries-cache-2017.git
-    dest: "{{ ansible_env.HOME }}/Projects/community-portal/liferay-binaries-cache-2017"
+    repo: https://github.com/liferay/liferay-binaries-cache-2020.git
+    dest: "{{ ansible_env.HOME }}/Projects/community-portal/liferay-binaries-cache-2020"
     update: false
 
 - name: Copy editorconfig to modules/apps/.editorconfig
