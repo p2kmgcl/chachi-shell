@@ -38,6 +38,7 @@ function destroyMySQLServer () {
 
 function buildPortal () {
   cd $HOME/Projects/community-portal/liferay-portal && \
+    ant setup-profile-portal && \
     ant all
 }
 
