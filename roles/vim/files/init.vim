@@ -111,6 +111,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 map <silent> <C-p> :FzfFiles<CR>
 map <silent> <C-g> :FzfBuffers<CR>
 map <silent> <C-n> :NERDTreeToggle<CR>
+map <silent> <C-b> :NERDTreeFind<CR>
 map <silent> <C-f> \ff
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
