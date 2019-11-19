@@ -13,6 +13,7 @@ Plug 'arcticicestudio/nord-vim'
 " Project management
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'mbbill/undotree'
 
 " Completion
 Plug 'sheerun/vim-polyglot'
