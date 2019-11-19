@@ -8,6 +8,12 @@
     mode: '0755'
     owner: root
 
+- name: Install clipboard manager
+  become: yes
+  apt:
+    name: ['xclip']
+    state: present
+
 - name: Install python-dev and pip (2 and 3)
   become: yes
   apt:
