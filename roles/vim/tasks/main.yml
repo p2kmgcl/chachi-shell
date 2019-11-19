@@ -50,6 +50,11 @@
     path: "{{ ansible_env.HOME }}/.config/nvim"
     state: directory
 
+- name: Create .config/nvim/undo-dir/
+  file:
+    path: "{{ ansible_env.HOME }}/.config/nvim/undo-dir"
+    state: directory
+
 - name: Create .local/share/nvim/site/autoload/
   file:
     path: "{{ ansible_env.HOME }}/.local/share/nvim/site/autoload"

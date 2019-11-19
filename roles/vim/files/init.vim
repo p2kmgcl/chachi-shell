@@ -42,6 +42,10 @@ set shiftwidth=2
 set tabstop=2
 set textwidth=80
 
+"persistent undo history
+set undodir=~/.config/nvim/undo-dir
+set undofile
+
 " Behavior
 set clipboard=unnamedplus
 set cmdheight=1
@@ -50,7 +54,6 @@ set hidden
 set hlsearch
 set ignorecase smartcase
 set mouse=a
-"set number
 set shortmess+=c
 set showmatch
 set signcolumn=yes
