@@ -17,6 +17,7 @@
   with_items:
     - cdd
     - fzf
+    - o
     - prompt
 
 - name: Link bash utilities to bashrc
@@ -27,4 +28,5 @@
   with_items:
     - cdd
     - fzf
+    - o
     - prompt
