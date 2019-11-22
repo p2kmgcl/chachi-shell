@@ -10,14 +10,3 @@
   args:
     chdir: "{{ ansible_env.HOME }}/.fzf"
   when: fzf_repo_status.changed
-
-- name: Copy .bashrc-fzf file
-  copy:
-    src: bashrc-fzf
-    dest: "{{ ansible_env.HOME }}/.bashrc-fzf"
-
-- name: Link .bashrc to fzf
-  lineinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
-    state: present
-    line: "source ~/.bashrc-fzf"

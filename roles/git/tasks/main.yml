@@ -5,13 +5,3 @@
     name: ['git', 'git-extras']
     state: present
     update_cache: yes
-
-- name: Copy .gitconfig file
-  copy:
-    src: gitconfig
-    dest: "{{ ansible_env.HOME }}/.gitconfig"
-
-- name: Copy .gitignore-global file
-  copy:
-    src: gitignore-global
-    dest: "{{ ansible_env.HOME }}/.gitignore-global"

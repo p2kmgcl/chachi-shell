@@ -1,16 +1,13 @@
 ---
 - hosts: localhost
   roles:
+    - { role: bash, tags: ['bash'] }
     - { role: docker, tags: ['docker'] }
-    - { role: editorconfig, tags: ['editorconfig'] }
     - { role: elixir, tags: ['elixir'] }
     - { role: fonts, tags: ['fonts'] }
     - { role: fzf, tags: ['fzf'] }
     - { role: git, tags: ['git'] }
-    - { role: jsconfig, tags: ['jsconfig'] }
-    - { role: jumps, tags: ['jumps'] }
     - { role: node, tags: ['node'] }
-    - { role: prompt, tags: ['prompt'] }
     - { role: ripgrep, tags: ['ripgrep'] }
     - { role: terminator, tags: ['terminator'] }
     - { role: tmux, tags: ['tmux'] }

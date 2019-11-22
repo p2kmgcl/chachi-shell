@@ -1,0 +1,21 @@
+#!/bin/bash
+
+function cdd {
+  touch ~/.bashrc-cdd-history
+
+  if [ ! -z "$1" ]; then
+    path=`realpath $1`
+
+    if [ -d "$path" ]; then
+      echo "$path" >> ~/.bashrc-cdd-history
+      sort -u -o ~/.bashrc-cdd-history ~/.bashrc-cdd-history
+      cd $path
+    else
+      echo Path does not exist
+    fi
+  else
+    cd `cat ~/.bashrc-cdd-history | fzf`
+  fi
+}
+
+export -f cdd

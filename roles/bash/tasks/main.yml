@@ -1,0 +1,30 @@
+---
+
+- name: Copy common config files
+  copy:
+    src: "config-files/{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.{{ item }}"
+  with_items:
+    - editorconfig
+    - gitconfig
+    - gitignore-global
+    - jsconfig.json
+
+- name: Copy bash utilities files
+  copy:
+    src: "bash-utils/{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.bashrc-{{ item }}"
+  with_items:
+    - cdd
+    - fzf
+    - prompt
+
+- name: Link bash utilities to bashrc
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    state: present
+    line: "source ~/.bashrc-{{ item }}"
+  with_items:
+    - cdd
+    - fzf
+    - prompt
