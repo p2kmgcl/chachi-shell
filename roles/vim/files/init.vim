@@ -18,6 +18,7 @@ Plug 'mbbill/undotree'
 " Completion
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-commentary'
 
 " Formatting and fixing
 Plug 'editorconfig/editorconfig-vim'
