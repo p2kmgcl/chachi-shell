@@ -1,4 +1,21 @@
 ---
+- name: Create .fonts/Cascadia directory
+  file:
+    path: "{{ ansible_env.HOME }}/.fonts/Cascadia"
+    state: directory
+  register: cascadia_font
+
+- name: Download Cascadia font
+  get_url:
+    url: "{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.fonts/Cascadia"
+  with_items:
+    - https://github.com/microsoft/cascadia-code/releases/download/v1911.21/Cascadia.ttf
+    - https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaMono.ttf
+    - https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaPL.ttf
+    - https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaMonoPL.ttf
+  when: cascadia_font.changed
+
 - name: Create .fonts/FiraCode directory
   file:
     path: "{{ ansible_env.HOME }}/.fonts/FiraCode"
