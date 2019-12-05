@@ -9,6 +9,8 @@ Plug 'eugen0329/vim-esearch'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'arcticicestudio/nord-vim'
+Plug 'chriskempson/base16-vim'
+Plug 'vim-airline/vim-airline-themes'
 
 " Project management
 Plug 'tpope/vim-fugitive'
@@ -29,7 +31,11 @@ call plug#end()
 " Coloring
 syntax on
 filetype plugin indent on
-colorscheme nord
+set background=light
+set termguicolors
+colorscheme base16-github
+let g:airline_theme='ayu_dark'
+highlight SignColumn guibg=none
 
 " Visual
 set autoindent smartindent
