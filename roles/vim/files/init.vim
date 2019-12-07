@@ -33,8 +33,8 @@ syntax on
 filetype plugin indent on
 set background=light
 set termguicolors
-colorscheme base16-github
-let g:airline_theme='ayu_dark'
+silent! colorscheme base16-github
+silent! let g:airline_theme='ayu_dark'
 highlight SignColumn guibg=none
 
 " Visual
