@@ -8,7 +8,6 @@
     - editorconfig
     - gitconfig
     - gitignore-global
-    - jsconfig.json
 
 - name: Copy bash utilities files
   copy:

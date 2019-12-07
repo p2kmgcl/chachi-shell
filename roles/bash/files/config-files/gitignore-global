@@ -2,7 +2,6 @@
 *.hprof
 *.jar
 *.project
-*.soy.js
 
 # Common configurations
 bin/
@@ -10,8 +9,9 @@ bin/
 .gradle/
 .vscode/
 .tern-project
-jsconfig.json
 
 # Liferay related
-modules/apps/.editorconfig
-modules/apps/**/TEST-frontend-js.xml
+liferay-portal/**/.editorconfig
+liferay-portal/**/jsconfig.json
+liferay-portal/**/*.soy.js
+liferay-portal/**/TEST-frontend-js.xml
