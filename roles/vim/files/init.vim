@@ -31,9 +31,9 @@ call plug#end()
 " Coloring
 syntax on
 filetype plugin indent on
-set background=light
+set background=dark
 set termguicolors
-silent! colorscheme base16-github
+silent! colorscheme base16-nord
 silent! let g:airline_theme='ayu_dark'
 highlight SignColumn guibg=none
 
