@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "jsx": "react"
+  },
+  "include": ["*", "**/*"],
+  "exclude": [
+    "node_modules",
+    "build",
+    "classes",
+    "dist",
+    "tmp",
+    "temp",
+    ".tmp",
+    "**/node_modules/*",
+    "**/build/*",
+    "**/classes/*",
+    "**/dist/*",
+    "**/tmp/*",
+    "**/temp/*",
+    "**/.tmp/*"
+  ]
+}
