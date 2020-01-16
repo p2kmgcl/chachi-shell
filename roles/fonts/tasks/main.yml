@@ -29,6 +29,19 @@
     dest: "{{ ansible_env.HOME }}/.fonts/FiraCode"
   when: fira_code_font.changed
 
+- name: Create .fonts/JetBrainsMono directory
+  file:
+    path: "{{ ansible_env.HOME }}/.fonts/JetBrainsMono"
+    state: directory
+  register: jetbrains_mono_font
+
+- name: Download JetBrainsMono font
+  unarchive:
+    src: https://download.jetbrains.com/fonts/JetBrainsMono-1.0.0.zip
+    remote_src: yes
+    dest: "{{ ansible_env.HOME }}/.fonts/JetBrainsMono"
+  when: jetbrains_mono_font.changed
+
 - name: Create .fonts/Unifont directory
   file:
     path: "{{ ansible_env.HOME }}/.fonts/Unifont"
