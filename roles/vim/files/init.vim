@@ -116,7 +116,7 @@ let g:esearch = {
   \}
 
 " Autorun commands
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.ejs PrettierAsync
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Mapped keys
