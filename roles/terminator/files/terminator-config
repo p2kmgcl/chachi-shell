@@ -10,7 +10,7 @@
   [[default]]
     background_color = "#2e3440"
     cursor_color = "#D8DEE9"
-    font = Cascadia Mono PL 12
+    font = JetBrains Mono 10
     foreground_color = "#d8dee9"
     show_titlebar = False
     scrollbar_position = hidden
