@@ -11,7 +11,7 @@ bin/
 .tern-project
 
 # Liferay related
-liferay-portal/**/.editorconfig
-liferay-portal/**/jsconfig.json
-liferay-portal/**/*.soy.js
-liferay-portal/**/TEST-frontend-js.xml
+modules/apps/**/.editorconfig
+modules/apps/**/jsconfig.json
+modules/apps/**/*.soy.js
+modules/apps/**/TEST-frontend-js.xml
