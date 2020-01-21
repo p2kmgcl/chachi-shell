@@ -20,8 +20,8 @@
     state: present
     update_cache: yes
   with_items:
-    - "deb https://deb.nodesource.com/node_10.x {{ ansible_distribution_release }} main"
-    - "deb-src https://deb.nodesource.com/node_10.x {{ ansible_distribution_release }} main"
+    - "deb https://deb.nodesource.com/node_13.x bionic main"
+    - "deb-src https://deb.nodesource.com/node_13.x bionic main"
 
 - name: Install NodeJS and NPM
   become: yes
