@@ -35,7 +35,7 @@
 [alias]
   h = !git config -l | grep alias.
 
-  cifuentes = !echo "Getting your master..." && git checkout master && git fetch --all && git rebase upstream/master && git push origin master && echo "Congrats! You have a master!"
+  cifuentes = !echo "Getting your master..." && git checkout master && git fetch --all --prune && git checkout upstream/master && git branch -D master && git checkout -b master && git push -u -f origin master && echo "Congrats! You have a master!"
   pushdemont = !echo "Pushing changes..." && sleep 1 && echo "Changes pushed, there is no way back." && echo "" && sleep 2 && echo "..." && sleep 2 && echo "..." && sleep 3 && echo "" && echo "Changes reverted."
 
   do-clean-all-non-git-files = clean --force -d -X
