@@ -5,4 +5,4 @@ Control Panel -> Configuration -> System Settings -> Infrastructure -> Javascrip
 
 - Copy `brian-silly-prettier.js` somewhere
 - Update your editor config to use this js instead of the real useful prettier:
-  - VSCode: `"prettier.prettierPath": "~/Projects/community-portal/brian-silly-prettier.js"`
+  - VSCode: `"prettier.prettierPath": "/home/p2kmgcl/Projects/community-portal/brian-silly-prettier.js"`
