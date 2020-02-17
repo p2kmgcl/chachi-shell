@@ -39,7 +39,7 @@ function destroyMySQLServer () {
 function buildPortal () {
   cd $HOME/Projects/community-portal/liferay-portal && \
     ant setup-profile-portal && \
-    ant all
+    ant all -Dnodejs.node.env=development
 }
 
 function runPortal () {
