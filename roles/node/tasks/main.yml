@@ -73,7 +73,9 @@
     - prettier
     - http-server
     - browser-sync
+    - faker
     - eslint
+    - puppeteer
     - javascript-typescript-langserver
     - typescript
     - neovim
