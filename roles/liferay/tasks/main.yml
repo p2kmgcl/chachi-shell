@@ -1,5 +1,4 @@
 ---
-
 - name: Create Projects/community-portal
   file:
     path: "{{ ansible_env.HOME }}/Projects/community-portal"
@@ -14,7 +13,14 @@
 - name: Install Java
   become: yes
   apt:
-    name: ['openjdk-8-jdk', 'openjdk-8-dbg', 'openjdk-8-doc', 'openjdk-8-jre', 'openjdk-8-source']
+    name:
+      [
+        "openjdk-8-jdk",
+        "openjdk-8-dbg",
+        "openjdk-8-doc",
+        "openjdk-8-jre",
+        "openjdk-8-source",
+      ]
     state: present
     update_cache: yes
 
@@ -41,11 +47,6 @@
   copy:
     src: editorconfig
     dest: "{{ ansible_env.HOME }}/Projects/community-portal/liferay-portal/modules/apps/.editorconfig"
-
-- name: Copy jsconfig.json to modules/apps/jsconfig.json
-  copy:
-    src: jsconfig.json
-    dest: "{{ ansible_env.HOME }}/Projects/community-portal/liferay-portal/modules/apps/jsconfig.json"
 
 - name: Copy portal-ext.properties
   copy:
