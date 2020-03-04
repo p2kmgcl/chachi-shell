@@ -16,18 +16,10 @@ function createMySQLServer() {
     --collation-server=utf8_general_ci
 }
 
-function startMySQLServer () {
-  docker start $(docker ps -a -q -f name=liferay_portal_database)
-}
-
 function connectToMySQLServer () {
   docker exec -it \
     $(docker ps -a -q -f name=liferay_portal_database) \
     mysql -u root -proot
-}
-
-function stopMySQLServer () {
-  docker stop $(docker ps -a -q -f name=liferay_portal_database)
 }
 
 function destroyMySQLServer () {
@@ -69,35 +61,10 @@ function gradlewFormatSource () {
   gradlew formatSource
 }
 
-# Pulls
-
-function sendPullTo () {
-  BRANCH=`git branch | grep \* | cut -d ' ' -f2`
-
-  git push && \
-    git checkout master && \
-    git branch -D $BRANCH && \
-    xdg-open "https://github.com/${1}/liferay-portal/compare/master...p2kmgcl:${BRANCH}?quick_pull=1&title=LPS-&body=/cc%20@ealonso"
-}
-
-# Workspace
-
-function liferayWorkspace() {
-  tmux new-session \; \
-    rename-window liferay \; \
-    send-keys 'cdPortal && destroyMySQLServer && createMySQLServer && git cifuentes && buildPortal && runPortal' C-m \; \
-    split-window -v \; \
-    send-keys 'cdPageEditor && nvim .' C-m \; \
-    split-window -h \; \
-    send-keys 'cdPageEditor' C-m \;
-}
-
 # Export
 
 export -f createMySQLServer
 export -f connectToMySQLServer
-export -f startMySQLServer
-export -f stopMySQLServer
 export -f destroyMySQLServer
 
 export -f buildPortal
@@ -107,7 +74,3 @@ export -f gradlewDeploy
 export -f gradlewCleanDeploy
 export -f gradlewBuildLang
 export -f gradlewFormatSource
-
-export -f sendPullTo
-
-export -f liferayWorkspace
