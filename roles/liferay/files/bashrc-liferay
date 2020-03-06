@@ -61,16 +61,13 @@ function gradlewFormatSource () {
   gradlew formatSource
 }
 
-# Export
-
-export -f createMySQLServer
-export -f connectToMySQLServer
-export -f destroyMySQLServer
-
-export -f buildPortal
-export -f runPortal
-
-export -f gradlewDeploy
-export -f gradlewCleanDeploy
-export -f gradlewBuildLang
-export -f gradlewFormatSource
+# Export (only in bash)
+# export -f createMySQLServer
+# export -f connectToMySQLServer
+# export -f destroyMySQLServer
+# export -f buildPortal
+# export -f runPortal
+# export -f gradlewDeploy
+# export -f gradlewCleanDeploy
+# export -f gradlewBuildLang
+# export -f gradlewFormatSource
