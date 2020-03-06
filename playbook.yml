@@ -10,4 +10,5 @@
     - { role: ripgrep, tags: ["ripgrep"] }
     - { role: terminator, tags: ["terminator"] }
     - { role: vim, tags: ["vim"] }
+    - { role: zsh, tags: ["zsh"] }
     - { role: liferay, tags: ["liferay"] }

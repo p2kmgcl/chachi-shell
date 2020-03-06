@@ -1,0 +1,41 @@
+---
+- name: Install zsh
+  become: yes
+  apt:
+    name: ["zsh", "curl", "git"]
+    state: present
+    update_cache: yes
+
+- name: Set zsh as user default shell
+  become: yes
+  shell: "chsh --shell /bin/zsh {{ ansible_user }}"
+
+- name: Check for existing oh-my-zsh installation
+  stat:
+    path: "{{ ansible_env.HOME }}/.oh-my-zsh"
+  register: ohMyZshDirectory
+
+- name: Install oh-my-zsh
+  shell: 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+  when: not ohMyZshDirectory.stat.exists
+
+- name: Install zsh plugins
+  git:
+    repo: "https://github.com/{{ item.username }}/{{ item.repo }}"
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/{{ item.dir }}"
+    update: true
+  with_items:
+    - username: zsh-users
+      repo: zsh-autosuggestions
+      dir: zsh-autosuggestions
+    - username: MichaelAquilina
+      repo: zsh-auto-notify
+      dir: auto-notify
+    - username: chrissicool
+      repo: zsh-256color
+      dir: zsh-256color
+
+- name: Copy zshrc
+  copy:
+    src: ".zshrc"
+    dest: "{{ ansible_env.HOME }}/.zshrc"
