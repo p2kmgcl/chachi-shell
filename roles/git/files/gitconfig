@@ -50,6 +50,9 @@
   back = reset HEAD~1
   br = branch
   ch = checkout
+  cp = cherry-pick
+  cpa = cherry-pick --abort
+  cpc = cherry-pick --continue
   cm = commit
   din = diff --name-only
   fea = fetch --all
