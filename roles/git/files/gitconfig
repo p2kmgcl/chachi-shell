@@ -59,7 +59,7 @@
   cm = commit
   din = diff --name-only
   fea = fetch --all
-  lg = log --pretty='%Cblue%an, %ar %Cgreen(%h) %n%s%n%-b%n'
+  lg = log --pretty='%Cgreen%h %Cblue%an (%ar) %Creset%s'
   rb = rebase
   rba = rebase --abort
   rbc = rebase --continue
