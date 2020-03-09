@@ -2,21 +2,24 @@
   ui = true
 
 [core]
-  editor = nvim
+  editor = code --wait
   ignorecase = false
   excludesfile = ~/.gitignore-global
 
 [diff]
-  tool = vimdiff
+  tool = vscode
+
+[difftool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
 
 [help]
   autocorrect = 0
 
 [merge]
-  tool = vimdiff
+  tool = vscode
 
-[mergetool "vimdiff"]
-  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[mergetool "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
 
 [pull]
   rebase = true
