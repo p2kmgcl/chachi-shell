@@ -18,3 +18,4 @@ modules/apps/**/.editorconfig
 modules/apps/**/*.soy.js
 modules/apps/**/TEST-frontend-js.xml
 modules/apps/**/Liferay.d.ts
+modules/apps/**/LiferayGlobal.d.ts
