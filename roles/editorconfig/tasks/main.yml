@@ -1,0 +1,5 @@
+---
+- name: Copy global editorconfig file
+  copy:
+    src: "editorconfig"
+    dest: "{{ ansible_env.HOME }}/.editorconfig"

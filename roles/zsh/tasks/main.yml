@@ -2,7 +2,7 @@
 - name: Install zsh
   become: yes
   apt:
-    name: ["zsh", "curl", "git"]
+    name: ["autojump", "zsh", "curl", "git"]
     state: present
     update_cache: yes
 
@@ -28,9 +28,6 @@
     - username: zsh-users
       repo: zsh-autosuggestions
       dir: zsh-autosuggestions
-    - username: MichaelAquilina
-      repo: zsh-auto-notify
-      dir: auto-notify
     - username: chrissicool
       repo: zsh-256color
       dir: zsh-256color

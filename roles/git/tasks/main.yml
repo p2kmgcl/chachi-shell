@@ -2,6 +2,14 @@
 - name: Install git and git-extras
   become: yes
   apt:
-    name: ['git', 'git-extras']
+    name: ["git", "git-extras"]
     state: present
     update_cache: yes
+
+- name: Copy git config files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.{{ item }}"
+  with_items:
+    - gitconfig
+    - gitignore-global

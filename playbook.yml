@@ -1,14 +1,12 @@
 ---
 - hosts: localhost
   roles:
-    - { role: bash, tags: ["bash"] }
+    - { role: zsh, tags: ["zsh"] }
+    - { role: editorconfig, tags: ["editorconfig"] }
     - { role: docker, tags: ["docker"] }
     - { role: fonts, tags: ["fonts"] }
-    - { role: fzf, tags: ["fzf"] }
     - { role: git, tags: ["git"] }
     - { role: node, tags: ["node"] }
-    - { role: ripgrep, tags: ["ripgrep"] }
     - { role: terminator, tags: ["terminator"] }
     - { role: vim, tags: ["vim"] }
-    - { role: zsh, tags: ["zsh"] }
     - { role: liferay, tags: ["liferay"] }

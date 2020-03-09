@@ -46,18 +46,6 @@
     line: "prefix={{ ansible_env.HOME }}/.npm-global"
     state: present
 
-- name: Add .npm-global to $PATH
-  lineinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
-    line: "export PATH=$HOME/.npm-global/bin:$PATH"
-    state: present
-
-- name: Add .npm-global to $NODE_PATH
-  lineinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
-    line: "export NODE_PATH=/usr/lib/node_modules:$HOME/.npm-global/lib/node_modules:$NODE_PATH"
-    state: present
-
 - name: Upgrade NPM
   npm:
     name: npm

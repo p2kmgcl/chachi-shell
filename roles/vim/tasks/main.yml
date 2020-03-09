@@ -1,23 +1,41 @@
 ---
-
 - name: Install neovim
   become: yes
   get_url:
     url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
     dest: /usr/bin/nvim
-    mode: '0755'
+    mode: "0755"
     owner: root
+
+- name: Clone fzf repository
+  git:
+    repo: https://github.com/junegunn/fzf.git
+    dest: "{{ ansible_env.HOME }}/.fzf"
+  register: fzf_repo_status
+
+- name: Install fzf
+  shell: ./install --all
+  args:
+    chdir: "{{ ansible_env.HOME }}/.fzf"
+  when: fzf_repo_status.changed
+
+- name: Install ripgrep
+  become: yes
+  apt:
+    deb: https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
+    state: present
+    update_cache: yes
 
 - name: Install clipboard manager
   become: yes
   apt:
-    name: ['xclip']
+    name: ["xclip"]
     state: present
 
 - name: Install python-dev and pip (2 and 3)
   become: yes
   apt:
-    name: ['python-dev', 'python-pip', 'python3-dev', 'python3-pip']
+    name: ["python-dev", "python-pip", "python3-dev", "python3-pip"]
     state: present
 
 - name: Add neovim python support
@@ -33,7 +51,7 @@
 - name: Install ruby
   become: yes
   apt:
-    name: ['ruby-full']
+    name: ["ruby-full"]
     state: present
 
 - name: Add neovim ruby support

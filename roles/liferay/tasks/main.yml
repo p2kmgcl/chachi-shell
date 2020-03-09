@@ -52,14 +52,3 @@
   copy:
     src: portal-ext.properties
     dest: "{{ ansible_env.HOME }}/Projects/community-portal/portal-ext.properties"
-
-- name: Copy .bashrc-liferay file
-  copy:
-    src: bashrc-liferay
-    dest: "{{ ansible_env.HOME }}/.bashrc-liferay"
-
-- name: Link .bashrc to liferay
-  lineinfile:
-    path: "{{ ansible_env.HOME }}/.bashrc"
-    state: present
-    line: "source ~/.bashrc-liferay"
