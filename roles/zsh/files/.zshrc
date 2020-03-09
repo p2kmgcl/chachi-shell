@@ -11,21 +11,20 @@ export ANT_OPTS="-XX:-UseGCOverheadLimit -Xmx8192m -XX:MaxMetaspaceSize=1024m"
 export JAVA_HOME="/usr/lib/jvm/default-java"
 
 # Database
-alias dbd=docker rm -f $(docker ps -a -q -f name=liferay_portal_database)
-alias dbc=docker run --name=liferay_portal_database -p=3306:3306 -e MYSQL_DATABASE=liferay_portal -e MYSQL_ROOT_PASSWORD=root -e MYSQL_ROOT_HOST=172.17.0.1 -d mysql/mysql-server:5.7 --character-set-server=utf8 --collation-server=utf8_general_ci
-alias dbcc=docker exec -it $(docker ps -a -q -f name=liferay_portal_database) mysql -u root -proot
+alias destroyLiferayDatabase="docker rm -f $(docker ps -a -q -f name=liferay_portal_database)"
+alias createLiferayDatabase="docker run --name=liferay_portal_database -p=3306:3306 -e MYSQL_DATABASE=liferay_portal -e MYSQL_ROOT_PASSWORD=root -e MYSQL_ROOT_HOST=172.17.0.1 -d mysql/mysql-server:5.7 --character-set-server=utf8 --collation-server=utf8_general_ci"
+alias connectToLiferayDatabase="docker exec -it $(docker ps -a -q -f name=liferay_portal_database) mysql -u root -proot"
 
 # Portal
-alias lbp=cd $HOME/Projects/community-portal/liferay-portal && ant setup-profile-portal && ant all -Dnodejs.node.env=development
-alias lrp=cd $HOME/Projects/community-portal/bundles/tomcat-9.0.17/bin && ./catalina.sh jpda run
+alias buildLiferayPortal="cd $HOME/Projects/community-portal/liferay-portal && ant setup-profile-portal && ant all -Dnodejs.node.env=development"
+alias runLiferayPortal="cd $HOME/Projects/community-portal/bundles/tomcat-9.0.17/bin && ./catalina.sh jpda run"
 
 # Gradlew
-alias gw=gradlew
-alias gwd=NODE_ENV=development gradlew deploy -a
-alias gwcd=NODE_ENV=development gradlew clean deploy -Dbuild=portal
-alias gwfd=NODE_ENV=development gradlew deploy && NODE_ENV=development gradlew deployFast -at
-alias gwbl=gradlew buildLang
-alias gwfs=gradlew formatSource
+alias gradlewDeploy="NODE_ENV=development gradlew deploy -a"
+alias gradlewCleanDeploy="NODE_ENV=development gradlew clean deploy -Dbuild=portal"
+alias gradlewFastDeploy="NODE_ENV=development gradlew deploy && NODE_ENV=development gradlew deployFast -at"
+alias gradlewBuildLang="gradlew buildLang"
+alias gradlewFormatSource="gradlew formatSource"
 
 ###############################################################################
 # NodeJS ######################################################################
