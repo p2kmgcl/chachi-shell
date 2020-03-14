@@ -1,7 +1,7 @@
 ---
 - name: Install terminator
   become: yes
-  apt:
+  pacman:
     name: terminator
     state: present
     update_cache: yes

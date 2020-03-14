@@ -1,8 +1,8 @@
 ---
 - name: Install zsh
   become: yes
-  apt:
-    name: ["autojump", "zsh", "curl", "git"]
+  pacman:
+    name: ["zsh", "curl", "git"]
     state: present
     update_cache: yes
 

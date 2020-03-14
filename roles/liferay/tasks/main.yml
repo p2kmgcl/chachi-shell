@@ -10,24 +10,11 @@
     global: yes
     state: present
 
-- name: Install Java
+- name: Install Java and ANT
   become: yes
-  apt:
+  pacman:
     name:
-      [
-        "openjdk-8-jdk",
-        "openjdk-8-dbg",
-        "openjdk-8-doc",
-        "openjdk-8-jre",
-        "openjdk-8-source",
-      ]
-    state: present
-    update_cache: yes
-
-- name: Install Apache ANT
-  become: yes
-  apt:
-    name: ant
+      ["ant", "jre8-openjdk", "jdk8-openjdk", "openjdk8-doc", "openjdk8-src"]
     state: present
     update_cache: yes
 

@@ -1,32 +1,8 @@
 ---
-- name: Install apt-transport-https
-  become: yes
-  apt:
-    name: apt-transport-https
-    state: present
-    update_cache: yes
-
-- name: Add Nodesource apt key
-  become: yes
-  apt_key:
-    url: https://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x1655A0AB68576280
-    id: "68576280"
-    state: present
-
-- name: Add NodeSource repositories for Node.js
-  become: yes
-  apt_repository:
-    repo: "{{ item }}"
-    state: present
-    update_cache: yes
-  with_items:
-    - "deb https://deb.nodesource.com/node_13.x bionic main"
-    - "deb-src https://deb.nodesource.com/node_13.x bionic main"
-
 - name: Install NodeJS and NPM
   become: yes
-  apt:
-    name: nodejs
+  pacman:
+    name: ["nodejs", "npm"]
     state: present
     update_cache: yes
 
@@ -44,12 +20,6 @@
   lineinfile:
     path: "{{ ansible_env.HOME }}/.npmrc"
     line: "prefix={{ ansible_env.HOME }}/.npm-global"
-    state: present
-
-- name: Upgrade NPM
-  npm:
-    name: npm
-    global: yes
     state: present
 
 - name: Install some utils

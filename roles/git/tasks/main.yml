@@ -1,8 +1,8 @@
 ---
 - name: Install git and git-extras
   become: yes
-  apt:
-    name: ["git", "git-extras"]
+  pacman:
+    name: git
     state: present
     update_cache: yes
 

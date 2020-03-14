@@ -21,22 +21,24 @@
 
 - name: Install ripgrep
   become: yes
-  apt:
-    deb: https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
+  pacman:
+    name: ripgrep
     state: present
     update_cache: yes
 
 - name: Install clipboard manager
   become: yes
-  apt:
-    name: ["xclip"]
+  pacman:
+    name: xclip
     state: present
+    update_cache: yes
 
 - name: Install python-dev and pip (2 and 3)
   become: yes
-  apt:
-    name: ["python-dev", "python-pip", "python3-dev", "python3-pip"]
+  pacman:
+    name: ["python2", "python2-pip", "python", "python-pip"]
     state: present
+    update_cache: yes
 
 - name: Add neovim python support
   pip:
@@ -50,9 +52,10 @@
 
 - name: Install ruby
   become: yes
-  apt:
-    name: ["ruby-full"]
+  pacman:
+    name: ruby
     state: present
+    update_cache: yes
 
 - name: Add neovim ruby support
   become: yes
