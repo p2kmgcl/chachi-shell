@@ -6,6 +6,13 @@
     state: present
     update_cache: yes
 
+- name: Start docker service
+  become: yes
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+
 - name: "Add {{ ansible_user }} to docker group"
   become: yes
   user:
