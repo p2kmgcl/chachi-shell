@@ -17,7 +17,7 @@ alias connectToLiferayDatabase="docker exec -it $(docker ps -a -q -f name=lifera
 
 # Portal
 alias buildLiferayPortal="cd $HOME/Projects/community-portal/liferay-portal && ant setup-profile-portal && ant all -Dnodejs.node.env=development"
-alias runLiferayPortal="cd $HOME/Projects/community-portal/bundles/tomcat-9.0.17/bin && ./catalina.sh jpda run"
+alias runLiferayPortal="cd $HOME/Projects/community-portal/bundles/tomcat-9.0.33/bin && ./catalina.sh jpda run"
 
 # Gradlew
 alias gradlewDeploy="NODE_ENV=development gradlew deploy -a"
