@@ -30,6 +30,11 @@
     dest: "{{ ansible_env.HOME }}/Projects/community-portal/liferay-binaries-cache-2020"
     update: false
 
+- name: Copy VSCode workspace to community-portal/liferay-portal.code-workspace
+  copy:
+    src: liferay-portal.code-workspace
+    dest: "{{ ansible_env.HOME }}/Projects/community-portal/liferay-portal.code-workspace"
+
 - name: Copy editorconfig to modules/apps/.editorconfig
   copy:
     src: editorconfig
