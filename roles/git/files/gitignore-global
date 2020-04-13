@@ -4,9 +4,7 @@
 *.project
 
 # Common configurations
-bin/
 .idea/
-.gradle/
 .vscode/
 .tern-project
 
