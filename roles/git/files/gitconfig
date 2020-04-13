@@ -5,7 +5,7 @@
   editor = code --wait
   ignorecase = false
   excludesfile = ~/.gitignore-global
-  pager = cat
+  pager = less -F
 
 [diff]
   renames = true
