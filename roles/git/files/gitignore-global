@@ -6,6 +6,7 @@
 # Common configurations
 .idea/
 .vscode/
+jsconfig.json
 .tern-project
 
 # Docker dev containers
