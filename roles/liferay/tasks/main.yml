@@ -24,6 +24,23 @@
     dest: "{{ ansible_env.HOME }}/Projects/community-portal/liferay-portal"
     update: false
 
+- name: Create ~/scripts
+  file:
+    path: "{{ ansible_env.HOME }}/scripts"
+    state: directory
+
+- name: Copy scripts
+  copy:
+    src: scripts/{{ item }}
+    dest: "{{ ansible_env.HOME }}/scripts/{{ item }}"
+  with_items:
+    - buildLiferayPortal
+    - connectToLiferayDatabase
+    - createLiferayDatabase
+    - destroyLiferayDatabase
+    - gradlewCleanDeploy
+    - runLiferayPortal
+
 - name: Clone liferay-binaries-2020
   git:
     repo: https://github.com/liferay/liferay-binaries-cache-2020.git

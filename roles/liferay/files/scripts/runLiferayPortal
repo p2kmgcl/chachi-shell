@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cd $HOME/Projects/community-portal/bundles/tomcat-9.0.33/bin && ./catalina.sh jpda run

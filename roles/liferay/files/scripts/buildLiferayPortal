@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cd $HOME/Projects/community-portal/liferay-portal && ant setup-profile-portal && ant all -Dnodejs.node.env=development

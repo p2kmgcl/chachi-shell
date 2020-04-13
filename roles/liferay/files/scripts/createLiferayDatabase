@@ -1,0 +1,11 @@
+#!/bin/bash
+
+docker run \
+  --name=liferay_portal_database \
+  -p=3306:3306 \
+  -e MYSQL_DATABASE=liferay_portal \
+  -e MYSQL_ROOT_PASSWORD=root \
+  -e MYSQL_ROOT_HOST=172.17.0.1 \
+  -d mysql/mysql-server:5.7 \
+  --character-set-server=utf8 \
+  --collation-server=utf8_general_ci

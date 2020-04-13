@@ -2,29 +2,13 @@
 export ZSH="/home/p2kmgcl/.oh-my-zsh"
 
 ###############################################################################
-# Liferay #####################################################################
+# ENV #########################################################################
 ###############################################################################
 
-# Env
 export ANT_HOME="/usr/bin/ant"
 export ANT_OPTS="-XX:-UseGCOverheadLimit -Xmx8192m -XX:MaxMetaspaceSize=1024m"
 export JAVA_HOME="/usr/lib/jvm/default-java"
-
-# Database
-alias destroyLiferayDatabase="docker rm -f $(docker ps -a -q -f name=liferay_portal_database)"
-alias createLiferayDatabase="docker run --name=liferay_portal_database -p=3306:3306 -e MYSQL_DATABASE=liferay_portal -e MYSQL_ROOT_PASSWORD=root -e MYSQL_ROOT_HOST=172.17.0.1 -d mysql/mysql-server:5.7 --character-set-server=utf8 --collation-server=utf8_general_ci"
-alias connectToLiferayDatabase="docker exec -it $(docker ps -a -q -f name=liferay_portal_database) mysql -u root -proot"
-
-# Portal
-alias buildLiferayPortal="cd $HOME/Projects/community-portal/liferay-portal && ant setup-profile-portal && ant all -Dnodejs.node.env=development"
-alias runLiferayPortal="cd $HOME/Projects/community-portal/bundles/tomcat-9.0.33/bin && ./catalina.sh jpda run"
-
-# Gradlew
-alias gradlewDeploy="NODE_ENV=development gradlew deploy -a"
-alias gradlewCleanDeploy="NODE_ENV=development gradlew clean deploy -Dbuild=portal"
-alias gradlewFastDeploy="NODE_ENV=development gradlew deploy && NODE_ENV=development gradlew deployFast -at"
-alias gradlewBuildLang="gradlew buildLang"
-alias gradlewFormatSource="gradlew formatSource"
+export PATH=$HOME/scripts:$PATH
 
 ###############################################################################
 # NodeJS ######################################################################
