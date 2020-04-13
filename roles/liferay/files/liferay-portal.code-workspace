@@ -10,6 +10,7 @@
     "editor.trimAutoWhitespace": true,
     "files.encoding": "utf8",
     "files.insertFinalNewline": false,
+    "javascript.preferences.importModuleSpecifierEnding": "index",
     "prettier.prettierPath": "/home/p2kmgcl/Projects/community-portal/brian-silly-prettier.js"
   }
 }
