@@ -11,5 +11,6 @@
     src: "{{ item }}"
     dest: "{{ ansible_env.HOME }}/.{{ item }}"
   with_items:
+    - gh.json
     - gitconfig
     - gitignore-global
