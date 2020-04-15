@@ -35,5 +35,5 @@
     - javascript-typescript-langserver
     - typescript
     - neovim
-    - gh
-    - gh-jira
+    - execa
+    - "@octokit/rest"

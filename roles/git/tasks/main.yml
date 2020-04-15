@@ -6,11 +6,20 @@
     state: present
     update_cache: yes
 
+- name: Create ~/scripts
+  file:
+    path: "{{ ansible_env.HOME }}/scripts"
+    state: directory
+
+- name: Copy custom ~/scripts/gh-wrapper
+  copy:
+    src: gh-wrapper
+    dest: "{{ ansible_env.HOME }}/scripts/gh-wrapper"
+
 - name: Copy git config files
   copy:
     src: "{{ item }}"
     dest: "{{ ansible_env.HOME }}/.{{ item }}"
   with_items:
-    - gh.json
     - gitconfig
     - gitignore-global
