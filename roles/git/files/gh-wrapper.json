@@ -1,0 +1,10 @@
+{
+  "GITHUB_TOKEN": "",
+  "JIRA_URL": "issues.liferay.com",
+  "JIRA_USER": "pablo.molina",
+  "JIRA_PASSWORD": "",
+  "GITHUB_USER_TO_JIRA_USER": {
+    "liferay-echo": "pablo.molina",
+    "p2kmgcl": "pablo.molina"
+  }
+}

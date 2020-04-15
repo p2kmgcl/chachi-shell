@@ -1,9 +1,28 @@
 #!/usr/bin/node
 
+const path = require('path')
+const fs = require('fs')
+const os = require('os')
 const execa = require('execa')
 const {Octokit} = require('@octokit/rest')
-const octokit = new Octokit({ auth: '' })
+const JiraApi = require('jira-client')
 
+const CONFIG = JSON.parse(fs.readFileSync(path.resolve(os.homedir(), '.gh-wrapper.json'), 'utf-8'))
+const BRANCH_NAME_PATTERN = /^pr\/([a-zA-Z0-9-]+)\/([0-9]+)$/i
+const COMMIT_MESSAGE_PATTERN = /^(LPS-[0-9]+)/i
+
+const octokit = new Octokit({ auth: CONFIG.GITHUB_TOKEN })
+
+const jira = new JiraApi({
+  protocol: 'https',
+  host: CONFIG.JIRA_URL,
+  username: CONFIG.JIRA_USER,
+  password: CONFIG.JIRA_PASSWORD,
+  strictSSL: true,
+  apiVersion: '2',
+});
+
+let issueId = ''
 let localOwner = ''
 let repo = ''
 
@@ -42,21 +61,19 @@ const checkoutPullRequest = async (number) => {
 const sendPullRequest = async (owner) => {
   const {stdout: title} = await execa.command('git log -1 --pretty=%s')
   const {stdout: branch} = await execa.command('git rev-parse --abbrev-ref HEAD')
-  const pattern = /^pr\/([a-zA-Z0-9-]+)\/([0-9]+)$/i
   let sourceOwner = '';
   let sourceNumber = '';
   let body = '';
 
-
-  if (pattern.test(branch)) {
-    const data = pattern.exec(branch)
+  if (BRANCH_NAME_PATTERN.test(branch)) {
+    const data = BRANCH_NAME_PATTERN.exec(branch)
 
     sourceOwner = data[1]
     sourceNumber = data[2]
     body = `/cc @${sourceOwner}`
   }
 
-  await execa.command(`git push origin ${branch}`)
+  await execa.command(`git push --force origin ${branch}`)
 
   const pr = await octokit.pulls.create({
     owner,
@@ -90,6 +107,29 @@ const sendPullRequest = async (owner) => {
       issue_number: pr.data.number,
       body: 'ci:forward'
     })
+  }
+
+  if (COMMIT_MESSAGE_PATTERN.test(title)) {
+    const data = COMMIT_MESSAGE_PATTERN.exec(title);
+
+    issueId = data[1];
+
+    console.log(`https://${CONIFG.JIRA_URL}/browse/${issueId}`);
+
+    await jira.updateIssue(issueId, {
+      fields: {
+        customfield_10421: pr.data.html_url
+      }
+    })
+
+    if (CONFIG.GITHUB_USER_TO_JIRA_USER[owner]) {
+      await jira.updateAssignee(
+        issueId,
+        CONFIG.GITHUB_USER_TO_JIRA_USER[owner]
+      )
+    } else {
+      console.log(`No JIRA user found for ${owner}`)
+    }
   }
 
   await execa.command('git checkout master')

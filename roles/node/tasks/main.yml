@@ -37,3 +37,4 @@
     - neovim
     - execa
     - "@octokit/rest"
+    - jira-client
