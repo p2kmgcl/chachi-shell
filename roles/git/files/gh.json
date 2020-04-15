@@ -13,22 +13,6 @@
   "use_editor": true,
   "page_size": 30,
   "hooks": {
-    "issue": {
-      "close": {
-        "before": [],
-        "after": []
-      },
-      "new": {
-        "before": [],
-        "after": [
-          "gh is --browser {{options.browser}} --user {{options.user}} --repo {{options.repo}} --number {{options.number}}"
-        ]
-      },
-      "open": {
-        "before": [],
-        "after": []
-      }
-    },
     "pull-request": {
       "close": {
         "before": [],
@@ -36,16 +20,14 @@
       },
       "fetch": {
         "before": [],
-        "after": [
-          "gh pr {{options.number}} --user {{options.user}} --repo {{options.repo}} --comment 'Just started reviewing :)'"
-        ]
+        "after": []
       },
       "fwd": {
         "before": [],
         "after": [
           "gh pr {{options.submittedPullNumber}} --user {{options.fwd}} --comment '/cc @{{options.submittedUser}}'",
-          "gh pr {{options.number}} --user {{options.user}} --repo {{options.repo}} --comment 'Pull request forwarded to {{forwardedLink}}.{{#if options.changes}} [See changes here.]({{compareLink}}){{/if}}'",
-          "gh pr {{options.number}} --close"
+          "gh pull-request {{options.number}} --user {{options.user}} --repo {{options.repo}} --comment 'Pull request forwarded to {{forwardedLink}}.{{#if options.changes}} [See changes here.]({{compareLink}}){{/if}}'",
+          "gh pull-request {{options.number}} --close"
         ]
       },
       "open": {
@@ -55,43 +37,7 @@
       "submit": {
         "before": [],
         "after": [
-          "{{#if options.number}}gh pr {{options.number}} --user {{options.user}} --repo {{options.repo}} --comment 'Pull request submitted to {{submittedLink}}.{{#if options.changes}} [See changes here.]({{compareLink}}){{/if}}'{{/if}}",
-          "{{#if options.number}}gh pr --user {{options.user}} --repo {{options.repo}} {{options.number}} --close{{/if}}",
-          "{{#if options.description}}gh pr {{options.submittedPull}} --user {{options.submit}} --comment 'ci:forward'{{/if}}"
-        ]
-      }
-    },
-    "repo": {
-      "delete": {
-        "before": [],
-        "after": []
-      },
-      "fork": {
-        "before": [],
-        "after": []
-      },
-      "new": {
-        "before": [],
-        "after": [
-          "gh re --browser {{options.browser}} --user {{options.user}} --repo {{options.new}}"
-        ]
-      }
-    },
-    "gists": {
-      "delete": {
-        "before": [],
-        "after": []
-      },
-      "fork": {
-        "before": [],
-        "after": [
-          "gh gi --browser {{options.browser}} --id {{options.id}}"
-        ]
-      },
-      "new": {
-        "before": [],
-        "after": [
-          "gh gi --browser {{options.browser}} --id {{options.id}}"
+          "{{#if options.submit == 'liferay-echo'}}gh pull-request {{options.submittedPull}} --user {{options.submit}} --comment 'ci:forward'{{/if}}"
         ]
       }
     }

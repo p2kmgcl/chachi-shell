@@ -51,10 +51,10 @@
   do-make-file-disapear-from-history = !git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch $1' --prune-empty --tag-name-filter cat -- --all && git push origin --force --all
   do-show-everyday-help = help everyday
 
-  gh-checkout-pr=!gh pr
-  gh-list-prs=!gh pr --list
-  gh-send-pr=!gh pr -s
-  gh-send-pr-to-echo=!gh pr -s liferay-echo -D "forward"
+  gh-checkout-pr=!gh pull-request
+  gh-list-prs=!gh pull-request --list
+  gh-send-pr=!gh pull-request --submit
+  gh-send-pr-to-echo=!gh pull-request --submit liferay-echo
 
   ada = add .
   back = reset HEAD~1
