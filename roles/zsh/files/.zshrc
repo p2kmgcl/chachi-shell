@@ -37,6 +37,7 @@ alias o=xdg-open
 
 # Set "random" (echo $RANDOM_THEME)
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME_CLOUD_PREFIX='λ'
 ZSH_THEME="cloud"
 
 # Uncomment the following line if you want to disable marking untracked files
