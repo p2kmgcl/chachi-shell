@@ -22,120 +22,134 @@ const jira = new JiraApi({
   apiVersion: '2',
 });
 
-let issueId = ''
-let localOwner = ''
-let repo = ''
-
 const main = async () => {
-  const data = /:([^\/]+)\/([^\.]+)\.git$/.exec(
-    (await execa.command('git remote get-url origin')).stdout,
-  );
-
-  localOwner = data[1]
-  repo = data[2]
-
   switch (process.argv[2]) {
-    case 'checkout-pull-request': checkoutPullRequest(process.argv[3]); break;
+    case 'checkout-pull-request': checkoutPullRequest(); break;
     case 'list-pull-requests': listPullRequests(); break;
-    case 'send-pull-request': sendPullRequest(process.argv[3]); break;
+    case 'send-pull-request': sendPullRequest(); break;
     default: break;
   }
 }
 
+const getLocalRepo = async () => {
+  const data = /:([^\/]+)\/([^\.]+)\.git$/.exec(
+    (await execa.command('git remote get-url origin')).stdout,
+  );
+
+  return [data[1], data[2]];
+}
+
 const listPullRequests = async () => {
-  const {data: prs} = await octokit.pulls.list({ owner: localOwner, repo })
+  let [owner, repo] = await getLocalRepo();
+  owner = process.argv[3] || owner;
+
+  const {data: prs} = await octokit.pulls.list({ owner, repo })
 
   prs.forEach(pr => {
     console.log(`#${pr.number} ${pr.title} (@${pr.user.login})`)
   })
 }
 
-const checkoutPullRequest = async (number) => {
-  const {data: prs} = await octokit.pulls.list({ owner: localOwner, repo })
-  const pr = prs.find(pr => pr.number == number)
+const checkoutPullRequest = async () => {
+  let [owner, repo] = await getLocalRepo();
+  let number = parseInt(process.argv[4] || process.argv[3], 10);
+  owner = process.argv[4] ? process.argv[3] : owner;
 
-  await execa.command(`git pr ${pr.html_url}`)
-  await execa.command(`git branch --move pr/${pr.user.login}/${pr.number}`)
+  const {data: prs} = await octokit.pulls.list({ owner, repo })
+  const pr = prs.find(pr => pr.number === number)
+
+  if (!pr) {
+    console.log(`PR ${owner}/${repo}/${number} not found`)
+  } else {
+    await execa.command(`git pr ${pr.html_url}`)
+    await execa.command(`git branch --move pr/${owner}/${pr.number}`)
+  }
 }
 
-const sendPullRequest = async (owner) => {
+const sendPullRequest = async () => {
   const {stdout: title} = await execa.command('git log -1 --pretty=%s')
   const {stdout: branch} = await execa.command('git rev-parse --abbrev-ref HEAD')
-  let sourceOwner = '';
-  let sourceNumber = '';
-  let body = '';
+  const [localOwner, repo] = await getLocalRepo();
+  const targetOwner = process.argv[3];
+
+  await execa.command(`git push --force origin ${branch}`)
+
+  const targetPR = await octokit.pulls.create({
+    owner: targetOwner,
+    repo,
+    title,
+    head: `${localOwner}:${branch}`,
+    base: 'master'
+  });
+
+  if (targetOwner === 'liferay-echo') {
+    await octokit.issues.createComment({
+      owner: targetOwner,
+      repo,
+      issue_number: targetPR.data.number,
+      body: 'ci:forward'
+    })
+  }
 
   if (BRANCH_NAME_PATTERN.test(branch)) {
     const data = BRANCH_NAME_PATTERN.exec(branch)
 
-    sourceOwner = data[1]
-    sourceNumber = data[2]
-    body = `/cc @${sourceOwner}`
-  }
+    const sourceOwner = data[1];
+    const sourceNumber = data[2];
 
-  await execa.command(`git push --force origin ${branch}`)
+    const sourcePR = await octokit.pulls.get({
+      owner: sourceOwner,
+      pull_number: sourceNumber,
+      repo,
+    })
 
-  const pr = await octokit.pulls.create({
-    owner,
-    repo,
-    title,
-    head: `${localOwner}:${branch}`,
-    base: 'master',
-    body
-  })
-
-  if (sourceOwner && sourceNumber) {
     await octokit.issues.createComment({
-      owner: localOwner,
+      owner: targetOwner,
+      repo,
+      issue_number: targetPR.data.number,
+      body: `/cc @${sourcePR.data.user.login}`
+    })
+
+    await octokit.issues.createComment({
+      owner: sourceOwner,
       repo,
       issue_number: sourceNumber,
-      body: pr.data.html_url
+      body: targetPR.data.html_url
     })
 
     await octokit.pulls.update({
-      owner: localOwner,
+      owner: sourceOwner,
       repo,
       pull_number: sourceNumber,
       state: 'closed'
     })
   }
 
-  if (owner === 'liferay-echo') {
-    await octokit.issues.createComment({
-      owner,
-      repo,
-      issue_number: pr.data.number,
-      body: 'ci:forward'
-    })
-  }
-
-  if (COMMIT_MESSAGE_PATTERN.test(title)) {
-    const data = COMMIT_MESSAGE_PATTERN.exec(title);
-
-    issueId = data[1];
-
-    console.log(`https://${CONIFG.JIRA_URL}/browse/${issueId}`);
-
-    await jira.updateIssue(issueId, {
-      fields: {
-        customfield_10421: pr.data.html_url
-      }
-    })
-
-    if (CONFIG.GITHUB_USER_TO_JIRA_USER[owner]) {
-      await jira.updateAssignee(
-        issueId,
-        CONFIG.GITHUB_USER_TO_JIRA_USER[owner]
-      )
-    } else {
-      console.log(`No JIRA user found for ${owner}`)
-    }
-  }
-
   await execa.command('git checkout master')
   await execa.command(`git branch -D ${branch}`)
 
-  console.log(pr.data.html_url)
+  console.log(targetPR.data.html_url)
+
+  if (COMMIT_MESSAGE_PATTERN.test(title)) {
+    const [,issueId] = COMMIT_MESSAGE_PATTERN.exec(title);
+
+    console.log(`https://${CONFIG.JIRA_URL}/browse/${issueId}`);
+
+    await jira.updateIssue(issueId, {
+      fields: {
+        customfield_10421: targetPR.data.html_url
+      }
+    })
+
+    if (CONFIG.GITHUB_USER_TO_JIRA_USER[targetOwner]) {
+      await jira.updateAssignee(
+        issueId,
+        CONFIG.GITHUB_USER_TO_JIRA_USER[targetOwner]
+      )
+    } else {
+      console.log(`No JIRA user found for ${targetOwner}`)
+    }
+  }
 }
 
 main();
