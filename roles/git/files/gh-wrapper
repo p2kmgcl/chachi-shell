@@ -23,15 +23,6 @@ const jira = new JiraApi({
   apiVersion: '2',
 });
 
-const main = async () => {
-  switch (process.argv[2]) {
-    case 'checkout-pull-request': checkoutPullRequest(); break;
-    case 'list-pull-requests': listPullRequests(); break;
-    case 'send-pull-request': sendPullRequest(); break;
-    default: break;
-  }
-}
-
 const getLocalRepo = async () => {
   const data = /:([^\/]+)\/([^\.]+)\.git$/.exec(
     (await execa.command('git remote get-url origin')).stdout,
@@ -179,4 +170,9 @@ const sendPullRequest = async () => {
   }
 }
 
-main();
+switch (process.argv[2]) {
+  case 'checkout-pull-request': checkoutPullRequest(); break;
+  case 'list-pull-requests': listPullRequests(); break;
+  case 'send-pull-request': sendPullRequest(); break;
+  default: break;
+}
