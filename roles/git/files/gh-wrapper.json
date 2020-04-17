@@ -4,7 +4,7 @@
   "JIRA_USER": "pablo.molina",
   "JIRA_PASSWORD": "",
   "GITHUB_USER_TO_JIRA_USER": {
-    "liferay-echo": "pablo.molina",
+    "liferay-echo": "team-echo",
     "p2kmgcl": "pablo.molina"
   }
 }
