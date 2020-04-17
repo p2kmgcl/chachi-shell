@@ -38,3 +38,4 @@
     - execa
     - "@octokit/rest"
     - jira-client
+    - chalk
