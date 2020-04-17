@@ -47,3 +47,7 @@ Add link to new PR in originUsername/124
 Closes originUsername/124
 Updates jira ticket
 ```
+
+## Liferay notes
+
+Control Panel -> Configuration -> System Settings -> Infrastructure -> Javascript Loader -> Explain Module Resolutions
