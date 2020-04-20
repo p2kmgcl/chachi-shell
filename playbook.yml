@@ -1,12 +1,256 @@
 ---
 - hosts: localhost
-  roles:
-    - { role: zsh, tags: ["zsh"] }
-    - { role: editorconfig, tags: ["editorconfig"] }
-    - { role: docker, tags: ["docker"] }
-    - { role: fonts, tags: ["fonts"] }
-    - { role: git, tags: ["git"] }
-    - { role: node, tags: ["node"] }
-    - { role: terminator, tags: ["terminator"] }
-    - { role: vim, tags: ["vim"] }
-    - { role: liferay, tags: ["liferay"] }
+  tasks:
+    - name: Create directories and files
+      file:
+        path: "{{ ansible_env.HOME }}/{{ item.path }}"
+        state: "{{ item.state|default('directory') }}"
+      with_items:
+        - path: scripts
+        - path: .config/nvim/plugged
+        - path: .config/nvim/undo-dir
+        - path: .config/nvim/site/autoload
+        - path: .config/terminator
+        - path: .fonts
+        - path: .fonts/Cascadia
+        - path: .fonts/FiraCode
+        - path: .fonts/JetBrainsMono
+        - path: .fonts/Inconsolata
+        - path: .fonts/Unifont
+        - path: .fonts/VictorMono
+        - path: .npm-global
+        - path: Projects/community-portal
+        - { path: .npmrc, state: touch }
+
+    - name: Copy files
+      copy:
+        force: no
+        src: "{{ item.from }}"
+        dest: "{{ ansible_env.HOME }}/{{ item.to }}"
+        mode: "{{ item.mode|default('0660') }}"
+      with_items:
+        - from: zshrc
+          to: .zshrc
+        - from: init.vim
+          to: .config/nvim/init.vim
+        - from: coc-settings.json
+          to: .config/nvim/coc-settings.json
+        - from: terminator-config
+          to: .config/terminator/config
+        - from: gh-wrapper
+          to: scripts/gh-wrapper
+          mode: "0770"
+        - from: buildLiferayPortal
+          to: scripts/buildLiferayPortal
+          mode: "0770"
+        - from: connectToLiferayDatabase
+          to: scripts/connectToLiferayDatabase
+          mode: "0770"
+        - from: createLiferayDatabase
+          to: scripts/createLiferayDatabase
+          mode: "0770"
+        - from: destroyLiferayDatabase
+          to: scripts/destroyLiferayDatabase
+          mode: "0770"
+        - from: gradlewCleanDeploy
+          to: scripts/gradlewCleanDeploy
+          mode: "0770"
+        - from: gradlewDeploy
+          to: scripts/gradlewDeploy
+          mode: "0770"
+        - from: runLiferayPortal
+          to: scripts/runLiferayPortal
+          mode: "0770"
+        - from: gh-wrapper.json
+          to: .gh-wrapper.json
+        - from: gitconfig
+          to: .gitconfig
+        - from: editorconfig
+          to: .editorconfig
+        - from: gitignore-global
+          to: .gitignore-global
+        - from: liferay-portal.code-workspace
+          to: Projects/community-portal/liferay-portal.code-workspace
+        - from: brian-silly-prettier.js
+          to: Projects/community-portal/brian-silly-prettier.js
+        - from: liferay-editorconfig
+          to: Projects/community-portal/liferay-portal/modules/apps/.editorconfig
+        - from: portal-ext.properties
+          to: Projects/community-portal/portal-ext.properties
+        - from: jsconfig.json
+          to: Projects/community-portal/liferay-portal/modules/apps/layout/layout-content-page-editor-web/jsconfig.json
+        - from: Liferay.d.ts
+          to: Projects/community-portal/liferay-portal/modules/apps/layout/layout-content-page-editor-web/src/main/resources/META-INF/resources/page_editor/types/Liferay.d.ts
+        - from: LiferayGlobal.d.ts
+          to: Projects/community-portal/liferay-portal/modules/apps/layout/layout-content-page-editor-web/src/main/resources/META-INF/resources/page_editor/types/LiferayGlobal.d.ts
+
+    - name: Download files
+      get_url:
+        force: no
+        url: "{{ item.url }}"
+        dest: "{{ ansible_env.HOME }}/{{ item.file }}"
+        mode: "{{ item.mode|default('0660') }}"
+        timeout: 30
+      with_items:
+        - file: scripts/nvim
+          url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+          mode: "0770"
+        - file: .local/share/nvim/site/autoload/plug.vim
+          url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        - file: .fonts/Cascadia/Cascadia.ttf
+          url: https://github.com/microsoft/cascadia-code/releases/download/v1911.21/Cascadia.ttf
+        - file: .fonts/Cascadia/CascadiaMono.ttf
+          url: https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaMono.ttf
+        - file: .fonts/Cascadia/CascadiaPL.ttf
+          url: https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaPL.ttf
+        - file: .fonts/Cascadia/CascadiaMonoPL.ttf
+          url: https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaMonoPL.ttf
+        - file: .fonts/Unifont/Unifont.ttf
+          url: http://www.unifoundry.com/pub/unifont/unifont-12.1.03/font-builds/unifont-12.1.03.ttf
+        - file: Inconsolata-Bold.ttf
+          url: https://github.com/googlefonts/Inconsolata/releases/download/v2.012/Inconsolata-Bold.ttf
+        - file: Inconsolata-Regular.ttf
+          url: https://github.com/googlefonts/Inconsolata/releases/download/v2.012/Inconsolata-Regular.ttf
+
+    - name: Decompress files
+      unarchive:
+        src: "{{ item.src }}"
+        remote_src: yes
+        dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+      with_items:
+        - src: https://github.com/tonsky/FiraCode/releases/download/1.207/FiraCode_1.207.zip
+          dest: .fonts/FiraCode
+        - src: https://download.jetbrains.com/fonts/JetBrainsMono-1.0.0.zip
+          dest: .fonts/JetBrainsMono
+        - src: https://rubjo.github.io/victor-mono/VictorMonoAll.zip
+          dest: .fonts/VictorMono
+
+    - name: Add lines to files
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/{{ item.file }}"
+        line: "{{ item.line }}"
+        state: present
+      with_items:
+        - file: .npmrc
+          line: "prefix={{ ansible_env.HOME }}/.npm-global"
+
+    - name: Pacman
+      become: yes
+      pacman:
+        name:
+          - ant
+          - curl
+          - docker
+          - git
+          - jdk8-openjdk
+          - jre8-openjdk
+          - nodejs
+          - npm
+          - openjdk8-doc
+          - openjdk8-src
+          - python
+          - python-pip
+          - python2
+          - python2-pip
+          - ripgrep
+          - ruby
+          - terminator
+          - xclip
+          - zsh
+        state: present
+        update_cache: yes
+
+    - name: PIP
+      pip:
+        executable: "{{ item }}"
+        name:
+          - neovim
+        state: present
+        extra_args: --user
+      with_items:
+        - pip2
+        - pip3
+
+    - name: Gem
+      become: yes
+      gem:
+        name: "{{ item }}"
+        state: present
+        user_install: no
+      with_items:
+        - neovim
+
+    - name: NPM
+      npm:
+        name: "{{ item }}"
+        global: yes
+        state: present
+      with_items:
+        - "@octokit/rest"
+        - browser-sync
+        - chalk
+        - eslint
+        - execa
+        - gradle-launcher
+        - http-server
+        - javascript-typescript-langserver
+        - jira-client
+        - neovim
+        - prettier
+        - typescript
+
+    - name: Clone git repositories
+      git:
+        force: no
+        update: no
+        repo: "{{ item.repo }}"
+        dest: "{{ ansible_env.HOME }}/{{ item.dir }}"
+      with_items:
+        - repo: https://github.com/ohmyzsh/ohmyzsh
+          dir: .oh-my-zsh
+        - repo: https://github.com/zsh-users/zsh-autosuggestions
+          dir: .oh-my-zsh/custom/plugins/zsh-autosuggestions
+        - repo: https://github.com/chrissicool/zsh-256color
+          dir: .oh-my-zsh/custom/plugins/zsh-256color
+        - repo: https://github.com/junegunn/fzf.git
+          dir: .fzf
+        - repo: https://github.com/powerline/fonts.git
+          dir: .fonts/Powerline
+        - repo: git@github.com:p2kmgcl/liferay-portal.git
+          dir: Projects/community-portal/liferay-portal
+        - repo: https://github.com/liferay/liferay-binaries-cache-2020.git
+          dir: Projects/community-portal/liferay-binaries-cache-2020
+
+    - name: Run shell scripts
+      shell: "{{ item.script }}"
+      args:
+        chdir: "{{ item.dir|default(ansible_env.HOME) }}"
+      with_items:
+        - script: 'nvim --headless -c "PlugClean!" +PlugUpdate +UpdateRemotePlugins -c "CocInstall -sync coc-tsserver coc-html coc-json coc-css | q" +qa'
+        - { script: "./install --all", dir: "{{ ansible_env.HOME }}/.fzf" }
+    #
+    # - name: Run system shell scripts
+    #   become: yes
+    #   shell: "{{ item.script }}"
+    #   args:
+    #     chdir: "{{ item.dir|default(ansible_env.HOME) }}"
+    #   with_items:
+    #     - script: "chsh --shell /bin/zsh {{ ansible_user }}"
+
+    - name: Enable system services
+      become: yes
+      systemd:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+      with_items:
+        - docker
+    #
+    # - name: Add user to system groups
+    #   become: yes
+    #   user:
+    #     user: "{{ ansible_user }}"
+    #     append: yes
+    #     groups: "{{ item }}"
+    #   with_items:
+    #     - docker
