@@ -8,6 +8,67 @@ const {Octokit} = require('@octokit/rest')
 const JiraApi = require('jira-client')
 const chalk = require('chalk')
 
+const printHelp = () => console.log(`
+Usage: gh-wrapper <command> [options]...
+Custom list of github and jira related commands currently
+customized to behave as an ordinary Liferay workflow.
+
+*About [username]*: in Liferay, we make PRs to forked repos instead of using
+the upstream repository. Because of this, if [username] is not specified in
+some command, it defaults to the *origin* remote instead of upstream.
+
+    list-pull-requests [username]
+
+        List existing pull requests. Tries to parse the Liferay CI progress
+        status based on the tags that have been added to each pull request.
+
+    checkout-pull-request [username] <number>
+
+        Checkouts the given PR number locally with the
+        pr/username/number format.
+
+    send-pull-request <username>
+
+        Sends a pull request to the given username (no default username used
+        on this case) following these steps:
+
+        1. Force pushes the current branch to origin.
+        2. Creates a PR merging the uploaded branch to username's master,
+           using the last commit message as PR title.
+        3. If userame is 'liferay-echo' (the user we use to run the CI and merge
+           PRs into upstream), it adds a 'ci:forward' comment to trigger tests.
+        4. If the branch name matches the pr/username/number pattern:
+           a. Adds a comment to the new PR mentioning the user who created the
+              original one.
+           b. Adds a comment to the old PR with a reference to the new one.
+           c. Closes the old PR.
+        5. Locally checkouts master branch and removes the PR branch.
+        6. If a jira ticket id is found in the PR title, it updates the ticket
+           with the new PR url and tries to assign the ticket to the associated
+           GITHUB_USER_TO_JIRA_USER.
+
+# Config
+
+gh-wrapper uses a  ~/.gh-wrapper.json configuration file:
+
+{
+  // Required for github authentication. Generate a new personal token here:
+  // https://github.com/settings/tokens
+  "GITHUB_TOKEN": "",
+
+  // Required for jira authentication
+  "JIRA_URL": "issues.liferay.com",
+  "JIRA_USER": "pablo.molina",
+  "JIRA_PASSWORD": "",
+
+  // Maps github usernames to jira usernames. Used for updating tickets when
+  // sending PRs.
+  "GITHUB_USER_TO_JIRA_USER": {
+    "liferay-echo": "team-echo",
+    "p2kmgcl": "pablo.molina"
+  }
+}`);
+
 const CONFIG = JSON.parse(fs.readFileSync(path.resolve(os.homedir(), '.gh-wrapper.json'), 'utf-8'))
 const BRANCH_NAME_PATTERN = /^pr\/([a-zA-Z0-9-]+)\/([0-9]+)$/i
 const COMMIT_MESSAGE_PATTERN = /^(LPS-[0-9]+)[ ]*(.*)$/i
@@ -174,5 +235,5 @@ switch (process.argv[2]) {
   case 'checkout-pull-request': checkoutPullRequest(); break;
   case 'list-pull-requests': listPullRequests(); break;
   case 'send-pull-request': sendPullRequest(); break;
-  default: break;
+  default: printHelp(); break;
 }
