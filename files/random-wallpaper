@@ -1,0 +1,55 @@
+#!/usr/bin/node
+
+const execa = require('execa');
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
+const puppeteer = require('puppeteer');
+
+async function main() {
+  const browser = await puppeteer.launch({
+    headless: true
+  })
+
+  const page = await browser.newPage()
+
+  await page.goto(
+    'https://wallhaven.cc/search?q=minimal&categories=111&purity=110&atleast=1920x1080&sorting=random&order=desc'
+  )
+
+  page.click('#search-submit')
+  await page.waitForNavigation()
+
+  await page.goto(
+    await page.$('a.preview')
+      .then(element => element.getProperty('href'))
+      .then(property => property.jsonValue())
+  );
+
+  const response = await page.goto(
+    await page.$('#wallpaper')
+      .then(element => element.getProperty('src'))
+      .then(property => property.jsonValue())
+  )
+
+  const date = new Date();
+
+  const name = path.join(
+    os.homedir(),
+    '.local/share/backgrounds',
+    `${date.getFullYear()
+     }-${(date.getMonth() + 1).toString().padStart(2, '0')
+     }-${date.getDate().toString().padStart(2, '0')
+     }.jpg`
+  );
+
+  fs.writeFileSync(name, await response.buffer(), function(error) {
+    if (error) { return console.log(error); }
+  });
+
+  await browser.close();
+  await execa.command(`gsettings set org.gnome.desktop.background picture-uri file://${name}`);
+  console.log(name);
+}
+
+main()

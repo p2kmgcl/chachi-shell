@@ -61,6 +61,9 @@
         - from: runLiferayPortal
           to: scripts/runLiferayPortal
           mode: "0770"
+        - from: random-wallpaper
+          to: scripts/random-wallpaper
+          mode: "0770"
         - from: gh-wrapper.json
           to: .gh-wrapper.json
         - from: gitconfig
@@ -197,6 +200,7 @@
         - jira-client
         - neovim
         - prettier
+        - puppeteer
         - typescript
 
     - name: Clone git repositories
