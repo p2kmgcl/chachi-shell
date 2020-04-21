@@ -107,9 +107,9 @@
           url: https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaMonoPL.ttf
         - file: .fonts/Unifont/Unifont.ttf
           url: http://www.unifoundry.com/pub/unifont/unifont-12.1.03/font-builds/unifont-12.1.03.ttf
-        - file: Inconsolata-Bold.ttf
+        - file: .fonts/Inconsolata/Inconsolata-Bold.ttf
           url: https://github.com/googlefonts/Inconsolata/releases/download/v2.012/Inconsolata-Bold.ttf
-        - file: Inconsolata-Regular.ttf
+        - file: .fonts/Inconsolata/Inconsolata-Regular.ttf
           url: https://github.com/googlefonts/Inconsolata/releases/download/v2.012/Inconsolata-Regular.ttf
 
     - name: Decompress files
