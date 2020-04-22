@@ -19,6 +19,7 @@
         - path: .fonts/Unifont
         - path: .fonts/VictorMono
         - path: .npm-global
+        - path: .parsec-bin
         - path: Projects/community-portal
         - { path: .npmrc, state: touch }
 
@@ -86,6 +87,10 @@
           to: Projects/community-portal/liferay-portal/modules/apps/layout/layout-content-page-editor-web/src/main/resources/META-INF/resources/page_editor/types/Liferay.d.ts
         - from: LiferayGlobal.d.ts
           to: Projects/community-portal/liferay-portal/modules/apps/layout/layout-content-page-editor-web/src/main/resources/META-INF/resources/page_editor/types/LiferayGlobal.d.ts
+        - from: parsec.png
+          to: .parsec-bin/parsec.png
+        - from: parsec.desktop
+          to: .local/share/applications/parsec.desktop
 
     - name: Download files
       get_url:
@@ -114,6 +119,8 @@
           url: https://github.com/googlefonts/Inconsolata/releases/download/v2.012/Inconsolata-Bold.ttf
         - file: .fonts/Inconsolata/Inconsolata-Regular.ttf
           url: https://github.com/googlefonts/Inconsolata/releases/download/v2.012/Inconsolata-Regular.ttf
+        - file: .parsec-bin/parsec-linux.deb
+          url: https://builds.parsecgaming.com/package/parsec-linux.deb
 
     - name: Decompress files
       unarchive:
@@ -228,10 +235,12 @@
     - name: Run shell scripts
       shell: "{{ item.script }}"
       args:
-        chdir: "{{ item.dir|default(ansible_env.HOME) }}"
+        chdir: "{{ ansible_env.HOME }}/{{ item.dir|default('.') }}"
       with_items:
         - script: 'nvim --headless -c "PlugClean!" +PlugUpdate +UpdateRemotePlugins -c "CocInstall -sync coc-tsserver coc-html coc-json coc-css | q" +qa'
-        - { script: "./install --all", dir: "{{ ansible_env.HOME }}/.fzf" }
+        - { script: "./install --all", dir: ".fzf" }
+        - { script: "ar xvf parsec-linux.deb && tar xvf data.tar.xz", dir: ".parsec-bin" }
+
     #
     # - name: Run system shell scripts
     #   become: yes
