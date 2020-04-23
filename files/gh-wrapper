@@ -35,7 +35,7 @@ some command, it defaults to the *origin* remote instead of upstream.
         1. Force pushes the current branch to origin.
         2. Creates a PR merging the uploaded branch to username's master,
            using the last commit message as PR title.
-        3. If userame is 'liferay-echo' (the user we use to run the CI and merge
+        3. If username is 'liferay-echo' (the user we use to run the CI and merge
            PRs into upstream), it adds a 'ci:forward' comment to trigger tests.
         4. If the branch name matches the pr/username/number pattern:
            a. Adds a comment to the new PR mentioning the user who created the
