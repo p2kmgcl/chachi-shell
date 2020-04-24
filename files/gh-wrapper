@@ -103,14 +103,16 @@ const listPullRequests = async () => {
 
     if (pr.labels.length) {
       if (pr.labels.some(label => label.name.endsWith(' failure'))) {
-        parts.push(chalk.bold.red('●'))
+        parts.push(chalk.bold.red('✘'))
       } else if (pr.labels.some(label => label.name.endsWith(' pending'))) {
-        parts.push(chalk.bold.yellow('●'))
+        parts.push(chalk.bold.yellow('◕'))
       } else if (pr.labels.every(label => label.name.endsWith(' success'))) {
         parts.push(chalk.bold.green('✔'))
       } else {
         parts.push(chalk.bold.blue('?'))
       }
+    } else {
+      parts.push(chalk.bold.dim('❍'));
     }
 
     parts.push(chalk.dim(`#${pr.number}`));
