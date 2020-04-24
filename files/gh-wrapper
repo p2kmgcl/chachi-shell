@@ -39,7 +39,7 @@ some command, it defaults to the *origin* remote instead of upstream.
            PRs into upstream), it adds a 'ci:forward' comment to trigger tests.
         4. If the branch name matches the pr/username/number pattern:
            a. Adds a comment to the new PR mentioning the user who created the
-              original one.
+              original one (unless the PR is being returned to the same user).
            b. Adds a comment to the old PR with a reference to the new one.
            c. Closes the old PR.
         5. Locally checkouts master branch and removes the PR branch.
@@ -182,12 +182,14 @@ const sendPullRequest = async () => {
       repo,
     })
 
-    await octokit.issues.createComment({
-      owner: targetOwner,
-      repo,
-      issue_number: targetPR.data.number,
-      body: `/cc @${sourcePR.data.user.login}`
-    })
+    if (targetOwner !== sourcePR.data.user.login) {
+      await octokit.issues.createComment({
+        owner: targetOwner,
+        repo,
+        issue_number: targetPR.data.number,
+        body: `/cc @${sourcePR.data.user.login}`
+      })
+    }
 
     await octokit.issues.createComment({
       owner: sourceOwner,
