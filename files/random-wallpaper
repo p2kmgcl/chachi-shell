@@ -14,15 +14,15 @@ async function main() {
   const page = await browser.newPage()
 
   await page.goto(
-    'https://wallhaven.cc/search?q=minimal&categories=111&purity=110&atleast=1920x1080&sorting=random&order=desc'
+    'https://wallhaven.cc/search?categories=100&purity=100&atleast=1920x1080&topRange=1d&sorting=toplist&order=desc'
   )
 
-  page.click('#search-submit')
-  await page.waitForNavigation()
-
   await page.goto(
-    await page.$('a.preview')
-      .then(element => element.getProperty('href'))
+    await page.$$('a.preview')
+      .then(elements => {
+        const element = elements[Math.round(Math.random() * elements.length - 1)];
+        return element.getProperty('href');
+      })
       .then(property => property.jsonValue())
   );
 
