@@ -81,8 +81,6 @@
           to: Projects/community-portal/liferay-portal/modules/apps/.editorconfig
         - from: portal-ext.properties
           to: Projects/community-portal/portal-ext.properties
-        - from: jsconfig.json
-          to: Projects/community-portal/liferay-portal/modules/apps/layout/layout-content-page-editor-web/jsconfig.json
         - from: Liferay.d.ts
           to: Projects/community-portal/liferay-portal/modules/apps/layout/layout-content-page-editor-web/src/main/resources/META-INF/resources/page_editor/types/Liferay.d.ts
         - from: LiferayGlobal.d.ts
