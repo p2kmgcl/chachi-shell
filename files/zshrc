@@ -6,7 +6,7 @@ export ZSH="/home/p2kmgcl/.oh-my-zsh"
 ###############################################################################
 
 export ANT_HOME="/usr/bin/ant"
-export ANT_OPTS="-XX:-UseGCOverheadLimit -Xmx8192m -XX:MaxMetaspaceSize=1024m"
+export ANT_OPTS="-XX:-UseGCOverheadLimit -Xmx6144m -XX:MaxMetaspaceSize=1024m"
 export EDITOR="code --wait"
 export JAVA_HOME="/usr/lib/jvm/default-java"
 export PATH=$HOME/scripts:$PATH
