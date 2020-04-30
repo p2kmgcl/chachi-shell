@@ -115,37 +115,40 @@ const listPullRequests = async () => {
     console.log(chalk.dim('No PRs'));
   }
 
-  prs.forEach(pr => {
+  for (const pr of prs) {
     const parts = []
 
-    if (pr.labels.length) {
-      if (pr.labels.some(label => label.name.endsWith(' failure'))) {
-        parts.push(chalk.bold.red('✘'))
-      } else if (pr.labels.some(label => label.name.endsWith(' pending'))) {
-        parts.push(chalk.bold.yellow('◕'))
-      } else if (pr.labels.every(label => label.name.endsWith(' success'))) {
-        parts.push(chalk.bold.green('✔'))
+    const statuses = (
+      await octokit.repos.listStatusesForRef({
+        ref: pr.head.sha,
+        owner,
+        repo,
+      })
+    ).data.reduce((acc, status) =>
+      acc.find(s => s.context === status.context)
+        ? acc
+        : [...acc, status],
+      []
+    );
+
+    parts.push(chalk.bold.blue(`#${pr.number}`.padEnd(5, ' ')));
+    parts.push(pr.title);
+
+    if (statuses.length) {
+      if (statuses.some(status => status.state === 'pending')) {
+        parts.push(chalk.dim('[Pending]'))
+      } else if (statuses.some(status => status.state === 'failure')) {
+        parts.push(chalk.bold.black.bgRed('[Failure]'))
+      } else if (statuses.every(status => status.state === 'success')) {
+        parts.push(chalk.bold.black.bgGreen('[Success]'))
       } else {
-        parts.push(chalk.bold.blue('?'))
+        parts.push(chalk.dim('[Unknown]'))
       }
-    } else {
-      parts.push(chalk.bold.dim('❍'));
-    }
-
-    parts.push(chalk.dim(`#${pr.number}`));
-
-    if (COMMIT_MESSAGE_PATTERN.test(pr.title)) {
-      const [, issueNumber, message] = COMMIT_MESSAGE_PATTERN.exec(pr.title)
-      parts.push(chalk.dim(issueNumber))
-      parts.push(message)
-    } else {
-      parts.push(pr.title);
     }
 
     parts.push(chalk.dim(`(@${pr.user.login})`))
-
     process.stdout.write(parts.join(' ') + '\n')
-  })
+  }
 }
 
 const checkoutPullRequest = async () => {
@@ -270,22 +273,23 @@ const listIssues = async () => {
   const board = await jira.getIssuesForBoard(boardId);
 
   board.issues.forEach(issue => {
-    const output = [];
+    let output = '';
 
-    output.push(chalk.dim(issue.key.padEnd(10, ' ')));
-    output.push(issue.fields.summary);
+    output += chalk.bold.blue(issue.key.padEnd(10, ' '));
+    output += ` ${issue.fields.summary}`;
 
     if (issue.fields.assignee.name !== CONFIG.JIRA_USER) {
-      output.push(chalk.bold.red(`(${issue.fields.assignee.displayName})`));
+      output += ` ${chalk.dim(`(${issue.fields.assignee.displayName})`)}`;
     }
 
-    output.push(chalk.bold.yellow(`[${issue.fields.status.name}]`))
+    output += ` ${chalk.dim(`[${issue.fields.status.name}]`)}`;
 
     if (issue.fields.customfield_10421) {
-      output.push(chalk.dim(issue.fields.customfield_10421))
+      output += '\n          ';
+      output += chalk.dim(issue.fields.customfield_10421);
     }
 
-    console.log(output.join(' '))
+    console.log(output);
   })
 }
 
@@ -296,7 +300,7 @@ const showDashboard = async () => {
   }
 
   for (const line of CONFIG.DASHBOARD) {
-    console.log(line.title)
+    console.log(chalk.bold.bgYellow.black(line.title))
 
     await execa.command(
       path.resolve(line.command.replace('~', os.homedir())),
