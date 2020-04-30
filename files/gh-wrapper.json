@@ -6,5 +6,6 @@
   "GITHUB_USER_TO_JIRA_USER": {
     "liferay-echo": "team-echo",
     "p2kmgcl": "pablo.molina"
-  }
+  },
+  "DASHBOARD": []
 }

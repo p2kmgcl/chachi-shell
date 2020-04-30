@@ -65,12 +65,21 @@ gh-wrapper uses a  ~/.gh-wrapper.json configuration file:
   "JIRA_USER": "pablo.molina",
   "JIRA_PASSWORD": "",
 
-  // Maps github usernames to jira usernames. Used for updating tickets when
-  // sending PRs.
+  // Maps github usernames to jira usernames.
+  // Used for updating tickets when sending PRs.
   "GITHUB_USER_TO_JIRA_USER": {
     "liferay-echo": "team-echo",
     "p2kmgcl": "pablo.molina"
-  }
+  },
+
+  // Runs a list of commands with the given title
+  "DASHBOARD": [
+    {
+      "cwd": "~",
+      "title": "List files in ~",
+      "command": "ls"
+    }
+  ]
 }`);
 
 const CONFIG = JSON.parse(fs.readFileSync(path.resolve(os.homedir(), '.gh-wrapper.json'), 'utf-8'))
@@ -101,6 +110,10 @@ const listPullRequests = async () => {
   owner = process.argv[3] || localOwner;
 
   const {data: prs} = await octokit.pulls.list({ owner, repo })
+
+  if (!prs.length) {
+    console.log(chalk.dim('No PRs'));
+  }
 
   prs.forEach(pr => {
     const parts = []
@@ -276,10 +289,32 @@ const listIssues = async () => {
   })
 }
 
+const showDashboard = async () => {
+  if (!CONFIG.DASHBOARD || !CONFIG.DASHBOARD.length) {
+    console.log('Dashboard config not found');
+    return;
+  }
+
+  for (const line of CONFIG.DASHBOARD) {
+    console.log(line.title)
+
+    await execa.command(
+      path.resolve(line.command.replace('~', os.homedir())),
+      {
+        stdio: 'inherit',
+        cwd: path.resolve(line.cwd.replace('~', os.homedir()))
+      }
+    );
+
+    console.log('')
+  }
+};
+
 switch (process.argv[2]) {
   case 'checkout-pull-request': checkoutPullRequest(); break;
   case 'list-pull-requests': listPullRequests(); break;
   case 'send-pull-request': sendPullRequest(); break;
   case 'list-issues': listIssues(); break;
+  case 'show-dashboard': showDashboard(); break;
   default: printHelp(); break;
 }

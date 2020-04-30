@@ -55,6 +55,7 @@
   do-list-pull-requests=!gh-wrapper list-pull-requests
   do-send-pull-request=!gh-wrapper send-pull-request
   do-list-issues=!gh-wrapper list-issues
+  do-show-dashboard=!gh-wrapper show-dashboard
 
   ada = add .
   back = reset HEAD~1
