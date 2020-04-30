@@ -173,39 +173,42 @@ const sendPullRequest = async () => {
   }
 
   if (BRANCH_NAME_PATTERN.test(branch)) {
-    const data = BRANCH_NAME_PATTERN.exec(branch)
+    try {
+      const data = BRANCH_NAME_PATTERN.exec(branch)
+      const sourceOwner = data[1];
+      const sourceNumber = data[2];
 
-    const sourceOwner = data[1];
-    const sourceNumber = data[2];
-
-    const sourcePR = await octokit.pulls.get({
-      owner: sourceOwner,
-      pull_number: sourceNumber,
-      repo,
-    })
-
-    if (targetOwner !== sourcePR.data.user.login) {
-      await octokit.issues.createComment({
-        owner: targetOwner,
+      const sourcePR = await octokit.pulls.get({
+        owner: sourceOwner,
+        pull_number: sourceNumber,
         repo,
-        issue_number: targetPR.data.number,
-        body: `/cc @${sourcePR.data.user.login}`
       })
+
+      if (targetOwner !== sourcePR.data.user.login) {
+        await octokit.issues.createComment({
+          owner: targetOwner,
+          repo,
+          issue_number: targetPR.data.number,
+          body: `/cc @${sourcePR.data.user.login}`
+        })
+      }
+
+      await octokit.issues.createComment({
+        owner: sourceOwner,
+        repo,
+        issue_number: sourceNumber,
+        body: targetPR.data.html_url
+      })
+
+      await octokit.pulls.update({
+        owner: sourceOwner,
+        repo,
+        pull_number: sourceNumber,
+        state: 'closed'
+      })
+    } catch (error) {
+      console.log(`Source PR ${sourceOwner}/${repo}/${sourceNumber} not found (ignored)`)
     }
-
-    await octokit.issues.createComment({
-      owner: sourceOwner,
-      repo,
-      issue_number: sourceNumber,
-      body: targetPR.data.html_url
-    })
-
-    await octokit.pulls.update({
-      owner: sourceOwner,
-      repo,
-      pull_number: sourceNumber,
-      state: 'closed'
-    })
   }
 
   await execa.command('git checkout master')
