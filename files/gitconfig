@@ -54,6 +54,7 @@
   do-checkout-pull-request=!gh-wrapper checkout-pull-request
   do-list-pull-requests=!gh-wrapper list-pull-requests
   do-send-pull-request=!gh-wrapper send-pull-request
+  do-list-issues=!gh-wrapper list-issues
 
   ada = add .
   back = reset HEAD~1

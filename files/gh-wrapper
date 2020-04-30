@@ -47,6 +47,10 @@ some command, it defaults to the *origin* remote instead of upstream.
            with the new PR url and tries to assign the ticket to the associated
            GITHUB_USER_TO_JIRA_USER.
 
+    list-issues <boardId>
+
+        Lists jira issues for the given boardId.
+
 # Config
 
 gh-wrapper uses a  ~/.gh-wrapper.json configuration file:
@@ -248,9 +252,34 @@ const sendPullRequest = async () => {
   }
 }
 
+const listIssues = async () => {
+  const boardId = process.argv[3];
+  const board = await jira.getIssuesForBoard(boardId);
+
+  board.issues.forEach(issue => {
+    const output = [];
+
+    output.push(chalk.dim(issue.key.padEnd(10, ' ')));
+    output.push(issue.fields.summary);
+
+    if (issue.fields.assignee.name !== CONFIG.JIRA_USER) {
+      output.push(chalk.bold.red(`(${issue.fields.assignee.displayName})`));
+    }
+
+    output.push(chalk.bold.yellow(`[${issue.fields.status.name}]`))
+
+    if (issue.fields.customfield_10421) {
+      output.push(chalk.dim(issue.fields.customfield_10421))
+    }
+
+    console.log(output.join(' '))
+  })
+}
+
 switch (process.argv[2]) {
   case 'checkout-pull-request': checkoutPullRequest(); break;
   case 'list-pull-requests': listPullRequests(); break;
   case 'send-pull-request': sendPullRequest(); break;
+  case 'list-issues': listIssues(); break;
   default: printHelp(); break;
 }
