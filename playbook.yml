@@ -10,7 +10,6 @@
         - path: .config/nvim/plugged
         - path: .config/nvim/undo-dir
         - path: .config/nvim/site/autoload
-        - path: .config/terminator
         - path: .fonts
         - path: .fonts/Cascadia
         - path: .fonts/FiraCode
@@ -36,8 +35,6 @@
           to: .config/nvim/init.vim
         - from: coc-settings.json
           to: .config/nvim/coc-settings.json
-        - from: terminator-config
-          to: .config/terminator/config
         - from: gh-wrapper
           to: scripts/gh-wrapper
           mode: "0770"
@@ -162,7 +159,6 @@
           - python2-pip
           - ripgrep
           - ruby
-          - terminator
           - xclip
           - zsh
         state: present
@@ -197,6 +193,7 @@
         - "@octokit/rest"
         - browser-sync
         - chalk
+        - date-fns
         - eslint
         - execa
         - gradle-launcher
@@ -206,6 +203,7 @@
         - neovim
         - prettier
         - puppeteer
+        - terminal-link
         - typescript
 
     - name: Clone git repositories
