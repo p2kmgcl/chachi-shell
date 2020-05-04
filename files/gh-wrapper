@@ -134,19 +134,20 @@ const listPullRequests = async () => {
     parts.push(chalk.bold.blue(`#${pr.number}`.padEnd(5, ' ')));
     parts.push(pr.title);
 
+    parts.push(chalk.dim(`(@${pr.user.login})`))
+
     if (statuses.length) {
       if (statuses.some(status => status.state === 'pending')) {
         parts.push(chalk.dim('[Pending]'))
       } else if (statuses.some(status => status.state === 'failure')) {
-        parts.push(chalk.bold.black.bgRed('[Failure]'))
+        parts.push(chalk.dim('[Failure]'))
       } else if (statuses.every(status => status.state === 'success')) {
-        parts.push(chalk.bold.black.bgGreen('[Success]'))
+        parts.push(chalk.dim('[Success]'))
       } else {
         parts.push(chalk.dim('[Unknown]'))
       }
     }
 
-    parts.push(chalk.dim(`(@${pr.user.login})`))
     process.stdout.write(parts.join(' ') + '\n')
   }
 }
