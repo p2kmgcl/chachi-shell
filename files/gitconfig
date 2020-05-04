@@ -55,7 +55,8 @@
   do-list-pull-requests=!gh-wrapper list-pull-requests
   do-send-pull-request=!gh-wrapper send-pull-request
   do-list-issues=!gh-wrapper list-issues
-  do-show-dashboard=!gh-wrapper show-dashboard
+  do-list-notifications=!gh-wrapper list-notifications
+  do-show-dashboard=!"while [ 1 -eq 1 ]; do clear; gh-wrapper show-dashboard; sleep 900; done"
 
   ada = add .
   back = reset HEAD~1

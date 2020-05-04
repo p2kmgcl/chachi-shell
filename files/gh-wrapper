@@ -7,6 +7,7 @@ const execa = require('execa')
 const {Octokit} = require('@octokit/rest')
 const JiraApi = require('jira-client')
 const chalk = require('chalk')
+const {formatDistance} = require('date-fns')
 
 const printHelp = () => console.log(`
 Usage: gh-wrapper <command> [options]...
@@ -294,6 +295,23 @@ const listIssues = async () => {
   })
 }
 
+const listNotifications = async () => {
+  const {data: notifications} = await octokit.activity.listNotificationsForAuthenticatedUser()
+  const now = new Date()
+
+  if (!notifications.length) {
+    console.log(chalk.dim('No notifications'));
+  }
+
+  notifications.forEach(notification => {
+    console.log(
+      chalk.bold.blue(formatDistance(new Date(notification.updated_at), now).padEnd(8, ' ')),
+      notification.subject.title,
+      chalk.dim(`(${notification.reason})`),
+      chalk.dim(`[${notification.repository.full_name}]`))
+  })
+}
+
 const showDashboard = async () => {
   if (!CONFIG.DASHBOARD || !CONFIG.DASHBOARD.length) {
     console.log('Dashboard config not found');
@@ -320,6 +338,7 @@ switch (process.argv[2]) {
   case 'list-pull-requests': listPullRequests(); break;
   case 'send-pull-request': sendPullRequest(); break;
   case 'list-issues': listIssues(); break;
+  case 'list-notifications': listNotifications(); break;
   case 'show-dashboard': showDashboard(); break;
   default: printHelp(); break;
 }
