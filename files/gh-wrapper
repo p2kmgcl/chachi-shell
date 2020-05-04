@@ -8,6 +8,7 @@ const {Octokit} = require('@octokit/rest')
 const JiraApi = require('jira-client')
 const chalk = require('chalk')
 const {formatDistance} = require('date-fns')
+const link = require('terminal-link')
 
 const printHelp = () => console.log(`
 Usage: gh-wrapper <command> [options]...
@@ -98,6 +99,40 @@ const jira = new JiraApi({
   apiVersion: '2',
 });
 
+const logNotFound = (str) => {
+  console.log(chalk.dim(str))
+}
+
+const logLine = ({
+  key,
+  title,
+  username = null,
+  status = null,
+  description = null,
+  url = null
+}) => {
+  const parts = [
+    chalk.bold.cyan(url ? link(key, url) : key),
+    title
+  ]
+
+  if (username) {
+    parts.push(chalk.dim(`(${username})`))
+  }
+
+  if (status) {
+    parts.push(chalk.dim(`[${status}]`))
+  }
+
+  if (description) {
+    parts.push('\n')
+    parts.push(''.padEnd(key.length - 1))
+    parts.push(chalk.dim(description))
+  }
+
+  console.log(...parts);
+}
+
 const getLocalRepo = async () => {
   const data = /:([^\/]+)\/([^\.]+)\.git$/.exec(
     (await execa.command('git remote get-url origin')).stdout,
@@ -113,12 +148,10 @@ const listPullRequests = async () => {
   const {data: prs} = await octokit.pulls.list({ owner, repo })
 
   if (!prs.length) {
-    console.log(chalk.dim('No PRs'));
+    logNotFound('No PRs')
   }
 
   for (const pr of prs) {
-    const parts = []
-
     const statuses = (
       await octokit.repos.listStatusesForRef({
         ref: pr.head.sha,
@@ -132,24 +165,21 @@ const listPullRequests = async () => {
       []
     );
 
-    parts.push(chalk.bold.blue(`#${pr.number}`.padEnd(5, ' ')));
-    parts.push(pr.title);
-
-    parts.push(chalk.dim(`(@${pr.user.login})`))
-
-    if (statuses.length) {
-      if (statuses.some(status => status.state === 'pending')) {
-        parts.push(chalk.dim('[Pending]'))
-      } else if (statuses.some(status => status.state === 'failure')) {
-        parts.push(chalk.dim('[Failure]'))
-      } else if (statuses.every(status => status.state === 'success')) {
-        parts.push(chalk.dim('[Success]'))
-      } else {
-        parts.push(chalk.dim('[Unknown]'))
-      }
-    }
-
-    process.stdout.write(parts.join(' ') + '\n')
+    logLine({
+      key: `#${pr.number}`,
+      title: pr.title,
+      username: pr.user.login,
+      url: pr.html_url,
+      status: statuses.length
+        ? statuses.some(status => status.state === 'pending')
+          ? 'Pending'
+          : statuses.some(status => status.state === 'failure')
+            ? 'Failure'
+            : statuses.every(status => status.state === 'success')
+              ? 'Success'
+              : 'Unknown'
+        : 'Unknown'
+    })
   }
 }
 
@@ -162,7 +192,7 @@ const checkoutPullRequest = async () => {
   const pr = prs.find(pr => pr.number === number)
 
   if (!pr) {
-    console.log(`PR ${owner}/${repo}/${number} not found`)
+    logNotFound(`PR ${owner}/${repo}/${number} not found`)
   } else {
     await execa.command(`git pr ${pr.html_url}`)
     await execa.command(`git branch --move pr/${owner}/${pr.number}`)
@@ -254,9 +284,9 @@ const sendPullRequest = async () => {
       });
     } else {
       if (targetJiraUser) {
-        console.log('JIRA "review" transition not found');
+        logNotFound('JIRA "review" transition not found');
       } else {
-        console.log(`No JIRA user found for ${targetOwner}`);
+        logNotFound(`No JIRA user found for ${targetOwner}`);
       }
 
       await jira.updateIssue(issueId, {
@@ -274,24 +304,20 @@ const listIssues = async () => {
   const boardId = process.argv[3];
   const board = await jira.getIssuesForBoard(boardId);
 
+  if (!board.issues.length) {
+    logNotFound('No issues');
+  }
+
   board.issues.forEach(issue => {
-    let output = '';
-
-    output += chalk.bold.blue(issue.key.padEnd(10, ' '));
-    output += ` ${issue.fields.summary}`;
-
-    if (issue.fields.assignee.name !== CONFIG.JIRA_USER) {
-      output += ` ${chalk.dim(`(${issue.fields.assignee.displayName})`)}`;
-    }
-
-    output += ` ${chalk.dim(`[${issue.fields.status.name}]`)}`;
-
-    if (issue.fields.customfield_10421) {
-      output += '\n          ';
-      output += chalk.dim(issue.fields.customfield_10421);
-    }
-
-    console.log(output);
+    logLine({
+      key: issue.key,
+      title: issue.fields.summary,
+      username: issue.fields.assignee.name !== CONFIG.JIRA_USER &&
+        issue.fields.assignee.displayName,
+      status: issue.fields.status.name,
+      description: issue.fields.customfield_10421 || null,
+      url: `https://${CONFIG.JIRA_URL}/browse/${issue.key}`
+    })
   })
 }
 
@@ -300,15 +326,16 @@ const listNotifications = async () => {
   const now = new Date()
 
   if (!notifications.length) {
-    console.log(chalk.dim('No notifications'));
+    logNotFound('No notifications');
   }
 
   notifications.forEach(notification => {
-    console.log(
-      chalk.bold.blue(formatDistance(new Date(notification.updated_at), now).padEnd(8, ' ')),
-      notification.subject.title,
-      chalk.dim(`(${notification.reason})`),
-      chalk.dim(`[${notification.repository.full_name}]`))
+    logLine({
+      key: formatDistance(new Date(notification.updated_at), now),
+      title: notification.subject.title,
+      username: notification.reason,
+      status: notification.repository.full_name
+    })
   })
 }
 
@@ -319,7 +346,11 @@ const showDashboard = async () => {
   }
 
   for (const line of CONFIG.DASHBOARD) {
-    console.log(chalk.bold.bgYellow.black(line.title))
+    console.log(
+      chalk.bold.bgWhite.black(
+        ` ${line.title} `
+      )
+    )
 
     await execa.command(
       path.resolve(line.command.replace('~', os.homedir())),
