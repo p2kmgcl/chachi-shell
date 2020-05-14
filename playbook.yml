@@ -159,6 +159,7 @@
           - python2-pip
           - ripgrep
           - ruby
+          - tree
           - xclip
           - zsh
         state: present
