@@ -2,14 +2,17 @@
   ui = true
 
 [core]
-  editor = code --wait
+  editor = nvim
   ignorecase = false
   excludesfile = ~/.gitignore-global
   pager = less -F
 
 [diff]
   renames = true
-  tool = vscode
+  tool = nvim
+
+[difftool "nvim"]
+  cmd = nvim -d $LOCAL $REMOTE
 
 [difftool "vscode"]
   cmd = code --wait --diff $LOCAL $REMOTE
@@ -18,7 +21,10 @@
   autocorrect = 0
 
 [merge]
-  tool = vscode
+  tool = nvim
+
+[mergetool "nvim"]
+  cmd = nvim -d $LOCAL $REMOTE
 
 [mergetool "vscode"]
   cmd = code --wait --diff $LOCAL $REMOTE

@@ -1,145 +1,71 @@
 ---
 - hosts: localhost
+  vars:
+    user: p2kmgcl
+    home: /home/p2kmgcl
+    chachi: /home/p2kmgcl/.chachi-shell/files
   tasks:
-    - name: Create directories and files
+    - name: create directories
       file:
-        path: "{{ ansible_env.HOME }}/{{ item.path }}"
-        state: "{{ item.state|default('directory') }}"
+        path: "{{ home }}/{{ item }}"
+        state: directory
       with_items:
-        - path: scripts
-        - path: .config/nvim/plugged
-        - path: .config/nvim/undo-dir
-        - path: .config/nvim/site/autoload
-        - path: .fonts
-        - path: .fonts/Cascadia
-        - path: .fonts/FiraCode
-        - path: .fonts/JetBrainsMono
-        - path: .fonts/Inconsolata
-        - path: .fonts/Unifont
-        - path: .fonts/VictorMono
-        - path: .npm-global
-        - path: .parsec-bin
-        - path: Projects/community-portal
-        - { path: .npmrc, state: touch }
+        - .npm-global
 
-    - name: Copy files
-      copy:
-        force: no
-        src: "{{ item.from }}"
-        dest: "{{ ansible_env.HOME }}/{{ item.to }}"
-        mode: "{{ item.mode|default('0660') }}"
+    - name: touch files
+      file:
+        path: "{{ home }}/{{ item }}"
+        state: touch
       with_items:
-        - from: zshrc
-          to: .zshrc
-        - from: init.vim
-          to: .config/nvim/init.vim
-        - from: coc-settings.json
-          to: .config/nvim/coc-settings.json
-        - from: gh-wrapper
-          to: scripts/gh-wrapper
-          mode: "0770"
-        - from: buildLiferayPortal
-          to: scripts/buildLiferayPortal
-          mode: "0770"
-        - from: connectToLiferayDatabase
-          to: scripts/connectToLiferayDatabase
-          mode: "0770"
-        - from: createLiferayDatabase
-          to: scripts/createLiferayDatabase
-          mode: "0770"
-        - from: destroyLiferayDatabase
-          to: scripts/destroyLiferayDatabase
-          mode: "0770"
-        - from: gradlewCleanDeploy
-          to: scripts/gradlewCleanDeploy
-          mode: "0770"
-        - from: gradlewDeploy
-          to: scripts/gradlewDeploy
-          mode: "0770"
-        - from: runLiferayPortal
-          to: scripts/runLiferayPortal
-          mode: "0770"
-        - from: random-wallpaper
-          to: scripts/random-wallpaper
-          mode: "0770"
-        - from: gh-wrapper.json
-          to: .gh-wrapper.json
-        - from: gitconfig
-          to: .gitconfig
-        - from: editorconfig
-          to: .editorconfig
-        - from: gitignore-global
-          to: .gitignore-global
-        - from: liferay-portal.code-workspace
-          to: Projects/community-portal/liferay-portal.code-workspace
-        - from: brian-silly-prettier.js
-          to: Projects/community-portal/brian-silly-prettier.js
-        - from: liferay-editorconfig
-          to: Projects/community-portal/liferay-portal/modules/apps/.editorconfig
-        - from: portal-ext.properties
-          to: Projects/community-portal/portal-ext.properties
-        - from: Liferay.d.ts
-          to: Projects/community-portal/liferay-portal/modules/apps/layout/layout-content-page-editor-web/src/main/resources/META-INF/resources/page_editor/types/Liferay.d.ts
-        - from: LiferayGlobal.d.ts
-          to: Projects/community-portal/liferay-portal/modules/apps/layout/layout-content-page-editor-web/src/main/resources/META-INF/resources/page_editor/types/LiferayGlobal.d.ts
-        - from: parsec.png
-          to: .parsec-bin/parsec.png
-        - from: parsec.desktop
-          to: .local/share/applications/parsec.desktop
+        - .npmrc
 
-    - name: Download files
-      get_url:
-        force: no
-        url: "{{ item.url }}"
-        dest: "{{ ansible_env.HOME }}/{{ item.file }}"
-        mode: "{{ item.mode|default('0660') }}"
-        timeout: 30
+    - name: link directories
+      file:
+        src: "{{ chachi }}/{{ item.src }}"
+        path: "{{ home }}/{{ item.path }}"
+        state: link
       with_items:
-        - file: scripts/nvim
-          url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-          mode: "0770"
-        - file: .local/share/nvim/site/autoload/plug.vim
-          url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        - file: .fonts/Cascadia/Cascadia.ttf
-          url: https://github.com/microsoft/cascadia-code/releases/download/v1911.21/Cascadia.ttf
-        - file: .fonts/Cascadia/CascadiaMono.ttf
-          url: https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaMono.ttf
-        - file: .fonts/Cascadia/CascadiaPL.ttf
-          url: https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaPL.ttf
-        - file: .fonts/Cascadia/CascadiaMonoPL.ttf
-          url: https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaMonoPL.ttf
-        - file: .fonts/Unifont/Unifont.ttf
-          url: http://www.unifoundry.com/pub/unifont/unifont-12.1.03/font-builds/unifont-12.1.03.ttf
-        - file: .fonts/Inconsolata/Inconsolata-Bold.ttf
-          url: https://github.com/googlefonts/Inconsolata/releases/download/v2.012/Inconsolata-Bold.ttf
-        - file: .fonts/Inconsolata/Inconsolata-Regular.ttf
-          url: https://github.com/googlefonts/Inconsolata/releases/download/v2.012/Inconsolata-Regular.ttf
-        - file: .parsec-bin/parsec-linux.deb
-          url: https://builds.parsecgaming.com/package/parsec-linux.deb
+        - src: bin
+          path: bin
+        - src: nvim
+          path: .config/nvim
+        - src: liferay
+          path: Projects/community-portal
 
-    - name: Decompress files
-      unarchive:
-        src: "{{ item.src }}"
-        remote_src: yes
-        dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    - name: link config files
+      file:
+        src: "{{ chachi }}/config/{{ item }}"
+        path: "{{ home }}/{{ item }}"
+        state: link
       with_items:
-        - src: https://github.com/tonsky/FiraCode/releases/download/1.207/FiraCode_1.207.zip
-          dest: .fonts/FiraCode
-        - src: https://download.jetbrains.com/fonts/JetBrainsMono-1.0.0.zip
-          dest: .fonts/JetBrainsMono
-        - src: https://rubjo.github.io/victor-mono/VictorMonoAll.zip
-          dest: .fonts/VictorMono
+        - .editorconfig
+        - .gh-wrapper.json
+        - .gitconfig
+        - .gitignore-global
+        - .zshrc
 
-    - name: Add lines to files
+    - name: add lines to files
       lineinfile:
-        path: "{{ ansible_env.HOME }}/{{ item.file }}"
+        path: "{{ home }}/{{ item.file }}"
         line: "{{ item.line }}"
         state: present
       with_items:
         - file: .npmrc
-          line: "prefix={{ ansible_env.HOME }}/.npm-global"
+          line: "prefix={{ home }}/.npm-global"
 
-    - name: Pacman
+    - name: download files
+      get_url:
+        force: no
+        url: "{{ item.url }}"
+        dest: "{{ home }}/{{ item.file }}"
+        mode: "{{ item.mode|default('0660') }}"
+        timeout: 30
+      with_items:
+        - file: bin/nvim
+          url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+          mode: "0770"
+
+    - name: pacman
       become: yes
       pacman:
         name:
@@ -163,9 +89,8 @@
           - xclip
           - zsh
         state: present
-        update_cache: yes
 
-    - name: PIP
+    - name: pip
       pip:
         executable: "{{ item }}"
         name:
@@ -176,7 +101,7 @@
         - pip2
         - pip3
 
-    - name: Gem
+    - name: gem
       become: yes
       gem:
         name: "{{ item }}"
@@ -185,34 +110,27 @@
       with_items:
         - neovim
 
-    - name: NPM
+    - name: npm
       npm:
         name: "{{ item }}"
         global: yes
         state: present
       with_items:
-        - "@octokit/rest"
         - browser-sync
-        - chalk
-        - date-fns
         - eslint
-        - execa
         - gradle-launcher
         - http-server
         - javascript-typescript-langserver
-        - jira-client
         - neovim
         - prettier
-        - puppeteer
-        - terminal-link
         - typescript
 
-    - name: Clone git repositories
+    - name: clone repositories
       git:
         force: no
         update: no
         repo: "{{ item.repo }}"
-        dest: "{{ ansible_env.HOME }}/{{ item.dir }}"
+        dest: "{{ home }}/{{ item.dir }}"
       with_items:
         - repo: https://github.com/ohmyzsh/ohmyzsh
           dir: .oh-my-zsh
@@ -222,30 +140,28 @@
           dir: .oh-my-zsh/custom/plugins/zsh-256color
         - repo: https://github.com/junegunn/fzf.git
           dir: .fzf
-        - repo: https://github.com/powerline/fonts.git
-          dir: .fonts/Powerline
         - repo: git@github.com:p2kmgcl/liferay-portal.git
           dir: Projects/community-portal/liferay-portal
         - repo: https://github.com/liferay/liferay-binaries-cache-2020.git
           dir: Projects/community-portal/liferay-binaries-cache-2020
 
-    - name: Run shell scripts
+    - name: run scripts
       shell: "{{ item.script }}"
       args:
-        chdir: "{{ ansible_env.HOME }}/{{ item.dir|default('.') }}"
+        chdir: "{{ home }}/{{ item.dir }}"
       with_items:
-        - script: 'nvim --headless -c "PlugClean!" +PlugUpdate +UpdateRemotePlugins -c "CocInstall -sync coc-tsserver coc-html coc-json coc-css | q" +qa'
-        - { script: "./install --all", dir: ".fzf" }
-        - { script: "ar xvf parsec-linux.deb && tar xvf data.tar.xz", dir: ".parsec-bin" }
+        - script: './nvim --headless -c "PlugClean!" +PlugUpdate +UpdateRemotePlugins -c "CocInstall -sync coc-tsserver coc-html coc-json coc-css | q" +qa'
+          dir: "bin"
+        - script: "./install --all"
+          dir: ".fzf"
 
-    #
-    # - name: Run system shell scripts
-    #   become: yes
-    #   shell: "{{ item.script }}"
-    #   args:
-    #     chdir: "{{ item.dir|default(ansible_env.HOME) }}"
-    #   with_items:
-    #     - script: "chsh --shell /bin/zsh {{ ansible_user }}"
+    - name: run root scripts
+      become: yes
+      shell: "{{ item.script }}"
+      args:
+        chdir: "{{ item.dir|default(home) }}"
+      with_items:
+        - script: "chsh --shell /bin/zsh {{ user }}"
 
     - name: Enable system services
       become: yes
@@ -255,12 +171,12 @@
         enabled: yes
       with_items:
         - docker
-    #
-    # - name: Add user to system groups
-    #   become: yes
-    #   user:
-    #     user: "{{ ansible_user }}"
-    #     append: yes
-    #     groups: "{{ item }}"
-    #   with_items:
-    #     - docker
+
+    - name: Add user to system groups
+      become: yes
+      user:
+        user: "{{ user }}"
+        append: yes
+        groups: "{{ item }}"
+      with_items:
+        - docker

@@ -6,6 +6,7 @@
 # Common configurations
 .idea/
 .vscode/
+.classpath
 jsconfig.json
 .tern-project
 

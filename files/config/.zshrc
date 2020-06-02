@@ -7,9 +7,9 @@ export ZSH="/home/p2kmgcl/.oh-my-zsh"
 
 export ANT_HOME="/usr/bin/ant"
 export ANT_OPTS="-XX:-UseGCOverheadLimit -Xmx6144m -XX:MaxMetaspaceSize=1024m"
-export EDITOR="code --wait"
+export EDITOR="nvim"
 export JAVA_HOME="/usr/lib/jvm/default-java"
-export PATH=$HOME/scripts:$PATH
+export PATH=$HOME/bin:$PATH
 
 ###############################################################################
 # NodeJS ######################################################################
@@ -52,4 +52,5 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(autojump git zsh-256color zsh-autosuggestions)
 
-source $ZSH/oh-my-zsh.sh
+[ -f $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
