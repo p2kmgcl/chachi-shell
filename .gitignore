@@ -3,7 +3,6 @@ node_modules/
 files/bin/nvim
 
 files/liferay/bundles/
-files/liferay/gradle-home
 files/liferay/liferay-portal/
 files/liferay/liferay-binaries-cache-2020/
 
