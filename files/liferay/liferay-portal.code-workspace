@@ -1,8 +1,11 @@
 {
   "folders": [
     {
-      "path": "liferay-portal/modules/apps/layout/layout-api"
-    }
+      "path": "liferay-portal/modules/apps/layout/layout-content-page-editor-web"
+    },
+		{
+			"path": "liferay-portal/modules/apps/layout/layout-api"
+		}
   ],
   "settings": {
     "prettier.useTabs": true,
@@ -13,30 +16,6 @@
     "editor.trimAutoWhitespace": true,
     "files.encoding": "utf8",
     "files.insertFinalNewline": false,
-    "javascript.preferences.importModuleSpecifierEnding": "index",
-    "java.format.enabled": false,
-    "java.autobuild.enabled": false,
-    "java.maxConcurrentBuilds": 5,
-    "java.import.exclusions": [
-      "**/.git/**",
-      "**/.gradle/**",
-      "**/.hg/**",
-      "**/.metadata/**",
-      "**/.sass-cache/**",
-      "**/.svn/**",
-      "**/archetype-resources/**",
-      "**/bower_components/**",
-      "**/build/**",
-      "**/classes/**",
-      "**/CVS/**",
-      "**/META-INF/maven/**",
-      "**/node_modules/**",
-      "**/tmp/**",
-    ],
-    "java.import.gradle.wrapper.enabled": true,
-    "java.import.gradle.arguments": "-Pliferay.home=/home/p2kmgcl/Projects/community-portal/bundles",
-    "java.import.gradle.user.home": "/home/p2kmgcl/Projects/community-portal/gradle-home",
-    "java.import.gradle.home": "/home/p2kmgcl/Projects/community-portal/liferay-portal/.gradle/wrapper/dists/gradle-5.6.4.LIFERAY-PATCHED-2-bin/3xkcz7ryuqgqny1wdfgovhiws/gradle-5.6.4",
-    "java.import.gradle.jvmArguments": "-Xmx3072m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8",
+    "javascript.preferences.importModuleSpecifierEnding": "index"
   }
 }
