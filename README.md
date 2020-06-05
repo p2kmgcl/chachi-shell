@@ -64,6 +64,7 @@ Development environment boilerplate.<br>
   IETopHeadDynamicInclude.java
   ```
 - Run poshi tests locally ([docs](https://liferay-learn-poshi.readthedocs.io/en/latest/intro/liferay-functional-testing.html)):
+  > If tests doesn't run, try emptying `bundles/logs` directory.
   ```
   ant -f build-test.xml run-selenium-test -Dtest.class=FileName#TestName
   ```
