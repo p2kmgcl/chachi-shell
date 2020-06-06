@@ -1,5 +1,6 @@
 node_modules/
 
+files/bin/idea
 files/bin/nvim
 
 files/liferay/bundles/
