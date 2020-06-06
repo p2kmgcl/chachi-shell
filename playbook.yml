@@ -142,6 +142,8 @@
           dir: .fzf
         - repo: git@github.com:p2kmgcl/liferay-portal.git
           dir: Projects/community-portal/liferay-portal
+        - repo: https://github.com/liferay/liferay-binaries-cache-2017.git
+          dir: Projects/community-portal/liferay-binaries-cache-2017
         - repo: https://github.com/liferay/liferay-binaries-cache-2020.git
           dir: Projects/community-portal/liferay-binaries-cache-2020
         - repo: https://github.com/holatuwol/liferay-intellij
