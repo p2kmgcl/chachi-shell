@@ -11,6 +11,8 @@
         state: directory
       with_items:
         - .npm-global
+        - .local/share/nvim/site/autoload
+        - Projects
 
     - name: touch files
       file:
