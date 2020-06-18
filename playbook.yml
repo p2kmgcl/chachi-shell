@@ -66,6 +66,8 @@
         - file: bin/nvim
           url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
           mode: "0770"
+        - file: .local/share/nvim/site/autoload/plug.vim
+          url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     - name: pacman
       become: yes
