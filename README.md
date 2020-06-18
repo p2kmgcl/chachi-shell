@@ -8,7 +8,7 @@
 ```
 
 Development environment boilerplate.<br>
-**Last full execution** on _June 1st, 2020_ on _Manjaro Linux x64_
+**Last full execution** on _June 17st, 2020_ on _Manjaro Linux x64_
 
 ## Before install
 - Check that the install playbook variables are ok (username, project path, etc).
