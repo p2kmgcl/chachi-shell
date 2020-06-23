@@ -41,7 +41,6 @@
         state: link
       with_items:
         - .editorconfig
-        - .gh-wrapper.json
         - .gitconfig
         - .gitignore-global
         - .zshrc
