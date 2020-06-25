@@ -10,16 +10,8 @@
         path: "{{ home }}/{{ item }}"
         state: directory
       with_items:
-        - .npm-global
         - .local/share/nvim/site/autoload
         - Projects
-
-    - name: touch files
-      file:
-        path: "{{ home }}/{{ item }}"
-        state: touch
-      with_items:
-        - .npmrc
 
     - name: link directories
       file:
@@ -44,15 +36,6 @@
         - .gitconfig
         - .gitignore-global
         - .zshrc
-
-    - name: add lines to files
-      lineinfile:
-        path: "{{ home }}/{{ item.file }}"
-        line: "{{ item.line }}"
-        state: present
-      with_items:
-        - file: .npmrc
-          line: "prefix={{ home }}/.npm-global"
 
     - name: download files
       get_url:
@@ -80,6 +63,7 @@
           - jre8-openjdk
           - nodejs
           - npm
+          - nvm
           - openjdk8-doc
           - openjdk8-src
           - python
@@ -114,6 +98,7 @@
         - neovim
 
     - name: npm
+      become: yes
       npm:
         name: "{{ item }}"
         global: yes

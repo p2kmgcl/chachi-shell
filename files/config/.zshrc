@@ -15,8 +15,7 @@ export PATH=$HOME/bin:$PATH
 # NodeJS ######################################################################
 ###############################################################################
 
-export PATH=$HOME/.npm-global/bin:$PATH
-export NODE_PATH=/usr/lib/node_modules:$HOME/.npm-global/lib/node_modules:$NODE_PATH
+[ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 
 ###############################################################################
 # FZF #########################################################################
