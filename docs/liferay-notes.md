@@ -41,3 +41,7 @@
   frontend-css-rtl-servlet
   CSSRTLConverter.java
   ```
+- Feature flag:
+  ```
+  echo "key=value" >> osgi/configs/com.liferay.layout.content.page.editor.web.internal.configuration.FFLayoutContentPageEditorConfiguration.config
+  ```
