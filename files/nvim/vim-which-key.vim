@@ -60,6 +60,7 @@ let g:which_key_map.w = {
 let g:which_key_map.z = {
   \ 'name': '+miscelaneous',
   \ 'e': [':e', 'reload current file'],
+  \ 'g': [':Goyo', 'toggle Goyo'],
   \ 'p': ['<Plug>(Prettier)', 'run prettier'],
   \ 'r': [':source ~/.config/nvim/init.vim', 'reload config'],
   \ }

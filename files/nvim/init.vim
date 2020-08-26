@@ -13,6 +13,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'liuchengxu/vim-which-key'
 Plug 'voldikss/vim-floaterm'
+Plug 'junegunn/goyo.vim'
 
 " Project management
 Plug 'tpope/vim-fugitive'
@@ -87,6 +88,7 @@ source ~/.config/nvim/coc.vim
 source ~/.config/nvim/esearch.vim
 source ~/.config/nvim/fzf.vim
 source ~/.config/nvim/gitgutter.vim
+source ~/.config/nvim/goyo.vim
 source ~/.config/nvim/nerdtree.vim
 source ~/.config/nvim/prettier.vim
 
