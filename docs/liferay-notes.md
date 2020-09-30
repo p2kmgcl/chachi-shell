@@ -31,7 +31,9 @@
   IETopHeadDynamicInclude.java
   ```
 - Run poshi tests locally ([docs](https://liferay-learn-poshi.readthedocs.io/en/latest/intro/liferay-functional-testing.html)):
+
   > If tests doesn't run, try emptying `bundles/logs` directory.
+
   ```
   ant -f build-test.xml run-selenium-test -Dtest.class=FileName#TestName
   ```
@@ -45,3 +47,4 @@
   ```
   echo "key=value" >> osgi/configs/com.liferay.layout.content.page.editor.web.internal.configuration.FFLayoutContentPageEditorConfiguration.config
   ```
+- [Fragment bundler rendering process](https://github.com/liferay/liferay-portal/blob/16072c46daa174cf23c143e456d829f183c95424/modules/apps/fragment/fragment-renderer-react-impl/src/main/java/com/liferay/fragment/renderer/react/internal/model/listener/FragmentEntryLinkModelListener.java#L135-L143)
