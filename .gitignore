@@ -6,7 +6,6 @@ files/bin/nvim
 files/liferay/bundles/
 files/liferay/liferay-intellij/
 files/liferay/liferay-portal/
-files/liferay/liferay-binaries-cache-2017/
 files/liferay/liferay-binaries-cache-2020/
 
 files/nvim/plugged/
