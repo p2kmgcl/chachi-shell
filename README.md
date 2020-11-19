@@ -56,7 +56,6 @@ These are some nice fonts:
 
 ## ZSH
 
-1. Set zsh as default
 1. `git clone https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh`
 1. `git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions`
 1. `git clone https://github.com/zsh-users/zsh-256color ~/.oh-my-zsh/custom/plugins/zsh-256color`
