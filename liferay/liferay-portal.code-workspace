@@ -11,7 +11,7 @@
     "prettier.useTabs": true,
     "editor.tabSize": 4,
     "prettier.tabWidth": 4,
-    "prettier.prettierPath": "/home/p2kmgcl/Projects/community-portal/liferay-prettier.js",
+    "prettier.prettierPath": "~/community-portal/config/liferay-prettier.js",
     "prettier.useEditorConfig": false,
     "editor.trimAutoWhitespace": true,
     "files.encoding": "utf8",

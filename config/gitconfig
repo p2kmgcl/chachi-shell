@@ -4,7 +4,7 @@
 [core]
   editor = nvim
   ignorecase = false
-  excludesfile = ~/.gitignore-global
+  excludesfile = ~/Projects/chachi-shell/config/gitignore-global
   pager = less -F
 
 [diff]
@@ -75,6 +75,7 @@
   din = diff --name-only
   fea = fetch --all
   lg = log --pretty='%Cgreen%h %Cblue%an (%ar) %Creset%s'
+  lgm = lg master..HEAD
   rb = rebase
   rba = rebase --abort
   rbc = rebase --continue
