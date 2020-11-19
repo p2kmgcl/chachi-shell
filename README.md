@@ -48,7 +48,7 @@ These are some nice fonts:
 1. `chsh --shell /bin/zsh $(whoami)`
 1. `ssh-keygen`
 1. `mkdir -p ~/Projects`
-1. `git clone ~/Projects/chachi-shell git@github.com:p2kmgcl/chachi-shell.git`
+1. `git clone git@github.com:p2kmgcl/chachi-shell.git ~/Projects/chachi-shell`
 1. `ln -s ~/Projects/chachi-shell/bin ~/bin`
 1. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`
 1. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`
