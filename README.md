@@ -73,7 +73,6 @@ These are some nice fonts:
 
 ## NVIM configuration
 
-1. Install `nvim`
 1. `ln -s ~/Projects/chachi-shell/nvim ~/.config/nvim`
 1. Install [VIM Plug](https://github.com/junegunn/vim-plug)
 1. `PlugClean`, `PlugUpdate`, `UpdateRemotePlugins`
