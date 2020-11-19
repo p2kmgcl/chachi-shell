@@ -68,7 +68,7 @@ These are some nice fonts:
 
 ## NodeJS
 
-1. Install NVM `https://github.com/nvm-sh/nvm`
+1. Install [NVM](https://github.com/nvm-sh/nvm#installing-and-updating)
 1. Set default NodeJS: `nvm install 14 && npm use 14 && nvim alias default 14`
 
 ## NVIM configuration
