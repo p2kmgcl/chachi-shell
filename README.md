@@ -58,7 +58,7 @@ These are some nice fonts:
 
 1. `git clone https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh`
 1. `git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions`
-1. `git clone https://github.com/zsh-users/zsh-256color ~/.oh-my-zsh/custom/plugins/zsh-256color`
+1. `git clone https://github.com/chrissicool/zsh-256color ~/.oh-my-zsh/custom/plugins/zsh-256color`
 1. `ln -s ~/Projects/chachi-shell/config/.zshrc ~/.zshrc`
 
 ## Tmux
