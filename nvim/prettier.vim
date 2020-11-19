@@ -1,5 +1,6 @@
-let g:prettier#autoformat = 0
-let g:prettier#quickfix_enabled = 0
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#autoformat_config_present = 1
+let g:prettier#quickfix_auto_focus = 0
 
 nmap <Leader>zp <Plug>(Prettier)
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.ejs PrettierAsync

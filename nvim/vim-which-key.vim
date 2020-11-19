@@ -5,7 +5,7 @@ let g:which_key_sep = '→'
 
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
-set timeoutlen=100
+set timeoutlen=0
 
 autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
@@ -43,14 +43,6 @@ let g:which_key_map.g = {
   \ 's': [':Gstatus', 'status'],
   \ }
 
-let g:which_key_map.t = {
-  \ 'name': '+terminal',
-  \ 'd': [':FloatermNew --autoclose=0 gradlew clean deploy -Dbuild="portal"', 'deploy'],
-  \ 'f': [':FloatermNew --autoclose=0 gradlew formatSource', 'format'],
-  \ 'o': [':FloatermToggle', 'open terminal'],
-  \ 't': [':FloatermNew --autoclose=0 yarn test', 'test'],
-  \ }
-
 let g:which_key_map.w = {
   \ 'name': '+window',
   \ 'h': ['sp', 'split horizontally'],
@@ -63,6 +55,7 @@ let g:which_key_map.z = {
   \ 'g': [':Goyo', 'toggle Goyo'],
   \ 'p': ['<Plug>(Prettier)', 'run prettier'],
   \ 'r': [':source ~/.config/nvim/init.vim', 'reload config'],
+  \ 't': [':FloatermToggle', 'open terminal'],
   \ }
 
 call which_key#register('<Space>', "g:which_key_map")

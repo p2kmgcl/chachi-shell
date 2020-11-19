@@ -7,10 +7,8 @@ Plug 'eugen0329/vim-esearch'
 
 " UI
 Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/nerdtree'
 Plug 'arcticicestudio/nord-vim'
-Plug 'chriskempson/base16-vim'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
 Plug 'liuchengxu/vim-which-key'
 Plug 'voldikss/vim-floaterm'
 Plug 'junegunn/goyo.vim'
@@ -21,7 +19,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'mbbill/undotree'
 
 " Completion
-Plug 'sheerun/vim-polyglot'
+Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'elzr/vim-json'
+Plug 'cakebaker/scss-syntax.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-commentary'
 
@@ -32,16 +34,17 @@ Plug 'dense-analysis/ale'
 call plug#end()
 
 " Coloring
-syntax on
-filetype plugin indent on
 set background=dark
 set termguicolors
-silent! colorscheme base16-nord
-silent! let g:airline_theme='ayu_dark'
+syntax on
+filetype plugin indent on
+colorscheme nord
 highlight SignColumn guibg=none
+set signcolumn yes:1
 
 " Visual
 set autoindent smartindent
+let &colorcolumn=join(range(80,1000),",")
 set cursorline
 set expandtab
 set nobackup
@@ -49,6 +52,7 @@ set noeol
 set noswapfile
 set nowrap
 set nowritebackup
+set nonumber
 set shiftwidth=2
 set tabstop=2
 set textwidth=80
@@ -64,7 +68,7 @@ set completeopt=noinsert,menuone,noselect
 set hidden
 set hlsearch
 set ignorecase smartcase
-set mouse=a
+"set mouse=a
 set shortmess+=c
 set showmatch
 set signcolumn=yes
@@ -72,6 +76,7 @@ set updatetime=300
 
 " Ignored paths
 set wildmenu
+set wildignore+=*/.cache/*,
 set wildignore+=*/.git/*,
 set wildignore+=*/.sass-cache/*,
 set wildignore+=*/build/*

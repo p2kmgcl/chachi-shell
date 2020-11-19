@@ -6,5 +6,5 @@ let g:esearch = {
   \ 'out':              'win',
   \ 'batch_size':       1000,
   \ 'use':              ['visual', 'hlsearch', 'last'],
-  \ 'default_mappings': 1,
+  \ 'default_mappings': 0,
   \}

@@ -54,3 +54,4 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(autojump zsh-256color zsh-autosuggestions)
 
 [ -f $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
