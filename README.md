@@ -35,7 +35,6 @@ These are some nice fonts:
 
 1. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`
 1. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`
-1. `ln -s ~/Projects/chachi-shell/config/tmux.conf ~/.tmux.conf`
 1. `ln -s ~/Projects/chachi-shell/config/zshrc ~/.zshrc`
 1. `ln -s ~/Projects/chachi-shell/config/alacritty.yml ~/.alacritty.yml`
 1. Install:
@@ -59,10 +58,10 @@ These are some nice fonts:
 
 1. `git clone https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh`
 1. `git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions`
-1. `git clone https://github.com/chrissicool/zsh-256color ~/.oh-my-zsh/custom/plugins/zsh-256color`
 
-## Tmux TPM
+## tmux config
 
+1. `ln -s ~/Projects/chachi-shell/config/tmux.conf ~/.tmux.conf`
 1. `git clone https://github.com/tmux-plugins/tpm.git ~/.tmux.tpm`
 1. `Prefix+I` to install plugins
 
