@@ -17,7 +17,6 @@ Development environment boilerplate.<br>
 1. Cleanup your system
 1. Choose a wallpaper
 1. Choose a font
-1. Choose a terminal emulator
 1. Choose a browser
 
 These are some nice fonts:
@@ -38,7 +37,9 @@ These are some nice fonts:
 1. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`
 1. `ln -s ~/Projects/chachi-shell/config/tmux.conf ~/.tmux.conf`
 1. `ln -s ~/Projects/chachi-shell/config/zshrc ~/.zshrc`
+1. `ln -s ~/Projects/chachi-shell/config/alacritty.yml ~/.alacritty.yml`
 1. Install:
+   - `alacritty`
    - `autojump`
    - `curl`
    - `docker`
