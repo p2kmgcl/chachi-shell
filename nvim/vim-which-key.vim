@@ -35,11 +35,19 @@ let g:which_key_map.f = {
 
 let g:which_key_map.g = {
   \ 'name': '+git',
+  \ 'c': [':Gcommit', 'commit'],
   \ 's': [':Gstatus', 'status'],
+  \ }
+
+let g:which_key_map.s = {
+  \ 'name': '+sidebar',
+  \ 'f': [':NERDTreeFind', 'find'],
+  \ 't': [':NERDTreeToggle', 'toggle'],
   \ }
 
 let g:which_key_map.w = {
   \ 'name': '+window',
+  \ 'c': [':bd', 'close(delete) buffer'],
   \ 'h': ['sp', 'split horizontally'],
   \ 'v': ['vs', 'split vertically'],
   \ }
