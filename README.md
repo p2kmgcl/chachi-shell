@@ -8,7 +8,7 @@
 ```
 
 Development environment boilerplate.<br>
-**Last full execution** on _November 19th, 2020_ on _Fedora 32 x64_
+**Last full execution** on _November 20th, 2020_ on _Fedora 32 x64_
 
 ![Terminal screenshot](https://raw.githubusercontent.com/p2kmgcl/chachi-shell/master/preview.png)
 
@@ -34,13 +34,17 @@ These are some nice fonts:
 
 ## Minimal environment
 
+1. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`
+1. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`
+1. `ln -s ~/Projects/chachi-shell/config/tmux.conf ~/.tmux.conf`
+1. `ln -s ~/Projects/chachi-shell/config/zshrc ~/.zshrc`
 1. Install:
    - `autojump`
    - `curl`
    - `docker`
    - `fzf`
    - `git`
-   - `nvim`
+   - `nano`
    - `ripgrep`
    - `tmux`
    - `tree`
@@ -49,30 +53,26 @@ These are some nice fonts:
 1. `ssh-keygen`
 1. `mkdir -p ~/Projects`
 1. `git clone git@github.com:p2kmgcl/chachi-shell.git ~/Projects/chachi-shell`
-1. `ln -s ~/Projects/chachi-shell/bin ~/bin`
-1. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`
-1. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`
-1. `ln -s ~/Projects/chachi-shell/config/tmux.conf ~/.tmux.conf`
 
-## ZSH
+## oh-my-zsh
 
 1. `git clone https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh`
 1. `git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions`
 1. `git clone https://github.com/chrissicool/zsh-256color ~/.oh-my-zsh/custom/plugins/zsh-256color`
-1. `ln -s ~/Projects/chachi-shell/config/zshrc ~/.zshrc`
 
-## Tmux
+## Tmux TPM
 
-1. `git clone https://github.com/tmux-plugins/tpm.git ~/.tmux.tmp`
+1. `git clone https://github.com/tmux-plugins/tpm.git ~/.tmux.tpm`
 1. `Prefix+I` to install plugins
 
-## NodeJS
+## NVM
 
 1. Install [NVM](https://github.com/nvm-sh/nvm#installing-and-updating)
 1. Set default NodeJS: `nvm install 14 && npm use 14 && nvim alias default 14`
 
-## NVIM configuration
+## NeoVIM
 
+1. Install `neovim`
 1. `ln -s ~/Projects/chachi-shell/nvim ~/.config/nvim`
 1. Install [VIM Plug](https://github.com/junegunn/vim-plug)
 1. `PlugClean`, `PlugUpdate`, `UpdateRemotePlugins`
@@ -87,14 +87,14 @@ These are some nice fonts:
 1. `npm install --global gradle-launcher`
 1. `mkdir -p ~/Projects/community-portal`
 1. `ln -s ~/Projects/chachi-shell/liferay ~/Projects/community-portal/config`
-1. `ln -s ~/Projects/chachi-shell/liferay/liferay-editorconfig ~/Projects/community-portal/.editorconfig`
+1. `cd ~/Projects/community-portal && ln -s config/liferay-editorconfig .editorconfig`
 1. `git clone git@github.com:p2kmgcl/liferay-portal.git ~/Projects/community-portal/liferay-portal`
 1. `cd ~/Projects/community-portal/liferay-portal && git remote add upstream https://github.com/liferay/liferay-portal`
 1. `git clone https://github.com/liferay/liferay-binaries-cache-2020.git ~/Projects/community-portal/liferay-binaries-cache-2020`
 1. `git clone https://github.com/holatuwol/liferay-intellij ~/Projects/community-portal/liferay-intellij`
 1. `buildLiferayPortal`
 1. `runLiferayPortal` and stop
-1. `ln -s ~/Projects/community-portal/config/portal-ext.properties ~/Projects/community-portal/bundles/portal-ext.properties`
+1. `cd ~/Projects/community-portal/bundles && ln -s ../config/portal-ext.properties portal-ext.properties`
 
 ### Random notes
 
