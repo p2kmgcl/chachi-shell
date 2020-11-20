@@ -91,7 +91,6 @@ source ~/.config/nvim/coc.vim
 source ~/.config/nvim/fzf.vim
 source ~/.config/nvim/gitgutter.vim
 source ~/.config/nvim/goyo.vim
-source ~/.config/nvim/nerdtree.vim
 source ~/.config/nvim/prettier.vim
 
 " Keys
