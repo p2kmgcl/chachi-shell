@@ -3,7 +3,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/vim-slash'
-Plug 'eugen0329/vim-esearch'
 
 " UI
 Plug 'vim-airline/vim-airline'
@@ -40,7 +39,6 @@ syntax on
 filetype plugin indent on
 colorscheme nord
 highlight SignColumn guibg=none
-set signcolumn yes:1
 
 " Visual
 set autoindent smartindent
@@ -54,6 +52,7 @@ set nowrap
 set nowritebackup
 set nonumber
 set shiftwidth=2
+set signcolumn=yes
 set tabstop=2
 set textwidth=80
 
@@ -71,7 +70,6 @@ set ignorecase smartcase
 "set mouse=a
 set shortmess+=c
 set showmatch
-set signcolumn=yes
 set updatetime=300
 
 " Ignored paths
@@ -90,7 +88,6 @@ set wildignore+=*/tmp/*
 source ~/.config/nvim/airline.vim
 source ~/.config/nvim/ale.vim
 source ~/.config/nvim/coc.vim
-source ~/.config/nvim/esearch.vim
 source ~/.config/nvim/fzf.vim
 source ~/.config/nvim/gitgutter.vim
 source ~/.config/nvim/goyo.vim

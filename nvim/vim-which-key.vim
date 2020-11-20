@@ -21,12 +21,6 @@ let g:which_key_map.c = {
   \ 't' : ['<Plug>(coc-type-definition)', 'type definition'],
   \ }
 
-let g:which_key_map.e = {
-  \ 'name': '+esearch',
-  \ 's' : ['<Plug>(esearch)', 'search'],
-  \ 'w' : ['<Plug>(esearch-word-under-cursor)', 'search word under cursor'],
-  \ }
-
 let g:which_key_map.f = {
   \ 'name': '+fzf',
   \ 'b' : [':FzfBuffers', 'buffer'],
@@ -36,6 +30,7 @@ let g:which_key_map.f = {
   \ 'h' : [':FzfHelptags', 'help'],
   \ 'm' : [':FzfMaps', 'mapped keys'],
   \ 't' : [':FzfFiletypes', 'file type'],
+  \ 'w' : [':FzfRg', 'word'],
   \ }
 
 let g:which_key_map.g = {
