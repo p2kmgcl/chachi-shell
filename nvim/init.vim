@@ -26,7 +26,7 @@ Plug 'tpope/vim-commentary'
 
 " Formatting and fixing
 Plug 'editorconfig/editorconfig-vim'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'dense-analysis/ale'
 
 call plug#end()
