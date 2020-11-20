@@ -76,7 +76,6 @@ These are some nice fonts:
 1. `ln -s ~/Projects/chachi-shell/nvim ~/.config/nvim`
 1. Install [VIM Plug](https://github.com/junegunn/vim-plug)
 1. `PlugClean`, `PlugUpdate`, `UpdateRemotePlugins`
-1. `CocInstall coc-tsserver coc-html coc-json coc-css`
 
 ## Liferay
 

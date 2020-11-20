@@ -1,4 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
+
 " Moving through files
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf'
@@ -6,7 +7,7 @@ Plug 'junegunn/vim-slash'
 
 " UI
 Plug 'vim-airline/vim-airline'
-Plug 'arcticicestudio/nord-vim'
+Plug 'dikiaap/minimalist'
 Plug 'scrooloose/nerdtree'
 Plug 'liuchengxu/vim-which-key'
 Plug 'voldikss/vim-floaterm'
@@ -18,11 +19,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'mbbill/undotree'
 
 " Completion
+Plug 'ianks/vim-tsx'
 Plug 'leafgarland/typescript-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'elzr/vim-json'
-Plug 'cakebaker/scss-syntax.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-commentary'
 
@@ -30,14 +28,17 @@ Plug 'tpope/vim-commentary'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'dense-analysis/ale'
+
 call plug#end()
 
 " Coloring
-set background=dark
-set termguicolors
+set t_Co=256
 syntax on
+colorscheme minimalist
 filetype plugin indent on
-colorscheme nord
+let g:airline_theme='minimalist'
+
+" Theme tweaks
 highlight SignColumn guibg=none
 
 " Visual
@@ -56,7 +57,11 @@ set signcolumn=yes
 set tabstop=2
 set textwidth=80
 
-"persistent undo history
+" Support ts and tsx
+au BufNewFile,BufRead *.ts setlocal filetype=typescript
+au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+
+" Persistent undo history
 set undodir=~/.config/nvim/undo-dir
 set undofile
 
@@ -67,7 +72,6 @@ set completeopt=noinsert,menuone,noselect
 set hidden
 set hlsearch
 set ignorecase smartcase
-"set mouse=a
 set shortmess+=c
 set showmatch
 set updatetime=300
