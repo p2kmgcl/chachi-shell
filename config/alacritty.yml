@@ -3,16 +3,9 @@ window:
 
 font:
   normal:
-    family: Victor Mono
-    style: medium
-  bold:
-    family: Victor Mono
-  italic:
-    family: Victor Mono
-  bold_italic:
-    family: Victor Mono
-  size: 10.0
+    family: Noto Sans Mono Condensed
+  size: 9.0
   draw_bold_text_with_bright_colors: false
 
-background_opacity: 0.97
+background_opacity: 0.9
 live_config_reload: true
