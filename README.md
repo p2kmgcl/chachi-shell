@@ -39,10 +39,10 @@ These are some nice fonts:
 1. `ln -s ~/Projects/chachi-shell/config/zshrc ~/.zshrc`
 1. `ln -s ~/Projects/chachi-shell/config/alacritty.yml ~/.alacritty.yml`
 1. Install:
-   - `alacritty`
-   - `autojump`
+   - [Alacritty](https://github.com/alacritty/alacritty#alacritty)
+   - [autojump](https://github.com/wting/autojump#name)
+   - [docker](https://docs.docker.com/engine/install/)
    - `curl`
-   - `docker`
    - `fzf`
    - `git`
    - `nano`
