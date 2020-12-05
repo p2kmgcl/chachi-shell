@@ -50,7 +50,7 @@ These are some nice fonts:
    - `tmux`
    - `tree`
    - `zsh`
-1. `chsh --shell /bin/zsh $(whoami)`
+1. `chsh --shell $(which zsh) $(whoami)`
 1. `ssh-keygen`
 1. `mkdir -p ~/Projects`
 1. `git clone git@github.com:p2kmgcl/chachi-shell.git ~/Projects/chachi-shell`
