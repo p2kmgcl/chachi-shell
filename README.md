@@ -14,6 +14,7 @@ Development environment boilerplate.<br>
 
 ## First steps
 
+1. Clone this project in `~/Projects/chachi-shell`
 1. Cleanup your system
 1. Choose a wallpaper
 1. Choose a font
