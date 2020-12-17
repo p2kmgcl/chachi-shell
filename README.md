@@ -8,7 +8,7 @@
 ```
 
 Development environment boilerplate.<br>
-**Last full execution** on _November 20th, 2020_ on _Fedora 32 x64_
+**Last full execution** on _December 17th, 2020_ on _Manjaro x64_
 
 ![Terminal screenshot](https://raw.githubusercontent.com/p2kmgcl/chachi-shell/master/preview.png)
 
@@ -79,9 +79,9 @@ These are some nice fonts:
 ## Liferay
 
 1. Install OracleJDK 8
+1. Install Apache ANT
 1. Ensure `/usr/lib/jvm/default-java` points to Java home
 1. Ensure `/usr/lib/jvm/default-ant` points to ANT home
-1. Install Apache ANT
 1. `npm install --global gradle-launcher`
 1. `mkdir -p ~/Projects/community-portal`
 1. `ln -s ~/Projects/chachi-shell/liferay ~/Projects/community-portal/config`
