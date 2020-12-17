@@ -148,5 +148,5 @@ These are some nice fonts:
 - Upgrade database:
   ```
   cd bundles/tools/portal-tools-db-upgrade-client
-  ./db_upgrade.sh -d
+  ./db_upgrade.sh
   ```
