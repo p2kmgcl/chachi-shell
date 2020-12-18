@@ -80,6 +80,7 @@ These are some nice fonts:
 
 1. Install OracleJDK 8
 1. Install Apache ANT
+1. Install Maven
 1. Ensure `/usr/lib/jvm/default-java` points to Java home
 1. Ensure `/usr/lib/jvm/default-ant` points to ANT home
 1. `npm install --global gradle-launcher`
