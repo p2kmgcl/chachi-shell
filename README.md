@@ -152,3 +152,7 @@ These are some nice fonts:
   cd bundles/tools/portal-tools-db-upgrade-client
   ./db_upgrade.sh
   ```
+- Connect to telnet:
+  ```
+  telnet localhost 11311
+  ```
