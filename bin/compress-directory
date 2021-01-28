@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tar -zcvf compressed.tar.gz $1

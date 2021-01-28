@@ -156,3 +156,9 @@ These are some nice fonts:
   ```
   telnet localhost 11311
   ```
+- Liferay 6.2 supports MySQL<=5.5 (newer versions will fail)
+
+## Wiki?
+
+- `mysqldump -h [HOST] -u [USER] -p[PASSWORD] [DATABASE_NAME] > dump.sql`
+- `docker cp [CONTAINER]:[CONTAINER_PATH] [HOST_PATH]`
