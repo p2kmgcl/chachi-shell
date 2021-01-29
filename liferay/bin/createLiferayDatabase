@@ -9,3 +9,5 @@ docker run \
   -d mysql/mysql-server:5.7 \
   --character-set-server=utf8 \
   --collation-server=utf8_general_ci
+
+while [ "$(docker inspect -f '{{ .State.Health.Status }}' liferay_portal_database)" != "healthy" ]; do sleep 1; done
