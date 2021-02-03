@@ -21,4 +21,4 @@ docker run \
 cd $HOME/Projects/community-portal/liferay-portal && ant setup-profile-portal && ant all -Dnodejs.node.env=development
 
 # Run portal
-cd $HOME/Projects/community-portal/bundles/tomcat-9.0.37/bin && ./catalina.sh jpda run
+cd $HOME/Projects/community-portal/bundles/tomcat-9.0.40/bin && ./catalina.sh jpda run
