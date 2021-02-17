@@ -10,6 +10,7 @@ export ZSH="/home/p2kmgcl/.oh-my-zsh"
 # ENV #########################################################################
 ###############################################################################
 
+export GRADLE_OPTS="-Dorg.gradle.daemon=false"
 export ANT_HOME="/usr/lib/jvm/default-ant"
 export ANT_OPTS="-XX:-UseGCOverheadLimit -Xmx6144m -XX:MaxMetaspaceSize=1024m"
 export EDITOR="nvim"
