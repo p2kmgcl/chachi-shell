@@ -51,7 +51,7 @@ set noeol
 set noswapfile
 set nowrap
 set nowritebackup
-set nonumber
+set number
 set shiftwidth=2
 set signcolumn=yes
 set tabstop=2
