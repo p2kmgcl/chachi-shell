@@ -46,7 +46,7 @@ Development environment boilerplate.<br>
 1. `nvim /etc/locale.gen` and uncomment locales (`en_US.UTF-8 UTF-8` and `es_ES.UTF-8 UTF-8`) and `locale-gen` to generate them
 1. `echo "LANG=en_US.UTF-8" > /etc/locale.conf` to set default locale
 1. `echo -e "KEYMAP=us\nFONT=ter-132n" > /etc/vconsole.conf` to set layout and font
-1. `/etc/hostname` with hostname
+1. `/etc/hostname` with HOST_NAME
 1. `/etc/hosts`
    ```
    127.0.0.1 localhost
