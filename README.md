@@ -43,18 +43,21 @@ Development environment boilerplate.<br>
 1. `ln -sf /usr/share/zoneinfo/* /etc/localtime` to change timezone
 1. `hwclock --systohc` to sync time
 1. `pacman -S neovim`
-1. `nvim /etc/locale.gen` and uncomment locales (`en_US.UTF-8 UTF-8` and `es_ES.UTF-8 UTF-8`) and `locale-gen` to generate them
-1. `echo "LANG=en_US.UTF-8" > /etc/locale.conf` to set default locale
-1. `echo -e "KEYMAP=us\nFONT=ter-132n" > /etc/vconsole.conf` to set layout and font
-1. `/etc/hostname` with HOST_NAME
-1. `/etc/hosts`
+1. `nvim /etc/locale.gen` and uncomment locales (`en_US.UTF-8 UTF-8` and `es_ES.UTF-8 UTF-8`)
+1. `locale-gen`
+3. `echo "LANG=en_US.UTF-8" > /etc/locale.conf` to set default locale
+4. `echo -e "KEYMAP=us\nFONT=ter-132n" > /etc/vconsole.conf` to set layout and font
+5. `/etc/hostname` with HOST_NAME
+6. `/etc/hosts`
    ```
    127.0.0.1 localhost
    ::1       localhost
    127.0.1.1 HOST_NAME.localdomain HOST_NAME
    ```
 1. `passwd`
-1. `pacman -S grub`
+1. `pacman -S grub efibootmgr dosfstools os-prober mtools`
+1. `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --recheck`
+1. `grub-mkconfig -o /boot/grub/grub.cfg`
 
 ## Nice fonts
 
