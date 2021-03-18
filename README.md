@@ -20,7 +20,7 @@ Development environment boilerplate.<br>
 1. Choose a font
 1. Choose a browser
 
-These are some nice fonts:
+## Nice fonts
 
 - [Cascadia Code](https://github.com/microsoft/cascadia-code)
 - [Fira Code](https://github.com/tonsky/FiraCode)
@@ -75,6 +75,11 @@ These are some nice fonts:
 1. `ln -s ~/Projects/chachi-shell/nvim ~/.config/nvim`
 1. Install [VIM Plug](https://github.com/junegunn/vim-plug)
 1. `PlugClean`, `PlugUpdate`, `UpdateRemotePlugins`
+
+## Wiki?
+
+- `mysqldump -h [HOST] -u [USER] -p[PASSWORD] [DATABASE_NAME] > dump.sql`
+- `docker cp [CONTAINER]:[CONTAINER_PATH] [HOST_PATH]`
 
 ## Liferay
 
@@ -157,8 +162,3 @@ These are some nice fonts:
   telnet localhost 11311
   ```
 - Liferay 6.2 supports MySQL<=5.5 (newer versions will fail)
-
-## Wiki?
-
-- `mysqldump -h [HOST] -u [USER] -p[PASSWORD] [DATABASE_NAME] > dump.sql`
-- `docker cp [CONTAINER]:[CONTAINER_PATH] [HOST_PATH]`
