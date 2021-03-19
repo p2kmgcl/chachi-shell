@@ -20,45 +20,6 @@ Development environment boilerplate.<br>
 1. Choose a font
 1. Choose a browser
 
-## Archlinux install
-
-1. Change keyboard layout with `loadkeys us/es`
-1. Use `ip link` to see network devices and configure wifi with [iwctl](https://wiki.archlinux.org/index.php/Iwd#iwctl)
-1. `timedatectl set-ntp true` to use network time and `timedatectl status` to check time
-1. `cfdisk` is a nice partition manager
-   > GPT to use with modern system<br />
-   > `/mnt/boot` EFI partition of 500MB<br />
-   > `/mnt` Root partition<br />
-   > `fdisk -l` to list partitions
-1. `mkfs.ext4` or `mkfs.fat -F32` or `mkswap` to format partitions
-1. `mount /dev/* /mount-point` to mount partitions
-1. `swapon /dev/*` to mount swap
-1. Choose best mirrors with:
-   ```
-   reflector --verbose --country Spain,France,Germany --age 24 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-   ```
-1. `pacstrap /mnt base base-devel linux linux-firmware` to install base packages
-1. `genfstab -U /mnt >> /mnt/etc/fstab`
-1. `arch-chroot /mnt`
-1. `ln -sf /usr/share/zoneinfo/* /etc/localtime` to change timezone
-1. `hwclock --systohc` to sync time
-1. `pacman -S neovim`
-1. `nvim /etc/locale.gen` and uncomment locales (`en_US.UTF-8 UTF-8` and `es_ES.UTF-8 UTF-8`)
-1. `locale-gen`
-3. `echo "LANG=en_US.UTF-8" > /etc/locale.conf` to set default locale
-4. `echo -e "KEYMAP=us\nFONT=ter-132n" > /etc/vconsole.conf` to set layout and font
-5. `/etc/hostname` with HOST_NAME
-6. `/etc/hosts`
-   ```
-   127.0.0.1 localhost
-   ::1       localhost
-   127.0.1.1 HOST_NAME.localdomain HOST_NAME
-   ```
-1. `passwd`
-1. `pacman -S grub efibootmgr dosfstools os-prober mtools`
-1. `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --recheck`
-1. `grub-mkconfig -o /boot/grub/grub.cfg`
-
 ## Nice fonts
 
 - [Cascadia Code](https://github.com/microsoft/cascadia-code)
