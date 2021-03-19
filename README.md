@@ -32,6 +32,13 @@ Development environment boilerplate.<br>
 - [Noto](https://www.google.com/get/noto/)
 - [Victor Mono](https://rubjo.github.io/victor-mono/)
 
+## Regolith
+
+1. `ln -s ~/Projects/chachi-shell/config/regolith/ ~/.config/regolith`
+1. `sudo apt install regolith-look-*`
+1. `sudo apt install i3xrocks-*`
+1. `update-alternatives --config x-terminal-emulator`
+
 ## Minimal environment
 
 1. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`

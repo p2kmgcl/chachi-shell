@@ -1,0 +1,4 @@
+[time]
+label=📅 
+command=date "+%A, %d de %B, %H:%M"
+interval=30
