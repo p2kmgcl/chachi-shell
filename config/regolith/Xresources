@@ -1,11 +1,12 @@
 gnome.gtk.theme: Ayu-Mirage-Dark
 gnome.wm.theme: Ayu-Mirage-Dark
-gnome.icon.theme: Moka
+gnome.icon.theme: Arc
+rofi.icon-theme: Arc
+Xcursor.size: 48
+Xcursor.theme: Yaru
 regolith.look: lascaille
-
 i3xrocks.value.mediaplayerwidth: 100
 
-gnome.terminal.font: Noto Sans Mono 9
 i3-wm.font: Noto Sans Mono Regular 9
 i3-wm.bar.font: pango:Noto Sans Mono Regular 9, Material Design Icons 9
 i3xrocks.value.font: Noto Sans Mono Regular 9

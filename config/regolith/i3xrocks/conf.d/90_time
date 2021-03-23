@@ -1,4 +1,4 @@
 [time]
-label=📅 
-command=date "+%A, %d de %B, %H:%M"
+label=📅
+command=echo "<span font_desc='Noto Sans Mono Regular 9'> $(date '+%A, %d de %B, %H:%M')</span>"
 interval=30
