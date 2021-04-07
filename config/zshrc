@@ -15,7 +15,7 @@ export ANT_HOME="/usr/lib/jvm/default-ant"
 export ANT_OPTS="-XX:-UseGCOverheadLimit -Xmx6144m -XX:MaxMetaspaceSize=1024m"
 export EDITOR="nvim"
 export JAVA_HOME="/usr/lib/jvm/default-java"
-export PATH=$HOME/Projects/chachi-shell/bin:$HOME/Projects/community-portal/config/bin:$HOME/.yarn/bin:$PATH
+export PATH=$HOME/Projects/chachi-shell/bin:$HOME/Projects/community-portal/config/bin:$HOME/.yarn/bin:/usr/lib/jvm/default-java/bin:/usr/lib/jvm/default-ant/bin:/usr/lib/jvm/default-maven/bin:$PATH
 
 ###############################################################################
 # NodeJS ######################################################################
