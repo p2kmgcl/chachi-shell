@@ -1,6 +1,6 @@
 ![Terminal screenshot](https://raw.githubusercontent.com/p2kmgcl/chachi-shell/master/preview.png)
 
-## First steps
+## 🎬 First steps
 
 1. Add a new SSH key.
 1. Install: `curl fzf git nano ripgrep tmux tree zsh`.
@@ -16,19 +16,13 @@
      I use [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync) extension.
    - __NeoVIM__ for quick hacks (although my configuration is prepared to handle more complex things).
 
-## Nice fonts
+## 🧑‍💻 Tools from me to me
 
-- [Cascadia Code](https://github.com/microsoft/cascadia-code)
-- [Fira Code](https://github.com/tonsky/FiraCode)
-- [Hack](https://sourcefoundry.org/hack/)
-- [IBM Plex](https://www.ibm.com/plex/)
-- [Inconsolata](https://github.com/googlefonts/Inconsolata)
-- [Iosevka](https://typeof.net/Iosevka/)
-- [JetBrains Mono](https://www.jetbrains.com/lp/mono/)
-- [Noto](https://www.google.com/get/noto/)
-- [Victor Mono](https://rubjo.github.io/victor-mono/)
+- [seniore](https://github.com/p2kmgcl/seniore) to manage pull requests.
+- [holi](https://github.com/p2kmgcl/holi) as quick notes (post-it alternative).
+- [page-editor-dev-server](https://github.com/p2kmgcl/page-editor-dev-server) until we have something more stable.
 
-## Minimal environment
+## ⛰️ Minimal environment
 
 1. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`
 1. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`
@@ -45,24 +39,38 @@
 1. Good moment to restart so everything is set into place.
 1. Open a terminal and run `Prefix+I` to install TMUX plugins.
 
-## NVM (Node Version Manager)
+## 🧻 NVM (Node Version Manager)
 
 1. Install [NVM](https://github.com/nvm-sh/nvm#installing-and-updating)
 1. Set default NodeJS: `nvm install 14 && npm use 14 && nvim alias default 14`
 
-## NeoVIM
+## 🥸 NeoVIM
 
 1. Install `neovim`
 1. `ln -s ~/Projects/chachi-shell/nvim ~/.config/nvim`
 1. Install [VIM Plug](https://github.com/junegunn/vim-plug)
 1. `PlugClean`, `PlugUpdate`, `UpdateRemotePlugins`
 
-## Wiki?
+## 📚 Wiki?
 
 - `mysqldump -h [HOST] -u [USER] -p[PASSWORD] [DATABASE_NAME] > dump.sql`
 - `docker cp [CONTAINER]:[CONTAINER_PATH] [HOST_PATH]`
 
-## Liferay
+## 🗛 Nice fonts
+
+- [Cascadia Code](https://github.com/microsoft/cascadia-code)
+- [Fira Code](https://github.com/tonsky/FiraCode)
+- [Hack](https://sourcefoundry.org/hack/)
+- [IBM Plex](https://www.ibm.com/plex/)
+- [Inconsolata](https://github.com/googlefonts/Inconsolata)
+- [Iosevka](https://typeof.net/Iosevka/)
+- [JetBrains Mono](https://www.jetbrains.com/lp/mono/)
+- [Noto](https://www.google.com/get/noto/)
+- [Victor Mono](https://rubjo.github.io/victor-mono/)
+
+---
+
+## 💙 Liferay
 
 1. Install [OracleJDK 8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 1. Install [Apache ANT](https://downloads.apache.org/ant/binaries/)
@@ -84,7 +92,7 @@
 1. `cd ~/Projects/community-portal/bundles && ln -s ../config/portal-ext.properties portal-ext.properties`
 
 
-### __Build portal drama__
+### 🔥 __Build portal drama__
 
 > If portal doesn't compile some steps must you follow,<br />
 > check this options each by each,<br />
@@ -100,64 +108,21 @@
 - Tell someone to stream their computer and pair-program the whole day.
 - Try on a brand-new pc.
 
-### Random notes
+### ⁉️ Random notes
 
-- Liferay Loader full dependency graph:
-  ```
-  Control Panel -> Configuration -> System Settings -> Infrastructure ->
-  Javascript Loader -> Explain Module Resolutions
-  ```
-- Format source all changes in branch:
-  ```
-  $ cd portal-impl
-  $ ant format-source-current-branch
-  ```
-- Create language files:
-  ```
-  buildLang
-  ```
-- Format code:
-  ```
-  formatSource
-  ```
-- Run FrontEnd tests:
-  ```
-  packageRunTest
-  ```
-- Toggle jQuery:
-  ```
-  Product menu -> Configuration -> System settings -> Third party -> jQuery
-  ```
-- IE11 polyfills:
-  ```
-  IETopHeadDynamicInclude.java
-  ```
+- Liferay Loader full dependency graph: `Control Panel -> Configuration -> System Settings -> Infrastructure -> Javascript Loader -> Explain Module Resolutions`
+- Format source all changes in branch: `cd ~/Projects/community-portal/liferay-portal/portal-impl && ant format-source-current-branch`
+- Create language files: `gradlew buildLang`
+- Format code: `gradlew formatSource`
+- Run FrontEnd tests: `gradlew packageRunTest`
+- Toggle jQuery: `Product menu -> Configuration -> System settings -> Third party -> jQuery`
+- IE11 polyfills: `IETopHeadDynamicInclude.java`
 - Run poshi tests locally ([docs](https://liferay-learn-poshi.readthedocs.io/en/latest/intro/liferay-functional-testing.html)):
-
-  > If tests doesn't run, try emptying `bundles/logs` directory.
-
-  ```
-  ant -f build-test.xml run-selenium-test -Dtest.class=FileName#TestName
-  ```
-
-- CSS RTL Conversion is made here:
-  ```
-  frontend-css-rtl-servlet
-  CSSRTLConverter.java
-  ```
-- Feature flag:
-  ```
-  echo "key=value" >> osgi/configs/com.liferay.layout.content.page.editor.web.internal.configuration.FFLayoutContentPageEditorConfiguration.config
-  ```
-- [Fragment bundler rendering process](https://github.com/liferay/liferay-portal/blob/16072c46daa174cf23c143e456d829f183c95424/modules/apps/fragment/fragment-renderer-react-impl/src/main/java/com/liferay/fragment/renderer/react/internal/model/listener/FragmentEntryLinkModelListener.java#L135-L143)
-
-- Upgrade database:
-  ```
-  cd bundles/tools/portal-tools-db-upgrade-client
-  ./db_upgrade.sh
-  ```
-- Connect to telnet:
-  ```
-  telnet localhost 11311
-  ```
+  `ant -f build-test.xml run-selenium-test -Dtest.class=FileName#TestName`.
+  (If tests doesn't run, try emptying `bundles/logs` directory)
+- CSS RTL Conversion is made here: `frontend-css-rtl-servlet` and `CSSRTLConverter.java`
+- Feature flag: `echo "key=value" >> ~/Projects/community-portal/bundles/osgi/configs/com.liferay.layout.content.page.editor.web.internal.configuration.FFLayoutContentPageEditorConfiguration.config`
+- Fragment bundler rendering process: `FragmentEntryLinkModelListener.java`
+- Upgrade database: `cd ~/Projects/community-portal/bundles/tools/portal-tools-db-upgrade-client && ./db_upgrade.sh`
+- Connect to telnet: `telnet localhost 11311`
 - Liferay 6.2 supports MySQL<=5.5 (newer versions will fail)
