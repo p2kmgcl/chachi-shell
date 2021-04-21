@@ -90,6 +90,23 @@
 1. `runLiferayPortal` and stop
 1. `cd ~/Projects/community-portal/bundles && ln -s ../config/portal-ext.properties portal-ext.properties`
 
+
+### __Build portal drama__
+
+> If portal doesn't compile some steps must you follow,<br />
+> check this options each by each,<br />
+> and if it doesn't work<br />
+> go back to sleep.
+
+- Update master and try again.
+- git clean -fd
+- git clean -fdX
+- Reinstall Java, MySQL, Ant, Maven and Node.
+- Try to use the latest docker nightly.
+- Use this day to check bugs and PTRs.
+- Tell someone to stream their computer and pair-program the whole day.
+- Try on a brand-new pc.
+
 ### Random notes
 
 - Liferay Loader full dependency graph:
