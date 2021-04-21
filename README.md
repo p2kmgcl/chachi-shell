@@ -2,11 +2,19 @@
 
 ## First steps
 
-1. Clone this project in `~/Projects/chachi-shell`
-1. Cleanup your system
-1. Choose a wallpaper
-1. Choose a font
-1. Choose a browser
+1. Add a new SSH key.
+1. Install: `curl fzf git nano ripgrep tmux tree zsh`.
+1. Clone this project in `~/Projects/chachi-shell`.
+1. Cleanup your system. I am using __Fedora__ with __Gnome__. __pop-shell__ gnome extension has an incredible
+1. Choose a __nice__ wallpaper (take your time, this is important).
+1. Choose a nice font, currently using __Noto Sans Mono__ everywhere.
+1. Choose a browser, currently using __Google Chrome__.
+1. Choose an editor I am using three of them right now:
+   - __IntelliJ Ultimate__ for work, as I need a powerful IDE that handles JS and a large Java project.
+     Actually I use VSCode keymaps, even on this IDE. My settings are synchronized with a JetBrains account.
+   - __Visual Studio Code__ for other stuff (smaller projects, personal stuff).
+     I use [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync) extension.
+   - __NeoVIM__ for quick hacks (although my configuration is prepared to handle more complex things).
 
 ## Nice fonts
 
@@ -26,33 +34,18 @@
 1. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`
 1. `ln -s ~/Projects/chachi-shell/config/zshrc ~/.zshrc`
 1. `ln -s ~/Projects/chachi-shell/config/alacritty.yml ~/.alacritty.yml`
-1. Install:
-   - [Alacritty](https://github.com/alacritty/alacritty#alacritty)
-   - [autojump](https://github.com/wting/autojump#name)
-   - [docker](https://docs.docker.com/engine/install/)
-   - `curl`
-   - `fzf`
-   - `git`
-   - `nano`
-   - `ripgrep`
-   - `tmux`
-   - `tree`
-   - `zsh`
-1. `chsh --shell $(which zsh) $(whoami)`
-1. `ssh-keygen`
-
-## oh-my-zsh
-
+1. Install [Alacritty](https://github.com/alacritty/alacritty#alacritty).
+1. Install [Autojump](https://github.com/wting/autojump#name).
+1. Install [Docker](https://docs.docker.com/engine/install/).
 1. `git clone https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh`
 1. `git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions`
-
-## tmux config
-
 1. `ln -s ~/Projects/chachi-shell/config/tmux.conf ~/.tmux.conf`
 1. `git clone https://github.com/tmux-plugins/tpm.git ~/.tmux.tpm`
-1. `Prefix+I` to install plugins
+1. Set ZSH as default interpreter (`chsh --shell $(which zsh) $(whoami)`).
+1. Good moment to restart so everything is set into place.
+1. Open a terminal and run `Prefix+I` to install TMUX plugins.
 
-## NVM
+## NVM (Node Version Manager)
 
 1. Install [NVM](https://github.com/nvm-sh/nvm#installing-and-updating)
 1. Set default NodeJS: `nvm install 14 && npm use 14 && nvim alias default 14`
