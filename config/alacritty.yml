@@ -3,7 +3,7 @@ window:
 
 font:
   normal:
-    family: Noto Sans Mono Condensed
+    family: JetBrains Mono
   size: 11.5
   draw_bold_text_with_bright_colors: false
 

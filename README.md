@@ -5,16 +5,16 @@
 1. Add a new SSH key.
 1. Install: `curl fzf git nano ripgrep tmux tree zsh`.
 1. Clone this project in `~/Projects/chachi-shell`.
-1. Cleanup your system. I am using __Fedora__ with __Gnome__. __pop-shell__ gnome extension has an incredible
-1. Choose a __nice__ wallpaper (take your time, this is important).
-1. Choose a nice font, currently using __Noto Sans Mono__ everywhere.
-1. Choose a browser, currently using __Google Chrome__.
+1. Cleanup your system. I am using **Fedora** with **Gnome**. **pop-shell** gnome extension has an incredible
+1. Choose a **nice** wallpaper (take your time, this is important).
+1. Choose a nice font, currently using **JetBrains Mono** everywhere.
+1. Choose a browser, currently using **Google Chrome**.
 1. Choose an editor I am using three of them right now:
-   - __IntelliJ Ultimate__ for work, as I need a powerful IDE that handles JS and a large Java project.
+   - **IntelliJ Ultimate** for work, as I need a powerful IDE that handles JS and a large Java project.
      Actually I use VSCode keymaps, even on this IDE. My settings are synchronized with a JetBrains account.
-   - __Visual Studio Code__ for other stuff (smaller projects, personal stuff).
+   - **Visual Studio Code** for other stuff (smaller projects, personal stuff).
      I use [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync) extension.
-   - __NeoVIM__ for quick hacks (although my configuration is prepared to handle more complex things).
+   - **NeoVIM** for quick hacks (although my configuration is prepared to handle more complex things).
 
 ## 🧑‍💻 Tools from me to me
 
@@ -91,8 +91,7 @@
 1. `runLiferayPortal` and stop
 1. `cd ~/Projects/community-portal/bundles && ln -s ../config/portal-ext.properties portal-ext.properties`
 
-
-### 🔥 __Build portal drama__
+### 🔥 **Build portal drama**
 
 > If portal doesn't compile some steps must you follow,<br />
 > check this options each by each,<br />
