@@ -1,0 +1,3 @@
+#!/bin/bash
+
+clear && cd ~/Projects/chachi-shell/music && nvlc $(find -type f -name "*.mp3" | shuf)

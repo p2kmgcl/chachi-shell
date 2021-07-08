@@ -28,6 +28,7 @@
 1. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`
 1. `ln -s ~/Projects/chachi-shell/config/zshrc ~/.zshrc`
 1. `ln -s ~/Projects/chachi-shell/config/alacritty.yml ~/.alacritty.yml`
+1. `ln -s [MUSIC_PATH] ~/Projects/chachi-shell/music`
 1. Install [Alacritty](https://github.com/alacritty/alacritty#alacritty).
 1. Install [Autojump](https://github.com/wting/autojump#name).
 1. Install [Docker](https://docs.docker.com/engine/install/).
