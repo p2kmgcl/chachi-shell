@@ -1,3 +1,0 @@
-#!/bin/bash
-
-NODE_ENV=development gradlew clean deploy -Dbuild=portal
