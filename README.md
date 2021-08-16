@@ -5,7 +5,7 @@
 1. Add a new SSH key.
 1. Install: `curl fzf git nano ripgrep tmux tree zsh`.
 1. Clone this project in `~/Projects/chachi-shell`.
-1. Cleanup your system. I am using **Fedora** with **Gnome**. **pop-shell** gnome extension has an incredible
+1. Cleanup your system. I am using **Elementary OS 6**.
 1. Choose a **nice** wallpaper (take your time, this is important).
 1. Choose a nice font, currently using **JetBrains Mono** everywhere.
 1. Choose a browser, currently using **Google Chrome**.
