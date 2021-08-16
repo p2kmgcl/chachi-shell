@@ -31,8 +31,6 @@
 1. `ln -s [MUSIC_PATH] ~/Projects/chachi-shell/music`
 1. Install [Alacritty](https://github.com/alacritty/alacritty#alacritty).
 1. Install [Autojump](https://github.com/wting/autojump#name).
-1. Install [Docker](https://docs.docker.com/engine/install/).
-1. Install [Docker Compose](https://docs.docker.com/compose/install/).
 1. `git clone https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh`
 1. `git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions`
 1. `ln -s ~/Projects/chachi-shell/config/tmux.conf ~/.tmux.conf`
@@ -40,6 +38,12 @@
 1. Set ZSH as default interpreter (`chsh --shell $(which zsh) $(whoami)`).
 1. Good moment to restart so everything is set into place.
 1. Open a terminal and run `Prefix+I` to install TMUX plugins.
+
+## 🐋 Docker
+
+1. Install [Docker](https://docs.docker.com/engine/install/).
+1. Install [Docker Compose](https://docs.docker.com/compose/install/).
+1. Add user to _docker_ group (`sudo usermod -a -G docker $(whoami)`).
 
 ## 🧻 NVM (Node Version Manager)
 
