@@ -84,7 +84,6 @@
 1. Ensure `/usr/lib/jvm/default-java` points to Java home
 1. Ensure `/usr/lib/jvm/default-ant` points to ANT home
 1. Ensure `/usr/lib/jvm/default-maven` points to Maven home
-1. `npm install --global gradle-launcher`
 1. `mkdir -p ~/Projects/community-portal`
 1. `ln -s ~/Projects/chachi-shell/liferay ~/Projects/community-portal/config`
 1. `cd ~/Projects/community-portal && ln -s config/liferay-editorconfig .editorconfig`
