@@ -44,7 +44,7 @@
 ## 🧻 NVM (Node Version Manager)
 
 1. Install [NVM](https://github.com/nvm-sh/nvm#installing-and-updating)
-1. Set default NodeJS: `nvm install 14 && nvm use 14 && nvm alias default 14 && npm i -g npm`
+1. Set default NodeJS: `nvm install 14 && nvm use 14 && nvm alias default 14 && npm i -g npm yarn`
 
 ## 🥸 NeoVIM
 
