@@ -1,17 +1,25 @@
 ![Terminal screenshot](https://raw.githubusercontent.com/p2kmgcl/chachi-shell/master/preview.png)
 
-## 🎬 First steps
+
+## ⛰️ Minimal environment
 
 1. Add a new SSH key.
-1. Install: `curl fzf git nano ripgrep tmux tree zsh`.
-1. Clone this project in `~/Projects/chachi-shell`.
-1. Cleanup your system. I am using **Elementary OS 6**.
-1. Choose a **nice** wallpaper (take your time, this is important).
-1. Choose a nice font, currently using **JetBrains Mono** everywhere.
-1. Choose a browser, currently using **Google Chrome**.
-1. Choose an editor I am using three of them right now:
+2. Install: `curl fzf git nano ripgrep tree`.
+3. Install [Autojump](https://github.com/wting/autojump#name).
+4. Clone this project in `~/Projects/chachi-shell`.
+5. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`.
+6. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`.
+
+## 🎬 UI
+
+1. Cleanup your system. I am using **Fedora 34 with XFCE**.
+2. Choose a **nice** wallpaper (take your time, this is important).
+3. Configure terminal emulator.
+4. Choose a nice font, currently using **JetBrains Mono** everywhere.
+5. Choose a browser, currently using **Google Chrome**.
+6. Choose an editor I am using three of them right now:
    - **IntelliJ Ultimate** for work, as I need a powerful IDE that handles JS and a large Java project.
-     Actually I use VSCode keymaps, even on this IDE. My settings are synchronized with a JetBrains account.
+     My settings are synchronized with a JetBrains account.
    - **Visual Studio Code** for other stuff (smaller projects, personal stuff).
      I use [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync) extension.
    - **NeoVIM** for quick hacks (although my configuration is prepared to handle more complex things).
@@ -22,47 +30,41 @@
 - [holi](https://github.com/p2kmgcl/holi) as quick notes (post-it alternative).
 - [page-editor-dev-server](https://github.com/p2kmgcl/page-editor-dev-server) until we have something more stable.
 
-## ⛰️ Minimal environment
-
-1. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`
-1. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`
-1. Install [Autojump](https://github.com/wting/autojump#name).
-
-## ✍️ Alacritty
-
-1. `ln -s ~/Projects/chachi-shell/config/alacritty.yml ~/.alacritty.yml`
-1. Install [Alacritty](https://github.com/alacritty/alacritty#alacritty).
-
 ## 🪟 Tmux
 
-1. `ln -s ~/Projects/chachi-shell/config/tmux.conf ~/.tmux.conf`
-1. `git clone https://github.com/tmux-plugins/tpm.git ~/.tmux.tpm`
-1. Open a terminal and run `Prefix+I` to install TMUX plugins.
+1. Install `tmux`
+2. `ln -s ~/Projects/chachi-shell/config/tmux.conf ~/.tmux.conf`
+3. `git clone https://github.com/tmux-plugins/tpm.git ~/.tmux.tpm`
+4. Open a terminal and run `Prefix+I` to install TMUX plugins.
 
 ## 📟 ZSH
 
-1. `ln -s ~/Projects/chachi-shell/config/zshrc ~/.zshrc`
-1. `git clone https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh`
-1. `git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions`
-1. Set ZSH as default interpreter (`chsh --shell $(which zsh) $(whoami)`).
+1. Install `zsh`
+2. `ln -s ~/Projects/chachi-shell/config/zshrc ~/.zshrc`
+3. `git clone https://github.com/ohmyzsh/ohmyzsh ~/.oh-my-zsh`
+4. `git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions`
+5. Set ZSH as default interpreter (`chsh --shell $(which zsh) $(whoami)`).
 
 ## 🐋 Docker
 
 1. Install [Docker](https://docs.docker.com/engine/install/).
-1. Install [Docker Compose](https://docs.docker.com/compose/install/).
-1. Add user to _docker_ group (`sudo usermod -a -G docker $(whoami)`).
+2. Install [Docker Compose](https://docs.docker.com/compose/install/).
+3. Add user to `docker` group (`sudo usermod -a -G docker $(whoami)`).
 
 ## 🧻 NVM (Node Version Manager)
 
 1. Install [NVM](https://github.com/nvm-sh/nvm#installing-and-updating)
-1. Set default NodeJS: `nvm install 14 && nvm use 14 && nvm alias default 14 && npm i -g npm yarn`
+2. Set default NodeJS: `nvm install 14 && nvm use 14 && nvm alias default 14 && npm i -g npm yarn`
 
 ## 🥸 NeoVIM
 
+> Install desired language environments (NodeJS, Java, etc.) before running
+> `PlugUpdate`, as they might be required.
+
 1. Install `neovim`
-1. `ln -s ~/Projects/chachi-shell/nvim ~/.config/nvim`
-1. Install [VIM Plug](https://github.com/junegunn/vim-plug)
-1. `PlugClean`, `PlugUpdate`, `UpdateRemotePlugins`
+2. `ln -s ~/Projects/chachi-shell/nvim ~/.config/nvim`
+3. Install [VIM Plug](https://github.com/junegunn/vim-plug)
+4. `PlugClean`, `PlugUpdate`, `UpdateRemotePlugins`
 
 ## 📚 Wiki?
 
@@ -86,22 +88,22 @@
 ## 💙 Liferay
 
 1. Install [OracleJDK 8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
-1. Install [Apache ANT](https://downloads.apache.org/ant/binaries/)
-1. Install [Apache Maven](https://downloads.apache.org/maven/binaries/)
-1. Ensure `/usr/lib/jvm/default-java` points to Java home
-1. Ensure `/usr/lib/jvm/default-ant` points to ANT home
-1. Ensure `/usr/lib/jvm/default-maven` points to Maven home
-1. `mkdir -p ~/Projects/community-portal`
-1. `ln -s ~/Projects/chachi-shell/liferay ~/Projects/community-portal/config`
-1. `cd ~/Projects/community-portal && ln -s config/liferay-editorconfig .editorconfig`
-1. `git clone git@github.com:p2kmgcl/liferay-portal.git ~/Projects/community-portal/liferay-portal`
-1. `cd ~/Projects/community-portal/liferay-portal && git remote add upstream https://github.com/liferay/liferay-portal`
-1. `git clone https://github.com/liferay/liferay-binaries-cache-2017.git ~/Projects/community-portal/liferay-binaries-cache-2017`
-1. `git clone https://github.com/liferay/liferay-binaries-cache-2020.git ~/Projects/community-portal/liferay-binaries-cache-2020`
-1. `git clone https://github.com/holatuwol/liferay-intellij ~/Projects/community-portal/liferay-intellij`
-1. `buildLiferayPortal`
-1. `runLiferayPortal` and stop
-1. `cd ~/Projects/community-portal/bundles && ln -s ../config/portal-ext.properties portal-ext.properties`
+2. Install [Apache ANT](https://downloads.apache.org/ant/binaries/)
+3. Install [Apache Maven](https://downloads.apache.org/maven/binaries/)
+4. Ensure `/usr/lib/jvm/default-java` points to Java home
+5. Ensure `/usr/lib/jvm/default-ant` points to ANT home
+6. Ensure `/usr/lib/jvm/default-maven` points to Maven home
+7. `mkdir -p ~/Projects/community-portal`
+8. `ln -s ~/Projects/chachi-shell/liferay ~/Projects/community-portal/config`
+9. `cd ~/Projects/community-portal && ln -s config/liferay-editorconfig .editorconfig`
+10. `git clone git@github.com:p2kmgcl/liferay-portal.git ~/Projects/community-portal/liferay-portal`
+11. `cd ~/Projects/community-portal/liferay-portal && git remote add upstream https://github.com/liferay/liferay-portal`
+12. `git clone https://github.com/liferay/liferay-binaries-cache-2017.git ~/Projects/community-portal/liferay-binaries-cache-2017`
+13. `git clone https://github.com/liferay/liferay-binaries-cache-2020.git ~/Projects/community-portal/liferay-binaries-cache-2020`
+14. `git clone https://github.com/holatuwol/liferay-intellij ~/Projects/community-portal/liferay-intellij`
+15. `buildLiferayPortal`
+16. `runLiferayPortal` and stop
+17. `cd ~/Projects/community-portal/bundles && ln -s ../config/portal-ext.properties portal-ext.properties`
 
 ### 🔥 **Build portal drama**
 
