@@ -30,6 +30,10 @@
 - [holi](https://github.com/p2kmgcl/holi) as quick notes (post-it alternative).
 - [page-editor-dev-server](https://github.com/p2kmgcl/page-editor-dev-server) until we have something more stable.
 
+## 🦀 Rust
+
+1. `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+
 ## 🪟 Tmux
 
 1. Install `tmux`
