@@ -34,6 +34,10 @@
 
 1. `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 
+## 🦕 Deno
+
+1. `curl -fsSL https://deno.land/x/install/install.sh | sh`
+
 ## 🪟 Tmux
 
 1. Install `tmux`
