@@ -30,6 +30,11 @@
 - [holi](https://github.com/p2kmgcl/holi) as quick notes (post-it alternative).
 - [page-editor-dev-server](https://github.com/p2kmgcl/page-editor-dev-server) until we have something more stable.
 
+## 🕶️ Awesome apps
+
+- [present](https://github.com/vinayak-mehta/present) CLI written in Python to
+  run text based presentations in terminal.
+
 ## 🦀 Rust
 
 1. `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
