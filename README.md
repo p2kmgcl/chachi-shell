@@ -32,7 +32,7 @@
 
 ## 🕶️ Awesome apps
 
-- [present](https://github.com/vinayak-mehta/present) CLI written in Python to
+- [mdp](https://github.com/visit1985/mdp): CLI written in Python to
   run text based presentations in terminal.
 
 ## 🦀 Rust
