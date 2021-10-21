@@ -32,8 +32,8 @@
 
 ## 🕶️ Awesome apps
 
-- [mdp](https://github.com/visit1985/mdp): CLI written in Python to
-  run text based presentations in terminal.
+- [mdp](https://github.com/visit1985/mdp): CLI written in Python to run text based presentations in terminal.
+- [marp](https://marp.app/): Markdown presentation ecosystem, including editor extensions and PDF export.
 
 ## 🦀 Rust
 
