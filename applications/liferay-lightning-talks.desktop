@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Liferay Lighning Talks
+Exec=xdg-open https://liferay.atlassian.net/wiki/spaces/~136397786/pages/1704591714/Spain+Office+FrontEnd+Guild+Lightning+Talks
+Icon=internet

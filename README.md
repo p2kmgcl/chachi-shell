@@ -9,6 +9,7 @@
 4. Clone this project in `~/Projects/chachi-shell`.
 5. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`.
 6. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`.
+7. `ln -s ~/Projects/chachi-shell/applications ~/.local/share/applications/chachi-shell`
 
 ## 🎬 UI
 
@@ -78,6 +79,11 @@
 2. `ln -s ~/Projects/chachi-shell/nvim ~/.config/nvim`
 3. Install [VIM Plug](https://github.com/junegunn/vim-plug)
 4. `PlugClean`, `PlugUpdate`, `UpdateRemotePlugins`
+
+## 🌶️ Rofi
+
+1. Install [`rofi`](https://github.com/davatorium/rofi)
+2. Add `rofi -combi-modi "window#drun" -show combi -modi combi` shortcut (Alt+Space)
 
 ## 📚 Wiki?
 

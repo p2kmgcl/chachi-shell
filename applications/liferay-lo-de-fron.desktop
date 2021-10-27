@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Liferay Lo de Fron
+Exec=google-chrome --app=https://meet.google.com/yzi-kntk-rij
+Icon=google-chrome
+StartupWMClass=google-chrome-liferay-lo-de-fron

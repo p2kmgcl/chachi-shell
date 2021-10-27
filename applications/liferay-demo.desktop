@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Liferay Demo
+Exec=google-chrome --app=https://meet.google.com/kfd-jjjj-nve
+Icon=google-chrome
+StartupWMClass=google-chrome-liferay-demo
