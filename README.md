@@ -83,7 +83,7 @@
 ## 🌶️ Rofi
 
 1. Install [`rofi`](https://github.com/davatorium/rofi)
-2. Add `rofi -combi-modi "window#drun" -show combi -modi combi` shortcut (Alt+Space)
+2. Add `rofi -matching fuzzy -combi-modi "window#drun" -show combi -modi combi` shortcut (Alt+Space)
 
 ## 📚 Wiki?
 
