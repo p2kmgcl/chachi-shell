@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Liferay Gmail
+Exec=google-chrome --app="https://mail.google.com/mail/u/1/#inbox"
+Icon=/home/p2kmgcl/GoogleDrive/Archivo/crayon-icon-pack/gmail.png
+StartupWMClass=mail.google.com__mail_u_1

@@ -4,6 +4,6 @@ Version=1.0
 Terminal=false
 Type=Application
 Name=Liferay Kickoff
-Exec=google-chrome --app=https://meet.google.com/gdu-hirx-www
-Icon=google-chrome
-StartupWMClass=google-chrome-liferay-kickoff
+Exec=google-chrome --app="https://meet.google.com/gdu-hirx-www?pli=1&authuser=1"
+Icon=/home/p2kmgcl/GoogleDrive/Archivo/crayon-icon-pack/simplicon_iconpack.png
+StartupWMClass=meet.google.com__gdu-hirx-www

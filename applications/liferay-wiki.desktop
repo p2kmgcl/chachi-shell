@@ -4,5 +4,6 @@ Version=1.0
 Terminal=false
 Type=Application
 Name=Liferay Wiki
-Exec=xdg-open https://liferay.atlassian.net/wiki/spaces/~136397786/overview?homepageId=1366163523
-Icon=internet
+Exec=google-chrome --app="https://liferay.atlassian.net/wiki/spaces/~136397786/overview?homepageId=1366163523"
+Icon=/home/p2kmgcl/GoogleDrive/Archivo/crayon-icon-pack/writerp.png
+StartupWMClass=liferay.atlassian.net__wiki_spaces__136397786_overview
