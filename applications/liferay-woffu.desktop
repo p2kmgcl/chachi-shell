@@ -5,5 +5,5 @@ Terminal=false
 Type=Application
 Name=Liferay Woffu
 Exec=google-chrome --app="https://liferay.woffu.com"
-Icon=/home/p2kmgcl/GoogleDrive/Archivo/crayon-icon-pack/pou.png
+Icon=/home/p2kmgcl/GoogleDrive/Archivo/crayon-icon-pack/folder_working.png
 StartupWMClass=liferay.woffu.com
