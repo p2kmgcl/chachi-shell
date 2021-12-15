@@ -87,6 +87,7 @@
 
 ## 📚 Wiki?
 
+- `docker exec [CONTAINER] --it [COMMAND]`
 - `mysqldump -h [HOST] -u [USER] -p[PASSWORD] [DATABASE_NAME] > dump.sql`
 - `docker cp [CONTAINER]:[CONTAINER_PATH] [HOST_PATH]`
 
