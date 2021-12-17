@@ -1,24 +1,7 @@
 #!/bin/bash
 
-# Sync master
 git cifuentes
-
-# Destroy database
-docker rm -f $(docker ps -a -q -f name=liferay_portal_database)
-
-# Create database
-docker run \
-  --name=liferay_portal_database \
-  -p=3306:3306 \
-  -e MYSQL_DATABASE=liferay_portal \
-  -e MYSQL_ROOT_PASSWORD=root \
-  -e MYSQL_ROOT_HOST=172.17.0.1 \
-  -d mysql/mysql-server:5.7 \
-  --character-set-server=utf8 \
-  --collation-server=utf8_general_ci
-
-# Build portal
-cd $HOME/Projects/community-portal/liferay-portal && ant setup-profile-portal && ant all -Dnodejs.node.env=development
-
-# Run portal
+$HOME/Projects/chachi-shell/liferay/bin/destroyLiferayDatabase
+$HOME/Projects/chachi-shell/liferay/bin/createLiferayDatabase
+$HOME/Projects/chachi-shell/liferay/bin/buildLiferayPortal
 $HOME/Projects/chachi-shell/liferay/bin/runLiferayPortal
