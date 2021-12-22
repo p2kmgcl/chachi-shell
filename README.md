@@ -1,6 +1,5 @@
 ![Terminal screenshot](https://raw.githubusercontent.com/p2kmgcl/chachi-shell/master/preview.png)
 
-
 ## ⛰️ Minimal environment
 
 1. Add a new SSH key.
@@ -13,10 +12,10 @@
 
 ## 🎬 UI
 
-1. Cleanup your system. I am using **Fedora 34 with XFCE**.
+1. Cleanup your system. I am using **Manjaro KDE**.
 2. Choose a **nice** wallpaper (take your time, this is important).
 3. Configure terminal emulator.
-4. Choose a nice font, currently using **JetBrains Mono** everywhere.
+4. Choose a nice font, currently using **IBM Plex Mono** everywhere.
 5. Choose a browser, currently using **Google Chrome**.
 6. Choose an editor I am using three of them right now:
    - **IntelliJ Ultimate** for work, as I need a powerful IDE that handles JS and a large Java project.
