@@ -3,11 +3,11 @@
 ## ⛰️ Minimal environment
 
 1. Add a new SSH key.
-2. Install: `curl fzf git nano ripgrep tree`.
+2. Install: `curl fzf git nano ripgrep tree`
 3. Install [Autojump](https://github.com/wting/autojump#name).
-4. Clone this project in `~/Projects/chachi-shell`.
-5. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`.
-6. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`.
+4. Clone this project in `~/Projects/chachi-shell`
+5. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`
+6. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`
 7. `rm -rf ~/.local/share/applications && ln -s ~/Projects/chachi-shell/applications ~/.local/share/applications`
 
 ## 🎬 UI
