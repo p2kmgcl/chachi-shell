@@ -8,7 +8,6 @@
 4. Clone this project in `~/Projects/chachi-shell`
 5. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`
 6. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`
-7. `rm -rf ~/.local/share/applications && ln -s ~/Projects/chachi-shell/applications ~/.local/share/applications`
 
 ## 🎬 UI
 
