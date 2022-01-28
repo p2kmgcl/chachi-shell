@@ -23,6 +23,7 @@ Plug 'ianks/vim-tsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-commentary'
+Plug 'github/copilot.vim'
 
 " Formatting and fixing
 Plug 'editorconfig/editorconfig-vim'
