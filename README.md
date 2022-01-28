@@ -101,6 +101,41 @@
 - [Noto](https://www.google.com/get/noto/)
 - [Victor Mono](https://rubjo.github.io/victor-mono/)
 
+## 🧠 Linux environment from scratch
+
+### 1. Minimal viable environment
+
+For the first steps, I am going to follow the [ArchLinux](https://wiki.archlinux.org/title/installation_guide) installation wiki. I have tried it some years ago, and it gives an usable installation with a minimum amount of packages installed.
+
+> __Nice information extracted from the [FAQ](https://wiki.archlinux.org/title/Frequently_asked_questions)__:
+> - Only supports x86_64 architecture
+> - Uses [systemd](https://wiki.archlinux.org/title/Systemd) as service manager.
+> - `/bin`, `/sbin` and `/usr/sbin` are symbolic links to `/usr/bin`; `/lib` and `/lib64` are symbolic links to `/usr/lib`; [more info about filesystem hierarchy](https://man.archlinux.org/man/file-hierarchy.7).
+
+### 0. System maintenance
+
+[Archlinux wiki](https://wiki.archlinux.org/title/System_maintenance)
+
+---
+
+Maybe window manager:
+- Install `i3` and [`rofi`](https://github.com/davatorium/rofi).
+- `mkdir -p ~/.config/i3 && ln -s ~/Projects/chachi-shell/i3/config ~/.config/i3/config`
+
+Pending things:
+- Check sway, to be used with Wayland
+- Intel drivers
+- Bluetooth
+- Wifi
+- Webcam
+- Microphone
+- Login manager
+- Window manager
+- File manager
+- Password wallet
+- Flatpak
+- Authy
+
 ---
 
 ## 💙 Liferay
