@@ -1,0 +1,11 @@
+window:
+  gtk_theme_variant: dark
+  opacity: 0.9
+
+font:
+  normal:
+    family: IBM Plex Mono
+  size: 11.5
+  draw_bold_text_with_bright_colors: false
+
+live_config_reload: true
