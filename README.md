@@ -20,12 +20,10 @@
     - [Bluetooth](#bluetooth)
     - [AUR](#aur)
     - [Sway](#sway)
-    - [Flatpak](#flatpak)
     - [Audio](#audio)
     - [Brightness](#brightness)
     - [Screenshot and Screen Recording](#screenshot-and-screen-recording)
   - [Maintenance](#maintenance)
-  - [Pending things](#pending-things)
 - [Liferay](#liferay)
   - [Build portal drama](#build-portal-drama)
   - [Random Liferay notes](#random-liferay-notes)
@@ -255,7 +253,7 @@ AutoEnable=true
 > - Sway is a compositor for wayland
 > - `swaymsg -t get_outputs` list outputs
 
-- Install `sway clipman alacritty thunar ristretto`
+- Install `sway swayidle swaylock clipman alacritty thunar ristretto`
 - Install `ulauncher` from AUR
 
 > Installing `xorg-xwayland` is necessary for
@@ -264,37 +262,6 @@ AutoEnable=true
 - `mkdir -p ~/.config/alacritty && ln -s ~/Projects/chachi-shell/config/alacritty.yml ~/.config/alacritty/alacritty.yml`
 - `mkdir -p ~/.config/sway && ln -s ~/Projects/chachi-shell/config/sway.config ~/.config/sway/config`
 - Run `sway`
-
-#### Flatpak
-
-- Install `flatpak flatpak-xdg-utils`
-
-> It request installing some `xdg-desktop-portal-impl` implementation. I guess this is the library
-> that will be used to render the UI of some FlatPak packages. I found that xdg-desktop-portal-wlr
-> has been created to probide a wlroots (modules to build a wayland compositor) friendly environment.
-
-- Install both:
-
-  - `xdg-desktop-portal-wlr`
-  - `xdg-desktop-portal-gtk`
-
-- Adding needed environment variables to Sway config:
-
-```
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-```
-
-> It requires to install a pipewire-session-manager, looks like wireplumber is recommended.
-
-```
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-```
-
-Some apps, like Google Chrome, are only available on the beta repo:
-
-```
-flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
-```
 
 #### Audio
 
@@ -315,15 +282,6 @@ flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/fl
 
 - Installing `archlinux-keyring` updates gpg keys storage
 - [Archlinux wiki](https://wiki.archlinux.org/title/System_maintenance)
-
-### Pending things
-
-- Run sway on login
-- Password wallet
-- Suspend/reboot
-- Update sway on HDMI add/remove
-- Sway lockscreen
-- Stop media on sleep
 
 ## Liferay
 

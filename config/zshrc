@@ -1,5 +1,18 @@
 export LANG=en_US.utf8
 
+# Run sway on tty1
+
+if [ "$(tty)" = "/dev/tty1" ] ; then
+    export QT_QPA_PLATFORM=wayland
+    export MOZ_ENABLE_WAYLAND=1
+    export MOZ_WEBRENDER=1
+    export XDG_SESSION_TYPE=wayland
+    export XDG_CURRENT_DESKTOP=sway
+    echo Booting sway...
+    exec sway && exit
+    echo Exiting...
+fi
+
 # Load tmux if possible
 if [ ! "JetBrains-JediTerm" = "${TERMINAL_EMULATOR}" ] && [ -n "$(which tmux)" ] && [ -z "${TMUX}" ]; then
   tmux && exit
