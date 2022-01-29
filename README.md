@@ -198,7 +198,8 @@ Enable these units:
 
 #### Create new user
 
-> - `useradd -m -s /usr/bin/zsh [user]`
+- Install `xdg-user-dirs-update`
+- `useradd -m -s /usr/bin/zsh [user]`
 
 #### Enable sudo
 
@@ -253,8 +254,8 @@ AutoEnable=true
 > - Sway is a compositor for wayland
 > - `swaymsg -t get_outputs` list outputs
 
-- Install `sway clipman alacritty`
-- Install `sway-launcher-desktop` from AUR
+- Install `sway clipman alacritty thunar`
+- Install `ulauncher` from AUR
 
 > Installing `xorg-xwayland` is necessary for
 > better compatibility with _old_ X11 only applications.
@@ -312,9 +313,6 @@ flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/fl
 ### Pending things
 
 - Run sway on login
-- Webcam
-- Microphone
-- File manager
 - Password wallet
 - Suspend/reboot
 - Update sway on HDMI add/remove
