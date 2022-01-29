@@ -22,6 +22,7 @@
     - [Sway](#sway)
     - [Flatpak](#flatpak)
     - [Audio](#audio)
+    - [Brightness](#brightness)
   - [Maintenance](#maintenance)
   - [Pending things](#pending-things)
 - [Liferay](#liferay)
@@ -297,6 +298,11 @@ flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/fl
 
 - Install `pipewire pipewire-alsa pipewire-pulse pipewire-jack`
 - Install `helvum` and `pavucontrol` to manage audio
+- Install `playerctl`
+
+#### Brightness
+
+- Install `brightnessctl`
 
 ### Maintenance
 
@@ -314,7 +320,6 @@ flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/fl
 - Update sway on HDMI add/remove
 - Screenshot/screencast
 - Sway lockscreen
-- Volume keys
 - Stop media on sleep
 
 ## Liferay
