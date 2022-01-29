@@ -1,17 +1,46 @@
 ![Terminal screenshot](https://raw.githubusercontent.com/p2kmgcl/chachi-shell/master/preview.png)
 
-## ⛰️ Minimal environment
+- [Setup](#setup)
+  - [Custom interface](#custom-interface)
+  - [Awesome apps](#awesome-apps)
+  - [Programming languages](#programming-languages)
+  - [Tmux](#tmux)
+  - [ZSH](#zsh)
+  - [Docker](#docker)
+  - [NeoVIM](#neovim)
+- [Random notes](#random-notes)
+- [Nice fonts](#nice-fonts)
+- [Archlinux adventure](#archlinux-adventure)
+  - [About systemd](#about-systemd)
+  - [Microcode updates](#microcode-updates)
+  - [The adventure](#the-adventure)
+    - [Enable network](#enable-network)
+    - [Create new user](#create-new-user)
+    - [Enable sudo](#enable-sudo)
+    - [Bluetooth](#bluetooth)
+    - [AUR](#aur)
+    - [Sway](#sway)
+    - [Flatpak](#flatpak)
+    - [Audio](#audio)
+  - [Maintenance](#maintenance)
+  - [Pending things](#pending-things)
+- [Liferay](#liferay)
+  - [Build portal drama](#build-portal-drama)
+  - [Random Liferay notes](#random-liferay-notes)
 
-1. Add a new SSH key.
-2. Install: `curl fzf git nano ripgrep tree`
-3. Install [Autojump](https://github.com/wting/autojump#name).
-4. Clone this project in `~/Projects/chachi-shell`
-5. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`
-6. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`
+## Setup
 
-## 🎬 UI
+1. Install `openssh`.
+2. Add a new SSH key.
+3. Install: `curl fzf git nano ripgrep tree`
+4. Install [Autojump](https://github.com/wting/autojump#name).
+5. Clone this project in `~/Projects/chachi-shell`
+6. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`
+7. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`
 
-1. Cleanup your system. I am using **Manjaro KDE**.
+### Custom interface
+
+1. Cleanup your system. I am using **Archlinux**.
 2. Choose a **nice** wallpaper (take your time, this is important).
 3. Configure terminal emulator.
 4. Choose a nice font, currently using **IBM Plex Mono** everywhere.
@@ -23,33 +52,29 @@
      I use [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync) extension.
    - **NeoVIM** for quick hacks (although my configuration is prepared to handle more complex things).
 
-## 🧑‍💻 Tools from me to me
+### Awesome apps
 
 - [seniore](https://github.com/p2kmgcl/seniore) to manage pull requests.
 - [holi](https://github.com/p2kmgcl/holi) as quick notes (post-it alternative).
 - [page-editor-dev-server](https://github.com/p2kmgcl/page-editor-dev-server) until we have something more stable.
-
-## 🕶️ Awesome apps
-
 - [mdp](https://github.com/visit1985/mdp): CLI written in Python to run text based presentations in terminal.
 - [marp](https://marp.app/): Markdown presentation ecosystem, including editor extensions and PDF export.
 
-## 🦀 Rust
+### Programming languages
 
-1. `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+- Rust: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+- Deno: `curl -fsSL https://deno.land/x/install/install.sh | sh`
+- NodeJS: install [NVM](https://github.com/nvm-sh/nvm#installing-and-updating) and run `nvm install 16 && nvm use 16 && nvm alias default 16 && npm i -g npm yarn`
+- Python
 
-## 🦕 Deno
-
-1. `curl -fsSL https://deno.land/x/install/install.sh | sh`
-
-## 🪟 Tmux
+### Tmux
 
 1. Install `tmux`
 2. `ln -s ~/Projects/chachi-shell/config/tmux.conf ~/.tmux.conf`
 3. `git clone https://github.com/tmux-plugins/tpm.git ~/.tmux.tpm`
 4. Open a terminal and run `Prefix+I` to install TMUX plugins.
 
-## 📟 ZSH
+### ZSH
 
 1. Install `zsh`
 2. `ln -s ~/Projects/chachi-shell/config/zshrc ~/.zshrc`
@@ -57,18 +82,13 @@
 4. `git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions`
 5. Set ZSH as default interpreter (`chsh --shell $(which zsh) $(whoami)`).
 
-## 🐋 Docker
+### Docker
 
 1. Install [Docker](https://docs.docker.com/engine/install/).
 2. Install [Docker Compose](https://docs.docker.com/compose/install/).
 3. Add user to `docker` group (`sudo usermod -a -G docker $(whoami)`).
 
-## 🧻 NVM (Node Version Manager)
-
-1. Install [NVM](https://github.com/nvm-sh/nvm#installing-and-updating)
-2. Set default NodeJS: `nvm install 16 && nvm use 16 && nvm alias default 16 && npm i -g npm yarn`
-
-## 🥸 NeoVIM
+### NeoVIM
 
 > Install desired language environments (NodeJS, Java, etc.) before running
 > `PlugUpdate`, as they might be required.
@@ -78,18 +98,13 @@
 3. Install [VIM Plug](https://github.com/junegunn/vim-plug)
 4. `PlugClean`, `PlugUpdate`, `UpdateRemotePlugins`
 
-## 🌶️ Rofi
-
-1. Install [`rofi`](https://github.com/davatorium/rofi)
-2. Add `rofi -matching fuzzy -combi-modi "window#drun" -show combi -modi combi` shortcut (Alt+Space)
-
-## 📚 Wiki?
+## Random notes
 
 - `docker exec [CONTAINER] --it [COMMAND]`
 - `mysqldump -h [HOST] -u [USER] -p[PASSWORD] [DATABASE_NAME] > dump.sql`
 - `docker cp [CONTAINER]:[CONTAINER_PATH] [HOST_PATH]`
 
-## 🗛 Nice fonts
+## Nice fonts
 
 - [Cascadia Code](https://github.com/microsoft/cascadia-code)
 - [Fira Code](https://github.com/tonsky/FiraCode)
@@ -101,37 +116,26 @@
 - [Noto](https://www.google.com/get/noto/)
 - [Victor Mono](https://rubjo.github.io/victor-mono/)
 
-## 🧠 Linux environment from scratch
-
-### 1. Previous investigation
+## ArchLinux Adventure
 
 For the first steps, I am going to follow the [ArchLinux](https://wiki.archlinux.org/title/installation_guide) installation wiki. I have tried it some years ago, and it gives an usable installation with a minimum amount of packages installed.
 
-> __Nice information extracted from the [FAQ](https://wiki.archlinux.org/title/Frequently_asked_questions)__:
-> - Only supports x86_64 architecture
-> - Uses [systemd](https://wiki.archlinux.org/title/Systemd) as service manager.
-> - `/bin`, `/sbin` and `/usr/sbin` are symbolic links to `/usr/bin`; `/lib` and `/lib64` are symbolic links to `/usr/lib`; [more info about filesystem hierarchy](https://man.archlinux.org/man/file-hierarchy.7).
-> - `pacman -Qlq package_name` gives information about an installed package.
-> - `systemd-boot` is used to manage a UEFI motherboard.
-> - `xdg-user-dirs-update.service` takes care of creating user directories like "downloads" or "music". This might be enabled by default by the window manager.
-> - ACPI events (power buttons, laptop lid...) can be managed with systemd.
-> - Firewall is not enabled by default, but iptables can be enabled and should work.
-> - By default it only supports english "standard" keyboard layout.
-> - `tab-completion` needs to be enabled.
+**Wiki FAQ**:
 
-#### Loading only needed modules
+- Only supports x86_64 architecture
+- Uses [systemd](https://wiki.archlinux.org/title/Systemd) as service manager.
+- `/bin`, `/sbin` and `/usr/sbin` are symbolic links to `/usr/bin`; `/lib` and `/lib64` are symbolic links to `/usr/lib`; [more info about filesystem hierarchy](https://man.archlinux.org/man/file-hierarchy.7).
+- `pacman -Qlq package_name` gives information about an installed package.
+- `systemd-boot` is used to manage a UEFI motherboard.
+- `xdg-user-dirs-update.service` takes care of creating user directories like "downloads" or "music". This might be enabled by default by the window manager.
+- ACPI events (power buttons, laptop lid...) can be managed with systemd.
+- Firewall is not enabled by default, but iptables can be enabled and should work.
+- By default it only supports english "standard" keyboard layout.
+- `tab-completion` needs to be enabled.
 
-As described in [general recomendations > booting > hardware auto-recognition](https://wiki.archlinux.org/title/General_recommendations), udev and Xorg take care of loading all necesary modules when booting, but this can be configured manually. I should look which modules should be loaded on boot, and try replacing Xorg display server protocol with Wayland.
+### About systemd
 
-Maybe I don't need to start a display manager (aka login screen) and just run `X` after logging in. I should look for information about this.
-
-#### Multimedia
-
-Archlinux wiki says that ALSA should work by default, but that other sound servers like PulseAudio and PipeWire offer additional features. I should check which are these differences and if it makes sense to use PipeWire/PulseAudio instead of ALSA.
-
-#### Systemd
-
-It not only manages services, but also sockets, mount points, etc. If no extension is specified when naming a unit, it will default to `.service`. By default it operates on system units (`--system` flag doesn't need to be specified). `--user` can be used to manage user units.
+Systemd not only manages services, but also sockets, mount points, etc. If no extension is specified when naming a unit, it will default to `.service`. By default it operates on system units (`--system` flag doesn't need to be specified). `--user` can be used to manage user units.
 
 There is a table with some common commands and how unit files work in the [systemd arch wiki](https://wiki.archlinux.org/title/Systemd#Basic_systemctl_usage).
 
@@ -139,7 +143,7 @@ In order to run privileged actions (like shutdown or reboot) as an unprivileged 
 
 With `/etc/systemd/logind.conf` ACPI events can be configured, and `/etc/systemd/sleep.conf` to configure how system is suspended.
 
-#### Microcode updates
+### Microcode updates
 
 `amd-ucode` or `intel-ucode` package needs to be installed in order to get microcode updates. Linux Kernel will take care of applying these updates when they come, but it needs to be enabled in the bootloader.
 
@@ -155,33 +159,165 @@ initrd /initramfs-linux.img
 
 And then ensure that the latest microcode is available in the EFI system partition, mounted as `/boot`,
 
-#### System maintenance
+### The adventure
 
-[Archlinux wiki](https://wiki.archlinux.org/title/System_maintenance)
+> - `iwctl device list`
+> - `iwctl station [wlan0] scan`
+> - `iwctl station [wlan0] connect [SSID]` (`/var/lib/iwd/*` is created)
+> - `systemctl reboot/poweroff/suspend/hybrid-sleep`
 
----
+Follow basic archlinux installation, taking into account:
 
-Maybe window manager:
-- Install `i3` and [`rofi`](https://github.com/davatorium/rofi).
-- `mkdir -p ~/.config/i3 && ln -s ~/Projects/chachi-shell/i3/config ~/.config/i3/config`
+- `zsh` needs to be installed (if wanted)
+- `iwd` needs to be installed manually
+- `[intel/amd]-ucode` might need to be installed manually
+- [systemd-boot](https://wiki.archlinux.org/title/Systemd-boot#Installing_the_EFI_boot_manager) configuration needs to be generated
 
-Pending things:
-- Check sway, to be used with Wayland
-- Intel drivers
-- Bluetooth
-- Wifi
+#### Enable network
+
+> - `systemctl [enable/disable/start/stop/restart] [unit]`
+> - `systemctl --type=[service/target/...]`
+
+`/etc/systemd/network/25-wireless.network`:
+
+```
+[Match]
+Name=wlan0
+
+[Network]
+DHCP=yes
+IgnoreCarrierLoss=3s
+```
+
+Enable these units:
+
+- `iwd.service`: manage wireless network
+- `systemd-networkd.service`: manage network configuration
+- `systemd-resolved.service`: local DNS manager
+
+#### Create new user
+
+> - `useradd -m -s /usr/bin/zsh [user]`
+
+#### Enable sudo
+
+> `sudo -lU [user]`: checks if user can use sudo
+> `usermod -a -G [group] [user]`: adds [user] to [group]
+
+- Install `sudo`
+- Creating `/etc/sudoers.d/00-sudo-group`
+
+```
+sudo ALL=(ALL) ALL
+```
+
+#### Bluetooth
+
+> - `lsmod`: list loaded kernel modules
+> - `rfkill list`: checks laptop device blocking (wifi, bluetooth, etc.)
+
+1. Install `bluez bluez-utils`
+2. Check that `btusb` kernel module is loaded
+3. Start/enable `bluetooth.service` unit
+
+bluetoothctl commands:
+
+- `power on`
+- `scan on`
+- `agent on`
+- `devices`
+- `pair [MAC]`
+- `trust [MAC]`
+- `connect [MAC]`
+
+`/var/lib/bluetooth/[MAC]/[MAC]` directory is created.
+
+To enable connecting on boot, editing `/etc/bluetooth/main.conf`:
+
+```
+[Policy]
+AutoEnable=true
+```
+
+#### AUR
+
+- `pacman -S --needed base-devel` is needed
+- Download files (ex. `git clone https://aur.archlinux.org/package_name.git`)
+- Run `makepkg -s -i -r -c`
+
+> Use `yay` for easier maintenance
+
+#### Sway
+
+> - Sway is a compositor for wayland
+> - `swaymsg -t get_outputs` list outputs
+
+- Install `sway clipman alacritty`
+- Install `sway-launcher-desktop` from AUR
+
+> Installing `xorg-xwayland` is necessary for
+> better compatibility with _old_ X11 only applications.
+
+- `mkdir -p ~/.config/alacritty && ln -s ~/Projects/chachi-shell/config/alacritty.yml ~/.config/alacritty/alacritty.yml`
+- `mkdir -p ~/.config/sway && ln -s ~/Projects/chachi-shell/config/sway.config ~/.config/sway/config`
+- Run `sway`
+
+#### Flatpak
+
+- Install `flatpak`
+
+> It request installing some `xdg-desktop-portal-impl` implementation. I guess this is the library
+> that will be used to render the UI of some FlatPak packages. I found that xdg-desktop-portal-wlr
+> has been created to probide a wlroots (modules to build a wayland compositor) friendly environment.
+
+- Install both:
+
+  - `xdg-desktop-portal-wlr`
+  - `xdg-desktop-portal-gtk`
+
+- Adding needed environment variables to Sway config:
+
+```
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+```
+
+> It requires to install a pipewire-session-manager, looks like wireplumber is recommended.
+
+```
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+```
+
+Some apps, like Google Chrome, are only available on the beta repo:
+
+```
+flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+```
+
+#### Audio
+
+- Install `pipewire pipewire-alsa pipewire-pulse pipewire-jack`
+- Install `helvum` and `pavucontrol` to manage audio
+
+### Maintenance
+
+- Installing `archlinux-keyring` updates gpg keys storage
+- [Archlinux wiki](https://wiki.archlinux.org/title/System_maintenance)
+
+### Pending things
+
+- Run sway on login
 - Webcam
 - Microphone
-- Login manager
-- Window manager
 - File manager
 - Password wallet
-- Flatpak
-- Authy
+- Suspend/reboot
+- Update sway on HDMI add/remove
+- Screenshot/screencast
+- Sway lockscreen
+- Volume keys
+- Stop media on sleep
 
----
-
-## 💙 Liferay
+## Liferay
 
 1. Install [OracleJDK 8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 2. Install [Apache ANT](https://downloads.apache.org/ant/binaries/)
@@ -201,7 +337,7 @@ Pending things:
 16. `git clone https://github.com/holatuwol/liferay-intellij ~/Projects/community-portal/liferay-intellij`
 17. `cd ~/Projects/community-portal/liferay-portal && ../liferay-intellij/intellij`
 
-### 🔥 **Build portal drama**
+### Build portal drama
 
 > If portal doesn't compile some steps must you follow,<br />
 > check this options each by each,<br />
@@ -217,7 +353,7 @@ Pending things:
 - Tell someone to stream their computer and pair-program the whole day.
 - Try on a brand-new pc.
 
-### ⁉️ Random notes
+### Random liferay notes
 
 - Liferay Loader full dependency graph: `Control Panel -> Configuration -> System Settings -> Infrastructure -> Javascript Loader -> Explain Module Resolutions`
 - Format source all changes in branch: `cd ~/Projects/community-portal/liferay-portal/portal-impl && ant format-source-current-branch`
