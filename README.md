@@ -23,6 +23,7 @@
     - [Flatpak](#flatpak)
     - [Audio](#audio)
     - [Brightness](#brightness)
+    - [Screenshot and Screen Recording](#screenshot-and-screen-recording)
   - [Maintenance](#maintenance)
   - [Pending things](#pending-things)
 - [Liferay](#liferay)
@@ -254,7 +255,7 @@ AutoEnable=true
 > - Sway is a compositor for wayland
 > - `swaymsg -t get_outputs` list outputs
 
-- Install `sway clipman alacritty thunar`
+- Install `sway clipman alacritty thunar ristretto`
 - Install `ulauncher` from AUR
 
 > Installing `xorg-xwayland` is necessary for
@@ -266,7 +267,7 @@ AutoEnable=true
 
 #### Flatpak
 
-- Install `flatpak`
+- Install `flatpak flatpak-xdg-utils`
 
 > It request installing some `xdg-desktop-portal-impl` implementation. I guess this is the library
 > that will be used to render the UI of some FlatPak packages. I found that xdg-desktop-portal-wlr
@@ -305,6 +306,11 @@ flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/fl
 
 - Install `brightnessctl`
 
+#### Screenshot and Screen Recording
+
+- Install `grim slurp swappy`
+- Use `cute-sway-recorder` or `obs` for screen recording
+
 ### Maintenance
 
 - Installing `archlinux-keyring` updates gpg keys storage
@@ -316,7 +322,6 @@ flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/fl
 - Password wallet
 - Suspend/reboot
 - Update sway on HDMI add/remove
-- Screenshot/screencast
 - Sway lockscreen
 - Stop media on sleep
 
