@@ -173,6 +173,7 @@ Follow basic archlinux installation, taking into account:
 - `[intel/amd]-ucode` might need to be installed manually
 - `pacman-contrib` will help with upgrades
 - [systemd-boot](https://wiki.archlinux.org/title/Systemd-boot#Installing_the_EFI_boot_manager) configuration needs to be generated
+- `fuse2` is needed to use AppImages
 
 #### Enable network
 
