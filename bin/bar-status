@@ -1,0 +1,8 @@
+#!/bin/bash
+
+time="$(LC_ALL=es_ES.utf8 date +'%A, %d de %B, %H:%M')"
+volume="$(~/Projects/chachi-shell/bin/get-volume)"
+battery="$(cat /sys/class/power_supply/BAT0/capacity)%"
+brightness="$(~/Projects/chachi-shell/bin/get-brightness)"
+
+echo "💡$brightness 🔋$battery 🔉$volume ⏳$time"

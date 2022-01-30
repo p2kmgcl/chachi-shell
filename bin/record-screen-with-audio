@@ -1,0 +1,2 @@
+#!/bin/bash
+wf-recorder -g "$(slurp)" --audio -f "$HOME/Videos/screen-record-$(date +'%Y-%m-%d_%H-%M').mkv"

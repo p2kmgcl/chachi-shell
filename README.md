@@ -171,6 +171,7 @@ Follow basic archlinux installation, taking into account:
 - `zsh` needs to be installed (if wanted)
 - `iwd` needs to be installed manually
 - `[intel/amd]-ucode` might need to be installed manually
+- `pacman-contrib` will help with upgrades
 - [systemd-boot](https://wiki.archlinux.org/title/Systemd-boot#Installing_the_EFI_boot_manager) configuration needs to be generated
 
 #### Enable network
@@ -253,11 +254,15 @@ AutoEnable=true
 > - Sway is a compositor for wayland
 > - `swaymsg -t get_outputs` list outputs
 
-- Install `sway swayidle swaylock clipman alacritty thunar ristretto`
+- Install `sway swayidle swaylock clipman mako alacritty`
 - Install `ulauncher` from AUR
+- Theme `arc-icon-theme arc-gtk-theme ttf-ibm-plex`
+- GUI apps `pcmanfm swappy lxappearance lxtask gdmap`
 
-> Installing `xorg-xwayland` is necessary for
-> better compatibility with _old_ X11 only applications.
+- Extra GUI apps `gimp vlc transmission-gtk`
+
+> Installing `xorg-xwayland` is necessary for better compatibility
+> with _old_ X11 only applications (a lot nowadays).
 
 - `mkdir -p ~/.config/alacritty && ln -s ~/Projects/chachi-shell/config/alacritty.yml ~/.config/alacritty/alacritty.yml`
 - `mkdir -p ~/.config/sway && ln -s ~/Projects/chachi-shell/config/sway.config ~/.config/sway/config`
@@ -275,13 +280,42 @@ AutoEnable=true
 
 #### Screenshot and Screen Recording
 
-- Install `grim slurp swappy`
-- Use `cute-sway-recorder` or `obs` for screen recording
+- Install `grim slurp swappy wf-recorder`
+- Might use `obs` for advanced screen recording
 
 ### Maintenance
 
-- Installing `archlinux-keyring` updates gpg keys storage
-- [Archlinux wiki](https://wiki.archlinux.org/title/System_maintenance)
+> - [Archlinux wiki maintenance documentation](https://wiki.archlinux.org/title/System_maintenance)
+> - Always use `pacman -Syu` to upgrade when installing new packages
+
+1. `archlinux-keyring` updates gpg keys storage
+2. `pacman-mirrorlist` maintains an updated list of mirrors
+3. Check and clear log errors:
+   - `systemctl --failed`
+   - `journalctl --priority 4 --reverse`
+   - `journalctl --vacuum-time=2days`
+4. Perform system upgrade:
+   - Check [archlinux news](https://archlinux.org/news/)
+   - `pacman -Qqe > ~/Projects/chachi-shell/config/pkglist.txt`
+   - `checkupdates` to list updates without applying them
+   - If it is safe, `pacman -Syyu`
+   - Restart after upgrade
+5. Update mirrorlist:
+   - `cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup`
+   - `sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup`
+   - `rankmirrors -n 10 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist`
+6. Clean the filesystem:
+   - Use `gdmap` to look for uneeded huge files
+   - `paccache -rk1` remove old pacman packages (keeps last 1 version)
+   - `pacman -Qtdq | pacman -Rns -` remove orphan packages
+   - Manually remove old files from
+     - `~/.config`
+     - `~/.chache`
+     - `~/.local/share`
+7. Update chachi-shell repo
+
+Missing things:
+- Errors in `/var/log`?
 
 ## Liferay
 
