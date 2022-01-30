@@ -265,6 +265,9 @@ AutoEnable=true
 > Installing `xorg-xwayland` is necessary for better compatibility
 > with _old_ X11 only applications (a lot nowadays).
 
+> `_JAVA_AWT_WM_NONREPARENTING=1` needs to be exported for some Java apps.
+> [Original IntelliJ post](https://intellij-support.jetbrains.com/hc/en-us/community/posts/4402682513426/comments/4402781934354)
+
 - `mkdir -p ~/.config/alacritty && ln -s ~/Projects/chachi-shell/config/alacritty.yml ~/.config/alacritty/alacritty.yml`
 - `mkdir -p ~/.config/sway && ln -s ~/Projects/chachi-shell/config/sway.config ~/.config/sway/config`
 - Run `sway`

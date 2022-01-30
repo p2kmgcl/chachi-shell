@@ -1,4 +1,5 @@
 export LANG=en_US.utf8
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Run sway on tty1
 
