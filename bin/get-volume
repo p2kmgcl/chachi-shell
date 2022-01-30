@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "$(pactl get-sink-volume @DEFAULT_SINK@ | cut -d' ' -f 6)"
+echo "$(pactl get-sink-volume @DEFAULT_SINK@ | head -n1 | cut -d'/' -f 2 | xargs)"
