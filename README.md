@@ -46,25 +46,34 @@
 4. Choose a nice font, currently using **IBM Plex Mono** everywhere.
 5. Choose a browser, currently using **Google Chrome**.
 6. Choose an editor I am using three of them right now:
-   - **IntelliJ Ultimate** for work, as I need a powerful IDE that handles JS and a large Java project.
-     My settings are synchronized with a JetBrains account.
+   - **IntelliJ Ultimate** for work, as I need a powerful IDE that handles JS
+     and a large Java project. My settings are synchronized with a JetBrains
+     account.
    - **Visual Studio Code** for other stuff (smaller projects, personal stuff).
-     I use [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync) extension.
-   - **NeoVIM** for quick hacks (although my configuration is prepared to handle more complex things).
+     I use
+     [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
+     extension.
+   - **NeoVIM** for quick hacks (although my configuration is prepared to handle
+     more complex things).
 
 ### Awesome apps
 
 - [seniore](https://github.com/p2kmgcl/seniore) to manage pull requests.
 - [holi](https://github.com/p2kmgcl/holi) as quick notes (post-it alternative).
-- [page-editor-dev-server](https://github.com/p2kmgcl/page-editor-dev-server) until we have something more stable.
-- [mdp](https://github.com/visit1985/mdp): CLI written in Python to run text based presentations in terminal.
-- [marp](https://marp.app/): Markdown presentation ecosystem, including editor extensions and PDF export.
+- [page-editor-dev-server](https://github.com/p2kmgcl/page-editor-dev-server)
+  until we have something more stable.
+- [mdp](https://github.com/visit1985/mdp): CLI written in Python to run text
+  based presentations in terminal.
+- [marp](https://marp.app/): Markdown presentation ecosystem, including editor
+  extensions and PDF export.
 
 ### Programming languages
 
 - Rust: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 - Deno: `curl -fsSL https://deno.land/x/install/install.sh | sh`
-- NodeJS: install [NVM](https://github.com/nvm-sh/nvm#installing-and-updating) and run `nvm install 16 && nvm use 16 && nvm alias default 16 && npm i -g npm yarn`
+- NodeJS: install [NVM](https://github.com/nvm-sh/nvm#installing-and-updating)
+  and run
+  `nvm install 16 && nvm use 16 && nvm alias default 16 && npm i -g npm yarn`
 - Python
 
 ### Tmux
@@ -118,36 +127,55 @@
 
 ## ArchLinux Adventure
 
-For the first steps, I am going to follow the [ArchLinux](https://wiki.archlinux.org/title/installation_guide) installation wiki. I have tried it some years ago, and it gives an usable installation with a minimum amount of packages installed.
+For the first steps, I am going to follow the
+[ArchLinux](https://wiki.archlinux.org/title/installation_guide) installation
+wiki. I have tried it some years ago, and it gives an usable installation with a
+minimum amount of packages installed.
 
 **Wiki FAQ**:
 
 - Only supports x86_64 architecture
 - Uses [systemd](https://wiki.archlinux.org/title/Systemd) as service manager.
-- `/bin`, `/sbin` and `/usr/sbin` are symbolic links to `/usr/bin`; `/lib` and `/lib64` are symbolic links to `/usr/lib`; [more info about filesystem hierarchy](https://man.archlinux.org/man/file-hierarchy.7).
+- `/bin`, `/sbin` and `/usr/sbin` are symbolic links to `/usr/bin`; `/lib` and
+  `/lib64` are symbolic links to `/usr/lib`;
+  [more info about filesystem hierarchy](https://man.archlinux.org/man/file-hierarchy.7).
 - `pacman -Qlq package_name` gives information about an installed package.
 - `systemd-boot` is used to manage a UEFI motherboard.
-- `xdg-user-dirs-update.service` takes care of creating user directories like "downloads" or "music". This might be enabled by default by the window manager.
+- `xdg-user-dirs-update.service` takes care of creating user directories like
+  "downloads" or "music". This might be enabled by default by the window
+  manager.
 - ACPI events (power buttons, laptop lid...) can be managed with systemd.
-- Firewall is not enabled by default, but iptables can be enabled and should work.
+- Firewall is not enabled by default, but iptables can be enabled and should
+  work.
 - By default it only supports english "standard" keyboard layout.
 - `tab-completion` needs to be enabled.
 
 ### About systemd
 
-Systemd not only manages services, but also sockets, mount points, etc. If no extension is specified when naming a unit, it will default to `.service`. By default it operates on system units (`--system` flag doesn't need to be specified). `--user` can be used to manage user units.
+Systemd not only manages services, but also sockets, mount points, etc. If no
+extension is specified when naming a unit, it will default to `.service`. By
+default it operates on system units (`--system` flag doesn't need to be
+specified). `--user` can be used to manage user units.
 
-There is a table with some common commands and how unit files work in the [systemd arch wiki](https://wiki.archlinux.org/title/Systemd#Basic_systemctl_usage).
+There is a table with some common commands and how unit files work in the
+[systemd arch wiki](https://wiki.archlinux.org/title/Systemd#Basic_systemctl_usage).
 
-In order to run privileged actions (like shutdown or reboot) as an unprivileged user, and without using sudo to spawn a whole privileged process. Polkit can be installed and configured. Most desktop environments have authentication agents that communicate with polkit.
+In order to run privileged actions (like shutdown or reboot) as an unprivileged
+user, and without using sudo to spawn a whole privileged process. Polkit can be
+installed and configured. Most desktop environments have authentication agents
+that communicate with polkit.
 
-With `/etc/systemd/logind.conf` ACPI events can be configured, and `/etc/systemd/sleep.conf` to configure how system is suspended.
+With `/etc/systemd/logind.conf` ACPI events can be configured, and
+`/etc/systemd/sleep.conf` to configure how system is suspended.
 
 ### Microcode updates
 
-`amd-ucode` or `intel-ucode` package needs to be installed in order to get microcode updates. Linux Kernel will take care of applying these updates when they come, but it needs to be enabled in the bootloader.
+`amd-ucode` or `intel-ucode` package needs to be installed in order to get
+microcode updates. Linux Kernel will take care of applying these updates when
+they come, but it needs to be enabled in the bootloader.
 
-In the case of systemd-boot, a `/boot/loader/entries/entry.conf` file needs to be updated with the microcode information, for example:
+In the case of systemd-boot, a `/boot/loader/entries/entry.conf` file needs to
+be updated with the microcode information, for example:
 
 ```
 title Arch Linux
@@ -157,7 +185,8 @@ initrd /initramfs-linux.img
 ...
 ```
 
-And then ensure that the latest microcode is available in the EFI system partition, mounted as `/boot`,
+And then ensure that the latest microcode is available in the EFI system
+partition, mounted as `/boot`,
 
 ### The adventure
 
@@ -172,7 +201,8 @@ Follow basic archlinux installation, taking into account:
 - `iwd` needs to be installed manually
 - `[intel/amd]-ucode` might need to be installed manually
 - `pacman-contrib` will help with upgrades
-- [systemd-boot](https://wiki.archlinux.org/title/Systemd-boot#Installing_the_EFI_boot_manager) configuration needs to be generated
+- [systemd-boot](https://wiki.archlinux.org/title/Systemd-boot#Installing_the_EFI_boot_manager)
+  configuration needs to be generated
 - `fuse2` is needed to use AppImages
 
 #### Enable network
@@ -204,8 +234,8 @@ Enable these units:
 
 #### Enable sudo
 
-> `sudo -lU [user]`: checks if user can use sudo
-> `usermod -a -G [group] [user]`: adds [user] to [group]
+> `sudo -lU [user]`: checks if user can use sudo `usermod -a -G [group] [user]`:
+> adds [user] to [group]
 
 - Install `sudo`
 - Creating `/etc/sudoers.d/00-sudo-group`
@@ -262,8 +292,8 @@ AutoEnable=true
 
 - Extra GUI apps `gimp vlc transmission-gtk`
 
-> Installing `xorg-xwayland` is necessary for better compatibility
-> with _old_ X11 only applications (a lot nowadays).
+> Installing `xorg-xwayland` is necessary for better compatibility with _old_
+> X11 only applications (a lot nowadays).
 
 > `_JAVA_AWT_WM_NONREPARENTING=1` needs to be exported for some Java apps.
 > [Original IntelliJ post](https://intellij-support.jetbrains.com/hc/en-us/community/posts/4402682513426/comments/4402781934354)
@@ -319,11 +349,13 @@ AutoEnable=true
 7. Update chachi-shell repo
 
 Missing things:
+
 - Errors in `/var/log`?
 
 ## Liferay
 
-1. Install [OracleJDK 8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
+1. Install
+   [OracleJDK 8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 2. Install [Apache ANT](https://downloads.apache.org/ant/binaries/)
 3. Install [Apache Maven](https://downloads.apache.org/maven/binaries/)
 4. Ensure `/usr/lib/jvm/default-java` points to Java home
@@ -343,10 +375,8 @@ Missing things:
 
 ### Build portal drama
 
-> If portal doesn't compile some steps must you follow,<br />
-> check this options each by each,<br />
-> and if it doesn't work<br />
-> go back to sleep.
+> If portal doesn't compile some steps must you follow,<br /> check this options
+> each by each,<br /> and if it doesn't work<br /> go back to sleep.
 
 - Update master and try again.
 - git clean -fd
@@ -359,21 +389,31 @@ Missing things:
 
 ### Random liferay notes
 
-- Liferay Loader full dependency graph: `Control Panel -> Configuration -> System Settings -> Infrastructure -> Javascript Loader -> Explain Module Resolutions`
-- Format source all changes in branch: `cd ~/Projects/community-portal/liferay-portal/portal-impl && ant format-source-current-branch`
+- Liferay Loader full dependency graph:
+  `Control Panel -> Configuration -> System Settings -> Infrastructure -> Javascript Loader -> Explain Module Resolutions`
+- Format source all changes in branch:
+  `cd ~/Projects/community-portal/liferay-portal/portal-impl && ant format-source-current-branch`
 - Create language files: `gradlew buildLang`
 - Format code: `gradlew formatSource`
 - Run FrontEnd tests: `gradlew packageRunTest`
-- Toggle jQuery: `Product menu -> Configuration -> System settings -> Third party -> jQuery`
+- Toggle jQuery:
+  `Product menu -> Configuration -> System settings -> Third party -> jQuery`
 - IE11 polyfills: `IETopHeadDynamicInclude.java`
-- Run poshi tests locally ([docs](https://liferay-learn-poshi.readthedocs.io/en/latest/intro/liferay-functional-testing.html)):
-  `ant -f build-test.xml run-selenium-test -Dtest.class=FileName#TestName`.
-  (If tests doesn't run, try emptying `bundles/logs` directory)
-- CSS RTL Conversion is made here: `frontend-css-rtl-servlet` and `CSSRTLConverter.java`
-- Feature flag: `echo "key=value" >> ~/Projects/community-portal/bundles/osgi/configs/com.liferay.layout.content.page.editor.web.internal.configuration.FFLayoutContentPageEditorConfiguration.config`
+- Run poshi tests locally
+  ([docs](https://liferay-learn-poshi.readthedocs.io/en/latest/intro/liferay-functional-testing.html)):
+  `ant -f build-test.xml run-selenium-test -Dtest.class=FileName#TestName`. (If
+  tests doesn't run, try emptying `bundles/logs` directory)
+- CSS RTL Conversion is made here: `frontend-css-rtl-servlet` and
+  `CSSRTLConverter.java`
+- Feature flag:
+  `echo "key=value" >> ~/Projects/community-portal/bundles/osgi/configs/com.liferay.layout.content.page.editor.web.internal.configuration.FFLayoutContentPageEditorConfiguration.config`
 - Fragment bundler rendering process: `FragmentEntryLinkModelListener.java`
-- Upgrade database: `cd ~/Projects/community-portal/bundles/tools/portal-tools-db-upgrade-client && ./db_upgrade.sh`
+- Upgrade database:
+  `cd ~/Projects/community-portal/bundles/tools/portal-tools-db-upgrade-client && ./db_upgrade.sh`
 - Connect to telnet: `telnet localhost 11311`
-- Liferay<=7.0 supports MySQL<=5.7 using driver `com.mysql.jdbc.Driver` (newer versions will fail)
-- Liferay<=6.7 supports MySQL<=5.5 using driver `com.mysql.jdbc.Driver` (newer versions will fail)
-- [Run Java tests with Ant](https://grow.liferay.com/people?p_p_id=com_liferay_wiki_web_portlet_WikiPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_com_liferay_wiki_web_portlet_WikiPortlet_struts_action=%2Fwiki%2Fview&_com_liferay_wiki_web_portlet_WikiPortlet_redirect=%2Fpeople%3Fp_p_id%3Dmorelikethisportlet_INSTANCE_XyekCsVnINzd%26p_p_lifecycle%3D2%26p_p_state%3Dnormal%26p_p_mode%3Dview%26p_p_resource_id%3Dget_search_results%26p_p_cacheability%3DcacheLevelPage%26_morelikethisportlet_INSTANCE_XyekCsVnINzd_currentURL%3D%252Fpeople%253Fp_p_id%253Dcom_liferay_wiki_web_portlet_WikiPortlet%2526p_p_lifecycle%253D0%2526p_p_state%253Dnormal%2526p_p_mode%253Dview%2526_com_liferay_wiki_web_portlet_WikiPortlet_struts_action%253D%25252Fwiki%25252Fview%2526_com_liferay_wiki_web_portlet_WikiPortlet_pageResourcePrimKey%253D330720%2526p_r_p_http%25253A%25252F%25252Fwww.liferay.com%25252Fpublic-render-parameters%25252Fwiki_nodeName%253DGrow%2526p_r_p_http%25253A%25252F%25252Fwww.liferay.com%25252Fpublic-render-parameters%25252Fwiki_title%253DLiferay%252BPortal%252BUnit%252BAnd%252BIntegration%252BTests&_com_liferay_wiki_web_portlet_WikiPortlet_pageResourcePrimKey=211858&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_nodeName=Grow&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_title=How+to+Debug+Unit+or+Integration+Test+Running+with+Ant): `ant test-method -Dtest.class=JSONUtilTest -Dtest.methods=testCacafutiNiceParty -Djunit-debug=true`
+- Liferay<=7.0 supports MySQL<=5.7 using driver `com.mysql.jdbc.Driver` (newer
+  versions will fail)
+- Liferay<=6.7 supports MySQL<=5.5 using driver `com.mysql.jdbc.Driver` (newer
+  versions will fail)
+- [Run Java tests with Ant](https://grow.liferay.com/people?p_p_id=com_liferay_wiki_web_portlet_WikiPortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_com_liferay_wiki_web_portlet_WikiPortlet_struts_action=%2Fwiki%2Fview&_com_liferay_wiki_web_portlet_WikiPortlet_redirect=%2Fpeople%3Fp_p_id%3Dmorelikethisportlet_INSTANCE_XyekCsVnINzd%26p_p_lifecycle%3D2%26p_p_state%3Dnormal%26p_p_mode%3Dview%26p_p_resource_id%3Dget_search_results%26p_p_cacheability%3DcacheLevelPage%26_morelikethisportlet_INSTANCE_XyekCsVnINzd_currentURL%3D%252Fpeople%253Fp_p_id%253Dcom_liferay_wiki_web_portlet_WikiPortlet%2526p_p_lifecycle%253D0%2526p_p_state%253Dnormal%2526p_p_mode%253Dview%2526_com_liferay_wiki_web_portlet_WikiPortlet_struts_action%253D%25252Fwiki%25252Fview%2526_com_liferay_wiki_web_portlet_WikiPortlet_pageResourcePrimKey%253D330720%2526p_r_p_http%25253A%25252F%25252Fwww.liferay.com%25252Fpublic-render-parameters%25252Fwiki_nodeName%253DGrow%2526p_r_p_http%25253A%25252F%25252Fwww.liferay.com%25252Fpublic-render-parameters%25252Fwiki_title%253DLiferay%252BPortal%252BUnit%252BAnd%252BIntegration%252BTests&_com_liferay_wiki_web_portlet_WikiPortlet_pageResourcePrimKey=211858&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_nodeName=Grow&p_r_p_http%3A%2F%2Fwww.liferay.com%2Fpublic-render-parameters%2Fwiki_title=How+to+Debug+Unit+or+Integration+Test+Running+with+Ant):
+  `ant test-method -Dtest.class=JSONUtilTest -Dtest.methods=testCacafutiNiceParty -Djunit-debug=true`
