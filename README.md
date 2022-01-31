@@ -352,6 +352,34 @@ Missing things:
 
 - Errors in `/var/log`?
 
+#### Log
+
+##### `x86/cpu: SGX disabled by BIOS`
+
+https://techlibrary.hpe.com/docs/iss/proliant_uefi/UEFI_Edgeline_103117/GUID-5B0A4E24-26B7-46CC-8A12-5C403A14B466.html
+
+Use this task to create a protected region of memory that is accessible only by
+certain authorized functions. Enable this feature only if you have the
+appropriate Intel driver on your OS. This feature is disabled by default.
+
+The first time you use this feature, set SGX to Enabled. Even if you plan to use
+Software Controlled, set SGX to Enabled until you complete the necessary steps
+in the OS for the Intel drivers. Set SGX to Software Controlled after you have
+configured your Intel drivers in the OS.
+
+Procedure:
+
+1. From the System Utilities screen, select System Configuration > BIOS/Platform
+   Configuration (RBSU) > System Options > Processor Options > Intel Software
+   Guard Extensions (SGX) and press Enter.
+2. Select a setting and press Enter ([enabled/disabled/software controlled]).
+   - Software Controlled - Enabling or disabling of SGX is determined by the
+     Intel drivers, which can be configured in the OS.
+   - If you select Enabled or Software Controlled, more configuration options
+     are displayed:
+     - Select Owner EPOCH input type
+     - PRMRR Size
+
 ## Liferay
 
 1. Install
