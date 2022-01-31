@@ -380,6 +380,18 @@ Procedure:
      - Select Owner EPOCH input type
      - PRMRR Size
 
+##### `tpm tpm0: [Firmware Bug]: TPM interrupt not working, polling instead`
+
+https://bbs.archlinux.org/viewtopic.php?id=263004
+
+```
+lsmod | grep tpm
+modinfo [tpm/tpm_crb/tpm_tis/tpm_tis_core]
+```
+
+[Blacklist modules](https://wiki.archlinux.org/title/Kernel_module#Blacklisting)
+by adding some `blacklist XXX` rules to `/etc/modprobe.d`.
+
 ## Liferay
 
 1. Install
