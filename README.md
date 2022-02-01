@@ -290,7 +290,7 @@ AutoEnable=true
 - Theme `arc-icon-theme arc-gtk-theme ttf-ibm-plex`
 - GUI apps `pcmanfm swappy lxappearance lxtask gdmap`
 
-- Extra GUI apps `gimp vlc transmission-gtk`
+- Extra GUI apps `gimp smplayer transmission-gtk`
 
 > Installing `xorg-xwayland` is necessary for better compatibility with _old_
 > X11 only applications (a lot nowadays).
