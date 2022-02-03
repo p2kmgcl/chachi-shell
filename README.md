@@ -475,7 +475,9 @@ by adding some `blacklist XXX` rules to `/etc/modprobe.d`.
 - Run poshi tests locally
   ([docs](https://liferay-learn-poshi.readthedocs.io/en/latest/intro/liferay-functional-testing.html)):
   `ant -f build-test.xml run-selenium-test -Dbrowser.chrome.bin.file=/path/to/chrome/binary -Dtest.class=FileName#TestName`.
-  (If tests doesn't run, try emptying `bundles/logs` directory)
+  (Specific chromium releases can be downloaded from
+  [cypress.io](https://chromium.cypress.io/)). (If tests doesn't run, try
+  emptying `bundles/logs` directory)
 - CSS RTL Conversion is made here: `frontend-css-rtl-servlet` and
   `CSSRTLConverter.java`
 - Feature flag:
