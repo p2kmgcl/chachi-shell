@@ -227,6 +227,17 @@ Enable these units:
 - `systemd-networkd.service`: manage network configuration
 - `systemd-resolved.service`: local DNS manager
 
+##### VPNC
+
+> - VPN client for Cisco hardware VPNs
+> - Use `vpnc --long-help`
+
+- Install `vpnc`
+- A reboot might be needed to have `/dev/net/tun` available
+- Copy `/etc/vpnc/default.conf` to `/etc/vpnc/client.conf`
+- Enable and start `vpnc@client` unit
+- Disable if needed
+
 #### Create new user
 
 - Install `xdg-user-dirs-update`
@@ -288,9 +299,18 @@ AutoEnable=true
 - Install `sway swayidle swaylock clipman mako alacritty`
 - Install `ulauncher` from AUR
 - Theme `arc-icon-theme arc-gtk-theme ttf-ibm-plex`
-- GUI apps `pcmanfm swappy lxappearance lxtask gdmap`
+- GUI apps:
 
-- Extra GUI apps `gimp smplayer transmission-gtk`
+  - `pcmanfm` file manager
+  - `xarchiver zip unzip` file compress
+  - `gimp` advanced image editor
+  - `swappy` simple image editor
+  - `inkscape` svg editor
+  - `lxappearance` settings editor
+  - `lxtask` task manager
+  - `gdmap` disk space explorer
+  - `smplayer` video player
+  - `transmission-gtk` torrent manager
 
 > Installing `xorg-xwayland` is necessary for better compatibility with _old_
 > X11 only applications (a lot nowadays).
@@ -308,6 +328,10 @@ AutoEnable=true
 - Install `helvum` and `pavucontrol` to manage audio
 - Install `playerctl`
 
+> TODO
+>
+> Switch on connect https://bbs.archlinux.org/viewtopic.php?id=227863
+
 #### Brightness
 
 - Install `brightnessctl`
@@ -316,6 +340,15 @@ AutoEnable=true
 
 - Install `grim slurp swappy wf-recorder`
 - Might use `obs` for advanced screen recording
+
+> TODO
+>
+> To have proper screen sharing, there is some extra work defined in
+> [this reddit thread](https://www.reddit.com/r/swaywm/comments/l4e55v/guide_how_to_screenshare_from_chromiumfirefox/):
+>
+> - Install `xdg-desktop-portal-wlr`
+> - Enable `pipewire` session in all browsers (chrome has a pipewire-capturer
+>   feature flag)
 
 ### Maintenance
 
