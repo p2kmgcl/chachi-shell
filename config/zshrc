@@ -1,5 +1,4 @@
 export LANG=en_US.utf8
-export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Run sway on tty1
 
@@ -9,6 +8,8 @@ if [ "$(tty)" = "/dev/tty1" ] ; then
     export MOZ_WEBRENDER=1
     export XDG_SESSION_TYPE=wayland
     export XDG_CURRENT_DESKTOP=sway
+    export _JAVA_AWT_WM_NONREPARENTING=1
+
     echo Booting sway...
     exec sway && exit
     echo Exiting...

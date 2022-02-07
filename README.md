@@ -341,14 +341,22 @@ AutoEnable=true
 - Install `grim slurp swappy wf-recorder`
 - Might use `obs` for advanced screen recording
 
-> TODO
->
-> To have proper screen sharing, there is some extra work defined in
-> [this reddit thread](https://www.reddit.com/r/swaywm/comments/l4e55v/guide_how_to_screenshare_from_chromiumfirefox/):
->
-> - Install `xdg-desktop-portal-wlr`
-> - Enable `pipewire` session in all browsers (chrome has a pipewire-capturer
->   feature flag)
+##### WebRTC (experimental)
+
+To have proper screen sharing, there is some extra work defined in
+[this reddit thread](https://www.reddit.com/r/swaywm/comments/l4e55v/guide_how_to_screenshare_from_chromiumfirefox/):
+
+- Install `xdg-desktop-portal-wlr`
+- Enable `pipewire` session in all browsers (Chrome has a
+  [pipewire](chrome://flags/#enable-webrtc-pipewire-capturer) feature flag)
+
+Sway config to enable desktop-portal-wlr:
+
+```
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec /usr/lib/xdg-desktop-portal-wlr
+exec /usr/lib/xdg-desktop-portal --replace
+```
 
 ### Maintenance
 
