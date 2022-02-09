@@ -395,6 +395,14 @@ Missing things:
 
 #### Log
 
+##### `virtualbox`
+
+- Install `virtualbox`
+- For linux kernel, install `virtualbox-host-modules-arch`
+- `virtualbox-guest-iso` and (AUR) `virtualbox-ext-oracle` provide extra
+  functionallity
+- Reboot or load kernel modules manually
+
 ##### `x86/cpu: SGX disabled by BIOS`
 
 https://techlibrary.hpe.com/docs/iss/proliant_uefi/UEFI_Edgeline_103117/GUID-5B0A4E24-26B7-46CC-8A12-5C403A14B466.html
