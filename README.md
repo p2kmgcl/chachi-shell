@@ -374,6 +374,7 @@ exec /usr/lib/xdg-desktop-portal --replace
    - `pacman -Qqe > ~/Projects/chachi-shell/config/pkglist.txt`
    - `checkupdates` to list updates without applying them
    - If it is safe, `pacman -Syyu`
+   - If it is safe, `yay -Syyu`
    - Restart after upgrade
 5. Update mirrorlist:
    - `cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup`
