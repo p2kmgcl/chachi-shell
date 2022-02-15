@@ -192,6 +192,7 @@ partition, mounted as `/boot`,
 
 > - `iwctl device list`
 > - `iwctl station [wlan0] scan`
+> - `iwctl station [wlan0] get-networks`
 > - `iwctl station [wlan0] connect [SSID]` (`/var/lib/iwd/*` is created)
 > - `systemctl reboot/poweroff/suspend/hybrid-sleep`
 
