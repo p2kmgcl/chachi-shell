@@ -395,7 +395,17 @@ Missing things:
 
 - Errors in `/var/log`?
 
-#### Log
+####
+
+##### Custom keyboard fn keys
+
+- Temporary change: `echo 2 >> /sys/module/hid_apple/parameters/fnmode`
+
+To make it permanent, edit `/etc/modprobe.d/hid_apple.conf` and add:
+
+```
+options hid_apple fnmode=2
+```
 
 ##### `virtualbox`
 
