@@ -1,8 +1,37 @@
 #!/bin/bash
 
-time="$(LC_ALL=es_ES.utf8 date +'%A, %d de %B, %H:%M')"
-volume="$(~/Projects/chachi-shell/bin/get-volume)"
-battery="$(cat /sys/class/power_supply/BAT0/capacity)%"
-brightness="$(~/Projects/chachi-shell/bin/get-brightness)"
+CMD_PREFIX=~/Projects/chachi-shell/bin/get
+PIPE_PREFIX=/tmp/bar-status
 
-echo "💡$brightness 🔋$battery 🔉$volume ⏳$time"
+COMMANDS="💡-5-brightness
+🔋-60-battery
+🔉-5-volume
+🗓️-1-time"
+
+update_output() {
+  all_output=""
+
+  while IFS= read -r line; do
+    IFS=- read icon delay name <<< "$line"
+    command_output=$(<${PIPE_PREFIX}-${name})
+    [ -z "$command_output" ] && exit
+    all_output="${all_output} ${icon} ${command_output}"
+  done <<< "$COMMANDS"
+
+  echo $all_output
+}
+
+run_daemon() {
+  while true; do
+    ${CMD_PREFIX}-${2} > "${PIPE_PREFIX}-${2}"
+    update_output
+    sleep $1
+  done
+}
+
+while IFS= read -r line; do
+  IFS=- read icon delay name <<< "$line"
+  run_daemon $delay $name &
+done <<< "$COMMANDS"
+
+wait
