@@ -1,0 +1,4 @@
+#!/bin/bash
+if [ "$(playerctl status)" = "Playing" ]; then
+  echo "🎧 $(playerctl metadata xesam:title)"
+fi

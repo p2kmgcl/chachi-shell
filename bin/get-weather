@@ -1,0 +1,3 @@
+#!/bin/bash
+weather=$(curl -s "wttr.in/${HOMETOWN}?format=1&lang=es")
+echo "${weather} "

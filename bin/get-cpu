@@ -1,0 +1,12 @@
+#!/bin/bash
+# https://stackoverflow.com/questions/9229333/how-to-get-overall-cpu-usage-e-g-57-on-linux
+value=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
+int=${value%.*}
+
+if [ "$int" -lt 20 ]; then
+  echo Relajado
+elif [ "$int" -lt 80 ]; then
+  echo Trabajando
+else
+  echo Agobiado
+fi
