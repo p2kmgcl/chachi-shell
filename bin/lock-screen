@@ -1,0 +1,4 @@
+#!/bin/bash
+
+playerctl pause
+swaylock -i ~/.background.jpg -s fill --indicator-idle-visible
