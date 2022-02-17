@@ -296,6 +296,7 @@ AutoEnable=true
 
 > - Sway is a compositor for wayland
 > - `swaymsg -t get_outputs` list outputs
+> - `swaymsg -t get_tree` list windows
 
 - Install `sway swayidle swaylock clipman mako alacritty`
 - Install `ulauncher` from AUR
