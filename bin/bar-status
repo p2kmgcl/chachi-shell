@@ -22,7 +22,7 @@ update_output() {
     if [ ! -z "$command_output" ]; then
       all_output="${all_output} ${icon} ${command_output} "
     else
-      if [ ! -z $previous_output ]; then
+      if [ ! -z "$previous_output" ]; then
         all_output="${all_output} ${icon} ${previous_output} "
       fi
     fi

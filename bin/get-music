@@ -1,13 +1,18 @@
 #!/bin/bash
-if [ "$(playerctl status)" = "Playing" ]; then
-  title=$(playerctl metadata xesam:title)
-  artist=$(playerctl metadata xesam:artist)
 
-  if [ ! -z "$title" ]; then
-    if [ ! -z "$artist" ]; then
-      echo "🎧 $title - $artist"
-    else
-      echo "🎧 $title"
+errorMessage=$(playerctl status 2>&1)
+
+if [ ! "${errorMessage}" = "No players found" ]; then
+  if [ "$(playerctl status)" = "Playing" ]; then
+    title=$(playerctl metadata xesam:title)
+    artist=$(playerctl metadata xesam:artist)
+
+    if [ ! -z "$title" ]; then
+      if [ ! -z "$artist" ]; then
+        echo "🎧 $title - $artist"
+      else
+        echo "🎧 $title"
+      fi
     fi
   fi
 fi

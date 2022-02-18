@@ -1,3 +1,7 @@
 #!/bin/bash
 weather=$(curl -s "wttr.in/${HOMETOWN}?format=1&lang=es")
-echo "${weather} "
+locationName=$(echo $weather | cut -d' ' -f 1)
+
+if [ ! "${locationName}" == "Unknown" ]; then
+  echo "${weather} "
+fi
