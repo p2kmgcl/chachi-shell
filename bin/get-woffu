@@ -1,0 +1,33 @@
+#!/bin/bash
+
+signs=$(cat $WOFFU_SIGNS_FILE | jq -c ".[]")
+isSignIn="🏖️"
+workTime=0
+lastIn=""
+lastOut=""
+
+while read entry; do
+  in=$(echo $entry | jq ".In")
+  out=$(echo $entry | jq ".Out")
+
+  if [ "$in" != "null" ]; then
+    lastIn=$(date -d $(echo $in | jq -r ".ShortTrueTime") +%s)
+    isSignIn="💪"
+  fi
+
+  if [ "$out" != "null" ]; then
+    lastOut=$(date -d $(echo $out | jq -r ".ShortTrueTime") +%s)
+    isSignIn="🏖️"
+  fi
+
+  if [ $lastOut -ge $lastIn ]; then
+    workTime=$(($workTime + ($lastOut - $lastIn)))
+  fi
+done <<< "$(echo -e "$signs")"
+
+if [ "$isSignIn" == "💪" ];  then
+  now=$(date +%s)
+  workTime=$(($workTime + ($now - $lastIn)))
+fi
+
+echo "$isSignIn $(date -d@${workTime} -u +%H:%M)"

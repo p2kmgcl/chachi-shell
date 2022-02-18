@@ -32,7 +32,7 @@
 
 1. Install `openssh`.
 2. Add a new SSH key.
-3. Install: `curl fzf git nano ripgrep tree`
+3. Install: `curl fzf git jq nano ripgrep tree`
 4. Install [Autojump](https://github.com/wting/autojump#name).
 5. Clone this project in `~/Projects/chachi-shell`
 6. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`
