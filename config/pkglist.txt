@@ -29,6 +29,7 @@ helvum
 insync
 intel-ucode
 iwd
+jq
 libtool
 linux
 linux-firmware
@@ -88,4 +89,5 @@ xdg-user-dirs
 xorg-xwayland
 yay
 zip
+zoom
 zsh
