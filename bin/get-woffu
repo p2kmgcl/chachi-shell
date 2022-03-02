@@ -7,6 +7,10 @@ lastIn=""
 lastOut=""
 
 while read entry; do
+  if [ -z "$entry" ]; then
+    continue
+  fi
+
   in=$(echo $entry | jq ".In")
   out=$(echo $entry | jq ".Out")
 
