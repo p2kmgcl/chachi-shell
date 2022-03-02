@@ -17,8 +17,11 @@ update_output() {
 
   while IFS= read -r line; do
     IFS=- read icon delay name <<< "$line"
-    command_output=$(<${PIPE_PREFIX}-${name})
-    previous_output=$(<${PIPE_PREFIX}-${name}.previous)
+
+    touch "${PIPE_PREFIX}-${name}"
+    touch "${PIPE_PREFIX}-${name}.previous"
+    command_output=$(<"${PIPE_PREFIX}-${name}")
+    previous_output=$(<"${PIPE_PREFIX}-${name}.previous")
 
     if [ ! -z "$command_output" ]; then
       all_output="${all_output} ${icon} ${command_output} "
@@ -34,6 +37,7 @@ update_output() {
 
 run_daemon() {
   while true; do
+    touch "${PIPE_PREFIX}-${2}"
     cp "${PIPE_PREFIX}-${2}" "${PIPE_PREFIX}-${2}.previous"
     ${CMD_PREFIX}-${2} > "${PIPE_PREFIX}-${2}"
     update_output
