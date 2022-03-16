@@ -1,0 +1,4 @@
+#!/bin/bash
+kill -SIGINT "$(ps -ef | grep wf-recorder | grep -v grep | awk '{print $2}')"
+sleep 1
+notify-send -t 1000 "Recording stopped"
