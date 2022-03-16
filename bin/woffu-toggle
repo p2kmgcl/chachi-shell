@@ -5,4 +5,7 @@ curl -s 'https://liferay.woffu.com/api/svc/signs/signs' \
   -H "Authorization: Bearer ${WOFFU_TOKEN}" \
   --data-raw "{\"UserId\":${WOFFU_USER_ID},\"DeviceId\":\"WebApp\"}"
 
+sleep 1
+~/Projects/chachi-shell/bin/woffu-load
+sleep 5
 ~/Projects/chachi-shell/bin/woffu-load
