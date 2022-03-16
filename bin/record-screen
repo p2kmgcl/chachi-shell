@@ -1,2 +1,4 @@
 #!/bin/bash
-wf-recorder -g "$(slurp)" -f "$HOME/Videos/screen-record-$(date +'%Y-%m-%d_%H-%M').mkv"
+FILE_PREFIX="$HOME/Videos/screen-record-$(date +'%Y-%m-%d_%H-%M')"
+wf-recorder -g "$(slurp)" -f "${FILE_PREFIX}.mkv"
+gifski --fps 20 -o "${FILE_PREFIX}.gif" "${FILE_PREFIX}.mkv"

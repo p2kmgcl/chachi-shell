@@ -340,7 +340,7 @@ AutoEnable=true
 
 #### Screenshot and Screen Recording
 
-- Install `grim slurp swappy wf-recorder`
+- Install `gifski grim slurp swappy wf-recorder`
 - Might use `obs` for advanced screen recording
 
 ##### WebRTC (experimental)
