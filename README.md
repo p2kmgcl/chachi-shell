@@ -341,7 +341,7 @@ AutoEnable=true
 #### Screenshot and Screen Recording
 
 - Install `gifski grim slurp swappy wf-recorder`
-- Might use `obs` for advanced screen recording
+- Might use `obs qt5-wayland` for advanced screen recording
 
 ##### WebRTC (experimental)
 
