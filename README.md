@@ -44,7 +44,7 @@
 2. Choose a **nice** wallpaper (take your time, this is important).
 3. Configure terminal emulator.
 4. Choose a nice font, currently using **IBM Plex Mono** everywhere.
-5. Choose a browser, currently using **Google Chrome**.
+5. Choose a browser, currently using **Firefox**.
 6. Choose an editor I am using three of them right now:
    - **IntelliJ Ultimate** for work, as I need a powerful IDE that handles JS
      and a large Java project. My settings are synchronized with a JetBrains
