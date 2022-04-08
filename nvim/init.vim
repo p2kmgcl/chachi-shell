@@ -7,7 +7,7 @@ Plug 'junegunn/vim-slash'
 
 " UI
 Plug 'vim-airline/vim-airline'
-Plug 'dikiaap/minimalist'
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'scrooloose/nerdtree'
 Plug 'liuchengxu/vim-which-key'
 Plug 'voldikss/vim-floaterm'
@@ -35,9 +35,9 @@ call plug#end()
 " Coloring
 set t_Co=256
 syntax on
-colorscheme minimalist
+colorscheme catppuccin
 filetype plugin indent on
-let g:airline_theme='minimalist'
+let g:airline_theme='catppuccin'
 
 " Theme tweaks
 highlight SignColumn guibg=none
