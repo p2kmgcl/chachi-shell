@@ -379,9 +379,9 @@ exec /usr/lib/xdg-desktop-portal --replace
    - If it is safe, `yay -Syyu`
    - Restart after upgrade
 5. Update mirrorlist:
-   - `cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup`
-   - `sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup`
-   - `rankmirrors -n 10 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist`
+   - `sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.pacnew`
+   - `rankmirrors -n 10 /etc/pacman.d/mirrorlist.pacnew > /etc/pacman.d/mirrorlist`
+   - `mv mirrorlist.pacnew mirrorlist.backup`
 6. Clean the filesystem:
    - Use `gdmap` to look for uneeded huge files
    - `paccache -rk1` remove old pacman packages (keeps last 1 version)
