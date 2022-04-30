@@ -1,10 +1,11 @@
+# Chachi Shell
+
 ![Terminal screenshot](https://raw.githubusercontent.com/p2kmgcl/chachi-shell/master/preview.png)
 
 - [Development environment](/p2kmgcl/chachi-shell/blob/master/docs/development-environment.md)
 - [Liferay](/p2kmgcl/chachi-shell/blob/master/docs/liferay.md)
-- [Linux distros]:
-  - [Archlinux](/p2kmgcl/chachi-shell/blob/master/docs/archlinux.md)
-  - [Fedora](/p2kmgcl/chachi-shell/blob/master/docs/fedora.md)
+- [Archlinux](/p2kmgcl/chachi-shell/blob/master/docs/archlinux.md)
+- [Fedora](/p2kmgcl/chachi-shell/blob/master/docs/fedora.md)
 
 ## Nice fonts
 
