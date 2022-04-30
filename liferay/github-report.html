@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>GitHub Report</title>
+    <style>
+      html {
+        font-size: 16px;
+        font-family: monospace;
+      }
+
+      .flex {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap-reverse;
+      }
+
+      h1 {
+        text-align: center;
+        margin-block-end: 3rem;
+      }
+
+      h2 {
+        margin-block-start: 0;
+      }
+
+      article {
+        margin: 0 0.5rem;
+      }
+
+      input,
+      button,
+      textarea {
+        font-family: inherit;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+      }
+
+      h1,
+      form,
+      table,
+      #joke {
+        width: 30rem;
+      }
+
+      #joke {
+        text-align: center;
+        font-style: italic;
+      }
+
+      button {
+        margin-block-start: 3rem;
+        width: 100%;
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        margin-block-end: 1rem;
+      }
+
+      label > span {
+        display: inline-block;
+        width: 13ch;
+      }
+
+      label > input,
+      label > textarea {
+        flex-grow: 1;
+      }
+
+      textarea {
+        min-height: 8rem;
+        resize: vertical;
+      }
+
+      table {
+        text-align: left;
+      }
+
+      tr.team {
+        color: cornflowerblue;
+      }
+
+      th,
+      td {
+        padding: 0.5rem 1rem;
+      }
+
+      thead > tr,
+      tr:nth-child(even) {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      header {
+        margin-block-end: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>GitHub Report</h1>
+
+    <form>
+      <label>
+        <span>User</span>
+        <input name="user" type="text" placeholder="liferay, liferay-echo..." />
+      </label>
+      <label>
+        <span>Repository</span>
+        <input name="repo" type="text" placeholder="clay, liferay-portal..." />
+      </label>
+      <label>
+        <span>From</span>
+        <input name="from" type="date" />
+      </label>
+      <label>
+        <span>To</span>
+        <input name="to" type="date" />
+      </label>
+      <label>
+        <span>Team members</span>
+        <textarea
+          name="team"
+          aria-describedby="teamDescription"
+          placeholder="p2kmgcl, chachi-front, gemeliers, ..."
+        ></textarea>
+      </label>
+      <button type="submit">Get report</button>
+      <pre lang="es" id="joke"></pre>
+    </form>
+
+    <script>
+      // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+      function shuffle(array) {
+        let currentIndex = array.length;
+        let randomIndex;
+
+        while (currentIndex !== 0) {
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex],
+            array[currentIndex],
+          ];
+        }
+
+        return array;
+      }
+
+      const JOKES = [
+        "Mira yo me voy, quito el Woffu.\nPasa una buena tarde.\n¡Besis!",
+        "En serio, roto, pero rotísimo.\nSiempre puedes seguir esperando ¯\\_(ツ)_/¯",
+        "Me juego lo que quieras a que está roto.",
+        "Pff esto tarda mucho.\nYo escribiría a Pablo a ver qué pasa.",
+        ". . .",
+        ...shuffle([
+          "¡Seguid avanzando! Y todos se perdieron\nporque Vanzando no sabía por dónde era.",
+          "¡Abordar el barco!\nY el barco quedó precioso.",
+          "Coméos el bocata de tortilla.\nY Tortilla se quedó sin comer.",
+          "Niños, no juguéis con fuego.\nY Fuego se quedó sin amigos.",
+          "Van dos y se cae el del medio.",
+          "Niños, no juguéis en la tierra.\nY los niños se fueron a jugar a Marte.",
+          "¿Qué le dice una foquita a su madre?\nHey mother foca.",
+          "¿Qué tiene Darth Vader en la nevera?\nHelado oscuro.",
+          "Va un barco de vela y se apaga.",
+          "Va un barco al muelle y rebota.",
+        ]),
+        "Esto a veces tarda un poquito,\nasí que ahí van algunos chistes\npara amenizar la velada.",
+      ];
+
+      const LOCAL_STORAGE_KEY = "github-report-v1";
+      const form = document.querySelector("form");
+
+      try {
+        const data = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+
+        for (const [key, value] of Object.entries(data)) {
+          if (form.elements[key]) {
+            form.elements[key].value = value;
+          }
+        }
+      } catch (error) {}
+
+      async function getPullRequests(user, repo, from, to) {
+        const fetchPRs = async (_page) => {
+          const url = new URL(
+            `https://api.github.com/repos/${user}/${repo}/pulls`
+          );
+
+          url.searchParams.set("page", _page);
+          url.searchParams.set("per_page", 100);
+          url.searchParams.set("sort", "created");
+          url.searchParams.set("direction", "desc");
+          url.searchParams.set("state", "all");
+
+          const response = await fetch(url.toString());
+
+          if (response.status === 403) {
+            const resetHeader = response.headers.get("x-ratelimit-reset");
+            const resetDate = new Date(Number(`${resetHeader}000`));
+
+            alert(
+              `API limit reached, wait until ${resetDate.toLocaleTimeString()}`
+            );
+            console.error(response);
+
+            return [];
+          }
+
+          return response.json();
+        };
+
+        let page = 1;
+        const prs = [];
+
+        while (true) {
+          console.log({ prs, page });
+          const nextPRs = await fetchPRs(page);
+
+          for (const pr of nextPRs) {
+            const date = new Date(pr.created_at);
+
+            if (date <= to && date >= from) {
+              prs.push(pr);
+            } else if (date < from) {
+              return prs;
+            }
+          }
+
+          if (nextPRs.length < 100) return prs;
+          page = page + 1;
+        }
+      }
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const formData = new FormData(form);
+
+        const button = document.querySelector("button");
+        button.textContent = "Getting report...";
+        button.disabled = true;
+
+        const data = {};
+        for (const [key, value] of formData.entries()) data[key] = value;
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+
+        const { user, repo } = data;
+        const from = new Date(data.from);
+        const to = new Date(data.to);
+
+        const shutUp = (() => {
+          const el = document.getElementById("joke");
+          let timeoutId;
+
+          el.style.opacity = 0;
+          el.animate([{ opacity: 0 }, { opacity: 1 }], {
+            delay: 500,
+            duration: 300,
+            fill: "forwards",
+          });
+
+          const tick = () => {
+            if (!JOKES.length) return;
+            const joke = JOKES.pop();
+            el.textContent = joke;
+            timeoutId = setTimeout(tick, joke.split(/[\s,.]/).length * 700);
+          };
+
+          el.textContent = JOKES.pop();
+          timeoutId = setTimeout(tick, 5000);
+
+          return () => {
+            clearTimeout(timeoutId);
+          };
+        })();
+
+        getPullRequests(user, repo, from, to).then((pullRequests) => {
+          shutUp();
+          let prCountPerUser = [];
+
+          for (const pr of pullRequests) {
+            if (pr.user.type === "Bot") {
+              continue;
+            }
+
+            const user = pr.user.login;
+            prCountPerUser[user] = prCountPerUser[user] || 0;
+            prCountPerUser[user] += 1;
+          }
+
+          prCountPerUser = Object.entries(prCountPerUser);
+
+          const team = form.elements.team.value
+            .trim()
+            .split(",")
+            .map((m) => m.trim());
+
+          document.body.innerHTML = `
+                  <h1>GitHub Report</h1>
+
+                  <div class="flex">
+                  <table>
+                    <thead>
+                      <th>GitHub user</th>
+                      <th>PR Count</th>
+                    </thead>
+                    <tbody>
+                      ${[...prCountPerUser]
+                        .sort((a, b) => b[1] - a[1])
+                        .map(
+                          ([user, count]) => `
+                          <tr class="${team.includes(user) ? "team" : ""}">
+                            <td>${user}</td>
+                            <td>${count}</td>
+                          </tr>
+                        `
+                        )
+                        .join("")}
+                    </tbody>
+                  </table>
+
+                  <article>
+                    <header>
+                      <h2>${user}/${repo}</h2>
+                      <p><strong>From</strong>: ${from.toLocaleDateString()}</p>
+                      <p><strong>To</strong>: ${to.toLocaleDateString()}</p>
+                    </header>
+
+                    <p><strong>PRs from a team member</strong>: ${prCountPerUser
+                      .map((o) => (team.includes(o[0]) ? o[1] : 0))
+                      .reduce((a, b) => a + b, 0)}</p>
+                    <p><strong>PRs from other people</strong>: ${prCountPerUser
+                      .map((o) => (!team.includes(o[0]) ? o[1] : 0))
+                      .reduce((a, b) => a + b, 0)}</p>
+
+                    <a href="#" download="github-report.csv" id="download">
+                      Download data as CSV
+                    </button>
+                  </article>
+                  </div>
+                `;
+
+          const downloadLink = document.getElementById("download");
+
+          const getCSV = () => {
+            console.log(pullRequests);
+
+            const data = [
+              [
+                "number",
+                "url",
+                "created_at",
+                "closed_at",
+                "updated_at",
+                "state",
+                "title",
+                "body",
+                "user_login",
+                "user_type",
+              ],
+              ...pullRequests.map((pr) => [
+                pr.number.toString(),
+                pr.html_url,
+                pr.created_at,
+                pr.closed_at || "",
+                pr.updated_at || "",
+                pr.state,
+                pr.title,
+                encodeURIComponent(pr.body || ""),
+                pr.user.login,
+                pr.user.type,
+              ]),
+            ];
+
+            console.log(data);
+            return data
+              .map((row) =>
+                row
+                  .map((cell) => cell.replace(/,/g, ".").split("\n").join(" "))
+                  .join(",")
+              )
+              .join("\n");
+          };
+
+          downloadLink.href = encodeURI(
+            `data:text/csv;charset=utf-8,${getCSV()}`
+          );
+        });
+      });
+
+      form.elements[0].focus();
+    </script>
+  </body>
+</html>
