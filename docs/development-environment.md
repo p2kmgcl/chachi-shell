@@ -10,30 +10,10 @@
 6. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`
 7. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`
 
-### Custom interface
-
-1. Cleanup your system. I am using **Archlinux**.
-2. Choose a **nice** wallpaper (take your time, this is important).
-3. Configure terminal emulator.
-4. Choose a nice font, currently using **IBM Plex Mono** everywhere.
-5. Choose a browser, currently using **Firefox**.
-6. Choose an editor I am using three of them right now:
-   - **IntelliJ Ultimate** for work, as I need a powerful IDE that handles JS
-     and a large Java project. My settings are synchronized with a JetBrains
-     account.
-   - **Visual Studio Code** for other stuff (smaller projects, personal stuff).
-     I use
-     [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync)
-     extension.
-   - **NeoVIM** for quick hacks (although my configuration is prepared to handle
-     more complex things).
-
 ### Awesome apps
 
 - [seniore](https://github.com/p2kmgcl/seniore) to manage pull requests.
 - [holi](https://github.com/p2kmgcl/holi) as quick notes (post-it alternative).
-- [page-editor-dev-server](https://github.com/p2kmgcl/page-editor-dev-server)
-  until we have something more stable.
 - [mdp](https://github.com/visit1985/mdp): CLI written in Python to run text
   based presentations in terminal.
 - [marp](https://marp.app/): Markdown presentation ecosystem, including editor
