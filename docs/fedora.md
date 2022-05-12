@@ -3,10 +3,18 @@
 ## Replacing gnome-shell with sway
 
 ```
+# Used to get weather
 HOMETOWN="some-place"
+
+# Login system
 WOFFU_SIGNS_FILE="/tmp/woffu-signs"
 WOFFU_TOKEN="some-token"
+
+# Bluetooth quick connect
 HEADPHONES_ID="some-mac-id"
+
+# Fix some Java apps (like intellij)
+_JAVA_AWT_WM_NONREPARENTING=1
 ```
 
 Packages:
