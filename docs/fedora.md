@@ -11,7 +11,8 @@ HEADPHONES_ID="some-mac-id"
 
 Packages:
 
-- `dnf install sway swayidle swaylock alacritty ulauncher mako`
+- `dnf install sway swayidle swaylock alacritty ulauncher mako grim slurp swappy wf-recorder`
+- `cargo install gifski`
 - `dnf remove gnome-terminal`
 
 Config files:
