@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:
+  liferay_portal_database:
+    image: mysql:5.7
+    container_name: liferay_portal_database
+    restart: always
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
+      timeout: 20s
+      retries: 10
+    environment:
+      MYSQL_DATABASE: 'liferay_portal'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ROOT_HOST: '172.17.0.1'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 26677
+        hard: 46677
