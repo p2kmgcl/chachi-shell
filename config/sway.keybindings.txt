@@ -1,0 +1,29 @@
+Super+d               Toggle ulauncher
+Super+Return          Launch terminal
+Super+Shift+Return    Launch browser
+Super+w               Toggle Woffu
+Super+Shift+b         Bluetooth quickconnect
+
+Print                 Make a screenshot
+Ctrl+Print            Record screen as gif
+Shift+Print           Record screen
+Shift+Ctrl+Print      Record screen with audio
+Alt+Print             Stop recording screen
+
+Super+Arrow           Move focus
+Super+Shift+Arrow     Move window
+Super+[0-9]           Switch to desktop
+Super+Shift+[0-9]     Move window to desktop
+
+Super+LeftClick       Move window
+Super+RightClick      Resize window
+
+Super+s               Toggle sticky
+Super+Shift+f         Toggle floating
+Super+f               Toggle fullscreen
+Super+Shift+q         Kill current window
+
+Super+l               Lock screen
+Super+Shift+c         Reload sway
+Super+Shift+e         Exit sway
+Super+h               Show help
