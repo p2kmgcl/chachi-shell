@@ -173,7 +173,8 @@ AutoEnable=true
 
 - Install `sway swayidle swaylock clipman mako alacritty`
 - Install `ulauncher` from AUR
-- Theme `arc-icon-theme arc-gtk-theme ttf-ibm-plex`
+- Theme
+  `adwaita-cursor-theme adwaita-icon-theme adwaita-gtk2-theme ttf-ibm-plex`
 - GUI apps:
 
   - `pcmanfm` file manager
