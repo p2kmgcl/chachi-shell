@@ -19,7 +19,7 @@ _JAVA_AWT_WM_NONREPARENTING=1
 
 Packages:
 
-- `dnf install sway swayidle swaylock alacritty ulauncher mako grim slurp swappy wf-recorder`
+- `dnf install sway swayidle swaylock alacritty ulauncher mako grim pipewire-utils pulseaudio-utils slurp swappy wf-recorder`
 - `cargo install gifski`
 - `dnf remove gnome-terminal`
 
