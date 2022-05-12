@@ -3,10 +3,22 @@
 value=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}')
 int=${value%.*}
 
+emoji=🧠
+
+if [ -f /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ]; then
+  governor=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
+
+  if [ "performance" = "${governor}" ]; then
+    emoji=📈
+  else
+    emoji=📉
+  fi
+fi
+
 if [ "$int" -lt 20 ]; then
-  echo Relajado
+  echo "${emoji}Relajado"
 elif [ "$int" -lt 80 ]; then
-  echo Trabajando
+  echo "${emoji}Trabajando"
 else
-  echo Agobiado
+  echo "${emoji}Agobiado"
 fi

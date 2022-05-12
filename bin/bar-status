@@ -6,7 +6,7 @@ PIPE_PREFIX=/tmp/bar-status
 COMMANDS="-2-music
 -2-woffu
 -1800-weather
-🧠-5-cpu
+-5-cpu
 💡-5-brightness
 🔋-60-battery
 🔉-5-volume
