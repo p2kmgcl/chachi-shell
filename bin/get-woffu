@@ -1,10 +1,29 @@
 #!/bin/bash
 
+function woffu_load {
+  curl -s 'https://liferay.woffu.com/api/signs/slots' \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H "Authorization: Bearer ${WOFFU_TOKEN}" > $WOFFU_SIGNS_FILE
+}
+
+if [ ! -f $WOFFU_SIGNS_FILE ]; then
+  woffu_load
+fi
+
+now=$(date +%s)
+lastLoad=$(date -r $WOFFU_SIGNS_FILE +%s)
+lastLoadDelta=$(($now - $lastLoad))
+lastLoadMaxDelta=600 # seconds
+
+if [ $lastLoadDelta -ge $lastLoadMaxDelta ]; then
+  woffu_load
+fi
+
 signs=$(cat $WOFFU_SIGNS_FILE | jq -c ".[]")
 isSignIn="🏖️"
 workTime=0
-lastIn=""
-lastOut=""
+lastIn=0
+lastOut=0
 
 while read entry; do
   if [ -z "$entry" ]; then
