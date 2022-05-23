@@ -7,5 +7,7 @@ curl -s 'https://liferay.woffu.com/api/svc/signs/signs' \
 
 sleep 1
 rm $WOFFU_SIGNS_FILE
+rm $WOFFU_PRESENCE_FILE
 sleep 5
 rm $WOFFU_SIGNS_FILE
+rm $WOFFU_PRESENCE_FILE

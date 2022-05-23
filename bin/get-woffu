@@ -1,27 +1,20 @@
 #!/bin/bash
 
-function woffu_load {
-  curl -s 'https://liferay.woffu.com/api/signs/slots' \
-    -H 'Content-Type: application/json;charset=UTF-8' \
-    -H "Authorization: Bearer ${WOFFU_TOKEN}" > $WOFFU_SIGNS_FILE
-}
-
 if [ ! -f $WOFFU_SIGNS_FILE ]; then
-  woffu_load
+  curl -s "https://liferay.woffu.com/api/signs/slots" \
+    -H "Content-Type: application/json;charset=UTF-8" \
+    -H "Authorization: Bearer ${WOFFU_TOKEN}" > $WOFFU_SIGNS_FILE
 fi
 
-now=$(date +%s)
-lastLoad=$(date -r $WOFFU_SIGNS_FILE +%s)
-lastLoadDelta=$(($now - $lastLoad))
-lastLoadMaxDelta=600 # seconds
-
-if [ $lastLoadDelta -ge $lastLoadMaxDelta ]; then
-  woffu_load
+if [ ! -f $WOFFU_PRESENCE_FILE ]; then
+  curl -s "https://liferay.woffu.com/api/users/${WOFFU_USER_ID}/diaries/presence/summary?calculateYearHours=false" \
+    -H "Content-Type: application/json;charset=UTF-8" \
+    -H "Authorization: Bearer ${WOFFU_TOKEN}" > $WOFFU_PRESENCE_FILE
 fi
 
 signs=$(cat $WOFFU_SIGNS_FILE | jq -c ".[]")
 isSignIn="🏖️"
-workTime=0
+workSeconds=0
 lastIn=0
 lastOut=0
 
@@ -44,13 +37,27 @@ while read entry; do
   fi
 
   if [ $lastOut -ge $lastIn ]; then
-    workTime=$(($workTime + ($lastOut - $lastIn)))
+    workSeconds=$(($workSeconds + ($lastOut - $lastIn)))
   fi
 done <<< "$(echo -e "$signs")"
 
 if [ "$isSignIn" == "💪" ];  then
   now=$(date +%s)
-  workTime=$(($workTime + ($now - $lastIn)))
+  workSeconds=$(($workSeconds + ($now - $lastIn)))
 fi
 
-echo "$isSignIn $(date -d@${workTime} -u +%H:%M)"
+lastHoursWorked=$(cat /tmp/woffu-presence | jq -c ".[0].HoursWorked")
+lastSecondsWorked=$(echo "${lastHoursWorked}*3600" | bc -l)
+totalHoursToWork=$(cat /tmp/woffu-presence | jq -c ".[0].HoursToWork")
+totalSecondsToWork=$(echo "${totalHoursToWork}*3600" | bc -l)
+pendingSeconds=$(printf %.0f $(echo "${totalSecondsToWork}-${lastSecondsWorked}-${workSeconds}" | bc -l))
+pendingHours=$(printf %f $(echo "scale=10; ${pendingSeconds#-}/3600" | bc -l) | cut -f1 -d'.')
+pendingMinutes=$(printf %.0f $(echo "($(printf %0.2f $(echo "${pendingSeconds#-}/3600" | bc -l))-${pendingHours})*60" | bc -l))
+
+if [ 0 -ge $pendingSeconds ]; then
+  pendingTime="+$(printf %02d:%02d ${pendingHours} ${pendingMinutes})"
+else
+  pendingTime="-$(printf %02d:%02d ${pendingHours} ${pendingMinutes})"
+fi
+
+echo "$isSignIn $(date -d@${workSeconds} -u +%H:%M) / ${pendingTime}"

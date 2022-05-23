@@ -8,7 +8,9 @@ HOMETOWN="some-place"
 
 # Login system
 WOFFU_SIGNS_FILE="/tmp/woffu-signs"
+WOFFU_PRESENCE_FILE="/tmp/woffu-presence"
 WOFFU_TOKEN="some-token"
+WOFFU_USER_ID="some-user-id"
 
 # Bluetooth quick connect
 HEADPHONES_ID="some-mac-id"
