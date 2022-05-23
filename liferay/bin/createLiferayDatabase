@@ -1,5 +1,3 @@
 #!/bin/bash
 
-cd ~/Projects/chachi-shell/liferay/mysql && docker compose up --detach
-echo "Waiting for healthy status..."
-while [ "$(docker inspect -f '{{ .State.Health.Status }}' liferay_portal_database)" != "healthy" ]; do sleep 1; done
+cd ~/Projects/chachi-shell/liferay/mysql && docker compose up --detach --wait
