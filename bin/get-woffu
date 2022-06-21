@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if test `find ${WOFFU_SIGNS_FILE} -mmin +30`; then
+  rm $WOFFU_SIGNS_FILE
+fi
+
+if test `find ${WOFFU_PRESENCE_FILE} -mmin +30`; then
+  rm $WOFFU_PRESENCE_FILE
+fi
+
 if [ ! -f $WOFFU_SIGNS_FILE ]; then
   curl -s "https://liferay.woffu.com/api/signs/slots" \
     -H "Content-Type: application/json;charset=UTF-8" \
