@@ -32,4 +32,21 @@ Config files:
 - `mkdir -p ~/.config/alacritty && ln -s ~/Projects/chachi-shell/config/alacritty.yml ~/.config/alacritty/alacritty.yml`
 - `mkdir -p ~/.config/sway && ln -s ~/Projects/chachi-shell/config/sway.config ~/.config/sway/config`
 
-### Rofi
+### Custom keyboard fn keys
+
+- Temporary change: `echo 2 >> /sys/module/hid_apple/parameters/fnmode`
+
+To make it permanent, edit `/etc/modprobe.d/hid_apple.conf` and add:
+
+```
+options hid_apple fnmode=2
+```
+
+## Replacing sway with i3
+
+- `dnf install i3 i3lock i3status rofi ImageMagick xrandr feh`
+
+Config files:
+
+- `mkdir -p ~/.i3/sway && ln -s ~/Projects/chachi-shell/config/i3.config ~/.config/i3/config`
+- `ln -s ~/Projects/chachi-shell/config/xresources ~/.Xresources`
