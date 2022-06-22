@@ -15,13 +15,13 @@ WOFFU_USER_ID="some-user-id"
 # Bluetooth quick connect
 HEADPHONES_ID="some-mac-id"
 
-# Fix some Java apps (like intellij)
+# Using wayland
 _JAVA_AWT_WM_NONREPARENTING=1
 ```
 
 Packages:
 
-- `dnf install sway swayidle swaylock alacritty ulauncher mako grim pipewire-utils pulseaudio-utils brightnessctl slurp swappy wf-recorder`
+- `dnf install sway swayidle swaylock alacritty rofi mako grim pipewire-utils pulseaudio-utils brightnessctl slurp swappy wf-recorder`
 - `cargo install gifski --features=video` (or use binary file provided in
   github)
 - `dnf remove gnome-terminal`

@@ -1,4 +1,5 @@
-Super+d               Toggle ulauncher
+Super+d               Toggle menu
+Super+Shift+d         Toggle file browser
 Super+Return          Launch terminal
 Super+Shift+Return    Launch browser
 Super+w               Toggle Woffu
