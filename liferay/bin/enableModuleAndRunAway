@@ -1,0 +1,3 @@
+#!/bin/bash
+
+{ echo "scr:enable $1"; sleep 2; echo "disconnect"; } | telnet localhost 11311
