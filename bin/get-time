@@ -3,4 +3,4 @@ weekday=$(LC_ALL=es_ES.utf8 date +'%A')
 day=$(LC_ALL=es_ES.utf8 date +'%d')
 month=$(LC_ALL=es_ES.utf8 date +'%B')
 time=$(LC_ALL=es_ES.utf8 date +'%H:%M')
-echo "${weekday^}, ${day} de ${month^}, ${time}"
+echo "🗓️ ${weekday^}, ${day} de ${month^}, ${time}"

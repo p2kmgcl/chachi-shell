@@ -3,20 +3,20 @@
 CMD_PREFIX=~/Projects/chachi-shell/bin/get
 PIPE_PREFIX=/tmp/bar-status
 
-COMMANDS="-2-music
--2-woffu
--1800-weather
--5-cpu
-💡-5-brightness
--60-battery
-🔉-5-volume
-🗓️-1-time"
+COMMANDS="2-music
+2-woffu
+1800-weather
+5-cpu
+5-brightness
+60-battery
+5-volume
+1-time"
 
 update_output() {
   all_output=""
 
   while IFS= read -r line; do
-    IFS=- read icon delay name <<< "$line"
+    IFS=- read delay name <<< "$line"
 
     touch "${PIPE_PREFIX}-${name}"
     touch "${PIPE_PREFIX}-${name}.previous"
@@ -24,10 +24,10 @@ update_output() {
     previous_output=$(<"${PIPE_PREFIX}-${name}.previous")
 
     if [ ! -z "$command_output" ]; then
-      all_output="${all_output} ${icon} ${command_output} "
+      all_output="${all_output} ${command_output} "
     else
       if [ ! -z "$previous_output" ]; then
-        all_output="${all_output} ${icon} ${previous_output} "
+        all_output="${all_output} ${previous_output} "
       fi
     fi
   done <<< "$COMMANDS"
@@ -46,7 +46,7 @@ run_daemon() {
 }
 
 while IFS= read -r line; do
-  IFS=- read icon delay name <<< "$line"
+  IFS=- read delay name <<< "$line"
   run_daemon $delay $name &
 done <<< "$COMMANDS"
 

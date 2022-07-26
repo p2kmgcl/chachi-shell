@@ -3,7 +3,7 @@
 value=$(cat /sys/class/power_supply/BAT0/capacity)
 
 if [ "${value}" -lt "30" ]; then
-  echo "🪫 ${value}"
+  echo "🪫 ${value}%"
 else
-  echo "🔋 ${value}"
+  echo "🔋 ${value}%"
 fi
