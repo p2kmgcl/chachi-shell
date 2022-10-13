@@ -8,6 +8,7 @@ Plug 'junegunn/vim-slash'
 " UI
 Plug 'vim-airline/vim-airline'
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+let g:catppuccin_flavour = "latte"
 Plug 'scrooloose/nerdtree'
 Plug 'liuchengxu/vim-which-key'
 Plug 'voldikss/vim-floaterm'
