@@ -3,6 +3,7 @@
 - [page-editor-dev-server](https://github.com/p2kmgcl/page-editor-dev-server)
   until we have something more stable.
 - [testing-fragments](https://github.com/p2kmgcl/testing-fragments)
+- Some antivirus software.
 
 1. Install
    [OracleJDK 8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
