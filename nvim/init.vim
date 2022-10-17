@@ -6,9 +6,10 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/vim-slash'
 
 " UI
-Plug 'vim-airline/vim-airline'
+let g:catppuccin_flavour='latte'
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
-let g:catppuccin_flavour = "latte"
+let g:airline_theme='catppuccin'
+Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'liuchengxu/vim-which-key'
 Plug 'voldikss/vim-floaterm'
@@ -38,7 +39,8 @@ set t_Co=256
 syntax on
 colorscheme catppuccin
 filetype plugin indent on
-let g:airline_theme='catppuccin'
+
+lua require("catppuccin").setup()
 
 " Theme tweaks
 highlight SignColumn guibg=none
