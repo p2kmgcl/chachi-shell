@@ -1,4 +1,4 @@
-use crate::util::tmp;
+use crate::util::{notify, tmp};
 use chrono::{Local, Timelike};
 use std::{env, time::Duration};
 
@@ -7,6 +7,12 @@ const SIGNS_FILE_NAME: &str = "woffu-signs";
 const PRESENCE_FILE_NAME: &str = "woffu-presence";
 
 pub fn toggle() {
+    let mut notification = notify::send()
+        .body("Updating woffu sign status...")
+        .timeout(0)
+        .show()
+        .unwrap();
+
     let client = reqwest::blocking::Client::new();
     let token = env::var("WOFFU_TOKEN").unwrap();
     let user_id = env::var("WOFFU_USER_ID").unwrap();
@@ -24,6 +30,13 @@ pub fn toggle() {
 
     tmp::expire_file(SIGNS_FILE_NAME, 0);
     tmp::expire_file(PRESENCE_FILE_NAME, 0);
+
+    notification
+        .body("Woffu sign status updated.")
+        .timeout(1000);
+
+    std::thread::sleep(Duration::from_secs(1));
+    notification.update();
 }
 
 pub fn get_status() {
