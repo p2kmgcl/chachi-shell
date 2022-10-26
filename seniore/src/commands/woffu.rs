@@ -11,14 +11,14 @@ pub fn toggle() {
         .body("Updating woffu sign status...")
         .timeout(0)
         .show()
-        .unwrap();
+        .expect("notification should be created");
 
     let client = reqwest::blocking::Client::new();
-    let token = env::var("WOFFU_TOKEN").unwrap();
-    let user_id = env::var("WOFFU_USER_ID").unwrap();
+    let token = env::var("WOFFU_TOKEN").expect("WOFFU_TOKEN env variable");
+    let user_id = env::var("WOFFU_USER_ID").expect("WOFFU_USER_ID env variable");
 
     client
-        .post(format!("https://liferay.woffu.com/api/svc/signs/signs"))
+        .post("https://liferay.woffu.com/api/svc/signs/signs")
         .header("Content-Type", "application/json;charset=UTF-8")
         .bearer_auth(token)
         .body(format!(
@@ -26,7 +26,7 @@ pub fn toggle() {
             user_id
         ))
         .send()
-        .unwrap();
+        .expect("woffu server should be available");
 
     tmp::expire_file(SIGNS_FILE_NAME, 0);
     tmp::expire_file(PRESENCE_FILE_NAME, 0);
@@ -45,17 +45,19 @@ pub fn get_status() {
 
         let woffu_signs = tmp::read_json(SIGNS_FILE_NAME).unwrap_or_else(|_| {
             let client = reqwest::blocking::Client::new();
-            let token = env::var("WOFFU_TOKEN").unwrap();
+            let token = env::var("WOFFU_TOKEN").expect("WOFFU_TOKEN env variable");
 
             let updated_json = client
                 .get("https://liferay.woffu.com/api/signs/slots")
                 .header("Content-Type", "application/json;charset=UTF-8")
                 .bearer_auth(token)
                 .send()
-                .and_then(|response| response.json())
-                .unwrap();
+                .expect("woffu server should be available")
+                .json()
+                .expect("response should be a json");
 
-            tmp::write_json(SIGNS_FILE_NAME, &updated_json).unwrap();
+            tmp::write_json(SIGNS_FILE_NAME, &updated_json)
+                .expect(format!("{} file should be updated", SIGNS_FILE_NAME).as_str());
 
             updated_json
         });
@@ -63,10 +65,13 @@ pub fn get_status() {
         let mut duration: Duration = Duration::new(0, 0);
         let mut last_sign_in: Option<Duration> = Option::None;
 
-        for sign in woffu_signs.as_array().unwrap() {
-            let sign_object = sign.as_object().unwrap();
-            let sign_in = sign_object.get("In").unwrap();
-            let sign_out = sign_object.get("Out").unwrap();
+        for sign in woffu_signs
+            .as_array()
+            .expect("response json should be an array")
+        {
+            let sign_object = sign.as_object().expect("each sign should be an object");
+            let sign_in = sign_object.get("In").expect("'In' property should exist");
+            let sign_out = sign_object.get("Out").expect("'Out' property should exist");
 
             if !sign_in.is_null() {
                 last_sign_in = Option::Some(sign_entry_to_duration(sign_in));
@@ -99,31 +104,43 @@ pub fn get_status() {
 
         let woffu_presence = tmp::read_json(PRESENCE_FILE_NAME).unwrap_or_else(|_| {
             let client = reqwest::blocking::Client::new();
-            let token = env::var("WOFFU_TOKEN").unwrap();
-            let user_id = env::var("WOFFU_USER_ID").unwrap();
+            let token = env::var("WOFFU_TOKEN").expect("WOFFU_TOKEN env variable");
+            let user_id = env::var("WOFFU_USER_ID").expect("WOFFU_USER_ID env variable");
 
             let updated_json = client
                 .get(format!("https://liferay.woffu.com/api/users/{}/diaries/presence/summary?calculateYearHours=false", user_id))
                 .header("Content-Type", "application/json;charset=UTF-8")
                 .bearer_auth(token)
                 .send()
-                .and_then(|response| response.json())
-                .unwrap();
+                .expect("woffu server should be available")
+                .json()
+                .expect("response should be a json");
 
-            tmp::write_json(PRESENCE_FILE_NAME, &updated_json).unwrap();
+            tmp::write_json(PRESENCE_FILE_NAME, &updated_json)
+                .expect(format!("{} file should be updated", PRESENCE_FILE_NAME).as_str());
+
             return updated_json;
         });
 
         let weekly_entry = woffu_presence
             .as_array()
-            .unwrap()
+            .expect("response should be an array")
             .get(0)
-            .unwrap()
+            .expect("response should not be empty")
             .as_object()
-            .unwrap();
+            .expect("each entry should be an object");
 
-        let hours_worked = weekly_entry.get("HoursWorked").unwrap().as_f64().unwrap();
-        let hours_to_work = weekly_entry.get("HoursToWork").unwrap().as_f64().unwrap();
+        let hours_worked = weekly_entry
+            .get("HoursWorked")
+            .expect("'HoursWorked' property should exist")
+            .as_f64()
+            .expect("'HoursWorked' property should be a number");
+
+        let hours_to_work = weekly_entry
+            .get("HoursToWork")
+            .expect("'HoursToWork' property should exist")
+            .as_f64()
+            .expect("'HoursToWork' property should be a number");
 
         Duration::new(((hours_to_work - hours_worked) * 3600.0) as u64, 0)
     };
@@ -157,14 +174,17 @@ fn format_duration(duration: Duration) -> String {
 fn sign_entry_to_duration(entry: &serde_json::Value) -> Duration {
     let parts: Vec<u64> = entry
         .as_object()
-        .unwrap()
+        .expect("entry should be an object")
         .get("ShortTrueTime")
-        .unwrap()
+        .expect("'ShortTrueTime' property should exist")
         .as_str()
-        .unwrap()
+        .expect("'ShortTrueTime' property should be a string")
         .to_string()
         .split(":")
-        .map(|s| s.parse::<u64>().unwrap())
+        .map(|s| {
+            s.parse::<u64>()
+                .expect("'ShortTrueTime' should follow HH:MM:ss format")
+        })
         .collect();
 
     Duration::new(parts[0] * 3600 + parts[1] * 60 + parts[2], 0)
