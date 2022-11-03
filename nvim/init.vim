@@ -7,9 +7,10 @@ Plug 'junegunn/vim-slash'
 
 " UI
 let g:catppuccin_flavour='latte'
+let g:airline_theme='base16_one_light'
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
-let g:airline_theme='catppuccin'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'liuchengxu/vim-which-key'
 Plug 'voldikss/vim-floaterm'
