@@ -7,12 +7,7 @@ const SIGNS_FILE_NAME: &str = "woffu-signs";
 const PRESENCE_FILE_NAME: &str = "woffu-presence";
 
 pub fn toggle() {
-    let mut notification = notify::send()
-        .body("Updating woffu sign status...")
-        .timeout(0)
-        .show()
-        .expect("notification should be created");
-
+    let notification_id = notify::send("Updating woffu sign status...", 0);
     let client = reqwest::blocking::Client::new();
     let token = env::var("WOFFU_TOKEN").expect("WOFFU_TOKEN env variable");
     let user_id = env::var("WOFFU_USER_ID").expect("WOFFU_USER_ID env variable");
@@ -30,13 +25,7 @@ pub fn toggle() {
 
     tmp::expire_file(SIGNS_FILE_NAME, 0);
     tmp::expire_file(PRESENCE_FILE_NAME, 0);
-
-    notification
-        .body("Woffu sign status updated.")
-        .timeout(1000);
-
-    std::thread::sleep(Duration::from_secs(1));
-    notification.update();
+    notify::update(notification_id, "Woffu sign status updated.", 1000);
 }
 
 pub fn get_status() {
