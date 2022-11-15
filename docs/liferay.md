@@ -17,12 +17,11 @@
 9. `cd ~/Projects/community-portal && ln -s config/liferay-editorconfig .editorconfig`
 10. `git clone git@github.com:p2kmgcl/liferay-portal.git ~/Projects/community-portal/liferay-portal`
 11. `cd ~/Projects/community-portal/liferay-portal && git remote add upstream https://github.com/liferay/liferay-portal`
-12. `git clone https://github.com/liferay/liferay-binaries-cache-2017.git ~/Projects/community-portal/liferay-binaries-cache-2017`
-13. `git clone https://github.com/liferay/liferay-binaries-cache-2020.git ~/Projects/community-portal/liferay-binaries-cache-2020`
-14. `buildLiferayPortal`
-15. `cd ~/Projects/community-portal/bundles && ln -s ../config/portal-ext.properties portal-ext.properties`
-16. `git clone https://github.com/holatuwol/liferay-intellij ~/Projects/community-portal/liferay-intellij`
-17. `cd ~/Projects/community-portal/liferay-portal && ../liferay-intellij/intellij`
+12. `git clone https://github.com/liferay/liferay-binaries-cache-2020.git ~/Projects/community-portal/liferay-binaries-cache-2020`
+13. `buildLiferayPortal`
+14. `cd ~/Projects/community-portal/bundles && ln -s ../config/portal-ext.properties portal-ext.properties`
+15. `git clone https://github.com/holatuwol/liferay-intellij ~/Projects/community-portal/liferay-intellij`
+16. `cd ~/Projects/community-portal/liferay-portal && ../liferay-intellij/intellij`
 
 ## Build portal drama
 
