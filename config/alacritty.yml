@@ -1,92 +1,92 @@
 window:
   decorations_theme_variant: light
+  dynamic_title: true
   opacity: 1.0
 
 font:
   normal:
     family: IBM Plex Mono
-  size: 8
+  size: 5.5
   draw_bold_text_with_bright_colors: false
+
+bell:
+  duration: 100
+
+cursor:
+  blinking: On
+  style: Block
 
 live_config_reload: true
 
 # Catppuccin latte!
-# https://github.com/catppuccin/alacritty
+
 colors:
-  # Default colors
   primary:
-    background: '#EFF1F5' # base
-    foreground: '#4C4F69' # text
-    # Bright and dim foreground colors
-    dim_foreground: '#4C4F69' # text
-    bright_foreground: '#4C4F69' # text
+    background: '#EFF1F5'
+    foreground: '#4C4F69'
+    dim_foreground: '#4C4F69'
+    bright_foreground: '#4C4F69'
 
-  # Cursor colors
   cursor:
-    text: '#EFF1F5' # base
-    cursor: '#DC8A78' # rosewater
-  vi_mode_cursor:
-    text: '#EFF1F5' # base
-    cursor: '#7287FD' # lavender
+    text: '#EFF1F5'
+    cursor: '#DC8A78'
 
-  # Search colors
+  vi_mode_cursor:
+    text: '#EFF1F5'
+    cursor: '#7287FD'
+
   search:
     matches:
-      foreground: '#EFF1F5' # base
-      background: '#6C6F85' # subtext0
+      foreground: '#EFF1F5'
+      background: '#6C6F85'
     focused_match:
-      foreground: '#EFF1F5' # base
-      background: '#40A02B' # green
+      foreground: '#EFF1F5'
+      background: '#40A02B'
     footer_bar:
-      foreground: '#EFF1F5' # base
-      background: '#6C6F85' # subtext0
+      foreground: '#EFF1F5'
+      background: '#6C6F85'
 
-  # Keyboard regex hints
   hints:
     start:
-      foreground: '#EFF1F5' # base
-      background: '#DF8E1D' # yellow
+      foreground: '#EFF1F5'
+      background: '#DF8E1D'
     end:
-      foreground: '#EFF1F5' # base
-      background: '#6C6F85' # subtext0
+      foreground: '#EFF1F5'
+      background: '#6C6F85'
 
-  # Selection colors
   selection:
-    text: '#EFF1F5' # base
-    background: '#DC8A78' # rosewater
+    text: '#EFF1F5'
+    background: '#DC8A78'
 
-  # Normal colors
   normal:
-    black: '#5C5F77' # subtext1
-    red: '#D20F39' # red
-    green: '#40A02B' # green
-    yellow: '#DF8E1D' # yellow
-    blue: '#1E66F5' # blue
-    magenta: '#EA76CB' # pink
-    cyan: '#179299' # teal
-    white: '#ACB0BE' # surface2
+    black: '#5C5F77'
+    red: '#D20F39'
+    green: '#40A02B'
+    yellow: '#DF8E1D'
+    blue: '#1E66F5'
+    magenta: '#EA76CB'
+    cyan: '#179299'
+    white: '#ACB0BE'
 
-  # Bright colors
   bright:
-    black: '#6C6F85' # subtext0
-    red: '#D20F39' # red
-    green: '#40A02B' # green
-    yellow: '#DF8E1D' # yellow
-    blue: '#1E66F5' # blue
-    magenta: '#EA76CB' # pink
-    cyan: '#179299' # teal
-    white: '#BCC0CC' # surface1
+    black: '#6C6F85'
+    red: '#D20F39'
+    green: '#40A02B'
+    yellow: '#DF8E1D'
+    blue: '#1E66F5'
+    magenta: '#EA76CB'
+    cyan: '#179299'
+    white: '#BCC0CC'
 
-  # Dim colors
   dim:
-    black: '#5C5F77' # subtext1
-    red: '#D20F39' # red
-    green: '#40A02B' # green
-    yellow: '#DF8E1D' # yellow
-    blue: '#1E66F5' # blue
-    magenta: '#EA76CB' # pink
-    cyan: '#179299' # teal
-    white: '#ACB0BE' # surface2
+    black: '#5C5F77'
+    red: '#D20F39'
+    green: '#40A02B'
+    yellow: '#DF8E1D'
+    blue: '#1E66F5'
+    magenta: '#EA76CB'
+    cyan: '#179299'
+    white: '#ACB0BE'
 
   indexed_colors:
     - { index: 16, color: '#FE640B' }
