@@ -6,8 +6,6 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/vim-slash'
 
 " UI
-let g:catppuccin_flavour='latte'
-let g:airline_theme='base16_one_light'
 Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -38,7 +36,8 @@ call plug#end()
 " Coloring
 set t_Co=256
 syntax on
-colorscheme catppuccin
+colorscheme catppuccin-latte
+let g:airline_theme = 'catppuccin'
 filetype plugin indent on
 
 lua require("catppuccin").setup()
