@@ -3,5 +3,12 @@
   "diagnostic.infoSign": "⨀ ",
   "diagnostic.warningSign": "⨀ ",
   "diagnostic.hintSign": "⨀ ",
-  "diagnostic.checkCurrentLine": true
+  "diagnostic.checkCurrentLine": true,
+  "coc.preferences.formatOnSave": true,
+  "suggest.floatConfig": {
+    "border": true,
+    "rounded": false,
+    "winblend": 10,
+    "shadow": false
+  }
 }

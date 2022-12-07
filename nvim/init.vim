@@ -24,7 +24,6 @@ Plug 'ianks/vim-tsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-commentary'
-Plug 'github/copilot.vim'
 
 " Formatting and fixing
 Plug 'editorconfig/editorconfig-vim'
@@ -44,22 +43,28 @@ lua require("catppuccin").setup()
 
 " Theme tweaks
 highlight SignColumn guibg=none
+highlight CursorLine guibg=white
+highlight Visual guibg=white
+highlight PmenuSel guibg=white
+highlight CocMenuSel guibg=white
 
 " Visual
 set autoindent smartindent
-let &colorcolumn=join(range(80,1000),",")
+let &colorcolumn=join(range(2000,10000),",")
 set cursorline
 set expandtab
 set nobackup
 set noeol
 set noswapfile
-set nowrap
+set wrap
+set linebreak
+set breakindent
 set nowritebackup
 set number
 set shiftwidth=2
 set signcolumn=yes
 set tabstop=2
-set textwidth=80
+set textwidth=100
 
 " Support ts and tsx
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
