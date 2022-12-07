@@ -58,7 +58,6 @@ let g:which_key_map.z = {
   \ 'g': [':Goyo', 'toggle Goyo'],
   \ 'p': ['<Plug>(Prettier)', 'run prettier'],
   \ 'r': [':source ~/.config/nvim/init.vim', 'reload config'],
-  \ 't': [':FloatermToggle', 'open terminal'],
   \ }
 
 call which_key#register('<Space>', "g:which_key_map")

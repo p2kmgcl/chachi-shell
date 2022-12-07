@@ -11,7 +11,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'liuchengxu/vim-which-key'
-Plug 'voldikss/vim-floaterm'
 Plug 'junegunn/goyo.vim'
 
 " Project management
