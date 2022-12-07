@@ -32,8 +32,6 @@
 
 1. Install `tmux`
 2. `ln -s ~/Projects/chachi-shell/config/tmux.conf ~/.tmux.conf`
-3. `git clone https://github.com/tmux-plugins/tpm.git ~/.tmux.tpm`
-4. Open a terminal and run `Prefix+I` to install TMUX plugins.
 
 ### ZSH
 
