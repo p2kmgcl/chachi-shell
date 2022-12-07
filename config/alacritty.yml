@@ -5,9 +5,10 @@ window:
 
 font:
   normal:
-    family: IBM Plex Mono Text
-  size: 6.5
-  draw_bold_text_with_bright_colors: false
+    family: Fira Code
+    style: Regular
+  size: 8.5
+  draw_bold_text_with_bright_colors: true
 
 bell:
   duration: 100
