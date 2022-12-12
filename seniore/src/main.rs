@@ -5,30 +5,48 @@ use std::env;
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    if args.len() != 3 {
-        println!("Invalid arguments");
-        return;
-    }
-
-    let command = &args[1];
-    let subcommand: &String = &args[2];
-
     // TODO:
     // - Update Slack status
     // - Move IDs to a secure place
     // - Add git checkout
     // - Add git send-pr
-    // - Add liferay build-lang
     // - Add liferay deploy
     // - Add liferay deploy-all
     // - Show help
 
-    match command.as_str() {
-        "woffu" => match subcommand.as_str() {
+    match (&args[1]).as_str() {
+        "help" => print_help(),
+        "liferay" => match (&args[2]).as_str() {
+            "build-lang" => commands::liferay::build_lang(),
+            _ => print_unknown(),
+        },
+        "woffu" => match (&args[2]).as_str() {
             "get-status" => commands::woffu::get_status(),
             "toggle" => commands::woffu::toggle(),
-            _ => println!("Unknown command"),
+            _ => print_unknown(),
         },
-        _ => println!("Unknown command"),
+        _ => print_unknown(),
     }
+}
+
+fn print_unknown() {
+    println!("Unknown command");
+    print_help();
+}
+
+fn print_help() {
+    println!(
+        "
+Commands:
+- help
+- liferay build-lang
+- woffu get-status
+- woffu toggle
+
+Environment variables:
+- LIFERAY_PORTAL_PATH
+- WOFFU_TOKEN
+- WOFFU_USER_ID
+    "
+    );
 }
