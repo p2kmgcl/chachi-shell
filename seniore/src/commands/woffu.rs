@@ -136,7 +136,7 @@ pub fn get_status() {
 
     println!(
         "{} {} / {}",
-        if is_sign_in { "💪" } else { "🏖️" },
+        if is_sign_in { "⚒" } else { "❀" },
         format_duration(duration_worked_today),
         if duration_worked_today > duration_pending_in_week {
             format!(
