@@ -12,9 +12,7 @@ applications, and also adding some essential ones (proper web browser, text
 editor, terminal emulator, etc.):
 
 1. Cleanup your system.
-1. Choose a _nice_
-   [wallpaper](https://www.smashingmagazine.com/category/wallpapers), theme and
-   [font](/docs/fonts.md).
+1. Choose a _nice_ wallpaper, theme and font.
 1. Configure browser and terminal emulator.
 1. Prepare some text editors I am using three of them right now:
    - **IntelliJ Ultimate** with built-in settings sync.
@@ -23,16 +21,14 @@ editor, terminal emulator, etc.):
      extension.
    - **NeoVIM** with some configuration and addons stored here.
 
-After that, I start configuring my
-[development environment](/docs/development-environment.md) running some extra
-commands. When that's ready, I should be ready to go (although it might take a
-couple of hours, maybe a bit less).
+## Nice fonts
 
-Now it depends on the Linux distribution being used, I have written some
-specific documentation about how I configured those environments, using lots of
-distros like Ubuntu, Xubuntu, Lubuntu, Debian, CrunchBang, Manjaro,
-[Archlinux](/docs/archlinux.md) and [Fedora](/docs/fedora.md).
-
-Finally I have some steps I follow to configure a proper environment for work
-([Liferay](/docs/liferay.md)). We also have shared documentation for all the
-colleagues, but these are some extra tips and shortcuts.
+- [Cascadia Code](https://github.com/microsoft/cascadia-code)
+- [Fira Code](https://github.com/tonsky/FiraCode)
+- [Hack](https://sourcefoundry.org/hack/)
+- [IBM Plex](https://www.ibm.com/plex/)
+- [Inconsolata](https://github.com/googlefonts/Inconsolata)
+- [Iosevka](https://typeof.net/Iosevka/)
+- [JetBrains Mono](https://www.jetbrains.com/lp/mono/)
+- [Noto](https://www.google.com/get/noto/)
+- [Victor Mono](https://rubjo.github.io/victor-mono/)
