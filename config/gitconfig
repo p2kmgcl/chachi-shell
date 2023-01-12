@@ -11,6 +11,9 @@
   renames = true
   tool = nvim
 
+[difftool]
+  prompt = false
+
 [difftool "nvim"]
   cmd = nvim -d $LOCAL $REMOTE
 
@@ -22,6 +25,9 @@
 
 [merge]
   tool = nvim
+
+[mergetool]
+  prompt = false
 
 [mergetool "nvim"]
   cmd = nvim -d $LOCAL $REMOTE
