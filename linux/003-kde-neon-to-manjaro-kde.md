@@ -15,3 +15,10 @@
 
 4. Use [Command Output](https://store.kde.org/p/1166510/) widget.
 5. Install `cpupower-gui`.
+
+---
+
+> I moved to Manjaro+KDE, as KDE Neon updates look a bit unstable.
+
+1. Use `xinput` and `xinput --disable [ID]` to disable touchpad (sometimes
+   failing).
