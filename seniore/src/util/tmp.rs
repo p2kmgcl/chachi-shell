@@ -24,15 +24,22 @@ pub fn expire_file(name: &str, max_duration_in_secs: u64) {
     }
 }
 
+pub fn read_file(name: &str) -> Result<String, std::io::Error> {
+    return fs::read_to_string(TMP_PATH.to_owned() + name);
+}
+
+pub fn write_file(name: &str, content: String) -> Result<(), std::io::Error> {
+    match fs::create_dir_all(TMP_PATH) {
+        Ok(_) => fs::write(TMP_PATH.to_owned() + name, content),
+        result => result,
+    }
+}
+
 pub fn read_json(name: &str) -> Result<serde_json::Value, Box<dyn Error>> {
-    let content = fs::read_to_string(TMP_PATH.to_owned() + name)?;
-    let value: serde_json::Value = serde_json::from_str(content.as_str())?;
+    let value: serde_json::Value = serde_json::from_str(read_file(name)?.as_str())?;
     return Ok(value);
 }
 
 pub fn write_json(name: &str, json: &serde_json::Value) -> Result<(), std::io::Error> {
-    match fs::create_dir_all(TMP_PATH) {
-        Ok(_) => fs::write(TMP_PATH.to_owned() + name, json.to_string()),
-        result => result,
-    }
+    return write_file(name, json.to_string());
 }
