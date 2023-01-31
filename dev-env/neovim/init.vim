@@ -54,7 +54,7 @@ set cursorline
 set expandtab
 set nobackup
 set noeol
-set mouse=
+set mouse=a
 set noswapfile
 set wrap
 set linebreak
