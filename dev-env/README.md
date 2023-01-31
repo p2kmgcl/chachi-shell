@@ -55,7 +55,9 @@
 1. Install `neovim`
 2. `ln -s ~/Projects/chachi-shell/dev-env/neovim ~/.config/nvim`
 3. Install [VIM Plug](https://github.com/junegunn/vim-plug)
-4. `PlugClean`, `PlugUpdate`, `UpdateRemotePlugins`
+4. `:PlugClean`, `:PlugUpdate`, `:UpdateRemotePlugins`
+5. Check everything is ok with `:checkhealth`
+6. Install some clipboard handler for linux (`xclip` or `wl-clipboard`)
 
 ### Random notes
 
