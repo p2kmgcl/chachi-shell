@@ -1,6 +1,7 @@
 window:
-  decorations_theme_variant: light
-  dynamic_title: true
+  decorations: none
+  decorations_theme_variant: dark
+  dynamic_title: false
   opacity: 1.0
 
 font:
@@ -19,76 +20,83 @@ cursor:
 
 live_config_reload: true
 
-# Catppuccin latte!
+# https://github.com/catppuccin/alacritty/blob/main/catppuccin-mocha.yml
 
 colors:
   primary:
-    background: '#EFF1F5'
-    foreground: '#4C4F69'
-    dim_foreground: '#4C4F69'
-    bright_foreground: '#4C4F69'
+    background: '#1E1E2E' # base
+    foreground: '#CDD6F4' # text
+    # Bright and dim foreground colors
+    dim_foreground: '#CDD6F4' # text
+    bright_foreground: '#CDD6F4' # text
 
+  # Cursor colors
   cursor:
-    text: '#EFF1F5'
-    cursor: '#DC8A78'
-
+    text: '#1E1E2E' # base
+    cursor: '#F5E0DC' # rosewater
   vi_mode_cursor:
-    text: '#EFF1F5'
-    cursor: '#7287FD'
+    text: '#1E1E2E' # base
+    cursor: '#B4BEFE' # lavender
 
+  # Search colors
   search:
     matches:
-      foreground: '#EFF1F5'
-      background: '#6C6F85'
+      foreground: '#1E1E2E' # base
+      background: '#A6ADC8' # subtext0
     focused_match:
-      foreground: '#EFF1F5'
-      background: '#40A02B'
+      foreground: '#1E1E2E' # base
+      background: '#A6E3A1' # green
     footer_bar:
-      foreground: '#EFF1F5'
-      background: '#6C6F85'
+      foreground: '#1E1E2E' # base
+      background: '#A6ADC8' # subtext0
 
+  # Keyboard regex hints
   hints:
     start:
-      foreground: '#EFF1F5'
-      background: '#DF8E1D'
+      foreground: '#1E1E2E' # base
+      background: '#F9E2AF' # yellow
     end:
-      foreground: '#EFF1F5'
-      background: '#6C6F85'
+      foreground: '#1E1E2E' # base
+      background: '#A6ADC8' # subtext0
 
+  # Selection colors
   selection:
-    text: '#EFF1F5'
-    background: '#DC8A78'
+    text: '#1E1E2E' # base
+    background: '#F5E0DC' # rosewater
 
+  # Normal colors
   normal:
-    black: '#5C5F77'
-    red: '#D20F39'
-    green: '#40A02B'
-    yellow: '#DF8E1D'
-    blue: '#1E66F5'
-    magenta: '#EA76CB'
-    cyan: '#179299'
-    white: '#ACB0BE'
+    black: '#45475A' # surface1
+    red: '#F38BA8' # red
+    green: '#A6E3A1' # green
+    yellow: '#F9E2AF' # yellow
+    blue: '#89B4FA' # blue
+    magenta: '#F5C2E7' # pink
+    cyan: '#94E2D5' # teal
+    white: '#BAC2DE' # subtext1
 
+  # Bright colors
   bright:
-    black: '#6C6F85'
-    red: '#D20F39'
-    green: '#40A02B'
-    yellow: '#DF8E1D'
-    blue: '#1E66F5'
-    magenta: '#EA76CB'
-    cyan: '#179299'
-    white: '#BCC0CC'
+    black: '#585B70' # surface2
+    red: '#F38BA8' # red
+    green: '#A6E3A1' # green
+    yellow: '#F9E2AF' # yellow
+    blue: '#89B4FA' # blue
+    magenta: '#F5C2E7' # pink
+    cyan: '#94E2D5' # teal
+    white: '#A6ADC8' # subtext0
 
+  # Dim colors
   dim:
-    black: '#5C5F77'
-    red: '#D20F39'
-    green: '#40A02B'
-    yellow: '#DF8E1D'
-    blue: '#1E66F5'
-    magenta: '#EA76CB'
-    cyan: '#179299'
-    white: '#ACB0BE'
+    black: '#45475A' # surface1
+    red: '#F38BA8' # red
+    green: '#A6E3A1' # green
+    yellow: '#F9E2AF' # yellow
+    blue: '#89B4FA' # blue
+    magenta: '#F5C2E7' # pink
+    cyan: '#94E2D5' # teal
+    white: '#BAC2DE' # subtext1
 
   indexed_colors:
-    - { index: 16, color: '#FE640B' }
-    - { index: 17, color: '#DC8A78' }
+    - { index: 16, color: '#FAB387' }
+    - { index: 17, color: '#F5E0DC' }

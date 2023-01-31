@@ -34,7 +34,7 @@ call plug#end()
 " Coloring
 set t_Co=256
 syntax on
-colorscheme catppuccin-latte
+colorscheme catppuccin-mocha
 let g:airline_theme = 'catppuccin'
 filetype plugin indent on
 
@@ -42,10 +42,10 @@ lua require("catppuccin").setup()
 
 " Theme tweaks
 highlight SignColumn guibg=none
-highlight CursorLine guibg=white
-highlight Visual guibg=white
-highlight PmenuSel guibg=white
-highlight CocMenuSel guibg=white
+"highlight CursorLine guibg=#888888
+"highlight Visual guibg=white
+"highlight PmenuSel guibg=white
+"highlight CocMenuSel guibg=white
 
 " Visual
 set autoindent smartindent
