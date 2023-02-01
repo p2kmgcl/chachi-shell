@@ -14,3 +14,6 @@
    WOFFU_TOKEN="some-token"
    WOFFU_USER_ID="some-user-id"
    ```
+
+4. Install `xdg-desktop-portal-gnome xdg-desktop-portal-gtk xdg-desktop-portal`
+   to allow screen sharing in GNOME+Wayland (not included by default).
