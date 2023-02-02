@@ -34,7 +34,7 @@ call plug#end()
 " Coloring
 set t_Co=256
 syntax on
-colorscheme catppuccin-mocha
+colorscheme catppuccin-latte
 let g:airline_theme = 'catppuccin'
 filetype plugin indent on
 
