@@ -9,7 +9,8 @@ fn main() {
         "help" => print_help(),
         "liferay" => match (&args[2]).as_str() {
             "build-lang" => commands::liferay::build_lang(),
-            "update-deploy-cache" => commands::liferay::update_deploy_cache(),
+            "deploy-updated-modules" => commands::liferay::deploy_updated_modules(),
+            "update-modules-cache" => commands::liferay::update_modules_cache(),
             _ => print_unknown(),
         },
         "woffu" => match (&args[2]).as_str() {
