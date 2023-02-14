@@ -33,7 +33,7 @@ export ANT_OPTS="-XX:-UseGCOverheadLimit -Xmx6144m -XX:MaxMetaspaceSize=1024m"
 export EDITOR="nvim"
 export JAVA_HOME="/usr/lib/jvm/default-java"
 export DENO_INSTALL="$HOME/.deno"
-export PATH=$HOME/Projects/chachi-shell/dev-env/bin:$HOME/Projects/community-portal/config/bin:$HOME/.yarn/bin:/usr/lib/jvm/default-java/bin:/usr/lib/jvm/default-ant/bin:/usr/lib/jvm/default-maven/bin:$HOME/.cargo/bin:$PATH:$DENO_INSTALL/bin
+export PATH=$HOME/.local/bin:$HOME/Projects/chachi-shell/dev-env/bin:$HOME/Projects/community-portal/config/bin:$HOME/.yarn/bin:/usr/lib/jvm/default-java/bin:/usr/lib/jvm/default-ant/bin:/usr/lib/jvm/default-maven/bin:$HOME/.cargo/bin:$PATH:$DENO_INSTALL/bin
 
 ###############################################################################
 # NodeJS ######################################################################

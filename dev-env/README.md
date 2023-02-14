@@ -21,7 +21,13 @@
 
 ### Programming languages
 
-- Rust: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+#### Rust
+
+- Binary `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+- Language Server: https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary
+
+#### Others
+
 - Deno: `curl -fsSL https://deno.land/x/install/install.sh | sh`
 - NodeJS: install [NVM](https://github.com/nvm-sh/nvm#installing-and-updating)
   and run
@@ -49,15 +55,10 @@
 
 ### NeoVIM
 
-> Install desired language environments (NodeJS, Java, etc.) before running
-> `PlugUpdate`, as they might be required.
-
-1. Install `neovim`
+1. Install `neovim`.
 2. `ln -s ~/Projects/chachi-shell/dev-env/neovim ~/.config/nvim`
-3. Install [VIM Plug](https://github.com/junegunn/vim-plug)
-4. `:PlugClean`, `:PlugUpdate`, `:UpdateRemotePlugins`
-5. Check everything is ok with `:checkhealth`
-6. Install some clipboard handler for linux (`xclip` or `wl-clipboard`)
+3. Check everything is ok with `:checkhealth`
+4. Install some clipboard handler for linux (`xclip` or `wl-clipboard`)
 
 ### Random notes
 
