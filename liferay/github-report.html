@@ -184,6 +184,8 @@
 
       async function getPullRequests(user, repo, from, to) {
         const fetchPRs = async (_page) => {
+          // https://docs.github.com/en/rest/pulls/pulls?apiVersion=2022-11-28#list-pull-requests
+
           const url = new URL(
             `https://api.github.com/repos/${user}/${repo}/pulls`
           );
