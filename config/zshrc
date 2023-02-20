@@ -17,7 +17,7 @@ fi
 
 # Load tmux if possible
 if [ ! "JetBrains-JediTerm" = "${TERMINAL_EMULATOR}" ] && [ -n "$(which tmux)" ] && [ -z "${TMUX}" ]; then
-  tmux
+  tmux new-session -A -s CHACHI_SHELL && exit 0
 fi
 
 # Path to your oh-my-zsh installation.
