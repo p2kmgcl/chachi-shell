@@ -1,3 +1,7 @@
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
@@ -8,8 +12,9 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 require('packer').startup(function(use)
-  -- Package manager
-  use 'wbthomason/packer.nvim'
+  use { -- Package manager
+    'wbthomason/packer.nvim'
+  }
 
   use { -- Color scheme
     "catppuccin/nvim", as = "catppuccin"
@@ -21,10 +26,8 @@ require('packer').startup(function(use)
       -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-
       -- Useful status updates for LSP
       'j-hui/fidget.nvim',
-
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
     },
@@ -57,11 +60,35 @@ require('packer').startup(function(use)
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
-  -- Fuzzy Finder (files, lsp, etc)
-  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
+  use { -- Fuzzy Finder (files, lsp, etc)
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    requires = { 'nvim-lua/plenary.nvim' }
+  }
 
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+  use { -- Fuzzy Finder Algorithm which requires local dependencies to be built.
+        -- Only load if `make` is available.
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make',
+    cond = vim.fn.executable 'make' == 1
+  }
+
+  use { -- Nice file tree
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
+
+  use { -- Key mapping help
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 0
+      require("which-key").setup {}
+    end
+  }
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -76,7 +103,6 @@ end)
 
 -- When we are bootstrapping a configuration, it doesn't
 -- make sense to execute the rest of the init.lua.
---
 -- You'll need to restart nvim, and then it will work.
 if is_bootstrap then
   print '=================================='
@@ -88,8 +114,10 @@ if is_bootstrap then
 end
 
 -- Remove line numbers from terminal
+local termopen_group = vim.api.nvim_create_augroup('TermOpen', { clear = true })
 vim.api.nvim_create_autocmd('TermOpen', {
   command = 'setlocal nonumber',
+  group = termopen_group,
 })
 
 -- Automatically source and re-compile packer whenever you save this init.lua
@@ -103,37 +131,22 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
--- Set highlight on search
-vim.o.hlsearch = false
-
--- Make line numbers default
-vim.wo.number = true
-
--- Enable mouse mode
-vim.o.mouse = 'a'
-
--- Enable break indent
-vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
-
--- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
+vim.opt.clipboard = 'unnamedplus' -- Use GUI clipboard
+vim.o.hlsearch = false -- Set highlight on search
+vim.wo.number = true -- Make line numbers default
+vim.o.mouse = 'a' -- Enable mouse mode
+vim.o.breakindent = true -- Enable break indent
+vim.o.undofile = false -- Save undo history
+vim.o.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
 vim.o.smartcase = true
-
--- Decrease update time
-vim.o.updatetime = 250
+vim.o.updatetime = 250 -- Decrease update time
 vim.wo.signcolumn = 'yes'
-
--- Set colorscheme
-vim.o.termguicolors = true
+vim.o.termguicolors = true -- Set colorscheme
 vim.cmd [[colorscheme catppuccin]]
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
 
 -- [[ Basic Keymaps ]]
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -143,7 +156,6 @@ vim.g.maplocalleader = ' '
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
 vim.keymap.set('t', '<Esc>', '<C-\\><C-N>')
 
 -- Remap for dealing with word wrap
@@ -204,6 +216,9 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
+    path_display = {
+      "truncate"
+    },
   },
 }
 
@@ -221,11 +236,21 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
 
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>sf',
+  require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' }
+)
+vim.keymap.set('n', '<leader>sh',
+  require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' }
+)
+vim.keymap.set('n', '<leader>sw',
+  require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' }
+)
+vim.keymap.set('n', '<leader>sg',
+  require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' }
+)
+vim.keymap.set('n', '<leader>sd',
+  require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' }
+)
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -426,6 +451,39 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- nvim-tree setup
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    width = {
+      min = 20,
+      max = 50,
+    },
+    mappings = {
+      list = {
+        { key = "u", action = "dir_up" },
+      },
+    },
+    side = 'right',
+    centralize_selection = true,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+  update_focused_file = {
+    enable = true
+  },
+})
+vim.keymap.set('n', '<leader>tt', function()
+    local api = require('nvim-tree.api')
+    api.tree.toggle({ find_file = true })
+  end,
+  { desc = '[T]oggle [T]ree' }
+)
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
