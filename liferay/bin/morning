@@ -2,6 +2,6 @@
 
 $HOME/Projects/chachi-shell/liferay/bin/destroyLiferayDatabase
 cd $HOME/Projects/community-portal/liferay-portal && git cifuentes
-$HOME/Projects/chachi-shell/liferay/bin/buildLiferayPortal
+$HOME/Projects/chachi-shell/liferay/bin/buildLiferayDXP
 $HOME/Projects/chachi-shell/liferay/bin/createLiferayDatabase
 $HOME/Projects/chachi-shell/liferay/bin/runLiferayPortal
