@@ -67,7 +67,7 @@ require('packer').startup(function(use)
   }
 
   use { -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-        -- Only load if `make` is available.
+    -- Only load if `make` is available.
     'nvim-telescope/telescope-fzf-native.nvim',
     run = 'make',
     cond = vim.fn.executable 'make' == 1
@@ -86,7 +86,22 @@ require('packer').startup(function(use)
     config = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 0
-      require("which-key").setup {}
+      
+      require("which-key").setup {
+        plugins {
+          presets = {
+            operators = true,
+            motions = true,
+            text_objects = true,
+            windows = true,
+            z = true,
+            g = true,
+          }
+        },
+        key_labels = {
+          ["<space>"] = " ",
+        }
+      }
     end
   }
 
@@ -133,6 +148,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 
 vim.opt.clipboard = 'unnamedplus' -- Use GUI clipboard
 vim.o.hlsearch = false -- Set highlight on search
+vim.wo.relativenumber = true -- Make line numbers default
 vim.wo.number = true -- Make line numbers default
 vim.o.mouse = 'a' -- Enable mouse mode
 vim.o.breakindent = true -- Enable break indent
@@ -226,30 +242,33 @@ require('telescope').setup {
 pcall(require('telescope').load_extension, 'fzf')
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = 'Find recently opened files' })
+vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = 'Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     winblend = 10,
     previewer = false,
   })
-end, { desc = '[/] Fuzzily search in current buffer]' })
+end, { desc = 'Fuzzily search in current buffer' })
 
+require("which-key").register({
+  ["<leader>s"] = { name = "Search" },
+})
 vim.keymap.set('n', '<leader>sf',
-  require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' }
+  require('telescope.builtin').find_files, { desc = 'Files' }
 )
 vim.keymap.set('n', '<leader>sh',
-  require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' }
+  require('telescope.builtin').help_tags, { desc = 'Help' }
 )
 vim.keymap.set('n', '<leader>sw',
-  require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' }
+  require('telescope.builtin').grep_string, { desc = 'Current word' }
 )
 vim.keymap.set('n', '<leader>sg',
-  require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' }
+  require('telescope.builtin').live_grep, { desc = 'Grep' }
 )
 vim.keymap.set('n', '<leader>sd',
-  require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' }
+  require('telescope.builtin').diagnostics, { desc = 'Diagnostics' }
 )
 
 -- [[ Configure Treesitter ]]
@@ -316,10 +335,11 @@ require('nvim-treesitter.configs').setup {
 }
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+require("which-key").register({ ["<leader>d"] = { name = "Diagnostic" } })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
+vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float, { desc = 'Open floating menu' })
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open in loc list' })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
@@ -338,45 +358,44 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  require("which-key").register({ ["<leader>c"] = { name = "Code action" } })
+  nmap('<leader>cn', vim.lsp.buf.rename, 'Rename')
+  nmap('<leader>cn', vim.lsp.buf.formatting, 'Format')
+  nmap('<leader>ca', vim.lsp.buf.code_action, 'Other action')
 
-  nmap('<leader>gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('<leader>gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('<leader>gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+  require("which-key").register({ ["<leader>g"] = { name = "Go to" } })
+  nmap('<leader>gd', vim.lsp.buf.definition, 'Definition')
+  nmap('<leader>gr', require('telescope.builtin').lsp_references, 'References')
+  nmap('<leader>gI', vim.lsp.buf.implementation, 'Implementation')
+  nmap('<leader>gT', vim.lsp.buf.type_definition, 'Type definition')
+  nmap('<leader>gD', vim.lsp.buf.declaration, 'Declaration')
+  nmap('<leader>gs', require('telescope.builtin').lsp_document_symbols, 'Document symbols')
+  nmap('<leader>gS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace symbols')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
-  nmap('<leader>gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
   nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
 end
 
--- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
---
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
-  -- tsserver = {},
+  bashls = {},
+  cssls = {},
+  eslint = {},
+  html = {},
+  jdtls = {},
+  jsonls = {},
+  lua_ls = {},
+  rust_analyzer = {},
+  stylelint_lsp = {},
+  tailwindcss = {},
+  tsserver = {},
 }
 
 -- Setup neovim lua configuration
@@ -420,7 +439,7 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-d>'] = cmp.mapping.scroll_docs( -4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
@@ -439,8 +458,8 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+      elseif luasnip.jumpable( -1) then
+        luasnip.jump( -1)
       else
         fallback()
       end
@@ -478,13 +497,13 @@ require("nvim-tree").setup({
     enable = true
   },
 })
-vim.keymap.set('n', '<leader>tt', function()
-    local api = require('nvim-tree.api')
-    api.tree.toggle({ find_file = true })
-  end,
-  { desc = '[T]oggle [T]ree' }
+
+vim.keymap.set('n', '<leader>t', function()
+  local api = require('nvim-tree.api')
+  api.tree.toggle({ find_file = true })
+end,
+  { desc = 'Toggle tree' }
 )
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-
