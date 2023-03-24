@@ -87,16 +87,6 @@ require('packer').startup(function(use)
       vim.o.timeoutlen = 0
       
       require("which-key").setup {
-        plugins {
-          presets = {
-            operators = true,
-            motions = true,
-            text_objects = true,
-            windows = true,
-            z = true,
-            g = true,
-          }
-        },
         key_labels = {
           ["<space>"] = " ",
         }
