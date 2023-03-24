@@ -363,7 +363,7 @@ local on_attach = function(_, bufnr)
   end
 
   require("which-key").register({ ["<leader>c"] = { name = "Code action" } })
-  nmap('<leader>cn', vim.lsp.buf.rename, 'Rename')
+  nmap('<leader>cr', vim.lsp.buf.rename, 'Rename')
   nmap('<leader>cn', vim.lsp.buf.formatting, 'Format')
   nmap('<leader>ca', vim.lsp.buf.code_action, 'Other action')
 
