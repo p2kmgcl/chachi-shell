@@ -9,6 +9,7 @@
 5. Clone this project in `~/Projects/chachi-shell`
 6. `ln -s ~/Projects/chachi-shell/config/editorconfig ~/.editorconfig`
 7. `ln -s ~/Projects/chachi-shell/config/gitconfig ~/.gitconfig`
+8. `ln -s ~/Projects/chachi-shell/dev-env/ideavimrc ~/.ideavimrc`
 
 ### Awesome apps
 
