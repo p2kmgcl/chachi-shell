@@ -58,7 +58,6 @@ require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
   use { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
@@ -158,8 +157,13 @@ vim.o.smartcase = true
 vim.o.updatetime = 250 -- Decrease update time
 vim.wo.signcolumn = 'yes'
 vim.o.termguicolors = true -- Set colorscheme
-vim.cmd [[colorscheme catppuccin]]
+vim.cmd [[colorscheme catppuccin-latte]]
 vim.o.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
+vim.o.wrap = false -- Long lines wrapping
+
+vim.o.expandtab = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 
 -- [[ Basic Keymaps ]]
 
