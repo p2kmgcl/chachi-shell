@@ -1,3 +1,50 @@
+-------------------------------------------------------------------------------
+-- Cheatsheet. Some of this elements have been extracted
+-- from the following
+-------------------------------------------------------------------------------
+-- https://vim.rtorr.com/
+-- https://devhints.io/vim
+-------------------------------------------------------------------------------
+-- Windows
+-------------------------------------------------------------------------------
+-- [NORMAL] [Ctrl-w_s] - Split window.
+-- [NORMAL] [Ctrl-w_v] - Split window vertically.
+-- [NORMAL] [Ctrl-w_q] - Close a window.
+-- [NORMAL] [Ctrl-w_o] - Close all but current window (same than :only).
+-- [NORMAL] [Ctrl-w_T] - Move current split to a new tab.
+-------------------------------------------------------------------------------
+-- Tabs
+-------------------------------------------------------------------------------
+-- [:tab] - Create new tab.
+-- [:tab *] - Outputs the given command in a new tab.
+-- [NORMAL] [gt] - Move to next tab.
+-- [NORMAL] [gT] - Move to previous tab.
+-------------------------------------------------------------------------------
+-- Motion
+-------------------------------------------------------------------------------
+-- [NORMAL] [o] - Append a new line.
+-- [NORMAL] [O] - Prepend a new line.
+-- [NORMAL] [Ctrl-o] - Move to previous position.
+-- [NORMAL] [Ctrl-i] - Move to next position.
+-- [NORMAL] [Ctrl-u] - Move 1/2 screen up.
+-- [NORMAL] [Ctrl-d] - Move 1/2 screen down.
+-- [NORMAL] [gg] -  Move to the beginning of the document.
+-- [NORMAL] [G] - Move to the end of the document.
+-- [NORMAL] [zz] - Center cursor on screen.
+-------------------------------------------------------------------------------
+-- Macros
+-------------------------------------------------------------------------------
+-- [NORMAL] [qa] - Start recording "a" macro.
+-- [NORMAL] [q] - Stop recording.
+-- [NORMAL] [@a] - Run "a" macro.
+-- [NORMAL] [@@] - Rerun last macro.
+-------------------------------------------------------------------------------
+-- Extra
+-------------------------------------------------------------------------------
+-- [NORMAL] [K] - Show docs (run again to focus docs).
+-- [VISUAL] [p] - Replaces current selection with clipboard.
+-------------------------------------------------------------------------------
+
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
