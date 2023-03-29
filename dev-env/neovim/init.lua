@@ -197,6 +197,7 @@ vim.o.termguicolors = true -- Set colorscheme
 vim.cmd [[colorscheme catppuccin-latte]]
 vim.o.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
 vim.o.wrap = false -- Long lines wrapping
+vim.o.scrolloff = 9999 -- Keep cursor in the center of the screen
 
 vim.o.expandtab = true
 vim.o.tabstop = 4
