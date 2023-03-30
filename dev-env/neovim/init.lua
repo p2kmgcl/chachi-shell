@@ -559,5 +559,13 @@ end,
   { desc = 'Toggle tree' }
 )
 
+-- Fold diffs in commit view
+local fugitive_commit_fold_group = vim.api.nvim_create_augroup('FugitiveCommitFold', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = "git",
+  command = 'setlocal foldmethod=syntax',
+  group = fugitive_commit_fold_group,
+})
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
