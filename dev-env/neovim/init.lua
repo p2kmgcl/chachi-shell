@@ -19,6 +19,7 @@
 -- [:tab *] - Outputs the given command in a new tab.
 -- [NORMAL] [gt] - Move to next tab.
 -- [NORMAL] [gT] - Move to previous tab.
+-- [:tabclose] - Closes current tab.
 -------------------------------------------------------------------------------
 -- Motion
 -------------------------------------------------------------------------------
@@ -31,6 +32,17 @@
 -- [NORMAL] [gg] -  Move to the beginning of the document.
 -- [NORMAL] [G] - Move to the end of the document.
 -- [NORMAL] [zz] - Center cursor on screen.
+-------------------------------------------------------------------------------
+-- Folding
+-------------------------------------------------------------------------------
+-- [NORMAL] [zo] - Open fold.
+-- [NORMAL] [zc] - Close fold.
+-------------------------------------------------------------------------------
+-- Fugitive
+-------------------------------------------------------------------------------
+-- [cc] - Create a commit.
+-- [cf] - Create a fixup commit for the commit under the cursor.
+-- [O] - Open the object under cursor in a new tab.
 -------------------------------------------------------------------------------
 -- Macros
 -------------------------------------------------------------------------------
