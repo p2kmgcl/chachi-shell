@@ -276,16 +276,18 @@ vim.opt.hlsearch = false                                  -- Highlight words dur
 vim.opt.incsearch = true                                  -- Feedback during search
 vim.opt.termguicolors = true                              -- More colors
 vim.cmd [[colorscheme catppuccin-latte]]                  -- Set colorscheme
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })         -- Transparent bg
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })    -- Transparent floating bg
 vim.opt.scrolloff = 999                                   -- Center cursor
 vim.opt.signcolumn = 'yes'                                -- Symbols in line numbers
 vim.opt.isfname:append('@-@')                             -- TODO
 vim.opt.updatetime = 50                                   -- Faster updates
-vim.opt.colorcolumn = '80'                                -- Manual max line width
 vim.opt.clipboard = 'unnamedplus'                         -- Use GUI clipboard
 vim.opt.ignorecase = true                                 -- Case insensitive searching UNLESS /C or capital in search
 vim.opt.smartcase = true                                  -- Take into account case only if needed
+
+local color_columns = '81'
+for i = 82, 500 do color_columns = color_columns .. ',' .. i end
+vim.opt.colorcolumn = color_columns -- Manual max line width
+vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#E6E9EF" })
 
 -------------------------------------------------------------------------------
 -- Keybindings ----------------------------------------------------------------
