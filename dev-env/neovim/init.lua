@@ -27,6 +27,11 @@ require('packer').startup(function(use)
             local telescope_builtin = require('telescope.builtin')
 
             telescope.setup {
+                defaults = {
+                    path_display = {
+                        'truncate',
+                    },
+                },
                 pickers = {
                     commands = {
                         theme = 'dropdown'
