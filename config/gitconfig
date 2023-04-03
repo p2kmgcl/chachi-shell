@@ -6,6 +6,7 @@
   ignorecase = false
   excludesfile = ~/Projects/chachi-shell/config/gitignore-global
   pager = less -F
+  untrackedcache = true
 
 [diff]
   renames = true
