@@ -368,16 +368,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -------------------------------------------------------------------------------
 
 -- Remove line numbers from terminal
-local termopen_group = vim.api.nvim_create_augroup('TermOpen', { clear = true })
+local term_line_numbers_group = vim.api.nvim_create_augroup('TermLineNumbers', { clear = true })
 vim.api.nvim_create_autocmd('TermOpen', {
     command = 'setlocal nonumber',
-    group = termopen_group,
+    group = term_line_numbers_group,
 })
 
 -- Fold diffs in commit view
-local fugitive_commit_fold_group = vim.api.nvim_create_augroup('FugitiveCommitFold', { clear = true })
+local fold_commits_group = vim.api.nvim_create_augroup('FoldCommits', { clear = true })
 vim.api.nvim_create_autocmd('FileType', {
     pattern = "git",
     command = 'setlocal foldmethod=syntax',
-    group = fugitive_commit_fold_group,
+    group = fold_commits_group,
 })
