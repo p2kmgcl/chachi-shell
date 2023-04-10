@@ -42,6 +42,7 @@ require('packer').startup(function(use)
             vim.keymap.set('n', '<C-p>', telescope_builtin.git_files, { desc = 'Find git files' })
             vim.keymap.set('n', '<C-e>', telescope_builtin.buffers, { desc = 'Find buffer' })
             vim.keymap.set('n', '<C-f>', telescope_builtin.live_grep, { desc = 'Find grep' })
+            vim.keymap.set('n', '<leader>/', telescope_builtin.current_buffer_fuzzy_find, { desc = 'Find in buffer' })
 
             vim.keymap.set('n', '<leader>fc', telescope_builtin.commands, { desc = 'Find commands' })
             vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files, { desc = 'Find files' })
@@ -136,17 +137,18 @@ require('packer').startup(function(use)
 
             lsp.on_attach(function(_, bufnr)
                 local opts = { buffer = bufnr, remap = false }
+                local telescope_builtin = require('telescope.builtin')
 
                 lsp.default_keymaps({ buffer = bufnr })
 
-                vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
+                vim.keymap.set('n', 'gd', telescope_builtin.lsp_definitions, opts)
+                vim.keymap.set('n', 'gr', telescope_builtin.lsp_references, opts)
                 vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
                 vim.keymap.set('n', '<leader>vws', function() vim.lsp.buf.workspace_symbol() end, opts)
                 vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end, opts)
                 vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, opts)
                 vim.keymap.set('n', ']d', function() vim.diagnostic.goto_prev() end, opts)
                 vim.keymap.set('n', '<leader>vca', function() vim.lsp.buf.code_action() end, opts)
-                vim.keymap.set('n', '<leader>vrr', function() vim.lsp.buf.references() end, opts)
                 vim.keymap.set('n', '<leader>r', function() vim.lsp.buf.rename() end, opts)
                 vim.keymap.set('n', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
             end)
