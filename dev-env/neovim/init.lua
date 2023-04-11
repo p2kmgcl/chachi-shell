@@ -380,6 +380,6 @@ vim.api.nvim_create_autocmd('TermOpen', {
 local fold_commits_group = vim.api.nvim_create_augroup('FoldCommits', { clear = true })
 vim.api.nvim_create_autocmd('FileType', {
     pattern = "git",
-    command = 'setlocal foldmethod=syntax',
     group = fold_commits_group,
+    command = "setlocal foldenable foldmethod=syntax foldlevel=0",
 })
