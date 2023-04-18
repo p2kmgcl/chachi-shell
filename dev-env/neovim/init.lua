@@ -109,6 +109,7 @@ require('packer').startup(function(use)
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'L3MON4D3/LuaSnip' },
             { 'simrat39/rust-tools.nvim' },
+            { 'jose-elias-alvarez/typescript.nvim' },
         },
         config = function()
             local lsp = require('lsp-zero')
@@ -117,6 +118,7 @@ require('packer').startup(function(use)
             local cmp_select = { behavior = cmp.SelectBehavior.Select }
             local fidget = require('fidget')
             local rust_tools = require('rust-tools')
+            local typescript = require('typescript')
 
             lsp.preset('recommended')
 
@@ -184,6 +186,17 @@ require('packer').startup(function(use)
                     on_attach = lsp.on_attach,
                 },
             }
+
+            typescript.setup({
+                disable_commands = false,
+                debug = false,
+                go_to_source_definition = {
+                    fallback = true,
+                },
+                server = {
+                    on_attach = lsp.on_attach,
+                },
+            })
 
             fidget.setup()
             lsp.setup()
