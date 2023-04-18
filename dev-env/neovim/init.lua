@@ -44,6 +44,7 @@ require('packer').startup(function(use)
             vim.keymap.set('n', '<C-f>', telescope_builtin.live_grep, { desc = 'Find grep' })
             vim.keymap.set('n', '<leader>/', telescope_builtin.current_buffer_fuzzy_find, { desc = 'Find in buffer' })
 
+            vim.keymap.set('n', '<leader>fbc', telescope_builtin.git_bcommits, { desc = 'Find buffer commits' })
             vim.keymap.set('n', '<leader>fc', telescope_builtin.commands, { desc = 'Find commands' })
             vim.keymap.set('n', '<leader>fg', telescope_builtin.git_files, { desc = 'Find git files' })
             vim.keymap.set('n', '<leader>fh', telescope_builtin.help_tags, { desc = 'Find help' })
