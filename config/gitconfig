@@ -64,7 +64,7 @@
   do-make-file-disapear-from-history = !git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch $1' --prune-empty --tag-name-filter cat -- --all && git push origin --force --all
   do-show-everyday-help = help everyday
 
-  do-checkout-pull-request=!gh-wrapper checkout-pull-request
+  do-checkout-pull-request="!f(){ git fetch $1 "pull/${2}/head:pr/${1}/${2}"; git checkout "pr/${1}/${2}"; };f"
   do-list-pull-requests=!gh-wrapper list-pull-requests
   do-send-pull-request=!gh-wrapper send-pull-request
   do-list-issues=!gh-wrapper list-issues
