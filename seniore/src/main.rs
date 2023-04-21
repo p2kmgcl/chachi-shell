@@ -1,6 +1,8 @@
 mod commands;
 mod util;
+use home;
 use std::env;
+use std::fs;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -28,18 +30,11 @@ fn print_unknown() {
 }
 
 fn print_help() {
-    println!(
-        "
-Commands:
-- help
-- liferay build-lang
-- woffu get-status
-- woffu toggle
+    let help_path = home::home_dir()
+        .expect("home dir")
+        .join("Projects/chachi-shell/seniore/docs/help.txt");
 
-Environment variables:
-- LIFERAY_PORTAL_PATH
-- WOFFU_TOKEN
-- WOFFU_USER_ID
-    "
-    );
+    let help_string = fs::read_to_string(help_path).expect("help file");
+
+    println!("\n{}", help_string);
 }

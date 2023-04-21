@@ -1,0 +1,10 @@
+Commands:
+- help
+- liferay build-lang
+- woffu get-status
+- woffu toggle
+
+Environment variables:
+- LIFERAY_PORTAL_PATH
+- WOFFU_TOKEN
+- WOFFU_USER_ID
