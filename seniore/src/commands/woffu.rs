@@ -54,10 +54,13 @@ pub fn get_status() {
         let mut duration: Duration = Duration::new(0, 0);
         let mut last_sign_in: Option<Duration> = Option::None;
 
-        for sign in woffu_signs
-            .as_array()
-            .expect("response json should be an array")
-        {
+        for sign in woffu_signs.as_array().expect(
+            format!(
+                "response json should be an array, but it is {:}",
+                woffu_signs
+            )
+            .as_str(),
+        ) {
             let sign_object = sign.as_object().expect("each sign should be an object");
             let sign_in = sign_object.get("In").expect("'In' property should exist");
             let sign_out = sign_object.get("Out").expect("'Out' property should exist");
