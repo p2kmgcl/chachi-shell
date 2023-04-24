@@ -96,65 +96,48 @@ require('packer').startup(function(use)
   end
 
   use {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
+    'neovim/nvim-lspconfig',
     requires = {
-      { 'neovim/nvim-lspconfig' },
-      { 'j-hui/fidget.nvim' },
-      {
-        'williamboman/mason.nvim',
-        run = function() pcall(vim.cmd, 'MasonUpdate') end
-      },
-      { 'williamboman/mason-lspconfig.nvim' },
+      -- Default config
+      { 'VonHeikemen/lsp-zero.nvim' },
+      -- Completion
       { 'hrsh7th/nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lsp' },
       { 'L3MON4D3/LuaSnip' },
-      { 'simrat39/rust-tools.nvim' },
-      { 'jose-elias-alvarez/typescript.nvim' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      -- Nice UI feedback on the bottom right
+      { 'j-hui/fidget.nvim' },
     },
     config = function()
-      local lsp = require('lsp-zero')
-      local lsp_config = require('lspconfig')
+      local lspzero = require('lsp-zero')
+      local lspconfig = require('lspconfig')
       local cmp = require('cmp')
-      local cmp_select = { behavior = cmp.SelectBehavior.Select }
+      local cmp_lsp = require('cmp_nvim_lsp')
       local fidget = require('fidget')
-      local rust_tools = require('rust-tools')
-      local typescript = require('typescript')
 
-      lsp.preset('recommended')
+      lspzero.preset('recommended')
 
-      lsp.ensure_installed({
-        'tsserver',
-        'eslint',
-        'lua_ls',
-        'rust_analyzer'
-      })
-
-      local cmp_mappings = lsp.defaults.cmp_mappings({
-        ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-Space>'] = cmp.mapping.complete(),
-      })
-
-      lsp.set_preferences({
+      lspzero.set_preferences({
         sign_icons = {}
       })
 
-      lsp.setup_nvim_cmp({
-        mapping = cmp_mappings
+      lspzero.setup_nvim_cmp({
+        mapping = lspzero.defaults.cmp_mappings({
+          ['<C-k>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+          ['<C-j>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<C-Space>'] = cmp.mapping.complete(),
+        })
       })
 
-      lsp.on_attach(function(_, bufnr)
+      lspzero.on_attach(function(_, bufnr)
         local opts = { buffer = bufnr, remap = false }
         local telescope_builtin = require('telescope.builtin')
 
-        lsp.default_keymaps({ buffer = bufnr })
+        lspzero.default_keymaps({ buffer = bufnr })
 
         vim.keymap.set('n', 'gd', telescope_builtin.lsp_definitions, opts)
         vim.keymap.set('n', 'gr', telescope_builtin.lsp_references, opts)
         vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
-        vim.keymap.set('n', '<leader>vws', function() vim.lsp.buf.workspace_symbol() end, opts)
         vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end, opts)
         vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, opts)
         vim.keymap.set('n', ']d', function() vim.diagnostic.goto_prev() end, opts)
@@ -163,44 +146,51 @@ require('packer').startup(function(use)
         vim.keymap.set('n', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
       end)
 
-      lsp_config.lua_ls.setup {
+      cmp.setup({
+        sources = {
+          { name = 'nvim_lsp' },
+          { name = 'buffer' },
+        },
+      })
+
+      lspconfig.rust_analyzer.setup({
+        capabilities = cmp_lsp.default_capabilities(),
+      })
+
+      lspconfig.tsserver.setup({
+        root_dir = lspconfig.util.root_pattern("package.json"),
+        capabilities = cmp_lsp.default_capabilities(),
+        init_options = {
+            lint = true,
+        },
+      })
+
+      lspconfig.denols.setup({
+        root_dir = lspconfig.util.root_pattern("deno.json"),
+        init_options = {
+          lint = true,
+        },
+      })
+
+      lspconfig.lua_ls.setup({
+        capabilities = cmp_lsp.default_capabilities(),
         settings = {
           Lua = {
-            diagnostics = {
-              globals = { 'vim' }
+            runtime = {
+              version = 'LuaJIT',
             },
-            hint = {
-              enable = true
-            }
-          }
-        }
-      }
-
-      rust_tools.setup = {
-        tools = {
-          inlay_hints = {
-            auto = true,
-            show_parameter_hints = true,
-          }
-        },
-        server = {
-          on_attach = lsp.on_attach,
-        },
-      }
-
-      typescript.setup({
-        disable_commands = false,
-        debug = false,
-        go_to_source_definition = {
-          fallback = true,
-        },
-        server = {
-          on_attach = lsp.on_attach,
+            diagnostics = {
+              globals = { 'vim' },
+            },
+            workspace = {
+              library = vim.api.nvim_get_runtime_file("", true),
+            },
+          },
         },
       })
 
       fidget.setup()
-      lsp.setup()
+      lspzero.setup()
     end
   }
 
