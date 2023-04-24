@@ -6,9 +6,9 @@
 local packer_install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local packer_bootstrap = false
 if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
-    packer_bootstrap = true
-    vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packer_install_path }
-    vim.cmd [[packadd packer.nvim]]
+  packer_bootstrap = true
+  vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packer_install_path }
+  vim.cmd [[packadd packer.nvim]]
 end
 
 -------------------------------------------------------------------------------
@@ -16,242 +16,241 @@ end
 -------------------------------------------------------------------------------
 
 require('packer').startup(function(use)
-    use 'wbthomason/packer.nvim'
+  use 'wbthomason/packer.nvim'
 
-    use { -- Lovely fuzzy finder.
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.1',
-        requires = { { 'nvim-lua/plenary.nvim' } },
-        config = function()
-            local telescope = require('telescope')
-            local telescope_builtin = require('telescope.builtin')
+  use {   -- Lovely fuzzy finder.
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.1',
+    requires = { { 'nvim-lua/plenary.nvim' } },
+    config = function()
+      local telescope = require('telescope')
+      local telescope_builtin = require('telescope.builtin')
 
-            telescope.setup {
-                defaults = {
-                    path_display = {
-                        'truncate',
-                    },
-                },
-                pickers = {
-                    commands = {
-                        theme = 'dropdown'
-                    }
-                }
-            }
-
-            vim.keymap.set('n', '<C-p>', telescope_builtin.find_files, { desc = 'Find files' })
-            vim.keymap.set('n', '<C-e>', telescope_builtin.buffers, { desc = 'Find buffer' })
-            vim.keymap.set('n', '<C-f>', telescope_builtin.live_grep, { desc = 'Find grep' })
-            vim.keymap.set('n', '<leader>/', telescope_builtin.current_buffer_fuzzy_find, { desc = 'Find in buffer' })
-
-            vim.keymap.set('n', '<leader>fbc', telescope_builtin.git_bcommits, { desc = 'Find buffer commits' })
-            vim.keymap.set('n', '<leader>fc', telescope_builtin.commands, { desc = 'Find commands' })
-            vim.keymap.set('n', '<leader>fg', telescope_builtin.git_files, { desc = 'Find git files' })
-            vim.keymap.set('n', '<leader>fh', telescope_builtin.help_tags, { desc = 'Find help' })
-            vim.keymap.set('n', '<leader>fk', telescope_builtin.keymaps, { desc = 'Find keymaps' })
-            vim.keymap.set('n', '<leader>fs', telescope_builtin.treesitter, { desc = 'Find symbol' })
-        end
-    }
-
-    use { -- Color scheme
-        "catppuccin/nvim", as = "catppuccin"
-    }
-
-    use { -- Syntax highlighting
-        "nvim-treesitter/nvim-treesitter",
-        run = ':TSUpdate',
-        config = function()
-            require('nvim-treesitter.configs').setup {
-                ensure_installed = { "vimdoc", "javascript", "typescript", "lua", "rust" },
-                sync_install = false,
-                auto_install = true,
-                highlight = { enable = true },
-            }
-        end
-    }
-
-    use { -- Undo tree
-        "mbbill/undotree",
-        config = function()
-            vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
-        end
-    }
-
-    use { -- Git
-        "tpope/vim-fugitive",
-        config = function()
-            vim.keymap.set("n", '<leader>gs', vim.cmd.Git)
-        end
-    }
-
-    use { -- Git signs
-      'lewis6991/gitsigns.nvim',
-      config = function()
-        require('gitsigns').setup()
-      end
-    }
-
-    if packer_bootstrap then
-        require('packer').sync()
-    end
-
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
-        requires = {
-            { 'neovim/nvim-lspconfig' },
-            { 'j-hui/fidget.nvim' },
-            {
-                'williamboman/mason.nvim',
-                run = function() pcall(vim.cmd, 'MasonUpdate') end
-            },
-            { 'williamboman/mason-lspconfig.nvim' },
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'L3MON4D3/LuaSnip' },
-            { 'simrat39/rust-tools.nvim' },
-            { 'jose-elias-alvarez/typescript.nvim' },
+      telescope.setup {
+        defaults = {
+          path_display = {
+            'truncate',
+          },
         },
-        config = function()
-            local lsp = require('lsp-zero')
-            local lsp_config = require('lspconfig')
-            local cmp = require('cmp')
-            local cmp_select = { behavior = cmp.SelectBehavior.Select }
-            local fidget = require('fidget')
-            local rust_tools = require('rust-tools')
-            local typescript = require('typescript')
+        pickers = {
+          commands = {
+            theme = 'dropdown'
+          }
+        }
+      }
 
-            lsp.preset('recommended')
+      vim.keymap.set('n', '<C-p>', telescope_builtin.find_files, { desc = 'Find files' })
+      vim.keymap.set('n', '<C-e>', telescope_builtin.buffers, { desc = 'Find buffer' })
+      vim.keymap.set('n', '<C-f>', telescope_builtin.live_grep, { desc = 'Find grep' })
+      vim.keymap.set('n', '<leader>/', telescope_builtin.current_buffer_fuzzy_find, { desc = 'Find in buffer' })
 
-            lsp.ensure_installed({
-                'tsserver',
-                'eslint',
-                'lua_ls',
-                'rust_analyzer'
-            })
+      vim.keymap.set('n', '<leader>fbc', telescope_builtin.git_bcommits, { desc = 'Find buffer commits' })
+      vim.keymap.set('n', '<leader>fc', telescope_builtin.commands, { desc = 'Find commands' })
+      vim.keymap.set('n', '<leader>fg', telescope_builtin.git_files, { desc = 'Find git files' })
+      vim.keymap.set('n', '<leader>fh', telescope_builtin.help_tags, { desc = 'Find help' })
+      vim.keymap.set('n', '<leader>fk', telescope_builtin.keymaps, { desc = 'Find keymaps' })
+      vim.keymap.set('n', '<leader>fs', telescope_builtin.treesitter, { desc = 'Find symbol' })
+    end
+  }
 
-            local cmp_mappings = lsp.defaults.cmp_mappings({
-                ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
-                ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<CR>'] = cmp.mapping.confirm({ select = true }),
-                ['<C-Space>'] = cmp.mapping.complete(),
-            })
+  use {   -- Color scheme
+    "catppuccin/nvim", as = "catppuccin"
+  }
 
-            lsp.set_preferences({
-                sign_icons = {}
-            })
+  use {   -- Syntax highlighting
+    "nvim-treesitter/nvim-treesitter",
+    run = ':TSUpdate',
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        ensure_installed = { "vimdoc", "javascript", "typescript", "lua", "rust" },
+        sync_install = false,
+        auto_install = true,
+        highlight = { enable = true },
+      }
+    end
+  }
 
-            lsp.setup_nvim_cmp({
-                mapping = cmp_mappings
-            })
+  use {   -- Undo tree
+    "mbbill/undotree",
+    config = function()
+      vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+    end
+  }
 
-            lsp.on_attach(function(_, bufnr)
-                local opts = { buffer = bufnr, remap = false }
-                local telescope_builtin = require('telescope.builtin')
+  use {   -- Git
+    "tpope/vim-fugitive",
+    config = function()
+      vim.keymap.set("n", '<leader>gs', vim.cmd.Git)
+    end
+  }
 
-                lsp.default_keymaps({ buffer = bufnr })
+  use {   -- Git signs
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
 
-                vim.keymap.set('n', 'gd', telescope_builtin.lsp_definitions, opts)
-                vim.keymap.set('n', 'gr', telescope_builtin.lsp_references, opts)
-                vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
-                vim.keymap.set('n', '<leader>vws', function() vim.lsp.buf.workspace_symbol() end, opts)
-                vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end, opts)
-                vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, opts)
-                vim.keymap.set('n', ']d', function() vim.diagnostic.goto_prev() end, opts)
-                vim.keymap.set('n', '<leader>vca', function() vim.lsp.buf.code_action() end, opts)
-                vim.keymap.set('n', '<leader>r', function() vim.lsp.buf.rename() end, opts)
-                vim.keymap.set('n', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
-            end)
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 
-            lsp_config.lua_ls.setup {
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = { 'vim' }
-                        },
-                        hint = {
-                            enable = true
-                        }
-                    }
-                }
+  use {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
+    requires = {
+      { 'neovim/nvim-lspconfig' },
+      { 'j-hui/fidget.nvim' },
+      {
+        'williamboman/mason.nvim',
+        run = function() pcall(vim.cmd, 'MasonUpdate') end
+      },
+      { 'williamboman/mason-lspconfig.nvim' },
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'L3MON4D3/LuaSnip' },
+      { 'simrat39/rust-tools.nvim' },
+      { 'jose-elias-alvarez/typescript.nvim' },
+    },
+    config = function()
+      local lsp = require('lsp-zero')
+      local lsp_config = require('lspconfig')
+      local cmp = require('cmp')
+      local cmp_select = { behavior = cmp.SelectBehavior.Select }
+      local fidget = require('fidget')
+      local rust_tools = require('rust-tools')
+      local typescript = require('typescript')
+
+      lsp.preset('recommended')
+
+      lsp.ensure_installed({
+        'tsserver',
+        'eslint',
+        'lua_ls',
+        'rust_analyzer'
+      })
+
+      local cmp_mappings = lsp.defaults.cmp_mappings({
+        ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-Space>'] = cmp.mapping.complete(),
+      })
+
+      lsp.set_preferences({
+        sign_icons = {}
+      })
+
+      lsp.setup_nvim_cmp({
+        mapping = cmp_mappings
+      })
+
+      lsp.on_attach(function(_, bufnr)
+        local opts = { buffer = bufnr, remap = false }
+        local telescope_builtin = require('telescope.builtin')
+
+        lsp.default_keymaps({ buffer = bufnr })
+
+        vim.keymap.set('n', 'gd', telescope_builtin.lsp_definitions, opts)
+        vim.keymap.set('n', 'gr', telescope_builtin.lsp_references, opts)
+        vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
+        vim.keymap.set('n', '<leader>vws', function() vim.lsp.buf.workspace_symbol() end, opts)
+        vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end, opts)
+        vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, opts)
+        vim.keymap.set('n', ']d', function() vim.diagnostic.goto_prev() end, opts)
+        vim.keymap.set('n', '<leader>vca', function() vim.lsp.buf.code_action() end, opts)
+        vim.keymap.set('n', '<leader>r', function() vim.lsp.buf.rename() end, opts)
+        vim.keymap.set('n', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
+      end)
+
+      lsp_config.lua_ls.setup {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { 'vim' }
+            },
+            hint = {
+              enable = true
             }
+          }
+        }
+      }
 
-            rust_tools.setup = {
-                tools = {
-                    inlay_hints = {
-                        auto = true,
-                        show_parameter_hints = true,
-                    }
-                },
-                server = {
-                    on_attach = lsp.on_attach,
-                },
-            }
+      rust_tools.setup = {
+        tools = {
+          inlay_hints = {
+            auto = true,
+            show_parameter_hints = true,
+          }
+        },
+        server = {
+          on_attach = lsp.on_attach,
+        },
+      }
 
-            typescript.setup({
-                disable_commands = false,
-                debug = false,
-                go_to_source_definition = {
-                    fallback = true,
-                },
-                server = {
-                    on_attach = lsp.on_attach,
-                },
-            })
+      typescript.setup({
+        disable_commands = false,
+        debug = false,
+        go_to_source_definition = {
+          fallback = true,
+        },
+        server = {
+          on_attach = lsp.on_attach,
+        },
+      })
 
-            fidget.setup()
-            lsp.setup()
-        end
-    }
+      fidget.setup()
+      lsp.setup()
+    end
+  }
 
-    use { -- Add indentation guides even on blank lines
-        'lukas-reineke/indent-blankline.nvim',
-        config = function()
-            require('indent_blankline').setup {
-                char = '┊',
-                show_trailing_blankline_indent = false,
-            }
-        end
-    }
+  use {   -- Add indentation guides even on blank lines
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require('indent_blankline').setup {
+        char = '┊',
+        show_trailing_blankline_indent = false,
+      }
+    end
+  }
 
-    use { -- Nice file tree
-        'nvim-tree/nvim-tree.lua',
-        tag = 'nightly',
-        requires = { 'nvim-tree/nvim-web-devicons' },
-        config = function()
-            local tree = require('nvim-tree')
-            local api = require('nvim-tree.api')
+  use {   -- Nice file tree
+    'nvim-tree/nvim-tree.lua',
+    tag = 'nightly',
+    requires = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      local tree = require('nvim-tree')
+      local api = require('nvim-tree.api')
 
-            tree.setup {
-                sort_by = "case_sensitive",
-                view = {
-                    width = {
-                        min = 20,
-                        max = 50,
-                    },
-                    mappings = {
-                        list = {
-                            { key = "u", action = "dir_up" },
-                        },
-                    },
-                    side = 'right',
-                    centralize_selection = true,
-                },
-                renderer = {
-                    group_empty = true,
-                },
-                filters = {
-                    dotfiles = true,
-                },
-                update_focused_file = {
-                    enable = true
-                },
-            }
+      tree.setup {
+        sort_by = "case_sensitive",
+        view = {
+          width = {
+            min = 20,
+            max = 50,
+          },
+          mappings = {
+            list = {
+              { key = "u", action = "dir_up" },
+            },
+          },
+          side = 'right',
+          centralize_selection = true,
+        },
+        renderer = {
+          group_empty = true,
+        },
+        filters = {
+          dotfiles = true,
+        },
+        update_focused_file = {
+          enable = true
+        },
+      }
 
-            vim.keymap.set('n', '<leader>t', function() api.tree.toggle { find_file = true } end)
-        end
-    }
-
+      vim.keymap.set('n', '<leader>t', function() api.tree.toggle { find_file = true } end)
+    end
+  }
 end)
 
 -------------------------------------------------------------------------------
@@ -261,22 +260,22 @@ end)
 -- Automagically rebuild packer on lua change.
 local packer_compile_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
-    callback = function()
-        vim.api.nvim_command 'luafile %'
-        require('packer').compile()
-    end,
-    group = packer_compile_group,
-    pattern = '*.lua',
+  callback = function()
+    vim.api.nvim_command 'luafile %'
+    require('packer').compile()
+  end,
+  group = packer_compile_group,
+  pattern = '*.lua',
 })
 
 -- Warn if packer is installing.
 if packer_bootstrap then
-    print '=================================='
-    print '    Plugins are being installed'
-    print '    Wait until Packer completes,'
-    print '       then restart nvim'
-    print '=================================='
-    return
+  print '=================================='
+  print '    Plugins are being installed'
+  print '    Wait until Packer completes,'
+  print '       then restart nvim'
+  print '=================================='
+  return
 end
 
 -------------------------------------------------------------------------------
@@ -312,50 +311,6 @@ for i = 82, 500 do color_columns = color_columns .. ',' .. i end
 vim.opt.colorcolumn = color_columns -- Manual max line width
 vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#E6E9EF" })
 
--------------------------------------------------------------------------------
--- Keybindings ----------------------------------------------------------------
--------------------------------------------------------------------------------
-
--- Windows
--- [NORMAL] [Ctrl-w_s] - Split window.
--- [NORMAL] [Ctrl-w_v] - Split window vertically.
--- [NORMAL] [Ctrl-w_q] - Close a window.
--- [NORMAL] [Ctrl-w_o] - Close all but current window (same than :only).
--- [NORMAL] [Ctrl-w_T] - Move current split to a new tab.
--- [NORMAL] [Ctrl-w_=] - Resive all windows to have same size.
-
--- Tabs
--- [:tab] - Create new tab.
--- [:tab *] - Outputs the given command in a new tab.
--- [NORMAL] [gt] - Move to next tab.
--- [NORMAL] [gT] - Move to previous tab.
--- [:tabclose] - Closes current tab.
-
--- Motion
--- [NORMAL] [o] - Append a new line.
--- [NORMAL] [O] - Prepend a new line.
--- [NORMAL] [Ctrl-o] - Move to previous position.
--- [NORMAL] [Ctrl-i] - Move to next position.
--- [NORMAL] [Ctrl-u] - Move 1/2 screen up.
--- [NORMAL] [Ctrl-d] - Move 1/2 screen down.
--- [NORMAL] [gg] -  Move to the beginning of the document.
--- [NORMAL] [G] - Move to the end of the document.
--- [NORMAL] [zz] - Center cursor on screen.
-
--- Folding
--- [NORMAL] [zo] - Open fold.
--- [NORMAL] [zc] - Close fold.
-
--- Macros
--- [NORMAL] [qa] - Start recording "a" macro.
--- [NORMAL] [q] - Stop recording.
--- [NORMAL] [@a] - Run "a" macro.
--- [NORMAL] [@@] - Rerun last macro.
-
--- Extra
--- [NORMAL] [K] - Show docs (run again to focus docs).
--- [VISUAL] [p] - Replaces current selection with clipboard.
-
 vim.g.mapleader = ','
 
 -- Visual move lines up and down
@@ -379,11 +334,11 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-N>')
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-    callback = function()
-        vim.highlight.on_yank()
-    end,
-    group = highlight_group,
-    pattern = '*',
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
 })
 
 -------------------------------------------------------------------------------
@@ -393,14 +348,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Remove line numbers from terminal
 local term_line_numbers_group = vim.api.nvim_create_augroup('TermLineNumbers', { clear = true })
 vim.api.nvim_create_autocmd('TermOpen', {
-    command = 'setlocal nonumber',
-    group = term_line_numbers_group,
+  command = 'setlocal nonumber',
+  group = term_line_numbers_group,
 })
 
 -- Fold diffs in commit view
 local fold_commits_group = vim.api.nvim_create_augroup('FoldCommits', { clear = true })
 vim.api.nvim_create_autocmd('FileType', {
-    pattern = "git",
-    group = fold_commits_group,
-    command = "setlocal foldenable foldmethod=syntax foldlevel=0",
+  pattern = "git",
+  group = fold_commits_group,
+  command = "setlocal foldenable foldmethod=syntax foldlevel=0",
 })
