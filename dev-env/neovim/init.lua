@@ -160,6 +160,7 @@ require('packer').startup(function(use)
       lspconfig.tsserver.setup({
         root_dir = lspconfig.util.root_pattern("package.json"),
         capabilities = cmp_lsp.default_capabilities(),
+        single_file_support = false,
         init_options = {
             lint = true,
         },
@@ -167,6 +168,7 @@ require('packer').startup(function(use)
 
       lspconfig.denols.setup({
         root_dir = lspconfig.util.root_pattern("deno.json"),
+        single_file_support = false,
         init_options = {
           lint = true,
         },
