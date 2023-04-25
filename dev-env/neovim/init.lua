@@ -19,6 +19,7 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {   -- Lovely fuzzy finder.
+  use { -- Lovely fuzzy finder.
     'nvim-telescope/telescope.nvim',
     tag = '0.1.1',
     requires = { { 'nvim-lua/plenary.nvim' } },
@@ -53,16 +54,22 @@ require('packer').startup(function(use)
     end
   }
 
-  use {   -- Color scheme
-    "catppuccin/nvim", as = "catppuccin"
+  use { -- Color scheme
+    "catppuccin/nvim", as = "catppuccin",
   }
 
-  use {   -- Syntax highlighting
+  use { -- Syntax highlighting
     "nvim-treesitter/nvim-treesitter",
     run = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { "vimdoc", "javascript", "typescript", "lua", "rust" },
+        ensure_installed = {
+          "vimdoc",
+          "javascript",
+          "typescript",
+          "lua",
+          "rust",
+        },
         sync_install = false,
         auto_install = true,
         highlight = { enable = true },
@@ -70,21 +77,21 @@ require('packer').startup(function(use)
     end
   }
 
-  use {   -- Undo tree
+  use { -- Undo tree
     "mbbill/undotree",
     config = function()
       vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
     end
   }
 
-  use {   -- Git
+  use { -- Git
     "tpope/vim-fugitive",
     config = function()
       vim.keymap.set("n", '<leader>gs', vim.cmd.Git)
     end
   }
 
-  use {   -- Git signs
+  use { -- Git signs
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
@@ -196,7 +203,7 @@ require('packer').startup(function(use)
     end
   }
 
-  use {   -- Add indentation guides even on blank lines
+  use { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     config = function()
       require('indent_blankline').setup {
@@ -206,7 +213,7 @@ require('packer').startup(function(use)
     end
   }
 
-  use {   -- Nice file tree
+  use { -- Nice file tree
     'nvim-tree/nvim-tree.lua',
     tag = 'nightly',
     requires = { 'nvim-tree/nvim-web-devicons' },
