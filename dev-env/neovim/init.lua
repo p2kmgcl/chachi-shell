@@ -55,6 +55,27 @@ require('packer').startup(function(use)
 
   use { -- Color scheme
     "catppuccin/nvim", as = "catppuccin",
+    config = function()
+      require('catppuccin').setup({
+        flavour = 'latte',
+        custom_highlights = function(colors)
+          return {
+            ColorColumn = { bg = colors.mantle },
+            CursorLine = { bg = colors.mantle },
+            NvimTreeNormal = { bg = colors.crust },
+            StatusLine = { bg = colors.crust, bold = true },
+            StatusLineNC = { bg = colors.crust },
+            WinSeparator = { bg = colors.crust, fg = colors.crust },
+          }
+        end
+      });
+
+      local color_columns = '81'
+      for i = 82, 500 do color_columns = color_columns .. ',' .. i end
+      vim.opt.colorcolumn = color_columns -- Manual max line width
+
+      vim.cmd.colorscheme 'catppuccin'
+    end
   }
 
   use { -- Syntax highlighting
@@ -301,7 +322,6 @@ vim.opt.undofile = true                                   -- Infinite undo
 vim.opt.hlsearch = false                                  -- Highlight words during search
 vim.opt.incsearch = true                                  -- Feedback during search
 vim.opt.termguicolors = true                              -- More colors
-vim.cmd [[colorscheme catppuccin-latte]]                  -- Set colorscheme
 vim.opt.scrolloff = 999                                   -- Center cursor
 vim.opt.signcolumn = 'yes'                                -- Symbols in line numbers
 vim.opt.isfname:append('@-@')                             -- TODO
@@ -309,11 +329,7 @@ vim.opt.updatetime = 50                                   -- Faster updates
 vim.opt.clipboard = 'unnamedplus'                         -- Use GUI clipboard
 vim.opt.ignorecase = true                                 -- Case insensitive searching UNLESS /C or capital in search
 vim.opt.smartcase = true                                  -- Take into account case only if needed
-
-local color_columns = '81'
-for i = 82, 500 do color_columns = color_columns .. ',' .. i end
-vim.opt.colorcolumn = color_columns -- Manual max line width
-vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#E6E9EF" })
+vim.opt.cursorline = true                                 -- Highlight current line
 
 vim.g.mapleader = ','
 
