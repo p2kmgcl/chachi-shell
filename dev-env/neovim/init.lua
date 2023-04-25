@@ -18,7 +18,6 @@ end
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
-  use {   -- Lovely fuzzy finder.
   use { -- Lovely fuzzy finder.
     'nvim-telescope/telescope.nvim',
     tag = '0.1.1',
@@ -72,7 +71,16 @@ require('packer').startup(function(use)
         },
         sync_install = false,
         auto_install = true,
-        highlight = { enable = true },
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false,
+        },
+        incremental_selection = {
+          enable = false,
+        },
+        indent = {
+          enable = true,
+        },
       }
     end
   }
@@ -169,7 +177,7 @@ require('packer').startup(function(use)
         capabilities = cmp_lsp.default_capabilities(),
         single_file_support = false,
         init_options = {
-            lint = true,
+          lint = true,
         },
       })
 
@@ -283,9 +291,6 @@ end
 
 vim.opt.nu = true                                         -- Line numbers
 vim.opt.relativenumber = true                             -- Relative line numbers
-vim.opt.tabstop = 4                                       -- Indent
-vim.opt.softtabstop = 4                                   -- Indent
-vim.opt.shiftwidth = 4                                    -- Indent
 vim.opt.expandtab = true                                  -- Indent with spaces
 vim.opt.smartindent = true                                -- Change indent on the fly
 vim.opt.wrap = false                                      -- Text wrap
