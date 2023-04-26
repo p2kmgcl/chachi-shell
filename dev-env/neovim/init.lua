@@ -283,7 +283,7 @@ require('packer').startup(function(use)
           group_empty = true,
         },
         filters = {
-          dotfiles = true,
+          dotfiles = false,
         },
         update_focused_file = {
           enable = true
