@@ -87,13 +87,21 @@ require('packer').startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = ':TSUpdate',
     config = function()
-      require('nvim-treesitter.configs').setup {
+      require('nvim-treesitter.configs').setup({
         ensure_installed = {
-          "vimdoc",
+          "bash",
+          "css",
+          "html",
+          "java",
           "javascript",
-          "typescript",
+          "json",
           "lua",
+          "python",
           "rust",
+          "scss",
+          "sql",
+          "typescript",
+          "vimdoc",
         },
         sync_install = false,
         auto_install = true,
@@ -107,7 +115,7 @@ require('packer').startup(function(use)
         indent = {
           enable = true,
         },
-      }
+      })
     end
   }
 
