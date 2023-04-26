@@ -28,8 +28,13 @@ require('packer').startup(function(use)
 
       telescope.setup {
         defaults = {
-          path_display = {
-            'truncate',
+          path_display = { 'truncate' },
+          layout_strategy = 'horizontal',
+          layout_config = {
+            height = 0.95,
+            width = 0.95,
+            preview_width = 90,
+            preview_cutoff = 160,
           },
         },
         pickers = {
