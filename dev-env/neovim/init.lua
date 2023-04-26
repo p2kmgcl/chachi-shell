@@ -267,15 +267,7 @@ require('packer').startup(function(use)
       tree.setup {
         sort_by = "case_sensitive",
         view = {
-          width = {
-            min = 20,
-            max = 50,
-          },
-          mappings = {
-            list = {
-              { key = "u", action = "dir_up" },
-            },
-          },
+          width = { min = 30, max = 60 },
           side = 'right',
           centralize_selection = true,
         },
