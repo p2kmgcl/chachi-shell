@@ -143,7 +143,7 @@ require('packer').startup(function(use)
           delete       = { text = '█' },
           topdelete    = { text = '█' },
           changedelete = { text = '█' },
-          untracked    = { text = '┆' },
+          untracked    = { text = '█' },
         },
       })
     end
