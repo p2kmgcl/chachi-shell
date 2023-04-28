@@ -58,31 +58,6 @@ require('packer').startup(function(use)
     end
   }
 
-  use { -- Color scheme
-    "catppuccin/nvim", as = "catppuccin",
-    config = function()
-      require('catppuccin').setup({
-        flavour = 'latte',
-        custom_highlights = function(colors)
-          return {
-            ColorColumn = { bg = colors.mantle },
-            CursorLine = { bg = colors.mantle },
-            NvimTreeNormal = { bg = colors.crust },
-            StatusLine = { bg = colors.crust, bold = true },
-            StatusLineNC = { bg = colors.crust },
-            WinSeparator = { bg = colors.crust, fg = colors.crust },
-          }
-        end
-      });
-
-      local color_columns = '81'
-      for i = 82, 500 do color_columns = color_columns .. ',' .. i end
-      vim.opt.colorcolumn = color_columns -- Manual max line width
-
-      vim.cmd.colorscheme 'catppuccin'
-    end
-  }
-
   use { -- Syntax highlighting
     "nvim-treesitter/nvim-treesitter",
     run = ':TSUpdate',
@@ -296,6 +271,57 @@ require('packer').startup(function(use)
 
   use { -- Seamless tmux navigation
     'christoomey/vim-tmux-navigator'
+  }
+
+  use { -- Nice line
+    'nvim-lualine/lualine.nvim',
+    requires = {
+      { 'catppuccin/nvim', as = 'catppuccin' },
+    },
+    config = function()
+      require('catppuccin').setup({
+        flavour = 'latte',
+        custom_highlights = function(colors)
+          return {
+            ColorColumn = { bg = colors.mantle },
+            CursorLine = { bg = colors.mantle },
+            NvimTreeNormal = { bg = colors.crust },
+            WinSeparator = { bg = colors.crust, fg = colors.crust },
+          }
+        end
+      });
+
+      local color_columns = '81'
+      for i = 82, 500 do color_columns = color_columns .. ',' .. i end
+      vim.opt.colorcolumn = color_columns -- Manual max line width
+
+      vim.cmd.colorscheme 'catppuccin'
+
+      require('lualine').setup({
+        options = {
+          icons_enabled = false,
+          theme = 'catppuccin',
+          component_separators = '',
+          section_separators = '',
+        },
+        sections = {
+          lualine_a = {'mode'},
+          lualine_b = {'diagnostics'},
+          lualine_c = {'filename'},
+          lualine_x = {'diff', 'encoding', 'fileformat', 'filetype'},
+          lualine_y = {},
+          lualine_z = {},
+        },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {'diagnostics'},
+          lualine_c = {'filename'},
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = {}
+        },
+      })
+    end
   }
 end)
 
