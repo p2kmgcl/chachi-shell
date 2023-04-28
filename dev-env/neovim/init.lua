@@ -305,17 +305,17 @@ require('packer').startup(function(use)
           section_separators = '',
         },
         sections = {
-          lualine_a = {'mode'},
-          lualine_b = {'diagnostics'},
-          lualine_c = {'filename'},
-          lualine_x = {'diff', 'encoding', 'fileformat', 'filetype'},
+          lualine_a = { 'mode' },
+          lualine_b = { 'diagnostics' },
+          lualine_c = { 'filename' },
+          lualine_x = { 'diff', 'encoding', 'fileformat', 'filetype' },
           lualine_y = {},
           lualine_z = {},
         },
         inactive_sections = {
           lualine_a = {},
-          lualine_b = {'diagnostics'},
-          lualine_c = {'filename'},
+          lualine_b = { 'diagnostics' },
+          lualine_c = { 'filename' },
           lualine_x = {},
           lualine_y = {},
           lualine_z = {}
@@ -374,6 +374,7 @@ vim.opt.clipboard = 'unnamedplus'                         -- Use GUI clipboard
 vim.opt.ignorecase = true                                 -- Case insensitive searching UNLESS /C or capital in search
 vim.opt.smartcase = true                                  -- Take into account case only if needed
 vim.opt.cursorline = true                                 -- Highlight current line
+vim.opt.cmdheight = 0                                     -- No command line
 
 vim.g.mapleader = ','
 
