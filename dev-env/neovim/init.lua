@@ -293,6 +293,10 @@ require('packer').startup(function(use)
       vim.keymap.set('n', '<leader>t', function() api.tree.toggle { find_file = true } end)
     end
   }
+
+  use { -- Seamless tmux navigation
+    'christoomey/vim-tmux-navigator'
+  }
 end)
 
 -------------------------------------------------------------------------------
