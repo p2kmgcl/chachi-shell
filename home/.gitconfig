@@ -4,7 +4,7 @@
 [core]
   editor = nvim
   ignorecase = false
-  excludesfile = ~/Projects/chachi-shell/config/gitignore-global
+  excludesfile = ~/.gitignore-global
   pager = less -F
   untrackedcache = true
 
@@ -65,7 +65,7 @@
   do-show-everyday-help = help everyday
 
   do-checkout-pull-request="!f(){ git fetch $1 "pull/${2}/head:pr/${1}/${2}"; git checkout "pr/${1}/${2}"; };f"
-  do-open-pull-request="~/Projects/chachi-shell/dev-env/bin/git-do-open-pull-request"
+  do-open-pull-request=!~/.git-do-open-pull-request
   do-list-issues=!gh-wrapper list-issues
   do-list-notifications=!gh-wrapper list-notifications
   do-show-dashboard=!"while [ 1 -eq 1 ]; do clear; gh-wrapper show-dashboard; sleep 900; done"

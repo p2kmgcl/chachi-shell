@@ -424,3 +424,10 @@ vim.api.nvim_create_autocmd('FileType', {
   group = fold_commits_group,
   command = "setlocal foldenable foldmethod=syntax foldlevel=0",
 })
+
+-- Auto fold initial imports and comments
+vim.opt.foldenable = true
+vim.opt.foldmethod = 'expr'
+vim.opt.foldcolumn = 'auto'
+vim.opt.foldlevelstart = 99
+vim.opt.foldexpr = "v:lua.fold_expr()"

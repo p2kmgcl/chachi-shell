@@ -3,3 +3,10 @@
 /dev-env/neovim/undo-dir
 /seniore/target
 /liferay/api/types/generated
+
+/home/.config/*
+!/home/.config/alacritty/
+!/home/.config/i3/
+!/home/.config/sway/
+!/home/.config/tmux/
+!/home/.config/nvim/init.lua

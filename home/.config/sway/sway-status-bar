@@ -1,0 +1,17 @@
+#!/bin/bash
+
+binDir=$CHACHI_PATH/home/.config/sway
+
+while true; do
+  battery=$($binDir/sway-status-bar-battery)
+  brightness=$($binDir/sway-status-bar-brightness)
+  cpu=$($binDir/sway-status-bar-cpu)
+  music=$($binDir/sway-status-bar-music)
+  time=$($binDir/sway-status-bar-time)
+  volume=$($binDir/sway-status-bar-volume)
+  # weather=$($binDir/sway-status-bar-weather)
+  woffu=$($CHACHI_PATH/seniore/target/release/seniore woffu get-status)
+
+  echo "${woffu} ${music} ${cpu} ${battery} ${brightness} ${volume} ${time}"
+  sleep 2
+done

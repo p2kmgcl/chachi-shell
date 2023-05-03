@@ -2,14 +2,16 @@
 # Variables
 ###############################################################################
 
+set $configDir $CHACHI_PATH/home/.config/sway
+
 set $mod Mod4
 set $term alacritty
 set $browser firefox
 set $menu exec rofi -modi combi -combi-modi drun -show combi
 set $fileMenu exec rofi -modi filebrowser -show filebrowser
-set $lock ~/Projects/chachi-shell/bin/sway-lock-screen
-set $notifyBrightness notify-send -t 1000 "💡 $(~/Projects/chachi-shell/bin/get-brightness)"
-set $notifyVolume notify-send -t 1000 "🔉 $(~/Projects/chachi-shell/bin/get-volume)"
+set $lock $configDir/sway-lock-screen
+set $notifyBrightness notify-send -t 1000 $configDir/sway-status-bar-brightness
+set $notifyVolume notify-send -t 1000 $configDir/sway-status-bar-volume
 set $gnome-schema org.gnome.desktop.interface
 set $screenLaptop eDP-1
 set $screenExternal HDMI-A-1
@@ -95,15 +97,15 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 bindsym Print exec grim -g "$(slurp)" - | swappy -f -
-bindsym Ctrl+Print exec $term --class record_screen -e "$HOME/Projects/chachi-shell/bin/sway-record-gif"
-bindsym Shift+Print exec $term --class record_screen -e "$HOME/Projects/chachi-shell/bin/sway-record-screen"
-bindsym Shift+Ctrl+Print exec $term --class record_screen -e "$HOME/Projects/chachi-shell/bin/sway-record-screen-with-audio"
-bindsym Alt+Print exec $term --class record_screen -e "$HOME/Projects/chachi-shell/bin/sway-record-stop"
+bindsym Ctrl+Print exec $term --class record_screen -e $configDir/sway-record-gif
+bindsym Shift+Print exec $term --class record_screen -e $configDir/sway-record-screen
+bindsym Shift+Ctrl+Print exec $term --class record_screen -e $configDir/sway-record-screen-with-audio
+bindsym Alt+Print exec $term --class record_screen -e $configDir/sway-record-stop
 bindsym $mod+l exec $lock
-bindsym $mod+w exec ~/Projects/chachi-shell/bin/woffu-toggle
+bindsym $mod+w exec $CHACHI_PATH/seniore/target/release/seniore woffu toggle
 bindsym $mod+Shift+b exec bluetoothctl connect $HEADPHONES_ID
 bindsym $mod+Shift+w output $screenLaptop toggle
-bindsym $mod+h exec notify-send "$(cat $HOME/Projects/chachi-shell/config/sway.keybindings.txt)"
+bindsym $mod+h exec notify-send cat $(cat $configDir/sway.keybindings.txt)
 
 ###############################################################################
 # Behaviour
@@ -129,14 +131,14 @@ input type:touchpad {
 # focus output $screenExternal
 
 # Only laptop screen
-# output $screenExternal disable
-# output $screenLaptop pos 0 0 res 1920x1080
-# focus output $screenLaptop
+output $screenExternal disable
+output $screenLaptop pos 0 0 res 1920x1080
+focus output $screenLaptop
 
 # Screen on top of laptop
 # output $screenExternal pos 0 0 res 2560x1440
-output $screenExternal pos 0 0
-output $screenLaptop pos 320 1440
+# output $screenExternal pos 0 0
+# output $screenLaptop pos 320 1440
 # focus output $screenExternal
 
 # Screen right of laptop
@@ -216,7 +218,7 @@ exec_always {
 
 bar {
     position bottom
-    status_command ~/Projects/chachi-shell/bin/bar-status
+    status_command $configDir/sway-status-bar
 
     colors {
         statusline #eeeeee88
