@@ -44,7 +44,13 @@ require('packer').startup(function(use)
         }
       }
 
-      vim.keymap.set('n', '<C-p>', telescope_builtin.find_files, { desc = 'Find files' })
+      vim.keymap.set('n', '<C-p>', function()
+        telescope_builtin.git_files({
+          show_untracked = true,
+          use_git_root = false,
+        })
+      end, { desc = 'Find files' })
+
       vim.keymap.set('n', '<C-e>', telescope_builtin.buffers, { desc = 'Find buffer' })
       vim.keymap.set('n', '<C-f>', telescope_builtin.live_grep, { desc = 'Find grep' })
       vim.keymap.set('n', '<leader>/', telescope_builtin.current_buffer_fuzzy_find, { desc = 'Find in buffer' })
