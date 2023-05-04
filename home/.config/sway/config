@@ -10,8 +10,8 @@ set $browser firefox
 set $menu exec rofi -modi combi -combi-modi drun -show combi
 set $fileMenu exec rofi -modi filebrowser -show filebrowser
 set $lock $configDir/sway-lock-screen
-set $notifyBrightness notify-send -t 1000 $configDir/sway-status-bar-brightness
-set $notifyVolume notify-send -t 1000 $configDir/sway-status-bar-volume
+set $notifyBrightness notify-send -t 1000 "$($configDir/sway-status-bar-brightness)"
+set $notifyVolume notify-send -t 1000 "$($configDir/sway-status-bar-volume)"
 set $gnome-schema org.gnome.desktop.interface
 set $screenLaptop eDP-1
 set $screenExternal HDMI-A-1
