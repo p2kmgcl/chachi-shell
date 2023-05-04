@@ -21,7 +21,7 @@ if [ ! "JetBrains-JediTerm" = "${TERMINAL_EMULATOR}" ] && [ -n "$(which tmux)" ]
 fi
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/p2kmgcl/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 ###############################################################################
 # ENV #########################################################################
