@@ -158,7 +158,9 @@ exec swayidle before-sleep 'exec $lock'
 exec wl-paste -t test --watch clipman store --no-persist
 exec insync start
 
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+# Ensure that this env variables exist and are imported into dbus to enable screen sharing
+exec systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment WAYLAND_DISPLAY
 
 ###############################################################################
 # UI

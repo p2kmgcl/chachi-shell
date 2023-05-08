@@ -6,6 +6,9 @@
 
 /home/.config/*
 !/home/.config/alacritty/
+!/home/.config/environment.d/
+/home/.config/environment.d/*
+!/home/.config/environment.d/*.public.env.conf
 !/home/.config/i3/
 !/home/.config/sway/
 !/home/.config/tmux/
