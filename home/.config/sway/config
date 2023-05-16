@@ -105,7 +105,7 @@ bindsym $mod+l exec $lock
 bindsym $mod+w exec $CHACHI_PATH/seniore/target/release/seniore woffu toggle
 bindsym $mod+Shift+b exec bluetoothctl connect $HEADPHONES_ID
 bindsym $mod+Shift+w output $screenLaptop toggle
-bindsym $mod+h exec notify-send cat $(cat $configDir/sway.keybindings.txt)
+bindsym $mod+h exec notify-send "$(cat $configDir/sway.keybindings.txt)"
 
 ###############################################################################
 # Behaviour
@@ -171,9 +171,9 @@ seat seat0 xcursor_theme default 48
 default_border pixel 2
 default_floating_border normal
 hide_edge_borders none
-smart_borders off
-smart_gaps off
-gaps inner 2
+smart_borders on
+smart_gaps on
+gaps inner 4
 gaps outer 0
 
 for_window [app_id="pavucontrol"] floating enable
@@ -201,13 +201,13 @@ output * {
   bg ~/.background.jpg fill
 }
 
-client.background #eeeeee88 #eeeeee88 #eeeeee88
+client.background #000000ff #000000ff #000000ff
 
 # class border background text indicator child_border
-client.focused #00000088 #00000088 #eeeeee88 #00000088 #00000088
-client.focused_inactive #eeeeee88 #00000088 #eeeeee88 #eeeeee88 #eeeeee88
-client.unfocused #eeeeee88 #eeeeee88 #00000088 #eeeeee88 #eeeeee88
-client.urgent #eeeeee88 #eeeeee88 #00000088 #eeeeee88 #eeeeee88
+client.focused #000000ff #000000ff #ffffffff #000000ff #000000ff
+client.focused_inactive #00000066 #00000066 #ffffffff #00000066 #00000066
+client.unfocused #00000066 #00000066 #ffffffff #00000066 #00000066
+client.urgent #00000066 #00000066 #ffffffff #00000066 #00000066
 
 font pango:IBM Plex Sans Regular 9
 
@@ -220,13 +220,18 @@ exec_always {
 
 bar {
     position bottom
+    gaps 0
+    status_padding 4
+    tray_padding 4
+    icon_theme Adwaita
     status_command $configDir/sway-status-bar
 
     colors {
-        statusline #eeeeee88
-        background #000000aa
-        focused_workspace  #00000088 #eeeeee88 #00000088
-        inactive_workspace #00000088 #00000088 #eeeeee88
-        urgent_workspace   #00000088 #00000088 #eeeeee88
+        statusline #ffffffff
+        background #000000ff
+        # border background text
+        focused_workspace  #000000ff #000000ff #ffffffff
+        inactive_workspace #000000ff #000000ff #888888ff
+        urgent_workspace   #000000ff #444444ff #ffffffff
     }
 }

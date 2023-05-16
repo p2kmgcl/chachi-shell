@@ -303,10 +303,14 @@ require('packer').startup(function(use)
 
       vim.cmd.colorscheme 'catppuccin'
 
+      local catppuccin_lualine = require('lualine.themes.catppuccin')
+      catppuccin_lualine.normal.c.bg = '#e4e4e4'
+      catppuccin_lualine.inactive.c.bg = '#e4e4e4'
+
       require('lualine').setup({
         options = {
           icons_enabled = false,
-          theme = 'catppuccin',
+          theme = catppuccin_lualine,
           component_separators = '',
           section_separators = '',
         },
