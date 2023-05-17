@@ -35,16 +35,16 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1 "1: 🦊"
+set $ws2 "2: 👩‍💻"
+set $ws3 "3: 💬"
+set $ws4 "4: 📚"
+set $ws5 "5: 🔐"
+set $ws6 "6: 👽"
+set $ws7 "7: 👽"
+set $ws8 "8: 👽"
+set $ws9 "9: 👽"
+set $ws10 "10: 🎥"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -111,8 +111,6 @@ bindsym $mod+h exec notify-send "$(cat $configDir/sway.keybindings.txt)"
 # Behaviour
 ###############################################################################
 
-for_window [app_id="record_screen"] move container to workspace number 10
-
 focus_follows_mouse no
 
 input type:keyboard {
@@ -171,19 +169,29 @@ seat seat0 xcursor_theme default 48
 default_border pixel 2
 default_floating_border normal
 hide_edge_borders none
-smart_borders on
-smart_gaps on
+smart_borders off
+smart_gaps off
 gaps inner 4
 gaps outer 0
+
+for_window [app_id="firefox"] move container to workspace number $ws1
+for_window [app_id="Alacritty"] move container to workspace number $ws2
+for_window [class="Slack"] move container to workspace number $ws3
+for_window [class="obsidian"] move container to workspace number $ws4
+for_window [app_id="record_screen"] move container to workspace number $ws10
+
+for_window [class="MPlayer"] sticky enable
+for_window [title="Picture in picture"] sticky enable
+for_window [title="Picture-in-Picture"] sticky enable
+
+for_window [title="Firefox — Sharing Indicator"] resize set width 90 px
+for_window [title="Firefox — Sharing Indicator"] resize set height 30 px
 
 for_window [app_id="pavucontrol"] floating enable
 for_window [class="MPlayer"] floating enable
 for_window [title="Picture in picture"] floating enable
-
+for_window [title="Picture-in-Picture"] floating enable
 for_window [title="Firefox — Sharing Indicator"] floating enable
-for_window [title="Firefox — Sharing Indicator"] resize set width 90 px
-for_window [title="Firefox — Sharing Indicator"] resize set height 30 px
-
 for_window [window_type="dialog"] floating enable
 for_window [window_type="utility"] floating enable
 for_window [window_type="toolbar"] floating enable
@@ -193,7 +201,6 @@ for_window [window_type="dropdown_menu"] floating enable
 for_window [window_type="popup_menu"] floating enable
 for_window [window_type="tooltip"] floating enable
 for_window [window_type="notification"] floating enable
-
 for_window [class="jetbrains-(.*)" title="Welcome to IntelliJ IDEA"] floating enable
 for_window [class="jetbrains-(.*)" title="win0"] floating enable
 
@@ -219,19 +226,19 @@ exec_always {
 }
 
 bar {
+    gaps 4
+    icon_theme Adwaita
     position bottom
-    gaps 0
+    status_command $configDir/sway-status-bar
     status_padding 4
     tray_padding 4
-    icon_theme Adwaita
-    status_command $configDir/sway-status-bar
 
     colors {
-        statusline #ffffffff
-        background #000000ff
+        statusline #ffffffaa
+        background #000000aa
         # border background text
-        focused_workspace  #000000ff #000000ff #ffffffff
-        inactive_workspace #000000ff #000000ff #888888ff
-        urgent_workspace   #000000ff #444444ff #ffffffff
+        focused_workspace  #000000aa #000000aa #ffffffff
+        inactive_workspace #000000aa #000000aa #888888ff
+        urgent_workspace   #000000aa #444444aa #ffffffff
     }
 }
