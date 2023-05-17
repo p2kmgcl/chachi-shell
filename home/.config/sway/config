@@ -9,6 +9,7 @@ set $term alacritty
 set $browser firefox
 set $menu exec rofi -modi combi -combi-modi drun -show combi
 set $fileMenu exec rofi -modi filebrowser -show filebrowser
+set $emojiMenu exec rofi -modi emoji -show emoji
 set $lock $configDir/sway-lock-screen
 set $notifyBrightness notify-send -t 1000 "$($configDir/sway-status-bar-brightness)"
 set $notifyVolume notify-send -t 1000 "$($configDir/sway-status-bar-volume)"
@@ -21,6 +22,7 @@ set $screenExternal HDMI-A-1
 ###############################################################################
 
 bindsym $mod+d exec $menu
+bindsym $mod+e exec $emojiMenu
 bindsym $mod+Shift+d exec $fileMenu
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec $browser
@@ -35,16 +37,16 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-set $ws1 "1: 🦊"
-set $ws2 "2: 👩‍💻"
-set $ws3 "3: 💬"
-set $ws4 "4: 📚"
-set $ws5 "5: 🔐"
-set $ws6 "6: 👽"
-set $ws7 "7: 👽"
-set $ws8 "8: 👽"
-set $ws9 "9: 👽"
-set $ws10 "10: 🎥"
+set $ws1 "1 🦊"
+set $ws2 "2 👩‍💻"
+set $ws3 "3 💬"
+set $ws4 "4 📚"
+set $ws5 "5 🔐"
+set $ws6 "6 👽"
+set $ws7 "7 👽"
+set $ws8 "8 👽"
+set $ws9 "9 👽"
+set $ws10 "10 🎥"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -231,14 +233,16 @@ bar {
     position bottom
     status_command $configDir/sway-status-bar
     status_padding 4
+    strip_workspace_numbers on
     tray_padding 4
+    workspace_min_width 40
 
     colors {
         statusline #ffffffaa
         background #000000aa
         # border background text
-        focused_workspace  #000000aa #000000aa #ffffffff
-        inactive_workspace #000000aa #000000aa #888888ff
+        focused_workspace  #000000aa #222222aa #ffffffff
+        inactive_workspace #000000aa #000000aa #ffffffff
         urgent_workspace   #000000aa #444444aa #ffffffff
     }
 }
