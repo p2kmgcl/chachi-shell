@@ -4,7 +4,7 @@ binDir=$CHACHI_PATH/home/.config/sway
 
 while true; do
   battery=$($binDir/sway-status-bar-battery)
-  brightness=$($binDir/sway-status-bar-brightness)
+  brightness=$($CHACHI_PATH/seniore/target/release/seniore linux get-brightness)
   cpu=$($binDir/sway-status-bar-cpu)
   music=$($binDir/sway-status-bar-music)
   time=$($binDir/sway-status-bar-time)

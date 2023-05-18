@@ -1,2 +1,0 @@
-#!/bin/bash
-echo "💡 $((($(brightnessctl get) * 100) / $(brightnessctl max)))%"
