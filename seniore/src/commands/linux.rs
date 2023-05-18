@@ -2,15 +2,10 @@ use crate::util::command;
 use regex::Regex;
 
 pub fn get_brightness() {
-    fn parse(input: &str) -> f32 {
-        let text = command::get_output(format!("/bin/brightnessctl {}", input).as_str()).unwrap();
-        return text.trim().parse().unwrap();
-    }
-
-    let current_brightness = parse("get");
-    let max_brightness = parse("max");
-
-    println!("💡 {:.0}%", ((current_brightness / max_brightness) * 100.0));
+    let output = command::get_output("/bin/brightnessctl -m").unwrap();
+    let parts: Vec<&str> = output.split(",").collect();
+    let brightness = parts[3];
+    println!("💡 {}", brightness);
 }
 
 pub fn get_volume() {
