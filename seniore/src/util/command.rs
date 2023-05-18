@@ -5,6 +5,14 @@ use std::{
     time::{Duration, Instant},
 };
 
+pub fn get_output(input: &str) -> anyhow::Result<String> {
+    let chunks: Vec<&str> = input.split(" ").collect();
+    let command = chunks.first().unwrap();
+    let args = chunks[1..].to_vec();
+    let output = Command::new(command).args(args).output()?.stdout;
+    return Ok(String::from_utf8(output)?);
+}
+
 pub fn run(directory: &PathBuf, command: &PathBuf, args: &Vec<&str>) {
     let command_name = format!(
         "{}: {}",

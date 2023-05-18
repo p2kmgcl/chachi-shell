@@ -15,6 +15,11 @@ fn main() {
             "update-modules-cache" => commands::liferay::update_modules_cache(),
             _ => print_unknown(),
         },
+        "linux" => match (&args[2]).as_str() {
+            "get-brightness" => commands::linux::get_brightness(),
+            "get-volume" => commands::linux::get_volume(),
+            _ => print_unknown(),
+        },
         "woffu" => match (&args[2]).as_str() {
             "get-status" => commands::woffu::get_status(),
             "toggle" => commands::woffu::toggle(),

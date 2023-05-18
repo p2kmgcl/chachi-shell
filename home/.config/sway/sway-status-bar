@@ -8,7 +8,7 @@ while true; do
   cpu=$($binDir/sway-status-bar-cpu)
   music=$($binDir/sway-status-bar-music)
   time=$($binDir/sway-status-bar-time)
-  volume=$($binDir/sway-status-bar-volume)
+  volume=$($CHACHI_PATH/seniore/target/release/seniore linux get-volume)
   # weather=$($binDir/sway-status-bar-weather)
   woffu=$($CHACHI_PATH/seniore/target/release/seniore woffu get-status)
 
