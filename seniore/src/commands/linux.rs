@@ -9,7 +9,7 @@ pub fn get_brightness() {
 }
 
 pub fn get_volume() {
-    let regex = Regex::new(r"\s(\d{2}%)\s").unwrap();
+    let regex = Regex::new(r"\s(\d{1,2}%)\s").unwrap();
     let output = command::get_output("/bin/pactl get-sink-volume @DEFAULT_SINK@").unwrap();
 
     let volume = regex

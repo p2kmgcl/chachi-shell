@@ -3,6 +3,7 @@
 ###############################################################################
 
 set $configDir $CHACHI_PATH/home/.config/sway
+set $seniore $CHACHI_PATH/seniore/target/release/seniore
 
 set $mod Mod4
 set $term alacritty
@@ -11,8 +12,8 @@ set $menu exec rofi -modi combi -combi-modi drun -show combi
 set $fileMenu exec rofi -modi filebrowser -show filebrowser
 set $emojiMenu exec rofi -modi emoji -show emoji
 set $lock $configDir/sway-lock-screen
-set $notifyBrightness notify-send -t 1000 "$($configDir/sway-status-bar-brightness)"
-set $notifyVolume notify-send -t 1000 "$($configDir/sway-status-bar-volume)"
+set $notifyBrightness notify-send -t 1000 "$($seniore linux get-brightness)"
+set $notifyVolume notify-send -t 1000 "$($seniore linux get-volume)"
 set $gnome-schema org.gnome.desktop.interface
 set $screenLaptop eDP-1
 set $screenExternal HDMI-A-1
