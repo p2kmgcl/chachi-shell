@@ -17,6 +17,7 @@ fn main() {
         },
         "linux" => match (&args[2]).as_str() {
             "get-brightness" => commands::linux::get_brightness(),
+            "get-date" => commands::linux::get_date(),
             "get-volume" => commands::linux::get_volume(),
             _ => print_unknown(),
         },

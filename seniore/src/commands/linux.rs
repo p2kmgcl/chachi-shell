@@ -1,4 +1,5 @@
 use crate::util::command;
+use chrono;
 use regex::Regex;
 
 pub fn get_brightness() {
@@ -6,6 +7,11 @@ pub fn get_brightness() {
     let parts: Vec<&str> = output.split(",").collect();
     let brightness = parts[3];
     println!("💡 {}", brightness);
+}
+
+pub fn get_date() {
+    let date = chrono::Local::now();
+    println!("🗓️ {}", date.format_localized("%A, %e de %B, %H:%M", chrono::Locale::es_ES));
 }
 
 pub fn get_volume() {
