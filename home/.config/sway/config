@@ -177,12 +177,6 @@ smart_gaps off
 gaps inner 4
 gaps outer 0
 
-for_window [app_id="firefox"] move container to workspace number $ws1
-for_window [app_id="Alacritty"] move container to workspace number $ws2
-for_window [class="Slack"] move container to workspace number $ws3
-for_window [class="obsidian"] move container to workspace number $ws4
-for_window [app_id="record_screen"] move container to workspace number $ws10
-
 for_window [class="MPlayer"] sticky enable
 for_window [title="Picture in picture"] sticky enable
 for_window [title="Picture-in-Picture"] sticky enable
@@ -234,7 +228,7 @@ bar {
     position bottom
     status_command $configDir/sway-status-bar
     status_padding 4
-    strip_workspace_numbers on
+    strip_workspace_numbers off
     tray_padding 4
     workspace_min_width 40
 
