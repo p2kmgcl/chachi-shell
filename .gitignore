@@ -10,6 +10,10 @@
 /home/.config/environment.d/*
 !/home/.config/environment.d/*.public.env.conf
 !/home/.config/i3/
+!/home/.config/nushell/
+/home/.config/nushell/history.txt
+!/home/.config/nushell/config.nu
+!/home/.config/nushell/env.nu
 !/home/.config/rofi/
 !/home/.config/sway/
 !/home/.config/tmux/
