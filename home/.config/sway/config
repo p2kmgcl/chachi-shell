@@ -223,7 +223,7 @@ exec_always {
 }
 
 bar {
-    gaps 4
+    gaps 0
     icon_theme Adwaita
     position bottom
     status_command $configDir/sway-status-bar
