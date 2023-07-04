@@ -144,7 +144,7 @@ require('packer').startup(function(use)
       { 'L3MON4D3/LuaSnip' },
       { 'hrsh7th/cmp-nvim-lsp' },
       -- Nice UI feedback on the bottom right
-      { 'j-hui/fidget.nvim' },
+      { 'j-hui/fidget.nvim', tag = 'legacy' },
     },
     config = function()
       local lspzero = require('lsp-zero')
