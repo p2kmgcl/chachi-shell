@@ -1,3 +1,0 @@
-#!/bin/bash
-
-cd ~/Projects/chachi-shell/liferay/mysql && docker compose exec liferay_portal_database mysql -u root -proot

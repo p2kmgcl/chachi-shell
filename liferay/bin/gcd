@@ -1,0 +1,3 @@
+#!/bin/bash
+
+~/Projects/community-portal/liferay-portal/gradlew clean deploy -Dnodejs.node.env=development -Dbuild=portal
