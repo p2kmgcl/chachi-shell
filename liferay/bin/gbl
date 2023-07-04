@@ -1,3 +1,5 @@
 #!/bin/bash
 
-cd ~/Projects/community-portal/liferay-portal/modules/apps/portal-language/portal-language-lang && ~/Projects/community-portal/liferay-portal/gradlew buildLang
+cd ~/Projects/community-portal/liferay-portal/modules/apps/portal-language/portal-language-lang && \
+ ~/Projects/community-portal/liferay-portal/gradlew buildLang && \
+ ~/Projects/community-portal/liferay-portal/gradlew clean deploy -Dbuild=portal
