@@ -1,118 +1,42 @@
-[buf]
-format = '(with [$symbol$version ]($style))'
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration\
+$line_break\
+$python\
+$character"""
 
-[bun]
-format = '(via [$symbol($version )]($style))'
+[directory]
+style = "blue"
 
-[c]
-format = '(via [$symbol($version(-$name) )]($style))'
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
 
-[cmake]
-format = '(via [$symbol($version )]($style))'
+[git_branch]
+format = "[$branch]($style)"
+style = "bright-black"
 
-[cobol]
-format = '(via [$symbol($version )]($style))'
+[git_status]
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
 
-[crystal]
-format = '(via [$symbol($version )]($style))'
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
 
-[daml]
-format = '(via [$symbol($version )]($style))'
-
-[dart]
-format = '(via [$symbol($version )]($style))'
-
-[deno]
-format = '(via [$symbol($version )]($style))'
-
-[dotnet]
-format = '(via [$symbol($version )(🎯 $tfm )]($style))'
-
-[elixir]
-format = '(via [$symbol($version \(OTP $otp_version\) )]($style))'
-
-[elm]
-format = '(via [$symbol($version )]($style))'
-
-[erlang]
-format = '(via [$symbol($version )]($style))'
-
-[fennel]
-format = '(via [$symbol($version )]($style))'
-
-[golang]
-format = '(via [$symbol($version )]($style))'
-
-[haskell]
-format = '(via [$symbol($version )]($style))'
-
-[helm]
-format = '(via [$symbol($version )]($style))'
-
-[java]
-format = '(via [$symbol($version )]($style))'
-
-[julia]
-format = '(via [$symbol($version )]($style))'
-
-[kotlin]
-format = '(via [$symbol($version )]($style))'
-
-[lua]
-format = '(via [$symbol($version )]($style))'
-
-[nim]
-format = '(via [$symbol($version )]($style))'
-
-[nodejs]
-format = '(via [$symbol($version )]($style))'
-
-[ocaml]
-format = '(via [$symbol($version )(\($switch_indicator$switch_name\) )]($style))'
-
-[opa]
-format = '(via [$symbo($version ]($style))"'
-[package]
-format = '(is [$symbol$version]($style) )'
-
-[perl]
-format = '(via [$symbol($version )]($style))'
-
-[php]
-format = '(via [$symbol($version )]($style))'
-
-[purescript]
-format = '(via [$symbol($version )]($style))'
-
-[python]
-format = '(via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style))'
-
-[raku]
-format = '(via [$symbol($version-$vm_version )]($style))'
-
-[red]
-format = '(via [$symbol($version )]($style))'
-
-[rlang]
-format = '(via [$symbol($version )]($style))'
-
-[ruby]
-format = '(via [$symbol($version )]($style))'
-
-[rust]
-format = '(via [$symbol($version )]($style))'
-
-[scala]
-format = '(via [$symbol($version )]($style))'
-
-[swift]
-format = '(via [$symbol($version )]($style))'
-
-[vagrant]
-format = '(via [$symbol($version )]($style))'
-
-[vlang]
-format = '(via [$symbol($version )]($style))'
-
-[zig]
-format = '(via [$symbol($version )]($style))'
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
