@@ -1,11 +1,11 @@
 if status is-interactive
-  set -U ANT_HOME "$HOME/.liferay-ant"
-  set -U JAVA_HOME "$HOME/.liferay-java"
-  set -U JPM_HOME "$HOME/.liferay-jpm"
-  set -U MAVEN_HOME "$HOME/.liferay-maven"
+  export ANT_HOME="$HOME/.liferay-ant"
+  export JAVA_HOME="$HOME/.liferay-java"
+  export JPM_HOME="$HOME/.liferay-jpm"
+  export MAVEN_HOME="$HOME/.liferay-maven"
 
-  set -U ANT_OPTS "-XX:-UseGCOverheadLimit -Xmx6144m -XX:MaxMetaspaceSize=1024m"
-  set -U GRADLE_OPTS "-Dorg.gradle.daemon=false"
+  export ANT_OPTS="-XX:-UseGCOverheadLimit -Xmx6144m -XX:MaxMetaspaceSize=1024m"
+  export GRADLE_OPTS="-Dorg.gradle.daemon=false"
 
   fish_add_path $ANT_HOME/bin
   fish_add_path $JAVA_HOME/bin
