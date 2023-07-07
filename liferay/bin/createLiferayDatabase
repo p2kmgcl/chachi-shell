@@ -1,3 +1,4 @@
 #!/bin/bash
 
-cd ~/Projects/chachi-shell/liferay/mysql && podman-compose up --detach && podman wait --condition healthy liferay_portal_database
+podman kube play ~/Projects/chachi-shell/liferay/liferay-portal-database.yml && \
+  podman wait --condition healthy liferay_portal_database_pod-liferay_portal_database

@@ -1,3 +1,4 @@
 #!/bin/bash
 
-cd ~/Projects/chachi-shell/liferay/mysql && podman-compose down && docker volume rm mysql_liferay_portal_database
+podman kube down --force ~/Projects/chachi-shell/liferay/liferay-portal-database.yml && \
+  podman volume rm liferay-portal-database
