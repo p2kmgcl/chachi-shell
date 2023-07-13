@@ -8,8 +8,7 @@ local b = null_ls.builtins
 
 local sources = {
   b.formatting.deno_fmt,
-  b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } },
-
+  b.formatting.prettier.with { filetypes = { "html", "markdown", "css", "js", "ts", "tsx", "json" } },
   b.formatting.stylua,
 }
 
