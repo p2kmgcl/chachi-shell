@@ -1,0 +1,9 @@
+gui:
+  expandFocusedSidePanel: true
+  showBottomLine: false
+  showCommandLog: false
+  showRandomTip: false
+git:
+  paging:
+    colorArg: always
+    pager: delta --hunk-header-style=omit --light --paging=never
