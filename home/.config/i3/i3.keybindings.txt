@@ -4,7 +4,6 @@ Super+Return          Launch terminal
 Super+Shift+Return    Launch browser
 Super+w               Toggle Woffu
 Super+Shift+w         Toggle laptop screen
-Super+Shift+b         Bluetooth quickconnect
 
 Print                 Make a screenshot
 Ctrl+Print            Record screen as gif

@@ -106,7 +106,6 @@ bindsym Shift+Ctrl+Print exec $term --class record_screen -e $configDir/sway-rec
 bindsym Alt+Print exec $term --class record_screen -e $configDir/sway-record-stop
 bindsym $mod+l exec $lock
 bindsym $mod+w exec $CHACHI_PATH/seniore/target/release/seniore woffu toggle
-bindsym $mod+Shift+b exec bluetoothctl connect $HEADPHONES_ID
 bindsym $mod+Shift+w output $screenLaptop toggle
 bindsym $mod+h exec notify-send "$(cat $configDir/sway.keybindings.txt)"
 
