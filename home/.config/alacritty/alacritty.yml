@@ -6,12 +6,12 @@ window:
 
 font:
   normal:
-    family: IBM Plex Mono
+    family: Inconsolata Nerd Font
     style: Regular
   offset:
     x: 0
-    y: 5
-  size: 10.5
+    y: 10
+  size: 12
   draw_bold_text_with_bright_colors: true
 
 bell:
