@@ -1,5 +1,3 @@
-local overrides = require("custom.configs.overrides")
-
 local plugins = {
   {
     "neovim/nvim-lspconfig",
@@ -18,15 +16,15 @@ local plugins = {
   },
   {
     "williamboman/mason.nvim",
-    opts = overrides.mason,
+    opts = require("custom.configs.mason"),
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = overrides.treesitter,
+    opts = require("custom.configs.treesitter"),
   },
   {
     "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,
+    opts = require("custom.configs.nvimtree"),
   },
   {
     "max397574/better-escape.nvim",
@@ -42,6 +40,10 @@ local plugins = {
       },
     },
   },
+  {
+    'nvim-telescope/telescope.nvim',
+    opts = require("custom.configs.telescope"),
+  }
 }
 
 return plugins
