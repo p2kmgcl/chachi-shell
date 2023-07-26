@@ -19,6 +19,9 @@
 [remote "brian"]
 	url = https://github.com/brianchandotcom/liferay-portal.git
 	fetch = +refs/heads/master:refs/remotes/brian/master
+[remote "jurgen"]
+	url = https://github.com/jkappler/liferay-portal.git
+	fetch = +refs/heads/master:refs/remotes/jkappler/master
 [branch "master"]
 	remote = origin
 	merge = refs/heads/master
