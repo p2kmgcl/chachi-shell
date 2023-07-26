@@ -1,6 +1,5 @@
 # Temporary files
 *.hprof
-*.jar
 *.project
 
 # Common configurations
