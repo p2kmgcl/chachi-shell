@@ -1,0 +1,3600 @@
+{
+  "externalReferenceCode": "chachi-shell-content-animals-picklist",
+  "listTypeEntries": [
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-canidae",
+      "key": "canidae",
+      "name": "Canidae",
+      "name_i18n": {
+        "en_US": "Canidae"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-felidae",
+      "key": "felidae",
+      "name": "Felidae",
+      "name_i18n": {
+        "en_US": "Felidae"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cat",
+      "key": "cat",
+      "name": "Cat",
+      "name_i18n": {
+        "en_US": "Cat"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cattle",
+      "key": "cattle",
+      "name": "Cattle",
+      "name_i18n": {
+        "en_US": "Cattle"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-dog",
+      "key": "dog",
+      "name": "Dog",
+      "name_i18n": {
+        "en_US": "Dog"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-donkey",
+      "key": "donkey",
+      "name": "Donkey",
+      "name_i18n": {
+        "en_US": "Donkey"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-goat",
+      "key": "goat",
+      "name": "Goat",
+      "name_i18n": {
+        "en_US": "Goat"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-horse",
+      "key": "horse",
+      "name": "Horse",
+      "name_i18n": {
+        "en_US": "Horse"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-pig",
+      "key": "pig",
+      "name": "Pig",
+      "name_i18n": {
+        "en_US": "Pig"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-rabbit",
+      "key": "rabbit",
+      "name": "Rabbit",
+      "name_i18n": {
+        "en_US": "Rabbit"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-aardvark",
+      "key": "aardvark",
+      "name": "Aardvark",
+      "name_i18n": {
+        "en_US": "Aardvark"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-aardwolf",
+      "key": "aardwolf",
+      "name": "Aardwolf",
+      "name_i18n": {
+        "en_US": "Aardwolf"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-albatross",
+      "key": "albatross",
+      "name": "Albatross",
+      "name_i18n": {
+        "en_US": "Albatross"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-alligator",
+      "key": "alligator",
+      "name": "Alligator",
+      "name_i18n": {
+        "en_US": "Alligator"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-alpaca",
+      "key": "alpaca",
+      "name": "Alpaca",
+      "name_i18n": {
+        "en_US": "Alpaca"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-amphibian",
+      "key": "amphibian",
+      "name": "Amphibian",
+      "name_i18n": {
+        "en_US": "Amphibian"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-anaconda",
+      "key": "anaconda",
+      "name": "Anaconda",
+      "name_i18n": {
+        "en_US": "Anaconda"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-angelfish",
+      "key": "angelfish",
+      "name": "Angelfish",
+      "name_i18n": {
+        "en_US": "Angelfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-anglerfish",
+      "key": "anglerfish",
+      "name": "Anglerfish",
+      "name_i18n": {
+        "en_US": "Anglerfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-ant",
+      "key": "ant",
+      "name": "Ant",
+      "name_i18n": {
+        "en_US": "Ant"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-anteater",
+      "key": "anteater",
+      "name": "Anteater",
+      "name_i18n": {
+        "en_US": "Anteater"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-antelope",
+      "key": "antelope",
+      "name": "Antelope",
+      "name_i18n": {
+        "en_US": "Antelope"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-antlion",
+      "key": "antlion",
+      "name": "Antlion",
+      "name_i18n": {
+        "en_US": "Antlion"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-ape",
+      "key": "ape",
+      "name": "Ape",
+      "name_i18n": {
+        "en_US": "Ape"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-aphid",
+      "key": "aphid",
+      "name": "Aphid",
+      "name_i18n": {
+        "en_US": "Aphid"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-armadillo",
+      "key": "armadillo",
+      "name": "Armadillo",
+      "name_i18n": {
+        "en_US": "Armadillo"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-asp",
+      "key": "asp",
+      "name": "Asp",
+      "name_i18n": {
+        "en_US": "Asp"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-baboon",
+      "key": "baboon",
+      "name": "Baboon",
+      "name_i18n": {
+        "en_US": "Baboon"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-badger",
+      "key": "badger",
+      "name": "Badger",
+      "name_i18n": {
+        "en_US": "Badger"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-bandicoot",
+      "key": "bandicoot",
+      "name": "Bandicoot",
+      "name_i18n": {
+        "en_US": "Bandicoot"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-barnacle",
+      "key": "barnacle",
+      "name": "Barnacle",
+      "name_i18n": {
+        "en_US": "Barnacle"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-barracuda",
+      "key": "barracuda",
+      "name": "Barracuda",
+      "name_i18n": {
+        "en_US": "Barracuda"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-basilisk",
+      "key": "basilisk",
+      "name": "Basilisk",
+      "name_i18n": {
+        "en_US": "Basilisk"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-bass",
+      "key": "bass",
+      "name": "Bass",
+      "name_i18n": {
+        "en_US": "Bass"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-bat",
+      "key": "bat",
+      "name": "Bat",
+      "name_i18n": {
+        "en_US": "Bat"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-bear",
+      "key": "bear",
+      "name": "Bear",
+      "name_i18n": {
+        "en_US": "Bear"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-beaver",
+      "key": "beaver",
+      "name": "Beaver",
+      "name_i18n": {
+        "en_US": "Beaver"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-bedbug",
+      "key": "bedbug",
+      "name": "Bedbug",
+      "name_i18n": {
+        "en_US": "Bedbug"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-bee",
+      "key": "bee",
+      "name": "Bee",
+      "name_i18n": {
+        "en_US": "Bee"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-beetle",
+      "key": "beetle",
+      "name": "Beetle",
+      "name_i18n": {
+        "en_US": "Beetle"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-bird",
+      "key": "bird",
+      "name": "Bird",
+      "name_i18n": {
+        "en_US": "Bird"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-bison",
+      "key": "bison",
+      "name": "Bison",
+      "name_i18n": {
+        "en_US": "Bison"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-blackbird",
+      "key": "blackbird",
+      "name": "Blackbird",
+      "name_i18n": {
+        "en_US": "Blackbird"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-boa",
+      "key": "boa",
+      "name": "Boa",
+      "name_i18n": {
+        "en_US": "Boa"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-boar",
+      "key": "boar",
+      "name": "Boar",
+      "name_i18n": {
+        "en_US": "Boar"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-bobcat",
+      "key": "bobcat",
+      "name": "Bobcat",
+      "name_i18n": {
+        "en_US": "Bobcat"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-bobolink",
+      "key": "bobolink",
+      "name": "Bobolink",
+      "name_i18n": {
+        "en_US": "Bobolink"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-bonobo",
+      "key": "bonobo",
+      "name": "Bonobo",
+      "name_i18n": {
+        "en_US": "Bonobo"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-booby",
+      "key": "booby",
+      "name": "Booby",
+      "name_i18n": {
+        "en_US": "Booby"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-bovid",
+      "key": "bovid",
+      "name": "Bovid",
+      "name_i18n": {
+        "en_US": "Bovid"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-bug",
+      "key": "bug",
+      "name": "Bug",
+      "name_i18n": {
+        "en_US": "Bug"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-butterfly",
+      "key": "butterfly",
+      "name": "Butterfly",
+      "name_i18n": {
+        "en_US": "Butterfly"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-buzzard",
+      "key": "buzzard",
+      "name": "Buzzard",
+      "name_i18n": {
+        "en_US": "Buzzard"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-camel",
+      "key": "camel",
+      "name": "Camel",
+      "name_i18n": {
+        "en_US": "Camel"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-canid",
+      "key": "canid",
+      "name": "Canid",
+      "name_i18n": {
+        "en_US": "Canid"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-capybara",
+      "key": "capybara",
+      "name": "Capybara",
+      "name_i18n": {
+        "en_US": "Capybara"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cardinal",
+      "key": "cardinal",
+      "name": "Cardinal",
+      "name_i18n": {
+        "en_US": "Cardinal"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-caribou",
+      "key": "caribou",
+      "name": "Caribou",
+      "name_i18n": {
+        "en_US": "Caribou"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-carp",
+      "key": "carp",
+      "name": "Carp",
+      "name_i18n": {
+        "en_US": "Carp"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cat",
+      "key": "cat",
+      "name": "Cat",
+      "name_i18n": {
+        "en_US": "Cat"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-catshark",
+      "key": "catshark",
+      "name": "Catshark",
+      "name_i18n": {
+        "en_US": "Catshark"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-caterpillar",
+      "key": "caterpillar",
+      "name": "Caterpillar",
+      "name_i18n": {
+        "en_US": "Caterpillar"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-catfish",
+      "key": "catfish",
+      "name": "Catfish",
+      "name_i18n": {
+        "en_US": "Catfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cattle",
+      "key": "cattle",
+      "name": "Cattle",
+      "name_i18n": {
+        "en_US": "Cattle"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-centipede",
+      "key": "centipede",
+      "name": "Centipede",
+      "name_i18n": {
+        "en_US": "Centipede"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cephalopod",
+      "key": "cephalopod",
+      "name": "Cephalopod",
+      "name_i18n": {
+        "en_US": "Cephalopod"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-chameleon",
+      "key": "chameleon",
+      "name": "Chameleon",
+      "name_i18n": {
+        "en_US": "Chameleon"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cheetah",
+      "key": "cheetah",
+      "name": "Cheetah",
+      "name_i18n": {
+        "en_US": "Cheetah"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-chickadee",
+      "key": "chickadee",
+      "name": "Chickadee",
+      "name_i18n": {
+        "en_US": "Chickadee"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-chicken",
+      "key": "chicken",
+      "name": "Chicken",
+      "name_i18n": {
+        "en_US": "Chicken"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-chimpanzee",
+      "key": "chimpanzee",
+      "name": "Chimpanzee",
+      "name_i18n": {
+        "en_US": "Chimpanzee"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-chinchilla",
+      "key": "chinchilla",
+      "name": "Chinchilla",
+      "name_i18n": {
+        "en_US": "Chinchilla"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-chipmunk",
+      "key": "chipmunk",
+      "name": "Chipmunk",
+      "name_i18n": {
+        "en_US": "Chipmunk"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-clam",
+      "key": "clam",
+      "name": "Clam",
+      "name_i18n": {
+        "en_US": "Clam"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-clownfish",
+      "key": "clownfish",
+      "name": "Clownfish",
+      "name_i18n": {
+        "en_US": "Clownfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cobra",
+      "key": "cobra",
+      "name": "Cobra",
+      "name_i18n": {
+        "en_US": "Cobra"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cockroach",
+      "key": "cockroach",
+      "name": "Cockroach",
+      "name_i18n": {
+        "en_US": "Cockroach"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cod",
+      "key": "cod",
+      "name": "Cod",
+      "name_i18n": {
+        "en_US": "Cod"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-condor",
+      "key": "condor",
+      "name": "Condor",
+      "name_i18n": {
+        "en_US": "Condor"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-constrictor",
+      "key": "constrictor",
+      "name": "Constrictor",
+      "name_i18n": {
+        "en_US": "Constrictor"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-coral",
+      "key": "coral",
+      "name": "Coral",
+      "name_i18n": {
+        "en_US": "Coral"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cougar",
+      "key": "cougar",
+      "name": "Cougar",
+      "name_i18n": {
+        "en_US": "Cougar"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cow",
+      "key": "cow",
+      "name": "Cow",
+      "name_i18n": {
+        "en_US": "Cow"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-coyote",
+      "key": "coyote",
+      "name": "Coyote",
+      "name_i18n": {
+        "en_US": "Coyote"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-crab",
+      "key": "crab",
+      "name": "Crab",
+      "name_i18n": {
+        "en_US": "Crab"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-crane",
+      "key": "crane",
+      "name": "Crane",
+      "name_i18n": {
+        "en_US": "Crane"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-crawdad",
+      "key": "crawdad",
+      "name": "Crawdad",
+      "name_i18n": {
+        "en_US": "Crawdad"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-crayfish",
+      "key": "crayfish",
+      "name": "Crayfish",
+      "name_i18n": {
+        "en_US": "Crayfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cricket",
+      "key": "cricket",
+      "name": "Cricket",
+      "name_i18n": {
+        "en_US": "Cricket"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-crocodile",
+      "key": "crocodile",
+      "name": "Crocodile",
+      "name_i18n": {
+        "en_US": "Crocodile"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-crow",
+      "key": "crow",
+      "name": "Crow",
+      "name_i18n": {
+        "en_US": "Crow"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cuckoo",
+      "key": "cuckoo",
+      "name": "Cuckoo",
+      "name_i18n": {
+        "en_US": "Cuckoo"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cicada",
+      "key": "cicada",
+      "name": "Cicada",
+      "name_i18n": {
+        "en_US": "Cicada"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-damselfly",
+      "key": "damselfly",
+      "name": "Damselfly",
+      "name_i18n": {
+        "en_US": "Damselfly"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-deer",
+      "key": "deer",
+      "name": "Deer",
+      "name_i18n": {
+        "en_US": "Deer"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-dingo",
+      "key": "dingo",
+      "name": "Dingo",
+      "name_i18n": {
+        "en_US": "Dingo"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-dinosaur",
+      "key": "dinosaur",
+      "name": "Dinosaur",
+      "name_i18n": {
+        "en_US": "Dinosaur"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-dog",
+      "key": "dog",
+      "name": "Dog",
+      "name_i18n": {
+        "en_US": "Dog"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-dolphin",
+      "key": "dolphin",
+      "name": "Dolphin",
+      "name_i18n": {
+        "en_US": "Dolphin"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-donkey",
+      "key": "donkey",
+      "name": "Donkey",
+      "name_i18n": {
+        "en_US": "Donkey"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-dormouse",
+      "key": "dormouse",
+      "name": "Dormouse",
+      "name_i18n": {
+        "en_US": "Dormouse"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-dove",
+      "key": "dove",
+      "name": "Dove",
+      "name_i18n": {
+        "en_US": "Dove"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-dragonfly",
+      "key": "dragonfly",
+      "name": "Dragonfly",
+      "name_i18n": {
+        "en_US": "Dragonfly"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-dragon",
+      "key": "dragon",
+      "name": "Dragon",
+      "name_i18n": {
+        "en_US": "Dragon"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-duck",
+      "key": "duck",
+      "name": "Duck",
+      "name_i18n": {
+        "en_US": "Duck"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-eagle",
+      "key": "eagle",
+      "name": "Eagle",
+      "name_i18n": {
+        "en_US": "Eagle"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-earthworm",
+      "key": "earthworm",
+      "name": "Earthworm",
+      "name_i18n": {
+        "en_US": "Earthworm"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-earwig",
+      "key": "earwig",
+      "name": "Earwig",
+      "name_i18n": {
+        "en_US": "Earwig"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-echidna",
+      "key": "echidna",
+      "name": "Echidna",
+      "name_i18n": {
+        "en_US": "Echidna"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-eel",
+      "key": "eel",
+      "name": "Eel",
+      "name_i18n": {
+        "en_US": "Eel"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-egret",
+      "key": "egret",
+      "name": "Egret",
+      "name_i18n": {
+        "en_US": "Egret"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-elephant",
+      "key": "elephant",
+      "name": "Elephant",
+      "name_i18n": {
+        "en_US": "Elephant"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-elk",
+      "key": "elk",
+      "name": "Elk",
+      "name_i18n": {
+        "en_US": "Elk"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-emu",
+      "key": "emu",
+      "name": "Emu",
+      "name_i18n": {
+        "en_US": "Emu"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-ermine",
+      "key": "ermine",
+      "name": "Ermine",
+      "name_i18n": {
+        "en_US": "Ermine"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-falcon",
+      "key": "falcon",
+      "name": "Falcon",
+      "name_i18n": {
+        "en_US": "Falcon"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-ferret",
+      "key": "ferret",
+      "name": "Ferret",
+      "name_i18n": {
+        "en_US": "Ferret"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-finch",
+      "key": "finch",
+      "name": "Finch",
+      "name_i18n": {
+        "en_US": "Finch"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-firefly",
+      "key": "firefly",
+      "name": "Firefly",
+      "name_i18n": {
+        "en_US": "Firefly"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-fish",
+      "key": "fish",
+      "name": "Fish",
+      "name_i18n": {
+        "en_US": "Fish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-flamingo",
+      "key": "flamingo",
+      "name": "Flamingo",
+      "name_i18n": {
+        "en_US": "Flamingo"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-flea",
+      "key": "flea",
+      "name": "Flea",
+      "name_i18n": {
+        "en_US": "Flea"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-fly",
+      "key": "fly",
+      "name": "Fly",
+      "name_i18n": {
+        "en_US": "Fly"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-flyingfish",
+      "key": "flyingfish",
+      "name": "Flyingfish",
+      "name_i18n": {
+        "en_US": "Flyingfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-fowl",
+      "key": "fowl",
+      "name": "Fowl",
+      "name_i18n": {
+        "en_US": "Fowl"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-fox",
+      "key": "fox",
+      "name": "Fox",
+      "name_i18n": {
+        "en_US": "Fox"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-frog",
+      "key": "frog",
+      "name": "Frog",
+      "name_i18n": {
+        "en_US": "Frog"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-gamefowl",
+      "key": "gamefowl",
+      "name": "Gamefowl",
+      "name_i18n": {
+        "en_US": "Gamefowl"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-galliform",
+      "key": "galliform",
+      "name": "Galliform",
+      "name_i18n": {
+        "en_US": "Galliform"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-gazelle",
+      "key": "gazelle",
+      "name": "Gazelle",
+      "name_i18n": {
+        "en_US": "Gazelle"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-gecko",
+      "key": "gecko",
+      "name": "Gecko",
+      "name_i18n": {
+        "en_US": "Gecko"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-gerbil",
+      "key": "gerbil",
+      "name": "Gerbil",
+      "name_i18n": {
+        "en_US": "Gerbil"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-gibbon",
+      "key": "gibbon",
+      "name": "Gibbon",
+      "name_i18n": {
+        "en_US": "Gibbon"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-giraffe",
+      "key": "giraffe",
+      "name": "Giraffe",
+      "name_i18n": {
+        "en_US": "Giraffe"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-goat",
+      "key": "goat",
+      "name": "Goat",
+      "name_i18n": {
+        "en_US": "Goat"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-goldfish",
+      "key": "goldfish",
+      "name": "Goldfish",
+      "name_i18n": {
+        "en_US": "Goldfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-goose",
+      "key": "goose",
+      "name": "Goose",
+      "name_i18n": {
+        "en_US": "Goose"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-gopher",
+      "key": "gopher",
+      "name": "Gopher",
+      "name_i18n": {
+        "en_US": "Gopher"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-gorilla",
+      "key": "gorilla",
+      "name": "Gorilla",
+      "name_i18n": {
+        "en_US": "Gorilla"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-grasshopper",
+      "key": "grasshopper",
+      "name": "Grasshopper",
+      "name_i18n": {
+        "en_US": "Grasshopper"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-grouse",
+      "key": "grouse",
+      "name": "Grouse",
+      "name_i18n": {
+        "en_US": "Grouse"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-guan",
+      "key": "guan",
+      "name": "Guan",
+      "name_i18n": {
+        "en_US": "Guan"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-guanaco",
+      "key": "guanaco",
+      "name": "Guanaco",
+      "name_i18n": {
+        "en_US": "Guanaco"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-guineafowl",
+      "key": "guineafowl",
+      "name": "Guineafowl",
+      "name_i18n": {
+        "en_US": "Guineafowl"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-gull",
+      "key": "gull",
+      "name": "Gull",
+      "name_i18n": {
+        "en_US": "Gull"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-guppy",
+      "key": "guppy",
+      "name": "Guppy",
+      "name_i18n": {
+        "en_US": "Guppy"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-haddock",
+      "key": "haddock",
+      "name": "Haddock",
+      "name_i18n": {
+        "en_US": "Haddock"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-halibut",
+      "key": "halibut",
+      "name": "Halibut",
+      "name_i18n": {
+        "en_US": "Halibut"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-hamster",
+      "key": "hamster",
+      "name": "Hamster",
+      "name_i18n": {
+        "en_US": "Hamster"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-hare",
+      "key": "hare",
+      "name": "Hare",
+      "name_i18n": {
+        "en_US": "Hare"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-harrier",
+      "key": "harrier",
+      "name": "Harrier",
+      "name_i18n": {
+        "en_US": "Harrier"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-hawk",
+      "key": "hawk",
+      "name": "Hawk",
+      "name_i18n": {
+        "en_US": "Hawk"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-hedgehog",
+      "key": "hedgehog",
+      "name": "Hedgehog",
+      "name_i18n": {
+        "en_US": "Hedgehog"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-heron",
+      "key": "heron",
+      "name": "Heron",
+      "name_i18n": {
+        "en_US": "Heron"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-herring",
+      "key": "herring",
+      "name": "Herring",
+      "name_i18n": {
+        "en_US": "Herring"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-hippopotamus",
+      "key": "hippopotamus",
+      "name": "Hippopotamus",
+      "name_i18n": {
+        "en_US": "Hippopotamus"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-hookworm",
+      "key": "hookworm",
+      "name": "Hookworm",
+      "name_i18n": {
+        "en_US": "Hookworm"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-hornet",
+      "key": "hornet",
+      "name": "Hornet",
+      "name_i18n": {
+        "en_US": "Hornet"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-horse",
+      "key": "horse",
+      "name": "Horse",
+      "name_i18n": {
+        "en_US": "Horse"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-hoverfly",
+      "key": "hoverfly",
+      "name": "Hoverfly",
+      "name_i18n": {
+        "en_US": "Hoverfly"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-hummingbird",
+      "key": "hummingbird",
+      "name": "Hummingbird",
+      "name_i18n": {
+        "en_US": "Hummingbird"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-hyena",
+      "key": "hyena",
+      "name": "Hyena",
+      "name_i18n": {
+        "en_US": "Hyena"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-iguana",
+      "key": "iguana",
+      "name": "Iguana",
+      "name_i18n": {
+        "en_US": "Iguana"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-impala",
+      "key": "impala",
+      "name": "Impala",
+      "name_i18n": {
+        "en_US": "Impala"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-jackal",
+      "key": "jackal",
+      "name": "Jackal",
+      "name_i18n": {
+        "en_US": "Jackal"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-jaguar",
+      "key": "jaguar",
+      "name": "Jaguar",
+      "name_i18n": {
+        "en_US": "Jaguar"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-jay",
+      "key": "jay",
+      "name": "Jay",
+      "name_i18n": {
+        "en_US": "Jay"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-jellyfish",
+      "key": "jellyfish",
+      "name": "Jellyfish",
+      "name_i18n": {
+        "en_US": "Jellyfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-junglefowl",
+      "key": "junglefowl",
+      "name": "Junglefowl",
+      "name_i18n": {
+        "en_US": "Junglefowl"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-kangaroo",
+      "key": "kangaroo",
+      "name": "Kangaroo",
+      "name_i18n": {
+        "en_US": "Kangaroo"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-kingfisher",
+      "key": "kingfisher",
+      "name": "Kingfisher",
+      "name_i18n": {
+        "en_US": "Kingfisher"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-kite",
+      "key": "kite",
+      "name": "Kite",
+      "name_i18n": {
+        "en_US": "Kite"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-kiwi",
+      "key": "kiwi",
+      "name": "Kiwi",
+      "name_i18n": {
+        "en_US": "Kiwi"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-koala",
+      "key": "koala",
+      "name": "Koala",
+      "name_i18n": {
+        "en_US": "Koala"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-koi",
+      "key": "koi",
+      "name": "Koi",
+      "name_i18n": {
+        "en_US": "Koi"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-krill",
+      "key": "krill",
+      "name": "Krill",
+      "name_i18n": {
+        "en_US": "Krill"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-ladybug",
+      "key": "ladybug",
+      "name": "Ladybug",
+      "name_i18n": {
+        "en_US": "Ladybug"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-lamprey",
+      "key": "lamprey",
+      "name": "Lamprey",
+      "name_i18n": {
+        "en_US": "Lamprey"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-landfowl",
+      "key": "landfowl",
+      "name": "Landfowl",
+      "name_i18n": {
+        "en_US": "Landfowl"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-lark",
+      "key": "lark",
+      "name": "Lark",
+      "name_i18n": {
+        "en_US": "Lark"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-leech",
+      "key": "leech",
+      "name": "Leech",
+      "name_i18n": {
+        "en_US": "Leech"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-lemming",
+      "key": "lemming",
+      "name": "Lemming",
+      "name_i18n": {
+        "en_US": "Lemming"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-lemur",
+      "key": "lemur",
+      "name": "Lemur",
+      "name_i18n": {
+        "en_US": "Lemur"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-leopard",
+      "key": "leopard",
+      "name": "Leopard",
+      "name_i18n": {
+        "en_US": "Leopard"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-leopon",
+      "key": "leopon",
+      "name": "Leopon",
+      "name_i18n": {
+        "en_US": "Leopon"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-limpet",
+      "key": "limpet",
+      "name": "Limpet",
+      "name_i18n": {
+        "en_US": "Limpet"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-lion",
+      "key": "lion",
+      "name": "Lion",
+      "name_i18n": {
+        "en_US": "Lion"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-lizard",
+      "key": "lizard",
+      "name": "Lizard",
+      "name_i18n": {
+        "en_US": "Lizard"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-llama",
+      "key": "llama",
+      "name": "Llama",
+      "name_i18n": {
+        "en_US": "Llama"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-lobster",
+      "key": "lobster",
+      "name": "Lobster",
+      "name_i18n": {
+        "en_US": "Lobster"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-locust",
+      "key": "locust",
+      "name": "Locust",
+      "name_i18n": {
+        "en_US": "Locust"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-loon",
+      "key": "loon",
+      "name": "Loon",
+      "name_i18n": {
+        "en_US": "Loon"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-louse",
+      "key": "louse",
+      "name": "Louse",
+      "name_i18n": {
+        "en_US": "Louse"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-lungfish",
+      "key": "lungfish",
+      "name": "Lungfish",
+      "name_i18n": {
+        "en_US": "Lungfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-lynx",
+      "key": "lynx",
+      "name": "Lynx",
+      "name_i18n": {
+        "en_US": "Lynx"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-macaw",
+      "key": "macaw",
+      "name": "Macaw",
+      "name_i18n": {
+        "en_US": "Macaw"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-mackerel",
+      "key": "mackerel",
+      "name": "Mackerel",
+      "name_i18n": {
+        "en_US": "Mackerel"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-magpie",
+      "key": "magpie",
+      "name": "Magpie",
+      "name_i18n": {
+        "en_US": "Magpie"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-mammal",
+      "key": "mammal",
+      "name": "Mammal",
+      "name_i18n": {
+        "en_US": "Mammal"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-manatee",
+      "key": "manatee",
+      "name": "Manatee",
+      "name_i18n": {
+        "en_US": "Manatee"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-mandrill",
+      "key": "mandrill",
+      "name": "Mandrill",
+      "name_i18n": {
+        "en_US": "Mandrill"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-marlin",
+      "key": "marlin",
+      "name": "Marlin",
+      "name_i18n": {
+        "en_US": "Marlin"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-marmoset",
+      "key": "marmoset",
+      "name": "Marmoset",
+      "name_i18n": {
+        "en_US": "Marmoset"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-marmot",
+      "key": "marmot",
+      "name": "Marmot",
+      "name_i18n": {
+        "en_US": "Marmot"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-marsupial",
+      "key": "marsupial",
+      "name": "Marsupial",
+      "name_i18n": {
+        "en_US": "Marsupial"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-marten",
+      "key": "marten",
+      "name": "Marten",
+      "name_i18n": {
+        "en_US": "Marten"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-mastodon",
+      "key": "mastodon",
+      "name": "Mastodon",
+      "name_i18n": {
+        "en_US": "Mastodon"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-meadowlark",
+      "key": "meadowlark",
+      "name": "Meadowlark",
+      "name_i18n": {
+        "en_US": "Meadowlark"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-meerkat",
+      "key": "meerkat",
+      "name": "Meerkat",
+      "name_i18n": {
+        "en_US": "Meerkat"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-mink",
+      "key": "mink",
+      "name": "Mink",
+      "name_i18n": {
+        "en_US": "Mink"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-minnow",
+      "key": "minnow",
+      "name": "Minnow",
+      "name_i18n": {
+        "en_US": "Minnow"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-mite",
+      "key": "mite",
+      "name": "Mite",
+      "name_i18n": {
+        "en_US": "Mite"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-mockingbird",
+      "key": "mockingbird",
+      "name": "Mockingbird",
+      "name_i18n": {
+        "en_US": "Mockingbird"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-mole",
+      "key": "mole",
+      "name": "Mole",
+      "name_i18n": {
+        "en_US": "Mole"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-mollusk",
+      "key": "mollusk",
+      "name": "Mollusk",
+      "name_i18n": {
+        "en_US": "Mollusk"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-mongoose",
+      "key": "mongoose",
+      "name": "Mongoose",
+      "name_i18n": {
+        "en_US": "Mongoose"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-monkey",
+      "key": "monkey",
+      "name": "Monkey",
+      "name_i18n": {
+        "en_US": "Monkey"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-moose",
+      "key": "moose",
+      "name": "Moose",
+      "name_i18n": {
+        "en_US": "Moose"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-mosquito",
+      "key": "mosquito",
+      "name": "Mosquito",
+      "name_i18n": {
+        "en_US": "Mosquito"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-moth",
+      "key": "moth",
+      "name": "Moth",
+      "name_i18n": {
+        "en_US": "Moth"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-mouse",
+      "key": "mouse",
+      "name": "Mouse",
+      "name_i18n": {
+        "en_US": "Mouse"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-mule",
+      "key": "mule",
+      "name": "Mule",
+      "name_i18n": {
+        "en_US": "Mule"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-muskox",
+      "key": "muskox",
+      "name": "Muskox",
+      "name_i18n": {
+        "en_US": "Muskox"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-narwhal",
+      "key": "narwhal",
+      "name": "Narwhal",
+      "name_i18n": {
+        "en_US": "Narwhal"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-newt",
+      "key": "newt",
+      "name": "Newt",
+      "name_i18n": {
+        "en_US": "Newt"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-nightingale",
+      "key": "nightingale",
+      "name": "Nightingale",
+      "name_i18n": {
+        "en_US": "Nightingale"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-ocelot",
+      "key": "ocelot",
+      "name": "Ocelot",
+      "name_i18n": {
+        "en_US": "Ocelot"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-octopus",
+      "key": "octopus",
+      "name": "Octopus",
+      "name_i18n": {
+        "en_US": "Octopus"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-opossum",
+      "key": "opossum",
+      "name": "Opossum",
+      "name_i18n": {
+        "en_US": "Opossum"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-orangutan",
+      "key": "orangutan",
+      "name": "Orangutan",
+      "name_i18n": {
+        "en_US": "Orangutan"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-orca",
+      "key": "orca",
+      "name": "Orca",
+      "name_i18n": {
+        "en_US": "Orca"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-ostrich",
+      "key": "ostrich",
+      "name": "Ostrich",
+      "name_i18n": {
+        "en_US": "Ostrich"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-otter",
+      "key": "otter",
+      "name": "Otter",
+      "name_i18n": {
+        "en_US": "Otter"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-owl",
+      "key": "owl",
+      "name": "Owl",
+      "name_i18n": {
+        "en_US": "Owl"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-ox",
+      "key": "ox",
+      "name": "Ox",
+      "name_i18n": {
+        "en_US": "Ox"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-panda",
+      "key": "panda",
+      "name": "Panda",
+      "name_i18n": {
+        "en_US": "Panda"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-panther",
+      "key": "panther",
+      "name": "Panther",
+      "name_i18n": {
+        "en_US": "Panther"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-parakeet",
+      "key": "parakeet",
+      "name": "Parakeet",
+      "name_i18n": {
+        "en_US": "Parakeet"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-parrot",
+      "key": "parrot",
+      "name": "Parrot",
+      "name_i18n": {
+        "en_US": "Parrot"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-parrotfish",
+      "key": "parrotfish",
+      "name": "Parrotfish",
+      "name_i18n": {
+        "en_US": "Parrotfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-partridge",
+      "key": "partridge",
+      "name": "Partridge",
+      "name_i18n": {
+        "en_US": "Partridge"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-peacock",
+      "key": "peacock",
+      "name": "Peacock",
+      "name_i18n": {
+        "en_US": "Peacock"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-peafowl",
+      "key": "peafowl",
+      "name": "Peafowl",
+      "name_i18n": {
+        "en_US": "Peafowl"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-pelican",
+      "key": "pelican",
+      "name": "Pelican",
+      "name_i18n": {
+        "en_US": "Pelican"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-penguin",
+      "key": "penguin",
+      "name": "Penguin",
+      "name_i18n": {
+        "en_US": "Penguin"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-perch",
+      "key": "perch",
+      "name": "Perch",
+      "name_i18n": {
+        "en_US": "Perch"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-pheasant",
+      "key": "pheasant",
+      "name": "Pheasant",
+      "name_i18n": {
+        "en_US": "Pheasant"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-pig",
+      "key": "pig",
+      "name": "Pig",
+      "name_i18n": {
+        "en_US": "Pig"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-pigeon",
+      "key": "pigeon",
+      "name": "Pigeon",
+      "name_i18n": {
+        "en_US": "Pigeon"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-pike",
+      "key": "pike",
+      "name": "Pike",
+      "name_i18n": {
+        "en_US": "Pike"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-pinniped",
+      "key": "pinniped",
+      "name": "Pinniped",
+      "name_i18n": {
+        "en_US": "Pinniped"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-piranha",
+      "key": "piranha",
+      "name": "Piranha",
+      "name_i18n": {
+        "en_US": "Piranha"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-planarian",
+      "key": "planarian",
+      "name": "Planarian",
+      "name_i18n": {
+        "en_US": "Planarian"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-platypus",
+      "key": "platypus",
+      "name": "Platypus",
+      "name_i18n": {
+        "en_US": "Platypus"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-pony",
+      "key": "pony",
+      "name": "Pony",
+      "name_i18n": {
+        "en_US": "Pony"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-porcupine",
+      "key": "porcupine",
+      "name": "Porcupine",
+      "name_i18n": {
+        "en_US": "Porcupine"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-porpoise",
+      "key": "porpoise",
+      "name": "Porpoise",
+      "name_i18n": {
+        "en_US": "Porpoise"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-possum",
+      "key": "possum",
+      "name": "Possum",
+      "name_i18n": {
+        "en_US": "Possum"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-prawn",
+      "key": "prawn",
+      "name": "Prawn",
+      "name_i18n": {
+        "en_US": "Prawn"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-primate",
+      "key": "primate",
+      "name": "Primate",
+      "name_i18n": {
+        "en_US": "Primate"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-ptarmigan",
+      "key": "ptarmigan",
+      "name": "Ptarmigan",
+      "name_i18n": {
+        "en_US": "Ptarmigan"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-puffin",
+      "key": "puffin",
+      "name": "Puffin",
+      "name_i18n": {
+        "en_US": "Puffin"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-puma",
+      "key": "puma",
+      "name": "Puma",
+      "name_i18n": {
+        "en_US": "Puma"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-python",
+      "key": "python",
+      "name": "Python",
+      "name_i18n": {
+        "en_US": "Python"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-quail",
+      "key": "quail",
+      "name": "Quail",
+      "name_i18n": {
+        "en_US": "Quail"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-quelea",
+      "key": "quelea",
+      "name": "Quelea",
+      "name_i18n": {
+        "en_US": "Quelea"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-quokka",
+      "key": "quokka",
+      "name": "Quokka",
+      "name_i18n": {
+        "en_US": "Quokka"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-rabbit",
+      "key": "rabbit",
+      "name": "Rabbit",
+      "name_i18n": {
+        "en_US": "Rabbit"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-raccoon",
+      "key": "raccoon",
+      "name": "Raccoon",
+      "name_i18n": {
+        "en_US": "Raccoon"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-rat",
+      "key": "rat",
+      "name": "Rat",
+      "name_i18n": {
+        "en_US": "Rat"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-rattlesnake",
+      "key": "rattlesnake",
+      "name": "Rattlesnake",
+      "name_i18n": {
+        "en_US": "Rattlesnake"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-raven",
+      "key": "raven",
+      "name": "Raven",
+      "name_i18n": {
+        "en_US": "Raven"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-reindeer",
+      "key": "reindeer",
+      "name": "Reindeer",
+      "name_i18n": {
+        "en_US": "Reindeer"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-reptile",
+      "key": "reptile",
+      "name": "Reptile",
+      "name_i18n": {
+        "en_US": "Reptile"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-rhinoceros",
+      "key": "rhinoceros",
+      "name": "Rhinoceros",
+      "name_i18n": {
+        "en_US": "Rhinoceros"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-roadrunner",
+      "key": "roadrunner",
+      "name": "Roadrunner",
+      "name_i18n": {
+        "en_US": "Roadrunner"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-rodent",
+      "key": "rodent",
+      "name": "Rodent",
+      "name_i18n": {
+        "en_US": "Rodent"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-rook",
+      "key": "rook",
+      "name": "Rook",
+      "name_i18n": {
+        "en_US": "Rook"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-rooster",
+      "key": "rooster",
+      "name": "Rooster",
+      "name_i18n": {
+        "en_US": "Rooster"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-roundworm",
+      "key": "roundworm",
+      "name": "Roundworm",
+      "name_i18n": {
+        "en_US": "Roundworm"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-sailfish",
+      "key": "sailfish",
+      "name": "Sailfish",
+      "name_i18n": {
+        "en_US": "Sailfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-salamander",
+      "key": "salamander",
+      "name": "Salamander",
+      "name_i18n": {
+        "en_US": "Salamander"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-salmon",
+      "key": "salmon",
+      "name": "Salmon",
+      "name_i18n": {
+        "en_US": "Salmon"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-sawfish",
+      "key": "sawfish",
+      "name": "Sawfish",
+      "name_i18n": {
+        "en_US": "Sawfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-scallop",
+      "key": "scallop",
+      "name": "Scallop",
+      "name_i18n": {
+        "en_US": "Scallop"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-scorpion",
+      "key": "scorpion",
+      "name": "Scorpion",
+      "name_i18n": {
+        "en_US": "Scorpion"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-seahorse",
+      "key": "seahorse",
+      "name": "Seahorse",
+      "name_i18n": {
+        "en_US": "Seahorse"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-shark",
+      "key": "shark",
+      "name": "Shark",
+      "name_i18n": {
+        "en_US": "Shark"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-sheep",
+      "key": "sheep",
+      "name": "Sheep",
+      "name_i18n": {
+        "en_US": "Sheep"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-shrew",
+      "key": "shrew",
+      "name": "Shrew",
+      "name_i18n": {
+        "en_US": "Shrew"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-shrimp",
+      "key": "shrimp",
+      "name": "Shrimp",
+      "name_i18n": {
+        "en_US": "Shrimp"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-silkworm",
+      "key": "silkworm",
+      "name": "Silkworm",
+      "name_i18n": {
+        "en_US": "Silkworm"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-silverfish",
+      "key": "silverfish",
+      "name": "Silverfish",
+      "name_i18n": {
+        "en_US": "Silverfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-skink",
+      "key": "skink",
+      "name": "Skink",
+      "name_i18n": {
+        "en_US": "Skink"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-skunk",
+      "key": "skunk",
+      "name": "Skunk",
+      "name_i18n": {
+        "en_US": "Skunk"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-sloth",
+      "key": "sloth",
+      "name": "Sloth",
+      "name_i18n": {
+        "en_US": "Sloth"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-slug",
+      "key": "slug",
+      "name": "Slug",
+      "name_i18n": {
+        "en_US": "Slug"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-smelt",
+      "key": "smelt",
+      "name": "Smelt",
+      "name_i18n": {
+        "en_US": "Smelt"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-snail",
+      "key": "snail",
+      "name": "Snail",
+      "name_i18n": {
+        "en_US": "Snail"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-snake",
+      "key": "snake",
+      "name": "Snake",
+      "name_i18n": {
+        "en_US": "Snake"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-list",
+      "key": "list",
+      "name": "list",
+      "name_i18n": {
+        "en_US": "list"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-snipe",
+      "key": "snipe",
+      "name": "Snipe",
+      "name_i18n": {
+        "en_US": "Snipe"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-sole",
+      "key": "sole",
+      "name": "Sole",
+      "name_i18n": {
+        "en_US": "Sole"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-sparrow",
+      "key": "sparrow",
+      "name": "Sparrow",
+      "name_i18n": {
+        "en_US": "Sparrow"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-spider",
+      "key": "spider",
+      "name": "Spider",
+      "name_i18n": {
+        "en_US": "Spider"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-spoonbill",
+      "key": "spoonbill",
+      "name": "Spoonbill",
+      "name_i18n": {
+        "en_US": "Spoonbill"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-squid",
+      "key": "squid",
+      "name": "Squid",
+      "name_i18n": {
+        "en_US": "Squid"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-squirrel",
+      "key": "squirrel",
+      "name": "Squirrel",
+      "name_i18n": {
+        "en_US": "Squirrel"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-starfish",
+      "key": "starfish",
+      "name": "Starfish",
+      "name_i18n": {
+        "en_US": "Starfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-stingray",
+      "key": "stingray",
+      "name": "Stingray",
+      "name_i18n": {
+        "en_US": "Stingray"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-stoat",
+      "key": "stoat",
+      "name": "Stoat",
+      "name_i18n": {
+        "en_US": "Stoat"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-stork",
+      "key": "stork",
+      "name": "Stork",
+      "name_i18n": {
+        "en_US": "Stork"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-sturgeon",
+      "key": "sturgeon",
+      "name": "Sturgeon",
+      "name_i18n": {
+        "en_US": "Sturgeon"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-swallow",
+      "key": "swallow",
+      "name": "Swallow",
+      "name_i18n": {
+        "en_US": "Swallow"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-swan",
+      "key": "swan",
+      "name": "Swan",
+      "name_i18n": {
+        "en_US": "Swan"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-swift",
+      "key": "swift",
+      "name": "Swift",
+      "name_i18n": {
+        "en_US": "Swift"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-swordfish",
+      "key": "swordfish",
+      "name": "Swordfish",
+      "name_i18n": {
+        "en_US": "Swordfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-swordtail",
+      "key": "swordtail",
+      "name": "Swordtail",
+      "name_i18n": {
+        "en_US": "Swordtail"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-tahr",
+      "key": "tahr",
+      "name": "Tahr",
+      "name_i18n": {
+        "en_US": "Tahr"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-takin",
+      "key": "takin",
+      "name": "Takin",
+      "name_i18n": {
+        "en_US": "Takin"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-tapir",
+      "key": "tapir",
+      "name": "Tapir",
+      "name_i18n": {
+        "en_US": "Tapir"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-tarantula",
+      "key": "tarantula",
+      "name": "Tarantula",
+      "name_i18n": {
+        "en_US": "Tarantula"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-tarsier",
+      "key": "tarsier",
+      "name": "Tarsier",
+      "name_i18n": {
+        "en_US": "Tarsier"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-termite",
+      "key": "termite",
+      "name": "Termite",
+      "name_i18n": {
+        "en_US": "Termite"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-tern",
+      "key": "tern",
+      "name": "Tern",
+      "name_i18n": {
+        "en_US": "Tern"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-thrush",
+      "key": "thrush",
+      "name": "Thrush",
+      "name_i18n": {
+        "en_US": "Thrush"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-tick",
+      "key": "tick",
+      "name": "Tick",
+      "name_i18n": {
+        "en_US": "Tick"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-tiger",
+      "key": "tiger",
+      "name": "Tiger",
+      "name_i18n": {
+        "en_US": "Tiger"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-tiglon",
+      "key": "tiglon",
+      "name": "Tiglon",
+      "name_i18n": {
+        "en_US": "Tiglon"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-toad",
+      "key": "toad",
+      "name": "Toad",
+      "name_i18n": {
+        "en_US": "Toad"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-tortoise",
+      "key": "tortoise",
+      "name": "Tortoise",
+      "name_i18n": {
+        "en_US": "Tortoise"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-toucan",
+      "key": "toucan",
+      "name": "Toucan",
+      "name_i18n": {
+        "en_US": "Toucan"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-trout",
+      "key": "trout",
+      "name": "Trout",
+      "name_i18n": {
+        "en_US": "Trout"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-tuna",
+      "key": "tuna",
+      "name": "Tuna",
+      "name_i18n": {
+        "en_US": "Tuna"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-turkey",
+      "key": "turkey",
+      "name": "Turkey",
+      "name_i18n": {
+        "en_US": "Turkey"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-turtle",
+      "key": "turtle",
+      "name": "Turtle",
+      "name_i18n": {
+        "en_US": "Turtle"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-tyrannosaurus",
+      "key": "tyrannosaurus",
+      "name": "Tyrannosaurus",
+      "name_i18n": {
+        "en_US": "Tyrannosaurus"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-urial",
+      "key": "urial",
+      "name": "Urial",
+      "name_i18n": {
+        "en_US": "Urial"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-vicuna",
+      "key": "vicuna",
+      "name": "Vicuna",
+      "name_i18n": {
+        "en_US": "Vicuna"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-viper",
+      "key": "viper",
+      "name": "Viper",
+      "name_i18n": {
+        "en_US": "Viper"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-vole",
+      "key": "vole",
+      "name": "Vole",
+      "name_i18n": {
+        "en_US": "Vole"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-vulture",
+      "key": "vulture",
+      "name": "Vulture",
+      "name_i18n": {
+        "en_US": "Vulture"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-wallaby",
+      "key": "wallaby",
+      "name": "Wallaby",
+      "name_i18n": {
+        "en_US": "Wallaby"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-walrus",
+      "key": "walrus",
+      "name": "Walrus",
+      "name_i18n": {
+        "en_US": "Walrus"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-wasp",
+      "key": "wasp",
+      "name": "Wasp",
+      "name_i18n": {
+        "en_US": "Wasp"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-warbler",
+      "key": "warbler",
+      "name": "Warbler",
+      "name_i18n": {
+        "en_US": "Warbler"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-weasel",
+      "key": "weasel",
+      "name": "Weasel",
+      "name_i18n": {
+        "en_US": "Weasel"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-whale",
+      "key": "whale",
+      "name": "Whale",
+      "name_i18n": {
+        "en_US": "Whale"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-whippet",
+      "key": "whippet",
+      "name": "Whippet",
+      "name_i18n": {
+        "en_US": "Whippet"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-whitefish",
+      "key": "whitefish",
+      "name": "Whitefish",
+      "name_i18n": {
+        "en_US": "Whitefish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-wildcat",
+      "key": "wildcat",
+      "name": "Wildcat",
+      "name_i18n": {
+        "en_US": "Wildcat"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-wildebeest",
+      "key": "wildebeest",
+      "name": "Wildebeest",
+      "name_i18n": {
+        "en_US": "Wildebeest"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-wildfowl",
+      "key": "wildfowl",
+      "name": "Wildfowl",
+      "name_i18n": {
+        "en_US": "Wildfowl"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-wolf",
+      "key": "wolf",
+      "name": "Wolf",
+      "name_i18n": {
+        "en_US": "Wolf"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-wolverine",
+      "key": "wolverine",
+      "name": "Wolverine",
+      "name_i18n": {
+        "en_US": "Wolverine"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-wombat",
+      "key": "wombat",
+      "name": "Wombat",
+      "name_i18n": {
+        "en_US": "Wombat"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-woodpecker",
+      "key": "woodpecker",
+      "name": "Woodpecker",
+      "name_i18n": {
+        "en_US": "Woodpecker"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-worm",
+      "key": "worm",
+      "name": "Worm",
+      "name_i18n": {
+        "en_US": "Worm"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-wren",
+      "key": "wren",
+      "name": "Wren",
+      "name_i18n": {
+        "en_US": "Wren"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-xerinae",
+      "key": "xerinae",
+      "name": "Xerinae",
+      "name_i18n": {
+        "en_US": "Xerinae"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-yak",
+      "key": "yak",
+      "name": "Yak",
+      "name_i18n": {
+        "en_US": "Yak"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-zebra",
+      "key": "zebra",
+      "name": "Zebra",
+      "name_i18n": {
+        "en_US": "Zebra"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-alpaca",
+      "key": "alpaca",
+      "name": "Alpaca",
+      "name_i18n": {
+        "en_US": "Alpaca"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cat",
+      "key": "cat",
+      "name": "Cat",
+      "name_i18n": {
+        "en_US": "Cat"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-cattle",
+      "key": "cattle",
+      "name": "Cattle",
+      "name_i18n": {
+        "en_US": "Cattle"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-chicken",
+      "key": "chicken",
+      "name": "Chicken",
+      "name_i18n": {
+        "en_US": "Chicken"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-dog",
+      "key": "dog",
+      "name": "Dog",
+      "name_i18n": {
+        "en_US": "Dog"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-donkey",
+      "key": "donkey",
+      "name": "Donkey",
+      "name_i18n": {
+        "en_US": "Donkey"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-ferret",
+      "key": "ferret",
+      "name": "Ferret",
+      "name_i18n": {
+        "en_US": "Ferret"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-gayal",
+      "key": "gayal",
+      "name": "Gayal",
+      "name_i18n": {
+        "en_US": "Gayal"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-goldfish",
+      "key": "goldfish",
+      "name": "Goldfish",
+      "name_i18n": {
+        "en_US": "Goldfish"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-guppy",
+      "key": "guppy",
+      "name": "Guppy",
+      "name_i18n": {
+        "en_US": "Guppy"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-horse",
+      "key": "horse",
+      "name": "Horse",
+      "name_i18n": {
+        "en_US": "Horse"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-koi",
+      "key": "koi",
+      "name": "Koi",
+      "name_i18n": {
+        "en_US": "Koi"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-llama",
+      "key": "llama",
+      "name": "Llama",
+      "name_i18n": {
+        "en_US": "Llama"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-sheep",
+      "key": "sheep",
+      "name": "Sheep",
+      "name_i18n": {
+        "en_US": "Sheep"
+      },
+      "type": ""
+    },
+    {
+      "externalReferenceCode": "chachi-shell-content-animals-picklist-yak",
+      "key": "yak",
+      "name": "Yak",
+      "name_i18n": {
+        "en_US": "Yak"
+      },
+      "type": ""
+    }
+  ],
+  "name": "Animals",
+  "name_i18n": {
+    "en-US": "Animals"
+  }
+}
