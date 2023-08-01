@@ -1,0 +1,6 @@
+[Unit]
+Name=chachi-nm-applet.service
+PartOf=chachi-sway-session.target
+
+[Service]
+ExecStart=/usr/bin/nm-applet

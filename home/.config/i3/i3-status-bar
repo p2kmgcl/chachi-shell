@@ -1,12 +1,11 @@
 #!/bin/bash
 
-binDir=$CHACHI_PATH/home/.config/sway
+binDir=$CHACHI_PATH/home/.config/i3
 
 while true; do
-  battery=$($binDir/sway-status-bar-battery)
+  battery=$($binDir/i3-status-bar-battery)
   brightness=$($CHACHI_PATH/seniore/target/release/seniore linux get-brightness)
   date=$($CHACHI_PATH/seniore/target/release/seniore linux get-date)
-  volume=$($CHACHI_PATH/seniore/target/release/seniore linux get-volume)
   woffu=$($CHACHI_PATH/seniore/target/release/seniore woffu get-status)
 
   echo "${woffu} ${battery} ${brightness} ${volume} ${date}"

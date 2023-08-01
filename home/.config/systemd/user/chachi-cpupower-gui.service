@@ -1,0 +1,7 @@
+[Unit]
+Name=chachi-cpupower-gui.service
+PartOf=chachi-sway-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/cpupower-gui --performance

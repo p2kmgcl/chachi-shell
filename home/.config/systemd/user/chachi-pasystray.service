@@ -1,0 +1,5 @@
+[Unit]
+Name=chachi-pasystray.service
+
+[Service]
+ExecStart=/usr/bin/pasystray

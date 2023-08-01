@@ -1,0 +1,4 @@
+#!/bin/bash
+
+playerctl pause
+i3lock -i $HOME/.background.png --ignore-empty-password --show-failed-attempts

@@ -42,7 +42,7 @@
     {
       "DBType": "Date",
       "businessType": "Date",
-      "externalReferenceCode": "b36a2a57-9e1f-a0f8-b215-d43aab06e58b",
+      "externalReferenceCode": "1cff148f-54ff-4912-7f76-fa0b36435e67",
       "indexed": false,
       "indexedAsKeyword": false,
       "indexedLanguageId": "",
@@ -61,7 +61,7 @@
     {
       "DBType": "String",
       "businessType": "Text",
-      "externalReferenceCode": "650e8c36-c828-847a-8df3-2e248ba8b170",
+      "externalReferenceCode": "2ef483f6-ed59-6eb4-9d87-f2400ddf3204",
       "indexed": false,
       "indexedAsKeyword": false,
       "indexedLanguageId": "",
@@ -123,7 +123,7 @@
     {
       "DBType": "String",
       "businessType": "Text",
-      "externalReferenceCode": "e2af0317-9ac9-fd6e-a3e3-18a33f76a5a2",
+      "externalReferenceCode": "4b0638d9-de73-865c-b9b2-2d9785b2e3c4",
       "indexed": false,
       "indexedAsKeyword": false,
       "indexedLanguageId": "",
@@ -142,7 +142,7 @@
     {
       "DBType": "Long",
       "businessType": "LongInteger",
-      "externalReferenceCode": "553d99aa-3cc0-6d3f-c18c-2d46fb2fb99e",
+      "externalReferenceCode": "a26be7cd-7ef9-3679-1d0d-421fc8bae934",
       "indexed": true,
       "indexedAsKeyword": true,
       "indexedLanguageId": "",
@@ -180,7 +180,7 @@
     {
       "DBType": "Date",
       "businessType": "Date",
-      "externalReferenceCode": "b9a265ed-bd27-be1e-d689-e5ec4fb6a167",
+      "externalReferenceCode": "03748cc4-87c1-bb76-774b-69a1700709a1",
       "indexed": false,
       "indexedAsKeyword": false,
       "indexedLanguageId": "",
@@ -280,7 +280,7 @@
     {
       "DBType": "String",
       "businessType": "Text",
-      "externalReferenceCode": "6c5baaed-1ff8-a991-51e9-b294db3ed563",
+      "externalReferenceCode": "7101dfad-627c-80d7-6345-4be3dc3d1666",
       "indexed": false,
       "indexedAsKeyword": false,
       "indexedLanguageId": "",
@@ -316,7 +316,7 @@
   ],
   "objectValidationRules": [],
   "objectViews": [],
-  "panelCategoryKey": "",
+  "panelCategoryKey": "applications_menu.applications.content",
   "parameterRequired": false,
   "pluralLabel": {
     "en_US": "Events"
@@ -330,5 +330,5 @@
     "label_i18n": "Approved"
   },
   "system": false,
-  "titleObjectFieldName": "id"
+  "titleObjectFieldName": "name"
 }

@@ -1,0 +1,6 @@
+[Unit]
+Name=chachi-blueman-applet.service
+PartOf=chachi-sway-session.target
+
+[Service]
+ExecStart=/usr/bin/blueman-applet

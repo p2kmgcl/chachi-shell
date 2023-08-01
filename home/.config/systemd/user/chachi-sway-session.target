@@ -1,0 +1,10 @@
+[Unit]
+Name=chachi-sway-session.target
+After=graphical-session.target
+Wants=graphical-session.target
+Wants=chachi-blueman-applet.service
+Wants=chachi-cpupower-gui.service
+Wants=chachi-insync.service
+Wants=chachi-mako.service
+Wants=chachi-nm-applet.service
+Wants=chachi-wl-paste.service

@@ -10,13 +10,15 @@ set $term alacritty
 set $browser firefox
 set $menu exec rofi -modi combi -combi-modi drun -show combi
 set $fileMenu exec rofi -modi filebrowser -show filebrowser
-set $emojiMenu exec rofi -modi emoji -show emoji
+set $emojiMenu exec rofimoji --no-frecency --max-recent=0 --clipboarder wl-copy --only-official --selector rofi --action copy
 set $lock $configDir/sway-lock-screen
 set $notifyBrightness notify-send -t 1000 "$($seniore linux get-brightness)"
 set $notifyVolume notify-send -t 1000 "$($seniore linux get-volume)"
 set $gnome-schema org.gnome.desktop.interface
 set $screenLaptop eDP-1
-set $screenExternal HDMI-A-1
+set $screenExternalHDMI HDMI-1
+set $screenExternalDisplayPort_A DP-1
+set $screenExternalDisplayPort_B DP-2
 
 ###############################################################################
 # Key bindings
@@ -106,8 +108,10 @@ bindsym Shift+Ctrl+Print exec $term --class record_screen -e $configDir/sway-rec
 bindsym Alt+Print exec $term --class record_screen -e $configDir/sway-record-stop
 bindsym $mod+l exec $lock
 bindsym $mod+w exec $CHACHI_PATH/seniore/target/release/seniore woffu toggle
-bindsym $mod+Shift+w output $screenLaptop toggle
 bindsym $mod+h exec notify-send "$(cat $configDir/sway.keybindings.txt)"
+
+bindsym $mod+m output $screenLaptop enable ; output $screenExternalHDMI disable ; output $screenExternalDisplayPort_A disable ; output $screenExternalDisplayPort_B disable
+bindsym $mod+Shift+m output $screenLaptop disable ; output $screenExternalHDMI enable ; output $screenExternalDisplayPort_A enable ; output $screenExternalDisplayPort_B enable
 
 ###############################################################################
 # Behaviour
@@ -125,27 +129,7 @@ input type:touchpad {
   natural_scroll enabled
 }
 
-# Only external screen
-# output $screenExternal pos 0 0 res 2560x1440
-# output $screenLaptop disable
-# focus output $screenExternal
-
-# Only laptop screen
-output $screenExternal disable
-output $screenLaptop pos 0 0 res 1920x1080
-focus output $screenLaptop
-
-# Screen on top of laptop
-# output $screenExternal pos 0 0 res 2560x1440
-# output $screenExternal pos 0 0
-# output $screenLaptop pos 320 1440
-# focus output $screenExternal
-
-# Screen right of laptop
-# output $screenExternal pos 1920 0 res 2560x1440
-# output $screenLaptop pos 0 0 res 1920x1080
-# focus output $screenExternal
-
+# Disable screen laptop on close
 bindswitch --reload --locked lid:on output $screenLaptop disable
 bindswitch --reload --locked lid:off output $screenLaptop enable
 
@@ -153,14 +137,15 @@ bindswitch --reload --locked lid:off output $screenLaptop enable
 # Other programs
 ###############################################################################
 
-exec mako --width 480 --height 1000 --padding "16" --border-size 0 --border-radius 4 --background-color "#000000e0" --text-color "#eeeeee"
+# Screen autolock
 exec swayidle before-sleep 'exec $lock'
-exec wl-paste -t test --watch clipman store --no-persist
-exec insync start
 
 # Ensure that this env variables exist and are imported into dbus to enable screen sharing
 exec systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
 exec dbus-update-activation-environment WAYLAND_DISPLAY
+
+# Start sway session
+exec_always systemctl --user start chachi-sway-session.target
 
 ###############################################################################
 # UI
@@ -212,13 +197,13 @@ client.focused_inactive #00000066 #00000066 #ffffffff #00000066 #00000066
 client.unfocused #00000066 #00000066 #ffffffff #00000066 #00000066
 client.urgent #00000066 #00000066 #ffffffff #00000066 #00000066
 
-font pango:IBM Plex Sans Regular 9
+font pango:VictorMono Nerd Font Medium 9
 
 exec_always {
     gsettings set $gnome-schema gtk-theme 'Adwaita'
     gsettings set $gnome-schema icon-theme 'Adwaita'
     gsettings set $gnome-schema cursor-theme 'Adwaita'
-    gsettings set $gnome-schema font-name 'IBM Plex Sans weight=800 9'
+    gsettings set $gnome-schema font-name 'VictorMono Nerd Font weight=800 9'
 }
 
 bar {

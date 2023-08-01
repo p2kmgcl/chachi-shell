@@ -22,7 +22,7 @@
     {
       "DBType": "Date",
       "businessType": "Date",
-      "externalReferenceCode": "0e98d6e5-364a-ee83-9434-707f13080c43",
+      "externalReferenceCode": "1e351c2d-7c92-9ad9-15a1-a6254630ac55",
       "indexed": false,
       "indexedAsKeyword": false,
       "indexedLanguageId": "",
@@ -41,7 +41,7 @@
     {
       "DBType": "String",
       "businessType": "Text",
-      "externalReferenceCode": "33e4c6f0-7a37-6838-43ee-1abc55ce8c3c",
+      "externalReferenceCode": "6e8ff7cf-c7d2-93eb-5de5-0718affe6767",
       "indexed": false,
       "indexedAsKeyword": false,
       "indexedLanguageId": "",
@@ -60,7 +60,7 @@
     {
       "DBType": "String",
       "businessType": "Text",
-      "externalReferenceCode": "7f7d8134-555b-80a6-5c9c-989f4d60e013",
+      "externalReferenceCode": "c8018e4b-e1c4-9764-d0cb-f01654b2c00e",
       "indexed": false,
       "indexedAsKeyword": false,
       "indexedLanguageId": "",
@@ -79,7 +79,7 @@
     {
       "DBType": "Long",
       "businessType": "LongInteger",
-      "externalReferenceCode": "4e048a38-2d21-2b21-7779-1baf0d98b5bd",
+      "externalReferenceCode": "70efb0d9-7242-6935-d18a-4716dc7a97dd",
       "indexed": true,
       "indexedAsKeyword": true,
       "indexedLanguageId": "",
@@ -122,7 +122,7 @@
     {
       "DBType": "Date",
       "businessType": "Date",
-      "externalReferenceCode": "788beee2-586c-45a1-7092-e076bd1256df",
+      "externalReferenceCode": "f211f546-f183-dac5-114d-842dce8d3dd7",
       "indexed": false,
       "indexedAsKeyword": false,
       "indexedLanguageId": "",
@@ -141,7 +141,7 @@
     {
       "DBType": "String",
       "businessType": "Text",
-      "externalReferenceCode": "d6a0f4db-66bd-3af2-860b-6d9e20ff211f",
+      "externalReferenceCode": "42fdb276-79f7-ba4c-8015-849b449dabc5",
       "indexed": false,
       "indexedAsKeyword": false,
       "indexedLanguageId": "",
@@ -162,7 +162,7 @@
   "objectRelationships": [],
   "objectValidationRules": [],
   "objectViews": [],
-  "panelCategoryKey": "",
+  "panelCategoryKey": "applications_menu.applications.content",
   "parameterRequired": false,
   "pluralLabel": {
     "en_US": "Tickets"
@@ -176,5 +176,5 @@
     "label_i18n": "Approved"
   },
   "system": false,
-  "titleObjectFieldName": "id"
+  "titleObjectFieldName": "location"
 }

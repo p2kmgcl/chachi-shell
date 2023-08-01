@@ -1,18 +1,19 @@
-# i3 Configuration
-# https://i3wm.org/docs/userguide.html
-
 ###############################################################################
 # Variables
 ###############################################################################
 
+set $configDir $CHACHI_PATH/home/.config/i3
+set $seniore $CHACHI_PATH/seniore/target/release/seniore
+
 set $mod Mod4
-set $term alacritty
+set $term gnome-terminal
 set $browser firefox
 set $menu exec rofi -modi combi -combi-modi drun -show combi
 set $fileMenu exec rofi -modi filebrowser -show filebrowser
-set $lock ~/Projects/chachi-shell/bin/sway-lock-screen
-set $notifyBrightness notify-send -t 1000 "💡 $(~/Projects/chachi-shell/bin/get-brightness)"
-set $notifyVolume notify-send -t 1000 "🔉 $(~/Projects/chachi-shell/bin/get-volume)"
+set $emojiMenu exec rofimoji --no-frecency --max-recent=0 --clipboarder xclip --only-official --selector rofi --action copy
+set $notifyBrightness notify-send -t 1000 "$($seniore linux get-brightness)"
+set $notifyVolume notify-send -t 1000 "$($seniore linux get-volume)"
+set $gnome-schema org.gnome.desktop.interface
 set $screenLaptop eDP-1
 set $screenExternal HDMI-1
 
@@ -21,6 +22,7 @@ set $screenExternal HDMI-1
 ###############################################################################
 
 bindsym $mod+d exec $menu
+bindsym $mod+e exec $emojiMenu
 bindsym $mod+Shift+d exec $fileMenu
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec $browser
@@ -35,16 +37,16 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1 "1 🦊"
+set $ws2 "2 👩‍💻"
+set $ws3 "3 💬"
+set $ws4 "4 📚"
+set $ws5 "5 🔐"
+set $ws6 "6 👽"
+set $ws7 "7 👽"
+set $ws8 "8 👽"
+set $ws9 "9 👽"
+set $ws10 "10 🎥"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -96,46 +98,28 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-bindsym Print exec grim -g "$(slurp)" - | swappy -f -
-bindsym Ctrl+Print exec $term --class record_screen -e "$HOME/Projects/chachi-shell/bin/sway-record-gif"
-bindsym Shift+Print exec $term --class record_screen -e "$HOME/Projects/chachi-shell/bin/sway-record-screen"
-bindsym Shift+Ctrl+Print exec $term --class record_screen -e "$HOME/Projects/chachi-shell/bin/sway-record-screen-with-audio"
-bindsym Alt+Print exec $term --class record_screen -e "$HOME/Projects/chachi-shell/bin/sway-record-stop"
-bindsym $mod+l exec $lock
-bindsym $mod+w exec ~/Projects/chachi-shell/bin/woffu-toggle
-bindsym $mod+Shift+w output $screenLaptop toggle
-bindsym $mod+h exec notify-send "$(cat $HOME/Projects/chachi-shell/config/i3.keybindings.txt)"
+bindsym $mod+w exec $seniore woffu toggle
+bindsym $mod+Shift+w $configDir/i3-toggle-screen
+bindsym $mod+h exec notify-send "$(cat $configDir/i3.keybindings.txt)"
+
+bindsym $mod+l exec $configDir/i3-lock-screen
 
 ###############################################################################
 # Behaviour
 ###############################################################################
 
-for_window [class="record_screen"] move container to workspace number 10
-
 focus_follows_mouse no
 
-# Screen on top of laptop
-exec_always xrandr --output $screenExternal --auto --pos 0x0
-exec_always xrandr --output $screenLaptop --auto --pos 320x1440
-
-bindswitch --reload --locked lid:on xrandr --output $screenLaptop --off
-bindswitch --reload --locked lid:off xrandr --output $screenLaptop --auto
-
-###############################################################################
-# Other programs
-###############################################################################
-
-exec mako --width 480 --height 1000 --padding "16" --border-size 0 --border-radius 4 --background-color "#000000e0" --text-color "#eeeeee"
-exec swayidle before-sleep 'exec $lock'
-exec wl-paste -t test --watch clipman store --no-persist
-exec ulauncher --hide-window
-exec insync start
-
-exec feh --bg-fill $HOME/.background.jpg
 exec_always xrdb $HOME/.Xresources
-
 exec_always setxkbmap -layout es
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+exec insync start
+exec feh --bg-fill $HOME/.background.jpg
+exec blueman-applet
+exec nm-applet
+exec pasystray
+exec xautolock -time 5 -detectsleep -corners 000- -locker '$configDir/i3-lock-screen' -notify 5 -notifier '$configDir/i3-lock-screen-notify'
+exec cpupower-gui --gapplication-service
 
 ###############################################################################
 # UI
@@ -171,17 +155,19 @@ client.focused_inactive #eeeeee88 #00000088 #eeeeee88 #eeeeee88 #eeeeee88
 client.unfocused #eeeeee88 #eeeeee88 #00000088 #eeeeee88 #eeeeee88
 client.urgent #eeeeee88 #eeeeee88 #00000088 #eeeeee88 #eeeeee88
 
-font pango:IBM Plex Mono Text 9
+font pango:VictorMono Nerd Font Medium 11
 
 bar {
     position bottom
-    status_command ~/Projects/chachi-shell/bin/bar-status
+    status_command $configDir/i3-status-bar
+    tray_output primary
 
     colors {
-        statusline #eeeeee88
+        statusline #ffffffaa
         background #000000aa
-        focused_workspace  #00000088 #eeeeee88 #00000088
-        inactive_workspace #00000088 #00000088 #eeeeee88
-        urgent_workspace   #00000088 #00000088 #eeeeee88
+        # border background text
+        focused_workspace  #000000aa #222222aa #ffffffff
+        inactive_workspace #000000aa #000000aa #ffffffff
+        urgent_workspace   #000000aa #444444aa #ffffffff
     }
 }
