@@ -1,5 +1,4 @@
 [Unit]
-Name=chachi-insync.service
 PartOf=chachi-sway-session.target
 
 [Service]

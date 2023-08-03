@@ -1,5 +1,4 @@
 [Unit]
-Name=chachi-wl-paste.service
 PartOf=chachi-sway-session.target
 
 [Service]

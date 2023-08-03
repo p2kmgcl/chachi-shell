@@ -1,5 +1,4 @@
 [Unit]
-Name=chachi-cpupower-gui.service
 PartOf=chachi-sway-session.target
 
 [Service]

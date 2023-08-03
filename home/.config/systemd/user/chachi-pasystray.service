@@ -1,5 +1,5 @@
 [Unit]
-Name=chachi-pasystray.service
+PartOf=chachi-sway-session.target
 
 [Service]
 ExecStart=/usr/bin/pasystray
