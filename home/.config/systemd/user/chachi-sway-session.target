@@ -6,4 +6,5 @@ Wants=chachi-cpupower-gui.service
 Wants=chachi-insync.service
 Wants=chachi-mako.service
 Wants=chachi-nm-applet.service
+Wants=chachi-polkit-gnome.service
 Wants=chachi-wl-paste.service
