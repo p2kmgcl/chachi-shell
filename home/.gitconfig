@@ -28,12 +28,12 @@
 
 [diff]
   renames = true
-  tool = nvim
+  tool = neovim
 
 [difftool]
   prompt = false
 
-[difftool "nvim"]
+[difftool "neovim"]
   cmd = nvim -d $LOCAL $REMOTE
 
 [difftool "vscode"]
@@ -43,16 +43,16 @@
   autocorrect = 0
 
 [merge]
-  tool = nvim
+  tool = neovim
 
 [mergetool]
   prompt = false
 
-[mergetool "nvim"]
-  cmd = nvim -d $LOCAL $REMOTE
+[mergetool "neovim"]
+  cmd = nvim -d $MERGED
 
 [mergetool "vscode"]
-  cmd = code --wait --diff $LOCAL $REMOTE
+  cmd = code --wait $MERGED
 
 [pull]
   rebase = true
