@@ -1,0 +1,10 @@
+#!/bin/bash
+
+ echo "Getting your master..."
+ git checkout master
+ git fetch --all --prune
+ git checkout upstream/master
+ git branch -D master
+ git checkout -b master
+ git push -u -f origin master
+ echo "Congrats! You have a master!"

@@ -4,7 +4,7 @@
 [core]
   editor = nvim
   ignorecase = false
-  excludesfile = ~/.gitignore-global
+  excludesfile = $CHACHI_PATH/home/.config/git/gitignore-global
   pager = delta --light
   untrackedcache = true
 
@@ -81,24 +81,19 @@
 [alias]
   h = !git config -l | grep alias.
 
-  cifuentes = !echo "Getting your master..." && git checkout master && git fetch --all --prune && git checkout upstream/master && git branch -D master && git checkout -b master && git push -u -f origin master && echo "Congrats! You have a master!"
-  pushdemont = !echo "Pushing changes..." && sleep 1 && echo "Changes pushed, there is no way back." && echo "" && sleep 2 && echo "..." && sleep 2 && echo "..." && sleep 3 && echo "" && echo "Changes reverted."
+  cifuentes = !$CHACHI_PATH/home/.config/git/git-cifuentes
 
+  do-checkout-pull-request = !$CHACHI_PATH/home/.config/git/git-do-checkout-pull-request
   do-clean-all-non-git-files = clean --force -d -X
   do-clean-local-repository = gc --prune=now --aggressive
   do-ignore-changes-on-file = update-index --assume-unchanged
   do-list-conflict-files = diff --name-only --diff-filter=U
   do-list-files-in-a-commit = ls-tree -r --name-only
-  do-make-file-disapear-from-history = !git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch $1' --prune-empty --tag-name-filter cat -- --all && git push origin --force --all
+  do-make-file-disapear-from-history = !$CHACHI_PATH/home/.config/git/git-do-make-file-disapear-from-history
+  do-open-pull-request = !$CHACHI_PATH/home/.config/git/git-do-open-pull-request
   do-show-everyday-help = help everyday
 
-  do-checkout-pull-request="!f(){ git fetch $1 "pull/${2}/head:pr/${1}/${2}"; git checkout "pr/${1}/${2}"; };f"
-  do-open-pull-request=!~/.git-do-open-pull-request
-  do-list-issues=!gh-wrapper list-issues
-  do-list-notifications=!gh-wrapper list-notifications
-  do-show-dashboard=!"while [ 1 -eq 1 ]; do clear; gh-wrapper show-dashboard; sleep 900; done"
-
-  ada = add .
+  ada = add --all
   back = reset HEAD~1
   br = branch
   ch = checkout
@@ -106,6 +101,7 @@
   cpa = cherry-pick --abort
   cpc = cherry-pick --continue
   cm = commit
+  cma = commit --amend
   din = diff --name-only
   fea = fetch --all
   lg = log --pretty='%Cgreen%h %Cblue%an (%ar) %Creset%s'
