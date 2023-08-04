@@ -1,4 +1,11 @@
-# Chachi Shell
+<h1 align="center">
+  <img
+    name="logo"
+    src="https://raw.githubusercontent.com/p2kmgcl/chachi-shell/master/logo.png"
+    alt="chachi-shell"
+    style="width:100%"
+  />
+</h1>
 
 The first steps I follow when installing a new system, is **cleaning up
 unnecessary applications**, and also adding some essential ones:
