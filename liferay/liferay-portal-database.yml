@@ -3,30 +3,36 @@ kind: Pod
 metadata:
   annotations:
     io.podman.annotations.ulimit: nofile=26677:46677,nproc=65535:65535
-  creationTimestamp: "2023-07-07T05:55:31Z"
+  creationTimestamp: '2023-07-07T05:55:31Z'
   labels:
     app: liferay-portal-database-pod
   name: liferay-portal-database-pod
 spec:
   containers:
-  - args:
-    - mysqld
-    - --character-set-server=utf8
-    - --collation-server=utf8_general_ci
-    env:
-    - name: MYSQL_DATABASE
-      value: liferay_portal
-    - name: MYSQL_ROOT_PASSWORD
-      value: root
-    image: docker.io/library/mysql:5.7
-    name: liferay-portal-database
-    ports:
-    - containerPort: 3306
-      hostPort: 3306
-    volumeMounts:
-    - mountPath: /var/lib/mysql
-      name: liferay-portal-database-pvc
+    - args:
+        - mysqld
+        - --character-set-server=utf8
+        - --collation-server=utf8_general_ci
+      env:
+        - name: MYSQL_DATABASE
+          value: liferay_portal
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+      livenessProbe:
+        exec:
+          command: ['mysqladmin', 'ping', '-h', 'localhost']
+        initialDelaySeconds: 10
+        periodSeconds: 5
+        retries: 10
+      image: docker.io/library/mysql:5.7
+      name: liferay-portal-database
+      ports:
+        - containerPort: 3306
+          hostPort: 3306
+      volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: liferay-portal-database-pvc
   volumes:
-  - name: liferay-portal-database-pvc
-    persistentVolumeClaim:
-      claimName: liferay-portal-database
+    - name: liferay-portal-database-pvc
+      persistentVolumeClaim:
+        claimName: liferay-portal-database
