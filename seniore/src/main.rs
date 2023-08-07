@@ -1,46 +1,45 @@
 mod commands;
 mod util;
-use home;
+use commands::{liferay, linux, woffu};
+use home::home_dir;
 use std::env;
 use std::fs;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    match (&args[1]).as_str() {
-        "help" => print_help(),
-        "liferay" => match (&args[2]).as_str() {
-            "build-lang" => commands::liferay::build_lang(),
-            "deploy-updated-modules" => commands::liferay::deploy_updated_modules(),
-            "update-modules-cache" => commands::liferay::update_modules_cache(),
-            _ => print_unknown(),
+    let some_f: Option<fn()> = match (args[1]).as_str() {
+        "liferay" => match (args[2]).as_str() {
+            "build-lang" => Some(liferay::build_lang),
+            "deploy-updated-modules" => Some(liferay::deploy_updated_modules),
+            "update-modules-cache" => Some(liferay::update_modules_cache),
+            _ => None,
         },
-        "linux" => match (&args[2]).as_str() {
-            "get-brightness" => commands::linux::get_brightness(),
-            "get-date" => commands::linux::get_date(),
-            "get-volume" => commands::linux::get_volume(),
-            _ => print_unknown(),
+        "linux" => match (args[2]).as_str() {
+            "get-brightness" => Some(linux::get_brightness),
+            "get-date" => Some(linux::get_date),
+            "get-volume" => Some(linux::get_volume),
+            _ => None,
         },
-        "woffu" => match (&args[2]).as_str() {
-            "get-status" => commands::woffu::get_status(),
-            "toggle" => commands::woffu::toggle(),
-            _ => print_unknown(),
+        "woffu" => match (args[2]).as_str() {
+            "get-status" => Some(woffu::get_status),
+            "toggle" => Some(woffu::toggle),
+            _ => None,
         },
-        _ => print_unknown(),
+        _ => None,
+    };
+
+    if let Some(f) = some_f {
+        f();
+    } else {
+        println!("Unknown command");
+
+        let help_path = home_dir()
+            .expect("home dir")
+            .join("Projects/chachi-shell/seniore/docs/help.txt");
+
+        let help_string = fs::read_to_string(help_path).expect("help file");
+
+        println!("\n{}", help_string);
     }
-}
-
-fn print_unknown() {
-    println!("Unknown command");
-    print_help();
-}
-
-fn print_help() {
-    let help_path = home::home_dir()
-        .expect("home dir")
-        .join("Projects/chachi-shell/seniore/docs/help.txt");
-
-    let help_string = fs::read_to_string(help_path).expect("help file");
-
-    println!("\n{}", help_string);
 }

@@ -1,12 +1,5 @@
-use std::{
-    env,
-    path::{Path, PathBuf},
-    time::SystemTime,
-    u128,
-};
-
-use crate::util::command;
-use crate::util::tmp;
+use crate::util::{command, tmp};
+use std::{env, error, fs, path, time, u128};
 
 pub fn build_lang() {
     command::run(
@@ -49,9 +42,9 @@ pub fn update_modules_cache() {
     println!("{} module(s) updated.", updated_modules.len());
 }
 
-fn get_updated_modules() -> Vec<PathBuf> {
-    fn is_osgi_module(directory_path: &PathBuf) -> bool {
-        std::fs::read_dir(directory_path).map_or(false, |mut children| {
+fn get_updated_modules() -> Vec<path::PathBuf> {
+    fn is_osgi_module(directory_path: &path::PathBuf) -> bool {
+        fs::read_dir(directory_path).map_or(false, |mut children| {
             children.any(|child_result| {
                 child_result.map_or(false, |child| {
                     child.file_type().unwrap().is_file() && child.file_name() == "bnd.bnd"
@@ -60,25 +53,17 @@ fn get_updated_modules() -> Vec<PathBuf> {
         })
     }
 
-    fn file_duration(file_path: &PathBuf) -> Result<u128, Box<dyn std::error::Error>> {
-        Ok(std::fs::metadata(file_path)?
+    fn file_duration(file_path: &path::PathBuf) -> Result<u128, Box<dyn error::Error>> {
+        Ok(fs::metadata(file_path)?
             .modified()?
-            .duration_since(SystemTime::UNIX_EPOCH)?
+            .duration_since(time::SystemTime::UNIX_EPOCH)?
             .as_millis())
     }
 
-    fn get_module_duration(module_path: &PathBuf) -> u128 {
-        let mut src_path = module_path.clone();
+    fn find_updated_modules(directory_path: &path::PathBuf) -> Vec<path::PathBuf> {
+        let mut updated_modules: Vec<path::PathBuf> = Vec::new();
 
-        src_path.push("src");
-
-        file_duration(&src_path).unwrap_or(u128::MAX)
-    }
-
-    fn find_updated_modules(directory_path: &PathBuf) -> Vec<PathBuf> {
-        let mut updated_modules: Vec<PathBuf> = Vec::new();
-
-        let children = std::fs::read_dir(directory_path)
+        let children = fs::read_dir(directory_path)
             .unwrap()
             .map(|child_result| child_result.unwrap());
 
@@ -91,8 +76,13 @@ fn get_updated_modules() -> Vec<PathBuf> {
                 }
 
                 if is_osgi_module(&module_path) {
-                    let module_name = module_path.to_str().unwrap().replace("/", "-");
-                    let duration = get_module_duration(&module_path);
+                    let duration = {
+                        let mut src_path = module_path.to_path_buf();
+                        src_path.push("src");
+                        file_duration(&src_path).unwrap_or(u128::MAX)
+                    };
+
+                    let module_name = module_path.to_str().unwrap().replace('/', "-");
                     let tmp_file_name = format!("liferay-module-cache-{}", module_name);
 
                     let latest_duration =
@@ -106,17 +96,17 @@ fn get_updated_modules() -> Vec<PathBuf> {
             }
         }
 
-        return updated_modules;
+        updated_modules
     }
 
-    return find_updated_modules(&get_portal_item_path("/modules/apps"));
+    find_updated_modules(&get_portal_item_path("/modules/apps"))
 }
 
-fn get_portal_item_path(item_path: &str) -> PathBuf {
+fn get_portal_item_path(item_path: &str) -> path::PathBuf {
     let portal_path = env::var("LIFERAY_PORTAL_PATH").expect("LIFERAY_PORTAL_PATH env variable");
-    let resolved_path = portal_path.clone() + item_path;
+    let resolved_path = portal_path + item_path;
 
-    return Path::new(resolved_path.as_str())
+    return path::Path::new(resolved_path.as_str())
         .canonicalize()
         .expect(item_path);
 }

@@ -10,7 +10,7 @@ pub fn send(body: &str, timeout: i32) -> u32 {
         NEXT_NOTIFICATION_ID += 1;
     }
 
-    return update(id, body, timeout);
+    update(id, body, timeout)
 }
 
 pub fn update(id: u32, body: &str, timeout: i32) -> u32 {
@@ -24,5 +24,5 @@ pub fn update(id: u32, body: &str, timeout: i32) -> u32 {
         .show()
         .expect("notification should be created");
 
-    return notification_handle.id();
+    notification_handle.id()
 }

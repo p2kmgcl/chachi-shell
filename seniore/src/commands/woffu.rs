@@ -1,5 +1,7 @@
 use crate::util::{notify, tmp};
 use chrono::{Local, Timelike};
+use reqwest::blocking::Client;
+use serde_json::Value;
 use std::{env, time::Duration};
 
 const FILE_DURATION_IN_SECS: u64 = 1800;
@@ -8,7 +10,7 @@ const PRESENCE_FILE_NAME: &str = "woffu-presence";
 
 pub fn toggle() {
     let notification_id = notify::send("Updating woffu sign status...", 0);
-    let client = reqwest::blocking::Client::new();
+    let client = Client::new();
     let token = env::var("WOFFU_TOKEN").expect("WOFFU_TOKEN env variable");
     let user_id = env::var("WOFFU_USER_ID").expect("WOFFU_USER_ID env variable");
 
@@ -33,7 +35,7 @@ pub fn get_status() {
         tmp::expire_file(SIGNS_FILE_NAME, FILE_DURATION_IN_SECS);
 
         let woffu_signs = tmp::read_json(SIGNS_FILE_NAME).unwrap_or_else(|_| {
-            let client = reqwest::blocking::Client::new();
+            let client = Client::new();
             let token = env::var("WOFFU_TOKEN").expect("WOFFU_TOKEN env variable");
 
             let updated_json = client
@@ -46,38 +48,37 @@ pub fn get_status() {
                 .expect("response should be a json");
 
             tmp::write_json(SIGNS_FILE_NAME, &updated_json)
-                .expect(format!("{} file should be updated", SIGNS_FILE_NAME).as_str());
+                .unwrap_or_else(|_| panic!("{} file should be updated", SIGNS_FILE_NAME));
 
             updated_json
         });
 
         let mut duration: Duration = Duration::new(0, 0);
-        let mut last_sign_in: Option<Duration> = Option::None;
+        let mut maybe_last_sign_in: Option<Duration> = None;
 
-        for sign in woffu_signs.as_array().expect(
-            format!(
+        for sign in woffu_signs.as_array().unwrap_or_else(|| {
+            panic!(
                 "response json should be an array, but it is {:}",
                 woffu_signs
             )
-            .as_str(),
-        ) {
+        }) {
             let sign_object = sign.as_object().expect("each sign should be an object");
             let sign_in = sign_object.get("In").expect("'In' property should exist");
             let sign_out = sign_object.get("Out").expect("'Out' property should exist");
 
             if !sign_in.is_null() {
-                last_sign_in = Option::Some(sign_entry_to_duration(sign_in));
+                maybe_last_sign_in = Some(sign_entry_to_duration(sign_in));
             }
 
-            if !sign_out.is_null() && last_sign_in.is_some() {
-                let sign_in_value = last_sign_in.unwrap();
+            if !sign_out.is_null() && maybe_last_sign_in.is_some() {
+                let sign_in_value = maybe_last_sign_in.unwrap();
                 let sign_out_value = sign_entry_to_duration(sign_out);
-                duration = duration + (sign_out_value - sign_in_value);
-                last_sign_in = Option::None;
+                duration += sign_out_value - sign_in_value;
+                maybe_last_sign_in = None;
             }
         }
 
-        if last_sign_in.is_some() {
+        if let Some(last_sign_in) = maybe_last_sign_in {
             let now = Local::now();
 
             let now_duration = Duration::new(
@@ -85,17 +86,17 @@ pub fn get_status() {
                 0,
             );
 
-            duration = duration + (now_duration - last_sign_in.unwrap());
+            duration += now_duration - last_sign_in;
         }
 
-        (last_sign_in.is_some(), duration)
+        (maybe_last_sign_in.is_some(), duration)
     };
 
     let duration_pending_in_week = {
         tmp::expire_file(PRESENCE_FILE_NAME, FILE_DURATION_IN_SECS);
 
         let woffu_presence = tmp::read_json(PRESENCE_FILE_NAME).unwrap_or_else(|_| {
-            let client = reqwest::blocking::Client::new();
+            let client = Client::new();
             let token = env::var("WOFFU_TOKEN").expect("WOFFU_TOKEN env variable");
             let user_id = env::var("WOFFU_USER_ID").expect("WOFFU_USER_ID env variable");
 
@@ -109,9 +110,9 @@ pub fn get_status() {
                 .expect("response should be a json");
 
             tmp::write_json(PRESENCE_FILE_NAME, &updated_json)
-                .expect(format!("{} file should be updated", PRESENCE_FILE_NAME).as_str());
+                .unwrap_or_else(|_| panic!("{} file should be updated", PRESENCE_FILE_NAME));
 
-            return updated_json;
+            updated_json
         });
 
         let weekly_entry = woffu_presence
@@ -163,7 +164,7 @@ fn format_duration(duration: Duration) -> String {
     format!("{:02}:{:02}", hours, minutes)
 }
 
-fn sign_entry_to_duration(entry: &serde_json::Value) -> Duration {
+fn sign_entry_to_duration(entry: &Value) -> Duration {
     let parts: Vec<u64> = entry
         .as_object()
         .expect("entry should be an object")
@@ -172,7 +173,7 @@ fn sign_entry_to_duration(entry: &serde_json::Value) -> Duration {
         .as_str()
         .expect("'ShortTrueTime' property should be a string")
         .to_string()
-        .split(":")
+        .split(':')
         .map(|s| {
             s.parse::<u64>()
                 .expect("'ShortTrueTime' should follow HH:MM:ss format")
