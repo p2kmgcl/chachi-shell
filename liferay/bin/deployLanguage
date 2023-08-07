@@ -1,6 +1,0 @@
-#!/bin/bash
-
-cd $HOME/Projects/community-portal/liferay-portal/modules/apps/portal-language/portal-language-lang && \
-  $HOME/Projects/community-portal/liferay-portal/gradlew formatSource && \
-  $HOME/Projects/community-portal/liferay-portal/gradlew buildLang && \
-  $HOME/Projects/community-portal/liferay-portal/gradlew clean deploy -Dbuild=portal

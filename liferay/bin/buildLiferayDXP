@@ -1,3 +1,4 @@
 #!/bin/bash
 
 cd $HOME/Projects/community-portal/liferay-portal && ant setup-profile-dxp && ant all -Dnodejs.node.env=development
+$CHACHI_PATH/seniore/target/release/seniore liferay update-modules-cache
