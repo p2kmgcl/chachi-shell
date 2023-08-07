@@ -10,8 +10,6 @@ _[p2kmgcl/seniore](https://github.com/p2kmgcl/seniore)_, but this is a new
 
 ## Existing scripts
 
--   `./install.sh`: add needed dependencies. This might change depending on the
-    OS.
--   `./build.sh`: create a production build.
--   `./dev.sh`: starts a development process which builds the project
-    automatically.
+-   `./install.sh`
+-   `bacon`: build, test and checks
+-   `cargo build --release`

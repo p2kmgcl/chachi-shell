@@ -17,3 +17,4 @@ rustup component add rust-analyzer
 - Prompt: `cargo install --locked starship`
 - Directory jump: `cargo install --locked zoxide`
 - Diffing: `cargo install --locked git-delta`
+- Rust code checker: `cargo install --locked bacon`
