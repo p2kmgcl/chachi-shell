@@ -1,6 +1,11 @@
 #!/bin/bash
 
 remote_user_and_repo=$(git remote get-url --push $1 | sed 's/.*github.com:\?\/\?//' | sed 's/\.git//');
+
+if [ -z "$remote_user_and_repo" ]; then
+  exit 1
+fi
+
 remote_user=$(echo $remote_user_and_repo | cut -d'/' -f1)
 remote_repo=$(echo $remote_user_and_repo | cut -d'/' -f2)
 
