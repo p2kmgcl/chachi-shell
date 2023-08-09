@@ -1,18 +1,40 @@
 use ansi_escapes::{CursorUp, EraseEndLine, EraseLine};
 use std::{path, process, thread, time};
 
-pub fn get_output(input: &str) -> anyhow::Result<String> {
-    let chunks: Vec<&str> = input.split(' ').collect();
+pub fn get_output(directory: &str, full_command: &str) -> anyhow::Result<String> {
+    let chunks: Vec<String> = full_command
+        .split(' ')
+        .map(|chunk| chunk.to_string())
+        .collect();
     let command = chunks.first().unwrap();
     let args = chunks[1..].to_vec();
-    let output = process::Command::new(command).args(args).output()?.stdout;
+
+    let output = process::Command::new(command)
+        .current_dir(directory)
+        .args(args)
+        .output()?
+        .stdout;
+
     Ok(String::from_utf8(output)?)
 }
 
-pub fn run(directory: &path::PathBuf, command: &path::PathBuf, args: &Vec<&str>) {
+pub fn run(directory: &str, full_command: &str) {
+    let chunks: Vec<String> = full_command
+        .split(' ')
+        .map(|chunk| chunk.to_string())
+        .collect();
+
+    let command = chunks.first().unwrap();
+    let args = chunks[1..].to_vec();
+
     let command_name = format!(
         "{}: {}",
-        directory.clone().iter().last().unwrap().to_str().unwrap(),
+        path::Path::new(&directory)
+            .iter()
+            .last()
+            .unwrap()
+            .to_str()
+            .unwrap(),
         args.join(" ")
     );
 
