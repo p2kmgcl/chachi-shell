@@ -1,190 +1,172 @@
-use crate::util::{command, tmp};
-use std::{env, fs, path, time};
+use crate::util::{
+    command,
+    tmp::{read_file, write_file},
+};
+use std::{collections::HashSet, env, fs::read_dir, path::Path};
+
+const NOT_OSGI_MODULES: &[&str] = &["portal-impl", "portal-kernel"];
+
+const LAST_COMMIT_FILE_NAME: &str = "liferay-portal-last-commit";
 
 pub fn build_lang() {
-    command::run(
-        &get_module_path("portal-language-lang").unwrap(),
-        &get_portal_item_path("/gradlew"),
-        &vec!["formatSource"],
-    );
+    let gradlew = get_portal_item_path("/gradlew");
+    let path = get_module_path("portal-language-lang").unwrap();
 
-    command::run(
-        &get_module_path("portal-language-lang").unwrap(),
-        &get_portal_item_path("/gradlew"),
-        &vec!["buildLang"],
-    );
-
-    command::run(
-        &get_module_path("portal-language-lang").unwrap(),
-        &get_portal_item_path("/gradlew"),
-        &vec![
-            "clean",
-            "deploy",
-            "-Dbuild=portal",
-            "-Dnodejs.node.env=development",
-        ],
-    );
+    command::run(&path, &(gradlew.clone() + " formatSource"));
+    command::run(&path, &(gradlew.clone() + " buildLang"));
+    command::run(&path, &(gradlew + " clean deploy -Dbuild=portal"));
 }
 
-pub fn get_module_path(module: &str) -> Option<path::PathBuf> {
+pub fn get_module_path(module: &str) -> Option<String> {
     let portal_path = env::var("LIFERAY_PORTAL_PATH").expect("LIFERAY_PORTAL_PATH env variable");
 
-    if module.starts_with(portal_path.as_str()) {
-        return Some(path::PathBuf::from(module));
-    } else {
-        for module_path in get_module_list() {
-            if module_path.to_str().unwrap().contains(module) {
-                return Some(module_path);
-            }
-        }
+    if module.starts_with(&portal_path) && is_osgi_module(module) {
+        return Some(module.to_string());
     }
 
-    None
+    get_module_list()
+        .into_iter()
+        .find(|module_path| module_path.contains(module))
 }
 
-pub fn get_module_list() -> Vec<path::PathBuf> {
-    fn is_osgi_module(directory_path: &path::PathBuf) -> bool {
-        fs::read_dir(directory_path).map_or(false, |mut children| {
-            children.any(|child_result| {
-                child_result.map_or(false, |child| {
-                    child.file_type().unwrap().is_file() && child.file_name() == "bnd.bnd"
-                })
-            })
-        })
+fn is_osgi_module(directory_path: &str) -> bool {
+    if NOT_OSGI_MODULES
+        .iter()
+        .any(|not_osgi_module| directory_path.ends_with(not_osgi_module))
+    {
+        return false;
     }
 
-    let mut modules: Vec<path::PathBuf> = Vec::new();
+    read_dir(directory_path).map_or(false, |mut children| {
+        children.any(|child_result| {
+            child_result.map_or(false, |child| {
+                child.file_type().unwrap().is_file() && child.file_name() == "bnd.bnd"
+            })
+        })
+    })
+}
 
-    fn add_modules(modules: &mut Vec<path::PathBuf>, basedir: &path::PathBuf) {
-        let children = fs::read_dir(basedir).unwrap();
+pub fn get_module_list() -> Vec<String> {
+    let mut modules: Vec<String> = Vec::new();
+
+    fn add_modules(modules: &mut Vec<String>, basedir: &String) {
+        let children = read_dir(basedir).unwrap();
 
         for child in children.flatten() {
             if child.file_type().unwrap().is_dir() {
-                add_modules(modules, &child.path());
-                if is_osgi_module(&child.path()) {
-                    modules.push(child.path());
+                let child_path: String = child.path().to_str().unwrap().to_string();
+
+                add_modules(modules, &child_path);
+
+                if is_osgi_module(&child_path) {
+                    modules.push(child_path);
                 }
             }
         }
     }
 
     add_modules(&mut modules, &get_portal_item_path("/modules/apps"));
-
     modules
 }
 
 pub fn deploy_modules(modules: &Vec<String>) {
+    let gradlew = get_portal_item_path("/gradlew");
+
     for module in modules {
-        let module_path = get_module_path(module.as_str()).unwrap();
-
-        command::run(
-            &module_path,
-            &get_portal_item_path("/gradlew"),
-            &vec!["clean", "deploy", "-Dbuild=portal"],
-        );
-
-        update_module_hash(&module_path);
+        if is_osgi_module(module) {
+            command::run(
+                &get_module_path(module.as_str()).unwrap(),
+                &(gradlew.to_owned()
+                    + " clean deploy -Dbuild=portal -Dnodejs.node.env=development"),
+            );
+        } else {
+            println!("\"{}\" is not an osgi module", module);
+        }
     }
 }
 
 pub fn format_modules(modules: &Vec<String>) {
+    let gradlew = get_portal_item_path("/gradlew");
+
     for module in modules {
-        command::run(
-            &get_module_path(module.as_str()).unwrap(),
-            &get_portal_item_path("/gradlew"),
-            &vec!["formatSource"],
-        );
+        if is_osgi_module(module) {
+            command::run(
+                &get_module_path(module.as_str()).unwrap(),
+                &(gradlew.to_owned() + " formatSource"),
+            );
+        } else {
+            println!("\"{}\" is not an osgi module", module);
+        }
     }
 }
 
 pub fn update_modules_cache() {
-    for module_path in get_updated_modules() {
-        update_module_hash(&module_path);
-        println!("{}", module_path.to_str().unwrap());
-    }
-}
+    let portal_path = env::var("LIFERAY_PORTAL_PATH").expect("LIFERAY_PORTAL_PATH env variable");
 
-fn get_module_name(module_path: &path::Path) -> String {
-    format!(
-        "liferay-module-name--{}",
-        module_path.to_str().unwrap().split('/').last().unwrap()
+    write_file(
+        LAST_COMMIT_FILE_NAME,
+        command::get_output(&portal_path, "git log -n 1 --pretty=format:%H").unwrap(),
     )
+    .unwrap();
 }
 
-fn get_module_cached_hash(module_path: &path::Path) -> String {
-    tmp::read_file(get_module_name(&module_path).as_str()).unwrap_or("".to_string())
-}
+fn get_updated_modules() -> Vec<String> {
+    let portal_path = env::var("LIFERAY_PORTAL_PATH").expect("LIFERAY_PORTAL_PATH env variable");
 
-fn get_module_hash(module_path: &path::Path) -> String {
-    let mut src_path = module_path.to_path_buf();
-    src_path.push("src");
+    let run_git_command =
+        |command: String| command::get_output(&portal_path, command.as_str()).unwrap();
 
-    fn get_directory_duration(directory_path: &path::PathBuf) -> u128 {
-        let children = fs::read_dir(directory_path);
+    let last_commit = read_file(LAST_COMMIT_FILE_NAME).unwrap_or("master".to_string());
+    let current_commit = run_git_command("git log -n 1 --pretty=format:%H".to_string());
 
-        if children.is_err() {
-            return u128::MIN;
-        }
+    let branch_files_output = run_git_command(format!(
+        "git diff --name-only {}..{}",
+        last_commit, current_commit
+    ));
 
-        let mut directory_duration = u128::MIN;
+    let branch_files = branch_files_output.lines().map(|line| line.to_string());
 
-        for child in children.unwrap().flatten() {
-            let file_type = child.file_type().unwrap();
+    let local_files_output = run_git_command("git status --porcelain".to_string());
 
-            let child_duration = if file_type.is_file() {
-                fs::metadata(child.path())
-                    .unwrap()
-                    .modified()
-                    .unwrap()
-                    .duration_since(time::SystemTime::UNIX_EPOCH)
-                    .unwrap()
-                    .as_millis()
-            } else {
-                get_directory_duration(&child.path())
-            };
+    let local_files = local_files_output
+        .lines()
+        .map(|line| line.to_string().chars().skip(3).collect::<String>());
 
-            if child_duration > directory_duration {
-                directory_duration = child_duration;
+    let changed_files = branch_files.chain(local_files);
+
+    let module_set = changed_files
+        .filter_map(|file| {
+            let mut maybe_file_path = Some(get_portal_item_path(&("/".to_string() + &file)));
+
+            while let Some(file_path) = maybe_file_path {
+                if is_osgi_module(&file_path) {
+                    return Some(file_path);
+                }
+
+                maybe_file_path = Path::new(&file_path)
+                    .parent()
+                    .map(|parent| parent.to_str().unwrap().to_string());
             }
-        }
 
-        directory_duration
-    }
+            None
+        })
+        .collect::<HashSet<String>>();
 
-    get_directory_duration(&src_path).to_string()
-}
-
-fn update_module_hash(module_path: &path::Path) {
-    let module_name = get_module_name(&module_path);
-    tmp::write_file(&module_name, get_module_hash(&module_path).to_string()).unwrap();
-}
-
-fn get_updated_modules() -> Vec<path::PathBuf> {
-    let mut updated_modules = Vec::new();
-
-    for module_path in get_module_list() {
-        let hash = get_module_hash(&module_path);
-        let cached_hash = get_module_cached_hash(&module_path);
-
-        if hash.to_string() != cached_hash {
-            updated_modules.push(module_path);
-        }
-    }
-
-    updated_modules
+    module_set.into_iter().collect()
 }
 
 pub fn print_updated_modules() {
-    for module_path in get_updated_modules() {
-        println!("{}", module_path.to_str().unwrap());
-    }
+    println!("{}", get_updated_modules().join("\n"));
 }
 
-fn get_portal_item_path(item_path: &str) -> path::PathBuf {
+fn get_portal_item_path(item_path: &str) -> String {
     let portal_path = env::var("LIFERAY_PORTAL_PATH").expect("LIFERAY_PORTAL_PATH env variable");
     let resolved_path = portal_path + item_path;
 
-    return path::Path::new(resolved_path.as_str())
+    Path::new(resolved_path.as_str())
         .canonicalize()
-        .expect(item_path);
+        .expect(item_path)
+        .to_str()
+        .unwrap()
+        .to_string()
 }

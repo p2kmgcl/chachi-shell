@@ -2,3 +2,4 @@
 
 SENIORE_PATH=$CHACHI_PATH/seniore/target/release/seniore
 $SENIORE_PATH liferay deploy-modules $($SENIORE_PATH liferay get-updated-modules)
+$SENIORE_PATH liferay update-modules-cache
