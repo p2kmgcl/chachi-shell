@@ -76,7 +76,6 @@ pub fn get_module_list() -> Vec<path::PathBuf> {
 pub fn deploy_modules(modules: &Vec<String>) {
     for module in modules {
         let module_path = get_module_path(module.as_str()).unwrap();
-        let module_name = get_module_name(&module_path);
 
         command::run(
             &module_path,
@@ -84,7 +83,7 @@ pub fn deploy_modules(modules: &Vec<String>) {
             &vec!["clean", "deploy", "-Dbuild=portal"],
         );
 
-        tmp::write_file(&module_name, get_module_duration(&module_path).to_string()).unwrap();
+        update_module_hash(&module_path);
     }
 }
 
@@ -100,8 +99,7 @@ pub fn format_modules(modules: &Vec<String>) {
 
 pub fn update_modules_cache() {
     for module_path in get_updated_modules() {
-        let module_name = get_module_name(&module_path);
-        tmp::write_file(&module_name, get_module_duration(&module_path).to_string()).unwrap();
+        update_module_hash(&module_path);
         println!("{}", module_path.to_str().unwrap());
     }
 }
@@ -113,54 +111,62 @@ fn get_module_name(module_path: &path::Path) -> String {
     )
 }
 
-fn get_directory_duration(directory_path: &path::PathBuf) -> u128 {
-    let children = fs::read_dir(directory_path);
-
-    if children.is_err() {
-        return u128::MIN;
-    }
-
-    let mut directory_duration = u128::MIN;
-
-    for child in children.unwrap().flatten() {
-        let file_type = child.file_type().unwrap();
-
-        let child_duration = if file_type.is_file() {
-            fs::metadata(child.path())
-                .unwrap()
-                .modified()
-                .unwrap()
-                .duration_since(time::SystemTime::UNIX_EPOCH)
-                .unwrap()
-                .as_millis()
-        } else {
-            get_directory_duration(&child.path())
-        };
-
-        if child_duration > directory_duration {
-            directory_duration = child_duration;
-        }
-    }
-
-    directory_duration
+fn get_module_cached_hash(module_path: &path::Path) -> String {
+    tmp::read_file(get_module_name(&module_path).as_str()).unwrap_or("".to_string())
 }
 
-fn get_module_duration(module_path: &path::Path) -> u128 {
+fn get_module_hash(module_path: &path::Path) -> String {
     let mut src_path = module_path.to_path_buf();
     src_path.push("src");
-    get_directory_duration(&src_path)
+
+    fn get_directory_duration(directory_path: &path::PathBuf) -> u128 {
+        let children = fs::read_dir(directory_path);
+
+        if children.is_err() {
+            return u128::MIN;
+        }
+
+        let mut directory_duration = u128::MIN;
+
+        for child in children.unwrap().flatten() {
+            let file_type = child.file_type().unwrap();
+
+            let child_duration = if file_type.is_file() {
+                fs::metadata(child.path())
+                    .unwrap()
+                    .modified()
+                    .unwrap()
+                    .duration_since(time::SystemTime::UNIX_EPOCH)
+                    .unwrap()
+                    .as_millis()
+            } else {
+                get_directory_duration(&child.path())
+            };
+
+            if child_duration > directory_duration {
+                directory_duration = child_duration;
+            }
+        }
+
+        directory_duration
+    }
+
+    get_directory_duration(&src_path).to_string()
+}
+
+fn update_module_hash(module_path: &path::Path) {
+    let module_name = get_module_name(&module_path);
+    tmp::write_file(&module_name, get_module_hash(&module_path).to_string()).unwrap();
 }
 
 fn get_updated_modules() -> Vec<path::PathBuf> {
     let mut updated_modules = Vec::new();
 
     for module_path in get_module_list() {
-        let duration = get_module_duration(&module_path);
+        let hash = get_module_hash(&module_path);
+        let cached_hash = get_module_cached_hash(&module_path);
 
-        let latest_duration =
-            tmp::read_file(get_module_name(&module_path).as_str()).unwrap_or("".to_string());
-
-        if duration.to_string() != latest_duration {
+        if hash.to_string() != cached_hash {
             updated_modules.push(module_path);
         }
     }
