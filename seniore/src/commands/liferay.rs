@@ -44,9 +44,10 @@ pub fn deploy_modules(modules: &Vec<String>) {
     let gradlew = get_portal_item_path("/gradlew");
 
     for module in modules {
-        if is_osgi_module(module) {
+        let module_path = &get_module_path(module).expect(module);
+        if is_osgi_module(module_path) {
             command::run(
-                &get_module_path(module).expect(module),
+                module_path,
                 &(gradlew.to_owned()
                     + " clean deploy -Dbuild=portal -Dnodejs.node.env=development"),
             );
@@ -60,11 +61,9 @@ pub fn format_modules(modules: &Vec<String>) {
     let gradlew = get_portal_item_path("/gradlew");
 
     for module in modules {
-        if is_osgi_module(module) {
-            command::run(
-                &get_module_path(module).expect(module),
-                &(gradlew.to_owned() + " formatSource"),
-            );
+        let module_path = &get_module_path(module).expect(module);
+        if is_osgi_module(module_path) {
+            command::run(module_path, &(gradlew.to_owned() + " formatSource"));
         } else {
             println!("\"{}\" is not an osgi module", module);
         }
