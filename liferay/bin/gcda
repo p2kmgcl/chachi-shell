@@ -1,5 +1,8 @@
 #!/bin/bash
 
 SENIORE_PATH=$CHACHI_PATH/seniore/target/release/seniore
-$SENIORE_PATH liferay deploy-modules $($SENIORE_PATH liferay get-updated-modules)
+UPDATED_MODULES=$($SENIORE_PATH liferay get-updated-modules)
+if [ ! $? -eq 0 ]; then exit 1; fi
+$SENIORE_PATH liferay deploy-modules $UPDATED_MODULES || exit 1
+if [ ! $? -eq 0 ]; then exit 1; fi
 $SENIORE_PATH liferay update-modules-cache
