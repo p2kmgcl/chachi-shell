@@ -161,12 +161,12 @@ pub fn print_updated_modules() {
 
 fn get_portal_item_path(item_path: &str) -> String {
     let portal_path = env::var("LIFERAY_PORTAL_PATH").expect("LIFERAY_PORTAL_PATH env variable");
-    let resolved_path = portal_path + item_path;
 
-    Path::new(resolved_path.as_str())
-        .canonicalize()
-        .expect(item_path)
-        .to_str()
-        .unwrap()
-        .to_string()
+    if item_path.starts_with(&portal_path) {
+        item_path.to_string()
+    } else if item_path.starts_with('/') {
+        portal_path + item_path
+    } else {
+        portal_path + "/" + item_path
+    }
 }
