@@ -1,5 +1,9 @@
-use ansi_escapes::{CursorUp, EraseEndLine, EraseLine};
-use std::{path, process, thread, time};
+use ansi_escapes::{CursorUp, EraseEndLine};
+use std::{
+    path,
+    process::{self, ExitStatus},
+    thread, time,
+};
 
 pub fn get_output(directory: &str, full_command: &str) -> String {
     let chunks: Vec<String> = full_command
@@ -53,22 +57,37 @@ pub fn run(directory: &str, full_command: &str) {
     loop {
         thread::sleep(time::Duration::from_millis(100));
 
+        let print_elapsed_time = |maybe_status: Option<ExitStatus>| {
+            let elapsed_time = (time::Instant::now() - begin).as_secs_f64();
+
+            let (suffix, lines_up) = match maybe_status {
+                Some(status) => match status.code() {
+                    Some(0) => ("✔️", 2),
+                    _ => ("❌", 2),
+                },
+                _ => ("⏳", 1),
+            };
+
+            println!(
+                "{}{}[{:.1}s] {} {}",
+                CursorUp(lines_up),
+                EraseEndLine,
+                elapsed_time,
+                command_name,
+                suffix,
+            );
+        };
+
         match running_command.try_wait() {
             Err(error) => {
                 panic!("{:?}", error);
             }
-            Ok(Some(status)) => {
-                println!("{}{}[done] {}", CursorUp(1), EraseLine, status,);
-                break;
-            }
-            Ok(None) => {
-                println!(
-                    "{}{}[{:.1}s] {}",
-                    CursorUp(1),
-                    EraseEndLine,
-                    (time::Instant::now() - begin).as_secs_f64(),
-                    command_name,
-                );
+            Ok(maybe_status) => {
+                print_elapsed_time(maybe_status);
+
+                if maybe_status.is_some() {
+                    break;
+                }
             }
         }
     }
