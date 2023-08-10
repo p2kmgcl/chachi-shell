@@ -17,35 +17,6 @@ pub fn build_lang() {
     command::run(&path, &(gradlew + " clean deploy -Dbuild=portal"));
 }
 
-pub fn get_module_path(module: &str) -> Option<String> {
-    let portal_path = env::var("LIFERAY_PORTAL_PATH").expect("LIFERAY_PORTAL_PATH env variable");
-
-    if module.starts_with(&portal_path) && is_osgi_module(module) {
-        return Some(module.to_string());
-    }
-
-    get_module_list()
-        .into_iter()
-        .find(|module_path| module_path.contains(module))
-}
-
-fn is_osgi_module(directory_path: &str) -> bool {
-    if NOT_OSGI_MODULES
-        .iter()
-        .any(|not_osgi_module| directory_path.ends_with(not_osgi_module))
-    {
-        return false;
-    }
-
-    read_dir(directory_path).map_or(false, |mut children| {
-        children.any(|child_result| {
-            child_result.map_or(false, |child| {
-                child.file_type().unwrap().is_file() && child.file_name() == "bnd.bnd"
-            })
-        })
-    })
-}
-
 pub fn get_module_list() -> Vec<String> {
     let mut modules: Vec<String> = Vec::new();
 
@@ -110,7 +81,7 @@ pub fn update_modules_cache() {
     .unwrap();
 }
 
-fn get_updated_modules() -> Vec<String> {
+pub fn get_updated_modules() {
     let portal_path = env::var("LIFERAY_PORTAL_PATH").expect("LIFERAY_PORTAL_PATH env variable");
 
     let run_git_command =
@@ -152,11 +123,39 @@ fn get_updated_modules() -> Vec<String> {
         })
         .collect::<HashSet<String>>();
 
-    module_set.into_iter().collect()
+    println!(
+        "{}",
+        module_set.into_iter().collect::<Vec<String>>().join("\n")
+    );
 }
 
-pub fn print_updated_modules() {
-    println!("{}", get_updated_modules().join("\n"));
+fn get_module_path(module: &str) -> Option<String> {
+    let portal_path = env::var("LIFERAY_PORTAL_PATH").expect("LIFERAY_PORTAL_PATH env variable");
+
+    if module.starts_with(&portal_path) && is_osgi_module(module) {
+        return Some(module.to_string());
+    }
+
+    get_module_list()
+        .into_iter()
+        .find(|module_path| module_path.contains(module))
+}
+
+fn is_osgi_module(directory_path: &str) -> bool {
+    if NOT_OSGI_MODULES
+        .iter()
+        .any(|not_osgi_module| directory_path.ends_with(not_osgi_module))
+    {
+        return false;
+    }
+
+    read_dir(directory_path).map_or(false, |mut children| {
+        children.any(|child_result| {
+            child_result.map_or(false, |child| {
+                child.file_type().unwrap().is_file() && child.file_name() == "bnd.bnd"
+            })
+        })
+    })
 }
 
 fn get_portal_item_path(item_path: &str) -> String {

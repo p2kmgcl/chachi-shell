@@ -13,7 +13,7 @@ fn main() {
             "build-lang" => liferay::build_lang(),
             "format-modules" => liferay::format_modules(&args[3..].to_vec()),
             "deploy-modules" => liferay::deploy_modules(&args[3..].to_vec()),
-            "get-updated-modules" => liferay::print_updated_modules(),
+            "get-updated-modules" => liferay::get_updated_modules(),
             "update-modules-cache" => liferay::update_modules_cache(),
             _ => print_help(),
         },
