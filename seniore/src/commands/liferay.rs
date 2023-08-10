@@ -10,7 +10,7 @@ const LAST_COMMIT_FILE_NAME: &str = "liferay-portal-last-commit";
 
 pub fn build_lang() {
     let gradlew = get_portal_item_path("/gradlew");
-    let path = get_module_path("portal-language-lang").unwrap();
+    let path = get_module_path("portal-language-lang").expect("portal-language-lang");
 
     command::run(&path, &(gradlew.clone() + " formatSource"));
     command::run(&path, &(gradlew.clone() + " buildLang"));
@@ -21,7 +21,7 @@ pub fn get_module_list() -> Vec<String> {
     let mut modules: Vec<String> = Vec::new();
 
     fn add_modules(modules: &mut Vec<String>, basedir: &String) {
-        let children = read_dir(basedir).unwrap();
+        let children = read_dir(basedir).expect(basedir);
 
         for child in children.flatten() {
             if child.file_type().unwrap().is_dir() {
@@ -46,7 +46,7 @@ pub fn deploy_modules(modules: &Vec<String>) {
     for module in modules {
         if is_osgi_module(module) {
             command::run(
-                &get_module_path(module.as_str()).unwrap(),
+                &get_module_path(module).expect(module),
                 &(gradlew.to_owned()
                     + " clean deploy -Dbuild=portal -Dnodejs.node.env=development"),
             );
@@ -62,7 +62,7 @@ pub fn format_modules(modules: &Vec<String>) {
     for module in modules {
         if is_osgi_module(module) {
             command::run(
-                &get_module_path(module.as_str()).unwrap(),
+                &get_module_path(module).expect(module),
                 &(gradlew.to_owned() + " formatSource"),
             );
         } else {
@@ -76,38 +76,40 @@ pub fn update_modules_cache() {
 
     write_file(
         LAST_COMMIT_FILE_NAME,
-        command::get_output(&portal_path, "git log -n 1 --pretty=format:%H").unwrap(),
-    )
-    .unwrap();
+        command::get_output(&portal_path, "git log -n 1 --pretty=format:%H"),
+    );
 }
 
 pub fn get_updated_modules() {
     let portal_path = env::var("LIFERAY_PORTAL_PATH").expect("LIFERAY_PORTAL_PATH env variable");
+    let run_git_command = |command: &str| command::get_output(&portal_path, command);
 
-    let run_git_command =
-        |command: String| command::get_output(&portal_path, command.as_str()).unwrap();
+    let branch_files = {
+        let last_commit = read_file(LAST_COMMIT_FILE_NAME).unwrap_or("master".to_string());
+        let current_commit = run_git_command("git log -n 1 --pretty=format:%H");
 
-    let last_commit = read_file(LAST_COMMIT_FILE_NAME).unwrap_or("master".to_string());
-    let current_commit = run_git_command("git log -n 1 --pretty=format:%H".to_string());
+        run_git_command(&format!(
+            "git diff --name-only {}..{}",
+            last_commit, current_commit
+        ))
+    };
 
-    let branch_files_output = run_git_command(format!(
-        "git diff --name-only {}..{}",
-        last_commit, current_commit
-    ));
+    let local_files = {
+        let output = run_git_command("git status --porcelain");
 
-    let branch_files = branch_files_output.lines().map(|line| line.to_string());
+        output
+            .lines()
+            .map(|line| line.to_string().chars().skip(3).collect::<String>())
+            .collect::<Vec<String>>()
+            .join("\n")
+    };
 
-    let local_files_output = run_git_command("git status --porcelain".to_string());
-
-    let local_files = local_files_output
-        .lines()
-        .map(|line| line.to_string().chars().skip(3).collect::<String>());
-
-    let changed_files = branch_files.chain(local_files);
+    let changed_files = branch_files + "\n" + &local_files;
 
     let module_set = changed_files
+        .lines()
         .filter_map(|file| {
-            let mut maybe_file_path = Some(get_portal_item_path(&("/".to_string() + &file)));
+            let mut maybe_file_path = Some(get_portal_item_path(&format!("/{}", file)));
 
             while let Some(file_path) = maybe_file_path {
                 if is_osgi_module(&file_path) {

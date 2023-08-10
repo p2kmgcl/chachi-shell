@@ -1,21 +1,23 @@
 use ansi_escapes::{CursorUp, EraseEndLine, EraseLine};
 use std::{path, process, thread, time};
 
-pub fn get_output(directory: &str, full_command: &str) -> anyhow::Result<String> {
+pub fn get_output(directory: &str, full_command: &str) -> String {
     let chunks: Vec<String> = full_command
         .split(' ')
         .map(|chunk| chunk.to_string())
         .collect();
-    let command = chunks.first().unwrap();
+
+    let command = chunks.first().expect(full_command);
     let args = chunks[1..].to_vec();
 
     let output = process::Command::new(command)
         .current_dir(directory)
         .args(args)
-        .output()?
+        .output()
+        .expect(full_command)
         .stdout;
 
-    Ok(String::from_utf8(output)?)
+    String::from_utf8(output).expect(full_command)
 }
 
 pub fn run(directory: &str, full_command: &str) {
@@ -24,7 +26,7 @@ pub fn run(directory: &str, full_command: &str) {
         .map(|chunk| chunk.to_string())
         .collect();
 
-    let command = chunks.first().unwrap();
+    let command = chunks.first().expect(full_command);
     let args = chunks[1..].to_vec();
 
     let command_name = format!(
@@ -32,9 +34,9 @@ pub fn run(directory: &str, full_command: &str) {
         path::Path::new(&directory)
             .iter()
             .last()
-            .unwrap()
+            .expect(directory)
             .to_str()
-            .unwrap(),
+            .expect(directory),
         args.join(" ")
     );
 

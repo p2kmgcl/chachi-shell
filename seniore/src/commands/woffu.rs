@@ -34,7 +34,7 @@ pub fn get_status() {
     let (is_sign_in, duration_worked_today) = {
         tmp::expire_file(SIGNS_FILE_NAME, FILE_DURATION_IN_SECS);
 
-        let woffu_signs = tmp::read_json(SIGNS_FILE_NAME).unwrap_or_else(|_| {
+        let woffu_signs = tmp::read_json(SIGNS_FILE_NAME).unwrap_or_else(|| {
             let client = Client::new();
             let token = env::var("WOFFU_TOKEN").expect("WOFFU_TOKEN env variable");
 
@@ -47,9 +47,7 @@ pub fn get_status() {
                 .json()
                 .expect("response should be a json");
 
-            tmp::write_json(SIGNS_FILE_NAME, &updated_json)
-                .unwrap_or_else(|_| panic!("{} file should be updated", SIGNS_FILE_NAME));
-
+            tmp::write_json(SIGNS_FILE_NAME, &updated_json);
             updated_json
         });
 
@@ -95,7 +93,7 @@ pub fn get_status() {
     let duration_pending_in_week = {
         tmp::expire_file(PRESENCE_FILE_NAME, FILE_DURATION_IN_SECS);
 
-        let woffu_presence = tmp::read_json(PRESENCE_FILE_NAME).unwrap_or_else(|_| {
+        let woffu_presence = tmp::read_json(PRESENCE_FILE_NAME).unwrap_or_else(|| {
             let client = Client::new();
             let token = env::var("WOFFU_TOKEN").expect("WOFFU_TOKEN env variable");
             let user_id = env::var("WOFFU_USER_ID").expect("WOFFU_USER_ID env variable");
@@ -109,9 +107,7 @@ pub fn get_status() {
                 .json()
                 .expect("response should be a json");
 
-            tmp::write_json(PRESENCE_FILE_NAME, &updated_json)
-                .unwrap_or_else(|_| panic!("{} file should be updated", PRESENCE_FILE_NAME));
-
+            tmp::write_json(PRESENCE_FILE_NAME, &updated_json);
             updated_json
         });
 
