@@ -8,9 +8,7 @@ set $seniore $CHACHI_PATH/seniore/target/release/seniore
 set $mod Mod4
 set $term alacritty
 set $browser firefox
-set $menu exec rofi -modi combi -combi-modi drun -show combi
-set $fileMenu exec rofi -modi filebrowser -show filebrowser
-set $emojiMenu exec rofimoji --no-frecency --max-recent=0 --clipboarder wl-copy --only-official --selector rofi --action copy
+set $menu exec ulauncher-toggle
 set $lock $configDir/sway-lock-screen
 set $notifyBrightness notify-send -t 1000 "$($seniore linux get-brightness)"
 set $notifyVolume notify-send -t 1000 "$($seniore linux get-volume)"
@@ -25,8 +23,6 @@ set $screenExternalDisplayPort_B DP-2
 ###############################################################################
 
 bindsym $mod+d exec $menu
-bindsym $mod+e exec $emojiMenu
-bindsym $mod+Shift+d exec $fileMenu
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec $browser
 
@@ -161,29 +157,29 @@ smart_gaps off
 gaps inner 4
 gaps outer 0
 
-for_window [class="MPlayer"] sticky enable
-for_window [title="Picture in picture"] sticky enable
-for_window [title="Picture-in-Picture"] sticky enable
-
-for_window [title="Firefox — Sharing Indicator"] resize set width 90 px
-for_window [title="Firefox — Sharing Indicator"] resize set height 30 px
-
-for_window [app_id="pavucontrol"] floating enable
-for_window [class="MPlayer"] floating enable
-for_window [title="Picture in picture"] floating enable
-for_window [title="Picture-in-Picture"] floating enable
-for_window [title="Firefox — Sharing Indicator"] floating enable
-for_window [window_type="dialog"] floating enable
-for_window [window_type="utility"] floating enable
-for_window [window_type="toolbar"] floating enable
-for_window [window_type="splash"] floating enable
-for_window [window_type="menu"] floating enable
-for_window [window_type="dropdown_menu"] floating enable
-for_window [window_type="popup_menu"] floating enable
-for_window [window_type="tooltip"] floating enable
-for_window [window_type="notification"] floating enable
-for_window [class="jetbrains-(.*)" title="Welcome to IntelliJ IDEA"] floating enable
-for_window [class="jetbrains-(.*)" title="win0"] floating enable
+for_window {
+  [app_id="com.github.rafostar.Clapper"] floating enable, sticky enable
+  [app_id="eog"] floating enable
+  [app_id="org.gnome.Nautilus"] floating enable
+  [app_id="pavucontrol"] floating enable
+  [app_id="pcmanfm"] floating enable
+  [app_id="record_screen"] floating enable, move workspace $ws10
+  [app_id="ulauncher"] floating enable, sticky enable, border none
+  [class="jetbrains-(.*)" title="Welcome to IntelliJ IDEA"] floating enable
+  [class="jetbrains-(.*)" title="win0"] floating enable
+  [title="Firefox — Sharing Indicator"] floating enable, resize set height 30 px, resize set width 90 px
+  [title="Picture in picture"] floating enable, sticky enable
+  [title="Picture-in-Picture"] floating enable, sticky enable
+  [window_type="dialog"] floating enable
+  [window_type="dropdown_menu"] floating enable
+  [window_type="menu"] floating enable
+  [window_type="notification"] floating enable
+  [window_type="popup_menu"] floating enable
+  [window_type="splash"] floating enable
+  [window_type="toolbar"] floating enable
+  [window_type="tooltip"] floating enable
+  [window_type="utility"] floating enable
+}
 
 output * {
   bg ~/.background.jpg fill

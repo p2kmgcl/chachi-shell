@@ -1,6 +1,4 @@
 Super+d               Toggle menu
-Super+e               Toggle emoji selector
-Super+Shift+d         Toggle file browser
 Super+Return          Launch terminal
 Super+Shift+Return    Launch browser
 Super+w               Toggle Woffu

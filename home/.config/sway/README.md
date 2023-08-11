@@ -13,8 +13,13 @@
   - `swaylock`: manage lock screen.
   - `swayidle`: lock screen when idle.
 - Application launcher:
-  - `rofi`: application launcher.
-  - `rofimoji`: emoji selector for `rofi`.
+  - `ulauncher`: application launcher.
+    - https://github.com/Ulauncher/ulauncher-emoji
+    - https://github.com/fisadev/ulauncher-better-file-browser
+    - https://github.com/iboyperson/ulauncher-system
+    - https://github.com/mikebarkmin/ulauncher-obsidian
+    - https://github.com/KuenzelIT/ulauncher-firefox-bookmarks
+    - https://github.com/safaariman/ulauncher-jira
 - Record screen:
   - `grim`: screenshot tool.
   - `slurp`: screen region selector.
@@ -22,13 +27,15 @@
   - `wf-recorder`: screen video recorder.
   - `gifski`: convert video to `gif`, can be installed with:
     `cargo install gifski --features=video`
+    > If it is installed with cargo, add a symlink to `/usr/bin/gifski`, so it
+    > is available for recording scripts.
 - Audio management:
   - `playerctl`: control media play.
   - `pavucontrol`: audio mixer.
   - `pasystray`: audio system tray icon.
   - Some distros need `pipewire-utils pulseaudio-utils` too.
-- [[2023-07-24 Linux and Bluetooth|Bluetooth]].
-- [[2023-07-24 Linux, WiFi and Internet|Network]].
+- [ ] Bluetooth.
+- [ ] Network.
 
 ## GUI
 
@@ -39,7 +46,7 @@
 - `lxappearance`: settings editor.
 - `lxtask`: task manager.
 - `gdmap`: disk space explorer.
-- `smplayer`: video player.
+- `clapper`: video player.
 - `transmission-gtk`: torrent manager.
 
 ## Configuration files

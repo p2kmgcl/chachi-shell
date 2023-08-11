@@ -1,2 +1,4 @@
 #!/bin/bash
-wf-recorder -g "$(slurp)" -f "$HOME/Videos/screen-record-$(date +'%Y-%m-%d_%H-%M').mkv"
+FILE_PREFIX="$HOME/Videos/screen-record-$(date +'%Y-%m-%d_%H-%M').mkv"
+wf-recorder -g "$(slurp)" -f "$FILE_PREFIX"
+xdg-open "$FILE_PREFIX" &
