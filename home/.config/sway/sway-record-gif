@@ -1,10 +1,8 @@
 #!/bin/bash
-FILE_PREFIX="$HOME/Videos/screen-record-$(date +'%Y-%m-%d_%H-%M')"
+FILE_PREFIX="$HOME/Videos/screen-record-$(date +'%Y-%m-%d_%H-%M-%s')"
 SCREEN_REGION="$(slurp)"
 SCREEN_WIDTH="$(echo ${SCREEN_REGION} | awk '{print $2}' | cut -d 'x' -f 1)"
 SCREEN_HEIGHT="$(echo ${SCREEN_REGION} | awk '{print $2}' | cut -d 'x' -f 2)"
 wf-recorder -g "${SCREEN_REGION}" -f "${FILE_PREFIX}.mkv"
 gifski --fps 10 --width "${SCREEN_WIDTH}" --height "${SCREEN_HEIGHT}" --output "${FILE_PREFIX}.gif" "${FILE_PREFIX}.mkv"
 notify-send -t 1000 "GIF created"
-xdg-open "${FILE_PREFIX}.gif" &
-sleep 10000
