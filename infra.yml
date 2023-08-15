@@ -1,35 +1,17 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  labels:
-    app: liferay-portal-database-pod
-  name: liferay-portal-database-pod
+  labels: { app: chachi-server-pod }
+  name: chachi-server-pod
 spec:
   containers:
-    - args:
-        - mysqld
-        - --character-set-server=utf8
-        - --collation-server=utf8_general_ci
-      env:
-        - name: MYSQL_DATABASE
-          value: liferay_portal
-        - name: MYSQL_ROOT_PASSWORD
-          value: root
-      livenessProbe:
-        exec:
-          command: ['mysqladmin', 'ping', '-h', 'localhost']
-        initialDelaySeconds: 10
-        periodSeconds: 5
-        retries: 10
-      image: docker.io/library/mysql:5.7
-      name: liferay-portal-database
-      ports:
-        - containerPort: 3306
-          hostPort: 3306
-      volumeMounts:
-        - mountPath: /var/lib/mysql
-          name: liferay-portal-database-pvc
+  - name: chachi-server-filebrowser
+    image: filebrowser/filebrowser:v2.24.2-s6
+    resources: { limits: { cpu: 1000m, memory: 1000M } }
+    envFrom: [/etc/chachi-server-env]
+    ports:
+    - { hostPort: 8081, containerPort: 80 }
+    volumeMounts:
+    - { mountPath: /srv, name: chachi-server-mnt-default }
   volumes:
-    - name: liferay-portal-database-pvc
-      persistentVolumeClaim:
-        claimName: liferay-portal-database
+  - { name: chachi-server-mnt-default, hostPath: /mnt/default }
