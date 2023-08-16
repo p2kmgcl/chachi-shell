@@ -1,14 +1,10 @@
 #!/bin/bash
 
-docker run \
-  --name=liferay_portal_instance \
-  -p=8000:8000 \
-  -p=8080:8080 \
-  -e LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_DRIVER_UPPERCASEC_LASS_UPPERCASEN_AME="com.mysql.cj.jdbc.Driver" \
-  -e LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_USERNAME=root \
-  -e LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_PASSWORD=root \
-  -e LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_URL="jdbc:mysql://172.17.0.1:3306/liferay_portal?useUnicode=true&characterEncoding=UTF-8&useFastDateParsing=false" \
+podman run \
+  --network=host \
   --rm \
+  --rmi \
   --interactive \
   --tty \
-  liferay/portal:${1-:7.3.5-ga6}
+  --volume $CHACHI_PATH/liferay:/mnt/liferay/files:z \
+  docker.io/liferay/${1-:portal}:${2-:latest}
