@@ -28,6 +28,7 @@
 
 [diff]
   renames = true
+  renameLimit = 5000
   tool = neovim
 
 [difftool]
