@@ -1,0 +1,12 @@
+---
+- name: Disable suspend on LID close
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/systemd/logind.conf
+    search_string: "{{ item }}="
+    line: "{{ item }}=ignore"
+    state: present
+  with_items:
+    - HandleLidSwitch
+    - HandleLidSwitchDocked
+    - HandleLidSwitchExternalPower

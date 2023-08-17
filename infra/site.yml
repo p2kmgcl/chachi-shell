@@ -1,0 +1,11 @@
+---
+- name: Chachi Server
+  hosts: chachi-server
+  become: true
+  vars_files:
+    - main.yml
+  roles:
+    - lid-switch
+    - podman
+    - postgres
+    - nextcloud

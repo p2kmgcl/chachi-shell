@@ -1,0 +1,13 @@
+---
+- name: Install podman
+  become: true
+  ansible.builtin.dnf:
+    name: [podman, cockpit-podman]
+    state: present
+
+- name: Enable and start podman systemd service
+  ansible.builtin.systemd:
+    name: podman
+    state: "{{ 'restarted' if RESET else 'started' }}"
+    enabled: true
+    daemon_reload: true
