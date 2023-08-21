@@ -5,3 +5,7 @@ with a [KDE environment](/docs/linux/desktop-environments/plasma.md) that I have
 ever tried. Quite similar to [ArchLinux](/docs/linux/distros/endeavouros.md), it
 looks incredibly stable and the desktop environment configuration is very well
 polished.
+
+## Update repository mirrorlist
+
+Run `dnf` with `--refresh` flag.

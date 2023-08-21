@@ -22,3 +22,8 @@ minimum amount of packages installed.
   work.
 - By default it only supports english "standard" keyboard layout.
 - `tab-completion` needs to be enabled.
+
+## Update repository mirrorlist
+
+- `archlinux-keyring` updates gpg keys storage.
+- `pacman-mirrorlist` maintains an updated list of mirrors.
