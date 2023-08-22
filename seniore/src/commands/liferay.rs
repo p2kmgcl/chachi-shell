@@ -40,23 +40,6 @@ pub fn get_module_list() -> Vec<String> {
     modules
 }
 
-pub fn deploy_modules(modules: &Vec<String>) {
-    let gradlew = get_portal_item_path("/gradlew");
-
-    for module in modules {
-        let module_path = &get_module_path(module).expect(module);
-        if is_osgi_module(module_path) {
-            command::run(
-                module_path,
-                &(gradlew.to_owned()
-                    + " clean deploy -Dbuild=portal -Dnodejs.node.env=development"),
-            );
-        } else {
-            println!("\"{}\" is not an osgi module", module);
-        }
-    }
-}
-
 pub fn format_modules(modules: &Vec<String>) {
     let gradlew = get_portal_item_path("/gradlew");
 

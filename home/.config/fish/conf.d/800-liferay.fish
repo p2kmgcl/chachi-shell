@@ -11,5 +11,5 @@ if status is-interactive
   fish_add_path $JAVA_HOME/bin
   fish_add_path $JPM_HOME/bin
   fish_add_path $MAVEN_HOME/bin
-  fish_add_path $HOME/Projects/community-portal/config/bin
+  fish_add_path $CHACHI_PATH/liferay/bin
 end

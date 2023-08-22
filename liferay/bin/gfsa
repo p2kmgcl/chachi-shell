@@ -1,4 +1,4 @@
 #!/bin/bash
 
 SENIORE_PATH=$CHACHI_PATH/seniore/target/release/seniore
-$SENIORE_PATH liferay format-modules $($SENIORE_PATH liferay get-updated-modules)
+$CHACHI_PATH/liferay/ts-bin/liferayFormatModules.ts $($SENIORE_PATH liferay get-updated-modules)
