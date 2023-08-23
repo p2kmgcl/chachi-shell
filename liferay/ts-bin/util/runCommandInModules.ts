@@ -2,16 +2,23 @@ import { basename } from 'https://deno.land/std@0.199.0/path/basename.ts';
 import { forPromise } from 'https://deno.land/x/kia@0.4.1/mod.ts';
 import { resolveModule } from './resolveModule.ts';
 
-export async function runGradleInModules(
+export async function runCommandInModules(
   modules: string[],
+  commandName: string,
   commandArgs: string[],
+  { exitOnError = true } = {},
 ) {
+  let hasErrors = false;
+
   for (const module of modules) {
     try {
-      const modulePath = (await resolveModule(module)).unwrap();
+      const modulePath = (await resolveModule(module)).unwrap(
+        `"${module}" is not an OSGI module`,
+      );
+
       const moduleName = basename(modulePath);
 
-      const command = new Deno.Command('gw', {
+      const command = new Deno.Command(commandName, {
         cwd: modulePath,
         args: commandArgs,
         stdout: 'inherit',
@@ -24,6 +31,11 @@ export async function runGradleInModules(
       });
     } catch (error) {
       console.error(error);
+      hasErrors = true;
     }
+  }
+
+  if (hasErrors && exitOnError) {
+    Deno.exit(1);
   }
 }
