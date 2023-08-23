@@ -1,6 +1,4 @@
-import { basename } from 'https://deno.land/std@0.199.0/path/basename.ts';
-import { forPromise } from 'https://deno.land/x/kia@0.4.1/mod.ts';
-import { resolveModule } from './resolveModule.ts';
+import { runFunctionInModules } from './runFunctionInModules.ts';
 
 export async function runCommandInModules(
   modules: string[],
@@ -8,16 +6,9 @@ export async function runCommandInModules(
   commandArgs: string[],
   { exitOnError = true } = {},
 ) {
-  let hasErrors = false;
-
-  for (const module of modules) {
-    try {
-      const modulePath = (await resolveModule(module)).unwrap(
-        `"${module}" is not an OSGI module`,
-      );
-
-      const moduleName = basename(modulePath);
-
+  await runFunctionInModules(
+    modules,
+    (modulePath) => {
       const command = new Deno.Command(commandName, {
         cwd: modulePath,
         args: commandArgs,
@@ -26,16 +17,11 @@ export async function runCommandInModules(
         stdin: 'inherit',
       });
 
-      await forPromise(() => command.spawn().output(), {
-        text: `[${moduleName}] ${commandArgs.join(' ')}`,
-      });
-    } catch (error) {
-      console.error(error);
-      hasErrors = true;
-    }
-  }
-
-  if (hasErrors && exitOnError) {
-    Deno.exit(1);
-  }
+      return command.spawn().output();
+    },
+    {
+      exitOnError,
+      text: commandArgs.join(' '),
+    },
+  );
 }

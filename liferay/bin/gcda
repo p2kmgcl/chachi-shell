@@ -3,6 +3,6 @@
 SENIORE_PATH=$CHACHI_PATH/seniore/target/release/seniore
 UPDATED_MODULES=$($SENIORE_PATH liferay get-updated-modules)
 if [ ! $? -eq 0 ]; then exit 1; fi
-$CHACHI_PATH/liferay/bin/liferayDeployModules.ts $UPDATED_MODULES || exit 1
+$CHACHI_PATH/liferay/bin/deployModules.ts $UPDATED_MODULES || exit 1
 if [ ! $? -eq 0 ]; then exit 1; fi
 $SENIORE_PATH liferay update-modules-cache
