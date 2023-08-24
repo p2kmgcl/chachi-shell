@@ -1,11 +1,15 @@
-#!/usr/bin/env -S deno run --allow-net --allow-read
+#!/usr/bin/env -S deno run --allow-net --allow-read --allow-env --allow-write
+
+import { transformPortalCode } from './util/transformPortalCode.ts';
 
 const HOST = 'localhost';
 const FROM_PORT = 9090;
 const TO_PORT = 8080;
 
-// const BASE_PATH = '/home/p2kmgcl/Projects/community-portal/liferay-portal/modules/apps/layout/layout-content-page-editor-web/build/patata/src/main/resources/META-INF/resources';
-// const PREFIX_PATH = 'NONONO/o/js/resolved-module/@liferay/layout-content-page-editor-web@3.0.175';
+const BASE_PATH =
+  '/home/p2kmgcl/Projects/community-portal/liferay-portal/modules/apps/layout/layout-content-page-editor-web/build/patata/src/main/resources/META-INF/resources';
+const PREFIX_PATH =
+  '/o/js/resolved-module/@liferay/layout-content-page-editor-web@3.0.175';
 
 const listener = Deno.listen({ port: FROM_PORT });
 console.log(`Ready http://localhost:${FROM_PORT}`);
@@ -23,7 +27,7 @@ async function onConnection(connection: Deno.Conn) {
 }
 
 async function onRequest(requestEvent: Deno.RequestEvent) {
-  console.log(requestEvent.request.url);
+  // console.log(requestEvent.request.url);
 
   const requestURL = new URL(requestEvent.request.url);
   requestURL.port = TO_PORT.toString();
@@ -32,13 +36,24 @@ async function onRequest(requestEvent: Deno.RequestEvent) {
   let proxyResponse = await fetch(proxyRequest);
 
   // Pick updated code from page editor
-  // if (requestURL.pathname.includes(PREFIX_PATH)) {
-  //   try {
-  //     const filePath = requestURL.pathname.replace(PREFIX_PATH, BASE_PATH);
-  //     const fileContent = await Deno.readTextFile(filePath);
-  //     proxyResponse = new Response(fileContent, proxyResponse);
-  //   } catch (_error) {}
-  // }
+  if (requestURL.pathname.includes(PREFIX_PATH)) {
+    try {
+      const filePath = requestURL.pathname.replace(PREFIX_PATH, BASE_PATH);
+
+      const compiledPath = `${filePath}.liferay.js`;
+      let compiledContent = await Deno.readTextFile(filePath);
+
+      try {
+        compiledContent = await Deno.readTextFile(compiledPath);
+      } catch (_error) {
+        const fileId = filePath.replace(BASE_PATH, '').replace(/\.js$/, '');
+        compiledContent = transformPortalCode(fileId, compiledContent);
+        await Deno.writeTextFile(compiledPath, compiledContent);
+      }
+
+      proxyResponse = new Response(compiledContent, proxyResponse);
+    } catch (_error) {}
+  }
 
   // Replace all references to the original host to the proxy
   if (proxyResponse.headers.get('Content-Type')?.includes('UTF-8')) {
