@@ -4,6 +4,7 @@
 /home/.config/nvim/plugin
 /home/.config/nvim/undo-dir
 /home/.ssh/known_hosts
+/home/.ssh/known_hosts.old
 /infra/hosts
 /infra/vars/main.yml
 /liferay/api/types/generated
