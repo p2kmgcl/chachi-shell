@@ -11,6 +11,7 @@ NEXTCLOUD_MOUNTS:
 - "/some/user/drive:/var/www/html/data/user"
 POSTGRES_ADMIN_USER: postgres_user
 POSTGRES_ADMIN_PASSWORD: postgres_password
+POSTGRES_ADMIN_VOLUME: postgres_admin_volume
 POSTGRES_PORT: 5432
 POSTGRES_VOLUME: postgres_volume
 POSTGRES_ADMIN_GUI_EMAIL: "postgres_gui@postgres.org"
