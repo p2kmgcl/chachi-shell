@@ -3,13 +3,11 @@
 - name: Create volume
   containers.podman.podman_volume:
     name: "{{ POSTGRES_VOLUME }}"
-    recreate: "{{ RESET }}"
 
 - name: Run postgres container
   containers.podman.podman_container:
     name: postgres
     image: docker.io/postgres:15.4-bullseye
-    recreate: "{{ RESET }}"
     healthcheck: "/usr/bin/pg_isready"
     ports:
       - "{{ POSTGRES_PORT }}:5432"
@@ -26,7 +24,6 @@
   containers.podman.podman_container:
     name: pgadmin4
     image: docker.io/dpage/pgadmin4:7.5
-    recreate: "{{ RESET }}"
     ports:
       - "{{ POSTGRES_ADMIN_GUI_PORT }}:80"
     env:

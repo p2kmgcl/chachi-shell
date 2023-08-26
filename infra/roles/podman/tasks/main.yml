@@ -12,7 +12,7 @@
 - name: Enable and start podman systemd service
   ansible.builtin.systemd:
     name: podman
-    state: "{{ 'restarted' if RESET else 'started' }}"
+    state: started
     enabled: true
     daemon_reload: true
     scope: user
