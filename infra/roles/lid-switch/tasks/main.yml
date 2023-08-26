@@ -10,3 +10,9 @@
     - HandleLidSwitch
     - HandleLidSwitchDocked
     - HandleLidSwitchExternalPower
+  register: lid_result
+
+- name: Reboot
+  become: true
+  ansible.builtin.reboot:
+  when: lid_result.changed
