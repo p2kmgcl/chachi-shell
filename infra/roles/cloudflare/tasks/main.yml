@@ -1,0 +1,6 @@
+- name: Run container
+  containers.podman.podman_container:
+    name: cloudflare
+    image: docker.io/cloudflare/cloudflared:latest
+    recreate: "{{ RESET }}"
+    command: "tunnel --no-autoupdate run --token {{ CLOUDFLARE_TOKEN }}"

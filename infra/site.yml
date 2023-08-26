@@ -1,7 +1,6 @@
 ---
 - name: Chachi Server
   hosts: chachi-server
-  become: true
   vars_files:
     - main.yml
   roles:
@@ -9,3 +8,4 @@
     - podman
     - postgres
     - nextcloud
+    - cloudflare
