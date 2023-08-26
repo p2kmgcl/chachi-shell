@@ -3,7 +3,7 @@
 - name: Create volume
   containers.podman.podman_volume:
     name: "{{ NEXTCLOUD_VOLUME }}"
-    recreate: "{{ RESET }}"
+  register: nextcloud_volume_result
 
 - name: Create database
   ansible.builtin.include_tasks: create-postgres-database.yml
@@ -11,27 +11,71 @@
     database: "{{ NEXTCLOUD_DATABASE }}"
     user: "{{ NEXTCLOUD_DATABASE_USER }}"
     password: "{{ NEXTCLOUD_DATABASE_PASSWORD }}"
+    recreate: "{{ nextcloud_volume_result.changed }}"
 
 - name: Run container
   containers.podman.podman_container:
     name: nextcloud
-    image: docker.io/nextcloud:27.0.2
-    recreate: "{{ RESET }}"
-    ports: ["{{ NEXTCLOUD_PORT }}:80"]
-    volumes: "{{ NEXTCLOUD_MOUNTS }}"
+    image: docker.io/linuxserver/nextcloud:latest
+    ports: ["{{ NEXTCLOUD_PORT }}:443"]
+    healthcheck: "curl --insecure --silent --show-error https://{{ HOST }}:{{ NEXTCLOUD_PORT }}/status.php | grep 'Nextcloud' || exit 1"
+    healthcheck_start_period: 10s
+    volumes:
+      - "{{ NEXTCLOUD_VOLUME }}:/config"
+      - "{{ NEXTCLOUD_DATA_PATH }}:/data:z"
     env:
-      NEXTCLOUD_TRUSTED_DOMAINS: "{{ HOST }}"
-      PHP_UPLOAD_LIMIT: 50G
-      POSTGRES_DB: "{{ NEXTCLOUD_DATABASE }}"
-      POSTGRES_HOST: "{{ HOST }}:{{ POSTGRES_PORT }}"
-      POSTGRES_PASSWORD: "{{ NEXTCLOUD_DATABASE_PASSWORD }}"
-      POSTGRES_USER: "{{ NEXTCLOUD_DATABASE_USER }}"
+      PUID: "{{ UID }}"
+      PGID: "{{ GID }}"
+      TZ: "{{ TIMEZONE }}"
+    recreate: "{{ nextcloud_volume_result.changed }}"
+  register: nextcloud_container_result
 
-- name: Publish nextcloud port
+- name: Wait until container is ready
+  ansible.builtin.command: "podman wait --condition healthy nextcloud"
+  when: nextcloud_container_result.changed
+
+- name: Cleanup data directories
+  ansible.builtin.command: "podman exec nextcloud rm -rf /data/{{ NEXTCLOUD_ADMIN_USER }}"
+  when: nextcloud_container_result.changed
+
+- name: Install nextcloud
+  ansible.builtin.command: >
+    podman exec nextcloud occ maintenance:install
+    --database='"pgsql"'
+    --database-host='"{{ HOST }}:{{ POSTGRES_PORT }}"'
+    --database-name='"{{ NEXTCLOUD_DATABASE }}"'
+    --database-user='"{{ NEXTCLOUD_DATABASE_USER }}"'
+    --database-pass='"{{ NEXTCLOUD_DATABASE_PASSWORD }}"'
+    --admin-user='"{{ NEXTCLOUD_ADMIN_USER }}"'
+    --admin-pass='"{{ NEXTCLOUD_ADMIN_PASSWORD }}"'
+    --data-dir='"/data"'
+  when: nextcloud_container_result.changed
+
+- name: Configure trusted domains
+  ansible.builtin.command: >
+    podman exec nextcloud occ config:system:set
+    trusted_domains '"{{ index }}"' --value='"{{ item }}"'
+  loop:
+  - "{{ NEXTCLOUD_DOMAIN }}"
+  - "{{ HOST }}"
+  loop_control:
+    index_var: index
+  when: nextcloud_container_result.changed
+
+- name: Restart container
+  containers.podman.podman_container:
+    name: nextcloud
+    force_restart: true
+  when: nextcloud_container_result.changed
+
+- name: Publish port
   become: true
   ansible.posix.firewalld:
     zone: FedoraServer
-    port: "{{ NEXTCLOUD_PORT }}/tcp"
+    port: "{{ NEXTCLOUD_PORT }}/{{ item }}"
     permanent: true
     immediate: true
     state: enabled
+  loop:
+    - tcp
+    - udp

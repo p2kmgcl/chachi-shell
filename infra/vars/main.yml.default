@@ -9,10 +9,11 @@ NEXTCLOUD_DATABASE: nextcloud_database
 NEXTCLOUD_DATABASE_USER: nextcloud_user
 NEXTCLOUD_DATABASE_PASSWORD: nextcloud_password
 NEXTCLOUD_PORT: 8080
+NEXTCLOUD_DOMAIN: nextcloud.domain.com
 NEXTCLOUD_VOLUME: nextcloud_volume
-NEXTCLOUD_MOUNTS:
-- "{{ NEXTCLOUD_VOLUME }}:/var/www/html"
-- "/some/user/drive:/var/www/html/data/user"
+NEXTCLOUD_DATA_PATH: /some/data/path
+NEXTCLOUD_ADMIN_USER: nextcloud_user
+NEXTCLOUD_ADMIN_PASSWORD: nextcloud_password
 POSTGRES_ADMIN_USER: postgres_user
 POSTGRES_ADMIN_PASSWORD: postgres_password
 POSTGRES_ADMIN_VOLUME: postgres_admin_volume

@@ -9,6 +9,17 @@
     login_host: "{{ HOST }}"
     login_port: "{{ POSTGRES_PORT }}"
 
+- name: Drop database
+  community.postgresql.postgresql_db:
+    name: "{{ database }}"
+    state: absent
+    force: true
+    login_user: "{{ POSTGRES_ADMIN_USER }}"
+    login_password: "{{ POSTGRES_ADMIN_PASSWORD }}"
+    login_host: "{{ HOST }}"
+    login_port: "{{ POSTGRES_PORT }}"
+  when: recreate
+
 - name: Create database
   community.postgresql.postgresql_db:
     name: "{{ database }}"
