@@ -1,3 +1,7 @@
+UID: 1
+PID: 1
+USER: user
+GROUP: user
 HOST: 192.168.1.1
 TIMEZONE: Europe/Madrid
 CLOUDFLARE_TOKEN: token
