@@ -14,6 +14,15 @@ NEXTCLOUD_VOLUME: nextcloud_volume
 NEXTCLOUD_DATA_PATH: /some/data/path
 NEXTCLOUD_ADMIN_USER: nextcloud_user
 NEXTCLOUD_ADMIN_PASSWORD: nextcloud_password
+PHOTOPRISM_ADMIN_USER: photoprism_user
+PHOTOPRISM_ADMIN_PASSWORD: photoprism_password
+PHOTOPRISM_DATABASE: photoprism_database
+PHOTOPRISM_DATABASE_USER: photoprism_user
+PHOTOPRISM_DATABASE_PASSWORD: photoprism_password
+PHOTOPRISM_PORT: 2342
+PHOTOPRISM_DOMAIN: photoprism.domain.com
+PHOTOPRISM_ORIGINALS_PATH: /some/originals/path
+PHOTOPRISM_VOLUME: photoprism_volume
 POSTGRES_ADMIN_USER: postgres_user
 POSTGRES_ADMIN_PASSWORD: postgres_password
 POSTGRES_ADMIN_VOLUME: postgres_admin_volume

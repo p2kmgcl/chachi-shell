@@ -1,0 +1,56 @@
+---
+
+- name: Create volume
+  containers.podman.podman_volume:
+    name: "{{ PHOTOPRISM_VOLUME }}"
+  register: photoprism_volume_result
+
+- name: Create database
+  ansible.builtin.include_tasks: create-postgres-database.yml
+  vars:
+    database: "{{ PHOTOPRISM_DATABASE }}"
+    user: "{{ PHOTOPRISM_DATABASE_USER }}"
+    password: "{{ PHOTOPRISM_DATABASE_PASSWORD }}"
+    recreate: "{{ photoprism_volume_result.changed }}"
+
+- name: Run container
+  containers.podman.podman_container:
+    name: photoprism
+    image: docker.io/photoprism/photoprism:latest
+    working_dir: "/photoprism"
+    ports:
+    - "{{ PHOTOPRISM_PORT }}:2342"
+    volumes:
+      - "{{ PHOTOPRISM_VOLUME }}:/photoprism/storage"
+      - "{{ PHOTOPRISM_ORIGINALS_PATH }}:/photoprism/originals:z"
+    env:
+      PHOTOPRISM_UID: "{{ UID }}"
+      PHOTOPRISM_GID: "{{ GID }}"
+      PHOTOPRISM_ADMIN_USER: "{{ PHOTOPRISM_ADMIN_USER }}"
+      PHOTOPRISM_ADMIN_PASSWORD: "{{ PHOTOPRISM_ADMIN_PASSWORD }}"
+      PHOTOPRISM_SITE_URL: "https://{{ PHOTOPRISM_DOMAIN }}/"
+      PHOTOPRISM_DISABLE_TLS: "false"
+      PHOTOPRISM_DEFAULT_TLS: "true"
+      PHOTOPRISM_ORIGINALS_LIMIT: 5000
+      PHOTOPRISM_HTTP_COMPRESSION: "gzip"
+      PHOTOPRISM_SITE_CAPTION: "AI-Powered Photos App"
+      PHOTOPRISM_SITE_DESCRIPTION: ""
+      PHOTOPRISM_SITE_AUTHOR: ""
+      PHOTOPRISM_DATABASE_DRIVER: "postgres"
+      PHOTOPRISM_DATABASE_SERVER: "{{ HOST }}:{{ POSTGRES_PORT }}"
+      PHOTOPRISM_DATABASE_NAME: "{{ PHOTOPRISM_DATABASE }}"
+      PHOTOPRISM_DATABASE_USER: "{{ PHOTOPRISM_DATABASE_USER }}"
+      PHOTOPRISM_DATABASE_PASSWORD: "{{ PHOTOPRISM_DATABASE_PASSWORD }}"
+    recreate: "{{ photoprism_volume_result.changed }}"
+
+- name: Publish port
+  become: true
+  ansible.posix.firewalld:
+    zone: FedoraServer
+    port: "{{ PHOTOPRISM_PORT }}/{{ item }}"
+    permanent: true
+    immediate: true
+    state: enabled
+  loop:
+    - tcp
+    - udp

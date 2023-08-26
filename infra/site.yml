@@ -9,4 +9,5 @@
     - podman
     - postgres
     - nextcloud
+    - photoprism
     - cloudflare
