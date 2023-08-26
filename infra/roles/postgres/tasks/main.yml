@@ -8,7 +8,7 @@
   containers.podman.podman_container:
     name: postgres
     image: docker.io/postgres:15.4-bullseye
-    healthcheck: "/usr/bin/pg_isready"
+    healthcheck: "/usr/bin/pg_isready -U {{ POSTGRES_ADMIN_USER }}"
     ports:
       - "{{ POSTGRES_PORT }}:5432"
     volumes:
