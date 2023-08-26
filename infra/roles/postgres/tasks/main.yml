@@ -16,9 +16,11 @@
     env:
       POSTGRES_PASSWORD: "{{ POSTGRES_ADMIN_PASSWORD }}"
       POSTGRES_USER: "{{ POSTGRES_ADMIN_USER }}"
+  register: postgres_container_result
 
 - name: Wait until database is ready
   ansible.builtin.command: "podman wait --condition healthy postgres"
+  when: postgres_container_result.changed
 
 - name: Run pgadmin4 container
   containers.podman.podman_container:
