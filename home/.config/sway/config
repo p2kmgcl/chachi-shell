@@ -15,6 +15,8 @@ set $notifyVolume notify-send -t 1000 "$($seniore linux get-volume)"
 set $gnome-schema org.gnome.desktop.interface
 set $screenLaptop eDP-1
 set $screenExternalHDMI HDMI-1
+set $screenExternalHDMI_A_1 HDMI-A-1
+set $screenExternalHDMI_A_2 HDMI-A-2
 set $screenExternalDisplayPort_A DP-1
 set $screenExternalDisplayPort_B DP-2
 
@@ -106,8 +108,11 @@ bindsym $mod+l exec $lock
 bindsym $mod+w exec $CHACHI_PATH/seniore/target/release/seniore woffu toggle
 bindsym $mod+h exec notify-send "$(cat $configDir/sway.keybindings.txt)"
 
-bindsym $mod+m output $screenLaptop enable ; output $screenExternalHDMI disable ; output $screenExternalDisplayPort_A disable ; output $screenExternalDisplayPort_B disable
-bindsym $mod+Shift+m output $screenLaptop disable ; output $screenExternalHDMI enable ; output $screenExternalDisplayPort_A enable ; output $screenExternalDisplayPort_B enable
+bindsym $mod+m output $screenLaptop enable ; output $screenExternalHDMI disable ; output $screenExternalHDMI_A_1 disable ; output $screenExternalHDMI_A_2 disable ; output $screenExternalDisplayPort_A disable ; output $screenExternalDisplayPort_B disable
+bindsym $mod+Shift+m output $screenLaptop disable ; output $screenExternalHDMI enable ; output $screenExternalHDMI_A_1 enable ; output $screenExternalHDMI_A_2 enable ; output $screenExternalDisplayPort_A enable ; output $screenExternalDisplayPort_B enable
+bindsym $mod+Ctrl+Shift+Left output $screenLaptop enable ; output $screenExternalHDMI enable ; output $screenExternalHDMI_A_1 enable ; output $screenExternalHDMI_A_2 enable ; output $screenExternalDisplayPort_A enable ; output $screenExternalDisplayPort_B enable
+bindsym $mod+Ctrl+Shift+Right output $screenLaptop enable ; output $screenExternalHDMI enable ; output $screenExternalHDMI_A_1 enable ; output $screenExternalHDMI_A_2 enable ; output $screenExternalDisplayPort_A enable ; output $screenExternalDisplayPort_B enable
+bindsym $mod+Ctrl+Shift+Down output $screenLaptop enable pos 0 1200 ; output $screenExternalHDMI enable pos 0 0 ; output $screenExternalHDMI_A_1 enable  pos 0 0 ; output $screenExternalHDMI_A_2 enable  pos 0 0 ; output $screenExternalDisplayPort_A enable  pos 0 0 ; output $screenExternalDisplayPort_B enable  pos 0 0
 
 ###############################################################################
 # Behaviour
