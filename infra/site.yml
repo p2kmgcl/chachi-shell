@@ -1,6 +1,6 @@
 ---
 - name: Chachi Server
-  hosts: chachi-server
+  hosts: chachiserver
   vars_files:
     - main.yml
   roles:
