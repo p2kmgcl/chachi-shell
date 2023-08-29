@@ -22,8 +22,11 @@ PHOTOPRISM_DATABASE_USER: photoprism_user
 PHOTOPRISM_DATABASE_PASSWORD: photoprism_password
 PHOTOPRISM_PORT: 2342
 PHOTOPRISM_DOMAIN: photoprism.domain.com
-PHOTOPRISM_ORIGINALS_PATH: /some/originals/path
-PHOTOPRISM_VOLUME: photoprism_volume
+PHOTOPRISM_IMPORT_VOLUME: photoprism_import_volume
+PHOTOPRISM_ORIGINALS_VOLUME: photoprism_originals_volume
+PHOTOPRISM_STORAGE_VOLUME: photoprism_storage_volume
+PHOTOPRISM_ORIGINALS:
+- "/some/originals/path:/photoprism/originals/sample:z"
 POSTGRES_ADMIN_USER: postgres_user
 POSTGRES_ADMIN_PASSWORD: postgres_password
 POSTGRES_ADMIN_VOLUME: postgres_admin_volume

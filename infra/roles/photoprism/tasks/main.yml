@@ -2,8 +2,12 @@
 
 - name: Create volume
   containers.podman.podman_volume:
-    name: "{{ PHOTOPRISM_VOLUME }}"
+    name: "{{ item }}"
   register: photoprism_volume_result
+  with_items:
+    - "{{ PHOTOPRISM_IMPORT_VOLUME }}"
+    - "{{ PHOTOPRISM_ORIGINALS_VOLUME }}"
+    - "{{ PHOTOPRISM_STORAGE_VOLUME }}"
 
 - name: Create database
   ansible.builtin.include_tasks: create-postgres-database.yml
@@ -20,9 +24,7 @@
     working_dir: "/photoprism"
     ports:
     - "{{ PHOTOPRISM_PORT }}:2342"
-    volumes:
-      - "{{ PHOTOPRISM_VOLUME }}:/photoprism/storage"
-      - "{{ PHOTOPRISM_ORIGINALS_PATH }}:/photoprism/originals:z"
+    volumes: "{{ PHOTOPRISM_BASE_VOLUMES + PHOTOPRISM_ORIGINALS }}"
     env:
       PHOTOPRISM_UID: "{{ UID }}"
       PHOTOPRISM_GID: "{{ GID }}"
