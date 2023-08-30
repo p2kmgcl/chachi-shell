@@ -45,6 +45,7 @@ ln -s "$CHACHI_PATH/home/.editorconfig" "$HOME/.editorconfig"
 ln -s "$CHACHI_PATH/home/.gitconfig" "$HOME/.gitconfig"
 ln -s "$CHACHI_PATH/home/.ideavimrc" "$HOME/.ideavimrc"
 ln -s "$CHACHI_PATH/home/.ssh" "$HOME/.ssh"
+ln -s "$CHACHI_PATH/home/.Xdefaults" "$HOME/.Xdefaults"
 ln -s "$CHACHI_PATH/home/.Xresources" "$HOME/.Xresources"
 ```
 
