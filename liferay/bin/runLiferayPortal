@@ -1,3 +1,5 @@
 #!/bin/bash
 
-cd $HOME/Projects/community-portal/bundles/tomcat-9.0.80/bin && ./catalina.sh jpda run
+BUNDLES_PATH=$HOME/Projects/community-portal/bundles
+TOMCAT_DIR=$(find $BUNDLES_PATH -maxdepth 1 -type d -name "tomcat-*" | sort -r | head -1)
+cd $TOMCAT_DIR/bin && ./catalina.sh jpda run
