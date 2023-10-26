@@ -198,13 +198,13 @@ client.focused_inactive #00000066 #00000066 #ffffffff #00000066 #00000066
 client.unfocused #00000066 #00000066 #ffffffff #00000066 #00000066
 client.urgent #00000066 #00000066 #ffffffff #00000066 #00000066
 
-font pango:VictorMono Nerd Font Medium 9
+font pango:BlexMono Nerd Font Text 9
 
 exec_always {
     gsettings set $gnome-schema gtk-theme 'Adwaita'
     gsettings set $gnome-schema icon-theme 'Adwaita'
     gsettings set $gnome-schema cursor-theme 'Adwaita'
-    gsettings set $gnome-schema font-name 'VictorMono Nerd Font weight=800 9'
+    gsettings set $gnome-schema font-name 'BlexMono Nerd Font weight=600 9'
 }
 
 bar {
