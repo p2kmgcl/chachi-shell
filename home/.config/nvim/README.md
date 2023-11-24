@@ -36,6 +36,8 @@
 - `[NORMAL] [gg]` Move to the beginning of the document.
 - `[NORMAL] [G]` Move to the end of the document.
 - `[NORMAL] [zz]` Center cursor on screen.
+- `[NORMAL] []c]` Go to next change
+- `[NORMAL] [[c]` Go to previous change
 
 ### Telescope
 
