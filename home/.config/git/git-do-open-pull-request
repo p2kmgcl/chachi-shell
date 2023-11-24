@@ -14,4 +14,5 @@ origin_branch=$(git rev-parse --abbrev-ref HEAD);
 remote_branch=$(git remote show $1 | grep 'HEAD branch' | cut -d' ' -f5);
 last_commit_message=$(git log -1 --pretty=%B);
 
+git push origin ${origin_branch}
 xdg-open "https://github.com/${remote_user}/${remote_repo}/compare/${remote_branch}...${origin_username}:${origin_branch}?expand=1&title=${last_commit_message}";
