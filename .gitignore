@@ -5,7 +5,7 @@
 /home/.config/nvim/undo-dir
 /home/.ssh/known_hosts
 /home/.ssh/known_hosts.old
-/infra/hosts
-/infra/vars/main.yml
+/lab/etc/environment
+/lab/etc/docker/compose/plex/.env
 /liferay/api/types/generated
 /seniore/target
