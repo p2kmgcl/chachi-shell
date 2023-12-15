@@ -1,4 +1,0 @@
-PHOTOPRISM_BASE_VOLUMES:
-- "{{ PHOTOPRISM_IMPORT_VOLUME }}:/photoprism/import"
-- "{{ PHOTOPRISM_ORIGINALS_VOLUME }}:/photoprism/originals"
-- "{{ PHOTOPRISM_STORAGE_VOLUME }}:/photoprism/storage"
