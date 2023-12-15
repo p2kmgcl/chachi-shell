@@ -6,6 +6,6 @@
 /home/.ssh/known_hosts
 /home/.ssh/known_hosts.old
 /lab/etc/environment
-/lab/etc/docker/compose/plex/.env
+/lab/etc/docker/compose/*/.env
 /liferay/api/types/generated
 /seniore/target
