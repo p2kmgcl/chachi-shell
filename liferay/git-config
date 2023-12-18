@@ -19,6 +19,9 @@
 [remote "brian"]
 	url = https://github.com/brianchandotcom/liferay-portal.git
 	fetch = +refs/heads/master:refs/remotes/brian/master
+[remote "sandro"]
+	url = https://github.com/sandrodw3/liferay-portal.git
+	fetch = +refs/heads/master:refs/remotes/sandrodw3/master
 [remote "jurgen"]
 	url = https://github.com/jkappler/liferay-portal.git
 	fetch = +refs/heads/master:refs/remotes/jkappler/master
@@ -30,6 +33,9 @@
 	fetch = +refs/heads/master:refs/remotes/BarbaraCabrera/master
 [remote "infra"]
 	url = https://github.com/liferay-frontend/liferay-portal.git
+	fetch = +refs/heads/master:refs/remotes/liferay-frontend/master
+[remote "forms"]
+	url = https://github.com/liferay-forms/liferay-portal.git
 	fetch = +refs/heads/master:refs/remotes/liferay-frontend/master
 [branch "master"]
 	remote = origin
