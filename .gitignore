@@ -8,4 +8,9 @@
 /lab/etc/environment
 /lab/etc/docker/compose/*/.env
 /liferay/api/types/generated
+/liferay/pleigrai/node_modules/
+/liferay/pleigrai/test-results/
+/liferay/pleigrai/playwright-report/
+/liferay/pleigrai/blob-report/
+/liferay/pleigrai/playwright/.cache/
 /seniore/target
