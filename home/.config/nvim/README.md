@@ -3,11 +3,9 @@
 ## Setup
 
 1. Install `neovim`. This actually depends on the OS/distro you are using 😅.
-2. Install all needed [[2023-07-03 chachi-shell|language servers]].
-3. `git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1`
-4. `ln -s "$CHACHI_PATH/home/.config/nvim/lua/custom" "$HOME/.config/nvim/lua/custom"`
-5. Check everything is ok with `:checkhealth`
-6. Install some clipboard handler for Linux (`xclip` or `wl-clipboard`).
+2. Following https://www.lazyvim.org/.
+3. Check everything is ok with `:checkhealth`
+4. Install some clipboard handler for Linux (`xclip` or `wl-clipboard`).
 
 ## Keybindings
 
