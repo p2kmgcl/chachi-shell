@@ -3,7 +3,9 @@ gui:
   showBottomLine: false
   showCommandLog: false
   showRandomTip: false
+  showIcons: true
+  nerdFontsVersion: '3'
 git:
   paging:
     colorArg: always
-    pager: delta --hunk-header-style=omit --light --paging=never
+    pager: delta --light --paging=never --side-by-side
