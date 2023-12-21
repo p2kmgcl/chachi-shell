@@ -15,6 +15,16 @@ return {
           hide_hidden = false,
         },
       },
+      default_component_configs = {
+        file_size = { enabled = false },
+        type = { enabled = false },
+        last_modified = { enabled = false },
+        created = { enabled = false },
+      },
+      window = {
+        auto_expand_width = "fit_content",
+        position = "right",
+      },
     },
   },
 }
