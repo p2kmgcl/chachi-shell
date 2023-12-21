@@ -4,6 +4,9 @@ window:
   dynamic_title: false
   opacity: 1.0
 
+scrolling:
+  history: 0
+
 font:
   normal:
     family: BlexMono Nerd Font
@@ -18,8 +21,9 @@ bell:
   duration: 100
 
 cursor:
-  blinking: On
-  style: Block
+  style:
+    blinking: Always
+    shape: Block
 
 live_config_reload: true
 
