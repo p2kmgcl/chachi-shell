@@ -7,3 +7,5 @@ vim.g.autoformat = false
 local opt = vim.opt
 
 opt.grepprg = "rg --vimgrep --hidden"
+opt.undofile = false
+opt.swapfile = false
