@@ -85,6 +85,7 @@
   cifuentes = !$CHACHI_PATH/home/.config/git/git-cifuentes
 
   do-checkout-pull-request = !$CHACHI_PATH/home/.config/git/git-do-checkout-pull-request
+  do-cherry-pick-search = !$CHACHI_PATH/home/.config/git/git-do-cherry-pick-search
   do-clean-all-non-git-files = clean --force -d -X
   do-clean-local-repository = gc --prune=now --aggressive
   do-ignore-changes-on-file = update-index --assume-unchanged
