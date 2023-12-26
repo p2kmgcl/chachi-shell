@@ -1,0 +1,26 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = git@github.com:p2kmgcl/liferay-portal-ee.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[remote "upstream"]
+	url = git@github.com:liferay/liferay-portal-ee.git
+	fetch = +refs/heads/master:refs/remotes/upstream/master
+	fetch = +refs/heads/master-private:refs/remotes/upstream/master-private
+	fetch = +refs/heads/release-2023.q3:refs/remotes/upstream/release-2023.q3
+	fetch = +refs/heads/release-2023.q4:refs/remotes/upstream/release-2023.q4
+[remote "echo"]
+	url = https://github.com/liferay-echo/liferay-portal.git
+	fetch = +refs/heads/master:refs/remotes/echo/master
+[branch "master-private"]
+	remote = origin
+	merge = refs/heads/master-private
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[branch "release-2023.q4"]
+	remote = upstream
+	merge = refs/heads/release-2023.q4
