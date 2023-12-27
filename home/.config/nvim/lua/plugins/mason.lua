@@ -12,6 +12,8 @@ return {
       "rust-analyzer",
       -- html
       "html-lsp",
+      -- markdown
+      "markdownlint",
       -- json
       "json-lsp",
       -- css
