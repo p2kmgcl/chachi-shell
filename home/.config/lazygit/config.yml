@@ -3,7 +3,7 @@ gui:
   showBottomLine: false
   showCommandLog: false
   showRandomTip: false
-  showIcons: true
+  showIcons: false
   nerdFontsVersion: '3'
 git:
   paging:
