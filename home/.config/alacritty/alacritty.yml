@@ -1,8 +1,10 @@
 window:
   decorations: full
   decorations_theme_variant: Light
+  dynamic_padding: true
   dynamic_title: false
   opacity: 1.0
+  resize_increments: true
 
 scrolling:
   history: 0
