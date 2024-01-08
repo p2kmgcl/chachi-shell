@@ -13,14 +13,14 @@ return {
       -- html
       "html-lsp",
       -- markdown
-      "markdownlint",
+      -- "markdownlint",
       -- json
       "json-lsp",
       -- css
-      "css-lsp",
-      "cssmodules-language-server",
-      "tailwindcss-language-server",
-      "stylelint-lsp",
+      -- "css-lsp",
+      -- "cssmodules-language-server",
+      -- "tailwindcss-language-server",
+      -- "stylelint-lsp",
       -- javascript
       "deno",
       "eslint-lsp",
