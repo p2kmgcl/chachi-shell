@@ -13,8 +13,11 @@
 	fetch = +refs/heads/release-2023.q3:refs/remotes/upstream/release-2023.q3
 	fetch = +refs/heads/release-2023.q4:refs/remotes/upstream/release-2023.q4
 [remote "echo"]
-	url = https://github.com/liferay-echo/liferay-portal.git
+	url = git@github.com:liferay-echo/liferay-portal-ee.git
 	fetch = +refs/heads/master:refs/remotes/echo/master
+[remote "brian"]
+	url = git@github.com:brianchandotcom/liferay-portal-ee.git
+	fetch = +refs/heads/master:refs/remotes/brian/master
 [branch "master-private"]
 	remote = origin
 	merge = refs/heads/master-private
