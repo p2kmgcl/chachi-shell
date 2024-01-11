@@ -13,7 +13,7 @@ return {
       -- html
       "html-lsp",
       -- markdown
-      -- "markdownlint",
+      "markdownlint",
       -- json
       "json-lsp",
       -- css
