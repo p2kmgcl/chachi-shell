@@ -17,7 +17,7 @@ return {
       -- json
       "json-lsp",
       -- css
-      -- "css-lsp",
+      "css-lsp",
       -- "cssmodules-language-server",
       -- "tailwindcss-language-server",
       -- "stylelint-lsp",
