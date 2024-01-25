@@ -1,5 +1,0 @@
-Environment variables:
-- CHACHI_PATH
-- LIFERAY_PORTAL_PATH
-- WOFFU_TOKEN
-- WOFFU_USER_ID

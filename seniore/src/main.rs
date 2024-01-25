@@ -1,39 +1,33 @@
 mod commands;
 mod util;
+use clap::Parser;
+use clap::Subcommand;
 use commands::{liferay, linux, woffu};
-use std::env;
-use std::fs;
 
-fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    match args[1].as_str() {
-        "liferay" => match args[2].as_str() {
-            "build-lang" => liferay::build_lang(),
-            "format-modules" => liferay::format_modules(&args[3..].to_vec()),
-            "get-updated-modules" => liferay::get_updated_modules(),
-            "update-modules-cache" => liferay::update_modules_cache(),
-            _ => print_help(),
-        },
-        "linux" => match args[2].as_str() {
-            "get-brightness" => linux::get_brightness(),
-            "get-date" => linux::get_date(),
-            "get-volume" => linux::get_volume(),
-            _ => print_help(),
-        },
-        "woffu" => match args[2].as_str() {
-            "get-status" => woffu::get_status(),
-            "toggle" => woffu::toggle(),
-            _ => print_help(),
-        },
-        _ => print_help(),
-    }
+/// Simple CLI to manage some daily tasks.
+///
+/// Required environment variables:
+/// - CHACHI_PATH: gives access to some metadata and assets.
+/// - LIFERAY_PORTAL_PATH: used by Liferay-related commands to interact with portal.
+/// - WOFFU_TOKEN and WOFFU_USER_ID: required to login/logout in this magnificent service.
+#[derive(Parser)]
+#[command(author, version, verbatim_doc_comment)]
+struct Cli {
+    #[command(subcommand)]
+    command: Subcommands,
 }
 
-fn print_help() {
-    println!("Unknown command");
-    let chachi_path = env::var("CHACHI_PATH").expect("CHACHI_PATH env variable");
-    let help_path = chachi_path + "/seniore/docs/help.txt";
-    let help_string = fs::read_to_string(help_path).expect("help file");
-    println!("\n{}", help_string);
+#[derive(Subcommand)]
+enum Subcommands {
+    Liferay(liferay::Command),
+    Linux(linux::Command),
+    Woffu(woffu::Command),
+}
+
+fn main() {
+    match Cli::parse().command {
+        Subcommands::Linux(command) => linux::run_command(command),
+        Subcommands::Woffu(command) => woffu::run_command(command),
+        Subcommands::Liferay(command) => liferay::run_command(command),
+    }
 }

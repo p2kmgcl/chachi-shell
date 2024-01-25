@@ -4,11 +4,34 @@ use reqwest::blocking::Client;
 use serde_json::Value;
 use std::{env, time::Duration};
 
+/// Interact with our very nice login manager.
+#[derive(clap::Parser)]
+#[command()]
+pub struct Command {
+    #[command(subcommand)]
+    command: Subcommands,
+}
+
+#[derive(clap::Subcommand)]
+enum Subcommands {
+    /// Get current status.
+    GetStatus,
+    /// Login or logout depending on current status.
+    Toggle,
+}
+
+pub fn run_command(command: Command) {
+    match command.command {
+        Subcommands::GetStatus => get_status(),
+        Subcommands::Toggle => toggle(),
+    }
+}
+
 const FILE_DURATION_IN_SECS: u64 = 1800;
 const SIGNS_FILE_NAME: &str = "woffu-signs";
 const PRESENCE_FILE_NAME: &str = "woffu-presence";
 
-pub fn toggle() {
+fn toggle() {
     let notification_id = notify::send("Updating woffu sign status...", 0);
     let client = Client::new();
     let token = env::var("WOFFU_TOKEN").expect("WOFFU_TOKEN env variable");
@@ -30,7 +53,7 @@ pub fn toggle() {
     notify::update(notification_id, "Woffu sign status updated.", 1000);
 }
 
-pub fn get_status() {
+fn get_status() {
     let (is_sign_in, duration_worked_today) = {
         tmp::expire_file(SIGNS_FILE_NAME, FILE_DURATION_IN_SECS);
 

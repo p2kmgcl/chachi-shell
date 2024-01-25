@@ -4,11 +4,47 @@ use crate::util::{
 };
 use std::{collections::HashSet, env, fs::read_dir, path::Path};
 
-const NOT_OSGI_MODULES: &[&str] = &["portal-impl", "portal-kernel"];
+/// liferay-portal related tasks (source formatting, deployment, etc.).
+#[derive(clap::Parser)]
+#[command()]
+pub struct Command {
+    #[command(subcommand)]
+    command: Subcommands,
+}
 
+#[derive(clap::Subcommand)]
+enum Subcommands {
+    /// Deploy the lang module to update translations.
+    BuildLang,
+    /// Format the code of the given list of modules.
+    FormatModules(FormatModulesOptions),
+    /// Gets the list of modules that have been updated since last UpdateModulesCache run.
+    GetUpdatedModules,
+    /// Creates a checkpoint to check differences when running get-updated-modules.
+    UpdateModulesCache,
+}
+
+#[derive(clap::Args)]
+struct FormatModulesOptions {
+    /// List of modules to be formatted. Can be specified as absolute, paths (/my-module)
+    /// relative paths (../my-module), or just module names (ex. page-editor-web).
+    #[arg(required = true)]
+    modules: Vec<String>,
+}
+
+pub fn run_command(command: Command) {
+    match command.command {
+        Subcommands::BuildLang => build_lang(),
+        Subcommands::FormatModules(options) => format_modules(&options.modules),
+        Subcommands::GetUpdatedModules => get_updated_modules(),
+        Subcommands::UpdateModulesCache => update_modules_cache(),
+    }
+}
+
+const NOT_OSGI_MODULES: &[&str] = &["portal-impl", "portal-kernel"];
 const LAST_COMMIT_FILE_NAME: &str = "liferay-portal-last-commit";
 
-pub fn build_lang() {
+fn build_lang() {
     let gradlew = get_portal_item_path("/gradlew");
     let path = get_module_path("portal-language-lang").expect("portal-language-lang");
 
@@ -17,7 +53,7 @@ pub fn build_lang() {
     command::run(&path, &(gradlew + " clean deploy -Dbuild=portal"));
 }
 
-pub fn get_module_list() -> Vec<String> {
+fn get_module_list() -> Vec<String> {
     let mut modules: Vec<String> = Vec::new();
 
     fn add_modules(modules: &mut Vec<String>, basedir: &String) {
@@ -40,7 +76,7 @@ pub fn get_module_list() -> Vec<String> {
     modules
 }
 
-pub fn format_modules(modules: &Vec<String>) {
+fn format_modules(modules: &Vec<String>) {
     let gradlew = get_portal_item_path("/gradlew");
 
     for module in modules {
@@ -53,7 +89,7 @@ pub fn format_modules(modules: &Vec<String>) {
     }
 }
 
-pub fn update_modules_cache() {
+fn update_modules_cache() {
     let portal_path = env::var("LIFERAY_PORTAL_PATH").expect("LIFERAY_PORTAL_PATH env variable");
 
     write_file(
@@ -62,7 +98,7 @@ pub fn update_modules_cache() {
     );
 }
 
-pub fn get_updated_modules() {
+fn get_updated_modules() {
     let portal_path = env::var("LIFERAY_PORTAL_PATH").expect("LIFERAY_PORTAL_PATH env variable");
     let run_git_command = |command: &str| command::get_output(&portal_path, command);
 
