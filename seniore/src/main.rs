@@ -28,10 +28,7 @@ enum Subcommands {
 
 fn main() -> Result<(), String> {
     match Cli::parse().command {
-        Subcommands::Linux(command) => {
-            linux::run_command(command);
-            Ok(())
-        }
+        Subcommands::Linux(command) => command.run(),
         Subcommands::Woffu(command) => {
             woffu::run_command(command);
             Ok(())
