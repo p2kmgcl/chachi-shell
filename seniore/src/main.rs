@@ -1,8 +1,9 @@
 mod commands;
 mod util;
-use clap::Parser;
-use clap::Subcommand;
-use commands::{liferay, linux, woffu};
+
+use clap::{Parser, Subcommand};
+use commands::{liferay, linux, testing, woffu};
+use util::runnable::Runnable;
 
 /// Simple CLI to manage some daily tasks.
 ///
@@ -21,13 +22,24 @@ struct Cli {
 enum Subcommands {
     Liferay(liferay::Command),
     Linux(linux::Command),
+    Testing(testing::Command),
     Woffu(woffu::Command),
 }
 
-fn main() {
+fn main() -> Result<(), String> {
     match Cli::parse().command {
-        Subcommands::Linux(command) => linux::run_command(command),
-        Subcommands::Woffu(command) => woffu::run_command(command),
-        Subcommands::Liferay(command) => liferay::run_command(command),
+        Subcommands::Linux(command) => {
+            linux::run_command(command);
+            Ok(())
+        }
+        Subcommands::Woffu(command) => {
+            woffu::run_command(command);
+            Ok(())
+        }
+        Subcommands::Testing(command) => command.run(),
+        Subcommands::Liferay(command) => {
+            liferay::run_command(command);
+            Ok(())
+        }
     }
 }
