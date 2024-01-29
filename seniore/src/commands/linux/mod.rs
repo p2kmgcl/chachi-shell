@@ -14,6 +14,7 @@ pub struct Command {
 }
 
 #[derive(Subcommand)]
+#[allow(clippy::enum_variant_names)]
 enum Subcommands {
     GetBrightness(get_brightness::Command),
     GetDate(get_date::Command),
