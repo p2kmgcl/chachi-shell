@@ -37,9 +37,6 @@ fn main() -> Result<(), String> {
             Ok(())
         }
         Subcommands::Testing(command) => command.run(),
-        Subcommands::Liferay(command) => {
-            liferay::run_command(command);
-            Ok(())
-        }
+        Subcommands::Liferay(command) => command.run(),
     }
 }
