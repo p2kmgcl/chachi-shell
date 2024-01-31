@@ -1,6 +1,6 @@
 use crate::util::runnable::Runnable;
-use clap::Parser;
 use chrono::{Local, Locale};
+use clap::Parser;
 
 /// Gets the current date, using Spanish format.
 #[derive(Parser)]

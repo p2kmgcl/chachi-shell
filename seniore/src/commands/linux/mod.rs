@@ -2,8 +2,8 @@ mod get_brightness;
 mod get_date;
 mod get_volume;
 
-use clap::{Parser, Subcommand};
 use crate::util::runnable::Runnable;
+use clap::{Parser, Subcommand};
 
 /// Some commands that interact with arbitrary linux systems.
 #[derive(Parser)]

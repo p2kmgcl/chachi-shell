@@ -1,6 +1,6 @@
+use crate::util::command::get_output;
 use crate::util::runnable::Runnable;
 use clap::Parser;
-use crate::util::command::get_output;
 use regex::Regex;
 
 /// Gets the current volume level of the default output device.

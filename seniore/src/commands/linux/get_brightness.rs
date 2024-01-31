@@ -1,5 +1,5 @@
-use crate::util::runnable::Runnable;
 use crate::util::command::get_output;
+use crate::util::runnable::Runnable;
 use clap::Parser;
 
 /// Gets the current brightness level.
