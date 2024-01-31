@@ -1,5 +1,9 @@
+# sway
+
 > This is a [Wayland](/docs/linux/wayland.md) based desktop environment. Check
 > it’s own article for extra help and instructions.
+
+[Useful sway addons](https://github.com/swaywm/sway/wiki/Useful-add-ons-for-sway).
 
 ## Needed packages
 
@@ -14,12 +18,9 @@
   - `swayidle`: lock screen when idle.
 - Application launcher:
   - `ulauncher`: application launcher.
-    - https://github.com/Ulauncher/ulauncher-emoji
-    - https://github.com/fisadev/ulauncher-better-file-browser
-    - https://github.com/iboyperson/ulauncher-system
-    - https://github.com/mikebarkmin/ulauncher-obsidian
-    - https://github.com/KuenzelIT/ulauncher-firefox-bookmarks
-    - https://github.com/safaariman/ulauncher-jira
+    - [Emoji selector](https://github.com/Ulauncher/ulauncher-emoji).
+    - [File browser](https://github.com/fisadev/ulauncher-better-file-browser).
+    - [Power off, restart, etc.](https://github.com/iboyperson/ulauncher-system)
 - Record screen:
   - `grim`: screenshot tool.
   - `slurp`: screen region selector.
