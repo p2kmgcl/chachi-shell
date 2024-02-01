@@ -36,13 +36,13 @@
   - `pasystray`: audio system tray icon.
   - Some distros need `pipewire-utils pulseaudio-utils` too.
 - Bluetooth:
-  - `bluez bluez-utils`: bluetooth managerment.
+  - `bluez bluez-utils`: bluetooth management.
   - `blueman`: Bluetooth UI and system tray icon.
   - Check that `btusb` kernel module is enabled.
   - Start and enable `bluetooth.service` unit.
 - Network:
-  - `nmtui`: configuration CLI.
-  - `nm-applet`: system tray icon.
+  - `nmtui` (also found as `NetworkManager-tui`): configuration CLI.
+  - `nm-applet` (also found as `network-manager-applet`): system tray icon.
 
 ## GUI
 
