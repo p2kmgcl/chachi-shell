@@ -15,6 +15,10 @@ return {
   {
     "conform.nvim",
     opts = {
+      format = {
+        async = false,
+        timeout_ms = 10000,
+      },
       formatters_by_ft = {
         css = prefer_liferay_formatter({ "prettier" }),
         html = prefer_liferay_formatter({ "prettier" }),
