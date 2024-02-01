@@ -20,9 +20,9 @@ spec:
           value: root
       livenessProbe:
         exec:
-          command: ['mysqladmin', 'ping', '-h', 'localhost']
+          command: ['mysqladmin', '-uroot', '-proot', 'ping', '-h', 'localhost']
         initialDelaySeconds: 10
-        periodSeconds: 5
+        periodSeconds: 10
         retries: 10
       image: docker.io/library/mysql:5.7
       name: liferay-portal-database
