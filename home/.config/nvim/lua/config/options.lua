@@ -9,4 +9,4 @@ opt.undofile = false
 opt.swapfile = false
 
 -- Nice color column
-opt.colorcolumn = "80,100"
+-- opt.colorcolumn = "80,100"
