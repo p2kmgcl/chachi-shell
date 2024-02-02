@@ -5,9 +5,6 @@
 local opt = vim.opt
 
 opt.grepprg = "rg --vimgrep --hidden"
-opt.undofile = false
 opt.spelllang = ""
 opt.swapfile = false
-
--- Nice color column
--- opt.colorcolumn = "80,100"
+opt.undofile = false
