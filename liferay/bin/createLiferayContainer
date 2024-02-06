@@ -1,0 +1,4 @@
+#!/bin/bash
+
+podman kube play --replace ~/Projects/chachi-shell/liferay/liferay-portal-container.yml &&
+  podman wait --condition healthy liferay-portal-container-pod-liferay-portal-container

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+podman kube down --force ~/Projects/chachi-shell/liferay/liferay-portal-container.yml
