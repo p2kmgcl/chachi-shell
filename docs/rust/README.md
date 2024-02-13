@@ -19,3 +19,4 @@ rustup component add rust-analyzer
 - Diffing: `cargo install --locked git-delta`
 - Rust code checker: `cargo install --locked bacon`
 - Alternative to top: `cargo install --locked bottom`
+- Incredible git tool: `cargo install git-absorb`
