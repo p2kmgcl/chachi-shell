@@ -15,13 +15,13 @@ spec:
       stdin: true
       livenessProbe:
         exec:
-          command: ['curl', 'http://localhost:8080']
+          command: ['curl', '-Is', 'http://localhost:8080']
         initialDelaySeconds: 60
         periodSeconds: 10
         retries: 10
       ports:
         - containerPort: 8080
-          hostPort: 8080
+          hostPort: 8081
       volumeMounts:
         - mountPath: /mnt/liferay/files
           name: liferay-portal-container-files-pvc
