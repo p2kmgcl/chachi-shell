@@ -1,0 +1,1 @@
+../../home/.config/fish/conf.d/460-javascript.fish

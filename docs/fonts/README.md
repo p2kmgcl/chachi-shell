@@ -1,3 +1,5 @@
+# Fonts
+
 - [Programming Fonts](https://www.programmingfonts.org).
 - [Nerd Fonts](https://www.nerdfonts.com/).
 - [Cascadia Code](https://github.com/microsoft/cascadia-code).

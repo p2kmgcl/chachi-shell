@@ -1,7 +1,15 @@
 if status is-interactive
-  export DENO_INSTALL="$HOME/.deno"
+  if type -q $HOME/.deno/bin/deno
+    export DENO_INSTALL="$HOME/.deno"
+    fish_add_path $HOME/.deno/bin
+  else
+    echo -e "\e[33mdeno is not installed\e[0m"
+  end
 
-  fish_add_path $HOME/.fnm
-  fish_add_path $HOME/.deno/bin
-  fnm env --use-on-cd | source
+  if type -q $HOME/.fnm/fnm
+    fish_add_path $HOME/.fnm
+    fnm env --use-on-cd | source
+  else
+    echo -e "\e[33mfnm is not installed\e[0m"
+  end
 end

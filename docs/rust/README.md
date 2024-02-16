@@ -17,6 +17,9 @@ rustup component add rust-analyzer
 - Prompt: `cargo install --locked starship`
 - Directory jump: `cargo install --locked zoxide`
 - Diffing: `cargo install --locked git-delta`
+- Better ls: `cargo install --locked exa`
+- Better find: `cargo install --locked fd-find`
+- Better cat: `cargo install --locked bat`
 - Rust code checker: `cargo install --locked bacon`
 - Alternative to top: `cargo install --locked bottom`
-- Incredible git tool: `cargo install git-absorb`
+- Incredible git tool: `cargo install --locked git-absorb`
