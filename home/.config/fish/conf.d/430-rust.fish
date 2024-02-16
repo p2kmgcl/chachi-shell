@@ -2,20 +2,22 @@ if status is-interactive
     fish_add_path $HOME/.cargo/bin
 
     if type -q exa
-        alias ls=exa
-        alias tree=exa --tree
+        alias ls='exa'
+        alias ll='exa -l'
+        alias tree='exa --tree'
     end
 
     if type -q fd
-        alias find=fd --color=never
+        alias find='fd --color=never'
     end
 
     if type -q bat
-        alias cat=bat --theme GitHub
+        alias cat='bat --theme GitHub'
     end
 
     if type -q btm
-        alias top=btm --color default-light
+        alias top='btm --color default-light'
+        alias htop='btm --color default-light'
     end
 
     if type -q zoxide
