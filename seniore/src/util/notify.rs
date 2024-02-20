@@ -14,15 +14,14 @@ pub fn send(body: &str, timeout: i32) -> u32 {
 }
 
 pub fn update(id: u32, body: &str, timeout: i32) -> u32 {
-    let notification_handle = Notification::new()
+    Notification::new()
         .id(id)
-        .appname(&format!("Seniore ({})", id))
+        .appname(&format!("Seniore ({id})"))
         .summary("Seniore")
         .icon("seniore")
         .body(body)
         .timeout(timeout)
         .show()
-        .expect("notification should be created");
-
-    notification_handle.id()
+        .expect("notification should be created")
+        .id()
 }

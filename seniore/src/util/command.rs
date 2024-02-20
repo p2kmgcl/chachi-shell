@@ -49,10 +49,10 @@ pub fn run(directory: &str, full_command: &str) {
         .args(args)
         .stdout(process::Stdio::null())
         .spawn()
-        .unwrap_or_else(|_| panic!("{}", command_name));
+        .unwrap_or_else(|_| panic!("{command_name}"));
 
     let begin = time::Instant::now();
-    println!("{}", command_name);
+    println!("{command_name}");
 
     loop {
         thread::sleep(time::Duration::from_millis(100));
