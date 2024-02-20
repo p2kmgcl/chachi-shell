@@ -19,7 +19,7 @@ x = 0
 y = 0
 
 [scrolling]
-history = 0
+history = 99999
 
 [window]
 decorations = "full"
