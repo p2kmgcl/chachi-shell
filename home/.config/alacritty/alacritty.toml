@@ -26,7 +26,7 @@ decorations = "full"
 decorations_theme_variant = "Light"
 dynamic_padding = true
 dynamic_title = false
-opacity = 0.85
+opacity = 1
 resize_increments = true
 
 [colors]
