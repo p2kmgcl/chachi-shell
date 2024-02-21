@@ -1,8 +1,6 @@
 use serde_json::{self, Value};
-use std::{
-    fs,
-    time::{Duration, SystemTime},
-};
+use std::fs;
+use std::time::{Duration, SystemTime};
 
 const TMP_PATH: &str = "/tmp/seniore-temp/";
 

@@ -1,9 +1,6 @@
 use ansi_escapes::{CursorUp, EraseEndLine};
-use std::{
-    path,
-    process::{self, ExitStatus},
-    thread, time,
-};
+use std::process::{Command, ExitStatus, Stdio};
+use std::{path, thread, time};
 
 pub fn get_output(directory: &str, full_command: &str) -> String {
     let chunks: Vec<String> = full_command
@@ -14,7 +11,7 @@ pub fn get_output(directory: &str, full_command: &str) -> String {
     let command = chunks.first().expect(full_command);
     let args = chunks[1..].to_vec();
 
-    let output = process::Command::new(command)
+    let output = Command::new(command)
         .current_dir(directory)
         .args(args)
         .output()
@@ -44,10 +41,10 @@ pub fn run(directory: &str, full_command: &str) {
         args.join(" ")
     );
 
-    let mut running_command = process::Command::new(command)
+    let mut running_command = Command::new(command)
         .current_dir(directory)
         .args(args)
-        .stdout(process::Stdio::null())
+        .stdout(Stdio::null())
         .spawn()
         .unwrap_or_else(|_| panic!("{command_name}"));
 

@@ -1,25 +1,22 @@
-use super::{
-    format_duration, sign_entry_to_duration, FILE_DURATION_IN_SECS, PRESENCE_FILE_NAME,
-    SIGNS_FILE_NAME,
-};
-use crate::util::runnable::Runnable;
-use crate::util::tmp::{expire_file, read_json, write_json};
+use crate::util::{runnable::Runnable, tmp};
 use chrono::{Local, Timelike};
 use clap::Parser;
 use reqwest::blocking::Client;
-use std::env;
-use std::time::Duration;
+use serde_json::Value;
+use std::{env, time::Duration};
 
 /// Get current status.
 #[derive(Parser)]
 pub struct Command {}
 
+const FILE_DURATION_IN_SECS: u64 = 1800;
+
 impl Runnable for Command {
     fn run(&self) -> Result<(), String> {
         let (is_sign_in, duration_worked_today) = {
-            expire_file(SIGNS_FILE_NAME, FILE_DURATION_IN_SECS);
+            tmp::expire_file(super::SIGNS_FILE_NAME, FILE_DURATION_IN_SECS);
 
-            let woffu_signs = read_json(SIGNS_FILE_NAME).unwrap_or_else(|| {
+            let woffu_signs = tmp::read_json(super::SIGNS_FILE_NAME).unwrap_or_else(|| {
                 let client = Client::new();
                 let token = env::var("WOFFU_TOKEN").expect("WOFFU_TOKEN env variable");
 
@@ -32,7 +29,7 @@ impl Runnable for Command {
                     .json()
                     .expect("response should be a json");
 
-                write_json(SIGNS_FILE_NAME, &updated_json);
+                tmp::write_json(super::SIGNS_FILE_NAME, &updated_json);
                 updated_json
             });
 
@@ -76,9 +73,9 @@ impl Runnable for Command {
         };
 
         let duration_pending_in_week = {
-            expire_file(PRESENCE_FILE_NAME, FILE_DURATION_IN_SECS);
+            tmp::expire_file(super::PRESENCE_FILE_NAME, FILE_DURATION_IN_SECS);
 
-            let woffu_presence = read_json(PRESENCE_FILE_NAME).unwrap_or_else(|| {
+            let woffu_presence = tmp::read_json(super::PRESENCE_FILE_NAME).unwrap_or_else(|| {
             let client = Client::new();
             let token = env::var("WOFFU_TOKEN").expect("WOFFU_TOKEN env variable");
             let user_id = env::var("WOFFU_USER_ID").expect("WOFFU_USER_ID env variable");
@@ -92,7 +89,7 @@ impl Runnable for Command {
                 .json()
                 .expect("response should be a json");
 
-            write_json(PRESENCE_FILE_NAME, &updated_json);
+            tmp::write_json(super::PRESENCE_FILE_NAME, &updated_json);
             updated_json
         });
 
@@ -138,4 +135,31 @@ impl Runnable for Command {
 
         Ok(())
     }
+}
+
+fn format_duration(duration: Duration) -> String {
+    let duration_secs = duration.as_secs();
+    let hours = duration_secs / 3600;
+    let minutes = (duration_secs / 60) % 60;
+
+    format!("{:02}:{:02}", hours, minutes)
+}
+
+fn sign_entry_to_duration(entry: &Value) -> Duration {
+    let parts: Vec<u64> = entry
+        .as_object()
+        .expect("entry should be an object")
+        .get("ShortTrueTime")
+        .expect("'ShortTrueTime' property should exist")
+        .as_str()
+        .expect("'ShortTrueTime' property should be a string")
+        .to_string()
+        .split(':')
+        .map(|s| {
+            s.parse::<u64>()
+                .expect("'ShortTrueTime' should follow HH:MM:ss format")
+        })
+        .collect();
+
+    Duration::new(parts[0] * 3600 + parts[1] * 60 + parts[2], 0)
 }

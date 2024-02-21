@@ -1,7 +1,4 @@
-use super::{PRESENCE_FILE_NAME, SIGNS_FILE_NAME};
-use crate::util::notify;
-use crate::util::runnable::Runnable;
-use crate::util::tmp::expire_file;
+use crate::util::{notify, runnable::Runnable, tmp};
 use clap::Parser;
 use reqwest::blocking::Client;
 use std::env;
@@ -28,8 +25,8 @@ impl Runnable for Command {
             .send()
             .expect("woffu server should be available");
 
-        expire_file(SIGNS_FILE_NAME, 0);
-        expire_file(PRESENCE_FILE_NAME, 0);
+        tmp::expire_file(super::SIGNS_FILE_NAME, 0);
+        tmp::expire_file(super::PRESENCE_FILE_NAME, 0);
         notify::update(notification_id, "Woffu sign status updated.", 1000);
 
         Ok(())

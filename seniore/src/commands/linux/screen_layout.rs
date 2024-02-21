@@ -1,7 +1,7 @@
 use crate::util::runnable::Runnable;
 use clap::{Parser, ValueEnum};
 use serde::{Deserialize, Serialize};
-use std::process;
+use std::process::Command as ProcessCommand;
 
 /// Manage current layout setup for swaywm.
 /// Currently only supports one external screen plus a laptop.
@@ -199,7 +199,7 @@ where
 {
     // println!("{:?}", args);
 
-    process::Command::new("/usr/bin/swaymsg")
+    ProcessCommand::new("/usr/bin/swaymsg")
         .args(args)
         .output()
         .map_err(|error| error.to_string())

@@ -1,7 +1,5 @@
-use crate::util::runnable::Runnable;
-use crate::util::command::run;
+use crate::util::{command, runnable::Runnable};
 use clap::Parser;
-use super::{get_portal_item_path, get_module_path, is_osgi_module};
 
 /// Format the code of the given list of modules.
 #[derive(Parser)]
@@ -11,12 +9,12 @@ pub struct Command {
 
 impl Runnable for Command {
     fn run(&self) -> Result<(), String> {
-        let gradlew = get_portal_item_path("/gradlew");
+        let gradlew = super::get_portal_item_path("/gradlew");
 
         for module in &self.modules {
-            let module_path = &get_module_path(module).expect(module);
-            if is_osgi_module(module_path) {
-                run(module_path, &(gradlew.to_owned() + " formatSource"));
+            let module_path = &super::get_module_path(module).expect(module);
+            if super::is_osgi_module(module_path) {
+                command::run(module_path, &(gradlew.to_owned() + " formatSource"));
             } else {
                 println!("\"{}\" is not an osgi module", module);
             }
