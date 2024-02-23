@@ -1,0 +1,5 @@
+[Unit]
+PartOf=chachi-sway-session.target
+
+[Service]
+ExecStart=/usr/bin/rclone mount google-drive:/ ./GoogleDrive/
