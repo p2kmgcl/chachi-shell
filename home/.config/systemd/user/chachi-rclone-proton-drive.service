@@ -2,4 +2,4 @@
 PartOf=chachi-sway-session.target
 
 [Service]
-ExecStart=/usr/bin/rclone mount proton-drive:/ ~/ProtonDrive/
+ExecStart=/usr/bin/rclone mount --vfs-cache-mode writes proton-drive:/ %h/ProtonDrive/

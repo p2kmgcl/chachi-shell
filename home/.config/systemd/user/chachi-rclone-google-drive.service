@@ -2,4 +2,4 @@
 PartOf=chachi-sway-session.target
 
 [Service]
-ExecStart=/usr/bin/rclone mount google-drive:/ ~/GoogleDrive/
+ExecStart=/usr/bin/rclone mount --vfs-cache-mode writes google-drive:/ %h/GoogleDrive/
