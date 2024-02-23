@@ -4,6 +4,7 @@ Wants=graphical-session.target
 Wants=chachi-blueman-applet.service
 Wants=chachi-cpupower-gui.service
 Wants=chachi-rclone-google-drive.service
+Wants=chachi-rclone-proton-drive.service
 Wants=chachi-mako.service
 Wants=chachi-nm-applet.service
 Wants=chachi-polkit-gnome.service
