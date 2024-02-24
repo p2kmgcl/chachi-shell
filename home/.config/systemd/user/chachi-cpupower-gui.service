@@ -3,4 +3,4 @@ PartOf=chachi-sway-session.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/cpupower-gui --performance
+ExecStart=/usr/bin/cpupower-gui --balanced
