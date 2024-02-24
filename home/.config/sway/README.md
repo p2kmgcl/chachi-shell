@@ -35,7 +35,6 @@
 - Audio management:
   - `playerctl`: control media play.
   - `pavucontrol`: audio mixer.
-  - `pasystray`: audio system tray icon.
   - Some distros need `pipewire-utils pulseaudio-utils` too.
 - Bluetooth:
   - `bluez bluez-utils`: bluetooth management.
