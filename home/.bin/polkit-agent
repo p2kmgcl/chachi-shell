@@ -1,0 +1,4 @@
+#!/bin/sh
+
+GDK_BACKEND=x11 /usr/libexec/polkit-gnome-authentication-agent-1 || \
+  GDK_BACKEND=x11 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
