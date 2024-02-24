@@ -13,6 +13,8 @@
 - `wl-clipboard`: clipboard manager.
 - `brightnessctl`: control backlight.
 - `polkit-gnome`: Authentication requests.
+- `xdg-desktop-portal-wlr`: Wayland desktop portal.
+- `xwayland`: support for X11 applications.
 - Screen lock:
   - `swaylock`: manage lock screen.
   - `swayidle`: lock screen when idle.
@@ -46,7 +48,7 @@
 
 ## GUI
 
-- `pcmanfm`: file manager.
+- `thunar thunar-archive-plugin`: file manager.
 - `xarchiver zip unzip`: file compress.
 - `gimp`: advanced image editor.
 - `inkscape`: SVG editor.
