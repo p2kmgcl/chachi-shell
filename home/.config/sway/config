@@ -201,7 +201,7 @@ client.focused_inactive #00000066 #00000066 #ffffffff #00000066 #00000066
 client.unfocused #00000066 #00000066 #ffffffff #00000066 #00000066
 client.urgent #FF573366 #00000066 #ffffffff #00000066 #00000066
 
-font pango:mono bold 9
+font pango:sans bold 9
 
 exec_always {
     gsettings set $gnome-schema gtk-theme 'Adwaita'
