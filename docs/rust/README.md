@@ -23,3 +23,4 @@ rustup component add rust-analyzer
 - Rust code checker: `cargo install --locked bacon`
 - Alternative to top: `cargo install --locked bottom`
 - Incredible git tool: `cargo install --locked git-absorb`
+- Disk usage: `cargo install --locked du-dust`
