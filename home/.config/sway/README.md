@@ -69,3 +69,4 @@
 
 - `swaymsg -t get_outputs` list outputs.
 - `swaymsg -t get_tree` list windows.
+- `swaymsg output HDMI-A-1 pos 0 0 res 2560 1440 scale 1.5` update output.
