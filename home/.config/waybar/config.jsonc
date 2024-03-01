@@ -9,6 +9,7 @@
   "modules-center": [],
   "modules-right": [
     "custom/woffu",
+    "mpris",
     "pulseaudio",
     "network",
     "cpu",
@@ -92,5 +93,9 @@
       "default": ["🔈", "🔉", "🔊"]
     },
     "on-click": "pavucontrol"
+  },
+  "mpris": {
+    "format": "▶️ {dynamic}",
+    "format-paused": "⏸ {dynamic}"
   }
 }
