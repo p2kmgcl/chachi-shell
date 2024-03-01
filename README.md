@@ -36,6 +36,7 @@ ln -s "$CHACHI_PATH/home/.config/starship" "$HOME/.config/starship" && \
 ln -s "$CHACHI_PATH/home/.config/sway" "$HOME/.config/sway" && \
 ln -s "$CHACHI_PATH/home/.config/systemd" "$HOME/.config/systemd" && \
 ln -s "$CHACHI_PATH/home/.config/tmux" "$HOME/.config/tmux" && \
+ln -s "$CHACHI_PATH/home/.config/waybar" "$HOME/.config/waybar" && \
 ln -s "$CHACHI_PATH/home/.editorconfig" "$HOME/.editorconfig" && \
 ln -s "$CHACHI_PATH/home/.gitconfig" "$HOME/.gitconfig" && \
 ln -s "$CHACHI_PATH/home/.ideavimrc" "$HOME/.ideavimrc" && \

@@ -10,6 +10,7 @@
 - `sway`
 - `swaybg`: background image.
 - `mako`: notification manager.
+- `waybar`: nice bar.
 - `wl-clipboard`: clipboard manager.
 - `brightnessctl`: control backlight.
 - `polkit-gnome`: Authentication requests.

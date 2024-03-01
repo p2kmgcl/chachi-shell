@@ -210,21 +210,5 @@ exec_always {
 }
 
 bar {
-    gaps 0
-    icon_theme Adwaita
-    position bottom
-    status_command $configDir/sway-status-bar
-    status_padding 4
-    strip_workspace_numbers off
-    tray_padding 4
-    workspace_min_width 40
-
-    colors {
-        statusline #ffffffaa
-        background #000000aa
-        # border background text
-        focused_workspace  #000000aa #222222aa #ffffffff
-        inactive_workspace #000000aa #000000aa #ffffffff
-        urgent_workspace   #000000aa #444444aa #ffffffff
-    }
+    swaybar_command waybar
 }
