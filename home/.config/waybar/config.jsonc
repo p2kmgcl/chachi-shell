@@ -3,9 +3,10 @@
   "layer": "bottom",
   "position": "bottom",
   "height": 30,
-  "spacing": 10,
+  "spacing": 0,
+  "reload_style_on_change": true,
   "modules-left": ["sway/mode", "sway/workspaces", "sway/scratchpad"],
-  "modules-center": ["sway/window"],
+  "modules-center": [],
   "modules-right": [
     "custom/woffu",
     "pulseaudio",
@@ -34,8 +35,17 @@
     "spacing": 10
   },
   "clock": {
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}"
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "format": "{:%H:%M, %A %d de %B}",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 4,
+      "format": {
+        "today": "<span background='#fff' color='#000'>{}</span>",
+        "months": "<span color='#aaa'>{}</span>",
+        "weekdays": "<span color='#aaa'>{}</span>"
+      }
+    }
   },
   "cpu": {
     "format": "🤖 {usage}%",
@@ -58,28 +68,28 @@
     "format-plugged": "🔌 {capacity}%"
   },
   "network": {
-    "format-wifi": " {essid} ({signalStrength}%)",
-    "format-ethernet": " {ipaddr}/{cidr}",
-    "tooltip-format": " {ifname} via {gwaddr}",
-    "format-linked": " {ifname} (No IP)",
+    "format-wifi": "🛜 {essid} ({signalStrength}%)",
+    "format-ethernet": "🔌 {ipaddr}",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "format-linked": "🔌 {ifname} (No IP)",
     "format-disconnected": "⚠ Disconnected",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    "format-alt": "{ifname}: {ipaddr}"
   },
   "pulseaudio": {
     "format": "{icon} {volume}% {format_source}",
-    "format-bluetooth": "{icon} {volume}% {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": " {format_source}",
-    "format-source": " {volume}%",
-    "format-source-muted": "",
+    "format-bluetooth": "{icon}🛜 {volume}% {format_source}",
+    "format-bluetooth-muted": "🔇 {icon}🛜 {format_source}",
+    "format-muted": "🔇 {format_source}",
+    "format-source": "🎤 {volume}%",
+    "format-source-muted": "🎤",
     "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["", "", ""]
+      "headphone": "🎧",
+      "hands-free": "🎧",
+      "headset": "🎧",
+      "phone": "📞",
+      "portable": "📞",
+      "car": "🚙",
+      "default": ["🔈", "🔉", "🔊"]
     },
     "on-click": "pavucontrol"
   }
