@@ -21,28 +21,7 @@ unnecessary applications**, and also adding some essential ones:
 ## dotfiles
 
 ```bash
-ln -s "$CHACHI_PATH/home/.bash_profile" "$HOME/.bash_profile" && \
-ln -s "$CHACHI_PATH/home/.bashrc" "$HOME/.bashrc" && \
-ln -s "$CHACHI_PATH/home/.bin" "$HOME/.bin" && \
-ln -s "$CHACHI_PATH/home/.config/alacritty" "$HOME/.config/alacritty" && \
-ln -s "$CHACHI_PATH/home/.config/environment.d" "$HOME/.config/environment.d" && \
-ln -s "$CHACHI_PATH/home/.config/fish" "$HOME/.config/fish" && \
-ln -s "$CHACHI_PATH/home/.config/hypr" "$HOME/.config/hypr" && \
-ln -s "$CHACHI_PATH/home/.config/i3" "$HOME/.config/i3" && \
-ln -s "$CHACHI_PATH/home/.config/lazygit" "$HOME/.config/lazygit" && \
-ln -s "$CHACHI_PATH/home/.config/nvim" "$HOME/.config/nvim" && \
-ln -s "$CHACHI_PATH/home/.config/rofi" "$HOME/.config/rofi" && \
-ln -s "$CHACHI_PATH/home/.config/starship" "$HOME/.config/starship" && \
-ln -s "$CHACHI_PATH/home/.config/sway" "$HOME/.config/sway" && \
-ln -s "$CHACHI_PATH/home/.config/systemd" "$HOME/.config/systemd" && \
-ln -s "$CHACHI_PATH/home/.config/tmux" "$HOME/.config/tmux" && \
-ln -s "$CHACHI_PATH/home/.config/waybar" "$HOME/.config/waybar" && \
-ln -s "$CHACHI_PATH/home/.editorconfig" "$HOME/.editorconfig" && \
-ln -s "$CHACHI_PATH/home/.gitconfig" "$HOME/.gitconfig" && \
-ln -s "$CHACHI_PATH/home/.ideavimrc" "$HOME/.ideavimrc" && \
-ln -s "$CHACHI_PATH/home/.ssh" "$HOME/.ssh" && \
-ln -s "$CHACHI_PATH/home/.Xdefaults" "$HOME/.Xdefaults" && \
-ln -s "$CHACHI_PATH/home/.Xresources" "$HOME/.Xresources"
+./update_dotfiles.sh
 ```
 
 ## Tools
