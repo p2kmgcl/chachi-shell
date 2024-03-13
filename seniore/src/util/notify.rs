@@ -22,6 +22,7 @@ pub fn update(id: u32, body: &str, timeout: i32) -> u32 {
         .body(body)
         .timeout(timeout)
         .show()
-        .expect("notification should be created")
-        .id()
+        .expect("notification should be created");
+
+    id
 }

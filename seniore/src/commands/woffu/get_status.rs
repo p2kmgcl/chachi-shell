@@ -96,7 +96,7 @@ impl Runnable for Command {
             let weekly_entry = woffu_presence
                 .as_array()
                 .expect("response should be an array")
-                .get(0)
+                .first()
                 .expect("response should not be empty")
                 .as_object()
                 .expect("each entry should be an object");
