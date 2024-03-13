@@ -10,6 +10,10 @@ if status is-interactive
         fish_add_path $HOME/.fnm
         fnm env --use-on-cd | source
         alias man='npx -y tldr'
+    else if type -q /opt/homebrew/bin/fnm
+        fish_add_path $HOME/.fnm
+        fnm env --use-on-cd | source
+        alias man='npx -y tldr'
     else
         echo -e "\e[33mfnm is not installed\e[0m"
     end
