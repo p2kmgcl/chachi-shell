@@ -14,7 +14,7 @@ unnecessary applications**, and also adding some essential ones:
 1. Configure some **browser** and **terminal emulator**.
 1. Add `CHACHI_PATH` environment variable and reboot.
 1. Clone this repo in `$CHACHI_PATH`
-1. [Configure SSH](https://developer.1password.com/docs/ssh/get-started/).
+1. Install ssh keys.
 1. Install some utils that should be included in default repositories:
    `curl fzf git nano ripgrep tmux`
 

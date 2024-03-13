@@ -68,16 +68,6 @@
   name = Pablo Molina
   email = contact@pablomolina.me
   username = p2kmgcl
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZ5LyWCqxK7Kob3TC0wdeJHRUxqh0tO72G5hY84B9yJ
-
-[gpg]
-  format = ssh
-
-[gpg "ssh"]
-  program = "/opt/1Password/op-ssh-sign"
-
-[commit]
-  gpgsign = true
 
 [alias]
   h = !git config -l | grep alias.
