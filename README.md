@@ -26,9 +26,9 @@ unnecessary applications**, and also adding some essential ones:
 
 ## Tools
 
+1. [Shell](/home/.config/fish).
 1. [Rust](/docs/rust).
 1. [lazygit](/home/.config/lazygit).
-1. [Shell](/home/.config/fish).
 1. [JavaScript](/docs/javascript).
 1. [Seniore](/seniore).
 1. [Docker](/docs/docker).
