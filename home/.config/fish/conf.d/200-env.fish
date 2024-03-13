@@ -6,4 +6,8 @@ if status is-interactive
 
     fish_add_path $HOME/.local/bin
     fish_add_path $CHACHI_PATH/home/.bin
+
+    if test -d /opt/homebrew/bin
+        fish_add_path /opt/homebrew/bin
+    end
 end
