@@ -7,6 +7,7 @@
   excludesfile = $CHACHI_PATH/home/.config/git/gitignore-global
   pager = delta --light
   untrackedcache = true
+  fsmonitor = true
 
 [interactive]
   diffFilter = delta --light --color-only --features=interactive
