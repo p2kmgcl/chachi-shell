@@ -15,8 +15,16 @@ npm install -g npm
 npm install -g prettier
 npm install -g typescript-language-server typescript
 npm install -g vscode-langservers-extracted
-npm install -g yarn
 ```
+
+## Yarn
+
+[Yarn installation process for 2+](https://yarnpkg.com/getting-started/install).
+
+- `corepack enable` (this is provided by latest NodeJS).
+- `yarn init -2`
+- `yarn set version stable`
+- `yarn install`
 
 ## Deno
 
