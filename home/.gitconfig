@@ -41,6 +41,12 @@
 [difftool "vscode"]
   cmd = code --wait --diff $LOCAL $REMOTE
 
+[commit]
+  gpgsign = true
+
+[gpg]
+  format = ssh
+
 [help]
   autocorrect = 0
 
@@ -69,6 +75,7 @@
   name = Pablo Molina
   email = contact@pablomolina.me
   username = p2kmgcl
+  signingkey = ~/.ssh/id_rsa.pub
 
 [alias]
   h = !git config -l | grep alias.
