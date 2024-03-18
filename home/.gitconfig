@@ -1,13 +1,17 @@
 [color]
   ui = true
 
+[commit]
+  gpgsign = true
+  verbose = true
+
 [core]
   editor = nvim
-  ignorecase = false
   excludesfile = $CHACHI_PATH/home/.config/git/gitignore-global
+  fsmonitor = true
+  ignorecase = false
   pager = delta --light
   untrackedcache = true
-  fsmonitor = true
 
 [interactive]
   diffFilter = delta --light --color-only --features=interactive
@@ -28,8 +32,10 @@
   hunk-header-style = file line-number syntax
 
 [diff]
+  algorithm = histogram
+  context = 10
   renames = true
-  renameLimit = 5000
+  renamelimit = 5000
   tool = neovim
 
 [difftool]
@@ -41,16 +47,21 @@
 [difftool "vscode"]
   cmd = code --wait --diff $LOCAL $REMOTE
 
-[commit]
-  gpgsign = true
+[fetch]
+  prune = true
+  prunetags = true
 
 [gpg]
   format = ssh
 
 [help]
-  autocorrect = 0
+  autocorrect = prompt
+
+[init]
+  defaultBranch = main
 
 [merge]
+  conflictstyle = zdiff3
   tool = neovim
 
 [mergetool]
@@ -69,13 +80,17 @@
   default = current
 
 [rebase]
-  autoStash = true
+  autosquash = true
+  autostash = true
+
+[rerere]
+  enabled = true
 
 [user]
-  name = Pablo Molina
   email = contact@pablomolina.me
-  username = p2kmgcl
+  name = Pablo Molina
   signingkey = ~/.ssh/id_rsa.pub
+  username = p2kmgcl
 
 [alias]
   h = !git config -l | grep alias.
@@ -97,18 +112,20 @@
   back = reset HEAD~1
   br = branch
   ch = checkout
+  cm = commit
+  cma = commit --amend
   cp = cherry-pick
   cpa = cherry-pick --abort
   cpc = cherry-pick --continue
-  cm = commit
-  cma = commit --amend
   din = diff --name-only
   fea = fetch --all
   lg = log --pretty='%Cgreen%h %Cblue%an (%ar) %Creset%s'
+  pl = pull
   ps = push
+  psf = push --force
   rb = rebase
   rba = rebase --abort
   rbc = rebase --continue
-  rbi = rebase --interactive --autosquash
+  rbi = rebase --interactive
   rsh = reset --hard
   st = status --short
