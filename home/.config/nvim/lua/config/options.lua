@@ -5,6 +5,7 @@
 local opt = vim.opt
 
 opt.grepprg = "rg --vimgrep --hidden"
+opt.scrolloff = 999
 opt.spelllang = ""
 opt.swapfile = false
 opt.undofile = false
