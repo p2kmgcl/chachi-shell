@@ -14,3 +14,11 @@
 
 - `git clone https://github.com/ProtonMail/desktop.git`
 - `yarn start`
+
+## WAT macOS stuff
+
+### Add alias for lazygit config
+
+```bash
+ln -s $HOME/Projects/chachi-shell/home/.config/lazygit ~/Library/Application\ Support/lazygit
+```
