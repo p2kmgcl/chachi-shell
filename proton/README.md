@@ -20,5 +20,5 @@
 ### Add alias for lazygit config
 
 ```bash
-ln -s $HOME/Projects/chachi-shell/home/.config/lazygit ~/Library/Application\ Support/lazygit
+ln -s $CHACHI_PATH/home/.config/lazygit ~/Library/Application\ Support/lazygit
 ```
