@@ -25,6 +25,8 @@ application is being served as HTTP instead of HTTPS, and some features (like
 crypto) won't be available. Update the VM `/etc/hosts` file with this content
 (extracted from `proton-clients/utilities/local-sso/etc_hosts.txt`):
 
+> Windows hosts file is located in `C:\Windows\System32\drivers\etc\hosts`
+
 ```plain
 # Proton local-dev start
 My.Local.Ip account.proton.local
@@ -51,37 +53,41 @@ machines, so the application can be run easily without copying all the files:
 git clone https://github.com/ProtonMail/desktop.git ~/Projects/vmshared/proton-desktop
 ```
 
-Then work from this repository, and create some aliases inside the VM to reuse
-the source code. Note that forge.config.ts cannot be aliased, as it produces
-some errors when running the application.
+### Windows development
+
+Install NodeJS, rsync and cygwin, then copy everything before running the
+application. This will avoid issues with symbolic links that do not work the
+same on windows:
 
 ```bash
-export VM_APP="$HOME/proton-desktop" && \
-  export SHARED_APP="/media/share/proton-desktop" && \
-  echo aliasing to $VM_APP && \
-  echo from $SHARED_APP && \
-  mkdir -p $VM_APP && \
-  cd $VM_APP && \
-  ln -s $SHARED_APP/assets && \
-  ln -s $SHARED_APP/src && \
-  ln -s $SHARED_APP/tasks && \
-  ln -s $SHARED_APP/package.json && \
-  ln -s $SHARED_APP/tsconfig.json && \
-  ln -s $SHARED_APP/webpack.main.config.ts && \
-  ln -s $SHARED_APP/webpack.plugins.ts && \
-  ln -s $SHARED_APP/webpack.renderer.config.ts && \
-  ln -s $SHARED_APP/webpack.rules.ts && \
-  cp $SHARED_APP/forge.config.ts . && \
-  echo done, running yarn && \
-  yarn
+rsync \
+  --verbose \
+  --recursive \
+  --exclude=node_modules \
+  --exclude=.git \
+  --exclude=.webpack \
+  --exclude=.husky \
+  --exclude=out \
+  /cygdrive/z/proton-desktop/ /cygdrive/c/Users/windows/proton-desktop \
+  && cd /cygdrive/c/Users/windows/proton-desktop && yarn && yarn start
 ```
 
-In Windows, symlinks can be created using the `mklink` command, or `New-Item` in
-powershell
-([creating symbolink links](https://superuser.com/questions/182553/does-windows-have-the-ln-s-or-equivalent)):
+### Linux development
 
-```powershell
-New-Item -ItemType SymbolicLink -Path \link\name -Target \link\target
+Install NodeJS and rsync and copy everything before running the application
+(same issue than windows with symbolic links):
+
+```bash
+rsync \
+  --verbose \
+  --recursive \
+  --exclude=node_modules \
+  --exclude=.git \
+  --exclude=.webpack \
+  --exclude=.husky \
+  --exclude=out \
+  /media/share/proton-desktop/ $HOME/proton-desktop \
+  && cd $HOME/proton-desktop && yarn && yarn start
 ```
 
 ## WAT macOS stuff
