@@ -76,6 +76,14 @@ export VM_APP="$HOME/proton-desktop" && \
   yarn
 ```
 
+In Windows, symlinks can be created using the `mklink` command, or `New-Item` in
+powershell
+([creating symbolink links](https://superuser.com/questions/182553/does-windows-have-the-ln-s-or-equivalent)):
+
+```powershell
+New-Item -ItemType SymbolicLink -Path \link\name -Target \link\target
+```
+
 ## WAT macOS stuff
 
 - Add alias for lazygit config:
