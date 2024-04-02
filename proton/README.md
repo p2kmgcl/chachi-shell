@@ -61,8 +61,9 @@ same on windows:
 
 ```bash
 rsync \
-  --verbose \
+  --progress \
   --recursive \
+  --inplace \
   --exclude=node_modules \
   --exclude=.git \
   --exclude=.webpack \
@@ -79,8 +80,9 @@ Install NodeJS and rsync and copy everything before running the application
 
 ```bash
 rsync \
-  --verbose \
+  --progress \
   --recursive \
+  --inplace \
   --exclude=node_modules \
   --exclude=.git \
   --exclude=.webpack \
