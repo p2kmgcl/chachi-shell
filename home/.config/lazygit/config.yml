@@ -8,4 +8,4 @@ gui:
 git:
   paging:
     colorArg: always
-    pager: delta --light --paging=never
+    useConfig: true

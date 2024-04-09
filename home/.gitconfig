@@ -61,17 +61,18 @@
   defaultBranch = main
 
 [merge]
-  conflictstyle = zdiff3
+  conflictstyle = merge
   tool = neovim
 
 [mergetool]
   prompt = false
+  tool = neovim
 
 [mergetool "neovim"]
-  cmd = nvim -d $MERGED
+  cmd = nvim -d $REMOTE $MERGED $LOCAL
 
 [mergetool "vscode"]
-  cmd = code --wait $MERGED
+  cmd = code --wait $REMOTE $MERGED $LOCAL
 
 [pull]
   rebase = true
