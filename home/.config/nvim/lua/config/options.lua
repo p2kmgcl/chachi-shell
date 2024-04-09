@@ -4,7 +4,7 @@
 
 local opt = vim.opt
 
-opt.grepprg = "rg --vimgrep --hidden"
+opt.grepprg = "rg --vimgrep --hidden --ignore-vcs --ignore-global --iglob !.git/*"
 opt.scrolloff = 999
 opt.spelllang = ""
 opt.swapfile = false

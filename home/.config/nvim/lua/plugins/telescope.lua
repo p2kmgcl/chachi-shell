@@ -48,12 +48,12 @@ return {
       pickers = {
         grep_string = {
           additional_args = function()
-            return { "--ignore", "--hidden" }
+            return { "--ignore-vcs", "--ignore-global", "--hidden", "--iglob", "!.git/*" }
           end,
         },
         live_grep = {
           additional_args = function()
-            return { "--ignore", "--hidden" }
+            return { "--ignore-vcs", "--ignore-global", "--hidden", "--iglob", "!.git/*" }
           end,
         },
       },
