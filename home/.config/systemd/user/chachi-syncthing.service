@@ -1,0 +1,6 @@
+[Unit]
+PartOf=chachi-sway-session.target
+
+[Service]
+ExecStart=/usr/bin/syncthing --no-browser
+

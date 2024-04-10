@@ -11,4 +11,5 @@ Wants=chachi-polkit-gnome.service
 Wants=chachi-ulauncher.service
 Wants=chachi-proton-vpn.service
 Wants=chachi-slack.service
+Wants=chachi-syncthing.service
 Wants=chachi-wl-paste.service
