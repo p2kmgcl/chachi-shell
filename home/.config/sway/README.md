@@ -19,11 +19,7 @@
 - Screen lock:
   - `swaylock`: manage lock screen.
   - `swayidle`: lock screen when idle.
-- Application launcher:
-  - `ulauncher`: application launcher.
-    - [Emoji selector](https://github.com/Ulauncher/ulauncher-emoji).
-    - [File browser](https://github.com/fisadev/ulauncher-better-file-browser).
-    - [Power off, restart, etc.](https://github.com/iboyperson/ulauncher-system)
+- [Ulauncher](/home/.config/ulauncher).
 - Record screen:
   - `grim`: screenshot tool.
   - `slurp`: screen region selector.
