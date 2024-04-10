@@ -8,13 +8,15 @@ fnm install 20 && fnm use 20 && fnm alias default 20
 ```
 
 ```bash
-npm install -g bash-language-server
-npm install -g dockerfile-language-server-nodejs
-npm install -g neovim
 npm install -g npm
-npm install -g prettier
-npm install -g typescript-language-server typescript
-npm install -g vscode-langservers-extracted
+
+npm install -g bash-language-server \
+  dockerfile-language-server-nodejs \
+  neovim \
+  prettier \
+  typescript-language-server \
+  typescript \
+  vscode-langservers-extracted
 ```
 
 ## Yarn
@@ -24,7 +26,6 @@ npm install -g vscode-langservers-extracted
 - `corepack enable` (this is provided by latest NodeJS).
 - `yarn init -2`
 - `yarn set version stable`
-- `yarn install`
 
 ## Deno
 
