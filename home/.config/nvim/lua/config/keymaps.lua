@@ -3,5 +3,3 @@
 -- Add any additional keymaps here
 
 -- local Util = require("lazyvim.util")
-
-vim.keymap.set("n", "<leader>gb", "<cmd>Telescope git_bcommits<cr>", { desc = "buffer commits" })
