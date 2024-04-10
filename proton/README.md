@@ -2,8 +2,10 @@
 
 ## Environment setup
 
-- Install `mkcert haproxy bash`
-- Ensure installed bash is v4 or later.
+- Install
+  [mkcert](https://github.com/FiloSottile/mkcert?tab=readme-ov-file#installation)
+- Install `haproxy`
+- Install `bash` 4.0 or later
 
 ## Clients repository
 
