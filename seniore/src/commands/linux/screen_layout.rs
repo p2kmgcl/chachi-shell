@@ -75,10 +75,12 @@ impl Runnable for Command {
             LaptopPosition::Disabled => {
                 disable_output(named_outputs.laptop)?;
                 enable_output(named_outputs.external)?;
+                set_output_position(named_outputs.external, OutputPosition { x: 0, y: 0 })?;
             }
             LaptopPosition::Only => {
                 disable_output(named_outputs.external)?;
                 enable_output(named_outputs.laptop)?;
+                set_output_position(named_outputs.laptop, OutputPosition { x: 0, y: 0 })?;
             }
             LaptopPosition::Left => {
                 let laptop_mode = enable_output(named_outputs.laptop)?;
