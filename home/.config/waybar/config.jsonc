@@ -13,7 +13,6 @@
     "battery",
     "custom/woffu",
     "mpris",
-    "network",
     "pulseaudio",
     "backlight",
     "tray",
