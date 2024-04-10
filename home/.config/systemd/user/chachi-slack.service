@@ -1,0 +1,5 @@
+[Unit]
+PartOf=chachi-sway-session.target
+
+[Service]
+ExecStart=/usr/bin/slack --startup
