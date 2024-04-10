@@ -9,4 +9,5 @@ Wants=chachi-rclone-nas.service
 Wants=chachi-mako.service
 Wants=chachi-polkit-gnome.service
 Wants=chachi-ulauncher.service
+Wants=chachi-proton-vpn.service
 Wants=chachi-wl-paste.service
