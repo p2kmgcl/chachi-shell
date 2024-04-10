@@ -33,3 +33,5 @@ unnecessary applications**, and also adding some essential ones:
 1. [Seniore](/seniore).
 1. [Docker](/docs/docker).
 1. I use [**NeoVIM**](/home/.config/nvim), BTW.
+1. Use `rclone` and `syncthing`.
+1. [Sway](/home/.config/sway).
