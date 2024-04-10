@@ -11,6 +11,7 @@
     "cpu",
     "memory",
     "battery",
+    "custom/powerprofile",
     "mpris",
     "pulseaudio",
     "backlight",
@@ -21,6 +22,11 @@
     "disable-scroll": true,
     "all-outputs": true,
     "warp-on-scroll": false,
+  },
+  "custom/powerprofile": {
+    "exec": "/usr/bin/powerprofilesctl get",
+    "format": "🎆 {}",
+    "interval": 1,
   },
   "custom/woffu": {
     "exec": "$CHACHI_PATH/seniore/target/release/seniore woffu get-status",

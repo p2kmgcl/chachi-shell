@@ -109,6 +109,10 @@ bindsym $mod+Ctrl+Shift+Left exec $CHACHI_PATH/seniore/target/release/seniore li
 bindsym $mod+Ctrl+Shift+Right exec $CHACHI_PATH/seniore/target/release/seniore linux screen-layout right
 bindsym $mod+Ctrl+Shift+Down exec $CHACHI_PATH/seniore/target/release/seniore linux screen-layout down
 
+bindsym $mod+Ctrl+1 exec /usr/bin/powerprofilesctl set performance
+bindsym $mod+Ctrl+2 exec /usr/bin/powerprofilesctl set balanced
+bindsym $mod+Ctrl+3 exec /usr/bin/powerprofilesctl set power-saver
+
 ###############################################################################
 # Behaviour
 ###############################################################################
