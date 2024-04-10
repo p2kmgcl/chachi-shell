@@ -5,6 +5,7 @@ Wants=chachi-blueman-applet.service
 Wants=chachi-cpupower-gui.service
 Wants=chachi-rclone-google-drive.service
 Wants=chachi-rclone-proton-drive.service
+Wants=chachi-rclone-nas.service
 Wants=chachi-mako.service
 Wants=chachi-polkit-gnome.service
 Wants=chachi-ulauncher.service
