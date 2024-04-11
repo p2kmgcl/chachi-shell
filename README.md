@@ -1,9 +1,9 @@
 <h1 align="center">
   <img
     name="logo"
-    src="https://raw.githubusercontent.com/p2kmgcl/chachi-shell/master/logo.png"
+    src="https://raw.githubusercontent.com/p2kmgcl/chachi-shell/master/logo.svg"
     alt="chachi-shell"
-    style="width:100%"
+    style="width:80%"
   />
 </h1>
 
