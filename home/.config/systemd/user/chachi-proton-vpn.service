@@ -1,6 +1,1 @@
-[Unit]
-PartOf=chachi-sway-session.target
-Requires=chachi-sway-nm-applet.service
-
-[Service]
-ExecStart=/usr/bin/protonvpn-app
+../../../../proton/chachi-proton-vpn.service
