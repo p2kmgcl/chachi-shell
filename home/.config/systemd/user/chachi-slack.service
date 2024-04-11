@@ -2,4 +2,4 @@
 PartOf=chachi-sway-session.target
 
 [Service]
-ExecStart=/usr/bin/slack --startup
+ExecStart=/usr/bin/flatpak run --socket=session-bus --socket=system-bus --socket=wayland com.slack.Slack --enable-features=WaylandWindowDecorations --ozone-platform-hint=auto --startup
