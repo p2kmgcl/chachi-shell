@@ -62,17 +62,14 @@ application. This will avoid issues with symbolic links that do not work the
 same on windows:
 
 ```bash
-rsync \
-  --progress \
-  --recursive \
-  --inplace \
-  --exclude=node_modules \
-  --exclude=.git \
-  --exclude=.webpack \
-  --exclude=.husky \
-  --exclude=out \
-  /cygdrive/z/proton-desktop/ /cygdrive/c/Users/windows/proton-desktop \
-  && cd /cygdrive/c/Users/windows/proton-desktop && yarn && yarn start
+#!/bin/bash
+USERNAME="windows"
+BASE_LOCAL_URL="proton.local:8443"
+REMOTE_PATH="/cygdrive/z/proton-desktop"
+LOCAL_PATH="/cygdrive/c/Users/$USERNAME/proton-desktop"
+rsync --progress --recursive --inplace --exclude=node_modules --exclude=.git --exclude=.webpack --exclude=.husky --exclude=out "$REMOTE_PATH/" "$LOCAL_PATH"
+export BASE_LOCAL_URL="$BASE_LOCAL_URL"
+cd "$LOCAL_PATH" && yarn && yarn start
 ```
 
 ### Linux development
