@@ -164,21 +164,12 @@ gaps outer 0
 for_window {
   [app_id="com.github.rafostar.Clapper"] floating enable, sticky enable
   [app_id="eog"] floating enable
-  [app_id="firefox"] move workspace $ws1
   [app_id="org.gnome.Nautilus"] floating enable
   [app_id="pavucontrol"] floating enable
   [app_id="pcmanfm"] floating enable
-  [app_id="record_screen"] floating enable, move workspace $ws10
   [app_id="ulauncher"] floating enable, sticky enable, border none
-  [class="1Password" title="(.*) — 1Password"] move workspace $ws5
-  [class="Alacritty"] move workspace $ws2
-  [class="Code"] move workspace $ws2
-  [class="Google-chrome"] move workspace $ws1
-  [class="Slack"] move workspace $ws3
   [class="jetbrains-(.*)" title="Welcome to IntelliJ IDEA"] floating enable
   [class="jetbrains-(.*)" title="win0"] floating enable
-  [class="jetbrains-(.*)"] move workspace $ws2
-  [class="obsidian"] move workspace $ws4
   [title="Firefox — Sharing Indicator"] floating enable, resize set height 30 px, resize set width 90 px
   [title="Picture in picture"] floating enable, sticky enable
   [title="Picture-in-Picture"] floating enable, sticky enable
