@@ -12,6 +12,9 @@ jsconfig.json
 # Docker dev containers
 .devcontainer
 
+# Syncthing ignore list
+.stignore
+
 # Liferay related
 modules/apps/**/.editorconfig
 modules/apps/**/*.soy.js
