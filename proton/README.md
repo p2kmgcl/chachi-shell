@@ -27,7 +27,8 @@ application is being served as HTTP instead of HTTPS, and some features (like
 crypto) won't be available. Update the VM `/etc/hosts` file with this content
 (extracted from `proton-clients/utilities/local-sso/etc_hosts.txt`):
 
-> Windows hosts file is located in `C:\Windows\System32\drivers\etc\hosts`
+> Windows hosts file is located in `C:\Windows\System32\drivers\etc\hosts`.
+> macOS hosts file is located in `/private/etc/hosts`.
 
 ```plain
 # Proton local-dev start
@@ -52,56 +53,21 @@ Checkout this repository in a directory that can be shared with other virtual
 machines, so the application can be run easily without copying all the files:
 
 ```bash
-git clone https://github.com/ProtonMail/desktop.git ~/Projects/vmshared/proton-desktop
+git clone https://github.com/ProtonMail/desktop.git ~/Projects/proton-desktop
 ```
 
-### Windows development
+Then the content of this project can be synchronized using syncthing (or other
+tool like rsync). I am using syncthing with the following .stignore:
 
-Install NodeJS, rsync and cygwin, then copy everything before running the
-application. This will avoid issues with symbolic links that do not work the
-same on windows:
-
-```bash
-#!/bin/bash
-BASE_LOCAL_URL="proton.local:8443"
-REMOTE_PATH="/cygdrive/z/proton-desktop"
-LOCAL_PATH="/cygdrive/c/Users/p2kmg/proton-desktop"
-rsync --progress --recursive --inplace --exclude=node_modules --exclude=.git --exclude=.webpack --exclude=.husky --exclude=out "$REMOTE_PATH/" "$LOCAL_PATH"
-export BASE_LOCAL_URL="$BASE_LOCAL_URL"
-cd "$LOCAL_PATH" && yarn && yarn start
+```gitignore
+.git
+.webpack
+.husky
+node_modules
+out
 ```
 
-```bash
-#!/bin/bash
-BASE_LOCAL_URL="proton.local:8443"
-REMOTE_PATH="/cygdrive/z/proton-desktop"
-LOCAL_PATH="/cygdrive/c/Users/p2kmg/proton-desktop"
-rsync --progress --recursive --inplace --exclude=node_modules --exclude=.git --exclude=.webpack --exclude=.husky --exclude=out "$REMOTE_PATH/" "$LOCAL_PATH"
-export BASE_LOCAL_URL="$BASE_LOCAL_URL"
-cd "$LOCAL_PATH" && yarn && yarn make-win
-${LOCAL_PATH}/out/Proton\ Mail-win32-x64/Proton\ Mail.exe
-```
-
-### Linux development
-
-Install NodeJS and rsync and copy everything before running the application
-(same issue than windows with symbolic links):
-
-```bash
-rsync \
-  --progress \
-  --recursive \
-  --inplace \
-  --exclude=node_modules \
-  --exclude=.git \
-  --exclude=.webpack \
-  --exclude=.husky \
-  --exclude=out \
-  /media/share/proton-desktop/ $HOME/proton-desktop \
-  && cd $HOME/proton-desktop && yarn && yarn start
-```
-
-## WAT macOS stuff
+## macOS development
 
 - Add alias for lazygit config:
   `ln -s $CHACHI_PATH/home/.config/lazygit ~/Library/Application\ Support/lazygit`
