@@ -96,17 +96,17 @@
 [alias]
   h = !git config -l | grep alias.
 
-  cifuentes = !$CHACHI_PATH/home/.config/git/git-cifuentes
+  cifuentes = !~/.config/git/git-cifuentes
 
-  do-checkout-pull-request = !$CHACHI_PATH/home/.config/git/git-do-checkout-pull-request
-  do-cherry-pick-search = !$CHACHI_PATH/home/.config/git/git-do-cherry-pick-search
+  do-checkout-pull-request = !~/.config/git/git-do-checkout-pull-request
+  do-cherry-pick-search = !~/.config/git/git-do-cherry-pick-search
   do-clean-all-non-git-files = clean --force -d -X
   do-clean-local-repository = gc --prune=now --aggressive
   do-ignore-changes-on-file = update-index --assume-unchanged
   do-list-conflict-files = diff --name-only --diff-filter=U
   do-list-files-in-a-commit = ls-tree -r --name-only
-  do-make-file-disapear-from-history = !$CHACHI_PATH/home/.config/git/git-do-make-file-disapear-from-history
-  do-open-pull-request = !$CHACHI_PATH/home/.config/git/git-do-open-pull-request
+  do-make-file-disapear-from-history = !~/.config/git/git-do-make-file-disapear-from-history
+  do-open-pull-request = !~/.config/git/git-do-open-pull-request
   do-show-everyday-help = help everyday
 
   ada = add --all
