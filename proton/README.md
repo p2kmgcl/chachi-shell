@@ -63,13 +63,23 @@ same on windows:
 
 ```bash
 #!/bin/bash
-USERNAME="windows"
 BASE_LOCAL_URL="proton.local:8443"
 REMOTE_PATH="/cygdrive/z/proton-desktop"
-LOCAL_PATH="/cygdrive/c/Users/$USERNAME/proton-desktop"
+LOCAL_PATH="/cygdrive/c/Users/p2kmg/proton-desktop"
 rsync --progress --recursive --inplace --exclude=node_modules --exclude=.git --exclude=.webpack --exclude=.husky --exclude=out "$REMOTE_PATH/" "$LOCAL_PATH"
 export BASE_LOCAL_URL="$BASE_LOCAL_URL"
 cd "$LOCAL_PATH" && yarn && yarn start
+```
+
+```bash
+#!/bin/bash
+BASE_LOCAL_URL="proton.local:8443"
+REMOTE_PATH="/cygdrive/z/proton-desktop"
+LOCAL_PATH="/cygdrive/c/Users/p2kmg/proton-desktop"
+rsync --progress --recursive --inplace --exclude=node_modules --exclude=.git --exclude=.webpack --exclude=.husky --exclude=out "$REMOTE_PATH/" "$LOCAL_PATH"
+export BASE_LOCAL_URL="$BASE_LOCAL_URL"
+cd "$LOCAL_PATH" && yarn && yarn make-win
+${LOCAL_PATH}/out/Proton\ Mail-win32-x64/Proton\ Mail.exe
 ```
 
 ### Linux development
