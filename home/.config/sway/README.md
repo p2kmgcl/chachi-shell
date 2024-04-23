@@ -41,6 +41,8 @@
 - Network:
   - `nmtui` (also found as `NetworkManager-tui`): configuration CLI.
   - `nm-applet` (also found as `network-manager-applet`): system tray icon.
+- Printer:
+  - `system-config-printer`: simple configuration UI.
 
 ## GUI
 
