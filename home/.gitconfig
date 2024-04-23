@@ -7,7 +7,7 @@
 
 [core]
   editor = nvim
-  excludesfile = $CHACHI_PATH/home/.config/git/gitignore-global
+  excludesfile = ~/.config/git/gitignore-global
   fsmonitor = true
   ignorecase = false
   pager = delta --light
