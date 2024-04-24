@@ -7,5 +7,5 @@ gui:
   nerdFontsVersion: '3'
 git:
   paging:
-    colorArg: always
-    useConfig: true
+    colorArg: never
+    pager: delta --light --no-gitconfig --paging=never
