@@ -12,7 +12,6 @@
     "memory",
     "battery",
     "custom/powerprofile",
-    "mpris",
     "pulseaudio",
     "backlight",
     "tray",
