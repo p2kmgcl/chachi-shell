@@ -3,14 +3,14 @@ return {
     "sindrets/diffview.nvim",
     keys = {
       {
-        "<leader>gb",
+        "<leader>dh",
         "<cmd>DiffviewFileHistory %<cr>",
-        desc = "Currenf buffer history",
+        desc = "[D]ocument [h]istory",
       },
       {
-        "<leader>gd",
+        "<leader>gs",
         "<cmd>DiffviewOpen<cr>",
-        desc = "DiffviewOpen",
+        desc = "[G]it [s]tatus",
       },
     },
   },
