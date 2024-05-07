@@ -30,7 +30,7 @@ vim.opt.splitbelow = true
 
 -- Keep current line visible and in the center of the screen
 vim.opt.cursorline = true
-vim.opt.scrolloff = 20
+vim.opt.scrolloff = 10
 
 -- Disabled until long file names handling is fixed https://github.com/neovim/neovim/issues/7073
 vim.opt.undofile = false
