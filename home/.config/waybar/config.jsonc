@@ -5,7 +5,11 @@
   "height": 30,
   "spacing": 0,
   "reload_style_on_change": true,
-  "modules-left": ["sway/mode", "sway/workspaces", "sway/scratchpad"],
+  "modules-left": [
+    "sway/mode",
+    "sway/workspaces",
+    "sway/scratchpad"
+  ],
   "modules-center": [],
   "modules-right": [
     "cpu",
@@ -100,7 +104,11 @@
       "phone": "📞",
       "portable": "📞",
       "car": "🚙",
-      "default": ["🔈", "🔉", "🔊"],
+      "default": [
+        "🔈",
+        "🔉",
+        "🔊"
+      ],
     },
     "on-click": "pavucontrol",
   },
