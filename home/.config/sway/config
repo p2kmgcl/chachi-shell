@@ -120,7 +120,7 @@ bindsym $mod+Ctrl+3 exec /usr/bin/powerprofilesctl set power-saver
 focus_follows_mouse no
 
 input type:keyboard {
-  xkb_layout "es"
+  xkb_layout es,us
 }
 
 input type:touchpad {
