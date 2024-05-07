@@ -18,7 +18,10 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  { import = "plugins" },
+  git = { timeout = 300 }, -- Timeout when installing plugins
+  install = { missing = true }, -- Install missing plugins on startup
+  checker = { enabled = true, frequency = 1209600 }, -- Check updates every two wees
+  spec = { import = "plugins" }, -- Load plugins from lua/plugins/*.lua
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`

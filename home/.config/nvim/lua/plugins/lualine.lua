@@ -6,6 +6,7 @@ return {
       return {
         theme = "auto",
         icons_enabled = true,
+        sections = {},
       }
     end,
   },
