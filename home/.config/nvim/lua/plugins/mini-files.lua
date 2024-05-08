@@ -2,7 +2,7 @@ return {
   "echasnovski/mini.files",
   keys = {
     {
-      "<leader>e",
+      "<leader>E",
       function()
         vim.cmd("e .")
       end,
@@ -10,7 +10,7 @@ return {
       desc = "[E]xplorer (root)",
     },
     {
-      "<leader>E",
+      "<leader>e",
       function()
         vim.cmd("e %:p:h")
       end,
