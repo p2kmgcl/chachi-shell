@@ -82,7 +82,6 @@ return {
     local nvim_lsp = require("lspconfig")
 
     local servers = {
-      cssls = {},
       denols = {
         root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
       },
@@ -113,6 +112,7 @@ return {
       marksman = {},
       rust_analyzer = {},
       shfmt = {},
+      stylelint = {},
       stylua = {},
       tailwindcss = {},
       taplo = {},
