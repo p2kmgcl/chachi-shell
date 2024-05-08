@@ -168,6 +168,7 @@ for_window {
   [app_id="pavucontrol"] floating enable
   [app_id="pcmanfm"] floating enable
   [app_id="ulauncher"] floating enable, sticky enable, border none
+  [class="Proton Mail"] floating enable
   [class="jetbrains-(.*)" title="Welcome to IntelliJ IDEA"] floating enable
   [class="jetbrains-(.*)" title="win0"] floating enable
   [title="Firefox — Sharing Indicator"] floating enable, resize set height 30 px, resize set width 90 px
