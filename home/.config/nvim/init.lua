@@ -18,6 +18,7 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  change_detection = { enabled = false }, -- It does not work fine
   git = { timeout = 300 }, -- Timeout when installing plugins
   install = { missing = true }, -- Install missing plugins on startup
   checker = { enabled = true, frequency = 1209600 }, -- Check updates every two wees
