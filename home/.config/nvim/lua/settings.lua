@@ -22,6 +22,7 @@ vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 
 -- Beautiful gutter
 vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 
 -- Default split position
