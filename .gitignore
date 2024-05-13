@@ -6,6 +6,7 @@
 /home/.config/nvim/plugin
 /home/.config/nvim/undo-dir
 /home/.config/systemd/user/default.target.wants
+/home/.config/ulauncher/ext_preferences/*.db
 /home/.ssh/id_*
 /home/.ssh/known_hosts
 /home/.ssh/known_hosts.old
