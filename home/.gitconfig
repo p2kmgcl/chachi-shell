@@ -75,6 +75,12 @@
   signingkey = ~/.ssh/id_rsa.pub
   username = p2kmgcl
 
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+
 [alias]
   h = !git config -l | grep alias.
 
