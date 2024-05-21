@@ -91,6 +91,9 @@ return {
     vim.keymap.set("n", "<leader>fk", builtin.keymaps, {
       desc = "[F]ind [K]eymaps",
     })
+    vim.keymap.set("n", "<leader>fm", builtin.git_status, {
+      desc = "[F]ind [M]odified Files",
+    })
     vim.keymap.set("n", "<leader>fo", builtin.oldfiles, {
       desc = "[F]ind [O]ld Files",
     })
