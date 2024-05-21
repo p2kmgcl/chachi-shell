@@ -16,11 +16,7 @@ local diagnostic_goto = function(next, severity)
 end
 map("n", "]d", diagnostic_goto(true), { desc = "Next [D]iagnostic" })
 map("n", "[d", diagnostic_goto(false), { desc = "Previous [D]iagnostic" })
-map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next [E]rror" })
-map("n", "[e", diagnostic_goto(false, "ERROR"), { desc = "Previous [E]rror" })
-map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next [W]arning" })
-map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Previous [W]arning" })
-map("n", "<leader>ce", vim.diagnostic.open_float, { desc = "[C]ode [D]iagnostics" })
+map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "[C]ode [D]iagnostics" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
