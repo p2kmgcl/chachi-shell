@@ -3,8 +3,11 @@ gui:
   showBottomLine: false
   showCommandLog: false
   showRandomTip: false
-  showIcons: false
+  border: rounded
   nerdFontsVersion: '3'
+  filterMode: fuzzy
+  commitLength:
+    show: true
 git:
   paging:
     colorArg: never
