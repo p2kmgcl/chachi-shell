@@ -1,6 +1,6 @@
 #!/bin/bash
 
-killall -s SIGINT wf-recorder
-wait wf-recorder
+RECORDER_PID=$(ps aux | grep wf-record | grep -v grep | awk '{print $2}')
+kill -s SIGINT $RECORDER_PID
 notify-send -t 1000 "Recording stopped"
 xdg-open $HOME/Videos > /dev/null 2>&1

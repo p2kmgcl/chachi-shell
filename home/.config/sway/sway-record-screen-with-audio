@@ -1,3 +1,3 @@
 #!/bin/bash
 FILE_PREFIX="$HOME/Videos/screen-record-$(date +'%Y-%m-%d_%H-%M-%s').mkv"
-wf-recorder -g "$(slurp)" --audio -f "$FILE_PREFIX"
+wf-recorder --codec libx264rgb -g "$(slurp)" --audio -f "$FILE_PREFIX"
