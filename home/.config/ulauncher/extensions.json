@@ -6,18 +6,18 @@
         "last_commit": "827cfe5e1d2f89f742f811f981759787b0654fa9",
         "last_commit_time": "2023-11-04T18:37:13"
     },
-    "com.github.fisadev.ulauncher-better-file-browser": {
-        "id": "com.github.fisadev.ulauncher-better-file-browser",
-        "url": "https://github.com/fisadev/ulauncher-better-file-browser",
-        "updated_at": "2024-04-10T23:12:08.465785",
-        "last_commit": "8ec8a0dda09e172de62051cd1f251816ce4af368",
-        "last_commit_time": "2019-09-06T19:20:09"
-    },
     "com.github.iboyperson.ulauncher-system": {
         "id": "com.github.iboyperson.ulauncher-system",
         "url": "https://github.com/iboyperson/ulauncher-system",
         "updated_at": "2024-04-10T23:12:29.295539",
         "last_commit": "7dedd992709fa2297735cddf852404144d4da47c",
         "last_commit_time": "2023-11-14T16:53:20"
+    },
+    "com.github.hillaryychan.ulauncher-fzf": {
+        "id": "com.github.hillaryychan.ulauncher-fzf",
+        "url": "https://github.com/hillaryychan/ulauncher-fzf",
+        "updated_at": "2024-06-03T11:27:57.890092",
+        "last_commit": "e8137dae6448041fc53ae418263501b068857073",
+        "last_commit_time": "2023-05-16T12:35:35"
     }
 }
