@@ -26,7 +26,7 @@
     "disable-scroll": true,
     "all-outputs": true,
     "warp-on-scroll": false,
-    "format": "{name} {icon}",
+    "format": "{name}{icon}",
     "format-icons": {
       "1": "",
       "2": "",
