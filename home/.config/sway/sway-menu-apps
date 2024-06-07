@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+rofi -modes drun -show drun

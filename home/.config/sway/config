@@ -8,7 +8,10 @@ set $seniore $CHACHI_PATH/seniore/target/release/seniore
 set $mod Mod4
 set $term alacritty
 set $browser firefox
-set $menu exec ulauncher-toggle
+set $appMenu $configDir/sway-menu-apps
+set $fileMenu $configDir/sway-menu-files
+set $powerMenu $configDir/sway-menu-power
+set $emojiMenu $configDir/sway-menu-emoji
 set $lock $configDir/sway-lock-screen
 set $notifyBrightness notify-send -t 1000 "$($seniore linux get-brightness)"
 set $notifyVolume notify-send -t 1000 "$($seniore linux get-volume)"
@@ -19,7 +22,10 @@ set $screenLaptop eDP-1
 # Key bindings
 ###############################################################################
 
-bindsym $mod+d exec $menu
+bindsym $mod+d exec $appMenu
+bindsym $mod+Shift+d exec $powerMenu
+bindsym $mod+e exec $fileMenu
+bindsym $mod+Shift+e exec $emojiMenu
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec $browser
 
@@ -167,7 +173,6 @@ for_window {
   [app_id="org.gnome.Nautilus"] floating enable
   [app_id="pavucontrol"] floating enable
   [app_id="pcmanfm"] floating enable
-  [app_id="ulauncher"] floating enable, sticky enable, border none
   [app_id="record_screen"] floating enable, move workspace $ws10
   [class="Proton Mail"] floating enable
   [class="jetbrains-(.*)" title="Welcome to IntelliJ IDEA"] floating enable

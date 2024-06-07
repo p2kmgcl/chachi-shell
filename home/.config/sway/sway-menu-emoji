@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+EMOJI="$(cat $CHACHI_PATH/home/.config/sway/emoji_dictionary.txt | rofi -dmenu -i -matching fuzzy -sort -sorting-method fzf -refilter-timeout-limit 0 -max-history-size 1 | cut -d ' ' -f 1 | tr -d '\n')"
+if [ -z "$EMOJI" ]; then exit 0; fi
+wl-copy "$EMOJI"

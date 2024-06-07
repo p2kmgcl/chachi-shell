@@ -19,7 +19,7 @@
 - Screen lock:
   - `swaylock`: manage lock screen.
   - `swayidle`: lock screen when idle.
-- [Ulauncher](/home/.config/ulauncher).
+- `rofi`.
 - Record screen:
   - `grim`: screenshot tool.
   - `slurp`: screen region selector.

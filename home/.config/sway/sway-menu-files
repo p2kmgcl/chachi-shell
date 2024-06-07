@@ -1,0 +1,4 @@
+#!/bin/bash
+FILE_PATH="$(fd --base-directory $HOME --max-depth 99 | rofi -dmenu -i -matching fuzzy -sort -sorting-method fzf -refilter-timeout-limit 0 -max-history-size 1)"
+if [ -z "$FILE_PATH" ]; then exit 0; fi
+xdg-open "${HOME}/${FILE_PATH}"
