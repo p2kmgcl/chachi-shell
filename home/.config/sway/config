@@ -210,7 +210,7 @@ exec_always {
     gsettings set $gnome-schema cursor-theme 'Adwaita'
     gsettings set $gnome-schema font-antialiasing 'grayscale'
     gsettings set $gnome-schema font-hinting 'slight'
-    gsettings set $gnome-schema font-name 'VictorMono Nerd Font 9'
+    gsettings set $gnome-schema font-name 'Fira Sans Regular 10'
     gsettings set $gnome-schema monospace-font-name 'VictorMono Nerd Font 9'
 }
 
