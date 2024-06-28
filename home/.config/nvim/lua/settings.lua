@@ -34,7 +34,8 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 -- Disabled until long file names handling is fixed https://github.com/neovim/neovim/issues/7073
-vim.opt.undofile = false
+-- Workaround from vim-undodir-file.lua
+vim.opt.undofile = true
 
 -- Decrease mapped sequence wait time. Displays which-key popup sooner
 vim.opt.timeoutlen = 300
