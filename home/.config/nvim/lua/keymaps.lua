@@ -51,6 +51,12 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Previous Search Re
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
+-- change text without updating yank
+map("n", "c", '"_c', { noremap = true, desc = "Change without yank" })
+map("v", "c", '"_c', { noremap = true, desc = "Change without yank" })
+map("n", "d", '"_d', { noremap = true, desc = "Delete without yank" })
+map("v", "d", '"_d', { noremap = true, desc = "Delete without yank" })
+
 -- Invoke lazygit
 map("n", "<leader>gs", function()
   local buf = vim.api.nvim_create_buf(false, true)
