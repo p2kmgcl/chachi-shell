@@ -8,3 +8,4 @@ never needed any tweaks apart from installing some extensions.
 
 1. [Enable rpm fusion](https://rpmfusion.org/Configuration)
 1. [Install media codecs](https://rpmfusion.org/Howto/Multimedia)
+1. Install `ffmpegthumbnailer` to have video previews in nautilus
