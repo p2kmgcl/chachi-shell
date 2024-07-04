@@ -23,6 +23,7 @@ require("lazy").setup({
   install = { missing = true }, -- Install missing plugins on startup
   checker = { enabled = true, frequency = 1209600 }, -- Check updates every two wees
   spec = { import = "plugins" }, -- Load plugins from lua/plugins/*.lua
+  rocks = { enabled = false },
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
