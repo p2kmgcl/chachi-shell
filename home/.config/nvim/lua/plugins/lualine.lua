@@ -1,7 +1,9 @@
 return {
   {
     "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
+    dependencies = { "catppuccin/nvim" },
+    event = "VimEnter",
+    priority = 900,
     opts = function()
       return {
         options = {
