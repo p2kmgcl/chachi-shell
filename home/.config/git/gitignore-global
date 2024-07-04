@@ -1,3 +1,6 @@
+# Avoid searching in .git directory
+.git
+
 # Temporary files
 *.hprof
 *.project
