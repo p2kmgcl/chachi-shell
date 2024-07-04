@@ -31,7 +31,7 @@ vim.opt.splitbelow = true
 
 -- Keep current line visible and in the center of the screen
 vim.opt.cursorline = true
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 0 -- Looks like a good idea, but mouse clicking goes crazy
 
 -- Disabled until long file names handling is fixed https://github.com/neovim/neovim/issues/7073
 -- Workaround from vim-undodir-file.lua
