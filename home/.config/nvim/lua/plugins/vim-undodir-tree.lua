@@ -2,4 +2,5 @@
 -- original/path/of/the/ folder structure inside of undodir, and save the undo file in it.
 return {
   "pixelastic/vim-undodir-tree",
+  event = "VeryLazy",
 }
