@@ -1,5 +1,6 @@
 /home/.config/fish/completions
 /home/.config/fish/fish_variables
+/home/.config/karabiner/automatic_backups
 /home/.config/lazygit/state.yml
 /home/.config/nushell/history.txt
 /home/.config/nvim/.netrwhist
