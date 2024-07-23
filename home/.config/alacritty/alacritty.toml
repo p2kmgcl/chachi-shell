@@ -26,7 +26,8 @@ decorations = "full"
 decorations_theme_variant = "Dark"
 dynamic_padding = true
 dynamic_title = false
-opacity = 1
+opacity = 0.9
+blur = true
 resize_increments = true
 
 [colors]
