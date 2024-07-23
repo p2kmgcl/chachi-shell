@@ -58,7 +58,7 @@ map("n", "d", '"_d', { noremap = true, desc = "Delete without yank" })
 map("v", "d", '"_d', { noremap = true, desc = "Delete without yank" })
 
 -- Invoke lazygit
-map("n", "<leader>gs", function()
+map("n", "<leader>gS", function()
   local buf = vim.api.nvim_create_buf(false, true)
 
   vim.api.nvim_open_win(buf, true, {
@@ -82,4 +82,4 @@ map("n", "<leader>gs", function()
   vim.cmd("set winblend=10")
   vim.cmd("setlocal nonumber norelativenumber")
   vim.cmd("startinsert")
-end, { desc = "[G]it [s]tatus" })
+end, { desc = "[G]it [S]tatus" })
