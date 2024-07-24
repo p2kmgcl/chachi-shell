@@ -56,30 +56,3 @@ map("n", "c", '"_c', { noremap = true, desc = "Change without yank" })
 map("v", "c", '"_c', { noremap = true, desc = "Change without yank" })
 map("n", "d", '"_d', { noremap = true, desc = "Delete without yank" })
 map("v", "d", '"_d', { noremap = true, desc = "Delete without yank" })
-
--- Invoke lazygit
-map("n", "<leader>gS", function()
-  local buf = vim.api.nvim_create_buf(false, true)
-
-  vim.api.nvim_open_win(buf, true, {
-    focusable = true,
-    relative = "editor",
-    width = 999,
-    height = 999,
-    row = 0,
-    col = 0,
-    border = "rounded",
-    title = "lazygit",
-    noautocmd = true,
-  })
-
-  vim.fn.termopen("lazygit", {
-    on_exit = function()
-      vim.cmd("q")
-    end,
-  })
-
-  vim.cmd("set winblend=10")
-  vim.cmd("setlocal nonumber norelativenumber")
-  vim.cmd("startinsert")
-end, { desc = "[G]it [S]tatus" })

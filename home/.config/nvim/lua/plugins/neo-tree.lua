@@ -23,14 +23,6 @@ return {
       mode = "",
       desc = "[B]uffers",
     },
-    {
-      "<leader>gs",
-      function()
-        vim.cmd("Neotree action=focus source=git_status reveal=true")
-      end,
-      mode = "",
-      desc = "[G]it [s]tatus",
-    },
   },
   opts = {
     close_if_last_window = true,
