@@ -1,5 +1,8 @@
 live_config_reload = true
 
+[env]
+TERM = "xterm-256color"
+
 [bell]
 duration = 100
 
@@ -25,7 +28,7 @@ history = 99999
 decorations = "full"
 decorations_theme_variant = "Dark"
 dynamic_padding = true
-dynamic_title = false
+dynamic_title = true
 opacity = 0.9
 blur = true
 resize_increments = true
@@ -33,80 +36,80 @@ resize_increments = true
 [colors]
 draw_bold_text_with_bright_colors = true
 
-# https://github.com/alacritty/alacritty-theme/blob/master/themes/catppuccin_mocha.toml
+# https://github.com/catppuccin/alacritty/blob/main/catppuccin-mocha.toml
 
 [colors.primary]
-background = '#1E1E2E' # base
-foreground = '#CDD6F4' # text
-# Bright and dim foreground colors
-dim_foreground = '#CDD6F4'    # text
-bright_foreground = '#CDD6F4' # text
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+dim_foreground = "#7f849c"
+bright_foreground = "#cdd6f4"
 
-# Cursor colors
 [colors.cursor]
-text = '#1E1E2E'   # base
-cursor = '#F5E0DC' # rosewater
+text = "#1e1e2e"
+cursor = "#f5e0dc"
 
 [colors.vi_mode_cursor]
-text = '#1E1E2E'   # base
-cursor = '#B4BEFE' # lavender
+text = "#1e1e2e"
+cursor = "#b4befe"
 
-# Search colors
 [colors.search.matches]
-foreground = '#1E1E2E' # base
-background = '#A6ADC8' # subtext0
+foreground = "#1e1e2e"
+background = "#a6adc8"
 
 [colors.search.focused_match]
-foreground = '#1E1E2E' # base
-background = '#A6E3A1' # green
+foreground = "#1e1e2e"
+background = "#a6e3a1"
 
 [colors.footer_bar]
-foreground = '#1E1E2E' # base
-background = '#A6ADC8' # subtext0
+foreground = "#1e1e2e"
+background = "#a6adc8"
 
-# Keyboard regex hints
 [colors.hints.start]
-foreground = '#1E1E2E' # base
-background = '#F9E2AF' # yellow
+foreground = "#1e1e2e"
+background = "#f9e2af"
 
 [colors.hints.end]
-foreground = '#1E1E2E' # base
-background = '#A6ADC8' # subtext0
+foreground = "#1e1e2e"
+background = "#a6adc8"
 
-# Selection colors
 [colors.selection]
-text = '#1E1E2E'       # base
-background = '#F5E0DC' # rosewater
+text = "#1e1e2e"
+background = "#f5e0dc"
 
-# Normal colors
 [colors.normal]
-black = '#45475A'   # surface1
-red = '#F38BA8'     # red
-green = '#A6E3A1'   # green
-yellow = '#F9E2AF'  # yellow
-blue = '#89B4FA'    # blue
-magenta = '#F5C2E7' # pink
-cyan = '#94E2D5'    # teal
-white = '#BAC2DE'   # subtext1
+black = "#45475a"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
+magenta = "#f5c2e7"
+cyan = "#94e2d5"
+white = "#bac2de"
 
-# Bright colors
 [colors.bright]
-black = '#585B70'   # surface2
-red = '#F38BA8'     # red
-green = '#A6E3A1'   # green
-yellow = '#F9E2AF'  # yellow
-blue = '#89B4FA'    # blue
-magenta = '#F5C2E7' # pink
-cyan = '#94E2D5'    # teal
-white = '#A6ADC8'   # subtext0
+black = "#585b70"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
+magenta = "#f5c2e7"
+cyan = "#94e2d5"
+white = "#a6adc8"
 
-# Dim colors
 [colors.dim]
-black = '#45475A'   # surface1
-red = '#F38BA8'     # red
-green = '#A6E3A1'   # green
-yellow = '#F9E2AF'  # yellow
-blue = '#89B4FA'    # blue
-magenta = '#F5C2E7' # pink
-cyan = '#94E2D5'    # teal
-white = '#BAC2DE'   # subtext1
+black = "#45475a"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
+magenta = "#f5c2e7"
+cyan = "#94e2d5"
+white = "#bac2de"
+
+[[colors.indexed_colors]]
+index = 16
+color = "#fab387"
+
+[[colors.indexed_colors]]
+index = 17
+color = "#f5e0dc"

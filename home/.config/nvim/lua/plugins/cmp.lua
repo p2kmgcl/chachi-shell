@@ -40,8 +40,8 @@ return {
         completeopt = "menu,menuone,noinsert",
       },
       window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+        completion = {},
+        documentation = {},
       },
 
       -- For an understanding of why these mappings were

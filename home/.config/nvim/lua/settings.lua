@@ -1,4 +1,3 @@
-vim.opt.background = "dark" -- Use dark theme
 vim.opt.breakindent = true
 vim.opt.clipboard = "unnamedplus" -- Use system clipboard
 vim.opt.conceallevel = 0 -- Hide * markup for bold and italic, but not markers with substitutions
@@ -18,6 +17,7 @@ vim.g.have_nerd_font = true -- Use nerd font icons
 
 -- Nice popups
 vim.opt.pumblend = 10 -- Popup blend
+vim.opt.winblend = 10 -- Window blend
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 
 -- Beautiful gutter

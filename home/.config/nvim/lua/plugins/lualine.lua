@@ -7,7 +7,7 @@ return {
     opts = function()
       return {
         options = {
-          theme = "auto",
+          theme = "catppuccin",
           icons_enabled = true,
           component_separators = { left = "", right = "" },
           section_separators = { left = "", right = "" },
