@@ -11,4 +11,4 @@ gui:
 git:
   paging:
     colorArg: never
-    pager: delta --dark --no-gitconfig --paging=never
+    pager: delta --syntax-theme=Nord --no-gitconfig --paging=never

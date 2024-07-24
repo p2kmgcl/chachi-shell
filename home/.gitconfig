@@ -11,7 +11,7 @@
   fsmonitor = true
   ignorecase = false
   untrackedcache = true
-  pager = delta --dark --max-line-length=512
+  pager = delta --syntax-theme=Nord --max-line-length=512
 
 [diff]
   algorithm = histogram
