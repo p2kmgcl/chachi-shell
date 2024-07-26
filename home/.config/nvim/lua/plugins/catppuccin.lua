@@ -6,7 +6,7 @@ return {
   config = function()
     require("catppuccin").setup({
       flavour = "mocha",
-      transparent_background = true,
+      transparent_background = false,
       show_end_of_buffer = false,
       default_integrations = false,
       background = {
@@ -14,8 +14,9 @@ return {
         dark = "mocha",
       },
       dim_inactive = {
-        enabled = false,
+        enabled = true,
         shade = "dark",
+        percentage = 0.1,
       },
       integrations = {
         cmp = true,
