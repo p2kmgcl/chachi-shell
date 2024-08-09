@@ -1,6 +1,9 @@
 # Avoid searching in .git directory
 .git
 
+# Ugly mac directories
+*.DS_Store
+
 # Temporary files
 *.hprof
 *.project
