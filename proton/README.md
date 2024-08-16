@@ -47,6 +47,18 @@ My.Local.Ip pass-api.proton.local
 # Proton local-dev end
 ```
 
+Then we need to point the desktop application to the aliased domain:
+
+```json
+{
+  "overrideURL": {
+    "mail": "https://mail.proton.local:8443",
+    "calendar": "https://calendar.proton.local:8443",
+    "account": "https://account.proton.local:8443"
+  }
+}
+```
+
 ## Desktop repository
 
 Checkout this repository in a directory that can be shared with other virtual
