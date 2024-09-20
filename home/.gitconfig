@@ -109,6 +109,7 @@
   din = diff --name-only
   fea = fetch --all
   lg = log --pretty='%Cgreen%h %Cblue%an (%ar) %Creset%s'
+  lgi = !~/.config/git/git-log-ids
   pl = pull
   ps = push
   psf = push --force
