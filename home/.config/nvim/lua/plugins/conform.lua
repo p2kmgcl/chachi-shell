@@ -29,9 +29,9 @@ return {
       css = { "stylelint" },
       lua = { "stylua" },
       scss = { "stylelint" },
-      javascript = { "prettier", "prettierd", "eslint", "tsserver" },
-      typescript = { "prettier", "prettierd", "eslint", "tsserver" },
-      typescriptreact = { "prettier", "prettierd", "eslint", "tsserver" },
+      javascript = { "prettier", "prettierd", "eslint", "ts_ls" },
+      typescript = { "prettier", "prettierd", "eslint", "ts_ls" },
+      typescriptreact = { "prettier", "prettierd", "eslint", "ts_ls" },
     },
   },
 }

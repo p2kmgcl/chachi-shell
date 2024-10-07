@@ -117,8 +117,8 @@ return {
       stylua = {},
       tailwindcss = {},
       taplo = {},
-      tsserver = {
-        single_file_support = false,
+      ts_ls = {
+        single_file_support = true,
         root_dir = nvim_lsp.util.root_pattern("package.json"),
       },
       yamlls = {},
