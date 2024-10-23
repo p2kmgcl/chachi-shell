@@ -11,7 +11,7 @@ blinking = "Always"
 shape = "Block"
 
 [font]
-size = 20
+size = 18
 
 [font.normal]
 family = "VictorMono Nerd Font"
