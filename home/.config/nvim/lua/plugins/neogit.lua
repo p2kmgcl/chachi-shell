@@ -32,7 +32,7 @@ return {
       ["azure.com"] = "https://dev.azure.com/${owner}/_git/${repository}/pullrequestcreate?sourceRef=${branch_name}&targetRef=${target}",
       ["gitlab.protontech.ch"] = "https://gitlab.protontech.ch/${owner}/${repository}/merge_requests/new?merge_request[source_branch]=${branch_name}",
     },
-    console_timeout = 2000,
+    console_timeout = 300,
     auto_show_console = true,
     auto_close_console = false,
   },
