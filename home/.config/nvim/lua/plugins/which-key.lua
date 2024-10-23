@@ -19,6 +19,8 @@ return {
       { "<leader>f_", hidden = true },
       { "<leader>g", group = "[G]it" },
       { "<leader>g_", hidden = true },
+      { "<leader>n", group = "[N]ew" },
+      { "<leader>n_", hidden = true },
       { "<leader>t", group = "[T]oggle" },
       { "<leader>t_", hidden = true },
       { "<leader>w", group = "[W]orkspace" },

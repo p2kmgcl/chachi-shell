@@ -56,3 +56,6 @@ map("n", "c", '"_c', { noremap = true, desc = "Change without yank" })
 map("v", "c", '"_c', { noremap = true, desc = "Change without yank" })
 map("n", "d", '"_d', { noremap = true, desc = "Delete without yank" })
 map("v", "d", '"_d', { noremap = true, desc = "Delete without yank" })
+
+-- open new terminal
+map("n", "<leader>nt", "<cmd>terminal<CR><cmd>setlocal nonumber norelativenumber<CR>i", { desc = "[N]ew [t]erminal" })
