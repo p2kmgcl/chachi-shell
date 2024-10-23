@@ -75,7 +75,11 @@ return {
     },
     {
       "<leader>fo",
-      "<cmd>Telescope oldfiles<cr>",
+      function()
+        require("telescope.builtin").oldfiles({
+          cwd_only = true,
+        })
+      end,
       desc = "[F]ind [O]ld Files",
     },
     {
