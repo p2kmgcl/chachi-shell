@@ -11,7 +11,7 @@ blinking = "Always"
 shape = "Block"
 
 [font]
-size = 16
+size = 14
 
 [font.normal]
 family = "VictorMono Nerd Font"
@@ -19,7 +19,7 @@ style = "Medium"
 
 [font.offset]
 x = 0
-y = 0
+y = 4
 
 [scrolling]
 history = 99999
@@ -29,8 +29,8 @@ decorations = "full"
 decorations_theme_variant = "Dark"
 dynamic_padding = true
 dynamic_title = true
-opacity = 0.9
-blur = true
+opacity = 1.0
+blur = false
 resize_increments = true
 
 [colors]
