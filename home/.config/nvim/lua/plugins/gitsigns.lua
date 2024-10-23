@@ -42,6 +42,7 @@ return {
       end, "Previous [h]unk")
 
       map("n", "<leader>ga", gs.stage_hunk, "[G]it [a]dd hunk")
+      map("n", "<leader>gd", gs.preview_hunk, "[G]it [d]iff hunk")
       map("n", "<leader>gu", gs.undo_stage_hunk, "[G]it [u]undo add hunk")
       map("v", "<leader>ga", function()
         gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
