@@ -119,8 +119,8 @@ return {
           preview_cutoff = 180,
           horizontal = {
             prompt_position = "top",
-            preview_width = 0.5,
-            results_width = 0.5,
+            preview_width = 0.6,
+            results_width = 0.4,
           },
         },
         extensions_list = { "fzf" },
