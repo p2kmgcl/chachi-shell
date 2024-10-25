@@ -59,3 +59,12 @@ map("v", "d", '"_d', { noremap = true, desc = "Delete without yank" })
 
 -- open new terminal
 map("n", "<leader>nt", "<cmd>terminal<CR><cmd>setlocal nonumber norelativenumber<CR>i", { desc = "[N]ew [t]erminal" })
+
+-- toggle wrap
+map("n", "<leader>tw", function()
+  if vim.api.nvim_get_option_value("wrap", { scope = "local" }) then
+    vim.api.nvim_set_option_value("wrap", false, { scope = "local" })
+  else
+    vim.api.nvim_set_option_value("wrap", true, { scope = "local" })
+  end
+end, { desc = "[T]oggle [W]rap" })
