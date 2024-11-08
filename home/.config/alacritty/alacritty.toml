@@ -8,6 +8,9 @@ duration = 100
 blinking = "Always"
 shape = "Block"
 
+[general]
+live_config_reload = true
+
 [font]
 size = 18
 
@@ -24,7 +27,7 @@ history = 99999
 
 [window]
 decorations = "full"
-decorations_theme_variant = "Dark"
+decorations_theme_variant = "Light"
 dynamic_padding = true
 dynamic_title = true
 opacity = 1.0
@@ -34,83 +37,70 @@ resize_increments = true
 [colors]
 draw_bold_text_with_bright_colors = true
 
-# https://github.com/catppuccin/alacritty/blob/main/catppuccin-mocha.toml
+# https://github.com/catppuccin/alacritty/blob/main/catppuccin-latte.toml
 
 [colors.primary]
-background = "#1e1e2e"
-foreground = "#cdd6f4"
-dim_foreground = "#7f849c"
-bright_foreground = "#cdd6f4"
+background = "#eff1f5"
+foreground = "#4c4f69"
+dim_foreground = "#8c8fa1"
+bright_foreground = "#4c4f69"
 
 [colors.cursor]
-text = "#1e1e2e"
-cursor = "#f5e0dc"
+text = "#eff1f5"
+cursor = "#dc8a78"
 
 [colors.vi_mode_cursor]
-text = "#1e1e2e"
-cursor = "#b4befe"
+text = "#eff1f5"
+cursor = "#7287fd"
 
 [colors.search.matches]
-foreground = "#1e1e2e"
-background = "#a6adc8"
+foreground = "#eff1f5"
+background = "#6c6f85"
 
 [colors.search.focused_match]
-foreground = "#1e1e2e"
-background = "#a6e3a1"
+foreground = "#eff1f5"
+background = "#40a02b"
 
 [colors.footer_bar]
-foreground = "#1e1e2e"
-background = "#a6adc8"
+foreground = "#eff1f5"
+background = "#6c6f85"
 
 [colors.hints.start]
-foreground = "#1e1e2e"
-background = "#f9e2af"
+foreground = "#eff1f5"
+background = "#df8e1d"
 
 [colors.hints.end]
-foreground = "#1e1e2e"
-background = "#a6adc8"
+foreground = "#eff1f5"
+background = "#6c6f85"
 
 [colors.selection]
-text = "#1e1e2e"
-background = "#f5e0dc"
+text = "#eff1f5"
+background = "#dc8a78"
 
 [colors.normal]
-black = "#45475a"
-red = "#f38ba8"
-green = "#a6e3a1"
-yellow = "#f9e2af"
-blue = "#89b4fa"
-magenta = "#f5c2e7"
-cyan = "#94e2d5"
-white = "#bac2de"
+black = "#bcc0cc"
+red = "#d20f39"
+green = "#40a02b"
+yellow = "#df8e1d"
+blue = "#1e66f5"
+magenta = "#ea76cb"
+cyan = "#179299"
+white = "#5c5f77"
 
 [colors.bright]
-black = "#585b70"
-red = "#f38ba8"
-green = "#a6e3a1"
-yellow = "#f9e2af"
-blue = "#89b4fa"
-magenta = "#f5c2e7"
-cyan = "#94e2d5"
-white = "#a6adc8"
-
-[colors.dim]
-black = "#45475a"
-red = "#f38ba8"
-green = "#a6e3a1"
-yellow = "#f9e2af"
-blue = "#89b4fa"
-magenta = "#f5c2e7"
-cyan = "#94e2d5"
-white = "#bac2de"
+black = "#acb0be"
+red = "#d20f39"
+green = "#40a02b"
+yellow = "#df8e1d"
+blue = "#1e66f5"
+magenta = "#ea76cb"
+cyan = "#179299"
+white = "#6c6f85"
 
 [[colors.indexed_colors]]
 index = 16
-color = "#fab387"
+color = "#fe640b"
 
 [[colors.indexed_colors]]
 index = 17
-color = "#f5e0dc"
-
-[general]
-live_config_reload = true
+color = "#dc8a78"

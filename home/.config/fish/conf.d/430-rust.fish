@@ -12,7 +12,7 @@ if status is-interactive
     end
 
     if type -q bat
-        alias cat='bat --theme=Nord'
+        alias cat='bat --theme=GitHub'
     end
 
     if type -q btm
