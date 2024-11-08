@@ -17,4 +17,9 @@ if status is-interactive
     else
         echo -e "\e[33mfnm is not installed\e[0m"
     end
+
+    # Needed to run proton local server
+    if type -q /opt/homebrew/bin/mkcert
+        export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
+    end
 end
