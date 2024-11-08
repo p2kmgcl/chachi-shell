@@ -68,3 +68,19 @@ map("n", "<leader>tw", function()
     vim.api.nvim_set_option_value("wrap", true, { scope = "local" })
   end
 end, { desc = "[T]oggle [W]rap" })
+
+-- run proton client
+map(
+  "n",
+  "<leader>rc",
+  '<cmd>term cd /Users/p2kmgcl/Projects/proton-clients && yarn start-all --applications "proton-account proton-mail proton-calendar" --api proton.black --port 8443<CR><cmd>setlocal nonumber norelativenumber<CR>i',
+  { desc = "[R]un Proton [C]lient" }
+)
+
+-- run proton desktop
+map(
+  "n",
+  "<leader>rd",
+  "<cmd>term cd /Users/p2kmgcl/Projects/proton-clients/applications/inbox-desktop && yarn start<CR><cmd>setlocal nonumber norelativenumber<CR>i",
+  { desc = "[R]un Proton [D]esktop" }
+)
