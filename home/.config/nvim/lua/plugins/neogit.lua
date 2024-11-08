@@ -24,7 +24,7 @@ return {
       desc = "[G]it [s]tatus",
     },
   },
-  config = {
+  opts = {
     git_services = {
       ["github.com"] = "https://github.com/${owner}/${repository}/compare/${branch_name}?expand=1",
       ["bitbucket.org"] = "https://bitbucket.org/${owner}/${repository}/pull-requests/new?source=${branch_name}&t=1",
