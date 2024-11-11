@@ -1,7 +1,7 @@
 return {
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "catppuccin/nvim" },
+    dependencies = { "catppuccin/nvim", version = "1.9.0" },
     event = "VimEnter",
     priority = 900,
     opts = function()

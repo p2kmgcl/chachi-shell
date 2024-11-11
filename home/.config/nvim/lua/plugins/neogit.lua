@@ -1,9 +1,9 @@
 return {
   "NeogitOrg/neogit",
   dependencies = {
-    "nvim-lua/plenary.nvim",
+    { "nvim-lua/plenary.nvim", version = "0.1.4" },
     "sindrets/diffview.nvim",
-    "nvim-telescope/telescope.nvim",
+    { "nvim-telescope/telescope.nvim", version = "0.1.8" },
   },
   lazy = true,
   keys = {

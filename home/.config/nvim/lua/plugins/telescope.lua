@@ -1,8 +1,8 @@
 return {
   "nvim-telescope/telescope.nvim",
-  branch = "0.1.x",
+  version = "0.1.8",
   dependencies = {
-    "nvim-lua/plenary.nvim",
+    { "nvim-lua/plenary.nvim", version = "0.1.4" },
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
@@ -11,10 +11,7 @@ return {
       end,
     },
     { "nvim-telescope/telescope-ui-select.nvim" },
-    {
-      "nvim-tree/nvim-web-devicons",
-      enabled = vim.g.have_nerd_font,
-    },
+    { "nvim-tree/nvim-web-devicons", version = "0.100", enabled = vim.g.have_nerd_font },
   },
   cmd = "Telescope",
   keys = {

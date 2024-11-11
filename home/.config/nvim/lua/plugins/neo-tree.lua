@@ -1,9 +1,10 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  version = "3.27",
   dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons",
-    "MunifTanjim/nui.nvim",
+    { "nvim-lua/plenary.nvim", version = "0.1.4" },
+    { "nvim-tree/nvim-web-devicons", version = "0.100", enabled = vim.g.have_nerd_font },
+    { "MunifTanjim/nui.nvim", version = "0.3.0" },
   },
   lazy = true,
   keys = {

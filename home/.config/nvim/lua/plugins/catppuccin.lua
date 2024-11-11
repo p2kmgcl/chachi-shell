@@ -1,5 +1,6 @@
 return {
   "catppuccin/nvim",
+  version = "1.9.0",
   name = "catppuccin",
   event = "VimEnter",
   priority = 1000,

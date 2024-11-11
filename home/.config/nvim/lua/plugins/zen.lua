@@ -1,5 +1,6 @@
 return {
   "folke/zen-mode.nvim",
+  version = "1.4.0",
   lazy = true,
   keys = {
     {

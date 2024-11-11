@@ -1,11 +1,12 @@
 return {
   "nvim-neotest/neotest",
+  version = "5.6.1",
   lazy = true,
   dependencies = {
-    "nvim-neotest/nvim-nio",
-    "nvim-lua/plenary.nvim",
+    { "nvim-neotest/nvim-nio", version = "1.10.0" },
+    { "nvim-lua/plenary.nvim", version = "0.1.4" },
     "antoinemadec/FixCursorHold.nvim",
-    "nvim-treesitter/nvim-treesitter",
+    { "nvim-treesitter/nvim-treesitter", version = "0.9.3" },
     "nvim-neotest/neotest-jest",
   },
   keys = {

@@ -1,6 +1,7 @@
 -- Highlight, edit, and navigate code
 return {
   "nvim-treesitter/nvim-treesitter",
+  version = "0.9.3",
   event = { "VeryLazy", "BufReadPost" },
   build = ":TSUpdate",
   opts = {
