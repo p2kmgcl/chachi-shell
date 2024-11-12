@@ -10,10 +10,3 @@
 /home/.ssh/id_*
 /home/.ssh/known_hosts
 /home/.ssh/known_hosts.old
-/liferay/api/types/generated
-/liferay/pleigrai/blob-report/
-/liferay/pleigrai/node_modules/
-/liferay/pleigrai/playwright-report/
-/liferay/pleigrai/playwright/.cache/
-/liferay/pleigrai/test-results/
-/seniore/target

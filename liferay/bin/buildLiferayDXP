@@ -1,8 +1,0 @@
-#!/bin/bash
-
-SENIORE_PATH=$CHACHI_PATH/seniore/target/release/seniore
-cd $HOME/Projects/community-portal/liferay-portal && ant setup-profile-dxp && ant all -Dnodejs.node.env=development
-if [ ! $? -eq 0 ]; then exit 1; fi
-UPDATED_MODULES=$($SENIORE_PATH liferay get-updated-modules)
-if [ ! $? -eq 0 ]; then exit 1; fi
-$SENIORE_PATH liferay update-modules-cache

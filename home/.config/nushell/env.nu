@@ -20,18 +20,6 @@ let-env NU_PLUGIN_DIRS = [
     ($nu.default-config-dir | path join 'plugins')
 ]
 
-let-env PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/.liferay-ant/bin")
-let-env PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/.liferay-java/bin")
-let-env PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/.liferay-jpm/bin")
-let-env PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/.liferay-maven/bin")
-let-env ANT_HOME = $"($env.HOME)/.liferay-ant"
-let-env JAVA_HOME = $"($env.HOME)/.liferay-java"
-let-env JPM_HOME = $"($env.HOME)/.liferay-jpm"
-let-env MAVEN_HOME = $"($env.HOME)/.liferay-maven"
-let-env PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/Projects/community-portal/config/bin")
-let-env ANT_OPTS = "-XX:-UseGCOverheadLimit -Xmx6144m -XX:MaxMetaspaceSize=1024m"
-let-env GRADLE_OPTS = "-Dorg.gradle.daemon=false"
-
 let-env PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/.cargo/bin")
 
 let-env PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/.local/bin")

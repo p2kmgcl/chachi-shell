@@ -1,3 +1,0 @@
-#!/bin/bash
-
-$CHACHI_PATH/seniore/target/release/seniore liferay build-lang

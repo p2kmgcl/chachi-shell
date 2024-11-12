@@ -1,3 +1,0 @@
-#!/bin/bash
-
-$LIFERAY_PORTAL_PATH/gradlew $@

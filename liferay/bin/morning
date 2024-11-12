@@ -1,7 +1,0 @@
-#!/bin/bash
-
-$CHACHI_PATH/liferay/bin/destroyLiferayDatabase
-cd $LIFERAY_PORTAL_PATH && git cifuentes
-$CHACHI_PATH/liferay/bin/buildLiferayDXP
-$CHACHI_PATH/liferay/bin/createLiferayDatabase
-$CHACHI_PATH/liferay/bin/runLiferayPortal

@@ -6,7 +6,6 @@ Wants=chachi-cpupower-gui.service
 Wants=chachi-rclone-nas.service
 Wants=chachi-mako.service
 Wants=chachi-polkit-gnome.service
-Wants=chachi-proton-vpn.service
 Wants=chachi-slack.service
 Wants=chachi-syncthing.service
 Wants=chachi-wl-paste.service
