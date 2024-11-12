@@ -26,13 +26,18 @@ y = 4
 history = 99999
 
 [window]
+blur = false
 decorations = "full"
 decorations_theme_variant = "Light"
 dynamic_padding = true
 dynamic_title = true
 opacity = 1.0
-blur = false
+option_as_alt = "Both"
 resize_increments = true
+
+[[hints.enabled]]
+hyperlinks = true
+action = 'Select'
 
 [colors]
 draw_bold_text_with_bright_colors = true
