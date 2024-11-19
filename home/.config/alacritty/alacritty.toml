@@ -35,10 +35,6 @@ opacity = 1.0
 option_as_alt = "Both"
 resize_increments = true
 
-[[hints.enabled]]
-hyperlinks = true
-action = 'Select'
-
 [colors]
 draw_bold_text_with_bright_colors = true
 
