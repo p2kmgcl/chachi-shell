@@ -80,20 +80,36 @@ return {
 
     local nvim_lsp = require("lspconfig")
 
+    -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
     local servers = {
       bashls = {},
       denols = {
-        root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
+        root_dir = nvim_lsp.util.root_pattern("deno.json"),
+        init_options = {
+          lint = true,
+          unstable = false,
+          suggest = {
+            imports = {
+              hosts = {
+                ["https://deno.land"] = true,
+              },
+            },
+          },
+        },
       },
+      cssls = {},
       docker_compose_language_service = {},
       dockerls = {},
       eslint = {
         root_dir = nvim_lsp.util.root_pattern(
           "eslint.config.js",
+          "eslint.config.ts",
           "eslint.config.mjs",
-          "eslint.config.cjs",
+          "eslint.config.mts",
+          "eslint.config.json",
           ".eslintrc",
           ".eslintrc.js",
+          ".eslintrc.ts",
           ".eslintrc.json"
         ),
       },
@@ -108,17 +124,17 @@ return {
           },
         },
       },
-      markdownlint = {},
-      marksman = {},
+      prettierd = {},
       rust_analyzer = {},
-      shfmt = {},
       stylelint = {},
       stylua = {},
-      tailwindcss = {},
+      tailwindcss = {
+        root_dir = nvim_lsp.util.root_pattern("tailwind.config.js", "tailwind.config.ts"),
+      },
       taplo = {},
       ts_ls = {
-        single_file_support = true,
-        root_dir = nvim_lsp.util.root_pattern("package.json"),
+        single_file_support = false,
+        root_dir = nvim_lsp.util.root_pattern("tsconfig.json", "package.json"),
       },
       yamlls = {},
     }

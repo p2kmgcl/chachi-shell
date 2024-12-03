@@ -27,12 +27,15 @@ return {
       }
     end,
     formatters_by_ft = {
-      css = { "stylelint" },
       lua = { "stylua" },
-      scss = { "stylelint" },
-      javascript = { "prettier", "prettierd", "eslint", "ts_ls" },
-      typescript = { "prettier", "prettierd", "eslint", "ts_ls" },
-      typescriptreact = { "prettier", "prettierd", "eslint", "ts_ls" },
+      html = { "prettierd" },
+      json = { "prettierd" },
+      css = { "stylelint", "prettierd" },
+      scss = { "stylelint", "prettierd" },
+      javascript = { "prettierd" },
+      typescript = { "prettierd" },
+      javascriptreact = { "prettierd" },
+      typescriptreact = { "prettierd" },
     },
   },
 }
