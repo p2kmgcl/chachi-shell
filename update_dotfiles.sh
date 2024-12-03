@@ -87,3 +87,4 @@ link_thing .bashrc
 link_thing .editorconfig
 link_thing .gitconfig
 link_thing .ideavimrc
+link_thing .tmux.conf
