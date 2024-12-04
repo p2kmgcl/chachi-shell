@@ -1,8 +1,8 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
-config.font = wezterm.font("VictorMono Nerd Font", { weight = "Medium", italic = false })
-config.font_size = 16
+config.font = wezterm.font("VictorMono Nerd Font", { weight = 500, italic = false })
+config.font_size = 16.5
 config.line_height = 1.2
 
 local color_scheme = "Dark"
