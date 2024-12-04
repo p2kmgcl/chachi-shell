@@ -11,4 +11,4 @@ gui:
 git:
   paging:
     colorArg: never
-    pager: delta --light --no-gitconfig --paging=never
+    pager: delta --detect-dark-light always --no-gitconfig --paging=never
