@@ -6,7 +6,7 @@ set $configDir $CHACHI_PATH/home/.config/sway
 set $seniore $CHACHI_PATH/seniore/target/release/seniore
 
 set $mod Mod4
-set $term alacritty
+set $term wezterm
 set $browser firefox
 set $appMenu $configDir/sway-menu-apps
 set $fileMenu $configDir/sway-menu-files

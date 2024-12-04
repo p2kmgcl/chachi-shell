@@ -35,10 +35,7 @@ return {
       },
       gitsigns = { enabled = true },
       tmux = { enabled = true },
-      alacritty = {
-        enabled = true,
-        font = "14",
-      },
+      wezterm = { enabled = true },
     },
   },
 }
