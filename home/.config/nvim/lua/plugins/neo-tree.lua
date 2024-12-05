@@ -15,23 +15,9 @@ return {
       mode = "",
       desc = "[E]xplorer",
     },
-    {
-      "<leader>b",
-      function()
-        vim.cmd("Neotree action=focus source=buffers reveal=true")
-      end,
-      mode = "",
-      desc = "[B]uffers",
-    },
   },
   opts = {
     close_if_last_window = true,
-    buffers = {
-      follow_current_file = {
-        enabled = true,
-        leave_dirs_open = false,
-      },
-    },
     filesystem = {
       filtered_items = {
         hide_dotfiles = false,
