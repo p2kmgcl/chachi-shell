@@ -48,7 +48,7 @@ return {
     },
     window = {
       auto_expand_width = "fit_content",
-      position = "right",
+      position = "float",
       mappings = {
         ["<space>"] = "noop",
       },
