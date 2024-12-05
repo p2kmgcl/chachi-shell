@@ -201,7 +201,7 @@ client.focused_inactive #00000066 #00000066 #ffffffff #00000066 #00000066
 client.unfocused #00000066 #00000066 #ffffffff #00000066 #00000066
 client.urgent #FF573366 #00000066 #ffffffff #00000066 #00000066
 
-font pango:VictorMono Nerd Font 9
+font pango:ZedMono Nerd Font 9
 
 exec_always {
     gsettings set $gnome-schema gtk-theme 'Adwaita'
@@ -210,7 +210,7 @@ exec_always {
     gsettings set $gnome-schema font-antialiasing 'grayscale'
     gsettings set $gnome-schema font-hinting 'slight'
     gsettings set $gnome-schema font-name 'Fira Sans Regular 10'
-    gsettings set $gnome-schema monospace-font-name 'VictorMono Nerd Font 9'
+    gsettings set $gnome-schema monospace-font-name 'ZedMono Nerd Font 9'
 }
 
 bar {
