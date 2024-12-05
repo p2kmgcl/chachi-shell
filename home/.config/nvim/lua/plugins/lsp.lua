@@ -1,18 +1,17 @@
 -- LSP Configuration & Plugins
 return {
   "neovim/nvim-lspconfig",
-  version = "1.0.0",
   event = "BufReadPost",
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     -- WARN: Must be loaded before dependants
-    { "williamboman/mason.nvim", version = "1.10.0", config = true },
-    { "williamboman/mason-lspconfig.nvim", version = "1.31.0" },
+    { "williamboman/mason.nvim", config = true },
+    { "williamboman/mason-lspconfig.nvim" },
     { "WhoIsSethDaniel/mason-tool-installer.nvim" },
     -- Useful status updates for LSP.
-    { "j-hui/fidget.nvim", version = "1.4.5", opts = {} },
+    { "j-hui/fidget.nvim", opts = {} },
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-    { "folke/lazydev.nvim", version = "1.8.0", ft = "lua", opts = {} },
+    { "folke/lazydev.nvim", ft = "lua", opts = {} },
   },
   config = function()
     vim.api.nvim_create_autocmd("LspAttach", {

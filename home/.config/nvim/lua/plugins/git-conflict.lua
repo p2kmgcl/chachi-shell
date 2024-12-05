@@ -1,6 +1,5 @@
 return {
   "akinsho/git-conflict.nvim",
-  version = "2.1.0",
   event = "BufReadPost",
   opts = {
     default_mappings = true, -- disable buffer local mapping created by this plugin

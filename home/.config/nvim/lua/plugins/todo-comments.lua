@@ -1,11 +1,8 @@
 -- NOTE: Highlight todo, notes, etc in comments
 return {
   "folke/todo-comments.nvim",
-  version = "1.4.0",
   event = { "BufReadPost" },
-  dependencies = {
-    { "nvim-lua/plenary.nvim", version = "0.1.4" },
-  },
+  dependencies = { { "nvim-lua/plenary.nvim" } },
   opts = {
     signs = false,
   },

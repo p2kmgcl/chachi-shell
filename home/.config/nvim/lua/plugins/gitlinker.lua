@@ -1,7 +1,6 @@
 return {
   {
     "linrongbin16/gitlinker.nvim",
-    version = "4.13.2",
     keys = {
       {
         "<leader>gl",
