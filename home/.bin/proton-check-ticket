@@ -1,0 +1,88 @@
+#!/bin/bash
+
+REPO_PATH=$HOME/Projects/proton-clients
+MR_PREFIX="See merge request web/clients!"
+
+function main {
+  local ticketID=$1
+
+  cd $REPO_PATH
+  git fetch --all --quiet
+
+  local mergeRequestList=""
+  for commitID in $(git log --pretty=format:"%H" --grep "$ticketID" main); do
+    local mergeRequestID=$(git show $commitID | grep "$MR_PREFIX" | cut -d '!' -f 2)
+    if [ ! -z "$mergeRequestID" ]; then
+      local timestamp=$(git show --pretty=format:"%ct" $commitID)
+      mergeRequestList="$mergeRequestList $mergeRequestID!$timestamp"
+      echo $(git show --oneline $commitID)
+    fi
+  done
+
+  if [ -z "$mergeRequestList" ]; then
+    exit 0
+  else
+    echo ""
+  fi
+
+  for app in "mail" "calendar" "account"; do
+    local releaseBranchList=$(git branch --remotes --list "origin/release/proton-$app@*")
+    local fullBranchList=""
+    for releaseBranch in $releaseBranchList; do
+      local hasMergeRequest=""
+
+      # Check if branch has all merge request commits
+      for mergeRequest in $mergeRequestList; do
+        local mergeRequestID=$(echo $mergeRequest | cut -d '!' -f 1)
+        local timestamp=$(echo $mergeRequest | cut -d '!' -f 2)
+        hasMergeCommit=$(git log --oneline --author MargeBot --after $timestamp --grep "$MR_PREFIX$mergeRequestID" $releaseBranch)
+        if [ -z "$hasMergeCommit" ]; then
+          break
+        fi
+      done
+
+      if [ ! -z "$hasMergeCommit" ]; then
+        fullBranchList="$fullBranchList $releaseBranch"
+      fi
+    done
+
+    local branchList=$(echo $fullBranchList | tr ' ' '\n' | sort --unique)
+    local commitVersionList=$(echo $branchList | tr ' ' '\n' | grep "origin/release/proton-$app@" | cut -d '@' -f 2)
+
+    local commitFirstVersion=$(echo $commitVersionList | tr ' ' '\n' | head -1)
+    if [ -z "$commitFirstVersion" ]; then
+      echo ❌ Not released in $app
+      continue
+    else
+      echo ✅ Released in $app since $commitFirstVersion
+    fi
+
+    for channel in "alpha" "beta" "default"; do
+      local versionJSON=$(curl "https://$app.proton.me/assets/version.json" --silent -H "cookie: Tag=$channel")
+      local version=$(echo $versionJSON | jq --raw-output '.version')
+      local major=$(echo $version | cut -d '.' -f 1)
+      local minor=$(echo $version | cut -d '.' -f 2)
+      local patch=$(echo $version | cut -d '.' -f 3)
+      local released=""
+
+      for commitVersion in $commitVersionList; do
+        local commitMajor=$(echo $commitVersion | cut -d '.' -f 1)
+        local commitMinor=$(echo $commitVersion | cut -d '.' -f 2)
+        local commitPatch=$(echo $commitVersion | cut -d '.' -f 3)
+
+        if (( $commitMajor <= $major )) && (( $commitMinor <= $minor)) && (( $commitPatch <= $patch )); then
+          released=$commitVersion
+          break
+        fi
+      done
+
+      if [ -z "$released" ]; then
+        echo "   ❌ $app $channel $version"
+      else
+        echo "   ✅ $app $channel $version"
+      fi
+    done
+  done
+}
+
+main $@
