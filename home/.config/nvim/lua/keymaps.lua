@@ -51,16 +51,18 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Previous Search Re
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
--- change text without updating yank
 map("n", "c", '"_c', { noremap = true, desc = "Change without yank" })
 map("v", "c", '"_c', { noremap = true, desc = "Change without yank" })
 map("n", "d", '"_d', { noremap = true, desc = "Delete without yank" })
 map("v", "d", '"_d', { noremap = true, desc = "Delete without yank" })
 
--- open new terminal
-map("n", "<leader>nt", "<cmd>terminal<CR><cmd>setlocal nonumber norelativenumber<CR>i", { desc = "[N]ew [t]erminal" })
+map("n", "<leader>nt", function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  vim.cmd.wincmd("J")
+  vim.api.nvim_win_set_height(0, 5)
+end, { desc = "[N]ew [t]erminal" })
 
--- toggle wrap
 map("n", "<leader>tw", function()
   if vim.api.nvim_get_option_value("wrap", { scope = "local" }) then
     vim.api.nvim_set_option_value("wrap", false, { scope = "local" })
