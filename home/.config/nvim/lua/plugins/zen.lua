@@ -33,7 +33,7 @@ return {
         laststatus = 0,
       },
       gitsigns = { enabled = true },
-      tmux = { enabled = true },
+      tmux = { enabled = false },
       wezterm = { enabled = true },
     },
   },
