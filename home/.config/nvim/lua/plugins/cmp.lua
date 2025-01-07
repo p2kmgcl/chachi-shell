@@ -19,19 +19,18 @@ return {
           snippy.expand_snippet(args.body)
         end,
       },
-      completion = {
-        completeopt = "menu,menuone,noinsert",
-      },
       window = {
         completion = {},
         documentation = {},
       },
+      experimental = {
+        ghost_text = true,
+      },
 
       mapping = cmp.mapping.preset.insert({
-        ["<C-n>"] = cmp.mapping.select_next_item(),
-        ["<C-p>"] = cmp.mapping.select_prev_item(),
+        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
 
-        -- Scroll the documentation window [b]ack / [f]orward
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
 
