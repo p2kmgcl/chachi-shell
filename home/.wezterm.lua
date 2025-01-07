@@ -19,4 +19,7 @@ config.enable_tab_bar = false
 config.enable_scroll_bar = false
 config.window_padding = { top = 0, left = 0, right = 0, bottom = 0 }
 
+config.initial_rows = 40
+config.initial_cols = 180
+
 return config
