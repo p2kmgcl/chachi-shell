@@ -14,8 +14,12 @@ return {
     { "folke/lazydev.nvim", ft = "lua", opts = {} },
   },
   config = function()
+    local lsp_attach_autogroup = vim.api.nvim_create_augroup("lsp-attach", { clear = true })
+    local lsp_detach_autogroup = vim.api.nvim_create_augroup("lsp-detach", { clear = true })
+    local lsp_highlight_autogroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+
     vim.api.nvim_create_autocmd("LspAttach", {
-      group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+      group = lsp_attach_autogroup,
       callback = function(event)
         local map = function(keys, func, desc)
           vim.keymap.set("n", keys, func, { buffer = event.buf, desc = desc })
@@ -38,15 +42,14 @@ return {
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.server_capabilities.documentHighlightProvider then
-          local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
           vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
             buffer = event.buf,
-            group = highlight_augroup,
+            group = lsp_highlight_autogroup,
             callback = vim.lsp.buf.document_highlight,
           })
           vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
             buffer = event.buf,
-            group = highlight_augroup,
+            group = lsp_highlight_autogroup,
             callback = vim.lsp.buf.clear_references,
           })
         end
@@ -63,10 +66,10 @@ return {
     })
 
     vim.api.nvim_create_autocmd("LspDetach", {
-      group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+      group = lsp_detach_autogroup,
       callback = function(event)
         vim.lsp.buf.clear_references()
-        vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event.buf })
+        vim.api.nvim_clear_autocmds({ group = lsp_highlight_autogroup, buffer = event.buf })
       end,
     })
 
