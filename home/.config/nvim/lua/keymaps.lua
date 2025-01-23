@@ -69,3 +69,14 @@ map("n", "<leader>tw", function()
     vim.api.nvim_set_option_value("wrap", true, { scope = "local" })
   end
 end, { desc = "[T]oggle [W]rap" })
+
+map("n", "[t", function()
+  vim.cmd("tabprevious")
+end, { desc = "Next [t]ab" })
+map("n", "]t", function()
+  vim.cmd("tabnext")
+end, { desc = "Next [t]ab" })
+
+map("n", "<C-w>Q", function()
+  vim.cmd("tabclose")
+end, { desc = "Quit a tab" })

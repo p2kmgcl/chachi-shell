@@ -8,18 +8,18 @@ return {
   },
   keys = {
     {
-      "[t",
+      "[T",
       function()
         require("todo-comments").jump_prev()
       end,
-      desc = "Previous [t]odo",
+      desc = "Previous [T]odo",
     },
     {
-      "]t",
+      "]T",
       function()
         require("todo-comments").jump_next()
       end,
-      desc = "Next [t]odo",
+      desc = "Next [T]odo",
     },
   },
 }
