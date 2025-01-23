@@ -57,10 +57,9 @@ map("n", "d", '"_d', { noremap = true, desc = "Delete without yank" })
 map("v", "d", '"_d', { noremap = true, desc = "Delete without yank" })
 
 map("n", "<leader>nt", function()
-  vim.cmd.vnew()
+  vim.cmd.tabnew()
   vim.cmd.term()
-  vim.cmd.wincmd("J")
-  vim.api.nvim_win_set_height(0, 5)
+  vim.cmd("startinsert")
 end, { desc = "[N]ew [t]erminal" })
 
 map("n", "<leader>tw", function()
