@@ -51,24 +51,28 @@ return {
           set_jumps = true,
           goto_next_start = {
             ["]a"] = "@attribute.outer",
+            ["]b"] = "@block.outer",
             ["]c"] = "@class.outer",
             ["]f"] = "@function.outer",
             ["]p"] = "@parameter.inner",
           },
           goto_next_end = {
             ["]A"] = "@attribute.outer",
+            ["]B"] = "@block.outer",
             ["]C"] = "@class.outer",
             ["]F"] = "@function.outer",
             ["]P"] = "@parameter.inner",
           },
           goto_previous_start = {
             ["[a"] = "@attribute.outer",
+            ["[b"] = "@block.outer",
             ["[c"] = "@class.outer",
             ["[f"] = "@function.outer",
             ["[p"] = "@parameter.inner",
           },
           goto_previous_end = {
             ["[A"] = "@attribute.outer",
+            ["[B"] = "@block.outer",
             ["[C"] = "@class.outer",
             ["[F"] = "@function.outer",
             ["[P"] = "@parameter.inner",
@@ -80,6 +84,8 @@ return {
           keymaps = {
             ["aa"] = "@attribute.outer",
             ["ia"] = "@attribute.inner",
+            ["ab"] = "@block.outer",
+            ["ib"] = "@block.inner",
             ["ac"] = "@class.outer",
             ["ic"] = "@class.inner",
             ["af"] = "@function.outer",
