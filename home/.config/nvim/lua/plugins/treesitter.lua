@@ -3,18 +3,92 @@ return {
   "nvim-treesitter/nvim-treesitter",
   event = { "BufReadPost" },
   build = ":TSUpdate",
-  opts = {
-    ensure_installed = { "bash", "c", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },
-    auto_install = true,
-    highlight = {
-      enable = true,
-      additional_vim_regex_highlighting = { "ruby" },
-    },
-    indent = { enable = true, disable = { "ruby" } },
-  },
-  config = function(_, opts)
+  dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+  config = function()
     require("nvim-treesitter.install").prefer_git = true
     ---@diagnostic disable-next-line: missing-fields
-    require("nvim-treesitter.configs").setup(opts)
+    require("nvim-treesitter.configs").setup({
+      ensure_installed = {
+        "astro",
+        "bash",
+        "css",
+        "dockerfile",
+        "editorconfig",
+        "fish",
+        "git_config",
+        "git_rebase",
+        "gitattributes",
+        "gitcommit",
+        "gitignore",
+        "go",
+        "html",
+        "javascript",
+        "jsdoc",
+        "json",
+        "lua",
+        "luadoc",
+        "markdown",
+        "markdown_inline",
+        "rust",
+        "scss",
+        "sql",
+        "ssh_config",
+        "sway",
+        "tmux",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+        "yaml",
+      },
+      auto_install = true,
+      highlight = { enable = true },
+      incremental_selection = { enable = true },
+      indent = { enable = true },
+      textobjects = {
+        move = {
+          enable = true,
+          set_jumps = true,
+          goto_next_start = {
+            ["]a"] = "@attribute.outer",
+            ["]c"] = "@class.outer",
+            ["]f"] = "@function.outer",
+            ["]p"] = "@parameter.outer",
+          },
+          goto_next_end = {
+            ["]A"] = "@attribute.outer",
+            ["]C"] = "@class.outer",
+            ["]F"] = "@function.outer",
+            ["]P"] = "@parameter.outer",
+          },
+          goto_previous_start = {
+            ["[a"] = "@attribute.outer",
+            ["[c"] = "@class.outer",
+            ["[f"] = "@function.outer",
+            ["[p"] = "@parameter.outer",
+          },
+          goto_previous_end = {
+            ["[A"] = "@attribute.outer",
+            ["[C"] = "@class.outer",
+            ["[F"] = "@function.outer",
+            ["[P"] = "@parameter.outer",
+          },
+        },
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ["aa"] = "@attribute.outer",
+            ["ia"] = "@attribute.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ap"] = "@parameter.outer",
+            ["ip"] = "@parameter.inner",
+          },
+        },
+      },
+    })
   end,
 }
