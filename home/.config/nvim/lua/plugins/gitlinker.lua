@@ -6,10 +6,12 @@ return {
         "<leader>gl",
         function()
           local gitlinker = require("gitlinker")
+          local routers = require("gitlinker.routers")
+          local actions = require("gitlinker.actions")
 
           gitlinker.setup({
             callbacks = {
-              ["gitlab.protontech.ch"] = gitlinker.hosts.get_gitlab_type_url,
+              ["gitlab.protontech.ch"] = routers.gitlab_browse,
             },
           })
 
@@ -26,7 +28,7 @@ return {
           end
 
           gitlinker.get_buf_range_url(mode, {
-            action_callback = gitlinker.actions.copy_to_clipboard,
+            action_callback = actions.clipboard,
           })
         end,
         mode = { "n", "v" },
