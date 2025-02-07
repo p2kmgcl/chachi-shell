@@ -5,12 +5,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
-
-vim.api.nvim_create_autocmd("TermOpen", {
-  desc = "Adjust editor for terminal",
-  group = vim.api.nvim_create_augroup("term-open", { clear = true }),
-  callback = function()
-    vim.opt.number = false
-    vim.opt.relativenumber = false
-  end,
-})

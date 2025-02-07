@@ -56,12 +56,6 @@ map("v", "c", '"_c', { noremap = true, desc = "Change without yank" })
 map("n", "d", '"_d', { noremap = true, desc = "Delete without yank" })
 map("v", "d", '"_d', { noremap = true, desc = "Delete without yank" })
 
-map("n", "<leader>nt", function()
-  vim.cmd.tabnew()
-  vim.cmd.term()
-  vim.cmd("startinsert")
-end, { desc = "[N]ew [t]erminal" })
-
 map("n", "<leader>tw", function()
   if vim.api.nvim_get_option_value("wrap", { scope = "local" }) then
     vim.api.nvim_set_option_value("wrap", false, { scope = "local" })
