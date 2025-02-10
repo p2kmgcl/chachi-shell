@@ -99,6 +99,7 @@ return {
           },
         },
       },
+      clangd = {},
       cssls = {},
       docker_compose_language_service = {},
       dockerls = {},

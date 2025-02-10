@@ -11,6 +11,8 @@ return {
       ensure_installed = {
         "astro",
         "bash",
+        "c",
+        "cpp",
         "css",
         "dockerfile",
         "editorconfig",
