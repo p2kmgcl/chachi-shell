@@ -21,8 +21,8 @@ vim.opt.winblend = 10 -- Window blend
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 
 -- Beautiful gutter
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.number = false
+vim.opt.relativenumber = false
 vim.opt.signcolumn = "yes"
 
 -- Default split position

@@ -56,6 +56,22 @@ map("v", "c", '"_c', { noremap = true, desc = "Change without yank" })
 map("n", "d", '"_d', { noremap = true, desc = "Delete without yank" })
 map("v", "d", '"_d', { noremap = true, desc = "Delete without yank" })
 
+map("n", "<leader>tn", function()
+  if vim.api.nvim_get_option_value("number", { scope = "local" }) then
+    vim.api.nvim_set_option_value("number", false, { scope = "local" })
+  else
+    vim.api.nvim_set_option_value("number", true, { scope = "local" })
+  end
+end, { desc = "[T]oggle Line [N]umbers" })
+
+map("n", "<leader>tr", function()
+  if vim.api.nvim_get_option_value("relativenumber", { scope = "local" }) then
+    vim.api.nvim_set_option_value("relativenumber", false, { scope = "local" })
+  else
+    vim.api.nvim_set_option_value("relativenumber", true, { scope = "local" })
+  end
+end, { desc = "[T]oggle [R]elative Line Numbers" })
+
 map("n", "<leader>tw", function()
   if vim.api.nvim_get_option_value("wrap", { scope = "local" }) then
     vim.api.nvim_set_option_value("wrap", false, { scope = "local" })
