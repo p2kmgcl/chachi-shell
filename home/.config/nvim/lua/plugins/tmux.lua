@@ -12,8 +12,8 @@ return {
     },
     resize = {
       enable_default_keybindings = true,
-      resize_step_x = 8,
-      resize_step_y = 4,
+      resize_step_x = 1,
+      resize_step_y = 1,
     },
   },
 }
