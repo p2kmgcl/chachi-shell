@@ -7,11 +7,12 @@ return {
     opts = function()
       return {
         options = {
-          theme = "catppuccin",
+          theme = require("utils.get_lualine_theme"),
           icons_enabled = true,
           component_separators = { left = "", right = "" },
           section_separators = { left = "", right = "" },
         },
+
         sections = {
           lualine_a = { "mode" },
           lualine_b = {},
@@ -35,7 +36,7 @@ return {
           lualine_z = {},
         },
         inactive_sections = {
-          lualine_a = {},
+          lualine_a = { "mode" },
           lualine_b = {},
           lualine_c = {
             {

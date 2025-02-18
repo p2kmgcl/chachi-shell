@@ -5,7 +5,7 @@ return {
   priority = 1000,
   config = function()
     require("catppuccin").setup({
-      transparent_background = true,
+      transparent_background = false,
       show_end_of_buffer = false,
       default_integrations = false,
       background = {
@@ -13,7 +13,7 @@ return {
         dark = "mocha",
       },
       dim_inactive = {
-        enabled = true,
+        enabled = false,
         shade = "dark",
         percentage = 0.1,
       },
