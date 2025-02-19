@@ -214,5 +214,5 @@ exec_always {
 }
 
 bar {
-  swaybar_command waybar --config=$HOME/.config/waybar/sway.config.jsonc --style=$HOME-.config/waybar/sway.style.css
+  swaybar_command waybar --config=$HOME/.config/waybar/sway/config.jsonc --style=$HOME-.config/waybar/sway/style.css
 }
