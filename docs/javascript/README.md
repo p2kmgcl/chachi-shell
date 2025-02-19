@@ -3,7 +3,7 @@
 ## NodeJS
 
 ```bash
-curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "./.fnm" --skip-shell
+curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "~/.fnm" --skip-shell
 fnm install 22 && fnm use 22 && fnm default 22
 ```
 
