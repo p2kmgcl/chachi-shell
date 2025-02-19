@@ -24,3 +24,19 @@ rustup component add rust-analyzer
 - Alternative to top: `cargo install --locked bottom`
 - Incredible git tool: `cargo install --locked git-absorb`
 - Disk usage: `cargo install --locked du-dust`
+
+All together:
+
+```
+cargo install --locked \
+  starship \
+  zoxide \
+  git-delta \
+  exa \
+  fd-find \
+  bat \
+  bacon \
+  bottom \
+  git-absorb \
+  du-dust
+```

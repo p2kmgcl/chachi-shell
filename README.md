@@ -28,10 +28,8 @@ unnecessary applications**, and also adding some essential ones:
 
 1. [Shell](/home/.config/fish).
 1. [Rust](/docs/rust).
-1. [lazygit](/home/.config/lazygit).
 1. [JavaScript](/docs/javascript).
-1. [Seniore](/seniore).
 1. [Docker](/docs/docker).
 1. I use [**NeoVIM**](/home/.config/nvim), BTW.
-1. Use `rclone` and `syncthing`.
-1. [Sway](/home/.config/sway) in [Fedora](/docs/linux/distros/fedora.md).
+1. I use `rclone` and `syncthing`.
+1. [Hyprland](/home/.config/hypr) in [Archlinux](/docs/linux/distros/archlinux.md), BTW.

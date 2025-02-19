@@ -4,18 +4,19 @@
 
 ```bash
 curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "./.fnm" --skip-shell
-fnm install 20 && fnm use 20 && fnm alias default 20
+fnm install 22 && fnm use 22 && fnm default 22
 ```
 
 ```bash
 npm install -g npm
 
-npm install -g bash-language-server \
+npm install -g \
+  bash-language-server \
   dockerfile-language-server-nodejs \
   neovim \
   prettier \
-  typescript-language-server \
   typescript \
+  typescript-language-server \
   vscode-langservers-extracted
 ```
 

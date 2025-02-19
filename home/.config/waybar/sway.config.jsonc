@@ -1,0 +1,133 @@
+// -*- mode: jsonc -*-
+{
+  "layer": "bottom",
+  "position": "bottom",
+  "height": 30,
+  "spacing": 0,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "sway/mode",
+    "sway/workspaces",
+    "sway/scratchpad"
+  ],
+  "modules-center": [],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "battery",
+    "custom/powerprofile",
+    "custom/keyboardlayout",
+    "pulseaudio",
+    "backlight",
+    "tray",
+    "clock",
+  ],
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{name}{icon}",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": "",
+      "10": "",
+    },
+    "persistent-workspaces": {},
+  },
+  "custom/powerprofile": {
+    "exec": "/usr/bin/powerprofilesctl get",
+    "format": "🎆 {}",
+    "interval": 1,
+  },
+  "custom/keyboardlayout": {
+    "exec": "swaymsg -t get_inputs | jq -r '.[] | select(.type == \"keyboard\") | .xkb_active_layout_name' | head -1",
+    "on-click": "swaymsg input \"1:1:AT_Translated_Set_2_keyboard\" xkb_switch_layout next",
+    "format": "⌨ {}",
+    "interval": 5
+  },
+  "custom/woffu": {
+    "exec": "$CHACHI_PATH/seniore/target/release/seniore woffu get-status",
+    "format": "{}",
+    "interval": 1,
+  },
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>",
+  },
+  "tray": {
+    "spacing": 10,
+  },
+  "clock": {
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "format": "{:%H:%M, %A %d de %B}",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 4,
+      "format": {
+        "today": "<span background='#fff' color='#000'>{}</span>",
+        "months": "<span color='#aaa'>{}</span>",
+        "weekdays": "<span color='#aaa'>{}</span>",
+      },
+    },
+  },
+  "cpu": {
+    "format": "🤖 {usage}%",
+    "tooltip": false,
+  },
+  "memory": {
+    "format": "🧠 {}%",
+  },
+  "backlight": {
+    "format": "💡 {percent}%",
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "🔋 {capacity}%",
+    "format-charging": "⚡ {capacity}%",
+    "format-plugged": "",
+  },
+  "network": {
+    "format-wifi": "🛜 {essid} ({signalStrength}%)",
+    "format-ethernet": "🔌 {ipaddr}",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "format-linked": "🔌 {ifname} (No IP)",
+    "format-disconnected": "⚠ Disconnected",
+    "on-click": "nm-connection-editor",
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}% {format_source}",
+    "format-bluetooth": "{icon}🛜 {volume}% {format_source}",
+    "format-bluetooth-muted": "🔇 {icon}🛜 {format_source}",
+    "format-muted": "🔇 {format_source}",
+    "format-source": "🎤 {volume}%",
+    "format-source-muted": "🎤",
+    "format-icons": {
+      "headphone": "🎧",
+      "hands-free": "🎧",
+      "headset": "🎧",
+      "phone": "📞",
+      "portable": "📞",
+      "car": "🚙",
+      "default": [
+        "🔈",
+        "🔉",
+        "🔊"
+      ],
+    },
+    "on-click": "pavucontrol",
+  },
+  "mpris": {
+    "format": "▶️ {dynamic}",
+    "format-paused": "⏸ {dynamic}",
+  },
+}

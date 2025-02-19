@@ -4,6 +4,6 @@ if status is-interactive
         fish_add_path $HOME/Library/Android/sdk/emulator
         fish_add_path $HOME/Library/Android/sdk/platform-tools
     else
-        echo -e "\e[33mandroid sdk is not installed\e[0m"
+        # echo -e "\e[33mandroid sdk is not installed\e[0m"
     end
 end
