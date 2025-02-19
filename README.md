@@ -16,7 +16,7 @@ unnecessary applications**, and also adding some essential ones:
 1. Clone this repo in `$CHACHI_PATH`
 1. Install ssh keys.
 1. Install some utils that should be included in default repositories:
-   `curl fzf git nano ripgrep tmux`
+   `cmake curl fzf git nano ripgrep tmux`
 
 ## dotfiles
 
