@@ -6,9 +6,9 @@
   "spacing": 0,
   "reload_style_on_change": true,
   "modules-left": [
-    "sway/mode",
-    "sway/workspaces",
-    "sway/scratchpad"
+    "hyprland/mode",
+    "hyprland/workspaces",
+    "hyprland/scratchpad"
   ],
   "modules-center": [],
   "modules-right": [
