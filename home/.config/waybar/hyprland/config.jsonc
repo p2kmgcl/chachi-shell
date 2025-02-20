@@ -6,9 +6,8 @@
   "spacing": 0,
   "reload_style_on_change": true,
   "modules-left": [
-    "hyprland/mode",
-    "hyprland/workspaces",
-    "hyprland/scratchpad"
+    "hyprland/submap",
+    "hyprland/workspaces"
   ],
   "modules-center": [],
   "modules-right": [
@@ -16,13 +15,12 @@
     "memory",
     "battery",
     "custom/powerprofile",
-    "custom/keyboardlayout",
     "pulseaudio",
     "backlight",
     "tray",
     "clock",
   ],
-  "sway/workspaces": {
+  "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
     "warp-on-scroll": false,
@@ -45,20 +43,6 @@
     "exec": "/usr/bin/powerprofilesctl get",
     "format": "🎆 {}",
     "interval": 1,
-  },
-  "custom/keyboardlayout": {
-    "exec": "swaymsg -t get_inputs | jq -r '.[] | select(.type == \"keyboard\") | .xkb_active_layout_name' | head -1",
-    "on-click": "swaymsg input \"1:1:AT_Translated_Set_2_keyboard\" xkb_switch_layout next",
-    "format": "⌨ {}",
-    "interval": 5
-  },
-  "custom/woffu": {
-    "exec": "$CHACHI_PATH/seniore/target/release/seniore woffu get-status",
-    "format": "{}",
-    "interval": 1,
-  },
-  "sway/mode": {
-    "format": "<span style=\"italic\">{}</span>",
   },
   "tray": {
     "spacing": 10,
