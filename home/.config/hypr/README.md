@@ -14,7 +14,9 @@
 - Audio control: `sudo pacman -S pavucontrol pactl playerctl`
 - Brightness control: `sudo pacman -S brightnessctl`
 - Power control: `sudo pacman -S powerprofilesctl`
+- Network manager: `sudo pacman -S network-manager-applet`
 
 
+- File manager: `sudo pacman -S thunar thunar-archive-plugin`
 - UI settings: `sudo pacman -S nwg-look qt6-wayland qt6ct`
 - Wallpaper: `sudo pacman -S hyprpaper`
