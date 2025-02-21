@@ -9,7 +9,7 @@
 - Audio: `sudo pacman -S pipewire wireplumber`
 - Desktop portal: file pickers, screensharing...
   `sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland`
-- Notification daemon: `sudo pacman -S mako && systemctl --user enable mako`
+- Notification daemon: `sudo pacman -S libnotify mako && systemctl --user enable mako`
 - Authentication agent: `sudo pacman -S hyprpolkitagent && systemctl --user enable hyprpolkitagent`
 - Audio control: `sudo pacman -S pavucontrol pactl playerctl`
 - Brightness control: `sudo pacman -S brightnessctl`
@@ -20,6 +20,11 @@
 - Screen record: `sudo pacman -S wf-recorder gifski slurp`
 
 
-- File manager: `sudo pacman -S thunar thunar-archive-plugin`
+- File manager: `sudo pacman -S nautilus`
 - UI settings: `sudo pacman -S nwg-look qt6-wayland qt6ct`
+- Image viewer: `sudo pacman -S eog`
+- File compress: `sudo pacman -S xarchiver zip unzip`
+- Image editor: `sudo pacman -S gimp gimp-plugin-gmic inkscape`
+- Torrent: `sudo pacman -S transmission-gtk`
+- Video player: `sudo pacman -S clapper`
 - Wallpaper: `sudo pacman -S hyprpaper`
