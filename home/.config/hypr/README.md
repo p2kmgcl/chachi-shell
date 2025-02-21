@@ -8,13 +8,15 @@
 - System bar: `sudo pacman -S waybar`
 - Audio: `sudo pacman -S pipewire wireplumber`
 - Desktop portal: file pickers, screensharing...
-  `sudo pacman -S xdg-desktop-portal-gtk xdg-desktop-portal hyprland`
+  `sudo pacman -S xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland`
 - Notification daemon: `sudo pacman -S mako && systemctl --user enable mako`
 - Authentication agent: `sudo pacman -S hyprpolkitagent && systemctl --user enable hyprpolkitagent`
 - Audio control: `sudo pacman -S pavucontrol pactl playerctl`
 - Brightness control: `sudo pacman -S brightnessctl`
 - Power control: `sudo pacman -S powerprofilesctl`
 - Network manager: `sudo pacman -S network-manager-applet`
+- Clipboard: `sudo pacman -S wl-clipboard`
+- Screenshots: `sudo pacman -S grim slurp swappy`
 
 
 - File manager: `sudo pacman -S thunar thunar-archive-plugin`
