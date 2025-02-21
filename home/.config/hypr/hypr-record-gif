@@ -1,0 +1,25 @@
+#!/bin/bash
+
+FILE_PREFIX="$HOME/Videos/screen-record-$(date +'%Y-%m-%d_%H-%M-%s')"
+SCREEN_REGION="$(slurp)"
+SCREEN_WIDTH="$(echo ${SCREEN_REGION} | awk '{print $2}' | cut -d 'x' -f 1)"
+SCREEN_HEIGHT="$(echo ${SCREEN_REGION} | awk '{print $2}' | cut -d 'x' -f 2)"
+
+if ! command -v wf-recorder 2>&1 >/dev/null; then
+  notify-send "Record screen" "Error: wf-recorder is not installed"
+  exit 1
+fi
+
+if ! command -v gifski 2>&1 >/dev/null; then
+  notify-send "Record screen" "Error: gifski is not installed"
+  exit 1
+fi
+
+notify-send -t 3000 "Record screen" "Recording in 3.. 2.. 1.."
+sleep 3s
+wf-recorder --codec libx264rgb -g "${SCREEN_REGION}" -f "${FILE_PREFIX}.mp4"
+notify-send -t 2000 "Record screen" "Recording stopped, creating GIF"
+gifski --fps 10 --width "${SCREEN_WIDTH}" --height "${SCREEN_HEIGHT}" --output "${FILE_PREFIX}.gif" "${FILE_PREFIX}.mp4"
+rm "${FILE_PREFIX}.mp4"
+notify-send -t 2000 "Record screen" "GIF created"
+thunar "${FILE_PREFIX}.gif"

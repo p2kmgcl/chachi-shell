@@ -17,6 +17,7 @@
 - Network manager: `sudo pacman -S network-manager-applet`
 - Clipboard: `sudo pacman -S wl-clipboard`
 - Screenshots: `sudo pacman -S grim slurp swappy`
+- Screen record: `sudo pacman -S wf-recorder gifski slurp`
 
 
 - File manager: `sudo pacman -S thunar thunar-archive-plugin`
