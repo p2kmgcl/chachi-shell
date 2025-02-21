@@ -18,7 +18,7 @@
 - Clipboard: `sudo pacman -S wl-clipboard`
 - Screenshots: `sudo pacman -S grim slurp swappy`
 - Screen record: `sudo pacman -S wf-recorder gifski slurp`
-
+- Bluetooth: `sudo pacman -S bluez bluez-utils blueman && sudo systemctl enable --now bluetooth.service`
 
 - File manager: `sudo pacman -S nautilus`
 - UI settings: `sudo pacman -S nwg-look qt6-wayland qt6ct`
