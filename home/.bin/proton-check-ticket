@@ -52,7 +52,6 @@ function main {
     local commitFirstVersion=$(echo $commitVersionList | tr ' ' '\n' | head -1)
     if [ -z "$commitFirstVersion" ]; then
       echo ❌ Not released in $app
-      continue
     else
       echo ✅ Released in $app since $commitFirstVersion
     fi
