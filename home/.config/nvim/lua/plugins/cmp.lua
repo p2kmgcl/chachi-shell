@@ -7,16 +7,12 @@ return {
     "dcampos/cmp-snippy",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
-    "Exafunction/codeium.nvim",
   },
   config = function()
     local cmp = require("cmp")
 
     local snippy = require("snippy")
     snippy.setup({})
-
-    local codeium = require("codeium")
-    codeium.setup({})
 
     cmp.setup({
       snippet = {
@@ -64,7 +60,6 @@ return {
       }),
       sources = {
         { name = "nvim_lsp" },
-        { name = "codeium" },
         { name = "snippy" },
         { name = "path" },
       },
