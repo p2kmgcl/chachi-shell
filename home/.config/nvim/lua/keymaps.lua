@@ -75,7 +75,7 @@ end, { desc = "[T]oggle [W]rap" })
 
 map("n", "[t", function()
   vim.cmd("tabprevious")
-end, { desc = "Next [t]ab" })
+end, { desc = "Previous [t]ab" })
 map("n", "]t", function()
   vim.cmd("tabnext")
 end, { desc = "Next [t]ab" })
