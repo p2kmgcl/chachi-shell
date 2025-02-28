@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd("WinLeave", {
         and not vim.startswith(hl_group, "VertSplit")
         and not vim.startswith(hl_group, "WhichKey")
       then
-        vim.api.nvim_set_hl(ns_id, hl_group, { fg = color })
+        vim.api.nvim_set_hl(ns_id, hl_group, { fg = color, bg = hl_value.bg })
       end
     end
   end,
