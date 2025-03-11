@@ -12,6 +12,12 @@ vim.opt.updatetime = 250 -- Reduce updatetime
 vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 
+-- History, 'X,<Y,sZ, where:
+-- X: Saves marks for up to X files
+-- Y: Saves up to Y lines of command history
+-- Z: Saves up to Z old files
+vim.g.shada = "'100,<50,s1000"
+
 -- Globals
 vim.g.have_nerd_font = true -- Use nerd font icons
 
