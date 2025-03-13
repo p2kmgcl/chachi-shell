@@ -8,14 +8,6 @@ return {
   lazy = true,
   keys = {
     {
-      "<leader>gc",
-      function()
-        vim.cmd("Neogit commit")
-      end,
-      mode = "",
-      desc = "[G]it [c]ommit",
-    },
-    {
       "<leader>gs",
       function()
         vim.cmd("Neogit")
@@ -32,7 +24,15 @@ return {
       ["azure.com"] = "https://dev.azure.com/${owner}/_git/${repository}/pullrequestcreate?sourceRef=${branch_name}&targetRef=${target}",
       ["gitlab.protontech.ch"] = "https://gitlab.protontech.ch/${owner}/${repository}/merge_requests/new?merge_request[source_branch]=${branch_name}",
     },
+    status = {
+      recent_commit_count = 100,
+    },
+    integrations = {
+      telescope = true,
+      diffview = true,
+    },
     console_timeout = 300,
+    disable_hint = true,
     auto_show_console = true,
     auto_close_console = false,
   },
