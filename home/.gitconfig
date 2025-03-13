@@ -15,7 +15,7 @@
 
 [diff]
   algorithm = histogram
-  context = 10
+  context = 0
   renames = true
   renamelimit = 5000
   tool = neovim
