@@ -2,14 +2,19 @@
 
 ## NodeJS
 
+```bas
+curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "$HOME/.fnm" --skip-shell
+```
+
 ```bash
-curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "~/.fnm" --skip-shell
 fnm install 22 && fnm use 22 && fnm default 22
 ```
 
 ```bash
 npm install -g npm
+```
 
+```bash
 npm install -g \
   bash-language-server \
   dockerfile-language-server-nodejs \
