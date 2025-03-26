@@ -72,7 +72,7 @@
 [user]
   email = contact@pablomolina.me
   name = Pablo Molina
-  signingkey = ~/.ssh/id_rsa.pub
+  signingkey = ~/.ssh/id_ed25519
   username = p2kmgcl
 
 [filter "lfs"]
@@ -119,3 +119,6 @@
   rbi = rebase --interactive
   rsh = reset --hard
   st = status --short
+
+[include]
+  path = ~/.gitconfig.extra
