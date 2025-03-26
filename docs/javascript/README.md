@@ -3,11 +3,11 @@
 ## NodeJS
 
 ```bas
-curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "$HOME/.fnm" --skip-shell
+curl https://get.volta.sh | bash -s -- --skip-setup
 ```
 
 ```bash
-fnm install 22 && fnm use 22 && fnm default 22
+volta install node
 ```
 
 ```bash

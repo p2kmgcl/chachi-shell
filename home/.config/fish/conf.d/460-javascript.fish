@@ -6,16 +6,12 @@ if status is-interactive
         echo -e "\e[33mdeno is not installed\e[0m"
     end
 
-    if type -q $HOME/.fnm/fnm
-        fish_add_path $HOME/.fnm
-        fnm env --use-on-cd | source
-        alias man='npx -y tldr'
-    else if type -q /opt/homebrew/bin/fnm
-        fish_add_path $HOME/.fnm
-        fnm env --use-on-cd | source
+    if test -d $HOME/.volta
+        export VOLTA_HOME="$HOME/.volta"
+        fish_add_path $HOME/.volta/bin
         alias man='npx -y tldr'
     else
-        echo -e "\e[33mfnm is not installed\e[0m"
+        echo -e "\e[33mvolta is not installed\e[0m"
     end
 
     if type -q /opt/homebrew/bin/mkcert
