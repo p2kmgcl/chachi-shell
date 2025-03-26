@@ -136,7 +136,7 @@ return {
       },
       taplo = {},
       ts_ls = {
-        single_file_support = false,
+        single_file_support = true,
         root_dir = nvim_lsp.util.root_pattern("tsconfig.json", "package.json"),
       },
       yamlls = {},
