@@ -1,1 +1,0 @@
-/home/p2kmgcl/Projects/chachi-shell/liferay/liferay.fish
