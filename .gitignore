@@ -1,5 +1,6 @@
 /home/.config/fish/completions
 /home/.config/fish/fish_variables
+/home/.config/fish/conf.d/999-extra.fish
 /home/.config/karabiner/automatic_backups
 /home/.config/lazygit/state.yml
 /home/.config/nushell/history.txt
@@ -8,6 +9,7 @@
 /home/.config/nvim/undo-dir
 /home/.config/systemd/user/default.target.wants
 /home/.config/systemd/user/graphical-session.target.wants
+/home/.gitconfig.extra
 /home/.ssh/id_*
 /home/.ssh/known_hosts
 /home/.ssh/known_hosts.old
