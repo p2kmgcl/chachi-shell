@@ -136,8 +136,9 @@ return {
       },
       taplo = {},
       ts_ls = {
-        single_file_support = true,
-        root_dir = nvim_lsp.util.root_pattern("tsconfig.json", "package.json"),
+        single_file_support = false,
+        root_dir = nvim_lsp.util.root_pattern(".git", "jsconfig.json", "tsconfig.json", "package.json"),
+        init_options = { maxTsServerMemory = 32000 },
       },
       yamlls = {},
     }
