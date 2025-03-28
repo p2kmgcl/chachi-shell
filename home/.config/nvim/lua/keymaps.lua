@@ -6,18 +6,6 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Close current tab
 map("n", "<leader>Q", "<cmd>tabclose<CR>", { desc = "Close current tab" })
 
--- Diagnostic keymaps
-local diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-  severity = severity and vim.diagnostic.severity[severity] or nil
-  return function()
-    go({ severity = severity })
-  end
-end
-map("n", "]d", diagnostic_goto(true), { desc = "Next [D]iagnostic" })
-map("n", "[d", diagnostic_goto(false), { desc = "Previous [D]iagnostic" })
-map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "[C]ode [D]iagnostics" })
-
 -- Disable arrow keys in normal mode
 map("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
 map("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
@@ -83,10 +71,3 @@ end, { desc = "Next [t]ab" })
 map("n", "<C-w>Q", function()
   vim.cmd("tabclose")
 end, { desc = "Quit a tab" })
-
-map("n", "[q", function()
-  vim.cmd("cprevious")
-end, { desc = "Previous [Q]uickfix item" })
-map("n", "]q", function()
-  vim.cmd("cnext")
-end, { desc = "Next [Q]uickfix item" })
