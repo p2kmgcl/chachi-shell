@@ -55,3 +55,8 @@ vim.opt.hlsearch = true
 vim.opt.inccommand = "split"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+-- Enable multiline diagnostics
+vim.diagnostic.config({
+  virtual_lines = true,
+})
