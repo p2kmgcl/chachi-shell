@@ -1,6 +1,11 @@
 return {
   "folke/noice.nvim",
-  event = "VeryLazy",
+  priority = 1000,
+  lazy = false,
+  dependencies = {
+    "folke/snacks.nvim",
+    "MunifTanjim/nui.nvim",
+  },
   opts = {
     lsp = {
       override = {
@@ -13,8 +18,5 @@ return {
       command_palette = true, -- position the cmdline and popupmenu together
       lsp_doc_border = true, -- add a border to hover docs and signature help
     },
-  },
-  dependencies = {
-    "MunifTanjim/nui.nvim",
   },
 }
