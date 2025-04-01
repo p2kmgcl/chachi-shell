@@ -14,7 +14,7 @@ return {
   opts = {
     window = {
       backdrop = 1,
-      width = 100,
+      width = 80,
       height = 1,
       options = {
         signcolumn = "no",
@@ -23,6 +23,8 @@ return {
         cursorcolumn = false,
         foldcolumn = "0",
         list = false,
+        wrap = true,
+        linebreak = true,
       },
     },
     plugins = {

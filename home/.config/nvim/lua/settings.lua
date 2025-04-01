@@ -11,6 +11,8 @@ vim.opt.termguicolors = true -- Use term GUI colors (needed for notifications)
 vim.opt.updatetime = 250 -- Reduce updatetime
 vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
+vim.opt.wrap = false -- Do not break words
+vim.opt.linebreak = false -- Do not break lines
 
 -- History, 'X,<Y,sZ, where:
 -- X: Saves marks for up to X files

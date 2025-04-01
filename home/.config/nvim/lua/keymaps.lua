@@ -54,10 +54,13 @@ map("n", "<leader>tr", function()
 end, { desc = "[T]oggle [R]elative Line Numbers" })
 
 map("n", "<leader>tw", function()
+  -- Linebreak is wrap, but respecting words.
   if vim.api.nvim_get_option_value("wrap", { scope = "local" }) then
     vim.api.nvim_set_option_value("wrap", false, { scope = "local" })
+    vim.api.nvim_set_option_value("linebreak", false, { scope = "local" })
   else
     vim.api.nvim_set_option_value("wrap", true, { scope = "local" })
+    vim.api.nvim_set_option_value("linebreak", true, { scope = "local" })
   end
 end, { desc = "[T]oggle [W]rap" })
 
