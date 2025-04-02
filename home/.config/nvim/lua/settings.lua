@@ -1,6 +1,6 @@
 vim.opt.breakindent = true
 vim.opt.clipboard = "unnamedplus" -- Use system clipboard
-vim.opt.conceallevel = 0 -- Hide * markup for bold and italic, but not markers with substitutions
+vim.opt.conceallevel = 3 -- Hide * markup for bold and italic, but not markers with substitutions
 vim.opt.grepprg = "rg --vimgrep --hidden --ignore-vcs --ignore-global --iglob !.git/*" -- Search hidden files
 vim.opt.mouse = "" -- Disallow mouse events
 vim.opt.showmode = false -- Do not show mode, it's already in status line
@@ -60,5 +60,6 @@ vim.opt.smartcase = true
 
 -- Enable multiline diagnostics
 vim.diagnostic.config({
-  virtual_lines = true,
+  virtual_text = true,
+  virtual_lines = false,
 })
