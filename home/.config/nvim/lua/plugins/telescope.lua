@@ -8,22 +8,12 @@ return {
       cond = function()
         return vim.fn.executable("make") == 1
       end,
-    },
-    { "nvim-telescope/telescope-ui-select.nvim" },
-    { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
-  },
-  cmd = "Telescope",
-  keys = {
-    {
-      "<leader>/",
-      function()
-        require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-          winblend = 10,
-          previewer = false,
-        }))
+      config = function()
+        require("telescope").load_extension("fzf")
       end,
-      desc = "Find in current buffer",
     },
+  },
+  keys = {
     {
       "<leader>fb",
       "<cmd>Telescope buffers<cr>",
@@ -36,22 +26,12 @@ return {
     },
     {
       "<leader>ff",
-      function()
-        require("telescope.builtin").find_files({
-          hidden = true,
-        })
-      end,
+      "<cmd>Telescope find_files<cr>",
       desc = "[F]ind [F]iles",
     },
     {
       "<leader>fg",
-      function()
-        require("telescope.builtin").live_grep({
-          additional_args = function()
-            return { "--ignore-vcs", "--ignore-global", "--hidden", "--iglob", "!.git/*" }
-          end,
-        })
-      end,
+      "<cmd>Telescope live_grep<cr>",
       desc = "[F]ind by [G]rep",
     },
     {
@@ -71,11 +51,7 @@ return {
     },
     {
       "<leader>fo",
-      function()
-        require("telescope.builtin").oldfiles({
-          cwd_only = true,
-        })
-      end,
+      "<cmd>Telescope oldfiles<cr>",
       desc = "[F]ind [O]ld Files",
     },
     {
@@ -85,6 +61,9 @@ return {
     },
   },
   config = function()
+    local telescope = require("telescope")
+    local actions = require("telescope.actions")
+
     local function filename_first(_, path)
       local tail = require("telescope.utils").path_tail(path)
       local root = vim.fs.dirname(path)
@@ -106,12 +85,14 @@ return {
       end,
     })
 
-    require("telescope").setup({
+    telescope.setup({
       defaults = {
+        selection_caret = "➤ ",
         path_display = filename_first,
         sorting_strategy = "ascending",
         layout_strategy = "horizontal",
         layout_config = {
+          prompt_position = "top",
           preview_cutoff = 180,
           horizontal = {
             prompt_position = "top",
@@ -119,29 +100,44 @@ return {
             results_width = 0.4,
           },
         },
-        extensions_list = { "fzf" },
-        extensions = {
-          fzf = {
-            fuzzy = true,
-            override_generic_sorter = true,
-            override_file_sorter = true,
-            case_mode = "smart_case",
+        results_title = false,
+        cache_picker = false,
+        file_ignore_patterns = { "node_modules", "%.git/", "dist", "build", "vendor" },
+
+        mappings = {
+          i = {
+            ["<esc>"] = actions.close,
           },
         },
+
+        file_sorter = require("telescope.sorters").get_fzf_sorter,
+        generic_sorter = require("telescope.sorters").get_fzf_sorter,
       },
+
       pickers = {
-        live_grep = {
-          additional_args = function()
-            return { "--ignore-vcs", "--ignore-global", "--hidden", "--iglob", "!.git/*" }
-          end,
+        find_files = {
+          find_command = {
+            "fd",
+            "--type",
+            "f",
+            "--hidden",
+            "--follow",
+            "--exclude",
+            ".git",
+            "--exclude",
+            "node_modules",
+            "--exclude",
+            "build",
+            "--exclude",
+            "dist",
+            "--exclude",
+            "vendor",
+          },
+        },
+        oldfiles = {
+          cwd_only = true,
         },
       },
-      extensions = {
-        ["ui-select"] = { require("telescope.themes").get_dropdown() },
-      },
     })
-
-    pcall(require("telescope").load_extension, "fzf")
-    pcall(require("telescope").load_extension, "ui-select")
   end,
 }
