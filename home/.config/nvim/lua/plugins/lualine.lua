@@ -53,7 +53,15 @@ return {
               },
             },
           },
-          lualine_x = { "filetype" },
+          lualine_x = {
+            {
+              require("nvim-possession").status,
+              cond = function()
+                return require("nvim-possession").status() ~= nil
+              end,
+            },
+            "filetype",
+          },
           lualine_y = { "diff", "diagnostics" },
           lualine_z = {},
         },

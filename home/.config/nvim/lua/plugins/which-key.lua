@@ -23,6 +23,8 @@ return {
       { "<leader>n_", hidden = true },
       { "<leader>r", group = "[R]un" },
       { "<leader>r_", hidden = true },
+      { "<leader>s", group = "[T]ession" },
+      { "<leader>s_", hidden = true },
       { "<leader>t", group = "[T]oggle" },
       { "<leader>t_", hidden = true },
       { "<leader>w", group = "[W]orkspace" },
