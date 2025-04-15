@@ -2,6 +2,16 @@ return {
   "neovim/nvim-lspconfig",
   opts = {
     servers = {
+      eslint = {
+        settings = {
+          format = {
+            enable = false,
+          },
+          codeActionOnSave = {
+            enable = false,
+          },
+        },
+      },
       vtsls = {
         init_options = { hostInfo = "neovim" },
         settings = {
