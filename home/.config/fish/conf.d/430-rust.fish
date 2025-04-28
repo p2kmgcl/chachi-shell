@@ -16,8 +16,8 @@ if status is-interactive
     end
 
     if type -q btm
-        alias top='btm --basic --color default'
-        alias htop='btm --basic --color default'
+        alias top='btm --basic --theme default'
+        alias htop='btm --basic --theme default'
     end
 
     if type -q zoxide
