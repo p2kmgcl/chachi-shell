@@ -1,7 +1,9 @@
 return {
   "folke/snacks.nvim",
   opts = {
-    explorer = {},
+    indent = {
+      enabled = false,
+    },
     picker = {
       sources = {
         explorer = {
