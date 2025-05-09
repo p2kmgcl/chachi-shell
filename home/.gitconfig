@@ -42,6 +42,10 @@
 [init]
   defaultBranch = main
 
+[index]
+  skipHash = true
+  version = 4
+
 [merge]
   conflictstyle = merge
   tool = neovim
