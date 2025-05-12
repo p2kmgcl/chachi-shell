@@ -25,7 +25,7 @@ return {
               importModuleSpecifier = "non-relative",
             },
             tsserver = {
-              maxTsServerMemory = 20480,
+              maxTsServerMemory = 30720,
               nodePath = "node",
               watchOptions = {
                 excludeFiles = { ".pnp.cjs" },
