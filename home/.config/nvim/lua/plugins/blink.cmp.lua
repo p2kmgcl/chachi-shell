@@ -13,18 +13,10 @@ return {
     },
     sources = {
       providers = {
-        lsp = {
-          max_items = 10,
-        },
-        path = {
-          max_items = 10,
-        },
-        buffer = {
-          max_items = 10,
-        },
-        snippets = {
-          max_items = 10,
-        },
+        lsp = {},
+        path = {},
+        buffer = {},
+        snippets = {},
       },
     },
   },
