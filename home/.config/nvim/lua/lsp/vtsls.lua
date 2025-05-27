@@ -1,12 +1,38 @@
 return {
-  init_options = { hostInfo = "neovim" },
+  init_options = {
+    hostInfo = "neovim",
+  },
   settings = {
     javascript = {
       format = {
         enable = false,
       },
+      inlayHints = {
+        includeInlayParameterNameHints = "none",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = false,
+        includeInlayVariableTypeHints = false,
+        includeInlayPropertyDeclarationTypeHints = false,
+        includeInlayFunctionLikeReturnTypeHints = false,
+        includeInlayEnumMemberValueHints = false,
+      },
     },
     typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "none",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = false,
+        includeInlayVariableTypeHints = false,
+        includeInlayPropertyDeclarationTypeHints = false,
+        includeInlayFunctionLikeReturnTypeHints = false,
+        includeInlayEnumMemberValueHints = false,
+        enumMemberValues = false,
+        functionLikeReturnTypes = false,
+        parameterNames = false,
+        parameterTypes = false,
+        propertyDeclarationTypes = false,
+        variableTypes = false,
+      },
       preferences = {
         importModuleSpecifier = "non-relative",
       },
