@@ -23,6 +23,7 @@ return {
             preview = false,
             layout = {
               position = "right",
+              width = 80,
             },
           },
         },
