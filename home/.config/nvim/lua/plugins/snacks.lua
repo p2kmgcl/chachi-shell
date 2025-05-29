@@ -1,5 +1,14 @@
 return {
   "folke/snacks.nvim",
+  keys = {
+    {
+      "<leader>fr",
+      function()
+        require("snacks").picker.recent({ filter = { cwd = true } })
+      end,
+      desc = "Recent",
+    },
+  },
   opts = {
     indent = {
       enabled = false,
