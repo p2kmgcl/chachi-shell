@@ -11,10 +11,10 @@ if wezterm.gui then
 end
 if color_scheme:find("Dark") then
   config.color_scheme = "Catppuccin Mocha"
-  config.window_background_opacity = 0.9
+  config.window_background_opacity = 1.0
 else
   config.color_scheme = "Catppuccin Latte"
-  config.window_background_opacity = 0.9
+  config.window_background_opacity = 1.0
 end
 
 config.enable_tab_bar = true
