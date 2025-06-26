@@ -1,14 +1,4 @@
 gui:
-  expandFocusedSidePanel: true
-  showBottomLine: false
-  showCommandLog: false
-  showRandomTip: false
-  border: rounded
-  nerdFontsVersion: '3'
-  filterMode: fuzzy
-  commitLength:
-    show: true
-  # ./themes/catppuccin/latte/rosewater.yml
   theme:
     activeBorderColor:
       - '#dc8a78'
@@ -32,7 +22,3 @@ gui:
 
   authorColors:
     '*': '#7287fd'
-git:
-  paging:
-    colorArg: never
-    pager: delta --detect-dark-light always --no-gitconfig --paging=never
