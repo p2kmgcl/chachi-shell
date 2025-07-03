@@ -3,9 +3,9 @@ return {
   opts = {
     windows = {
       preview = true,
-      width_focus = 80,
-      width_nofocus = 80,
-      width_preview = 80,
+      width_focus = 60,
+      width_nofocus = 40,
+      width_preview = 60,
     },
     options = {
       use_as_default_explorer = true,
