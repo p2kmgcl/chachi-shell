@@ -5,6 +5,7 @@ return {
       enabled = false,
     },
     servers = {
+      denols = require("lsp.denols"),
       eslint = require("lsp.eslint"),
       vtsls = require("lsp.vtsls"),
     },
