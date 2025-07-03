@@ -3,6 +3,12 @@ return {
     hostInfo = "neovim",
   },
   settings = {
+    rootMarkers = {
+      "package.json",
+      "package-lock.json",
+      "tsconfig.json",
+      "yarn.lock",
+    },
     javascript = {
       format = {
         enable = false,
