@@ -16,6 +16,14 @@ return {
       enabled = false,
     },
     picker = {
+      formatters = {
+        file = {
+          filename_first = true,
+          truncate = 999,
+          icon_width = 2,
+          git_status_hl = false,
+        },
+      },
       sources = {
         explorer = {
           hidden = true,
