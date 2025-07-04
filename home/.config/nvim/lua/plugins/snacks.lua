@@ -24,6 +24,15 @@ return {
           git_status_hl = false,
         },
       },
+      previewers = {
+        diff = {
+          builtin = false,
+          cmd = { "delta", "--detect-dark-light", "always", "--no-gitconfig", "--paging=never" },
+        },
+        git = {
+          builtin = false,
+        },
+      },
       sources = {
         explorer = {
           hidden = true,
