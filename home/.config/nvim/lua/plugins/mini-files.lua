@@ -24,7 +24,9 @@ return {
       function()
         require("mini.files").open(vim.uv.cwd(), true)
       end,
-      desc = "Open mini.files (cwd)",
+      desc = "Open mini.files (project root)",
     },
+    { "<leader>fm", false },
+    { "<leader>fM", false },
   },
 }
