@@ -46,6 +46,9 @@ return {
             },
           },
         },
+        grep = {
+          hidden = true,
+        },
       },
     },
   },
