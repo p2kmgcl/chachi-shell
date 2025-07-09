@@ -154,7 +154,16 @@ return function(file_path)
     return "🐳"
   end
 
-  -- Build systems
+  -- Bazel (check first for more specific icon)
+  if vim.fn.findfile("BUILD", file_dir .. ";") ~= "" or 
+     vim.fn.findfile("BUILD.bazel", file_dir .. ";") ~= "" or
+     vim.fn.findfile("WORKSPACE", file_dir .. ";") ~= "" or
+     vim.fn.findfile("WORKSPACE.bazel", file_dir .. ";") ~= "" or
+     vim.fn.findfile(".bazelrc", file_dir .. ";") ~= "" then
+    return "🏗️"
+  end
+
+  -- Other build systems
   if vim.fn.findfile("CMakeLists.txt", file_dir .. ";") ~= "" then
     return "🔧"
   end
@@ -163,9 +172,6 @@ return function(file_path)
   end
   if vim.fn.findfile("Makefile", file_dir .. ";") ~= "" then
     return "🔧"
-  end
-  if vim.fn.findfile("BUILD", file_dir .. ";") ~= "" or vim.fn.findfile("WORKSPACE", file_dir .. ";") ~= "" then
-    return "🏗️"
   end
 
   -- For other files, show folder icon

@@ -252,6 +252,33 @@ return function(file_path)
     return get_dir_name(shard_yml)
   end
 
+  -- Bazel
+  local workspace = vim.fn.findfile("WORKSPACE", file_dir .. ";")
+  if workspace == "" then
+    workspace = vim.fn.findfile("WORKSPACE.bazel", file_dir .. ";")
+  end
+  if workspace ~= "" then
+    local ok, content = pcall(vim.fn.readfile, workspace)
+    if ok and #content > 0 then
+      local workspace_str = table.concat(content, "\n")
+      -- Try to find workspace(name = "...") declaration
+      local name_match = string.match(workspace_str, 'workspace%s*%(.-name%s*=%s*["\']([^"\']+)["\']')
+      if name_match then
+        return name_match
+      end
+    end
+    return get_dir_name(workspace)
+  end
+
+  -- BUILD files (fallback for Bazel projects without WORKSPACE name)
+  local build_file = vim.fn.findfile("BUILD", file_dir .. ";")
+  if build_file == "" then
+    build_file = vim.fn.findfile("BUILD.bazel", file_dir .. ";")
+  end
+  if build_file ~= "" then
+    return get_dir_name(build_file)
+  end
+
   -- For other files, show the immediate parent directory
   local parent_dir = vim.fn.fnamemodify(file_path, ":h:t")
   if parent_dir ~= "." and parent_dir ~= "" then
