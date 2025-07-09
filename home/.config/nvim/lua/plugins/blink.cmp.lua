@@ -2,8 +2,19 @@ return {
   "saghen/blink.cmp",
   enabled = false,
   opts = {
+    keymap = {
+      preset = "default",
+      ["<CR>"] = { "fallback" },
+    },
     completion = {
-      autocomplete = false,
+      trigger = {
+        prefetch_on_insert = false,
+        show_on_insert_on_trigger_character = false,
+        show_on_keyword = true,
+        show_on_trigger_character = true,
+        keyword_length = 3,
+        keyword_regex = "[%w_%-%.]+",
+      },
       accept = {
         auto_brackets = {
           enabled = false,
@@ -12,13 +23,30 @@ return {
       ghost_text = {
         enabled = false,
       },
+      menu = {
+        auto_show = true,
+        max_items = 30,
+        draw = {
+          treesitter = { "lsp" },
+        },
+      },
     },
     sources = {
+      default = { "lsp", "path", "buffer" },
       providers = {
-        lsp = {},
-        path = {},
-        buffer = {},
-        snippets = {},
+        lsp = {
+          async = true,
+          timeout_ms = 200,
+          max_items = 20,
+        },
+        path = {
+          async = true,
+          max_items = 10,
+        },
+        buffer = {
+          async = true,
+          max_items = 10,
+        },
       },
     },
   },
