@@ -5,9 +5,16 @@ return {
       enabled = false,
     },
     servers = {
-      denols = require("lsp.denols"),
+      lua_ls = {},
+      gopls = {},
+      jsonls = {},
+      marksman = {},
+      taplo = {},
+      ts_ls = false,
+      vtsls = false,
+      tsserver = false,
       eslint = require("lsp.eslint"),
-      vtsls = require("lsp.vtsls"),
+      denols = require("lsp.denols"),
     },
   },
 }
