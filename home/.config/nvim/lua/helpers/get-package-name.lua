@@ -4,7 +4,18 @@ return function(file_path)
     return ""
   end
 
-  local file_dir = vim.fn.fnamemodify(file_path, ":h")
+  -- Find the closest config file
+  local find_closest_config = require("helpers.find-closest-config")
+  local closest = find_closest_config(file_path)
+
+  if not closest then
+    -- Final fallback to directory name
+    local parent_dir = vim.fn.fnamemodify(file_path, ":h:t")
+    if parent_dir ~= "." and parent_dir ~= "" then
+      return parent_dir
+    end
+    return ""
+  end
 
   -- Helper function to get directory name as fallback
   local function get_dir_name(config_file)
@@ -12,14 +23,13 @@ return function(file_path)
     return vim.fn.fnamemodify(package_dir, ":t")
   end
 
-  -- JavaScript/TypeScript ecosystems
-  -- Deno
-  local deno_json = vim.fn.findfile("deno.json", file_dir .. ";")
-  if deno_json == "" then
-    deno_json = vim.fn.findfile("deno.jsonc", file_dir .. ";")
-  end
-  if deno_json ~= "" then
-    local ok, content = pcall(vim.fn.readfile, deno_json)
+  -- Parse name based on config type
+  local config_file = closest.file
+  local config_type = closest.type
+
+  -- JSON-based configs (package.json, composer.json, deno.json)
+  if config_type == "node" or config_type == "deno" or config_type == "php" then
+    local ok, content = pcall(vim.fn.readfile, config_file)
     if ok and #content > 0 then
       local json_str = table.concat(content, "\n")
       local name_match = string.match(json_str, '"name"%s*:%s*"([^"]+)"')
@@ -27,37 +37,12 @@ return function(file_path)
         return name_match
       end
     end
-    return get_dir_name(deno_json)
+    return get_dir_name(config_file)
   end
 
-  -- Bun
-  local bunfig_toml = vim.fn.findfile("bunfig.toml", file_dir .. ";")
-  if bunfig_toml ~= "" then
-    return get_dir_name(bunfig_toml)
-  end
-  local bun_lockb = vim.fn.findfile("bun.lockb", file_dir .. ";")
-  if bun_lockb ~= "" then
-    return get_dir_name(bun_lockb)
-  end
-
-  -- Package.json (Node.js/npm/yarn/pnpm)
-  local package_json = vim.fn.findfile("package.json", file_dir .. ";")
-  if package_json ~= "" then
-    local ok, content = pcall(vim.fn.readfile, package_json)
-    if ok and #content > 0 then
-      local json_str = table.concat(content, "\n")
-      local name_match = string.match(json_str, '"name"%s*:%s*"([^"]+)"')
-      if name_match then
-        return name_match
-      end
-    end
-    return get_dir_name(package_json)
-  end
-
-  -- Rust
-  local cargo_toml = vim.fn.findfile("Cargo.toml", file_dir .. ";")
-  if cargo_toml ~= "" then
-    local ok, content = pcall(vim.fn.readfile, cargo_toml)
+  -- TOML-based configs (Cargo.toml, pyproject.toml, bunfig.toml)
+  if config_type == "rust" or config_type == "python-pyproject" then
+    local ok, content = pcall(vim.fn.readfile, config_file)
     if ok and #content > 0 then
       local toml_str = table.concat(content, "\n")
       local name_match = string.match(toml_str, "name%s*=%s*[\"']([^\"']+)[\"']")
@@ -65,37 +50,12 @@ return function(file_path)
         return name_match
       end
     end
-    return get_dir_name(cargo_toml)
+    return get_dir_name(config_file)
   end
 
-  -- Python
-  local pyproject_toml = vim.fn.findfile("pyproject.toml", file_dir .. ";")
-  if pyproject_toml ~= "" then
-    local ok, content = pcall(vim.fn.readfile, pyproject_toml)
-    if ok and #content > 0 then
-      local toml_str = table.concat(content, "\n")
-      local name_match = string.match(toml_str, "name%s*=%s*[\"']([^\"']+)[\"']")
-      if name_match then
-        return name_match
-      end
-    end
-    return get_dir_name(pyproject_toml)
-  end
-
-  local pipfile = vim.fn.findfile("Pipfile", file_dir .. ";")
-  if pipfile ~= "" then
-    return get_dir_name(pipfile)
-  end
-
-  local setup_py = vim.fn.findfile("setup.py", file_dir .. ";")
-  if setup_py ~= "" then
-    return get_dir_name(setup_py)
-  end
-
-  -- Go
-  local go_mod = vim.fn.findfile("go.mod", file_dir .. ";")
-  if go_mod ~= "" then
-    local ok, content = pcall(vim.fn.readfile, go_mod)
+  -- Go modules
+  if config_type == "go" then
+    local ok, content = pcall(vim.fn.readfile, config_file)
     if ok and #content > 0 then
       local mod_str = table.concat(content, "\n")
       local name_match = string.match(mod_str, "module%s+([^\n\r%s]+)")
@@ -103,13 +63,12 @@ return function(file_path)
         return vim.fn.fnamemodify(name_match:gsub("%s+$", ""), ":t")
       end
     end
-    return get_dir_name(go_mod)
+    return get_dir_name(config_file)
   end
 
-  -- Java/JVM
-  local pom_xml = vim.fn.findfile("pom.xml", file_dir .. ";")
-  if pom_xml ~= "" then
-    local ok, content = pcall(vim.fn.readfile, pom_xml)
+  -- Maven (pom.xml)
+  if config_type == "java-maven" then
+    local ok, content = pcall(vim.fn.readfile, config_file)
     if ok and #content > 0 then
       local xml_str = table.concat(content, "\n")
       local name_match = string.match(xml_str, "<artifactId>([^<]+)</artifactId>")
@@ -117,57 +76,12 @@ return function(file_path)
         return name_match
       end
     end
-    return get_dir_name(pom_xml)
+    return get_dir_name(config_file)
   end
 
-  local build_gradle = vim.fn.findfile("build.gradle", file_dir .. ";")
-  if build_gradle == "" then
-    build_gradle = vim.fn.findfile("build.gradle.kts", file_dir .. ";")
-  end
-  if build_gradle ~= "" then
-    return get_dir_name(build_gradle)
-  end
-
-  local build_sbt = vim.fn.findfile("build.sbt", file_dir .. ";")
-  if build_sbt ~= "" then
-    return get_dir_name(build_sbt)
-  end
-
-  -- C#/.NET
-  local csproj = vim.fn.glob(file_dir .. "/*.csproj")
-  if csproj ~= "" then
-    return vim.fn.fnamemodify(csproj, ":t:r")
-  end
-
-  -- PHP
-  local composer_json = vim.fn.findfile("composer.json", file_dir .. ";")
-  if composer_json ~= "" then
-    local ok, content = pcall(vim.fn.readfile, composer_json)
-    if ok and #content > 0 then
-      local json_str = table.concat(content, "\n")
-      local name_match = string.match(json_str, '"name"%s*:%s*"([^"]+)"')
-      if name_match then
-        return name_match
-      end
-    end
-    return get_dir_name(composer_json)
-  end
-
-  -- Ruby
-  local gemfile = vim.fn.findfile("Gemfile", file_dir .. ";")
-  if gemfile ~= "" then
-    return get_dir_name(gemfile)
-  end
-
-  local gemspec = vim.fn.glob(file_dir .. "/*.gemspec")
-  if gemspec ~= "" then
-    return vim.fn.fnamemodify(gemspec, ":t:r")
-  end
-
-  -- Dart/Flutter
-  local pubspec_yaml = vim.fn.findfile("pubspec.yaml", file_dir .. ";")
-  if pubspec_yaml ~= "" then
-    local ok, content = pcall(vim.fn.readfile, pubspec_yaml)
+  -- YAML-based configs (pubspec.yaml, shard.yml)
+  if config_type == "dart" or config_type == "crystal" then
+    local ok, content = pcall(vim.fn.readfile, config_file)
     if ok and #content > 0 then
       local yaml_str = table.concat(content, "\n")
       local name_match = string.match(yaml_str, "name:%s*([^\n\r]+)")
@@ -175,13 +89,12 @@ return function(file_path)
         return name_match:gsub("^%s*", ""):gsub("%s*$", "")
       end
     end
-    return get_dir_name(pubspec_yaml)
+    return get_dir_name(config_file)
   end
 
-  -- Swift
-  local package_swift = vim.fn.findfile("Package.swift", file_dir .. ";")
-  if package_swift ~= "" then
-    local ok, content = pcall(vim.fn.readfile, package_swift)
+  -- Swift Package.swift
+  if config_type == "swift" then
+    local ok, content = pcall(vim.fn.readfile, config_file)
     if ok and #content > 0 then
       local swift_str = table.concat(content, "\n")
       local name_match = string.match(swift_str, 'name:%s*"([^"]+)"')
@@ -189,13 +102,12 @@ return function(file_path)
         return name_match
       end
     end
-    return get_dir_name(package_swift)
+    return get_dir_name(config_file)
   end
 
-  -- Elixir
-  local mix_exs = vim.fn.findfile("mix.exs", file_dir .. ";")
-  if mix_exs ~= "" then
-    local ok, content = pcall(vim.fn.readfile, mix_exs)
+  -- Elixir mix.exs
+  if config_type == "elixir" then
+    local ok, content = pcall(vim.fn.readfile, config_file)
     if ok and #content > 0 then
       local elixir_str = table.concat(content, "\n")
       local name_match = string.match(elixir_str, 'app:%s*:([^,\n\r%s]+)')
@@ -203,13 +115,12 @@ return function(file_path)
         return name_match
       end
     end
-    return get_dir_name(mix_exs)
+    return get_dir_name(config_file)
   end
 
-  -- Clojure
-  local project_clj = vim.fn.findfile("project.clj", file_dir .. ";")
-  if project_clj ~= "" then
-    local ok, content = pcall(vim.fn.readfile, project_clj)
+  -- Clojure project.clj
+  if config_type == "clojure-lein" then
+    local ok, content = pcall(vim.fn.readfile, config_file)
     if ok and #content > 0 then
       local clj_str = table.concat(content, "\n")
       local name_match = string.match(clj_str, "%(defproject%s+([^%s]+)")
@@ -217,73 +128,51 @@ return function(file_path)
         return name_match
       end
     end
-    return get_dir_name(project_clj)
+    return get_dir_name(config_file)
   end
 
-  -- Haskell
-  local cabal_file = vim.fn.glob(file_dir .. "/*.cabal")
-  if cabal_file ~= "" then
-    return vim.fn.fnamemodify(cabal_file, ":t:r")
-  end
-
-  -- Lua
-  local rockspec = vim.fn.glob(file_dir .. "/*.rockspec")
-  if rockspec ~= "" then
-    return vim.fn.fnamemodify(rockspec, ":t:r")
-  end
-
-  -- Nim
-  local nimble_file = vim.fn.glob(file_dir .. "/*.nimble")
-  if nimble_file ~= "" then
-    return vim.fn.fnamemodify(nimble_file, ":t:r")
-  end
-
-  -- Crystal
-  local shard_yml = vim.fn.findfile("shard.yml", file_dir .. ";")
-  if shard_yml ~= "" then
-    local ok, content = pcall(vim.fn.readfile, shard_yml)
-    if ok and #content > 0 then
-      local yaml_str = table.concat(content, "\n")
-      local name_match = string.match(yaml_str, "name:%s*([^\n\r]+)")
-      if name_match then
-        return name_match:gsub("^%s*", ""):gsub("%s*$", "")
-      end
-    end
-    return get_dir_name(shard_yml)
-  end
-
-  -- Bazel
-  local workspace = vim.fn.findfile("WORKSPACE", file_dir .. ";")
-  if workspace == "" then
-    workspace = vim.fn.findfile("WORKSPACE.bazel", file_dir .. ";")
-  end
-  if workspace ~= "" then
-    local ok, content = pcall(vim.fn.readfile, workspace)
+  -- Bazel workspace
+  if config_type == "bazel-workspace" then
+    local ok, content = pcall(vim.fn.readfile, config_file)
     if ok and #content > 0 then
       local workspace_str = table.concat(content, "\n")
-      -- Try to find workspace(name = "...") declaration
       local name_match = string.match(workspace_str, 'workspace%s*%(.-name%s*=%s*["\']([^"\']+)["\']')
       if name_match then
         return name_match
       end
     end
-    return get_dir_name(workspace)
+    return get_dir_name(config_file)
   end
 
-  -- BUILD files (fallback for Bazel projects without WORKSPACE name)
-  local build_file = vim.fn.findfile("BUILD", file_dir .. ";")
-  if build_file == "" then
-    build_file = vim.fn.findfile("BUILD.bazel", file_dir .. ";")
-  end
-  if build_file ~= "" then
-    return get_dir_name(build_file)
+  -- Docker Compose
+  if config_type == "docker-compose" then
+    local ok, content = pcall(vim.fn.readfile, config_file)
+    if ok and #content > 0 then
+      local compose_str = table.concat(content, "\n")
+      -- Try to find project name or first service name
+      local project_match = string.match(compose_str, "name:%s*([^\n\r]+)")
+      if project_match then
+        return project_match:gsub("^%s*", ""):gsub("%s*$", "")
+      end
+
+      -- Fallback to first service name
+      local service_match = string.match(compose_str, "services:%s*\n%s*([^:\n\r]+):")
+      if service_match then
+        return service_match:gsub("^%s*", ""):gsub("%s*$", "")
+      end
+    end
+    return get_dir_name(config_file)
   end
 
-  -- For other files, show the immediate parent directory
-  local parent_dir = vim.fn.fnamemodify(file_path, ":h:t")
-  if parent_dir ~= "." and parent_dir ~= "" then
-    return parent_dir
+  -- File-based naming (*.csproj, *.gemspec, *.cabal, etc.)
+  if config_type == "csharp-project" or
+     config_type == "ruby-gemspec" or
+     config_type == "haskell-cabal" or
+     config_type == "lua" or
+     config_type == "nim" then
+    return vim.fn.fnamemodify(config_file, ":t:r")
   end
 
-  return ""
+  -- Default fallback to directory name
+  return get_dir_name(config_file)
 end
