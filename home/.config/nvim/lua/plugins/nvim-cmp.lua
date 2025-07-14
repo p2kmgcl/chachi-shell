@@ -3,9 +3,8 @@ return {
   enabled = true,
   opts = {
     performance = {
-      debounce = 500,
-      throttle = 500,
-      fetching_timeout = 2000,
+      debounce = 300,
+      throttle = 300,
       max_view_entries = 100,
     },
     experimental = {
@@ -14,11 +13,11 @@ return {
     completion = {
       autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
       completeopt = "fuzzy,menu,menuone,noinsert,popup",
-      keyword_length = 3,
+      keyword_length = 0,
     },
     sources = {
-      { name = "buffer", max_item_count = 100 },
-      { name = "nvim_lsp", max_item_count = 100 },
+      { name = "nvim_lsp", priority = 20 },
+      { name = "buffer", priority = 10 },
     },
     mapping = {
       ["<CR>"] = function(fallback) fallback() end,
