@@ -1,6 +1,7 @@
 return {
   "saghen/blink.cmp",
-  enabled = false,
+  version = "*",
+  build = "cargo build --release",
   opts = {
     keymap = {
       preset = "default",
@@ -29,6 +30,10 @@ return {
         draw = {
           treesitter = { "lsp" },
         },
+      },
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 500
       },
     },
     sources = {

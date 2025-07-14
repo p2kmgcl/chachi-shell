@@ -1,5 +1,3 @@
-local icons = LazyVim.config.icons
-
 return {
   "nvim-lualine/lualine.nvim",
   opts = {
@@ -9,9 +7,9 @@ return {
         {
           "diff",
           symbols = {
-            added = icons.git.added,
-            modified = icons.git.modified,
-            removed = icons.git.removed,
+            added = '+',
+            modified = '~',
+            removed = '-',
           },
           source = function()
             local gitsigns = vim.b.gitsigns_status_dict
@@ -34,8 +32,8 @@ return {
               return ""
             end
 
-            local icon = require("helpers.get-package-icon")(buf_name)
-            local name = require("helpers.get-package-name")(buf_name)
+            local icon = require("common.helpers.get-package-icon")(buf_name)
+            local name = require("common.helpers.get-package-name")(buf_name)
 
             if icon ~= "" and name ~= "" then
               return icon .. " " .. name

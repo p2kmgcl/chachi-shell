@@ -10,7 +10,7 @@ return function(file_path)
   end
 
   -- Find the closest config file
-  local find_closest_config = require("helpers.find-closest-config")
+  local find_closest_config = require("common.helpers.find-closest-config")
   local closest = find_closest_config(file_path)
 
   if not closest then
@@ -171,10 +171,10 @@ return function(file_path)
 
   -- File-based naming (*.csproj, *.gemspec, *.cabal, etc.)
   if config_type == "csharp-project" or
-     config_type == "ruby-gemspec" or
-     config_type == "haskell-cabal" or
-     config_type == "lua" or
-     config_type == "nim" then
+      config_type == "ruby-gemspec" or
+      config_type == "haskell-cabal" or
+      config_type == "lua" or
+      config_type == "nim" then
     return vim.fn.fnamemodify(config_file, ":t:r")
   end
 

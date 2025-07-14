@@ -1,0 +1,4 @@
+return {
+  "eslint-lsp",
+  "prettier"
+}

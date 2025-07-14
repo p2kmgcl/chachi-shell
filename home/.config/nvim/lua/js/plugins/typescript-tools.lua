@@ -4,18 +4,15 @@ return {
   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
   config = function()
-    -- Get total system memory and calculate half of it in MB
     local function get_half_memory()
       local handle = io.popen("sysctl -n hw.memsize")
       if handle then
         local total_bytes = handle:read("*n")
         handle:close()
         if total_bytes then
-          -- Convert bytes to MB and return half
           return math.floor(total_bytes / 1024 / 1024 / 2)
         end
       end
-      -- Fallback to auto if we can't determine memory
       return "auto"
     end
 

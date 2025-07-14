@@ -10,9 +10,9 @@ return function(file_path)
   end
 
   -- Find the closest config file
-  local find_closest_config = require("helpers.find-closest-config")
+  local find_closest_config = require("common.helpers.find-closest-config")
   local closest = find_closest_config(file_path)
-  
+
   if not closest then
     -- Final fallback to folder icon
     local parent_dir = vim.fn.fnamemodify(file_path, ":h:t")
@@ -26,11 +26,11 @@ return function(file_path)
   local icons = {
     -- JavaScript/TypeScript ecosystems
     deno = "🦕",
-    bun = "🥖", 
+    bun = "🥖",
     yarn = "🧶",
     pnpm = "📦",
     node = "📦",
-    
+
     -- Other languages
     rust = "🦀",
     ["python-pyproject"] = "🐍",
@@ -62,16 +62,16 @@ return function(file_path)
     erlang = "📡",
     docker = "🐳",
     ["docker-compose"] = "🐙",
-    
+
     -- Bazel
     ["bazel-workspace"] = "🏗️",
     ["bazel-build"] = "🏗️",
     ["bazel-config"] = "🏗️",
-    
+
     -- C#/.NET
     ["csharp-project"] = "🔷",
     ["csharp-solution"] = "🔷",
-    
+
     -- Other build systems
     cmake = "🔧",
     meson = "🔧",
