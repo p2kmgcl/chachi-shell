@@ -10,21 +10,6 @@ curl https://get.volta.sh | bash -s -- --skip-setup
 volta install node
 ```
 
-```bash
-npm install -g npm
-```
-
-```bash
-npm install -g \
-  bash-language-server \
-  dockerfile-language-server-nodejs \
-  neovim \
-  prettier \
-  typescript \
-  typescript-language-server \
-  vscode-langservers-extracted
-```
-
 ## Yarn
 
 [Yarn installation process for 2+](https://yarnpkg.com/getting-started/install).
