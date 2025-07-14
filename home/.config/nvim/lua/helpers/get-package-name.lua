@@ -4,6 +4,11 @@ return function(file_path)
     return ""
   end
 
+  -- Check if it's a terminal buffer
+  if vim.bo.buftype == "terminal" then
+    return ""
+  end
+
   -- Find the closest config file
   local find_closest_config = require("helpers.find-closest-config")
   local closest = find_closest_config(file_path)

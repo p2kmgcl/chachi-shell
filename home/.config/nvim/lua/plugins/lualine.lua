@@ -33,14 +33,18 @@ return {
             if buf_name == "" then
               return ""
             end
-            
+
             local icon = require("helpers.get-package-icon")(buf_name)
             local name = require("helpers.get-package-name")(buf_name)
-            
+
             if icon ~= "" and name ~= "" then
               return icon .. " " .. name
+            elseif icon ~= "" then
+              return icon
+            elseif name ~= "" then
+              return name
             end
-            
+
             return ""
           end,
           color = { fg = "#9d7cd8", gui = "italic" },
