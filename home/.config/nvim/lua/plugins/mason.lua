@@ -1,59 +1,40 @@
 return {
   "mason-org/mason.nvim",
-  opts = function()
-    local lsp_config = require("plugins.lsp")
-    local enabled_servers = {}
-
-    -- Extract enabled servers from LSP config
-    if lsp_config.opts and lsp_config.opts.servers then
-      for server, config in pairs(lsp_config.opts.servers) do
-        if config ~= false then
-          table.insert(enabled_servers, server)
-        end
-      end
-    end
-
-    -- Map LSP server names to Mason package names
-    local lsp_to_mason = require("helpers.lsp-to-mason")
-
-    local mason_packages = {}
-    for _, server in ipairs(enabled_servers) do
-      local mason_name = lsp_to_mason(server)
-      table.insert(mason_packages, mason_name)
-    end
-
-    -- Add additional tools
-    table.insert(mason_packages, "stylua")
-    table.insert(mason_packages, "gofumpt")
-    table.insert(mason_packages, "goimports")
-
-    return {
-      ensure_installed = mason_packages,
-    }
-  end,
   config = function(_, opts)
-    require("mason").setup(opts)
-    -- Auto-uninstall disabled LSP servers
     local lsp_config = require("plugins.lsp")
-    local disabled_servers = {}
+    local lsp_to_mason = require("helpers.lsp-to-mason")
+    local registry = require("mason-registry")
 
-    -- Extract disabled servers from LSP config
+    -- These entries are NOT LSP servers, they are formatters, linters, etc.
+    -- We will add the LSP servers below.
+    local enabled_packages = {
+      "gofumpt",
+      "goimports",
+      "stylua",
+    }
+
     if lsp_config.opts and lsp_config.opts.servers then
       for server, config in pairs(lsp_config.opts.servers) do
-        if config == false then
-          table.insert(disabled_servers, server)
+        local mason_name = lsp_to_mason(server)
+        if config ~= false then
+          table.insert(enabled_packages, mason_name)
         end
       end
     end
 
-    -- Map LSP server names to Mason package names
-    local lsp_to_mason = require("helpers.lsp-to-mason")
+    require("mason").setup(opts)
 
-    local registry = require("mason-registry")
-    for _, server in ipairs(disabled_servers) do
-      local mason_name = lsp_to_mason(server)
-      if registry.is_installed(mason_name) then
-        registry.get_package(mason_name):uninstall()
+    for _, mason_name in ipairs(registry.get_all_package_names()) do
+      if vim.tbl_contains(enabled_packages, mason_name) then
+        if not registry.is_installed(mason_name) then
+          vim.notify("Installing package " .. mason_name, vim.log.levels.INFO, { title = "Mason" })
+          registry.get_package(mason_name):install()
+        end
+      else
+        if registry.is_installed(mason_name) then
+          vim.notify("Uninstalling package " .. mason_name, vim.log.levels.INFO, { title = "Mason" })
+          registry.get_package(mason_name):uninstall()
+        end
       end
     end
   end,
