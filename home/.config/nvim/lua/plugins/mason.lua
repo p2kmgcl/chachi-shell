@@ -10,6 +10,8 @@ return {
     local enabled_packages = {
       "gofumpt",
       "goimports",
+      "prettier",
+      "shfmt",
       "stylua",
     }
 

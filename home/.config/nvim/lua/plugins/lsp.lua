@@ -8,10 +8,7 @@ return {
       denols = require("lsp.denols"),
       eslint = {},
       gopls = {},
-      jsonls = {},
       lua_ls = {},
-      marksman = {},
-      taplo = {},
     },
   },
 }
