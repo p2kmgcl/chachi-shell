@@ -2,10 +2,9 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     branch = "master",
-    build = ":TSUpdate",
     lazy = false,
     config = function()
-      return {
+      require("nvim-treesitter.configs").setup({
         highlight = { enable = true },
         indent = { enable = true },
         incremental_selection = {
@@ -31,7 +30,7 @@ return {
           require("shell.config.treesitter-languages"),
           require("js.config.treesitter-languages"),
         }),
-      }
+      })
     end,
   },
 }
