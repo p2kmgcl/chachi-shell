@@ -1,6 +1,5 @@
 if vim.fn.executable("lazygit") == 1 then
-  local map = vim.keymap.set
-  map("n", "<leader>gg", function()
-    Snacks.lazygit()
+  vim.keymap.set("n", "<leader>gg", function()
+    require('snacks').lazygit()
   end, { desc = "Lazygit" })
 end
