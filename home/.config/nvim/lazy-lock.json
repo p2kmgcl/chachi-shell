@@ -9,7 +9,7 @@
   "grug-far.nvim": { "branch": "main", "commit": "b3f9412b1ed76f14cfc68e1ee899873544330c80" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lualine.nvim": { "branch": "master", "commit": "a94fc68960665e54408fe37dcf573193c4ce82c9" },
-  "mason-lspconfig.nvim": { "branch": "main", "commit": "acb2d97a5c5e3f58156cb387fdf6035c34cd2768" },
+  "mason-lspconfig.nvim": { "branch": "main", "commit": "bc743e4f3dc4b6d22b0a9e0b68a6664d93f8a694" },
   "mason.nvim": { "branch": "main", "commit": "8024d64e1330b86044fed4c8494ef3dcd483a67c" },
   "mini.ai": { "branch": "main", "commit": "96cd250fdea1fec929a62c7432de73e0f59788cd" },
   "mini.files": { "branch": "main", "commit": "a92ba6f1bf9e1e0b9c6de50db1f5df7ca89cb9e4" },
