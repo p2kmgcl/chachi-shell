@@ -1,9 +1,10 @@
 return {
   "css",
+    "scss",
+
   "html",
   "javascript",
   "jsdoc",
-  "json",
   "tsx",
   "typescript",
 }
