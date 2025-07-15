@@ -21,8 +21,13 @@ require("lazy").setup({
     { import = "common.plugins" },
     { import = "js.plugins" },
   },
-  install = { colorscheme = { "habamax" } },
-  checker = { enabled = true },
+  install = {
+    colorscheme = { "habamax" },
+  },
+  checker = {
+    enabled = true,
+    frequency = 60 * 60 * 24 * 14, -- every 2 weeks in seconds
+  },
 })
 
 vim.cmd([[colorscheme catppuccin]])
