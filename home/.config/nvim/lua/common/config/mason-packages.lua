@@ -1,4 +1,4 @@
 return {
   "lua-language-server",
-  "stylua"
+  "stylua",
 }

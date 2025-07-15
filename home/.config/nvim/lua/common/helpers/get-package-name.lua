@@ -115,7 +115,7 @@ return function(file_path)
     local ok, content = pcall(vim.fn.readfile, config_file)
     if ok and #content > 0 then
       local elixir_str = table.concat(content, "\n")
-      local name_match = string.match(elixir_str, 'app:%s*:([^,\n\r%s]+)')
+      local name_match = string.match(elixir_str, "app:%s*:([^,\n\r%s]+)")
       if name_match then
         return name_match
       end
@@ -141,7 +141,7 @@ return function(file_path)
     local ok, content = pcall(vim.fn.readfile, config_file)
     if ok and #content > 0 then
       local workspace_str = table.concat(content, "\n")
-      local name_match = string.match(workspace_str, 'workspace%s*%(.-name%s*=%s*["\']([^"\']+)["\']')
+      local name_match = string.match(workspace_str, "workspace%s*%(.-name%s*=%s*[\"']([^\"']+)[\"']")
       if name_match then
         return name_match
       end
@@ -170,11 +170,13 @@ return function(file_path)
   end
 
   -- File-based naming (*.csproj, *.gemspec, *.cabal, etc.)
-  if config_type == "csharp-project" or
-      config_type == "ruby-gemspec" or
-      config_type == "haskell-cabal" or
-      config_type == "lua" or
-      config_type == "nim" then
+  if
+    config_type == "csharp-project"
+    or config_type == "ruby-gemspec"
+    or config_type == "haskell-cabal"
+    or config_type == "lua"
+    or config_type == "nim"
+  then
     return vim.fn.fnamemodify(config_file, ":t:r")
   end
 

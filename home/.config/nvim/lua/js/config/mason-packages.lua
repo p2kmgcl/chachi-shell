@@ -1,4 +1,4 @@
 return {
   "eslint-lsp",
-  "prettier"
+  "prettier",
 }

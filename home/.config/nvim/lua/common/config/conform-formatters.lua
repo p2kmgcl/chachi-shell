@@ -1,3 +1,3 @@
 return {
-  lua = { "stylua" }
+  lua = { "stylua" },
 }

@@ -1,19 +1,19 @@
 return {
-  'neovim/nvim-lspconfig',
+  "neovim/nvim-lspconfig",
   dependencies = {
-    { 'mason-org/mason.nvim',          config = true },
-    { 'mason-org/mason-lspconfig.nvim' },
+    { "mason-org/mason.nvim", config = true },
+    { "mason-org/mason-lspconfig.nvim" },
   },
   config = function()
     require("mason").setup()
-    require('mason-lspconfig').setup();
+    require("mason-lspconfig").setup()
 
-    local enabled_packages = require('common.helpers.flatten')({
-      require('common.config.mason-packages'),
-      require('js.config.mason-packages'),
+    local enabled_packages = require("common.helpers.flatten")({
+      require("common.config.mason-packages"),
+      require("js.config.mason-packages"),
     })
 
-    require('js.config.lsp-setup');
+    require("js.config.lsp-setup")
     local registry = require("mason-registry")
 
     for _, mason_name in ipairs(registry.get_all_package_names()) do
