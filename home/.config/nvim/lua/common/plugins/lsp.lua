@@ -14,11 +14,7 @@ return {
       require("js.config.mason-packages"),
     })
 
-    require("common.config.lsp-setup")
-    require("shell.config.lsp-setup")
-    require("js.config.lsp-setup")
     local registry = require("mason-registry")
-
     for _, mason_name in ipairs(registry.get_all_package_names()) do
       if vim.tbl_contains(enabled_packages, mason_name) then
         if not registry.is_installed(mason_name) then
@@ -32,5 +28,9 @@ return {
         end
       end
     end
+
+    require("common.config.lsp-setup")
+    require("shell.config.lsp-setup")
+    require("js.config.lsp-setup")
   end,
 }
