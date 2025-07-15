@@ -42,6 +42,7 @@ return {
     config = function(_, opts)
       opts.ensure_installed = require("common.helpers.flatten")({
         require("common.config.treesitter-languages"),
+        require("shell.config.treesitter-languages"),
         require("js.config.treesitter-languages"),
       })
       require("nvim-treesitter.configs").setup(opts)

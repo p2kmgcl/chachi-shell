@@ -24,6 +24,7 @@ return {
       },
       formatters_by_ft = require("common.helpers.flatten")({
         require("common.config.conform-formatters"),
+        require("shell.config.conform-formatters"),
         require("js.config.conform-formatters"),
       }),
       formatters = {

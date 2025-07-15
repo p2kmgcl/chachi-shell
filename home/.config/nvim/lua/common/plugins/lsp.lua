@@ -10,10 +10,12 @@ return {
 
     local enabled_packages = require("common.helpers.flatten")({
       require("common.config.mason-packages"),
+      require("shell.config.mason-packages"),
       require("js.config.mason-packages"),
     })
 
     require("common.config.lsp-setup")
+    require("shell.config.lsp-setup")
     require("js.config.lsp-setup")
     local registry = require("mason-registry")
 

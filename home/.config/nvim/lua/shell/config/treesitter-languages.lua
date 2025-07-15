@@ -1,0 +1,17 @@
+return {
+  "bash",
+  "csv",
+  "dockerfile",
+  "editorconfig",
+  "fish",
+  "git_config",
+  "git_rebase",
+  "gitattributes",
+  "gitcommit",
+  "gitignore",
+  "json",
+  "json5",
+  "toml",
+  "xml",
+  "yaml",
+}
