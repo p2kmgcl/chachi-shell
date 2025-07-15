@@ -1,0 +1,5 @@
+require("common.setup.options")
+require("common.setup.lazy")
+require("common.setup.keymaps")
+require("common.setup.diagnostic")
+require("common.setup.lazygit")

@@ -13,6 +13,7 @@ return {
       require("js.config.mason-packages"),
     })
 
+    require("common.config.lsp-setup")
     require("js.config.lsp-setup")
     local registry = require("mason-registry")
 
