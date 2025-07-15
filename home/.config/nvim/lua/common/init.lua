@@ -1,4 +1,5 @@
 require("common.setup.options")
+require("common.setup.disable-deprecated-notifications")
 require("common.setup.lazy")
 require("common.setup.keymaps")
 require("common.setup.diagnostic")
