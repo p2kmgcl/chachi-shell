@@ -1,7 +1,10 @@
 return {
   "saghen/blink.cmp",
   version = "*",
-  build = "cargo build --release",
+  build = {
+    cmd = "cargo build --release",
+    timeout_ms = 900000,
+  },
   opts = {
     keymap = {
       preset = "default",
