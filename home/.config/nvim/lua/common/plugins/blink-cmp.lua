@@ -13,8 +13,6 @@ return {
         show_on_insert_on_trigger_character = false,
         show_on_keyword = true,
         show_on_trigger_character = true,
-        keyword_length = 3,
-        keyword_regex = "[%w_%-%.]+",
       },
       accept = {
         auto_brackets = {
@@ -26,10 +24,7 @@ return {
       },
       menu = {
         auto_show = true,
-        max_items = 30,
-        draw = {
-          treesitter = { "lsp" },
-        },
+        draw = { treesitter = { "lsp" } },
       },
       documentation = {
         auto_show = true,

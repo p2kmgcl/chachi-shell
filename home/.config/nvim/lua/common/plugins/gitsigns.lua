@@ -6,7 +6,6 @@ return {
       interval = 0,
       follow_files = false,
     },
-    refresh_staged_on_update = false,
     max_file_length = 40000,
     preview_config = {
       border = "single",
