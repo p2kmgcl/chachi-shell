@@ -1,5 +1,6 @@
 vim.diagnostic.config({
   update_in_insert = false,
+  underline = true,
   severity_sort = true,
   virtual_lines = true,
   signs = {
@@ -13,24 +14,8 @@ vim.diagnostic.config({
   float = {
     focusable = false,
     border = "rounded",
-    source = "always",
   },
 })
-
--- Simple debounce using timer
-local diagnostic_timer = nil
-local original_handler = vim.lsp.handlers["textDocument/publishDiagnostics"]
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
-  if diagnostic_timer then
-    diagnostic_timer:stop()
-  end
-  diagnostic_timer = vim.uv.new_timer()
-  diagnostic_timer:start(1000, 0, function()
-    vim.schedule(function()
-      original_handler(err, result, ctx, config)
-    end)
-  end)
-end
 
 -- Default keymaps
 -- vim.keymap.set("n", "<C-w>d", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
