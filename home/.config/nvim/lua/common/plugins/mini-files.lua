@@ -10,6 +10,9 @@ return {
     options = {
       use_as_default_explorer = true,
     },
+    mappings = {
+      go_in_plus = 'l',
+    },
   },
   keys = {
     {
