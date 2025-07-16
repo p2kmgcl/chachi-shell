@@ -14,6 +14,10 @@ return {
     },
   },
   opts = function()
+    local flatten = require("common.helpers.flatten")
+    local require_all = require("common.helpers.require-all")
+    local formatters_by_ft = flatten(require_all("config/conform-formatters.lua"))
+
     return {
       format_on_save = false,
       default_format_opts = {
@@ -22,14 +26,10 @@ return {
         quiet = false,
         lsp_format = "fallback",
       },
-      formatters_by_ft = require("common.helpers.flatten")({
-        require("common.config.conform-formatters"),
-        require("shell.config.conform-formatters"),
-        require("js.config.conform-formatters"),
-      }),
       formatters = {
         injected = { options = { ignore_errors = true } },
       },
+      formatters_by_ft = formatters_by_ft,
     }
   end,
 }

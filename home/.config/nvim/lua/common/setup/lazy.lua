@@ -15,12 +15,25 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local spec = {
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+}
+
+-- Import plugins from [scope].plugins
+for name in vim.fs.dir(vim.fn.stdpath("config") .. "/lua") do
+  local spec_files = vim.fs.find(function(specName)
+    return specName:match(".lua$")
+  end, {
+    type = "file",
+    path = vim.fn.stdpath("config") .. "/lua/" .. name .. "/plugins",
+  })
+  if #spec_files > 0 then
+    table.insert(spec, { import = name .. ".plugins" })
+  end
+end
+
 require("lazy").setup({
-  spec = {
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    { import = "common.plugins" },
-    { import = "js.plugins" },
-  },
+  spec = spec,
   install = {
     colorscheme = { "habamax" },
   },

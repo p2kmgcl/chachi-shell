@@ -4,6 +4,10 @@ return {
     branch = "master",
     lazy = false,
     config = function()
+      local flatten = require("common.helpers.flatten")
+      local require_all = require("common.helpers.require-all")
+      local ensure_installed = flatten(require_all("config/treesitter-languages.lua"))
+
       require("nvim-treesitter.configs").setup({
         highlight = { enable = true },
         indent = { enable = true },
@@ -25,11 +29,7 @@ return {
             goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
           },
         },
-        ensure_installed = require("common.helpers.flatten")({
-          require("common.config.treesitter-languages"),
-          require("shell.config.treesitter-languages"),
-          require("js.config.treesitter-languages"),
-        }),
+        ensure_installed = ensure_installed,
       })
     end,
   },

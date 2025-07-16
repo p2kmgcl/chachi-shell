@@ -8,11 +8,9 @@ return {
     require("mason").setup()
     require("mason-lspconfig").setup()
 
-    local enabled_packages = require("common.helpers.flatten")({
-      require("common.config.mason-packages"),
-      require("shell.config.mason-packages"),
-      require("js.config.mason-packages"),
-    })
+    local flatten = require("common.helpers.flatten")
+    local require_all = require("common.helpers.require-all")
+    local enabled_packages = flatten(require_all("config/mason-packages.lua"))
 
     local registry = require("mason-registry")
     for _, mason_name in ipairs(registry.get_all_package_names()) do
@@ -29,8 +27,6 @@ return {
       end
     end
 
-    require("common.config.lsp-setup")
-    require("shell.config.lsp-setup")
-    require("js.config.lsp-setup")
+    require_all('config/lsp-setup.lua')
   end,
 }

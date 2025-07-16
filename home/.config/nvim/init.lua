@@ -1,6 +1,5 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-require("common.init")
-require("shell.init")
-require("js.init")
+local require_all = require("common.helpers.require-all")
+require_all("init.lua")
