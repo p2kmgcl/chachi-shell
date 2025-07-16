@@ -1,12 +1,8 @@
 return {
-  "neovim/nvim-lspconfig",
-  dependencies = {
-    { "mason-org/mason.nvim", config = true },
-    { "mason-org/mason-lspconfig.nvim" },
-  },
-  config = function()
-    require("mason").setup()
-    require("mason-lspconfig").setup()
+  "mason-org/mason.nvim",
+  dependencies = { 'neovim/nvim-lspconfig' },
+  config = function(_, opts)
+    require("mason").setup(opts)
 
     local flatten = require("common.helpers.flatten")
     local require_all = require("common.helpers.require-all")
@@ -27,6 +23,6 @@ return {
       end
     end
 
-    require_all('config/lsp-setup.lua')
+    require_all("config/lsp-setup.lua")
   end,
 }

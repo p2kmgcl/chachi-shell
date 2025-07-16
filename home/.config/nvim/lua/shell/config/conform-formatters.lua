@@ -1,1 +1,4 @@
-return {}
+return {
+  sh = { "shfmt" },
+  yaml = { "yamlfmt" },
+}
