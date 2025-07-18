@@ -7,21 +7,16 @@ return {
     {
       "<leader>cf",
       function()
-        local has_eslint = false
+        local conform = require("conform")
+        conform.format({ async = false })
+
         for _, client in ipairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
           if client.name == "eslint-lsp" then
-            has_eslint = true
+            client:request_sync(vim.lsp.protocol.Methods.workspace_executeCommand, {
+              command = "eslint.applyAllFixes",
+              arguments = { { uri = vim.uri_from_bufnr(0) } },
+            })
           end
-        end
-
-        if has_eslint then
-          vim.lsp.buf.execute_command({
-            command = "eslint.applyAllFixes",
-            arguments = { { uri = vim.uri_from_bufnr(0), version = vim.lsp.util.buf_versions[0] } },
-          })
-        else
-          local conform = require("conform")
-          conform.format()
         end
       end,
       mode = "n",
