@@ -1,8 +1,8 @@
 local language_settings = {
   suggest = { completeFunctionCalls = true },
   inlayHints = {
-    functionLikeReturnTypes = { enabled = true },
-    parameterNames = { enabled = "literals" },
+    functionLikeReturnTypes = { enabled = false },
+    parameterNames = { enabled = false },
     enumMemberValues = false,
     parameterTypes = false,
     propertyDeclarationTypes = false,
