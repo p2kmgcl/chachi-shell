@@ -1,5 +1,6 @@
 return {
   "lewis6991/gitsigns.nvim",
+  event = { "BufReadPre", "BufNewFile" },
   opts = {
     watch_gitdir = {
       interval = 0,

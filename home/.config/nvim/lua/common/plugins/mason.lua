@@ -1,5 +1,6 @@
 return {
   "mason-org/mason.nvim",
+  event = "VeryLazy",
   config = function(_, opts)
     require("mason").setup(opts)
 

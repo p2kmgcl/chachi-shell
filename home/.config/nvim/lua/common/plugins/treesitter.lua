@@ -2,7 +2,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     branch = "master",
-    lazy = false,
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       local flatten = require("common.helpers.flatten")
       local require_all = require("common.helpers.require-all")

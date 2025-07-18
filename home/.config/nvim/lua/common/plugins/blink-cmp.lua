@@ -1,6 +1,7 @@
 return {
   "saghen/blink.cmp",
   version = "*",
+  event = "InsertEnter",
   build = {
     cmd = "cargo build --release",
     timeout_ms = 900000,
