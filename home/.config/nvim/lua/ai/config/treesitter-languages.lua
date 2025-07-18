@@ -1,1 +1,4 @@
-return {}
+return {
+  "markdown",
+  "markdown_inline",
+}
