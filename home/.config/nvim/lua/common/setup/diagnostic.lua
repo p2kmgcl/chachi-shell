@@ -2,7 +2,8 @@ vim.diagnostic.config({
   update_in_insert = false,
   underline = true,
   severity_sort = true,
-  virtual_lines = true,
+  virtual_lines = false,
+  virtual_text = true,
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = "",

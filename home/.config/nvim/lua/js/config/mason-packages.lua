@@ -5,4 +5,5 @@ return {
   "prettier",
   "stylelint-lsp",
   "tailwindcss-language-server",
+  "vtsls",
 }
