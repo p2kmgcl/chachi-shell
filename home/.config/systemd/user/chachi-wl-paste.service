@@ -1,5 +1,0 @@
-[Unit]
-PartOf=chachi-sway-session.target
-
-[Service]
-ExecStart=/usr/bin/wl-paste -t test --watch clipman store --no-persist
