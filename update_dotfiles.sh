@@ -85,6 +85,7 @@ link_thing .Xdefaults
 link_thing .Xresources
 link_thing .bash_profile
 link_thing .bashrc
+link_thing .claude
 link_thing .editorconfig
 link_thing .gitconfig
 link_thing .gitconfig.extra
