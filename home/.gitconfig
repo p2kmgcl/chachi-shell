@@ -33,6 +33,11 @@
   prune = true
   prunetags = true
 
+[gc]
+  auto = 256
+  autoPackLimit = 4
+  writeCommitGraph = true
+
 [gpg]
   format = ssh
 
