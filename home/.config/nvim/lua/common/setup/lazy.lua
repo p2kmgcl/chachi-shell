@@ -41,6 +41,9 @@ require("lazy").setup({
     enabled = true,
     frequency = 60 * 60 * 24 * 14, -- every 2 weeks in seconds
   },
+  change_detection = {
+    enabled = false,
+  },
 })
 
 vim.cmd([[colorscheme catppuccin]])
