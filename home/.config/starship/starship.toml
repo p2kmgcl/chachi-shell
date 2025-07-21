@@ -4,8 +4,7 @@ $hostname\
 $directory\
 $git_branch\
 $git_state\
-$git_status\
-$cmd_duration\
+${custom.git_status_safe}\
 $line_break\
 $character"""
 
@@ -24,21 +23,15 @@ vimcmd_symbol = "[❮](green)"
 format = "[$branch]($style)"
 style = "bright-black"
 
-[git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+[custom.git_status_safe]
+shell = ["sh", "--noprofile", "--noprofile"]
+command = "~/.config/starship/git-status-safe.sh"
+when = "test -x ~/.config/starship/git-status-safe.sh"
+require_repo = true
+ignore_timeout = true
+format = "[$output]($style)"
 style = "cyan"
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
-stashed = "≡"
 
 [git_state]
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "bright-black"
-
-[cmd_duration]
-format = "[$duration]($style) "
-style = "yellow"
