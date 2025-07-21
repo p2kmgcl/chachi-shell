@@ -1,10 +1,7 @@
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
-  dependencies = {
-    "MunifTanjim/nui.nvim",
-    "rcarriga/nvim-notify",
-  },
+  dependencies = { "MunifTanjim/nui.nvim" },
   opts = {
     lsp = {
       override = {
@@ -15,97 +12,32 @@ return {
     },
     routes = {
       {
+        view = "mini",
         filter = {
           event = "msg_show",
-          any = {
-            { find = "%d+L, %d+B" },
-            { find = "; after #%d+" },
-            { find = "; before #%d+" },
-          },
+          any = { { find = "%d+L, %d+B" }, { find = "; after #%d+" }, { find = "; before #%d+" } },
         },
-        view = "mini",
       },
     },
     presets = {
-      bottom_search = true,
+      bottom_search = false,
       command_palette = true,
       long_message_to_split = true,
       lsp_doc_border = true,
     },
   },
   keys = {
-    {
-      "<leader>sn",
-      "",
-      desc = "+noice",
-    },
-    {
-      "<S-Enter>",
-      function()
-        require("noice").redirect(vim.fn.getcmdline())
-      end,
-      mode = "c",
-      desc = "Redirect Cmdline",
-    },
-    {
-      "<leader>snl",
-      function()
-        require("noice").cmd("last")
-      end,
-      desc = "Noice Last Message",
-    },
-    {
-      "<leader>snh",
-      function()
-        require("noice").cmd("history")
-      end,
-      desc = "Noice History",
-    },
-    {
-      "<leader>sna",
-      function()
-        require("noice").cmd("all")
-      end,
-      desc = "Noice All",
-    },
-    {
-      "<leader>snd",
-      function()
-        require("noice").cmd("dismiss")
-      end,
-      desc = "Dismiss All",
-    },
-    {
-      "<leader>snt",
-      function()
-        require("noice").cmd("pick")
-      end,
-      desc = "Noice Picker (Telescope/FzfLua)",
-    },
-    {
-      "<c-f>",
-      function()
-        if not require("noice.lsp").scroll(4) then
-          return "<c-f>"
-        end
-      end,
-      silent = true,
-      expr = true,
-      desc = "Scroll Forward",
-      mode = { "i", "n", "s" },
-    },
-    {
-      "<c-b>",
-      function()
-        if not require("noice.lsp").scroll(-4) then
-          return "<c-b>"
-        end
-      end,
-      silent = true,
-      expr = true,
-      desc = "Scroll Backward",
-      mode = { "i", "n", "s" },
-    },
+    -- stylua: ignore start
+    { "<leader>sn", "", desc = "+noice", },
+    { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline", },
+    { "<leader>snl", function() require("noice").cmd("last") end, desc = "Noice Last Message", },
+    { "<leader>snh", function() require("noice").cmd("history") end, desc = "Noice History", },
+    { "<leader>sna", function() require("noice").cmd("all") end, desc = "Noice All", },
+    { "<leader>snd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All", },
+    { "<leader>snt", function() require("noice").cmd("pick") end, desc = "Noice Picker (Telescope/FzfLua)", },
+    { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll Forward", mode = { "i", "n", "s" }, },
+    { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll Backward", mode = { "i", "n", "s" }, },
+    -- stylua: ignore end
   },
   config = function(_, opts)
     -- HACK: noice shows messages from before it was enabled,
