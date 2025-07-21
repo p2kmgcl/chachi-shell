@@ -11,6 +11,9 @@ return {
       preset = "default",
       ["<CR>"] = { "fallback" },
     },
+    appearance = {
+      nerd_font_variant = "mono",
+    },
     completion = {
       trigger = {
         prefetch_on_insert = false,
@@ -36,21 +39,15 @@ return {
       },
     },
     sources = {
-      default = { "lsp", "path", "buffer" },
+      default = {
+        "lsp",
+        "path",
+        "buffer",
+      },
       providers = {
-        lsp = {
-          async = true,
-          timeout_ms = 200,
-          max_items = 20,
-        },
-        path = {
-          async = true,
-          max_items = 10,
-        },
-        buffer = {
-          async = true,
-          max_items = 10,
-        },
+        lsp = { async = true, timeout_ms = 200, max_items = 20 },
+        buffer = { async = true, max_items = 10 },
+        path = { async = true, max_items = 10 },
       },
     },
   },
