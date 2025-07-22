@@ -67,7 +67,6 @@ return {
     { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff" },
     { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
     { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
-    { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
     { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
     { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
     { "<leader>sD", function() Snacks.picker.diagnostics() end, desc = "Diagnostics (root)" },
@@ -108,6 +107,49 @@ return {
         })
       end,
       desc = "Find Files (current dir)",
+    },
+    {
+      "<leader>gs",
+      function()
+        local items = {}
+        local handle = io.popen("git status --porcelain")
+        if handle then
+          local result = handle:read("*a")
+          handle:close()
+
+          for line in result:gmatch("[^\r\n]+") do
+            local status = line:sub(1, 2)
+            local file_or_dir = line:sub(4)
+
+            if file_or_dir:sub(-1) == "/" then
+              for file in vim.fs.dir(file_or_dir) do
+                local file_name = file_or_dir .. file
+                table.insert(items, { status = status, file = file_name, text = file_name })
+              end
+            else
+              table.insert(items, { status = status, file = file_or_dir, text = file_or_dir })
+            end
+          end
+        end
+
+        Snacks.picker.pick({
+          items = items,
+          preview = "git_diff",
+          format = function(item)
+            local package_or_dir = vim.fs.dirname(item.file)
+            local basename = vim.fs.basename(item.file)
+
+            return {
+              { item.status, "SnacksPickerIconField" },
+              { " ", "SnacksPickerDelim" },
+              { basename, "SnacksPickerFile" },
+              { " ", "SnacksPickerDelim" },
+              { package_or_dir, "SnacksPickerPathHidden" },
+            }
+          end,
+        })
+      end,
+      desc = "Git Status",
     },
     {
       "<leader>sg",
