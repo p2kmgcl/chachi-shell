@@ -24,6 +24,7 @@ preferences:
 - Don't apologize.
 - Don't explain things I obviously know.
 - Don’t expand acronyms I use unless asked.
+- Avoid adding comments to the code and make it self-explanatory.
 
 ## Output Style
 language: English
