@@ -139,7 +139,6 @@ local function populate_project_commands()
   local which_key_spec = {}
 
   for _, command in ipairs(commands) do
-    print(vim.inspect(command))
     local keymap = "<leader>x" .. command.key
 
     vim.keymap.set("n", keymap, function()
