@@ -1,8 +1,14 @@
 local function get_project_commands()
   local get_project_root = require("common.helpers.get-project-root")
   local get_dir_config = require("common.helpers.get-dir-config")
+
   local current_file = vim.fn.expand("%:p")
   local project_root = get_project_root(current_file)
+
+  if not project_root then
+    return {}
+  end
+
   local config = get_dir_config(project_root)
 
   if not config then
