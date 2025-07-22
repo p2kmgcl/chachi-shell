@@ -151,4 +151,4 @@ vim.keymap.set({ "n", "v" }, "<leader>.", function()
       vim.cmd.startinsert()
     end
   end)
-end, { desc = "Claude with editor context" })
+end, { desc = "Claude" })
