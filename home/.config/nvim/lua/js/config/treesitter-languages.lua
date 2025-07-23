@@ -1,7 +1,6 @@
 return {
   "css",
-    "scss",
-
+  "scss",
   "html",
   "javascript",
   "jsdoc",
