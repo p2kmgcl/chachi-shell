@@ -9,15 +9,6 @@ return {
       function()
         local conform = require("conform")
         conform.format({ async = false })
-
-        for _, client in ipairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
-          if client.name == "eslint-lsp" then
-            client:request_sync(vim.lsp.protocol.Methods.workspace_executeCommand, {
-              command = "eslint.applyAllFixes",
-              arguments = { { uri = vim.uri_from_bufnr(0) } },
-            })
-          end
-        end
       end,
       mode = "n",
       desc = "Format buffer",
