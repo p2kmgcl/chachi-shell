@@ -1,0 +1,63 @@
+return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "master",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "bash",
+          "css",
+          "csv",
+          "dockerfile",
+          "editorconfig",
+          "fish",
+          "git_config",
+          "git_rebase",
+          "gitattributes",
+          "gitcommit",
+          "gitignore",
+          "html",
+          "javascript",
+          "jsdoc",
+          "json",
+          "json5",
+          "lua",
+          "luadoc",
+          "markdown",
+          "markdown_inline",
+          "regex",
+          "rust",
+          "scss",
+          "toml",
+          "tsx",
+          "typescript",
+          "vim",
+          "vimdoc",
+          "xml",
+          "yaml",
+        },
+        highlight = { enable = true },
+        indent = { enable = true },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "<C-space>",
+            node_incremental = "<C-space>",
+            scope_incremental = false,
+            node_decremental = "<bs>",
+          },
+        },
+        textobjects = {
+          move = {
+            enable = true,
+            goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
+            goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
+            goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[a"] = "@parameter.inner" },
+            goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
+          },
+        },
+      })
+    end,
+  },
+}
