@@ -25,4 +25,7 @@ config.macos_window_background_blur = 50
 config.win32_system_backdrop = "Acrylic"
 config.window_padding = { top = 0, left = 0, right = 0, bottom = 0 }
 
+-- Only supported in nightly builds
+-- config.window_content_alignment = { horizontal = "Center", vertical = "Center" }
+
 return config
