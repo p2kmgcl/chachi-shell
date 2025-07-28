@@ -3,7 +3,7 @@ local config = wezterm.config_builder()
 
 -- https://wezterm.org/config/lua/wezterm/font.html
 config.font = wezterm.font({
-  family = "ZedMono Nerd Font",
+  family = "M+1Code Nerd Font",
   weight = 400,
   stretch = "Normal",
   italic = false,

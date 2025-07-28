@@ -155,7 +155,7 @@ client.focused_inactive #eeeeee88 #00000088 #eeeeee88 #eeeeee88 #eeeeee88
 client.unfocused #eeeeee88 #eeeeee88 #00000088 #eeeeee88 #eeeeee88
 client.urgent #eeeeee88 #eeeeee88 #00000088 #eeeeee88 #eeeeee88
 
-font pango:ZedMono Nerd Font Text 11
+font pango:M+1Code Nerd Font Text 11
 
 bar {
     position bottom
