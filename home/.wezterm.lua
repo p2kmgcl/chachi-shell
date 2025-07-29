@@ -9,8 +9,8 @@ config.font = wezterm.font({
   italic = false,
 })
 
-config.font_size = 18
-config.line_height = 1.3
+config.font_size = 16
+config.line_height = 1.1
 
 local color_scheme = "Dark"
 if wezterm.gui then
