@@ -8,7 +8,7 @@ return {
       width_preview = 60,
     },
     options = {
-      use_as_default_explorer = true,
+      use_as_default_explorer = false,
     },
     mappings = {
       go_in_plus = 'l',
