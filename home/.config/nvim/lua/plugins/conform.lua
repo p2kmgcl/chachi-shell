@@ -17,14 +17,10 @@ return {
   opts = function()
     return {
       formatters_by_ft = {
-        css = { "prettier" },
-        html = { "prettier" },
+        ["_"] = { "prettier" },
         javascript = { "eslint_d", "prettier", stop_after_first = false },
         javascriptreact = { "eslint_d", "prettier", stop_after_first = false },
-        json = { "prettier" },
-        less = { "prettier" },
         lua = { "stylua" },
-        scss = { "prettier" },
         sh = { "shfmt" },
         typescript = { "eslint_d", "prettier", stop_after_first = false },
         typescriptreact = { "eslint_d", "prettier", stop_after_first = false },
