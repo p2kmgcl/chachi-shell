@@ -60,13 +60,9 @@ return {
     { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
     { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
     { "<leader>fr", function() Snacks.picker.recent({ filter = { cwd = true } }) end, desc = "Recent" },
-    { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", mode = { "n", "v" } },
-    { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
-    { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
-    { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
-    { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff" },
+    { "<leader>gY", function() Snacks.gitbrowse() end, desc = "Git Link (open)", mode = { "n", "v" } },
+    { "<leader>gl", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
     { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
-    { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
     { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
     { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
     { "<leader>sD", function() Snacks.picker.diagnostics() end, desc = "Diagnostics (root)" },
@@ -167,6 +163,19 @@ return {
         })
       end,
       desc = "Grep (current dir)",
+    },
+    {
+      "<leader>gy",
+      function()
+        Snacks.gitbrowse({
+          notify = true,
+          open = function(url)
+            vim.fn.setreg("+", url)
+          end,
+        })
+      end,
+      desc = "Git Link (copy)",
+      mode = { "n", "v" },
     },
   },
 }
