@@ -1,6 +1,8 @@
+confirmOnQuit: true
 gui:
-  expandFocusedSidePanel: true
-  showBottomLine: false
+  expandFocusedSidePanel: false
+  showFileTree: true
+  showBottomLine: true
   showCommandLog: false
   showRandomTip: false
   border: rounded
@@ -35,3 +37,10 @@ git:
   paging:
     colorArg: never
     pager: delta --detect-dark-light always --no-gitconfig --paging=never
+  mainBranches:
+    - master
+    - main
+    - preprod
+    - devel
+  autoFetch: false
+  fetchAll: true
