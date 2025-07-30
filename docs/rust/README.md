@@ -19,6 +19,7 @@ rustup component add rust-analyzer
 - Diffing: `cargo install --locked git-delta`
 - Better ls: `cargo install --locked exa`
 - Better find: `cargo install --locked fd-find`
+- Ripgrep with binaries support: `cargo install --locked ripgrep_all`
 - Better cat: `cargo install --locked bat`
 - Rust code checker: `cargo install --locked bacon`
 - Alternative to top: `cargo install --locked bottom`
@@ -34,6 +35,7 @@ cargo install --locked \
   git-delta \
   exa \
   fd-find \
+  ripgrep_all \
   bat \
   bacon \
   bottom \
