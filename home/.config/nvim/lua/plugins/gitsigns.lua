@@ -14,6 +14,43 @@ return {
       col = 1,
     },
   },
+  keys = {
+    {
+      "<leader>gb",
+      function()
+        require("gitsigns").blame_line()
+      end,
+      desc = "Git Blame Line",
+    },
+    {
+      "<leader>gB",
+      function()
+        require("gitsigns").blame()
+      end,
+      desc = "Git Blame File",
+    },
+    {
+      "<leader>gd",
+      function()
+        require("gitsigns").preview_hunk()
+      end,
+      desc = "Git Diff Hunk",
+    },
+    {
+      "[h",
+      function()
+        require("gitsigns").nav_hunk("prev")
+      end,
+      desc = "Previous hunk",
+    },
+    {
+      "]h",
+      function()
+        require("gitsigns").nav_hunk("next")
+      end,
+      desc = "Next hunk",
+    },
+  },
   config = function(_, opts)
     local gitsigns = require("gitsigns")
     gitsigns.setup(opts)
