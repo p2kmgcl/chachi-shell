@@ -93,25 +93,10 @@ return {
     end
   end,
   workspace_required = true,
-  root_dir = function(bufnr, cb)
-    local root_files = {
-      "tailwind.config.js",
-      "tailwind.config.cjs",
-      "tailwind.config.mjs",
-      "tailwind.config.ts",
-      "postcss.config.js",
-      "postcss.config.cjs",
-      "postcss.config.mjs",
-      "postcss.config.ts",
-      "theme/static_src/tailwind.config.js",
-      "theme/static_src/tailwind.config.cjs",
-      "theme/static_src/tailwind.config.mjs",
-      "theme/static_src/tailwind.config.ts",
-      "theme/static_src/postcss.config.js",
-      "package-lock.json",
-      "yarn.lock",
-    }
-    local fname = vim.api.nvim_buf_get_name(bufnr)
-    cb(vim.fs.dirname(vim.fs.find(root_files, { path = fname, upward = true })[1]))
-  end,
+  root_dir = require("helpers.get-root-dir")({
+    "tailwind.config.js",
+    "tailwind.config.cjs",
+    "tailwind.config.mjs",
+    "tailwind.config.ts",
+  }),
 }
