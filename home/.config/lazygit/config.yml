@@ -13,34 +13,22 @@ gui:
   # ./themes/catppuccin/latte/rosewater.yml
   theme:
     activeBorderColor:
-      - '#dc8a78'
+      - yellow
       - bold
-    inactiveBorderColor:
-      - '#6c6f85'
-    optionsTextColor:
-      - '#1e66f5'
     selectedLineBgColor:
-      - '#ccd0da'
-    cherryPickedCommitBgColor:
-      - '#bcc0cc'
-    cherryPickedCommitFgColor:
-      - '#dc8a78'
+      - black
     unstagedChangesColor:
-      - '#d20f39'
-    defaultFgColor:
-      - '#4c4f69'
-    searchingActiveBorderColor:
-      - '#df8e1d'
-  authorColors:
-    '*': '#7287fd'
+      - yellow
 git:
   paging:
-    colorArg: never
-    pager: delta --dark --no-gitconfig --paging=never
+    useConfig: true
   mainBranches:
     - master
     - main
     - preprod
     - devel
+  log:
+    showGraph: always
+  branchLogCmd: git log --graph --color=always --pretty='%Cgreen%h %Cblue%an (%ar) %Creset%s' {{branchName}} --
   autoFetch: false
   fetchAll: true

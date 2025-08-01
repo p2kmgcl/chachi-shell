@@ -11,23 +11,19 @@
   fsmonitor = true
   ignorecase = false
   untrackedcache = true
-  pager = delta --detect-dark-light always --max-line-length=512
+  pager = delta
+
+[delta]
+  detect-dark-light = always
+  max-line-length = 512
+  navigate = true
+  paging = never
 
 [diff]
   algorithm = histogram
   context = 0
   renames = true
   renamelimit = 5000
-  tool = neovim
-
-[difftool]
-  prompt = false
-
-[difftool "neovim"]
-  cmd = nvim -d $LOCAL $REMOTE
-
-[difftool "vscode"]
-  cmd = code --wait --diff $LOCAL $REMOTE
 
 [fetch]
   prune = true
@@ -51,19 +47,21 @@
   skipHash = true
   version = 4
 
+[interactive]
+  diffFilter = delta --color-only
+
+[log]
+  abbrevCommit = true
+  decorate = full
+
 [merge]
   conflictstyle = merge
   tool = neovim
 
-[mergetool]
-  prompt = false
-  tool = neovim
-
 [mergetool "neovim"]
-  cmd = nvim -d $REMOTE $MERGED $LOCAL
-
-[mergetool "vscode"]
-  cmd = code --wait $REMOTE $MERGED $LOCAL
+  cmd = nvim -d \"$REMOTE\" \"$MERGED\" \"$LOCAL\"
+  trustExitCode = false
+  prompt = false
 
 [pull]
   rebase = true
@@ -112,16 +110,16 @@
   ch = checkout
   cm = commit
   cma = commit --amend
+  cmw = commit --no-verify -m WIP
   cp = cherry-pick
   cpa = cherry-pick --abort
   cpc = cherry-pick --continue
   din = diff --name-only
-  fea = fetch --all
+  fea = fetch --all --prune
   lg = log --pretty='%Cgreen%h %Cblue%an (%ar) %Creset%s'
   lgi = !~/.config/git/git-log-ids
   pl = pull
   ps = push
-  psf = push --force
   rb = rebase
   rba = rebase --abort
   rbc = rebase --continue
