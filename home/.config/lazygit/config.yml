@@ -1,4 +1,4 @@
-confirmOnQuit: true
+confirmOnQuit: false
 gui:
   expandFocusedSidePanel: false
   showFileTree: true
