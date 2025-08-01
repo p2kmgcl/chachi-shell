@@ -36,7 +36,7 @@ gui:
 git:
   paging:
     colorArg: never
-    pager: delta --detect-dark-light always --no-gitconfig --paging=never
+    pager: delta --dark --no-gitconfig --paging=never
   mainBranches:
     - master
     - main

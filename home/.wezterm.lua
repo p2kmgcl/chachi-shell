@@ -20,7 +20,7 @@ if color_scheme:find("Dark") then
   config.color_scheme = "Catppuccin Mocha"
   config.window_background_opacity = 1.0
 else
-  config.color_scheme = "Catppuccin Latte"
+  config.color_scheme = "Catppuccin Mocha"
   config.window_background_opacity = 1.0
 end
 

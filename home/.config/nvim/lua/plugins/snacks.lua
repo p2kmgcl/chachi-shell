@@ -21,7 +21,7 @@ return {
       previewers = {
         diff = {
           builtin = false,
-          cmd = { "delta", "--detect-dark-light", "always", "--no-gitconfig", "--paging=never" },
+          cmd = { "delta", "--dark", "--no-gitconfig", "--paging=never" },
         },
         git = {
           builtin = false,
