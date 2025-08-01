@@ -77,7 +77,6 @@ link_thing .config/nvim
 link_thing .config/rofi
 link_thing .config/starship
 link_thing .config/sway
-link_thing .config/systemd
 link_thing .config/tmux
 link_thing .config/waybar
 

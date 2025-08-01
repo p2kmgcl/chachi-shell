@@ -10,8 +10,6 @@
 /home/.config/nvim/.netrwhist
 /home/.config/nvim/plugin
 /home/.config/nvim/undo-dir
-/home/.config/systemd/user/default.target.wants
-/home/.config/systemd/user/graphical-session.target.wants
 /home/.gitconfig.extra
 /home/.ssh/id_*
 /home/.ssh/known_hosts
