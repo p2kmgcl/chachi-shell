@@ -1,0 +1,105 @@
+{
+  "agent": {
+    "always_allow_tool_actions": true
+  },
+  "buffer_font_family": "M+1Code Nerd Font",
+  "buffer_font_size": 16,
+  "buffer_line_height": "standard",
+  "collaboration_panel": {
+    "dock": null
+  },
+  "diagnostics": {
+    "button": true,
+    "include_warnings": true,
+    "inline": {
+      "enabled": true,
+      "max_severity": null,
+      "min_column": 0,
+      "padding": 4,
+      "update_debounce_ms": 150
+    },
+    "lsp_pull_diagnostics": {
+      "debounce_ms": 50,
+      "enabled": true
+    }
+  },
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "git": {
+    "git_gutter": "tracked_files",
+    "hunk_style": "unstaged_hollow",
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "git_panel": {
+    "dock": "right"
+  },
+  "languages": {
+    "JavaScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
+    "TSX": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    },
+    "TypeScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true
+      }
+    }
+  },
+  "lsp": {
+    "eslint": {
+      "settings": {
+        "nodePath": ".yarn/sdks",
+        "workingDirectory": {
+          "mode": "auto"
+        }
+      }
+    },
+    "vtsls": {
+      "settings": {
+        "javascript": {
+          "tsserver": {
+            "maxTsServerMemory": 20480
+          }
+        },
+        "typescript": {
+          "tsserver": {
+            "maxTsServerMemory": 20480
+          }
+        }
+      }
+    }
+  },
+  "outline_panel": {
+    "dock": null
+  },
+  "project_panel": {
+    "dock": "right"
+  },
+  "relative_line_numbers": true,
+  "tab_bar": {
+    "show": true
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "theme": {
+    "dark": "Gruvbox Dark Hard",
+    "light": "Gruvbox Light Hard",
+    "mode": "system"
+  },
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false
+  },
+  "ui_font_family": "M+1Code Nerd Font",
+  "vim_mode": true
+}

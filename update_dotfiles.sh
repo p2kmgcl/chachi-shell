@@ -79,6 +79,7 @@ link_thing .config/starship
 link_thing .config/sway
 link_thing .config/tmux
 link_thing .config/waybar
+link_thing .config/zed
 
 link_thing .Xdefaults
 link_thing .Xresources
