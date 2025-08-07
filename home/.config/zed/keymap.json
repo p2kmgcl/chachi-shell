@@ -1,12 +1,42 @@
-// Zed keymap
-//
-// For information on binding keys, see the Zed
-// documentation: https://zed.dev/docs/key-bindings
-//
-// To see the default key bindings run `zed: open default keymap`
-// from the command palette.
 [
   {
+    // Confirm completions
+    "context": "(Editor && showing_completions)",
+    "bindings": {
+      "enter": null,
+      "shift-enter": null,
+      "tab": null,
+      "ctrl-y": "editor::ConfirmCompletion"
+    }
+  },
+  {
+    // Confirm code actions
+    "context": "(Editor && showing_code_actions)",
+    "bindings": {
+      "enter": null,
+      "ctrl-y": "editor::ConfirmCodeAction"
+    }
+  },
+  {
+    // Better indenting
+    "context": "vim_mode == visual",
+    "bindings": {
+      "<": ["workspace::SendKeystrokes", "< g v"],
+      ">": ["workspace::SendKeystrokes", "> g v"]
+    }
+  },
+  {
+    // Change/delete without yank
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "c": ["workspace::SendKeystrokes", "\" _ c"],
+      "shift-c": ["workspace::SendKeystrokes", "\" _ shift-c"],
+      "d": ["workspace::SendKeystrokes", "\" _ d"],
+      "shift-d": ["workspace::SendKeystrokes", "\" _ shift-d"]
+    }
+  },
+  {
+    // Window management
     "bindings": {
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
