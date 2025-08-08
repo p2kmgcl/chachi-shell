@@ -7,6 +7,7 @@ return {
       { "<leader>c", group = "Code" },
       { "<leader>f", group = "Find" },
       { "<leader>g", group = "Git" },
+      { "<leader>l", group = "LSP" },
       { "<leader>q", group = "Quit/Session" },
       { "<leader>s", group = "Search" },
       { "<leader>u", group = "UI" },
