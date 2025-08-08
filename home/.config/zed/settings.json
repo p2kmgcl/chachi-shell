@@ -170,7 +170,7 @@
     "default_height": 400,
     "dock": "bottom",
     "font_family": "M+1Code Nerd Font",
-    "font_size": 14,
+    "font_size": 16,
     "line_height": "standard",
     "toolbar": { "breadcrumbs": false }
   },
