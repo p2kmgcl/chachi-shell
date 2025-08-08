@@ -7,6 +7,16 @@
     "default_profile": "ask",
     "always_allow_tool_actions": true
   },
+  "auto_install_extensions": {
+    "catppuccin": true,
+    "dockerfile": true,
+    "git-firefly": true,
+    "github-classic": true,
+    "html": true,
+    "scss": true,
+    "toml": true,
+    "tsgo": true
+  },
   "bottom_dock_layout": "full",
   "buffer_font_family": "M+1Code Nerd Font",
   "buffer_font_size": 16,
@@ -68,19 +78,13 @@
   "inline_code_actions": false,
   "languages": {
     "JavaScript": {
-      "code_actions_on_format": {
-        "source.fixAll.eslint": true
-      }
-    },
-    "TSX": {
-      "code_actions_on_format": {
-        "source.fixAll.eslint": true
-      }
+      "code_actions_on_format": { "source.fixAll.eslint": true }
     },
     "TypeScript": {
-      "code_actions_on_format": {
-        "source.fixAll.eslint": true
-      }
+      "code_actions_on_format": { "source.fixAll.eslint": true }
+    },
+    "TSX": {
+      "code_actions_on_format": { "source.fixAll.eslint": true }
     }
   },
   "lsp": {
@@ -95,14 +99,10 @@
     "vtsls": {
       "settings": {
         "javascript": {
-          "tsserver": {
-            "maxTsServerMemory": 20480
-          }
+          "tsserver": { "maxTsServerMemory": 40000 }
         },
         "typescript": {
-          "tsserver": {
-            "maxTsServerMemory": 20480
-          }
+          "tsserver": { "maxTsServerMemory": 40000 }
         }
       }
     }
