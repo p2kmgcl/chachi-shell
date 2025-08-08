@@ -52,32 +52,16 @@ return {
   keys = {
     -- stylua: ignore start
     { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
-    { "<leader><space>", function() Snacks.picker.smart({ filter = { cwd = true } }) end, desc = "Smart Find Files" },
     { "<leader>bd", function() Snacks.bufdelete(); end, desc = "Delete Buffer" },
-    { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
-    { "<leader>fF", function() Snacks.picker.files() end, desc = "Find Files (root)" },
-    { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
-    { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
-    { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
-    { "<leader>fr", function() Snacks.picker.recent({ filter = { cwd = true } }) end, desc = "Recent" },
+    { "<leader>cd", function() Snacks.picker.diagnostics_buffer() end, desc = "Code Diagnostics (current file)" },
+    { "<leader>cD", function() Snacks.picker.diagnostics() end, desc = "Code Diagnostics (root)" },
     { "<leader>gY", function() Snacks.gitbrowse() end, desc = "Git Link (open)", mode = { "n", "v" } },
     { "<leader>gl", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
     { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
-    { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
-    { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
-    { "<leader>sD", function() Snacks.picker.diagnostics() end, desc = "Diagnostics (root)" },
-    { "<leader>sG", function() Snacks.picker.grep() end, desc = "Grep (root)" },
+    { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep (root)" },
     { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
-    { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
-    { "<leader>sd", function() Snacks.picker.diagnostics_buffer() end, desc = "Diagnostics (current file)" },
     { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
-    { "<leader>si", function() Snacks.picker.icons() end, desc = "Icons" },
-    { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
-    { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
-    { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
-    { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols (root)" },
     { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
-    { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
     { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
     { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
     { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
@@ -87,23 +71,6 @@ return {
     { "grr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
     { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto Type Definition" },
     -- stylua: ignore end
-    {
-      "<leader>ff",
-      function()
-        local current_file = vim.fn.expand("%:p")
-        local snacks = require("snacks")
-
-        if current_file == "" then
-          snacks.picker.files()
-          return
-        end
-
-        snacks.picker.files({
-          cwd = vim.fn.fnamemodify(current_file, ":h"),
-        })
-      end,
-      desc = "Find Files (current dir)",
-    },
     {
       "<leader>gs",
       function()
@@ -146,23 +113,6 @@ return {
         })
       end,
       desc = "Git Status",
-    },
-    {
-      "<leader>sg",
-      function()
-        local current_file = vim.fn.expand("%:p")
-        local snacks = require("snacks")
-
-        if current_file == "" then
-          snacks.picker.grep()
-          return
-        end
-
-        snacks.picker.grep({
-          cwd = vim.fn.fnamemodify(current_file, ":h"),
-        })
-      end,
-      desc = "Grep (current dir)",
     },
     {
       "<leader>gy",
