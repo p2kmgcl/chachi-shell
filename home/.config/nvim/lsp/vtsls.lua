@@ -15,6 +15,9 @@ local language_settings = {
     includeInlayFunctionLikeReturnTypeHints = false,
     includeInlayEnumMemberValueHints = false,
   },
+  tsserver = {
+    maxTsServerMemory = 40960,
+  },
 }
 
 local function get_tsdk()
@@ -37,11 +40,7 @@ end
 return {
   cmd = { "vtsls", "--stdio" },
   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-  root_dir = require('helpers.get-root-dir')({
-    'yarn.lock',
-    'package-lock.json',
-    'tsconfig.json',
-  }),
+  root_dir = require("helpers.get-root-dir")({ "yarn.lock", "package-lock.json", "tsconfig.json" }),
   settings = {
     typescript = language_settings,
     javascript = language_settings,
