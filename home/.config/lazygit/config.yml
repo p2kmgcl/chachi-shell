@@ -10,15 +10,6 @@ gui:
   filterMode: fuzzy
   commitLength:
     show: true
-  # ./themes/catppuccin/latte/rosewater.yml
-  theme:
-    activeBorderColor:
-      - yellow
-      - bold
-    selectedLineBgColor:
-      - black
-    unstagedChangesColor:
-      - yellow
 git:
   paging:
     useConfig: true

@@ -12,17 +12,8 @@ config.font = wezterm.font({
 config.font_size = 16
 config.line_height = 1.1
 
-local color_scheme = "Dark"
-if wezterm.gui then
-  color_scheme = wezterm.gui.get_appearance()
-end
-if color_scheme:find("Dark") then
-  config.color_scheme = "Catppuccin Mocha"
-  config.window_background_opacity = 1.0
-else
-  config.color_scheme = "Catppuccin Mocha"
-  config.window_background_opacity = 1.0
-end
+config.color_scheme = "Github"
+config.window_background_opacity = 1.0
 
 config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true

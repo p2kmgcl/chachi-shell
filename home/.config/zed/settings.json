@@ -180,8 +180,8 @@
     "show_project_items": true
   },
   "theme": {
-    "dark": "Gruvbox Dark Hard",
-    "light": "Gruvbox Light Hard",
+    "dark": "Catppuccin Mocha",
+    "light": "Cattppuccin Latte",
     "mode": "system"
   },
   "toolbar": {
