@@ -20,11 +20,10 @@ return {
       },
       previewers = {
         diff = {
-          builtin = false,
-          cmd = { "delta", "--light", "--no-gitconfig", "--paging=never" },
+          builtin = true,
         },
         git = {
-          builtin = false,
+          builtin = true,
         },
       },
       sources = {
@@ -57,7 +56,7 @@ return {
     { "<leader>cD", function() Snacks.picker.diagnostics() end, desc = "Code Diagnostics (root)" },
     { "<leader>gY", function() Snacks.gitbrowse() end, desc = "Git Link (open)", mode = { "n", "v" } },
     { "<leader>gl", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
-    { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
+    { "<leader>gg", function() Snacks.lazygit({ configure = false }) end, desc = "Lazygit" },
     { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep (root)" },
     { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
     { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
