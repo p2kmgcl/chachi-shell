@@ -16,7 +16,7 @@ size = 16
 
 [font.normal]
 family = "M+1Code Nerd Font"
-style = "Medium"
+style = "Regular"
 
 [font.offset]
 x = 0
@@ -34,75 +34,41 @@ dynamic_title = true
 opacity = 1.0
 option_as_alt = "Both"
 resize_increments = true
-startup_mode = "Maximized"
+# startup_mode = "Maximized"
 
 [colors]
 draw_bold_text_with_bright_colors = true
 
-# https://github.com/catppuccin/alacritty/blob/main/catppuccin-latte.toml
+# https://github.com/alacritty/alacritty-theme/blob/master/themes/github_light_colorblind.toml
 
 [colors.primary]
-background = "#eff1f5"
-foreground = "#4c4f69"
-dim_foreground = "#8c8fa1"
-bright_foreground = "#4c4f69"
-
-[colors.cursor]
-text = "#eff1f5"
-cursor = "#dc8a78"
-
-[colors.vi_mode_cursor]
-text = "#eff1f5"
-cursor = "#7287fd"
-
-[colors.search.matches]
-foreground = "#eff1f5"
-background = "#6c6f85"
-
-[colors.search.focused_match]
-foreground = "#eff1f5"
-background = "#40a02b"
-
-[colors.footer_bar]
-foreground = "#eff1f5"
-background = "#6c6f85"
-
-[colors.hints.start]
-foreground = "#eff1f5"
-background = "#df8e1d"
-
-[colors.hints.end]
-foreground = "#eff1f5"
-background = "#6c6f85"
-
-[colors.selection]
-text = "#eff1f5"
-background = "#dc8a78"
+background = '#ffffff'
+foreground = '#0E1116'
 
 [colors.normal]
-black = "#bcc0cc"
-red = "#d20f39"
-green = "#40a02b"
-yellow = "#df8e1d"
-blue = "#1e66f5"
-magenta = "#ea76cb"
-cyan = "#179299"
-white = "#5c5f77"
+black   = '#24292f'
+red     = '#cf222e'
+green   = '#116329'
+yellow  = '#4d2d00'
+blue    = '#0969da'
+magenta = '#8250df'
+cyan    = '#1b7c83'
+white   = '#6e7781'
 
 [colors.bright]
-black = "#acb0be"
-red = "#d20f39"
-green = "#40a02b"
-yellow = "#df8e1d"
-blue = "#1e66f5"
-magenta = "#ea76cb"
-cyan = "#179299"
-white = "#6c6f85"
+black   = '#57606a'
+red     = '#a40e26'
+green   = '#1a7f37'
+yellow  = '#633c01'
+blue    = '#218bff'
+magenta = '#a475f9'
+cyan    = '#3192aa'
+white   = '#8c959f'
 
 [[colors.indexed_colors]]
 index = 16
-color = "#fe640b"
+color = '#d18616'
 
 [[colors.indexed_colors]]
 index = 17
-color = "#dc8a78"
+color = '#a40e26'
