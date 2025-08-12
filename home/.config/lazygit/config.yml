@@ -1,4 +1,6 @@
 confirmOnQuit: false
+os:
+  editPreset: 'nvim-remote'
 gui:
   expandFocusedSidePanel: false
   showFileTree: true
@@ -10,6 +12,21 @@ gui:
   filterMode: fuzzy
   commitLength:
     show: true
+  theme:
+    activeBorderColor: ['#000000']
+    cherryPickedCommitBgColor: [default]
+    cherryPickedCommitFgColor: ['#aaaaaa']
+    defaultFgColor: ['#000000']
+    inactiveBorderColor: ['#aaaaaa']
+    inactiveViewSelectedLineBgColor: ['#aaaaaa']
+    markedBaseCommitBgColor: []
+    markedBaseCommitFgColor: [bold]
+    optionsTextColor: ['#aaaaaa']
+    searchingActiveBorderColor: ['#aaaaaa']
+    selectedLineBgColor: [underline]
+    unstagedChangesColor: [default, '#aaaaaa']
+  authorColors:
+    '*': '#aaaaaa'
 git:
   paging:
     useConfig: true
