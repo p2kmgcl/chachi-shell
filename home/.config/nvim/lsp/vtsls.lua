@@ -1,5 +1,8 @@
 local language_settings = {
-  suggest = { completeFunctionCalls = true },
+  suggest = {
+    -- Breaks for completion+textEdit, ex. useS -> React.useState()
+    completeFunctionCalls = false
+  },
   inlayHints = {
     functionLikeReturnTypes = { enabled = false },
     parameterNames = { enabled = false },

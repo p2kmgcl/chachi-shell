@@ -8,9 +8,20 @@ return {
   },
   opts = {
     keymap = {
-      preset = "default",
-      ["<C-y>"] = { "accept" },
-      ["<CR>"] = { "fallback" },
+      preset = 'none',
+
+      ["<C-space>"] = { "show", "fallback" },
+      ["<C-e>"] = { "hide", "fallback" },
+
+      ["<C-y>"] = { "select_and_accept", "fallback" },
+      ["<C-p>"] = { "select_prev", "fallback" },
+      ["<C-n>"] = { "select_next", "fallback" },
+
+      ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+      ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+
+      ["<Tab>"] = { "snippet_forward", "fallback" },
+      ["<S-Tab>"] = { "snippet_backward", "fallback" },
     },
     appearance = {
       nerd_font_variant = "mono",
@@ -30,6 +41,7 @@ return {
         show_on_insert_on_trigger_character = false,
         show_on_keyword = true,
         show_on_trigger_character = true,
+        show_in_snippet = false,
       },
       accept = {
         auto_brackets = {
@@ -37,7 +49,7 @@ return {
         },
       },
       ghost_text = {
-        enabled = true,
+        enabled = false,
       },
       menu = {
         auto_show = true,

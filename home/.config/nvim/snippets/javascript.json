@@ -90,5 +90,10 @@
     "prefix": "setinterval",
     "body": ["setInterval(() => {", "    $0", "}, ${1:interval});"],
     "description": "Set Interval Function"
+  },
+  "Promise that resolves after a timeout": {
+    "description": "Promise that resolves after a timeout",
+    "prefix": "sleep",
+    "body": ["new Promise(resolve => setTimeout(resolve, ${1:timeout}));$0"]
   }
 }

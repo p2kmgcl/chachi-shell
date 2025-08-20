@@ -74,17 +74,77 @@
   },
   "Set Timeout Function": {
     "prefix": "settimeout",
-    "body": ["setTimeout(() => {", "    $0", "}, ${1:timeout});"],
+    "body": ["setTimeout(() => {", "    $0", "}, ${1:1000});"],
     "description": "Set Timeout Function"
   },
   "Set Interval Function": {
     "prefix": "setinterval",
-    "body": ["setInterval(() => {", "    $0", "}, ${1:interval});"],
+    "body": ["setInterval(() => {", "    $0", "}, ${1:1000});"],
     "description": "Set Interval Function"
   },
   "Promise that resolves after a timeout": {
     "description": "Promise that resolves after a timeout",
     "prefix": "sleep",
-    "body": ["new Promise(resolve => setTimeout(resolve, ${1:timeout}));$0"]
+    "body": ["new Promise(resolve => setTimeout(resolve, ${1:1000}));$0"]
+  },
+
+  "React.useState": {
+    "prefix": "useState",
+    "description": "React.useState",
+    "body": "const [${1:state}, ${2:setState}] = React.useState($3);$0"
+  },
+  "useEffect": {
+    "prefix": ["useEffect"],
+    "description": "useEffect",
+    "body": [
+      "useEffect(() => {",
+      "  ${2}",
+      "  return () => {${3}};",
+      "}, [${1}]);"
+    ]
+  },
+  "useLayoutEffect": {
+    "prefix": ["useLayoutEffect"],
+    "description": "useLayoutEffect",
+    "body": [
+      "useLayoutEffect(() => {",
+      "  ${2}",
+      "  return () => {${3}};",
+      "}, [${1}]);"
+    ]
+  },
+  "React.useMemo": {
+    "description": "React.useMemo",
+    "prefix": "useMemo",
+    "body": "const ${1:memo} = React.useMemo(() => ${3}, [${2}]);"
+  },
+  "React.useCallback": {
+    "description": "React.useCallback",
+    "prefix": "useCallback",
+    "body": [
+      "const ${1:fn} = React.useCallback((${2}) => {",
+      "  ${4}",
+      "}, [${3}]);"
+    ]
+  },
+  "React.useRef": {
+    "description": "React.useRef",
+    "prefix": ["useRef"],
+    "body": ["const ${1:ref} = React.useRef<${2:type}>(${3:initialValue});"]
+  },
+  "React.useId": {
+    "prefix": ["useId"],
+    "description": "useId",
+    "body": "const ${1:id} = React.useId();"
+  },
+  "React.useDeferredValue": {
+    "description": "React.useDeferredValue",
+    "prefix": "useDeferredValue",
+    "body": "const ${1:deferred} = React.useDeferredValue(${2:value});"
+  },
+  "React.useTransition": {
+    "description": "React.useTransition",
+    "prefix": "useTransition",
+    "body": "const [${1:isPending}, ${2:startTransition}] = React.useTransition();"
   }
 }
