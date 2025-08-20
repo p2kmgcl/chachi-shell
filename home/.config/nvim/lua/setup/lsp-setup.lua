@@ -13,3 +13,7 @@ vim.lsp.enable({
   "vtsls",
   "yaml-language-server",
 })
+
+vim.lsp.config("*", {
+  capabilities = vim.lsp.protocol.make_client_capabilities(),
+})
