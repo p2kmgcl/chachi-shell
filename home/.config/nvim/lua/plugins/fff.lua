@@ -6,7 +6,15 @@ return {
     {
       "<leader><space>",
       function()
-        require("fff").find_files()
+        local fff = require("fff")
+        local getMiniFilesPath = require("helpers.get-mini-files-path")
+        local miniFilesPath = getMiniFilesPath()
+
+        if miniFilesPath then
+          fff.find_files_in_dir(miniFilesPath)
+        else
+          fff.find_files()
+        end
       end,
       desc = "Open file picker",
     },
