@@ -2,6 +2,7 @@ vim.lsp.enable({
   "bash-language-server",
   "css-lsp",
   "dockerfile-language-server",
+  "eslint-lsp",
   "fish-lsp",
   "html-lsp",
   "json-lsp",

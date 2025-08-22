@@ -8,7 +8,7 @@ return {
       "bash-language-server",
       "css-lsp",
       "dockerfile-language-server",
-      "eslint_d",
+      "eslint-lsp",
       "fish-lsp",
       "html-lsp",
       "json-lsp",

@@ -18,12 +18,12 @@ return {
     return {
       formatters_by_ft = {
         ["_"] = { "prettier" },
-        javascript = { "eslint_d", "prettier", stop_after_first = false },
-        javascriptreact = { "eslint_d", "prettier", stop_after_first = false },
+        javascript = { "prettier" },
+        javascriptreact = { "prettier" },
         lua = { "stylua" },
         sh = { "shfmt" },
-        typescript = { "eslint_d", "prettier", stop_after_first = false },
-        typescriptreact = { "eslint_d", "prettier", stop_after_first = false },
+        typescript = { "prettier" },
+        typescriptreact = { "prettier" },
         yaml = { "yamlfmt" },
       },
       format_on_save = false,
