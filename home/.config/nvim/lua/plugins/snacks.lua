@@ -1,5 +1,19 @@
+local function get_snacks(opts)
+  local options = { close_mini_files = true }
+  if opts then
+    options = vim.tbl_deep_extend("force", options, opts)
+  end
+
+  local snacks = require("snacks")
+  if options.close_mini_files then
+    local mini_files = require("mini.files")
+    mini_files.close()
+  end
+  return snacks
+end
+
 local function copy_git_link()
-  require("snacks").gitbrowse({
+  get_snacks().gitbrowse({
     notify = true,
     open = function(url)
       vim.fn.setreg("+", url)
@@ -29,7 +43,7 @@ local function git_status()
     end
   end
 
-  require("snacks").picker.pick({
+  get_snacks().picker.pick({
     items = items,
     preview = "git_diff",
     format = function(item)
@@ -44,6 +58,21 @@ local function git_status()
         { package_or_dir, "SnacksPickerPathHidden" },
       }
     end,
+  })
+end
+
+local function grep()
+  local get_mini_files_path = require("helpers.get-mini-files-path")
+  local mini_files_path = get_mini_files_path({ close_explorer = true })
+
+  local title = "Grep"
+  if mini_files_path then
+    title = title .. " (" .. vim.fn.fnamemodify(mini_files_path, ":.") .. ")"
+  end
+
+  get_snacks({ close_explorer = false }).picker.grep({
+    title = title,
+    cwd = mini_files_path,
   })
 end
 
@@ -105,27 +134,27 @@ return {
   },
   keys = {
     -- stylua: ignore start
-    { "[[", function() require("snacks").words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
-    { "]]", function() require("snacks").words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
-    { "<leader>,", function() require("snacks").picker.buffers() end, desc = "Buffers" },
-    { "<leader>bd", function() require("snacks").bufdelete(); end, desc = "Delete Buffer" },
-    { "<leader>cd", function() require("snacks").picker.diagnostics_buffer() end, desc = "Code Diagnostics (current file)" },
-    { "<leader>cD", function() require("snacks").picker.diagnostics() end, desc = "Code Diagnostics (root)" },
+    { "[[", function() get_snacks().words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
+    { "]]", function() get_snacks().words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
+    { "<leader>,", function() get_snacks().picker.buffers() end, desc = "Buffers" },
+    { "<leader>bd", function() get_snacks().bufdelete(); end, desc = "Delete Buffer" },
+    { "<leader>cd", function() get_snacks().picker.diagnostics_buffer() end, desc = "Code Diagnostics (current file)" },
+    { "<leader>cD", function() get_snacks().picker.diagnostics() end, desc = "Code Diagnostics (root)" },
     { "<leader>gy", copy_git_link, desc = "Git Link (copy)", mode = { "n", "v" } },
-    { "<leader>gY", function() require("snacks").gitbrowse() end, desc = "Git Link (open)", mode = { "n", "v" } },
-    { "<leader>gg", function() require("snacks").lazygit({ configure = false }) end, desc = "Lazygit" },
-    { "<leader>gl", function() require("snacks").picker.git_log_file() end, desc = "Git Log File" },
+    { "<leader>gY", function() get_snacks().gitbrowse() end, desc = "Git Link (open)", mode = { "n", "v" } },
+    { "<leader>gg", function() get_snacks().lazygit({ configure = false }) end, desc = "Lazygit" },
+    { "<leader>gl", function() get_snacks().picker.git_log_file() end, desc = "Git Log File" },
     { "<leader>gs", git_status, desc = "Git Status" },
-    { "<leader>sg", function() require("snacks").picker.grep() end, desc = "Grep (root)" },
-    { "<leader>sh", function() require("snacks").picker.help() end, desc = "Help Pages" },
-    { "<leader>sR", function() require("snacks").picker.resume() end, desc = "Resume" },
-    { "<leader>su", function() require("snacks").picker.undo() end, desc = "Undo History" },
-    { "<leader>un", function() require("snacks").notifier.hide() end, desc = "Dismiss All Notifications" },
-    { "gd", function() require("snacks").picker.lsp_definitions() end, desc = "Goto Definition" },
-    { "gD", function() require("snacks").picker.lsp_declarations() end, desc = "Goto Declaration" },
-    { "gI", function() require("snacks").picker.lsp_implementations() end, desc = "Goto Implementation" },
-    { "grr", function() require("snacks").picker.lsp_references() end, nowait = true, desc = "References" },
-    { "gy", function() require("snacks").picker.lsp_type_definitions() end, desc = "Goto Type Definition" },
+    { "<leader>sg", grep, desc = "Grep" },
+    { "<leader>sh", function() get_snacks().picker.help() end, desc = "Help Pages" },
+    { "<leader>sR", function() get_snacks().picker.resume() end, desc = "Resume" },
+    { "<leader>su", function() get_snacks().picker.undo() end, desc = "Undo History" },
+    { "<leader>un", function() get_snacks().notifier.hide() end, desc = "Dismiss All Notifications" },
+    { "gd", function() get_snacks().picker.lsp_definitions() end, desc = "Goto Definition" },
+    { "gD", function() get_snacks().picker.lsp_declarations() end, desc = "Goto Declaration" },
+    { "gI", function() get_snacks().picker.lsp_implementations() end, desc = "Goto Implementation" },
+    { "grr", function() get_snacks().picker.lsp_references() end, nowait = true, desc = "References" },
+    { "gy", function() get_snacks().picker.lsp_type_definitions() end, desc = "Goto Type Definition" },
     -- stylua: ignore end
   },
 }

@@ -8,11 +8,11 @@ return {
       "<leader><space>",
       function()
         local fff = require("fff")
-        local getMiniFilesPath = require("helpers.get-mini-files-path")
-        local miniFilesPath = getMiniFilesPath()
+        local get_mini_files_path = require("helpers.get-mini-files-path")
+        local mini_files_path = get_mini_files_path({ close_explorer = true })
 
-        if miniFilesPath then
-          fff.find_files_in_dir(miniFilesPath)
+        if mini_files_path then
+          fff.find_files_in_dir(mini_files_path)
         else
           fff.find_files()
         end

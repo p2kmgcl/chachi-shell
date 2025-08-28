@@ -1,6 +1,6 @@
 vim.keymap.set({ "n" }, "<leader>tt", function()
   local get_mini_files_path = require("helpers.get-mini-files-path")
-  local term_path = get_mini_files_path()
+  local term_path = get_mini_files_path({ close_explorer = true })
 
   if term_path == nil then
     local current_buf = vim.api.nvim_get_current_buf()

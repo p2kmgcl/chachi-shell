@@ -1,13 +1,17 @@
-return function()
-  local miniFiles = require("mini.files")
-  local miniFilesPath = nil
+return function(opts)
+  local mini_files = require("mini.files")
+  local mini_files_path = nil
 
-  if miniFiles.get_explorer_state() then
-    local miniFilesEntry = miniFiles.get_fs_entry()
-    if miniFilesEntry then
-      miniFilesPath = vim.fs.dirname(miniFilesEntry.path)
+  if mini_files.get_explorer_state() then
+    local mini_files_entry = mini_files.get_fs_entry()
+    if mini_files_entry then
+      mini_files_path = vim.fs.dirname(mini_files_entry.path)
     end
   end
 
-  return miniFilesPath
+  if opts and opts.close_explorer then
+    mini_files.close()
+  end
+
+  return mini_files_path
 end
