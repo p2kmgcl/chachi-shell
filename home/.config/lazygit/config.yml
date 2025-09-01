@@ -2,7 +2,7 @@ confirmOnQuit: false
 os:
   editPreset: 'nvim-remote'
 gui:
-  expandFocusedSidePanel: false
+  expandFocusedSidePanel: true
   showFileTree: true
   showBottomLine: true
   showCommandLog: false
