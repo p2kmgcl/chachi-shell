@@ -51,7 +51,19 @@ return {
         { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
         { "filename" },
       },
-      lualine_x = { "encoding", "fileformat" },
+      lualine_x = {
+        function()
+          local buf_name = vim.api.nvim_buf_get_name(0)
+          local get_buffer_codeowner = require("helpers.get-buffer-codeowner")
+          local codeowner = get_buffer_codeowner(buf_name)
+          if codeowner == nil then
+            return ""
+          end
+          return codeowner
+        end,
+        "encoding",
+        "fileformat",
+      },
       lualine_y = { { "location", padding = { left = 0, right = 1 } } },
       lualine_z = { "branch" },
     },
