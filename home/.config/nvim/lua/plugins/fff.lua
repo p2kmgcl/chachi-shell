@@ -14,7 +14,7 @@ return {
         if mini_files_path then
           fff.find_files_in_dir(mini_files_path)
         else
-          fff.find_files()
+          fff.find_files_in_dir(vim.fn.getcwd(-1, -1))
         end
       end,
       desc = "Open file picker",
