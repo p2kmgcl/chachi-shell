@@ -1,0 +1,7 @@
+font-family = M+1Code Nerd Font Mono
+font-size = 16
+minimum-contrast = 1.1
+theme = light:GitHub-Light-Colorblind,dark:GitHub-Dark-Colorblind
+window-padding-balance = true
+copy-on-select = false
+quit-after-last-window-closed = true

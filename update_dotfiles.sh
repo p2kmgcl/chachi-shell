@@ -67,6 +67,7 @@ link_thing .config/alacritty
 link_thing .config/environment.d
 link_thing .config/fish
 link_thing .config/git
+link_thing .config/ghostty
 link_thing .config/hypr
 link_thing .config/i3
 link_thing .config/karabiner
