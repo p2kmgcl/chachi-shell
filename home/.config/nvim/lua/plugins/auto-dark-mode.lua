@@ -2,7 +2,6 @@ return {
   "f-person/auto-dark-mode.nvim",
   dependencies = {
     "projekt0n/github-nvim-theme",
-    "akinsho/bufferline.nvim",
   },
   opts = {
     set_dark_mode = function()
