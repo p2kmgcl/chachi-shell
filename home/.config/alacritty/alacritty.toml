@@ -15,7 +15,7 @@ live_config_reload = true
 size = 16
 
 [font.normal]
-family = "M+1Code Nerd Font"
+family = "Maple Mono NF CN"
 style = "Regular"
 
 [font.offset]

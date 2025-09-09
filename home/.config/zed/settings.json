@@ -18,7 +18,7 @@
     "tsgo": true
   },
   "bottom_dock_layout": "full",
-  "buffer_font_family": "M+1Code Nerd Font",
+  "buffer_font_family": "Maple Mono NF CN",
   "buffer_font_size": 16,
   "buffer_line_height": "comfortable",
   "chat_panel": {
@@ -169,7 +169,7 @@
     "button": true,
     "default_height": 400,
     "dock": "bottom",
-    "font_family": "M+1Code Nerd Font",
+    "font_family": "Maple Mono NF CN",
     "font_size": 16,
     "line_height": "standard",
     "toolbar": { "breadcrumbs": false }
@@ -189,7 +189,7 @@
     "quick_actions": false
   },
   "unnecessary_code_fade": 0.5,
-  "ui_font_family": "M+1Code Nerd Font",
+  "ui_font_family": "Maple Mono NF CN",
   "ui_font_size": 16,
   "vertical_scroll_margin": 999,
   "vim_mode": true,

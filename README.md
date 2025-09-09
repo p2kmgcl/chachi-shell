@@ -31,5 +31,4 @@ unnecessary applications**, and also adding some essential ones:
 1. [JavaScript](/docs/javascript).
 1. [Docker](/docs/docker).
 1. I use [**NeoVIM**](/home/.config/nvim), BTW.
-1. I use `rclone` and `syncthing`.
-1. [Hyprland](/home/.config/hypr) in [Archlinux](/docs/linux/distros/archlinux.md), BTW.
+1. [Fedora](/docs/linux/distros/fedora.md).
