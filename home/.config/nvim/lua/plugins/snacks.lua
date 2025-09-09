@@ -149,7 +149,6 @@ return {
     { "<leader>sh", function() get_snacks().picker.help() end, desc = "Help Pages" },
     { "<leader>sR", function() get_snacks().picker.resume() end, desc = "Resume" },
     { "<leader>su", function() get_snacks().picker.undo() end, desc = "Undo History" },
-    { "<leader>un", function() get_snacks().notifier.hide() end, desc = "Dismiss All Notifications" },
     { "gd", function() get_snacks().picker.lsp_definitions() end, desc = "Goto Definition" },
     { "gD", function() get_snacks().picker.lsp_declarations() end, desc = "Goto Declaration" },
     { "gI", function() get_snacks().picker.lsp_implementations() end, desc = "Goto Implementation" },
