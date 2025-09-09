@@ -4,7 +4,7 @@ os:
 gui:
   expandFocusedSidePanel: true
   showFileTree: true
-  showBottomLine: true
+  showBottomLine: false
   showCommandLog: false
   showRandomTip: false
   border: rounded
@@ -19,7 +19,8 @@ gui:
     selectedLineBgColor: [underline]
 git:
   paging:
-    useConfig: true
+    colorarg: always
+    pager: delta --paging=never --hunk-header-style=omit --file-decoration-style=ul
   mainBranches:
     - master
     - main
@@ -27,7 +28,9 @@ git:
     - devel
   log:
     showGraph: always
+    format: oneline
   branchLogCmd: git log --graph --color=always --pretty='%Cgreen%h %Cblue%an (%ar) %Creset%s' {{branchName}} --
   autoFetch: false
   fetchAll: true
   overrideGpg: true
+  showWholeFileDiff: false

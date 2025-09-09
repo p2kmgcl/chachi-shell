@@ -17,7 +17,6 @@
   light = true
   max-line-length = 512
   navigate = true
-  paging = never
 
 [diff]
   algorithm = histogram
