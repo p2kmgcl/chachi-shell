@@ -1,5 +1,6 @@
 font-family = Maple Mono NF CN
 font-size = 16
+font-style-bold-italic = true
 adjust-cell-width = -10%
 adjust-cell-height = 0%
 minimum-contrast = 1.1
