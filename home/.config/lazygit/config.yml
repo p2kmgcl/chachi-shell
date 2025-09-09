@@ -30,3 +30,4 @@ git:
   branchLogCmd: git log --graph --color=always --pretty='%Cgreen%h %Cblue%an (%ar) %Creset%s' {{branchName}} --
   autoFetch: false
   fetchAll: true
+  overrideGpg: true
