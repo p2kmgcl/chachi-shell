@@ -139,7 +139,7 @@ vim.keymap.set({ "n", "v" }, "<leader>.", function()
         prompt_prefix .. " " .. prompt
       )
 
-      vim.cmd.vsplit()
+      vim.cmd.split()
       vim.cmd.enew()
       vim.fn.jobstart(shell_cmd, {
         term = true,
