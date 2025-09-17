@@ -10,6 +10,8 @@ return {
       "dockerfile-language-server",
       "eslint-lsp",
       "fish-lsp",
+      "gofumpt",
+      "goimports",
       "gopls",
       "html-lsp",
       "json-lsp",

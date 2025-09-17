@@ -18,6 +18,7 @@ return {
     return {
       formatters_by_ft = {
         ["_"] = { "prettier" },
+        go = { "goimports", "gofumpt" },
         javascript = { "prettier" },
         javascriptreact = { "prettier" },
         lua = { "stylua" },
