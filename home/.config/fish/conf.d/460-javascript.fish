@@ -3,7 +3,7 @@ set -l pkg_bin_pairs \
     typescript tsc
 
 if status is-interactive
-    if type -q $HOME/.deno/bin/deno
+    if test -f "$HOME/.deno/bin/deno"
         export DENO_INSTALL="$HOME/.deno"
         fish_add_path $HOME/.deno/bin
     else
@@ -19,7 +19,7 @@ if status is-interactive
             set pkg $pkg_bin_pairs[$i]
             set bin $pkg_bin_pairs[(math $i + 1)]
 
-            if not type -q $bin
+            if not test -f "$(which $bin)"
                 echo "Installing missing NPM package $pkg"
                 npm install -g $pkg
             end
@@ -28,13 +28,13 @@ if status is-interactive
         echo -e "\e[33mvolta is not installed\e[0m"
     end
 
-    if test -d .yarn/switch
+    if test -f "$HOME/.yarn/switch/env"
         source "$HOME/.yarn/switch/env"
     else
         echo -e "\e[33myarn is not installed\e[0m"
     end
 
-    if type -q /opt/homebrew/bin/mkcert
+    if test -f "/opt/homebrew/bin/mkcert"
         export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
     end
 end
