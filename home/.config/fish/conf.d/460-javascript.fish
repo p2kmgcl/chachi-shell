@@ -28,6 +28,12 @@ if status is-interactive
         echo -e "\e[33mvolta is not installed\e[0m"
     end
 
+    if test -d .yarn/switch
+        source "$HOME/.yarn/switch/env"
+    else
+        echo -e "\e[33myarn is not installed\e[0m"
+    end
+
     if type -q /opt/homebrew/bin/mkcert
         export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
     end

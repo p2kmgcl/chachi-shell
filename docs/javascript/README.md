@@ -18,9 +18,7 @@ npm i -g @typescript/native-preview
 
 [Yarn installation process for 2+](https://yarnpkg.com/getting-started/install).
 
-- `corepack enable` (this is provided by latest NodeJS).
-- `yarn init -2`
-- `yarn set version stable`
+- `curl -fsSL https://repo.yarnpkg.com/install | bash`
 
 ## Deno
 
