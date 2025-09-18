@@ -1,19 +1,19 @@
+local severity_map = {
+  [vim.diagnostic.severity.ERROR] = "",
+  [vim.diagnostic.severity.WARN] = "",
+  [vim.diagnostic.severity.HINT] = "",
+  [vim.diagnostic.severity.INFO] = "",
+}
+
 vim.diagnostic.config({
   update_in_insert = false,
   underline = true,
   severity_sort = true,
   virtual_lines = false,
-  virtual_text = true,
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.WARN] = "",
-      [vim.diagnostic.severity.HINT] = "",
-      [vim.diagnostic.severity.INFO] = "",
-    },
-  },
+  virtual_text = false,
+  signs = { text = severity_map },
   float = {
-    focusable = false,
+    focusable = true,
     border = "rounded",
   },
 })
