@@ -76,6 +76,21 @@ local function grep()
   })
 end
 
+local function find()
+  local get_mini_files_path = require("helpers.get-mini-files-path")
+  local mini_files_path = get_mini_files_path({ close_explorer = true })
+
+  local title = "Find"
+  if mini_files_path then
+    title = title .. " (" .. vim.fn.fnamemodify(mini_files_path, ":.") .. ")"
+  end
+
+  get_snacks({ close_explorer = false }).picker.files({
+    title = title,
+    cwd = mini_files_path,
+  })
+end
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -137,6 +152,7 @@ return {
     { "[[", function() get_snacks().words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
     { "]]", function() get_snacks().words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
     { "<leader>,", function() get_snacks().picker.buffers() end, desc = "Buffers" },
+    { "<leader><space>", find, desc = "Files" },
     { "<leader>bd", function() get_snacks().bufdelete(); end, desc = "Delete Buffer" },
     { "<leader>cd", function() get_snacks().picker.diagnostics_buffer() end, desc = "Code Diagnostics (current file)" },
     { "<leader>cD", function() get_snacks().picker.diagnostics() end, desc = "Code Diagnostics (root)" },
