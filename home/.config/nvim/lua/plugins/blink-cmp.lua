@@ -1,14 +1,10 @@
 return {
   "saghen/blink.cmp",
-  version = "*",
+  version = "1.*",
   event = "InsertEnter",
-  build = {
-    cmd = "cargo build --release",
-    timeout_ms = 900000,
-  },
   opts = {
     keymap = {
-      preset = 'none',
+      preset = "none",
 
       ["<C-space>"] = { "show", "fallback" },
       ["<C-e>"] = { "hide", "fallback" },
@@ -25,6 +21,9 @@ return {
     },
     appearance = {
       nerd_font_variant = "mono",
+    },
+    fuzzy = {
+      implementation = "lua",
     },
     completion = {
       list = {
