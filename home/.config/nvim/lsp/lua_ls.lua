@@ -1,3 +1,5 @@
+-- https://luals.github.io/#neovim-install
+
 return {
   cmd = { "lua-language-server" },
   filetypes = { "lua" },
@@ -8,7 +10,7 @@ return {
         callSnippet = "Replace",
       },
       format = {
-        enable = false,
+        enable = true,
       },
       hint = {
         enable = true,

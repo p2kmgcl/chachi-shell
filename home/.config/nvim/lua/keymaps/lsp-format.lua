@@ -1,7 +1,8 @@
 local formatter_priority = {
   javascript = { "eslint-lsp", "vtsls" },
-  typescript = { "eslint-lsp", "vtsls" },
   javascriptreact = { "eslint-lsp", "vtsls" },
+  lua = { "stylua", "lua_ls" },
+  typescript = { "eslint-lsp", "vtsls" },
   typescriptreact = { "eslint-lsp", "vtsls" },
 }
 

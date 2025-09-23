@@ -10,6 +10,7 @@ vim.lsp.enable({
   "lua_ls",
   "rust-analyzer",
   "stylelint-lsp",
+  "stylua",
   "tailwindcss-language-server",
   "tombi",
   "vtsls",
