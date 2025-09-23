@@ -85,9 +85,18 @@ local function find()
     title = title .. " (" .. vim.fn.fnamemodify(mini_files_path, ":.") .. ")"
   end
 
-  get_snacks({ close_explorer = false }).picker.files({
+  get_snacks({ close_explorer = false }).picker.smart({
     title = title,
     cwd = mini_files_path,
+    -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#smart
+    multi = { "buffers", "recent", "files" },
+    transform = "unique_file",
+    format = "file",
+    matcher = {
+      cwd_bonus = true,
+      frecency = true,
+      sort_empty = true,
+    },
   })
 end
 
