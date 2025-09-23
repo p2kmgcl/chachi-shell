@@ -1,7 +1,9 @@
+-- https://github.com/yioneko/vtsls
+
 local language_settings = {
   suggest = {
     -- Breaks for completion+textEdit, ex. useS -> React.useState()
-    completeFunctionCalls = false
+    completeFunctionCalls = false,
   },
   inlayHints = {
     functionLikeReturnTypes = { enabled = false },
@@ -43,7 +45,14 @@ end
 return {
   cmd = { "vtsls", "--stdio" },
   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-  root_dir = require("helpers.get-root-dir")({ "yarn.lock", "package-lock.json", "tsconfig.json" }),
+  root_markers = {
+    {
+      "yarn.lock",
+      "package-lock.json",
+    },
+    "tsconfig.json",
+    ".git/",
+  },
   settings = {
     typescript = language_settings,
     javascript = language_settings,

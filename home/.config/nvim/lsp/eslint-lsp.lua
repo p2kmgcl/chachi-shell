@@ -1,5 +1,9 @@
+-- https://github.com/hrsh7th/vscode-langservers-extracted
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/eslint.lua
+
 return {
   cmd = { "vscode-eslint-language-server", "--stdio" },
+  workspace_required = true,
   filetypes = {
     "javascript",
     "javascriptreact",
@@ -8,17 +12,24 @@ return {
     "typescriptreact",
     "typescript.tsx",
   },
-  workspace_required = true,
-  root_dir = require("helpers.get-root-dir")({
-    "eslint.config.ts",
-    "eslint.config.cjs",
-    "eslint.config.js",
-    ".eslintrc",
-    ".eslintrc.ts",
-    ".eslintrc.cjs",
-    ".eslintrc.js",
-    ".eslintrc.json",
-  }),
+  root_markers = {
+    {
+      "eslint.config.ts",
+      "eslint.config.cjs",
+      "eslint.config.js",
+      ".eslintrc",
+      ".eslintrc.ts",
+      ".eslintrc.cjs",
+      ".eslintrc.js",
+      ".eslintrc.json",
+    },
+    {
+      "package-lock.json",
+      "yarn.lock",
+      ".pnp.cjs",
+    },
+    ".git/",
+  },
   settings = {
     codeAction = {
       disableRuleComment = { enable = true, location = "separateLine" },
@@ -31,9 +42,10 @@ return {
     experimental = {
       useFlatConfig = false,
     },
-    format = false,
+    format = true,
     onIgnoredFiles = "off",
     options = {},
+    nodePath = "",
     packageManager = nil,
     problems = {
       shortenToSingleLine = false,

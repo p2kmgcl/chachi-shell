@@ -5,6 +5,12 @@ return {
   settings = {
     gopls = {
       gofumpt = true,
+      ["build.directoryFilters"] = {
+        "-",
+        "+libs/go",
+        "+domains/sci",
+        "+domains/ci-app",
+      },
     },
   },
 }

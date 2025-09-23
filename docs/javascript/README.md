@@ -10,10 +10,6 @@ curl https://get.volta.sh | bash -s -- --skip-setup
 volta install node
 ```
 
-```bash
-npm i -g @typescript/native-preview
-```
-
 ## Yarn
 
 [Yarn installation process for 2+](https://yarnpkg.com/getting-started/install).
