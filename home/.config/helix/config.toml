@@ -1,0 +1,18 @@
+theme = "github_light_colorblind"
+
+[editor]
+middle-click-paste = false
+line-number = "relative"
+cursorline = true
+cursorcolumn = false
+auto-completion = true
+path-completion = true
+auto-format = true
+true-color = true
+popup-border = "all"
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.file-picker]
+hidden = false

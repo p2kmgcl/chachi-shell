@@ -72,6 +72,7 @@ link_thing .config/hypr
 link_thing .config/i3
 link_thing .config/karabiner
 link_thing .config/kitty
+link_thing .config/helix
 link_thing .config/lazygit
 link_thing .config/nushell
 link_thing .config/nvim
