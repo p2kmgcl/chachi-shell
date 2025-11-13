@@ -13,7 +13,7 @@ vim.lsp.enable({
   "stylua",
   "tailwindcss-language-server",
   "tombi",
-  "vtsls",
+  "tsgo",
   "yaml-language-server",
 })
 
