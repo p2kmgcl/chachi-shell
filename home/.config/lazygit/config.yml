@@ -18,9 +18,9 @@ gui:
     markedBaseCommitFgColor: [bold]
     selectedLineBgColor: [underline]
 git:
-  paging:
-    colorarg: always
-    pager: delta --paging=never --hunk-header-style=omit --file-decoration-style=ul
+  pagers:
+    - colorarg: always
+      pager: delta --paging=never --hunk-header-style=omit --file-decoration-style=ul
   mainBranches:
     - master
     - main
