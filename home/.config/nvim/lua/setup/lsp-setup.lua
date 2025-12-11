@@ -1,6 +1,7 @@
 vim.lsp.enable({
   "bash-language-server",
   "css-lsp",
+  "denols",
   "dockerfile-language-server",
   "eslint-lsp",
   "fish-lsp",
