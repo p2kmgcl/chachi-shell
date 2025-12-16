@@ -5,6 +5,31 @@ return {
     sections = {
       lualine_a = {
         {
+          "mode",
+          fmt = function(str)
+            local mode_map = {
+              ["NORMAL"] = "",
+              ["INSERT"] = "󰏫",
+              ["VISUAL"] = "󰒉",
+              ["V-LINE"] = "󰒉",
+              ["V-BLOCK"] = "󰒉",
+              ["SELECT"] = "󰒉",
+              ["S-LINE"] = "󰒉",
+              ["S-BLOCK"] = "󰒉",
+              ["COMMAND"] = "󰅂",
+              ["REPLACE"] = "󰛔",
+              ["V-REPLACE"] = "󰛔",
+              ["TERMINAL"] = "",
+              ["EX"] = "󰅂",
+              ["MORE"] = "󰝶",
+              ["CONFIRM"] = "󰋗",
+            }
+            return mode_map[str] or str:sub(1, 1)
+          end,
+        },
+      },
+      lualine_b = {
+        {
           function()
             local buf_name = vim.api.nvim_buf_get_name(0)
             if buf_name == "" then
@@ -29,7 +54,6 @@ return {
         { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
         { "filename" },
       },
-      lualine_b = {},
       lualine_c = {},
       lualine_x = {},
       lualine_y = {
@@ -63,31 +87,7 @@ return {
           end,
         },
       },
-      lualine_z = {
-        {
-          "mode",
-          fmt = function(str)
-            local mode_map = {
-              ["NORMAL"] = "",
-              ["INSERT"] = "󰏫",
-              ["VISUAL"] = "󰒉",
-              ["V-LINE"] = "󰒉",
-              ["V-BLOCK"] = "󰒉",
-              ["SELECT"] = "󰒉",
-              ["S-LINE"] = "󰒉",
-              ["S-BLOCK"] = "󰒉",
-              ["COMMAND"] = "󰅂",
-              ["REPLACE"] = "󰛔",
-              ["V-REPLACE"] = "󰛔",
-              ["TERMINAL"] = "",
-              ["EX"] = "󰅂",
-              ["MORE"] = "󰝶",
-              ["CONFIRM"] = "󰋗",
-            }
-            return mode_map[str] or str:sub(1, 1)
-          end,
-        },
-      },
+      lualine_z = {},
     },
     inactive_sections = {
       lualine_a = {
