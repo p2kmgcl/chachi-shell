@@ -24,6 +24,16 @@ return {
           end,
         },
         "diagnostics",
+        {
+          function()
+            local tracker = require("helpers.lsp-status-tracker")
+            return tracker.format_for_lualine()
+          end,
+          cond = function()
+            local tracker = require("helpers.lsp-status-tracker")
+            return tracker.has_buffer_clients()
+          end,
+        },
       },
       lualine_c = {
         {
