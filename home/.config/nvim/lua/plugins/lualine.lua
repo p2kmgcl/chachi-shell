@@ -3,62 +3,8 @@ return {
   event = "VeryLazy",
   opts = {
     sections = {
-      lualine_a = {
-        {
-          "mode",
-          fmt = function(str)
-            local mode_map = {
-              ["NORMAL"] = "",
-              ["INSERT"] = "󰏫",
-              ["VISUAL"] = "󰒉",
-              ["V-LINE"] = "󰒉",
-              ["V-BLOCK"] = "󰒉",
-              ["SELECT"] = "󰒉",
-              ["S-LINE"] = "󰒉",
-              ["S-BLOCK"] = "󰒉",
-              ["COMMAND"] = "󰅂",
-              ["REPLACE"] = "󰛔",
-              ["V-REPLACE"] = "󰛔",
-              ["TERMINAL"] = "",
-              ["EX"] = "󰅂",
-              ["MORE"] = "󰝶",
-              ["CONFIRM"] = "󰋗",
-            }
-            return mode_map[str] or str:sub(1, 1)
-          end,
-        },
-      },
-      lualine_b = {
-        {
-          "diff",
-          symbols = {
-            added = "+",
-            modified = "~",
-            removed = "-",
-          },
-          source = function()
-            local gitsigns = vim.b.gitsigns_status_dict
-            if gitsigns then
-              return {
-                added = gitsigns.added,
-                modified = gitsigns.changed,
-                removed = gitsigns.removed,
-              }
-            end
-          end,
-        },
-        "diagnostics",
-        {
-          function()
-            local tracker = require("helpers.lsp-status-tracker")
-            return tracker.format_for_lualine()
-          end,
-          cond = function()
-            local tracker = require("helpers.lsp-status-tracker")
-            return tracker.has_buffer_clients()
-          end,
-        },
-      },
+      lualine_a = {},
+      lualine_b = {},
       lualine_c = {
         {
           function()
@@ -87,7 +33,60 @@ return {
       },
       lualine_x = {},
       lualine_y = {},
-      lualine_z = {},
+      lualine_z = {
+        {
+          function()
+            local tracker = require("helpers.lsp-status-tracker")
+            return tracker.format_for_lualine()
+          end,
+          cond = function()
+            local tracker = require("helpers.lsp-status-tracker")
+            return tracker.has_buffer_clients()
+          end,
+        },
+        "diagnostics",
+        {
+          "diff",
+          symbols = {
+            added = "+",
+            modified = "~",
+            removed = "-",
+          },
+          source = function()
+            local gitsigns = vim.b.gitsigns_status_dict
+            if gitsigns then
+              return {
+                added = gitsigns.added,
+                modified = gitsigns.changed,
+                removed = gitsigns.removed,
+              }
+            end
+          end,
+        },
+        {
+          "mode",
+          fmt = function(str)
+            local mode_map = {
+              ["NORMAL"] = "",
+              ["INSERT"] = "󰏫",
+              ["VISUAL"] = "󰒉",
+              ["V-LINE"] = "󰒉",
+              ["V-BLOCK"] = "󰒉",
+              ["SELECT"] = "󰒉",
+              ["S-LINE"] = "󰒉",
+              ["S-BLOCK"] = "󰒉",
+              ["COMMAND"] = "󰅂",
+              ["REPLACE"] = "󰛔",
+              ["V-REPLACE"] = "󰛔",
+              ["TERMINAL"] = "",
+              ["EX"] = "󰅂",
+              ["MORE"] = "󰝶",
+              ["CONFIRM"] = "󰋗",
+            }
+            return mode_map[str] or str:sub(1, 1)
+          end,
+        },
+      },
     },
     inactive_sections = {
       lualine_a = {},
