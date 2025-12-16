@@ -2,6 +2,10 @@ return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = {
+    options = {
+      component_separators = { left = "", right = "" },
+      section_separators = { left = "", right = "" },
+    },
     sections = {
       lualine_a = {
         {
@@ -29,36 +33,11 @@ return {
         { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
         { "filename" },
       },
-      lualine_b = {
-        {
-          function()
-            local tracker = require("helpers.lsp-status-tracker")
-            return tracker.format_for_lualine()
-          end,
-          cond = function()
-            local tracker = require("helpers.lsp-status-tracker")
-            return tracker.has_buffer_clients()
-          end,
-        },
-        "diagnostics",
-        {
-          "diff",
-          symbols = {
-            added = "+",
-            modified = "~",
-            removed = "-",
-          },
-          source = function()
-            local gitsigns = vim.b.gitsigns_status_dict
-            if gitsigns then
-              return {
-                added = gitsigns.added,
-                modified = gitsigns.changed,
-                removed = gitsigns.removed,
-              }
-            end
-          end,
-        },
+      lualine_b = {},
+      lualine_c = {},
+      lualine_x = {},
+      lualine_y = {},
+      lualine_z = {
         {
           "mode",
           fmt = function(str)
@@ -82,11 +61,36 @@ return {
             return mode_map[str] or str:sub(1, 1)
           end,
         },
+        {
+          "diff",
+          symbols = {
+            added = "+",
+            modified = "~",
+            removed = "-",
+          },
+          source = function()
+            local gitsigns = vim.b.gitsigns_status_dict
+            if gitsigns then
+              return {
+                added = gitsigns.added,
+                modified = gitsigns.changed,
+                removed = gitsigns.removed,
+              }
+            end
+          end,
+        },
+        "diagnostics",
+        {
+          function()
+            local tracker = require("helpers.lsp-status-tracker")
+            return tracker.format_for_lualine()
+          end,
+          cond = function()
+            local tracker = require("helpers.lsp-status-tracker")
+            return tracker.has_buffer_clients()
+          end,
+        },
       },
-      lualine_c = {},
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = {},
     },
     inactive_sections = {
       lualine_a = {
