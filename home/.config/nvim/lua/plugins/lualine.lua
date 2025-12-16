@@ -3,9 +3,7 @@ return {
   event = "VeryLazy",
   opts = {
     sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = {
+      lualine_a = {
         {
           function()
             local buf_name = vim.api.nvim_buf_get_name(0)
@@ -31,9 +29,7 @@ return {
         { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
         { "filename" },
       },
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = {
+      lualine_b = {
         {
           function()
             local tracker = require("helpers.lsp-status-tracker")
@@ -87,12 +83,41 @@ return {
           end,
         },
       },
+      lualine_c = {},
+      lualine_x = {},
+      lualine_y = {},
+      lualine_z = {},
     },
     inactive_sections = {
-      lualine_a = {},
+      lualine_a = {
+        {
+          function()
+            local buf_name = vim.api.nvim_buf_get_name(0)
+            if buf_name == "" then
+              return ""
+            end
+
+            local icon = require("helpers.get-package-icon")(buf_name)
+            local name = require("helpers.get-package-name")(buf_name)
+
+            if icon ~= "" and name ~= "" then
+              return icon .. " " .. name
+            elseif icon ~= "" then
+              return icon
+            elseif name ~= "" then
+              return name
+            end
+
+            return ""
+          end,
+          color = { fg = "#9d7cd8", gui = "italic" },
+        },
+        { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+        { "filename" },
+      },
       lualine_b = {},
-      lualine_c = { "filename" },
-      lualine_x = { "location" },
+      lualine_c = {},
+      lualine_x = {},
       lualine_y = {},
       lualine_z = {},
     },
