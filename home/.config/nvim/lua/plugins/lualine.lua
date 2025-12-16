@@ -2,10 +2,6 @@ return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = {
-    options = {
-      component_separators = { left = "", right = "" },
-      section_separators = { left = "", right = "" },
-    },
     sections = {
       lualine_a = {
         {
@@ -36,7 +32,37 @@ return {
       lualine_b = {},
       lualine_c = {},
       lualine_x = {},
-      lualine_y = {},
+      lualine_y = {
+        {
+          function()
+            local tracker = require("helpers.lsp-status-tracker")
+            return tracker.format_for_lualine()
+          end,
+          cond = function()
+            local tracker = require("helpers.lsp-status-tracker")
+            return tracker.has_buffer_clients()
+          end,
+        },
+        "diagnostics",
+        {
+          "diff",
+          symbols = {
+            added = "+",
+            modified = "~",
+            removed = "-",
+          },
+          source = function()
+            local gitsigns = vim.b.gitsigns_status_dict
+            if gitsigns then
+              return {
+                added = gitsigns.added,
+                modified = gitsigns.changed,
+                removed = gitsigns.removed,
+              }
+            end
+          end,
+        },
+      },
       lualine_z = {
         {
           "mode",
@@ -59,35 +85,6 @@ return {
               ["CONFIRM"] = "󰋗",
             }
             return mode_map[str] or str:sub(1, 1)
-          end,
-        },
-        {
-          "diff",
-          symbols = {
-            added = "+",
-            modified = "~",
-            removed = "-",
-          },
-          source = function()
-            local gitsigns = vim.b.gitsigns_status_dict
-            if gitsigns then
-              return {
-                added = gitsigns.added,
-                modified = gitsigns.changed,
-                removed = gitsigns.removed,
-              }
-            end
-          end,
-        },
-        "diagnostics",
-        {
-          function()
-            local tracker = require("helpers.lsp-status-tracker")
-            return tracker.format_for_lualine()
-          end,
-          cond = function()
-            local tracker = require("helpers.lsp-status-tracker")
-            return tracker.has_buffer_clients()
           end,
         },
       },
