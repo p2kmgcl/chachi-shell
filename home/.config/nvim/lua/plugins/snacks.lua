@@ -170,6 +170,7 @@ return {
     { "<leader>gg", function() get_snacks().lazygit({ configure = false }) end, desc = "Lazygit" },
     { "<leader>gl", function() get_snacks().picker.git_log_file() end, desc = "Git Log File" },
     { "<leader>gs", git_status, desc = "Git Status" },
+    { "<leader>lc", function() get_snacks().picker.lsp_config() end, desc = "Checkhealth" },
     { "<leader>sg", grep, desc = "Grep" },
     { "<leader>sh", function() get_snacks().picker.help() end, desc = "Help Pages" },
     { "<leader>sR", function() get_snacks().picker.resume() end, desc = "Resume" },
