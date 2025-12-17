@@ -44,15 +44,31 @@ return {
             elseif icon ~= "" then
               return icon
             elseif name ~= "" then
-              return name
+              return "󱞞 " .. name
             end
 
             return ""
           end,
           color = { gui = "italic" },
         },
-        { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-        { "filename", padding = { left = 0 } },
+        {
+          "filetype",
+          icon_only = true,
+          separator = "",
+          padding = { left = 1, right = 0 },
+        },
+        {
+          "filename",
+          padding = { left = 0, right = 1 },
+          fmt = function(str)
+            local buf_name = vim.api.nvim_buf_get_name(0)
+            if buf_name == "" then
+              return " 󰘓 [No Name]"
+            end
+
+            return str
+          end,
+        },
       },
       lualine_c = {},
       lualine_x = {},
@@ -92,6 +108,12 @@ return {
     inactive_sections = {
       lualine_a = {
         {
+          "mode",
+          fmt = function()
+            return ""
+          end,
+        },
+        {
           function()
             local buf_name = vim.api.nvim_buf_get_name(0)
             if buf_name == "" then
@@ -101,14 +123,25 @@ return {
             local name = require("helpers.get-package-name")(buf_name)
 
             if name ~= "" then
-              return name
+              return "󱞞 " .. name
             end
 
             return ""
           end,
           color = { gui = "italic" },
         },
-        { "filename", padding = { left = 1 } },
+        {
+          "filename",
+          padding = { left = 0, right = 1 },
+          fmt = function(str)
+            local buf_name = vim.api.nvim_buf_get_name(0)
+            if buf_name == "" then
+              return " 󰘓 [No Name]"
+            end
+
+            return " 󰘓 " .. str
+          end,
+        },
       },
       lualine_b = {},
       lualine_c = {},

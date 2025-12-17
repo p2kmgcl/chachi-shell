@@ -6,7 +6,7 @@ return function(file_path)
 
   -- Check if it's a terminal buffer
   if vim.bo.buftype == "terminal" then
-    return "🖥️"
+    return ""
   end
 
   -- Find the closest config file
@@ -17,7 +17,7 @@ return function(file_path)
     -- Final fallback to folder icon
     local parent_dir = vim.fn.fnamemodify(file_path, ":h:t")
     if parent_dir ~= "." and parent_dir ~= "" then
-      return "📁"
+      return ""
     end
     return ""
   end
@@ -25,58 +25,55 @@ return function(file_path)
   -- Map config types to icons
   local icons = {
     -- JavaScript/TypeScript ecosystems
-    deno = "🦕",
-    bun = "🥖",
-    yarn = "🧶",
-    pnpm = "📦",
-    node = "📦",
+    deno = "",
+    bun = "",
+    yarn = "",
+    pnpm = "",
+    node = "",
 
     -- Other languages
-    rust = "🦀",
-    ["python-pyproject"] = "🐍",
-    ["python-pipfile"] = "🐍",
-    ["python-poetry"] = "🐍",
-    ["python-requirements"] = "🐍",
-    ["python-conda"] = "🐍",
-    ["python-setup"] = "🐍",
-    go = "🐹",
-    ["java-maven"] = "☕",
-    ["java-gradle"] = "☕",
-    ["scala-sbt"] = "☕",
-    php = "🐘",
-    ["ruby-gemfile"] = "💎",
-    ["ruby-gemspec"] = "💎",
-    dart = "🎯",
-    swift = "🦉",
-    ["swift-xcode"] = "🦉",
-    elixir = "💜",
-    ["clojure-lein"] = "🟢",
-    ["clojure-deps"] = "🟢",
-    ["haskell-stack"] = "🎭",
-    ["haskell-cabal"] = "🎭",
-    zig = "⚡",
-    nim = "👑",
-    crystal = "💎",
-    lua = "🌙",
-    ocaml = "🐪",
-    erlang = "📡",
-    docker = "🐳",
-    ["docker-compose"] = "🐙",
+    rust = "",
+    ["python-pyproject"] = "",
+    ["python-pipfile"] = "",
+    ["python-poetry"] = "",
+    ["python-requirements"] = "",
+    ["python-conda"] = "",
+    ["python-setup"] = "",
+    go = "󰟓",
+    ["java-maven"] = "",
+    ["java-gradle"] = "",
+    ["scala-sbt"] = "",
+    php = "",
+    ["ruby-gemfile"] = "",
+    ["ruby-gemspec"] = "",
+    dart = "",
+    swift = "",
+    ["swift-xcode"] = "",
+    elixir = "",
+    ["clojure-lein"] = "",
+    ["clojure-deps"] = "",
+    ["haskell-stack"] = "",
+    ["haskell-cabal"] = "",
+    zig = "",
+    lua = "",
+    ocaml = "",
+    docker = "",
+    ["docker-compose"] = "",
 
     -- Bazel
-    ["bazel-workspace"] = "🏗️",
-    ["bazel-build"] = "🏗️",
-    ["bazel-config"] = "🏗️",
+    ["bazel-workspace"] = "",
+    ["bazel-build"] = "",
+    ["bazel-config"] = "",
 
     -- C#/.NET
-    ["csharp-project"] = "🔷",
-    ["csharp-solution"] = "🔷",
+    ["csharp-project"] = "",
+    ["csharp-solution"] = "",
 
     -- Other build systems
-    cmake = "🔧",
-    meson = "🔧",
-    make = "🔧",
+    cmake = "",
+    meson = "",
+    make = "",
   }
 
-  return icons[closest.type] or "📁"
+  return icons[closest.type] or ""
 end
