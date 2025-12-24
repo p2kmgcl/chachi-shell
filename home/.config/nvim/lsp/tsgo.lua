@@ -3,7 +3,7 @@
 
 local function get_tsgo_cmd()
   local tsgo_path = ""
-  if vim.fn.isdirectory("./.yarn/sdks/typescript-go/lib/") then
+  if vim.fn.isdirectory("./.yarn/sdks/typescript-go/lib/") ~= 0 then
     tsgo_path = "./.yarn/sdks/typescript-go/lib/"
   end
 
