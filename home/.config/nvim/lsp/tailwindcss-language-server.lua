@@ -1,3 +1,6 @@
+-- https://github.com/tailwindlabs/tailwindcss-intellisense
+-- npm install -g @tailwindcss/language-server
+
 return {
   cmd = { "tailwindcss-language-server", "--stdio" },
   filetypes = {
@@ -98,5 +101,7 @@ return {
     "tailwind.config.cjs",
     "tailwind.config.mjs",
     "tailwind.config.ts",
+    "next.config.ts",
+    "vite.config.ts",
   }),
 }
