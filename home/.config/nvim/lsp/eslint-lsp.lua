@@ -16,10 +16,12 @@ return {
     {
       "eslint.config.ts",
       "eslint.config.cjs",
+      "eslint.config.mjs",
       "eslint.config.js",
       ".eslintrc",
       ".eslintrc.ts",
       ".eslintrc.cjs",
+      ".eslintrc.mjs",
       ".eslintrc.js",
       ".eslintrc.json",
     },
