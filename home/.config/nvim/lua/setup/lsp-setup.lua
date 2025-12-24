@@ -1,7 +1,7 @@
 vim.lsp.enable({
   "bash-language-server",
   "css-lsp",
-  -- "denols", -- Disabled to avoid conflicts with tsgo
+  "denols",
   "dockerfile-language-server",
   "eslint-lsp",
   "fish-lsp",
