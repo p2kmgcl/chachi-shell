@@ -1,6 +1,7 @@
 /home/.claude/projects
 /home/.claude/statsig
 /home/.claude/todos
+/home/.claude/.update.lock
 /home/.config/fish/completions
 /home/.config/fish/fish_variables
 /home/.config/fish/conf.d/999-extra.fish
