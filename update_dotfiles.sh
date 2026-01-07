@@ -76,6 +76,7 @@ link_thing .config/helix
 link_thing .config/lazygit
 link_thing .config/nushell
 link_thing .config/nvim
+link_thing .config/opencode
 link_thing .config/rofi
 link_thing .config/starship
 link_thing .config/sway
