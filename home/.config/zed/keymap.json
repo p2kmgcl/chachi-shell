@@ -1,51 +1,22 @@
 [
   {
-    // Confirm completions
-    "context": "(Editor && showing_completions)",
+    "context": "Workspace",
     "bindings": {
-      "enter": null,
-      "shift-enter": null,
-      "tab": null,
-      "ctrl-y": "editor::ConfirmCompletion"
-    }
+      "cmd-shift-g": "git_panel::ToggleFocus",
+      "cmd-~": "terminal_panel::ToggleFocus",
+      "cmd-shift-e": "project_panel::ToggleFocus",
+    },
   },
   {
-    // Confirm code actions
-    "context": "(Editor && showing_code_actions)",
-    "bindings": {
-      "enter": null,
-      "ctrl-y": "editor::ConfirmCodeAction"
-    }
+    "context": "right_dock == GitPanel",
+    "bindings": { "cmd-shift-g": "workspace::ToggleRightDock" },
   },
   {
-    // Better indenting
-    "context": "vim_mode == visual",
-    "bindings": {
-      "<": ["workspace::SendKeystrokes", "< g v"],
-      ">": ["workspace::SendKeystrokes", "> g v"]
-    }
+    "context": "bottom_dock == TerminalPanel",
+    "bindings": { "cmd-~": "workspace::ToggleBottomDock" },
   },
   {
-    // Change/delete without yank
-    "context": "vim_mode == normal || vim_mode == visual",
-    "bindings": {
-      "c": ["workspace::SendKeystrokes", "\" _ c"],
-      "shift-c": ["workspace::SendKeystrokes", "\" _ shift-c"],
-      "d": ["workspace::SendKeystrokes", "\" _ d"],
-      "shift-d": ["workspace::SendKeystrokes", "\" _ shift-d"]
-    }
+    "context": "left_dock == ProjectPanel",
+    "bindings": { "cmd-shift-e": "workspace::ToggleLeftDock" },
   },
-  {
-    // Window management
-    "bindings": {
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
-      "ctrl-shift-h": "vim::ResizePaneLeft",
-      "ctrl-shift-l": "vim::ResizePaneRight",
-      "ctrl-shift-k": "vim::ResizePaneUp",
-      "ctrl-shift-j": "vim::ResizePaneDown"
-    }
-  }
 ]
