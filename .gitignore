@@ -1,6 +1,11 @@
+/home/.claude/cache
+/home/.claude/debug
+/home/.claude/plugins
 /home/.claude/projects
+/home/.claude/shell-snapshots
 /home/.claude/statsig
 /home/.claude/todos
+/home/.claude/stats-cache.json
 /home/.claude/.update.lock
 /home/.config/fish/completions
 /home/.config/fish/fish_variables
