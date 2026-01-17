@@ -11,7 +11,7 @@ return {
       { title = "Explorer", ft = "neo-tree", filter = function(buf) return vim.b[buf].neo_tree_source == "filesystem" end, pinned = true, open = "Neotree position=right filesystem reveal" },
       { title = "Git", ft = "sidebar_git", size = { height = 0.25 }, pinned = true, open = "SidebarGit" },
     },
-    options = { right = { size = 50 } },
+    options = { right = { size = 80 } },
     wo = { number = false, relativenumber = false, signcolumn = "no" },
     close_when_all_hidden = false,
     keys = { q = false, ["<c-q>"] = false },
