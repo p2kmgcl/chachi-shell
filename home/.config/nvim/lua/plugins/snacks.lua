@@ -1,15 +1,5 @@
-local function get_snacks(opts)
-  local options = { close_mini_files = true }
-  if opts then
-    options = vim.tbl_deep_extend("force", options, opts)
-  end
-
-  local snacks = require("snacks")
-  if options.close_mini_files then
-    local mini_files = require("mini.files")
-    mini_files.close()
-  end
-  return snacks
+local function get_snacks()
+  return require("snacks")
 end
 
 local function copy_git_link()
@@ -62,32 +52,14 @@ local function git_status()
 end
 
 local function grep()
-  local get_mini_files_path = require("helpers.get-mini-files-path")
-  local mini_files_path = get_mini_files_path({ close_explorer = true })
-
-  local title = "Grep"
-  if mini_files_path then
-    title = title .. " (" .. vim.fn.fnamemodify(mini_files_path, ":.") .. ")"
-  end
-
-  get_snacks({ close_explorer = false }).picker.grep({
-    title = title,
-    cwd = mini_files_path,
+  get_snacks().picker.grep({
+    title = "Grep",
   })
 end
 
 local function find()
-  local get_mini_files_path = require("helpers.get-mini-files-path")
-  local mini_files_path = get_mini_files_path({ close_explorer = true })
-
-  local title = "Find"
-  if mini_files_path then
-    title = title .. " (" .. vim.fn.fnamemodify(mini_files_path, ":.") .. ")"
-  end
-
-  get_snacks({ close_explorer = false }).picker.smart({
-    title = title,
-    cwd = mini_files_path,
+  get_snacks().picker.smart({
+    title = "Find",
     -- https://github.com/folke/snacks.nvim/blob/main/docs/picker.md#smart
     multi = { "buffers", "recent", "files" },
     transform = "unique_file",

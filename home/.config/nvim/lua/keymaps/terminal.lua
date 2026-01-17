@@ -1,11 +1,10 @@
 vim.keymap.set({ "n" }, "<leader>tt", function()
-  local get_mini_files_path = require("helpers.get-mini-files-path")
-  local term_path = get_mini_files_path({ close_explorer = true })
+  local current_buf = vim.api.nvim_get_current_buf()
+  local current_name = vim.api.nvim_buf_get_name(current_buf)
+  local term_path = vim.fs.dirname(current_name)
 
-  if term_path == nil then
-    local current_buf = vim.api.nvim_get_current_buf()
-    local current_name = vim.api.nvim_buf_get_name(current_buf)
-    term_path = vim.fs.dirname(current_name)
+  if term_path == nil or term_path == "" then
+    term_path = vim.uv.cwd()
   end
 
   vim.cmd.vsplit()
