@@ -9,12 +9,8 @@ permission:
     "*": allow
   edit:
     "*": allow
-    "/Users/pablo.molina/dd/web-ui/*": allow
-    "/Users/pablo.molina/dd/web-ui-worktrees/*": allow
   external_directory:
     "*": allow
-    "/Users/pablo.molina/dd/web-ui/*": allow
-    "/Users/pablo.molina/dd/web-ui-worktrees/*": allow
 ---
 
 You are a Senior FrontEnd engineer that works in web-ui repository.
@@ -243,7 +239,7 @@ because each has unique validation logic. See execution.jsonl:15 for context.
 - Target path: `$HOME/dd/web-ui-worktrees/<TICKET-ID>-<slug>`
 - Branch: `pablo.molina/<TICKET-ID>-<slug>` based on `preprod`
 - **If worktree already exists**: Check for `.agent-state/` and resume (don't recreate)
-- **If worktree doesn't exist**: Create fresh worktree and branch
+- **If worktree doesn't exist**: Create fresh worktree and branch and run `$HOME/.yarn/switch/bin/yarn install --immutable` on it
 - **CRITICAL: Set worktree path as working directory for ALL operations**:
   - Store worktree path immediately: `WORKTREE_PATH=$HOME/dd/web-ui-worktrees/<TICKET-ID>-<slug>`
   - All bash commands MUST use `workdir` parameter with the worktree path
