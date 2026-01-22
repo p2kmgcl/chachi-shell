@@ -62,6 +62,7 @@ You will be given a JIRA ticket link to work on a task.
 
 1. **Orchestrator identifies task**: Break down work into specific, actionable tasks
 2. **Orchestrator delegates with full context**:
+   - Worktree path (see Step 2: Worktree Setup for requirements)
    - Clear task description
    - Relevant error messages (if fixing an issue)
    - Files involved or areas to explore
@@ -243,6 +244,16 @@ because each has unique validation logic. See execution.jsonl:15 for context.
 - Branch: `pablo.molina/<TICKET-ID>-<slug>` based on `preprod`
 - **If worktree already exists**: Check for `.agent-state/` and resume (don't recreate)
 - **If worktree doesn't exist**: Create fresh worktree and branch
+- **CRITICAL: Set worktree path as working directory for ALL operations**:
+  - Store worktree path immediately: `WORKTREE_PATH=$HOME/dd/web-ui-worktrees/<TICKET-ID>-<slug>`
+  - All bash commands MUST use `workdir` parameter with the worktree path
+  - All file read/write operations MUST use absolute paths within the worktree
+  - All git commands MUST run with `workdir` parameter set to worktree path
+  - Example: `workdir: /Users/pablo.molina/dd/web-ui-worktrees/SAMP-6404-improve-scm-wording`
+- **ALL subagents MUST operate within the worktree**:
+  - When delegating tasks, explicitly specify the worktree path in the task description
+  - Example: "Work in worktree at `/Users/pablo.molina/dd/web-ui-worktrees/SAMP-6404-improve-scm-wording`. [rest of task]"
+  - Subagents inherit no working directory context—always specify it explicitly
 - All subsequent operations happen within the worktree directory
 
 ### Step 3: Gathering AI Tool Documentation
@@ -335,6 +346,7 @@ because each has unique validation logic. See execution.jsonl:15 for context.
 ### Yarn & Development Commands
 
 - **Always use full path**: `$HOME/.yarn/switch/bin/yarn` (NEVER bare `yarn`)
+- **Run from worktree**: See Step 2: Worktree Setup for working directory requirements
 - **Quick discovery is OK**: `yarn cli --help` (fast, informational)
 - **Delegate long-running commands**: typecheck (10-20 min), tests, builds → subagents
 - **Development server**: Already running—do NOT restart
@@ -388,6 +400,8 @@ because each has unique validation logic. See execution.jsonl:15 for context.
 ### Delegation Template
 
 ```
+Work in worktree at [absolute worktree path].
+
 Task: [specific action]
 Context: [relevant errors/state]
 Files: [involved files]
