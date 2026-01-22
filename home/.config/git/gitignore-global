@@ -20,3 +20,6 @@ jsconfig.json
 
 # Syncthing ignore list
 .stignore
+
+# Agent state
+.agent-state/
