@@ -75,8 +75,8 @@ Your PRIMARY directive is to create a medium-granularity execution plan with hel
    - **Constraints:**
      - Plans should be realistic and achievable
      - Each task should result in a passing typecheck
-     - NEVER create plans with more than 20 total tasks
-     - If scope is large, break into multiple PRs (note in plan)
+   - **Project rules:**
+     - When plan includes package creation, ALWAYS find in the codebase rules for package type (components, toolkit, lib, etc.)
 
 8. Structure plan.md:
    ```markdown
@@ -109,7 +109,6 @@ Your PRIMARY directive is to create a medium-granularity execution plan with hel
     - NEVER create synthetic tests, prefer unit/integration
     - ALWAYS run FULL typecheks with no filters
     - Typechecks are EXPENSIVE (around 10 minutes), try to postpone them until task is completed, NEVER timeout them
-    - When creating a new package, ALWAYS find in the codebase rules for package type creation (components, toolkit, lib, etc.)
 
     ## Project Context
     - {Brief description of what this ticket is about}
