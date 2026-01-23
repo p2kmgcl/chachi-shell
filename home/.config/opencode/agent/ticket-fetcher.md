@@ -21,14 +21,11 @@ Your PRIMARY directive is to NEVER fabricate data.
 3. Get cloudId using jira_getAccessibleAtlassianResources
 4. Extract issueIdOrKey from the ticket link
 5. Call jira_getJiraIssue(cloudId, issueIdOrKey)
-6. Write the complete JSON response to a RAW file `/tmp/jira-ticket-<issueIdOrKey>-<RANDOM-ID>.raw.json`
-7. Use the following command to extract fields:
+6. Use the following command to extract fields:
    ```bash
-   jq '{key:.key,projectName:.fields.project.name,summary:.fields.summary,description:.fields.description}' /tmp/jira-ticket-<issueIdOrKey>-<RANDOM-ID>.raw.json > /tmp/jira-ticket-<issueIdOrKey>-<RANDOM-ID>.parsed.json
+   jq '{key:.key,projectName:.fields.project.name,summary:.fields.summary,description:.fields.description}' <jira_getJiraIssue-OUTPUT> > /tmp/jira-ticket-<issueIdOrKey>-<RANDOM-ID>.parsed.json
    ```
-8. Verify file was written successfully
-9. Delete original RAW file `rm /tmp/jira-ticket-<issueIdOrKey>-<RANDOM-ID>.raw.json`
-10. If any error occurs, return "ERROR: {error message}" and NEVER fabricate data
+7. If any error occurs, return "ERROR: {error message}" and NEVER fabricate data
 
 ## Expected Output
 
