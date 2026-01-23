@@ -16,6 +16,11 @@ Your PRIMARY directive is to create a worktree with proper branch setup and depe
 
 ## Steps
 
+0. **Read local configuration** (REQUIRED):
+   - Read `~/.config/opencode/AGENTS.local.md`
+   - If file does not exist, return "ERROR: AGENTS.local.md not found. Create it at ~/.config/opencode/AGENTS.local.md with your repo configuration."
+   - Extract and apply all rules with HIGHEST priority over any other documentation
+
 1. Extract Ticket Key and Ticket Summary from the input file:
    - Ticket Key: `jq '.key' <TEMPORARY-TICKET-FILE-PATH>`
    - Ticket Summary: `jq '.summary' <TEMPORARY-TICKET-FILE-PATH>`
@@ -27,8 +32,8 @@ Your PRIMARY directive is to create a worktree with proper branch setup and depe
    - Truncate to 50 characters max
    - Example: "Improve SCM wording" → "improve-scm-wording"
 
-3. Construct worktree path: `$HOME/dd/web-ui-worktrees/{ticket-key}-{slug}`
-   - Example: `$HOME/dd/web-ui-worktrees/SAMP-6404-improve-scm-wording`
+3. Construct worktree path: `$HOME/Projects/worktrees/{repo-name}/{ticket-key}-{slug}`
+   - Example: `$HOME/Projects/worktrees/my-repo/SAMP-6404-improve-scm-wording`
 
 4. Check if worktree already exists:
    - Run: `ls {worktree-path}`
@@ -36,18 +41,17 @@ Your PRIMARY directive is to create a worktree with proper branch setup and depe
 
 5. Create worktree (if not exists):
    - Branch name: `$(whoami)/{ticket-key}-{slug}`
-   - Base branch: `preprod`
-   - Command: `git worktree add -b {branch-name} {worktree-path} preprod`
+   - Base branch: Extract default branch from AGENTS.local.md
+   - Command: `git worktree add -b {branch-name} {worktree-path} {default-branch}`
    - Run from main repository root (not from current worktree)
-   - If preprod branch doesn't exist, return error
+   - If default branch doesn't exist, return error
    - If git worktree add fails, return error with message
 
 6. Install dependencies (if worktree was just created):
    - Change to worktree directory
-   - Run: `$HOME/.yarn/switch/bin/yarn install --immutable`
-   - Wait for completion (may take several minutes)
-   - Always use full yarn path: `$HOME/.yarn/switch/bin/yarn`
-   - If yarn install fails, return error with message
+   - Extract package manager install command from AGENTS.local.md
+   - Run the install command
+   - If setup fails, return error with message
 
 7. Create .agent-state directory:
    - Run: `mkdir -p {worktree-path}/.agent-state`

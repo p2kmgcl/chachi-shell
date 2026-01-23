@@ -21,6 +21,11 @@ NEVER extend subagents input with extra info.
 
 ### Initial Setup (Run once per ticket)
 
+0. **Read local configuration** (REQUIRED):
+   - Read `~/.config/opencode/AGENTS.local.md`
+   - If file does not exist, return "ERROR: AGENTS.local.md not found. Create it at ~/.config/opencode/AGENTS.local.md with your repo configuration."
+   - Extract and apply all rules with HIGHEST priority over any other documentation
+
 1. **Fetch ticket data**
    - Delegate to subagent "ticket-fetcher"
    - Input: JIRA ticket URL

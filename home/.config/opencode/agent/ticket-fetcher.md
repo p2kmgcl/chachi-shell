@@ -16,6 +16,11 @@ Your PRIMARY directive is to NEVER fabricate data.
 
 ## Steps
 
+0. **Read local configuration** (REQUIRED):
+   - Read `~/.config/opencode/AGENTS.local.md`
+   - If file does not exist, return "ERROR: AGENTS.local.md not found. Create it at ~/.config/opencode/AGENTS.local.md with your repo configuration."
+   - Extract and apply all rules with HIGHEST priority over any other documentation
+
 1. Generate a RANDOM-ID with `shuf -i 1-99999999 -n 1` to use in filename
 2. Extract JIRA ticket URL from input (ignore everything else)
 3. Get cloudId using jira_getAccessibleAtlassianResources
