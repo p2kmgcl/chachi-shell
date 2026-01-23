@@ -107,7 +107,8 @@ Your PRIMARY directive is to create a medium-granularity execution plan with hel
     - ALWAYS use `$HOME/.yarn/switch/bin/yarn` to manage dependencies (`yarn add`, `yarn remove`)
     - NEVER modify tsconfig.json, package.json, jest.config, .eslintrc, or any other config files
     - NEVER create synthetic tests, prefer unit/integration
-    - ALWAYS run FULL typecheks with no filters, first will take around 10 minutes, but they are cached
+    - ALWAYS run FULL typecheks with no filters
+    - Typechecks are EXPENSIVE (around 10 minutes), try to postpone them until task is completed, NEVER timeout them
     - When creating a new package, ALWAYS find in the codebase rules for package type creation (components, toolkit, lib, etc.)
 
     ## Project Context
