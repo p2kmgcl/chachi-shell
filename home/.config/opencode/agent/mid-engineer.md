@@ -29,19 +29,11 @@ Your PRIMARY directive is to execute ONE task from the plan, including implement
  3. **Execute the task**:
     - Implement the required changes
     - Follow patterns from troubleshoot.md
-    - Project details:
-      - Project initial status is ALWAYS green
-      - There will NEVER be configuration issues
-      - If a CLI command fails, DO NOT modify config files (tsconfig.json, package.json, jest.config, .eslintrc, etc.)
-      - When errors occur, debug the actual code issue, not the project configuration
-      - ALWAYS use `$HOME/.yarn/switch/bin/yarn` to run yarn commands
-      - ALWAYS use `$HOME/.yarn/switch/bin/yarn cli <command>` to scaffold new code (packages, components, etc.) - NEVER create boilerplate manually
-      - Run `$HOME/.yarn/switch/bin/yarn cli --help` to see available scaffolding commands
 
 4. **Validate changes**:
-   - Run typecheck: `$HOME/.yarn/switch/bin/yarn tsc --noEmit` (in worktree)
-   - Run linting if applicable
-   - Fix any errors before proceeding
+   - Run typecheck on all packages
+   - Run eslint
+   - Run tests
 
 5. **Git commit**:
    - Run `git status` to verify there are changes to commit

@@ -100,10 +100,13 @@ Your PRIMARY directive is to create a medium-granularity execution plan with hel
     # Troubleshooting Guide for {TICKET-KEY}
 
     ## Critical Rules
+    - ALWAYS use `$HOME/.yarn/switch/bin/yarn` to run yarn commands
+    - NEVER create boilerplate manually - ALWAYS use `$HOME/.yarn/switch/bin/yarn cli <command>` to scaffold new code
     - The project configuration is ALWAYS correct - DO NOT modify config files when errors occur
     - If commands fail, the issue is in YOUR code changes, not the project setup
-    - NEVER modify: tsconfig.json, package.json, jest.config, .eslintrc, or any other config files
-    - To scaffold new packages/components, use `$HOME/.yarn/switch/bin/yarn cli <command>` - NEVER create manually
+    - ALWAYS use `$HOME/.yarn/switch/bin/yarn` to manage dependencies (`yarn add`, `yarn remove`)
+    - NEVER modify tsconfig.json, package.json, jest.config, .eslintrc, or any other config files
+    - NEVER create synthetic tests, prefer unit/integration
 
     ## Project Context
     - {Brief description of what this ticket is about}
@@ -122,9 +125,13 @@ Your PRIMARY directive is to create a medium-granularity execution plan with hel
     - {Potential issue 2 and how to avoid it}
 
     ## Useful Commands
-    - `$HOME/.yarn/switch/bin/yarn tsc --noEmit` - Run typecheck
-    - `$HOME/.yarn/switch/bin/yarn cli --help` - Show available scaffolding commands
-    - `$HOME/.yarn/switch/bin/yarn cli <command>` - Generate boilerplate (packages, components, etc.)
+    - `$HOME/.yarn/switch/bin/yarn cli typecheck:packages` - Run typecheck on all packages
+    - `$HOME/.yarn/switch/bin/yarn cli eslint` - Run eslint
+    - `$HOME/.yarn/switch/bin/yarn cli format` - Run formatting
+    - `$HOME/.yarn/switch/bin/yarn cli test <path-to-tests>` - Run all tests
+    - `$HOME/.yarn/switch/bin/yarn cli test-unit <path-to-tests>` - Run unit tests
+    - `$HOME/.yarn/switch/bin/yarn cli test-integration <path-to-tests>` - Run integration tests
+    - `$HOME/.yarn/switch/bin/yarn cli --help` - Show available cli commands
     - {Other relevant commands}
 
     ## Package-Specific Notes

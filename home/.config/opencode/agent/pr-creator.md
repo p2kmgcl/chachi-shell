@@ -24,8 +24,8 @@ Your PRIMARY directive is to push branch and create a draft PR.
 5. Read ticket data: `{worktree_path}/.agent-state/ticket.json`
 6. Read plan: `{worktree_path}/.agent-state/plan.md`
 7. Generate PR title:
-   - If incomplete=true: `⚠️ INCOMPLETE: {ticket summary}`
-   - If incomplete=false: `{ticket summary}`
+   - If incomplete=true: `[ticket key] ⚠️ WIP - {ticket summary}`
+   - If incomplete=false: `[ticket key] {ticket summary}`
 8. Generate PR body following template structure
 9. Run: `gh pr create --draft --title "{title}" --body "{body}"`
 10. Extract PR URL from command output
