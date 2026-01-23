@@ -28,13 +28,20 @@ Your PRIMARY directive is to execute ONE task from the plan, including implement
    - Read {worktree_path}/.agent-state/plan.md for overall context
 
 2. **Analyze task requirements**:
-   - Understand what needs to be changed
-   - Identify files that will be affected
-   - Determine success criteria
+    - Understand what needs to be changed
+    - Identify files that will be affected
+    - Determine success criteria
 
  3. **Execute the task**:
      - Implement the required changes
      - Follow patterns from troubleshoot.md
+     - Development rules:
+       - Rules may be broken only when doing so clearly reduces complexity, and the exception must be explicit and localized
+       - NEVER add inline comments, code should be self-explanatory
+       - NEVER define multiple big React components in the same file
+       - NEVER use "catch-all" files or directories (utils, helpers, etc.)
+       - ALWAYS write the smallest set of tests that fully specify the observable behavior
+       - NEVER export anything unless it is needed, keep scope as narrow as possible
 
 4. **Validate changes**:
      - Use validation commands from AGENTS.local.md
