@@ -17,6 +17,10 @@ NEVER extend subagents input with extra info.
 
 ## Steps
 
+**Note**: Worktree path is stored in conversation memory after step 2 and reused throughout all iterations.
+
+### Initial Setup (Run once per ticket)
+
 1. **Fetch ticket data**
    - Delegate to subagent "ticket-fetcher"
    - Input: JIRA ticket URL
@@ -28,16 +32,27 @@ NEVER extend subagents input with extra info.
    - Delegate to subagent "worktree-creator"
    - Input: Temporary ticket file path from step 1
    - Output: Absolute worktree path
-   - Store this worktree path for all subsequent operations
+   - **STORE worktree path in conversation context** - will be reused for all subsequent steps
    - On error: STOP and return error
 
-3. **Create execution plan**
+### Iteration Loop (Repeats on PR feedback)
+
+3. **Detect and fetch PR feedback** (conditional)
+   - Check if user message contains keywords: "feedback", "comment", "review", "PR"
+   - If YES (feedback iteration):
+     a. Delegate to subagent "pr-reviewer"
+     b. Input: Worktree path (from conversation context)
+     c. Output: Path to review-feedback.md
+     d. On error: STOP and return error
+   - If NO (first iteration): Skip to step 4
+
+4. **Create/update execution plan**
    - Delegate to subagent "task-planner"
-   - Input: Worktree path
+   - Input: Worktree path (from conversation context)
    - Output: Paths to plan.md and troubleshoot.md
    - On error: STOP and return error
 
-4. **Execute plan loop** (owned by primary agent)
+5. **Execute plan loop** (owned by primary agent)
    - Read {worktree_path}/.agent-state/plan.md
    - Initialize: incomplete=false, tasks_completed=0, tasks_skipped=0
    - While uncompleted tasks exist (`- [ ]`):
@@ -50,23 +65,60 @@ NEVER extend subagents input with extra info.
      c. Update plan.md: change `- [ ]` to `- [x]` for completed task (use Edit tool)
    - Continue until all tasks processed
 
-5. **Create pull request**
+6. **Create/update pull request**
    - Delegate to subagent "pr-creator"
-   - Input: Worktree path + incomplete flag
-   - Output: PR URL
+   - Input: Worktree path (from conversation context) + incomplete flag
+   - Output: "Created: {URL}" or "Updated: {URL}"
    - On error: STOP and return error
 
-6. **Return result**
-   - Return PR URL to user
+7. **Return result and wait for feedback**
+   - If pr-creator returned "Created":
+     - Return to user: "✓ Pull request created: {URL}"
+   - If pr-creator returned "Updated":
+     - Return to user: "✓ Pull request updated: {URL}\n✓ Addressed PR feedback. Ready for next review."
+   - Agent session continues
+   - User can provide more feedback (returns to step 3) or end session
 
 ## Expected Output
 
-On success:
+First iteration:
 ```
-Pull request created: https://github.com/org/repo/pull/1234
+✓ Pull request created: https://github.com/org/repo/pull/1234
+```
+
+Feedback iterations:
+```
+✓ Pull request updated: https://github.com/org/repo/pull/1234
+✓ Addressed PR feedback. Ready for next review.
 ```
 
 On failure:
 ```
 ERROR: {error message from failed step}
+```
+
+## Conversation Flow Example
+
+**Initial run:**
+```
+User: https://jira.company.com/browse/TICKET-123
+Agent: [Steps 1-7] → "✓ Pull request created: https://github.com/org/repo/pull/1234"
+```
+
+**First feedback:**
+```
+User: check comments in PR
+Agent: [Steps 3-7]
+  - Detects keywords → fetches PR comments
+  - Regenerates plan based on feedback + git diff
+  - Executes new plan
+  - Updates PR via push
+  → "✓ Pull request updated: https://github.com/org/repo/pull/1234
+     ✓ Addressed PR feedback. Ready for next review."
+```
+
+**Second feedback:**
+```
+User: more feedback in the PR
+Agent: [Steps 3-7] → Repeats same flow
 ```

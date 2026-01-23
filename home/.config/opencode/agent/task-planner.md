@@ -37,15 +37,27 @@ Your PRIMARY directive is to create a medium-granularity execution plan with hel
 
 ### Phase 2: Read Ticket and Explore Codebase
 
-4. Read ticket data from {worktree_path}/.agent-state/ticket.json
+4. Read ticket data and feedback:
+   - Read {worktree_path}/.agent-state/ticket.json
    - If not found, return "ERROR: ticket.json not found"
+   - Check if {worktree_path}/.agent-state/review-feedback.md exists
+   - If exists, read it completely (this is PR feedback from a previous iteration)
 
-5. Analyze ticket requirements:
-   - Identify what needs to be changed
-   - Determine scope of changes
-   - List affected areas/components
+5. Analyze requirements:
+   - If review-feedback.md exists (feedback iteration):
+     - PRIMARY GOAL: Address all feedback items from PR review
+     - Read git diff from main/master branch: `git diff main...HEAD` or `git diff master...HEAD`
+     - Understand what code changes have already been made
+     - Create plan to address feedback while preserving working changes
+     - SECONDARY: Ensure original ticket requirements still met
+   - If review-feedback.md does NOT exist (first iteration):
+     - Focus on original ticket requirements from ticket.json
+     - Identify what needs to be changed
+     - Determine scope of changes
+     - List affected areas/components
 
 6. Explore codebase directly (no subagent):
+   - If feedback iteration: Focus on files mentioned in review-feedback.md
    - Use Glob tool to find relevant files by pattern
    - Use Grep tool to search for relevant code patterns
    - Use Read tool to examine key files
@@ -76,7 +88,9 @@ Your PRIMARY directive is to create a medium-granularity execution plan with hel
      - Plans should be realistic and achievable
      - Each task should result in a passing typecheck
    - **Project rules:**
-     - When plan includes package creation, ALWAYS find in the codebase rules for package type (components, toolkit, lib, etc.)
+     - When plan requires creating new files, ALWAYS find in the codebase rules for package types (components, toolkit, lib, etc.)
+     - When addressing PR feedback, ALWAYS include git diff analysis to understand current state
+     - Feedback iterations should build on existing work, not start from scratch
 
 8. Structure plan.md:
    ```markdown

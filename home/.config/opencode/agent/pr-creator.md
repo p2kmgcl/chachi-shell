@@ -18,21 +18,48 @@ Your PRIMARY directive is to push branch and create a draft PR.
 ## Steps
 
 1. Change to worktree directory
+
 2. Get current branch name: `git branch --show-current`
-3. Push branch: `git push -u origin {branch-name}`
-4. Read PR template: `{worktree_path}/.github/PULL_REQUEST_TEMPLATE.md`
-5. Read ticket data: `{worktree_path}/.agent-state/ticket.json`
-6. Read plan: `{worktree_path}/.agent-state/plan.md`
-7. Generate PR title:
-   - If incomplete=true: `[ticket key] ⚠️ WIP - {ticket summary}`
-   - If incomplete=false: `[ticket key] {ticket summary}`
-8. Generate PR body following template structure
-9. Run: `gh pr create --draft --title "{title}" --body "{body}"`
-10. Extract PR URL from command output
+
+3. Check if PR already exists:
+   - Run: `gh pr list --head {branch-name} --json url,number --jq '.[0] | {url: .url, number: .number}'`
+   - If result has URL, set pr_exists=true and store URL and number
+   - Otherwise set pr_exists=false
+
+4. Push branch to remote:
+   - Run: `git push -u origin {branch-name} --force-with-lease`
+   - This updates existing PR or prepares for new PR creation
+
+5. If pr_exists is **false** (first iteration - create new PR):
+   a. Read PR template: `{worktree_path}/.github/PULL_REQUEST_TEMPLATE.md`
+   b. Read ticket data: `{worktree_path}/.agent-state/ticket.json`
+   c. Read plan: `{worktree_path}/.agent-state/plan.md`
+   d. Generate PR title:
+      - If incomplete=true: `[ticket key] ⚠️ WIP - {ticket summary}`
+      - If incomplete=false: `[ticket key] {ticket summary}`
+   e. Generate PR body following template structure
+   f. Create draft PR: `gh pr create --draft --title "{title}" --body "{body}"`
+   g. Extract PR URL from output
+   h. Return: "Created: {PR URL}"
+
+6. If pr_exists is **true** (feedback iteration - update existing PR):
+   a. Branch push in step 4 already updated the PR automatically
+   b. Optionally add comment noting updates: `gh pr comment {pr-number} --body "🤖 Updated based on review feedback"`
+   c. Return: "Updated: {PR URL}"
 
 ## Expected Output
 
-Return ONLY the PR URL:
+New PR:
 ```
-https://github.com/org/repo/pull/1234
+Created: https://github.com/org/repo/pull/1234
+```
+
+Existing PR:
+```
+Updated: https://github.com/org/repo/pull/1234
+```
+
+On failure:
+```
+ERROR: {detailed error message}
 ```
