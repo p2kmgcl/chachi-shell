@@ -123,6 +123,8 @@ Your PRIMARY directive is to create a medium-granularity execution plan with hel
     - NEVER create synthetic tests, prefer unit/integration
     - ALWAYS run FULL typecheks with no filters
     - Typechecks are EXPENSIVE (around 10 minutes), try to postpone them until task is completed, NEVER timeout them
+    - NEVER duplicate type definitions
+    - NEVER solve package import type issues with duplication
 
     ## Project Context
     - {Brief description of what this ticket is about}
