@@ -127,6 +127,8 @@ Your PRIMARY directive is to create a medium-granularity execution plan with hel
 
     ## Useful Commands
     - `$HOME/.yarn/switch/bin/yarn cli typecheck:packages` - Run typecheck on all packages
+    - `$HOME/.yarn/switch/bin/yarn cli create-package --skip-dry-run` - Create a new package without confirmation
+    - `$HOME/.yarn/switch/bin/yarn cli create-api` - Create a new endpoint definition
     - `$HOME/.yarn/switch/bin/yarn cli eslint` - Run eslint
     - `$HOME/.yarn/switch/bin/yarn cli format` - Run formatting
     - `$HOME/.yarn/switch/bin/yarn cli test <path-to-tests>` - Run all tests
