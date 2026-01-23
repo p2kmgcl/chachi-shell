@@ -125,11 +125,11 @@ Your PRIMARY directive is to create a valid, executable plan with comprehensive 
    - Modifying: @scope/package-c (adding dep: @scope/package-a)
 
    ## Phase 1: {Phase Name}
-   - [ ] {Task description with context}
-   - [ ] {Task description}
+   - {Task description with context}
+   - {Task description}
 
    ## Phase N: Final Validation
-   - [ ] Run full typecheck and verify all changes
+   - {Follow validation rules}
    ```
 
 12. Create troubleshoot.md:
