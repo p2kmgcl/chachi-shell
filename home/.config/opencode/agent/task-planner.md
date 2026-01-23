@@ -108,6 +108,7 @@ Your PRIMARY directive is to create a medium-granularity execution plan with hel
     - NEVER modify tsconfig.json, package.json, jest.config, .eslintrc, or any other config files
     - NEVER create synthetic tests, prefer unit/integration
     - ALWAYS run FULL typecheks with no filters, first will take around 10 minutes, but they are cached
+    - When creating a new package, ALWAYS find in the codebase rules for package type creation (components, toolkit, lib, etc.)
 
     ## Project Context
     - {Brief description of what this ticket is about}
