@@ -67,12 +67,17 @@ return {
         "path",
         "snippets",
         "buffer",
+        "cssprops",
       },
       providers = {
         lsp = { async = true, timeout_ms = 200, max_items = 20 },
         buffer = { async = true, max_items = 10 },
         path = { async = true, max_items = 10 },
         snippets = { async = true, max_items = 10 },
+        cssprops = {
+          name = "cssprops",
+          module = "helpers.css-custom-props",
+        },
       },
     },
   },
