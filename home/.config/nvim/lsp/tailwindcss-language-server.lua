@@ -101,7 +101,5 @@ return {
     "tailwind.config.cjs",
     "tailwind.config.mjs",
     "tailwind.config.ts",
-    "next.config.ts",
-    "vite.config.ts",
   }),
 }

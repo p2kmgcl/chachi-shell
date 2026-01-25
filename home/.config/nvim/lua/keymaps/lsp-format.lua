@@ -1,9 +1,12 @@
 local formatter_priority = {
-  javascript = { "eslint-lsp", "vtsls" },
-  javascriptreact = { "eslint-lsp", "vtsls" },
+  css = { "stylelint-lsp", "css-lsp" },
+  javascript = { "eslint-lsp", "tsgo", "vtsls" },
+  javascriptreact = { "eslint-lsp", "tsgo", "vtsls" },
+  less = { "stylelint-lsp", "css-lsp" },
   lua = { "stylua", "lua_ls" },
-  typescript = { "eslint-lsp", "vtsls" },
-  typescriptreact = { "eslint-lsp", "vtsls" },
+  scss = { "stylelint-lsp", "css-lsp" },
+  typescript = { "eslint-lsp", "tsgo", "vtsls" },
+  typescriptreact = { "eslint-lsp", "tsgo", "vtsls" },
 }
 
 local function lsp_preference_filter(client)
@@ -27,10 +30,38 @@ local function lsp_preference_filter(client)
   return true
 end
 
+local function format_with_stylelint(file)
+  if file == "" then
+    vim.notify("no file name for stylelint format", vim.log.levels.WARN)
+    return
+  end
+
+  if vim.bo.modified then
+    vim.cmd("write")
+  end
+
+  local result = vim.system({ "npx", "stylelint", file, "--fix" }, { text = true }):wait()
+
+  if result.code ~= 0 then
+    local output = (result.stderr ~= "" and result.stderr) or result.stdout
+    vim.notify("stylelint failed: " .. output, vim.log.levels.ERROR)
+    return
+  end
+
+  vim.cmd("silent! checktime")
+end
+
 vim.keymap.set("n", "<leader>cf", function()
-  vim.lsp.buf.format({
-    bufnr = 0,
-    async = false,
-    filter = lsp_preference_filter,
-  })
+  local use_stylelint = lsp_preference_filter({ name = "stylelint-lsp" })
+
+  if use_stylelint then
+    local file = vim.api.nvim_buf_get_name(0)
+    format_with_stylelint(file)
+  else
+    vim.lsp.buf.format({
+      bufnr = 0,
+      async = false,
+      filter = lsp_preference_filter,
+    })
+  end
 end, { desc = "Format buffer" })
