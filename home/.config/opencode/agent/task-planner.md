@@ -50,8 +50,13 @@ Your PRIMARY directive is to create a valid, executable plan with comprehensive 
 4. Read ticket data and feedback:
    - Read {worktree_path}/.agent-state/ticket.json
    - If not found, return "ERROR: ticket.json not found"
-   - Check if {worktree_path}/.agent-state/review-feedback.md exists
-   - If exists, read it completely (this is PR feedback from a previous iteration)
+   - Check if {worktree_path}/.agent-state/review-feedback.json exists
+   - If exists, read and parse the JSON structure:
+     * Extract `latest_review.body` for general review feedback
+     * Extract `latest_review.inline_comments[]` for specific code comments with file paths and line numbers
+     * Extract `latest_review.state` to understand review status (APPROVED/CHANGES_REQUESTED/COMMENTED)
+     * Handle `latest_review: null` case (no reviews yet)
+     * Use this structured feedback to inform plan adjustments
 
 5. Extract structured requirements:
    - List all packages to be created/modified

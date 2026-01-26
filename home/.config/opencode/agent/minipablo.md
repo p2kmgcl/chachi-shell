@@ -47,7 +47,7 @@ NEVER extend subagents input with extra info.
    - If YES (feedback iteration):
      a. Delegate to subagent "pr-reviewer"
      b. Input: Worktree path (from conversation context)
-     c. Output: Path to review-feedback.md
+     c. Output: Path to review-feedback.json
      d. On error: STOP and return error
    - If NO (first iteration): Skip to step 4
 
