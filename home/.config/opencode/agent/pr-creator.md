@@ -35,7 +35,7 @@ Your PRIMARY directive is to push branch and create a draft PR.
    - Run: `git push -u origin {branch-name} --force-with-lease`
    - This updates existing PR or prepares for new PR creation
 
-5. If pr_exists is **false** (first iteration - create new PR):
+5. If pr_exists is **false** (create new PR):
    a. Extract PR template path from AGENTS.local.md and read it if it exists
    b. Read ticket data: `{worktree_path}/.agent-state/ticket.json`
    c. Read plan: `{worktree_path}/.agent-state/plan.md`
@@ -47,10 +47,36 @@ Your PRIMARY directive is to push branch and create a draft PR.
    g. Extract PR URL from output
    h. Return: "Created: {PR URL}"
 
-6. If pr_exists is **true** (feedback iteration - update existing PR):
+6. If pr_exists is **true** (update existing PR):
+   
    a. Branch push in step 4 already updated the PR automatically
-   b. Optionally add comment noting updates: `gh pr comment {pr-number} --body "🤖 Updated based on review feedback"`
-   c. Return: "Updated: {PR URL}"
+   
+   b. Check if review feedback exists:
+      - Look for: `{worktree_path}/.agent-state/review-feedback.json`
+      - If exists, set has_review=true
+      - Otherwise set has_review=false
+   
+   c. If has_review=true, regenerate PR description:
+      i. Extract PR template path from AGENTS.local.md and read it if it exists
+      ii. Read ticket data: `{worktree_path}/.agent-state/ticket.json`
+      iii. Get commit summary: `git log preprod..HEAD --oneline --no-decorate`
+      iv. Get file changes: `git diff preprod..HEAD --stat`
+      v. Generate fresh PR description:
+          - Analyze commits and changed files from git log/diff
+          - Reference ticket context (ticket.json) for original intent
+          - Create comprehensive description of what was implemented
+          - Follow PR template structure if template exists
+          - DO NOT include iteration history or review cycle info
+      vi. Update PR description: `gh pr edit {pr-number} --body "{new-description}"`
+          - On success: Set description_updated=true
+          - On error: Log warning, set description_update_failed=true, continue
+   
+   d. Build status message:
+      - Base: "Updated: {PR URL}"
+      - If description updated: Append "\n✓ Regenerated PR description"
+      - If description update failed: Append "\n⚠️ Failed to update PR description"
+   
+   e. Return status message
 
 ## Expected Output
 

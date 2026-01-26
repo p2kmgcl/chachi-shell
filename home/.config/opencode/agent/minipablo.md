@@ -44,12 +44,12 @@ NEVER extend subagents input with extra info.
 
 3. **Detect and fetch PR feedback** (conditional)
    - Check if user message contains keywords: "feedback", "comment", "review", "PR"
-   - If YES (feedback iteration):
+   - If YES:
      a. Delegate to subagent "pr-reviewer"
      b. Input: Worktree path (from conversation context)
      c. Output: Path to review-feedback.json
      d. On error: STOP and return error
-   - If NO (first iteration): Skip to step 4
+   - If NO: Skip to step 6
 
 4. **Create/update execution plan**
    - Delegate to subagent "task-planner"
@@ -70,30 +70,59 @@ NEVER extend subagents input with extra info.
      c. Update plan.md: change `- [ ]` to `- [x]` for completed task (use Edit tool)
    - Continue until all tasks processed
 
-6. **Create/update pull request**
+6. **Handle review comments** (conditional)
+   - Check if {worktree_path}/.agent-state/review-feedback.json exists
+   - If YES:
+     a. Delegate to subagent "pr-comment-handler"
+        - Input: Worktree path
+        - Output: "Resolved {count} of {total} comments" OR "No comments to process" (both are normal)
+        - On error: Log warning, continue (non-blocking)
+   - If NO: Skip to step 7 (this is normal - no review exists yet)
+
+7. **Create/update pull request**
    - Delegate to subagent "pr-creator"
    - Input: Worktree path (from conversation context) + incomplete flag
-   - Output: "Created: {URL}" or "Updated: {URL}"
+   - Output: "Created: {URL}" or "Updated: {URL}" (with description status if applicable)
    - On error: STOP and return error
 
-7. **Return result and wait for feedback**
+8. **Return result and wait for feedback**
+   - Compile outputs from steps 6 and 7
    - If pr-creator returned "Created":
      - Return to user: "✓ Pull request created: {URL}"
    - If pr-creator returned "Updated":
-     - Return to user: "✓ Pull request updated: {URL}\n✓ Addressed PR feedback. Ready for next review."
+     - Return to user: "✓ Pull request updated: {URL}" + any messages from steps 6-7
+     - Return to user: "✓ Addressed PR feedback. Ready for next review."
    - Agent session continues
    - User can provide more feedback (returns to step 3) or end session
 
 ## Expected Output
 
-First iteration:
+No review exists:
 ```
 ✓ Pull request created: https://github.com/org/repo/pull/1234
 ```
 
-Feedback iterations:
+Review with comments:
 ```
 ✓ Pull request updated: https://github.com/org/repo/pull/1234
+✓ Resolved 5 comments
+✓ Regenerated PR description
+✓ Addressed PR feedback. Ready for next review.
+```
+
+Review with no inline comments:
+```
+✓ Pull request updated: https://github.com/org/repo/pull/1234
+✓ Regenerated PR description
+✓ Addressed PR feedback. Ready for next review.
+```
+
+Review with partial failures:
+```
+✓ Pull request updated: https://github.com/org/repo/pull/1234
+✓ Resolved 4 comments
+⚠️ Failed to resolve 1 comment
+✓ Regenerated PR description
 ✓ Addressed PR feedback. Ready for next review.
 ```
 
@@ -107,23 +136,26 @@ ERROR: {error message from failed step}
 **Initial run:**
 ```
 User: https://jira.company.com/browse/TICKET-123
-Agent: [Steps 1-7] → "✓ Pull request created: https://github.com/org/repo/pull/1234"
+Agent: [Steps 1-2, 4-5, 7-8] → "✓ Pull request created: https://github.com/org/repo/pull/1234"
 ```
 
 **First feedback:**
 ```
 User: check comments in PR
-Agent: [Steps 3-7]
-  - Detects keywords → fetches PR comments
+Agent: [Steps 3-8]
+  - Detects keywords → fetches PR review
   - Regenerates plan based on feedback + git diff
   - Executes new plan
-  - Updates PR via push
+  - Replies to and resolves review comments
+  - Updates PR branch and regenerates description
   → "✓ Pull request updated: https://github.com/org/repo/pull/1234
+     ✓ Resolved 5 comments
+     ✓ Regenerated PR description
      ✓ Addressed PR feedback. Ready for next review."
 ```
 
 **Second feedback:**
 ```
 User: more feedback in the PR
-Agent: [Steps 3-7] → Repeats same flow
+Agent: [Steps 3-8] → Repeats same flow
 ```

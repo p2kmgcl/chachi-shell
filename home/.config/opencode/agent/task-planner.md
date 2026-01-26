@@ -57,8 +57,16 @@ Your PRIMARY directive is to create a valid, executable plan with comprehensive 
      * Extract `latest_review.state` to understand review status (APPROVED/CHANGES_REQUESTED/COMMENTED)
      * Handle `latest_review: null` case (no reviews yet)
      * Use this structured feedback to inform plan adjustments
+     * Set has_review=true
 
-5. Extract structured requirements:
+5. Delete old plan files if review feedback exists:
+   - If has_review=true:
+     * Delete {worktree_path}/.agent-state/plan.md if it exists
+     * Delete {worktree_path}/.agent-state/troubleshoot.md if it exists
+     * Plan creation should rely ONLY on existing code + feedback, not previous plan
+   - These files will be recreated fresh in Phase 5
+
+6. Extract structured requirements:
    - List all packages to be created/modified
    - List all dependencies that will be added/changed
    - Identify type contracts that will be affected
@@ -67,29 +75,29 @@ Your PRIMARY directive is to create a valid, executable plan with comprehensive 
 
 ### Phase 3: Validate Feasibility
 
-6. Build workspace package map:
+7. Build workspace package map:
    - Use Grep to find package.json files for packages mentioned in requirements
    - For each affected package and its dependencies:
      - Read package.json to extract name and dependencies
      - Note workspace dependencies (workspace:* protocol)
    - Build dependency graph of affected packages only
 
-7. Validate package consistency:
+8. Validate package consistency:
    - **Circular dependencies**: Check if new/modified dependencies create cycles in graph
    - **Missing dependencies**: Verify all referenced packages exist or will be created
    - **Naming conventions**: Validate package names match patterns from AI docs
    - **Ordering**: Determine creation order if multiple packages will be created
    - If validation fails: STOP and return detailed ERROR explaining why plan cannot be created
 
-8. Validate type consistency:
+9. Validate type consistency:
    - For modified packages: check if exported types are used by dependents
    - For new dependencies: verify required types are available
    - If breaking changes detected: ensure dependents will be updated in plan
 
 ### Phase 4: Explore Codebase
 
-9. Targeted exploration based on validation:
-   - If feedback iteration: Read git diff `git diff main...HEAD` or `git diff master...HEAD`
+10. Targeted exploration based on validation:
+   - If review feedback exists: Read git diff to see what was already attempted
    - Use Glob to find files matching requirements
    - Use Grep to search for relevant patterns
    - Read key files to understand implementation
@@ -97,10 +105,10 @@ Your PRIMARY directive is to create a valid, executable plan with comprehensive 
 
 ### Phase 5: Create Validated Plan
 
-10. Create plan with validated ordering:
+11. Create plan with validated ordering:
    - **Granularity**: 3-7 steps per phase, 10-30 min per step, atomic commits
    - **Task ordering rules**:
-     - Apply dependency-based ordering from validation (step 7)
+     - Apply dependency-based ordering from validation (step 8)
      - Tasks creating packages MUST be ordered by dependency graph
      - No task can reference a package before it's created
      - Document critical ordering constraints in plan
@@ -117,7 +125,7 @@ Your PRIMARY directive is to create a valid, executable plan with comprehensive 
      - Confirm ordering respects validation constraints
      - Check that all requirements are addressed
 
-11. Structure plan.md with validation metadata:
+12. Structure plan.md with validation metadata:
    ```markdown
    # Plan for {TICKET-KEY}
 
@@ -137,7 +145,7 @@ Your PRIMARY directive is to create a valid, executable plan with comprehensive 
    - {Follow validation rules}
    ```
 
-12. Create troubleshoot.md:
+13. Create troubleshoot.md:
     ```markdown
     # Troubleshooting Guide for {TICKET-KEY}
 
@@ -170,7 +178,7 @@ Your PRIMARY directive is to create a valid, executable plan with comprehensive 
     - {Notes from package AI docs}
     ```
 
-13. Write files:
+14. Write files:
     - Write plan to {worktree_path}/.agent-state/plan.md
     - Write troubleshooting guide to {worktree_path}/.agent-state/troubleshoot.md
 
