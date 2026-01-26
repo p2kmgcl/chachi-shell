@@ -1,7 +1,7 @@
 ---
 description: Main orchestrator that chains specialized agents to complete JIRA tickets
 mode: primary
-model: anthropic/claude-sonnet-4-5
+model: anthropic/claude-opus-4-5
 temperature: 0.0
 permission:
   "*": allow

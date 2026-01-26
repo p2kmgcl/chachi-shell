@@ -1,7 +1,7 @@
 ---
 description: Indexes AI docs, explores codebase, and creates execution plan
 mode: subagent
-model: anthropic/claude-sonnet-4-5
+model: anthropic/claude-opus-4-5
 temperature: 0.0
 permission:
   "*": allow

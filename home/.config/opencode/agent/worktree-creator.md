@@ -1,7 +1,7 @@
 ---
 description: Creates worktree and installs dependencies
 mode: subagent
-model: anthropic/claude-sonnet-4-5
+model: anthropic/claude-opus-4-5
 temperature: 0.0
 permission:
   "*": allow
