@@ -34,11 +34,11 @@ Do NOT treat these as errors - they are expected workflow states.
 1. Change to worktree directory
 
 2. Check if review feedback exists:
-   - Look for: `{worktree_path}/.agent-state/review-feedback.json`
+   - Look for: `{worktree_path}/.agent-state/review-feedback-accepted.json`
    - If not found: This is NORMAL. Return: "No review feedback found"
    - If found: Read and parse JSON
 
-3. Extract PR info from review-feedback.json:
+3. Extract PR info from review-feedback-accepted.json:
    - Extract pr_url (e.g., https://github.com/owner/repo/pull/123)
    - Extract pr_number
    - Parse owner and repo from pr_url
@@ -72,7 +72,7 @@ Do NOT treat these as errors - they are expected workflow states.
    ```
    - Parse response and build thread lookup map
 
-6. For each inline_comment in review-feedback.json:
+6. For each inline_comment in review-feedback-accepted.json:
 
    a. Match comment to thread:
       - Match by: path + line + body (exact match)

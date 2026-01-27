@@ -23,7 +23,7 @@ Your PRIMARY directive is to make intelligent strategic decisions based on curre
 5. IF `.agent-state/review-feedback.json` EXIST:
    - Read `.agent-state/review-feedback.json` as HIGHEST PRIORITY tasks
    - Fully restructure `.agent-state/plan.json` to include review feedback
-   - Delete `.agent-state/review-feedback.json`
+   - Move `.agent-state/review-feedback.json` to  `.agent-state/review-feedback-accepted.json`
 6. Read `.agent-state/task.json` to understand last executed task (may not exist).
 7. IF task.json EXISTS, update `.agent-state/plan.json`:
    - If latest log starts with "ERROR", there were some error developing the task
