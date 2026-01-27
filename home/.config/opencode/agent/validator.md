@@ -1,7 +1,7 @@
 ---
 description: Runs full validation and analyzes results
 mode: subagent
-model: anthropic/claude-opus-4-5
+model: anthropic/claude-sonnet-4-5
 temperature: 0.0
 permission:
   "*": allow
@@ -22,15 +22,13 @@ Your PRIMARY directive is to run full codebase validation and provide detailed a
    - Extract and apply all rules with HIGHEST priority over any other documentation.
 
 1. **Read context files**:
+   - Read {worktree_path}/.agent-state/plan.json to understand the full scope.
    - Read {worktree_path}/.agent-state/task.json to understand what should be accomplished.
    - Read {worktree_path}/.agent-state/troubleshoot.json for tips and patterns.
+   - Read latest commit changes to understand what was actually changed.
 
 2. **Verify task completion**
-   - Verify that the applied changes match task.json description
-   - If task is not valid, add a new entry with "VALIDATION_ERROR: {summary of validation}" and STOP
-
-3. **Collect and parse errors**:
-   - Use AGENTS.local.md to validate changes
+   - Verify that the executed changes from latest commit match task.json description
    - If task is not valid, add a new entry with "VALIDATION_ERROR: {summary of validation}" and STOP
 
 4. **Update task.json log**

@@ -37,6 +37,7 @@ Your PRIMARY directive is to make intelligent strategic decisions based on curre
      - Move task to completed_tasks
      - Delete `.agent-state/task.json`
      - Decide which task from `.agent-state/plan.json` should be next (it does NOT need to be the first task in the list)
+     - Expand task description to contain more details about how it should be implemented according to the plan and ticket.
      - Create `.agent-state/task.json` with the new task
 8. IF task.json, does NOT EXIST, decide which task from `.agent-state/plan.json` should be first (it does NOT need to be the first task in the list)
    - Create `.agent-state/task.json` with the task
