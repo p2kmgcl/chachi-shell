@@ -1,7 +1,7 @@
 ---
 description: Creates worktree and installs dependencies
 mode: subagent
-model: anthropic/claude-opus-4-5
+model: anthropic/claude-sonnet-4-5
 temperature: 0.0
 permission:
   "*": allow
@@ -26,6 +26,7 @@ Your PRIMARY directive is to create a worktree with proper branch setup and depe
    - Ticket Summary: `jq '.summary' <TEMPORARY-TICKET-FILE-PATH>`
 
 2. Generate slug from ticket summary:
+   - FOLLOW `~/.config/opencode/AGENTS.local.md` for worktree/branch names
    - Convert to lowercase
    - Replace spaces with hyphens
    - Remove special characters

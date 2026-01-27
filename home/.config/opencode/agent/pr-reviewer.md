@@ -1,7 +1,7 @@
 ---
 description: Fetches latest PR review from GitHub and creates review feedback JSON
 mode: subagent
-model: anthropic/claude-opus-4-5
+model: anthropic/claude-sonnet-4-5
 temperature: 0.0
 permission:
   "*": allow
@@ -93,7 +93,7 @@ Your PRIMARY directive is to fetch the LATEST review submission from a PR and ou
      }
    }
    ```
-   
+
    If no reviews exist:
    ```json
    {

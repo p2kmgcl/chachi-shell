@@ -1,7 +1,7 @@
 ---
 description: Handles GitHub PR review comment replies and resolution
 mode: subagent
-model: anthropic/claude-opus-4-5
+model: anthropic/claude-sonnet-4-5
 temperature: 0.0
 permission:
   "*": allow
@@ -73,21 +73,21 @@ Do NOT treat these as errors - they are expected workflow states.
    - Parse response and build thread lookup map
 
 6. For each inline_comment in review-feedback.json:
-   
+
    a. Match comment to thread:
       - Match by: path + line + body (exact match)
       - If no match found: Log warning, skip to next comment
-   
+
    b. Extract thread ID from matched thread
-   
+
    c. Check if already resolved:
       - If thread.isResolved is true: Increment skipped_count, skip to next comment
-   
+
    d. Generate brief friendly reply:
       - Examples: "Fixed! ✓", "Updated as suggested ✓", "Good catch, resolved ✓"
       - Format: "{1-5 word description} ✓"
       - Keep it super brief and friendly
-   
+
    e. Post reply to thread:
       ```bash
       gh api graphql -f query='
@@ -102,7 +102,7 @@ Do NOT treat these as errors - they are expected workflow states.
       ```
       - On success: Increment resolved_count
       - On error: Log warning, increment failed_count, continue to next comment
-   
+
    f. Resolve thread:
       ```bash
       gh api graphql -f query='

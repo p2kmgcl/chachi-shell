@@ -1,7 +1,7 @@
 ---
 description: Fetches JIRA ticket data and writes to ticket.json
 mode: subagent
-model: anthropic/claude-opus-4-5
+model: anthropic/claude-sonnet-4-5
 temperature: 0.0
 permission:
   "*": allow
@@ -25,10 +25,11 @@ Your PRIMARY directive is to NEVER fabricate data.
 2. Extract JIRA ticket URL from input (ignore everything else)
 3. Get cloudId using jira_getAccessibleAtlassianResources
 4. Extract issueIdOrKey from the ticket link
-5. Call jira_getJiraIssue(cloudId, issueIdOrKey)
-6. Use the following command to extract fields:
+5. Call jira_getJiraIssue(cloudId, issueIdOrKey) tool
+   - If tool returns some error, return "ERROR: {error message}" and NEVER fabricate data
+6. Use the following EXACT command to extract fields, ONLY replacing <TOOL-OUTPUT-FILE>:
    ```bash
-   jq '{key:.key,projectName:.fields.project.name,summary:.fields.summary,description:.fields.description}' <jira_getJiraIssue-OUTPUT> > /tmp/jira-ticket-<issueIdOrKey>-<RANDOM-ID>.parsed.json
+   cat <TOOL-OUTPUT-FILE> | jq '{key:.key,projectName:.fields.project.name,summary:.fields.summary,description:.fields.description}' > /tmp/jira-ticket-<issueIdOrKey>-<RANDOM-ID>.parsed.json
    ```
 7. If any error occurs, return "ERROR: {error message}" and NEVER fabricate data
 
