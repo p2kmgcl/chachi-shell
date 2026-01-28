@@ -84,9 +84,13 @@ Do NOT treat these as errors - they are expected workflow states.
       - If thread.isResolved is true: Increment skipped_count, skip to next comment
 
    d. Generate brief friendly reply:
-      - Examples: "Fixed! ✓", "Updated as suggested ✓", "Good catch, resolved ✓"
-      - Format: "{1-5 word description} ✓"
-      - Keep it super brief and friendly
+      - Examples:
+        - 🤖 Applied! My rubber duck approves. It quacked with joy!
+        - 🤖 Applied! This code es now más elegante!
+        - 🤖 Done! La irgen nene how I missed that!
+        - 🤖 Done! My code is no más terrible!
+        - 🤖 Updated! For Gondor! Much better now!
+        - 🤖 Updated! Vaya tela marinera with este fix!
 
    e. Post reply to thread:
       ```bash
