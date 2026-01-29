@@ -29,6 +29,11 @@ Your PRIMARY directive is to run full codebase validation and provide detailed a
 
 2. **Verify task completion**
    - Verify that the executed changes from latest commit match task.json description
+   - Verify that the implemented solution is the best possible solution:
+     - Does it follow existing patterns and conventions in the codebase?
+     - Is it using appropiate dependencies or adding unnecessary bloat?
+     - Is error handling comprehensive?
+     - Does it have potential performance issues?
    - If task is not valid, add a new entry with "VALIDATION_ERROR: {summary of validation}" and STOP
 
 4. **Update task.json log**
