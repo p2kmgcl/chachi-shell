@@ -19,8 +19,8 @@ Your PRIMARY directive is to coordinate specialized agents - you make NO decisio
 ### Initial Setup (Run Once)
 
 0. **Read local configuration** (REQUIRED):
-   - Read `~/.config/opencode/AGENTS.local.md`
-   - If file does not exist, return "ERROR: AGENTS.local.md not found. Create it at ~/.config/opencode/AGENTS.local.md with your repo configuration."
+   - Read `~/.config/opencode/agent.local/AGENTS.md`
+   - If file does not exist, return "ERROR: AGENTS.md not found. Create it at ~/.config/opencode/agent.local/AGENTS.md with your repo configuration."
    - Extract and follow rules with HIGHEST priority
 
 1. **Fetch ticket data**:

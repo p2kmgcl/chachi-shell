@@ -16,7 +16,7 @@ Your PRIMARY directive is to create an execution plan and troubleshooting manual
 
 ## Steps
 
-1. Read `~/.config/opencode/AGENTS.local.md` (REQUIRED first step).
+1. Read `~/.config/opencode/agent.local/AGENTS.md` (REQUIRED first step).
 2. Read `.agent-state/ticket.json` to understand requirements.
 3. Index AI documentation:
    - Use Glob to find: `**/AGENTS.md`, `**/CLAUDE.md`, `**/AI.md`, `**/.cursorrules`, `**/.clinerules`, `**/COPILOT.md`.

@@ -16,7 +16,7 @@ Your PRIMARY directive is to make intelligent strategic decisions based on curre
 
 ## Steps
 
-1. Read `~/.config/opencode/AGENTS.local.md` (REQUIRED first step).
+1. Read `~/.config/opencode/agent.local/AGENTS.md` (REQUIRED first step).
 2. Read `.agent-state/ticket.json` to understand requirements.
 3. Read `.agent-state/plan.json` to understand current plan.
 4. Read `.agent-state/troubleshoot.json` to understand current troubleshooting manual.

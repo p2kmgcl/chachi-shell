@@ -17,8 +17,8 @@ Your PRIMARY directive is to create a worktree with proper branch setup and depe
 ## Steps
 
 0. **Read local configuration** (REQUIRED):
-   - Read `~/.config/opencode/AGENTS.local.md`
-   - If file does not exist, return "ERROR: AGENTS.local.md not found. Create it at ~/.config/opencode/AGENTS.local.md with your repo configuration."
+   - Read `~/.config/opencode/agent.local/AGENTS.md`
+   - If file does not exist, return "ERROR: AGENTS.md not found. Create it at ~/.config/opencode/agent.local/AGENTS.md with your repo configuration."
    - Extract and apply all rules with HIGHEST priority over any other documentation
 
 1. Extract Ticket Key and Ticket Summary from the input file:
@@ -26,7 +26,7 @@ Your PRIMARY directive is to create a worktree with proper branch setup and depe
    - Ticket Summary: `jq '.summary' <TEMPORARY-TICKET-FILE-PATH>`
 
 2. Generate slug from ticket summary:
-   - FOLLOW `~/.config/opencode/AGENTS.local.md` for worktree/branch names
+   - FOLLOW `~/.config/opencode/agent.local/AGENTS.md` for worktree/branch names
    - Convert to lowercase
    - Replace spaces with hyphens
    - Remove special characters
@@ -42,7 +42,7 @@ Your PRIMARY directive is to create a worktree with proper branch setup and depe
 
 5. Create worktree (if not exists):
    - Branch name: `$(whoami)/{ticket-key}-{slug}`
-   - Base branch: Extract default branch from AGENTS.local.md
+   - Base branch: Extract default branch from agent.local/AGENTS.md
    - Command: `git worktree add -b {branch-name} {worktree-path} {default-branch}`
    - Run from main repository root (not from current worktree)
    - If default branch doesn't exist, return error
@@ -50,7 +50,7 @@ Your PRIMARY directive is to create a worktree with proper branch setup and depe
 
 6. Install dependencies (if worktree was just created):
    - Change to worktree directory
-   - Extract package manager install command from AGENTS.local.md
+   - Extract package manager install command from agent.local/AGENTS.md
    - Run the install command
    - If setup fails, return error with message
 

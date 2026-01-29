@@ -17,8 +17,8 @@ Your PRIMARY directive is to implement ONE task from the plan with actual code c
 ## Steps
 
 0. **Read local configuration** (REQUIRED):
-   - Read `~/.config/opencode/AGENTS.local.md`
-   - If file does not exist, return "ERROR: AGENTS.local.md not found. Create it at ~/.config/opencode/AGENTS.local.md with your repo configuration."
+   - Read `~/.config/opencode/agent.local/AGENTS.md`
+   - If file does not exist, return "ERROR: AGENTS.md not found. Create it at ~/.config/opencode/agent.local/AGENTS.md with your repo configuration."
    - Extract and apply all rules with HIGHEST priority over any other documentation.
 
 1. **Read context files**:
@@ -42,11 +42,11 @@ Your PRIMARY directive is to implement ONE task from the plan with actual code c
 
 4. **Validate changes**:
    a. Get list of modified files
-   b. Use AGENTS.local.md to validate changes
+   b. Use agent.local/AGENTS.md to validate changes
    c. If ALL commands pass, proceed to next steps
    d. If ANY command fails:
      - Analyze error output carefully
-     - Re-read AGENTS.local.md and {worktree_path}/.agent-state/troubleshoot.json for relevant tips
+      - Re-read agent.local/AGENTS.md and {worktree_path}/.agent-state/troubleshoot.json for relevant tips
      - Try to fix the changes (only ONCE)
      - Re-run ALL validation command(s)
      - If still failing: update task.json log adding a new entry `ERROR: {summary-of-error}`
@@ -59,7 +59,7 @@ Your PRIMARY directive is to implement ONE task from the plan with actual code c
    - Run `git commit -m "{commit message}"`
    - If pre-commit hook fails:
      - Analyze error output carefully
-     - Re-read AGENTS.local.md and {worktree_path}/.agent-state/troubleshoot.json for relevant tips
+      - Re-read agent.local/AGENTS.md and {worktree_path}/.agent-state/troubleshoot.json for relevant tips
      - Try to fix the changes (only ONCE)
      - Re-run ALL validation command(s)
      - If still failing: update task.json log adding a new entry `ERROR: {summary-of-error}`

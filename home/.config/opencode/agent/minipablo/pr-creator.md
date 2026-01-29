@@ -18,8 +18,8 @@ Your PRIMARY directive is to push branch and create a draft PR.
 ## Steps
 
 0. **Read local configuration** (REQUIRED):
-   - Read `~/.config/opencode/AGENTS.local.md`
-   - If file does not exist, return "ERROR: AGENTS.local.md not found. Create it at ~/.config/opencode/AGENTS.local.md with your repo configuration."
+   - Read `~/.config/opencode/agent.local/AGENTS.md`
+   - If file does not exist, return "ERROR: AGENTS.md not found. Create it at ~/.config/opencode/agent.local/AGENTS.md with your repo configuration."
    - Extract and apply all rules with HIGHEST priority over any other documentation
 
 1. Change to worktree directory
@@ -36,7 +36,7 @@ Your PRIMARY directive is to push branch and create a draft PR.
    - This updates existing PR or prepares for new PR creation
 
 5. If pr_exists is **false** (create new PR):
-   a. Extract PR template path from AGENTS.local.md and read it if it exists
+   a. Extract PR template path from agent.local/AGENTS.md and read it if it exists
    b. Read ticket data: `{worktree_path}/.agent-state/ticket.json`
    c. Read plan: `{worktree_path}/.agent-state/plan.json`
    d. Generate PR title:
@@ -55,7 +55,7 @@ Your PRIMARY directive is to push branch and create a draft PR.
         - Delete  `{worktree_path}/.agent-state/review-feedback-accepted.json`
       - Otherwise set has_review=false
    - If has_review=true, regenerate PR description:
-     - Extract PR template path from AGENTS.local.md and read it if it exists
+      - Extract PR template path from agent.local/AGENTS.md and read it if it exists
      - Read ticket data: `{worktree_path}/.agent-state/ticket.json`
      - Get commit summary: `git log {main-branch}..HEAD --oneline --no-decorate`
      - Get file changes: `git diff {main-branch}..HEAD --stat`

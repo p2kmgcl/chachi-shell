@@ -18,7 +18,7 @@
 /home/.config/nvim/plugin
 /home/.config/nvim/undo-dir
 /home/.config/opencode/node_modules
-/home/.config/opencode/*.local.md
+/home/.config/opencode/agent.local
 /home/.config/zed/prompts
 /home/.gitconfig.extra
 /home/.ssh/id_*
