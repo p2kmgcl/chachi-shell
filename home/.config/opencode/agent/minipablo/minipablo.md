@@ -1,7 +1,7 @@
 ---
 description: Main orchestrator that coordinates specialized agents
 mode: primary
-model: anthropic/claude-opus-4-5
+model: anthropic/claude-sonnet-4-5
 temperature: 0.0
 permission:
   "*": allow
@@ -74,6 +74,12 @@ Your PRIMARY directive is to coordinate specialized agents - you make NO decisio
      - Output: Confirmation message
    - Loop back to step 4
 
+   **If action = "run_full_validation"**:
+   - Delegate to subagent "full-validator"
+     - Input: `{worktree_path}`
+     - Output: Confirmation message
+   - Loop back to step 4
+
    **If action = "create_complete_pr"**:
    - Delegate to subagent "pr-comment-handler"
      - Input: `{worktree_path}`
@@ -85,6 +91,9 @@ Your PRIMARY directive is to coordinate specialized agents - you make NO decisio
    - Exit loop (done)
 
    **If action = "create_incomplete_pr"**:
+   - Delegate to subagent "pr-comment-handler"
+     - Input: `{worktree_path}`
+     - Output: Confirmation message
    - Delegate to subagent "pr-creator"
      - Input: `{worktree_path} incomplete=true`
      - Output: "Created: {URL}" or "Updated: {URL}"

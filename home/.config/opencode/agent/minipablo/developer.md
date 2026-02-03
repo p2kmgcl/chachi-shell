@@ -1,7 +1,7 @@
 ---
 description: Implements a single task with code changes and git commit
 mode: subagent
-model: anthropic/claude-opus-4-5
+model: anthropic/claude-sonnet-4-5
 temperature: 0.0
 permission:
   "*": allow
@@ -34,15 +34,30 @@ Your PRIMARY directive is to implement ONE task from the plan with actual code c
    - Implement the required changes
    - Follow patterns from troubleshoot.json
    - Development rules:
-     - NEVER add inline comments, code should be self-explanatory.
-     - NEVER define multiple big React components in the same file.
-     - NEVER use "catch-all" files or directories (utils, helpers, etc.).
-     - ALWAYS write the smallest set of tests that fully specify the observable behavior.
-     - NEVER export anything unless it is needed, keep scope as narrow as possible.
+     - NEVER add inline comments, code should be self-explanatory
+     - NEVER use "catch-all" files or directories (utils, helpers, etc.)
+     - ALWAYS write the smallest set of tests that fully specify the observable behavior
+     - NEVER export anything unless it is needed, keep scope as narrow as possible
+     - Follow coding standards from agent.local/AGENTS.md
+     - Apply patterns from troubleshoot.json
+   - You might find issues/blockers that are not related to your specific task.
+     - NEVER try to implement anything that is not related to your task.
+     - Consider ANYTHING not related to your task a BLOCKER.
+     - If you find a blocker, you MUST STOP investigating.
+     - Update task.json with `BLOCKER: {description-of-found-issue}` and STOP.
+     - Examples of BLOCKERS:
+       - Required library/dependency not available.
+       - Architectural decision needed that affects multiple tasks.
+       - Found broken tests not related to my task.
 
 4. **Validate changes**:
-   a. Get list of modified files
-   b. Use agent.local/AGENTS.md to validate changes
+   a. Identify scope of changes for testing:
+      - Run `git diff --name-only` to get modified files
+      - Follow `agent.local/AGENTS.md` instructions to identify:
+        - Modified modules/packages that need testing
+        - Dependent modules/packages that import or use the modified code
+   b. Run validation commands from `agent.local/AGENTS.md`:
+      - Follow instructions for scoped validation (modified + dependent modules)
    c. If ALL commands pass, proceed to next steps
    d. If ANY command fails:
      - Analyze error output carefully
