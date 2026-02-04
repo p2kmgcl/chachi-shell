@@ -1,0 +1,275 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+WORKTREES_DIR="$HOME/Projects/worktrees"
+REFRESH_INTERVAL=3
+MIN_WIDTH=40
+
+ICON_ROBOT="🤖"
+ICON_FOLDER="📁"
+ICON_TICKET="🎫"
+ICON_TASK="🚂"
+ICON_PROGRESS="📊"
+ICON_LOG="📝"
+
+get_terminal_width() {
+    local width
+    local stty_output
+    stty_output=$(stty size 2>/dev/null)
+    if [[ -n "$stty_output" ]]; then
+        width=$(echo "$stty_output" | awk '{print $2}')
+    else
+        width=$(tput cols 2>/dev/null || echo 80)
+    fi
+    if [[ -z "$width" || $width -lt $MIN_WIDTH ]]; then
+        width=$MIN_WIDTH
+    fi
+    echo "$width"
+}
+
+find_agent_states() {
+    find "$WORKTREES_DIR" -maxdepth 3 -type d -name ".agent-state" 2>/dev/null | sort
+}
+
+get_agent_data() {
+    local agent_dir="$1"
+    local ticket_file="$agent_dir/ticket.json"
+    local task_file="$agent_dir/task.json"
+    local plan_file="$agent_dir/plan.json"
+    local log_file="$agent_dir/task.log"
+
+    local worktree_path="${agent_dir%/.agent-state}"
+    local location="${worktree_path#$WORKTREES_DIR/}"
+
+    local ticket_key="N/A"
+    local ticket_summary="N/A"
+    local task_action="N/A"
+    local task_desc="N/A"
+    local completed=0
+    local pending=0
+    local last_log="N/A"
+
+    if [[ -f "$ticket_file" ]]; then
+        ticket_key=$(jq -r '.key // "N/A"' "$ticket_file" 2>/dev/null)
+        ticket_summary=$(jq -r '.summary // "N/A"' "$ticket_file" 2>/dev/null)
+    fi
+
+    if [[ -f "$plan_file" ]]; then
+        completed=$(jq -r '.completed_tasks | length' "$plan_file" 2>/dev/null)
+        pending=$(jq -r '.pending_tasks | length' "$plan_file" 2>/dev/null)
+    fi
+
+    local total=$((completed + pending))
+    local percentage=0
+    if [[ $total -gt 0 ]]; then
+        percentage=$(( (completed * 100) / total ))
+    fi
+
+    if [[ -f "$task_file" ]]; then
+        task_action=$(jq -r '.action // "N/A"' "$task_file" 2>/dev/null)
+        task_desc=$(jq -r '.description // "N/A"' "$task_file" 2>/dev/null)
+    else
+        if [[ $pending -eq 0 && $completed -gt 0 ]]; then
+            task_action="done"
+            task_desc="All tasks completed"
+        elif [[ $pending -gt 0 ]]; then
+            task_action="planning"
+            task_desc="Planning next task"
+        else
+            task_action="N/A"
+            task_desc="N/A"
+        fi
+    fi
+
+    if [[ -f "$log_file" ]]; then
+        last_log=$(tail -n 1 "$log_file" 2>/dev/null | sed 's/"/\\"/g')
+        if [[ -z "$last_log" ]]; then
+            last_log="N/A"
+        fi
+    fi
+
+    printf '{"location":"%s","ticket_key":"%s","ticket_summary":"%s","task_action":"%s","task_desc":"%s","completed":"%s","pending":"%s","total":"%s","percentage":"%s","last_log":"%s"}\n' \
+        "$location" "$ticket_key" "$ticket_summary" "$task_action" "$task_desc" "$completed" "$pending" "$total" "$percentage" "$last_log"
+}
+
+draw_progress_bar() {
+    local percentage="$1"
+    local bar_width=20
+    local filled=$((percentage * bar_width / 100))
+    local empty=$((bar_width - filled))
+
+    local bar=""
+    for ((i=0; i<filled; i++)); do
+        bar="${bar}█"
+    done
+    for ((i=0; i<empty; i++)); do
+        bar="${bar}░"
+    done
+
+    echo "$bar"
+}
+
+print_wrapped() {
+    local prefix="$1"
+    local text="$2"
+    local max_lines="${3:-0}"
+    local max_width="${4:-80}"
+    local width=$((max_width - ${#prefix}))
+
+    local line_count=0
+
+    echo "$text" | fold -w "$width" | while IFS= read -r line; do
+        if [[ $line_count -eq 0 ]]; then
+            printf "%s%s\n" "$prefix" "$line"
+        else
+            printf "%${#prefix}s%s\n" "" "$line"
+        fi
+
+        line_count=$((line_count + 1))
+
+        if [[ $max_lines -gt 0 && $line_count -ge $max_lines ]]; then
+            printf "%${#prefix}s%s\n" "" "..."
+            break
+        fi
+    done
+}
+
+draw_agent_card() {
+    local agent_json="$1"
+    local max_width="${2:-80}"
+
+    local location ticket_key ticket_summary task_action task_desc completed pending total percentage last_log
+    location=$(echo "$agent_json" | jq -r '.location')
+    ticket_key=$(echo "$agent_json" | jq -r '.ticket_key')
+    ticket_summary=$(echo "$agent_json" | jq -r '.ticket_summary')
+    task_action=$(echo "$agent_json" | jq -r '.task_action')
+    task_desc=$(echo "$agent_json" | jq -r '.task_desc')
+    completed=$(echo "$agent_json" | jq -r '.completed')
+    pending=$(echo "$agent_json" | jq -r '.pending')
+    total=$(echo "$agent_json" | jq -r '.total')
+    percentage=$(echo "$agent_json" | jq -r '.percentage')
+    last_log=$(echo "$agent_json" | jq -r '.last_log')
+
+    printf "%s %s\n" "$ICON_FOLDER" "$location"
+    print_wrapped "$ICON_TICKET " "$ticket_key: $ticket_summary" 0 "$max_width"
+    local progress_bar
+    progress_bar=$(draw_progress_bar "$percentage")
+    printf "%s Progress: %s/%s tasks (%s%%) %s\n" "$ICON_PROGRESS" "$completed" "$total" "$percentage" "$progress_bar"
+
+    echo ""
+    printf "%s %s\n" "$ICON_TASK" "$task_action"
+    print_wrapped "  " "$task_desc" 0 "$max_width"
+
+    if [[ "$last_log" != "N/A" && -n "$last_log" ]]; then
+        echo ""
+        printf "%s Last log:\n" "$ICON_LOG"
+        print_wrapped "  " "$last_log" 0 "$max_width"
+    fi
+}
+
+display_agents() {
+    local loop_mode="$1"
+    
+    local term_width
+    term_width=$(get_terminal_width)
+
+    local output
+    output=$(
+
+        local timestamp
+        timestamp=$(date +"%H:%M:%S")
+
+        local agent_dirs
+        mapfile -t agent_dirs < <(find_agent_states)
+        local agent_count=${#agent_dirs[@]}
+
+        if [[ $agent_count -eq 1 ]]; then
+            printf "%s MinipaBlo (%d agent)  -  Updated: %s\n" "$ICON_ROBOT" "$agent_count" "$timestamp"
+        elif [[ $agent_count -gt 1 ]]; then
+            printf "%s MinipaBlo (%d agents)  -  Updated: %s\n" "$ICON_ROBOT" "$agent_count" "$timestamp"
+        else
+            printf "%s MinipaBlo  -  Updated: %s\n" "$ICON_ROBOT" "$timestamp"
+        fi
+        printf "%${term_width}s\n" "" | tr ' ' '='
+        echo ""
+
+        if [[ $agent_count -eq 0 ]]; then
+            echo "No agents currently running"
+            echo ""
+            echo "Agents will appear when found in:"
+            echo "  ~/Projects/worktrees/*/*/.agent-state"
+        else
+            local first=true
+            for agent_dir in "${agent_dirs[@]}"; do
+                if [[ "$first" == false ]]; then
+                    echo ""
+                    printf "%${term_width}s\n" "" | tr ' ' '-'
+                    echo ""
+                fi
+                first=false
+
+                local agent_data
+                agent_data=$(get_agent_data "$agent_dir")
+                draw_agent_card "$agent_data" "$term_width"
+            done
+        fi
+
+        if [[ "$loop_mode" == "true" ]]; then
+            echo ""
+            printf "%${term_width}s\n" "" | tr ' ' '='
+            echo "Press Ctrl+C to exit"
+        fi
+    )
+
+    if [[ "$loop_mode" == "true" ]]; then
+        clear
+    fi
+    echo "$output"
+}
+
+main() {
+    if ! command -v jq &> /dev/null; then
+        echo "Error: jq is required but not installed."
+        echo "Install it with: brew install jq"
+        exit 1
+    fi
+
+    local loop_mode=false
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --loop)
+                loop_mode=true
+                shift
+                ;;
+            -h|--help)
+                echo "Usage: minipablo-overview [--loop]"
+                echo ""
+                echo "Monitor minipablo agents in ~/Projects/worktrees"
+                echo ""
+                echo "Options:"
+                echo "  --loop        Auto-refresh every 5 seconds (default: print once and exit)"
+                echo "  -h, --help    Show this help message"
+                exit 0
+                ;;
+            *)
+                echo "Unknown option: $1"
+                echo "Use --help for usage information"
+                exit 1
+                ;;
+        esac
+    done
+
+    if [[ "$loop_mode" == "true" ]]; then
+        trap 'echo ""; echo "Exiting..."; exit 0' INT
+
+        while true; do
+            display_agents true
+            sleep "$REFRESH_INTERVAL"
+        done
+    else
+        display_agents false
+    fi
+}
+
+main "$@"
