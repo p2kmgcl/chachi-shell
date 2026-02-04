@@ -34,7 +34,17 @@ Your PRIMARY directive is to run full codebase validation and provide detailed a
      - Is it using appropiate dependencies or adding unnecessary bloat?
      - Is error handling comprehensive?
      - Does it have potential performance issues?
-   - If task is not valid, add a new entry with "VALIDATION_ERROR: {summary of validation}" and STOP
+   - If find something wrong, add a new entry with "VALIDATION_ERROR: {summary of validation}" and STOP
+   - If everything is fine, proceed to next steps.
+
+3. **Verify valid code**
+   - Run `git diff --name-only` to get modified files
+   - Follow `agent.local/AGENTS.md` instructions to identify:
+     - Modified modules/packages that need testing
+     - Dependent modules/packages that import or use the modified code
+   - Run validation commands from `agent.local/AGENTS.md`:
+      - Follow instructions for validation (modified + dependent modules)
+   - If ANY command fails, add a new entry with "VALIDATION_ERROR: {summary of validation}" and STOP
 
 4. **Update task.json log**
    - If we reach this point task is valid, add a new entry with "VALIDATION_SUCCESS: {summary of validation}"

@@ -50,23 +50,7 @@ Your PRIMARY directive is to implement ONE task from the plan with actual code c
        - Architectural decision needed that affects multiple tasks.
        - Found broken tests not related to my task.
 
-4. **Validate changes**:
-   a. Identify scope of changes for testing:
-      - Run `git diff --name-only` to get modified files
-      - Follow `agent.local/AGENTS.md` instructions to identify:
-        - Modified modules/packages that need testing
-        - Dependent modules/packages that import or use the modified code
-   b. Run validation commands from `agent.local/AGENTS.md`:
-      - Follow instructions for scoped validation (modified + dependent modules)
-   c. If ALL commands pass, proceed to next steps
-   d. If ANY command fails:
-     - Analyze error output carefully
-      - Re-read agent.local/AGENTS.md and {worktree_path}/.agent-state/troubleshoot.json for relevant tips
-     - Try to fix the changes (only ONCE)
-     - Re-run ALL validation command(s)
-     - If still failing: update task.json log adding a new entry `ERROR: {summary-of-error}`
-
-5. **Git commit**:
+4. **Git commit**:
    - Run `git status` to verify there are changes to commit
    - Run `git add .` to stage all changes
    - Generate commit message following conventional commits:
