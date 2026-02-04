@@ -32,14 +32,11 @@ Your PRIMARY directive is to implement ONE task from the plan with actual code c
 
 3. **Execute the task**:
    - Implement the required changes
-   - Follow patterns from troubleshoot.json
    - Development rules:
      - NEVER add inline comments, code should be self-explanatory
      - NEVER use "catch-all" files or directories (utils, helpers, etc.)
      - ALWAYS write the smallest set of tests that fully specify the observable behavior
      - NEVER export anything unless it is needed, keep scope as narrow as possible
-     - Follow coding standards from agent.local/AGENTS.md
-     - Apply patterns from troubleshoot.json
    - You might find issues/blockers that are not related to your specific task.
      - NEVER try to implement anything that is not related to your task.
      - Consider ANYTHING not related to your task a BLOCKER.
@@ -58,9 +55,8 @@ Your PRIMARY directive is to implement ONE task from the plan with actual code c
    - Run `git commit -m "{commit message}"`
    - If pre-commit hook fails:
      - Analyze error output carefully
-      - Re-read agent.local/AGENTS.md and {worktree_path}/.agent-state/troubleshoot.json for relevant tips
      - Try to fix the changes (only ONCE)
-     - Re-run ALL validation command(s)
+     - Try to commit again (only ONCE)
      - If still failing: update task.json log adding a new entry `ERROR: {summary-of-error}`
    - If commit success, update task.json log adding a new entry `COMPLETED: {summary-of-implementation}`
 

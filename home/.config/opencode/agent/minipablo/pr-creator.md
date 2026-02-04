@@ -36,26 +36,25 @@ Your PRIMARY directive is to push branch and create a draft PR.
    - This updates existing PR or prepares for new PR creation
 
 5. If pr_exists is **false** (create new PR):
-   a. Extract PR template path from agent.local/AGENTS.md and read it if it exists
-   b. Read ticket data: `{worktree_path}/.agent-state/ticket.json`
-   c. Read plan: `{worktree_path}/.agent-state/plan.json`
-   d. Generate PR title:
-      - If incomplete=true: `[ticket key] ⚠️ WIP - {ticket summary}`
-      - If incomplete=false: `[ticket key] {ticket summary}`
-   e. Generate PR body following template structure
-   f. Create draft PR: `gh pr create --draft --title "{title}" --body "{body}"`
-   g. Extract PR URL from output
-   h. Return: "Created: {PR URL}"
+   - Read ticket data: `{worktree_path}/.agent-state/ticket.json`
+   - Read plan: `{worktree_path}/.agent-state/plan.json`
+   - Generate PR title:
+     - If incomplete=true: `[ticket key] ⚠️ WIP - {ticket summary}`
+     - If incomplete=false: `[ticket key] {ticket summary}`
+   - Generate PR body following template structure
+   - Create draft PR: `gh pr create --draft --title "{title}" --body "{body}"`
+   - Extract PR URL from output
+   - Return: "Created: {PR URL}"
 
 6. If pr_exists is **true** (update existing PR):
    - Branch push in step 4 already updated the PR automatically
    - Check if review feedback exists:
-      - Look for: `{worktree_path}/.agent-state/review-feedback-accepted.json`
-      - If exists, set has_review=true
-        - Delete  `{worktree_path}/.agent-state/review-feedback-accepted.json`
-      - Otherwise set has_review=false
+     - Look for: `{worktree_path}/.agent-state/review-feedback-accepted.json`
+     - If exists, set has_review=true
+       - Delete  `{worktree_path}/.agent-state/review-feedback-accepted.json`
+     - Otherwise set has_review=false
    - If has_review=true, regenerate PR description:
-      - Extract PR template path from agent.local/AGENTS.md and read it if it exists
+     - Extract PR template path from agent.local/AGENTS.md and read it if it exists
      - Read ticket data: `{worktree_path}/.agent-state/ticket.json`
      - Get commit summary: `git log {main-branch}..HEAD --oneline --no-decorate`
      - Get file changes: `git diff {main-branch}..HEAD --stat`

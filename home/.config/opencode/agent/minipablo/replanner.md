@@ -29,12 +29,12 @@ Your PRIMARY directive is to make intelligent strategic decisions based on curre
      - If latest log starts with "COMPLETED:", update action to "run_validation"
      - If latest log starts with "ERROR", there were some error developing the task
        - If we have 3 consecutive errors in latest log entries, update task.json action to "stop"
-       - Otherwise do nothing and print "Task created"
+       - Otherwise print "Done" and STOP
      - If latest log starts with "BLOCKER", developer found some issue with task planning
        - If we have 3 consecutive blockers in latest log entries, update task.json action to "stop"
-       - Create one or multiple tasks in `plan.json` that must fix this blocker
-       - Create one or multiple tasks in `plan.json` that must complete the ongoing task
-       - Delete `task.json` file and jump to step 8
+       - Create one or multiple tasks in `.agent-state/plan.json` that must fix this blocker
+       - Create one or multiple tasks in `.agent-state/plan.json` that must complete the ongoing task
+       - Delete `.agent-state/task.json`
    - If action = "run_validation":
       - If latest log starts with "VALIDATION_SUCCESS":
         - Consider task completed
@@ -46,11 +46,12 @@ Your PRIMARY directive is to make intelligent strategic decisions based on curre
               - action: "create_complete_pr"
               - description: "All tasks completed successfully"
               - log: []
-            - Print "Task created" and stop
-          - Otherwise print "Task created" and stop
+            - Print "Done" and STOP
+          - Otherwise print "Done" and STOP
       - If latest log starts with "VALIDATION_ERROR", there were some error validating the task
         - If we have 3 consecutive errors in latest log entries, update task.json action to "stop"
-        - Otherwise update action to "develop_task" and print "Task created"
+        - Otherwise update action to "develop_task"
+        - Print "Done" and STOP
 7. IF `.agent-state/task.json` does NOT EXIST:
    - Analyze if `.agent-state/plan.json` should be restructured:
      - Verify that the ticket description will be accomplished.
@@ -63,7 +64,7 @@ Your PRIMARY directive is to make intelligent strategic decisions based on curre
      - It does NOT need to be the first task in the list.
      - It MUST make the whole plan easier to implement.
    - Create `.agent-state/task.json` with the task.
-   - Print "Task created" and stop
+   - Print "Done" and STOP
 
 ### `.agent-state/task.json` format
 
@@ -101,4 +102,4 @@ Your PRIMARY directive is to make intelligent strategic decisions based on curre
 
 ## Output
 
-Return ONLY the sentence "Task created"
+Return ONLY the sentence "Done"
