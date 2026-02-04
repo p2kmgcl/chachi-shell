@@ -31,7 +31,6 @@ Your PRIMARY directive is to make intelligent strategic decisions based on curre
        - If we have 3 consecutive errors in latest log entries, update task.json action to "stop"
        - Otherwise print "Done" and STOP
      - If latest log starts with "BLOCKER", developer found some issue with task planning
-       - If we have 3 consecutive blockers in latest log entries, update task.json action to "stop"
        - Create one or multiple tasks in `.agent-state/plan.json` that must fix this blocker
        - Create one or multiple tasks in `.agent-state/plan.json` that must complete the ongoing task
        - Delete `.agent-state/task.json`
