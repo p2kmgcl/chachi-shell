@@ -1,5 +1,5 @@
 ---
-description: Runs full validation and analyzes results
+description: Runs scoped validation and analyzes results
 mode: subagent
 model: anthropic/claude-sonnet-4-5
 temperature: 0.0

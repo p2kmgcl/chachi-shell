@@ -36,39 +36,22 @@ Your PRIMARY directive is to make intelligent strategic decisions based on curre
        - Create one or multiple tasks in `plan.json` that must complete the ongoing task
        - Delete `task.json` file and jump to step 8
    - If action = "run_validation":
-     - If latest log starts with "VALIDATION_SUCCESS":
-       - Consider task completed
-       - Create a summary of the task goal and implementation and add it to completed_tasks in `plan.json`
-       - Delete `.agent-state/task.json`
-       - Check if pending_tasks is EMPTY:
-         - If EMPTY (all tasks done):
-           - Create new `.agent-state/task.json` with:
-             - action: "run_full_validation"
-             - description: "Run complete test suite across all packages"
-             - log: []
-           - Print "Task created" and stop
-         - If NOT EMPTY:
-           - Decide which task from `.agent-state/plan.json` should be next (it does NOT need to be the first task in the list)
-           - Expand task description to contain more details about how it should be implemented according to the plan and ticket
-           - Create `.agent-state/task.json` with the new task
-           - Print "Task created" and stop
-     - If latest log starts with "VALIDATION_ERROR", there were some error validating the task
-       - If we have 3 consecutive errors in latest log entries, update task.json action to "stop"
-       - Otherwise update action to "develop_task" and print "Task created"
-   - If action = "run_full_validation":
-     - If latest log starts with "FULL_VALIDATION_SUCCESS":
-       - Update task.json action to "create_complete_pr"
-       - Print "Task created" and stop
-     - If latest log starts with "FULL_VALIDATION_ERROR":
-       - Parse error details from log entry
-       - Identify what needs to be fixed (typecheck/test/lint failures)
-       - Create one or more fix tasks in pending_tasks with specific details
-       - Delete `.agent-state/task.json` and stop
+      - If latest log starts with "VALIDATION_SUCCESS":
+        - Consider task completed
+        - Create a summary of the task goal and implementation and add it to completed_tasks in `plan.json`
+        - Delete `.agent-state/task.json`
+        - Check if pending_tasks is EMPTY:
+          - If EMPTY (all tasks done):
+            - Create new `.agent-state/task.json` with:
+              - action: "create_complete_pr"
+              - description: "All tasks completed successfully"
+              - log: []
+            - Print "Task created" and stop
+          - Otherwise print "Task created" and stop
+      - If latest log starts with "VALIDATION_ERROR", there were some error validating the task
+        - If we have 3 consecutive errors in latest log entries, update task.json action to "stop"
+        - Otherwise update action to "develop_task" and print "Task created"
 7. IF `.agent-state/task.json` does NOT EXIST:
-   - Check error count across all log entries:
-     - IF we have 3 or more FULL_VALIDATION_ERROR entries:
-       - Create `.agent-state/task.json` with action "create_incomplete_pr"
-       - Print "Task created" and stop
    - Analyze if `.agent-state/plan.json` should be restructured:
      - Verify that the ticket description will be accomplished.
      - Verify that every pending task is minimal and clear:

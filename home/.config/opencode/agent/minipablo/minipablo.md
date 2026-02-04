@@ -74,12 +74,6 @@ Your PRIMARY directive is to coordinate specialized agents - you make NO decisio
      - Output: Confirmation message
    - Loop back to step 4
 
-   **If action = "run_full_validation"**:
-   - Delegate to subagent "full-validator"
-     - Input: `{worktree_path}`
-     - Output: Confirmation message
-   - Loop back to step 4
-
    **If action = "create_complete_pr"**:
    - Delegate to subagent "pr-comment-handler"
      - Input: `{worktree_path}`
