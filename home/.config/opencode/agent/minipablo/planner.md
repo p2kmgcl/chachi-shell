@@ -18,17 +18,21 @@ Your PRIMARY directive is to create an execution plan and troubleshooting manual
 
 1. Read `~/.config/opencode/agent.local/AGENTS.md` (REQUIRED first step).
 2. Read `.agent-state/ticket.json` to understand requirements.
-3. Index AI documentation:
+3. Check if `.agent-state/review-feedback.json` exists using Read or Bash. IF it exists:
+   - Read `.agent-state/review-feedback.json` as HIGHEST PRIORITY input.
+   - Move `.agent-state/review-feedback.json` to `.agent-state/review-feedback-accepted.json` using Bash.
+4. Index AI documentation:
    - Use Glob to find: `**/AGENTS.md`, `**/CLAUDE.md`, `**/AI.md`, `**/.cursorrules`, `**/.clinerules`, `**/COPILOT.md`.
    - Read ALL found AI docs completely.
    - Extract conventions, patterns, dependencies, rules that are specific to domain/architecture (not environment setup - that's in agent.local).
-4. Explore codebase to find:
+5. Explore codebase to find:
    - Related files that might be part of the implementation.
    - Similar patterns/components to use as references (note specific line ranges).
    - Existing utilities/hooks that should be reused.
    - Test files that demonstrate testing patterns for this area.
    - Files that will need import updates when new code is added.
-5. Create `.agent-state/plan.json`:
+6. Create or update `.agent-state/plan.json`:
+   - If review feedback exists, incorporate it as HIGHEST PRIORITY when restructuring the plan.
    - Break ticket into SMALL tasks with HIGHLY DETAILED descriptions (250-400 chars each).
    - Each task: 1-3 files changed, single focused, atomic commit.
    - **Task descriptions MUST include (pipe-delimited for readability):**
@@ -39,7 +43,7 @@ Your PRIMARY directive is to create an execution plan and troubleshooting manual
      - Related files that need updates (imports, integrations)
      - Test files to create/update with expected test cases
      - Expected outcomes (e.g., "updates imports in 3 files")
-   - **Format template:** 
+   - **Format template:**
      `"<ACTION> <FILE> <KEY_DETAILS> | Follow: <REF_FILE>:<LINES> | Use: <UTILITIES> | Update: <RELATED_FILES> | Tests: <TEST_INFO>"`
    - Example tasks:
      - EXCELLENT: "Extract validateUserInput(email: string, password: string): ValidationResult from LoginForm.tsx:120-145 to utils/validation.ts | Follow: validateAddress pattern in utils/helpers.ts:78-92 | Use: zod for schema validation | Update: imports in LoginForm.tsx, RegisterForm.tsx, SignupForm.tsx | Tests: add to validation.test.ts covering empty/invalid/valid cases"

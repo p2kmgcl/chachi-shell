@@ -103,13 +103,17 @@ Your PRIMARY directive is to coordinate specialized agents - you make NO decisio
 
 If user provides feedback after a PR is created/updated:
 
-1. Detect feedback: User message contains "feedback", "comment", "review", or PR-related keywords
+1. Detect feedback: User message exactly matches "--review"
 2. Fetch PR review:
    - Delegate to subagent "pr-reviewer"
    - Input: `{worktree_path}`
    - Output: Confirmation message
    - On error: STOP and return error
-3. Go back to step 4 to start a new loop with the same worktree_path.
+3. Process feedback into plan:
+   - Delegate to subagent "planner"
+   - Input: `{worktree_path}`
+   - Output: Confirmation message
+4. Go back to step 4 to start a new loop with the same worktree_path.
 
 ## Critical Rules
 

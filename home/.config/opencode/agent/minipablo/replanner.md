@@ -20,11 +20,7 @@ Your PRIMARY directive is to make intelligent strategic decisions based on curre
 2. Read `.agent-state/ticket.json` to understand requirements.
 3. Read `.agent-state/plan.json` to understand current plan.
 4. Read `.agent-state/troubleshoot.json` to understand current troubleshooting manual.
-5. Check if `.agent-state/review-feedback.json` exists using Read or Bash. IF it exists:
-   - Read `.agent-state/review-feedback.json` as HIGHEST PRIORITY tasks
-   - Fully restructure `.agent-state/plan.json` to include review feedback
-   - Move `.agent-state/review-feedback.json` to `.agent-state/review-feedback-accepted.json` using Bash
-6. Check if `.agent-state/task.json` exists using Read or Bash. IF it exists:
+5. Check if `.agent-state/task.json` exists using Read or Bash. IF it exists:
    - If action = "develop_task":
      - If latest log starts with "COMPLETED:", update action to "run_validation"
      - If latest log starts with "ERROR", there were some error developing the task
@@ -51,7 +47,7 @@ Your PRIMARY directive is to make intelligent strategic decisions based on curre
         - If we have 3 consecutive errors in latest log entries, update task.json action to "stop"
         - Otherwise update action to "develop_task"
         - Print "Done" and STOP
-7. IF `.agent-state/task.json` does NOT EXIST:
+6. IF `.agent-state/task.json` does NOT EXIST:
    - Analyze if `.agent-state/plan.json` should be restructured:
      - Verify that the ticket description will be accomplished.
      - Verify that every pending task is minimal and clear:
