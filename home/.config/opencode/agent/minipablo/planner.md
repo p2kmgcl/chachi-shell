@@ -21,6 +21,7 @@ Your PRIMARY directive is to create an execution plan and troubleshooting manual
 3. Check if `.agent-state/review-feedback.json` exists using Read or Bash. IF it exists:
    - Read `.agent-state/review-feedback.json` as HIGHEST PRIORITY input.
    - Move `.agent-state/review-feedback.json` to `.agent-state/review-feedback-accepted.json` using Bash.
+   - Delete `.agent-state/task.json` IF it exists.
 4. Index AI documentation:
    - Use Glob to find: `**/AGENTS.md`, `**/CLAUDE.md`, `**/AI.md`, `**/.cursorrules`, `**/.clinerules`, `**/COPILOT.md`.
    - Read ALL found AI docs completely.
