@@ -49,10 +49,10 @@ Your PRIMARY directive is to push branch and create a draft PR.
 6. If pr_exists is **true** (update existing PR):
    - Branch push in step 4 already updated the PR automatically
    - Check if review feedback exists:
-     - Look for: `{worktree_path}/.agent-state/review-feedback-accepted.json`
-     - If exists, set has_review=true
-       - Delete  `{worktree_path}/.agent-state/review-feedback-accepted.json`
-     - Otherwise set has_review=false
+      - Look for: `{worktree_path}/.agent-state/pr-review-feedback-accepted.json`
+      - If exists, set has_review=true
+        - Delete  `{worktree_path}/.agent-state/pr-review-feedback-accepted.json`
+      - Otherwise set has_review=false
    - If has_review=true, regenerate PR description:
      - Extract PR template path from agent.local/AGENTS.md and read it if it exists
      - Read ticket data: `{worktree_path}/.agent-state/ticket.json`

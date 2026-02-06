@@ -105,13 +105,13 @@ Your PRIMARY directive is to fetch the LATEST review submission from a PR and ou
    }
    ```
 
-6. Write JSON to: `{worktree_path}/.agent-state/review-feedback.json`
+6. Write JSON to: `{worktree_path}/.agent-state/pr-review-feedback.json`
 
 ## Expected Output
 
 Return ONLY:
 ```
-<WORKTREE-PATH>/.agent-state/review-feedback.json
+<WORKTREE-PATH>/.agent-state/pr-review-feedback.json
 ```
 
 On failure, return whatever error the API provides without parsing.

@@ -54,7 +54,7 @@ Your PRIMARY directive is to coordinate specialized agents - you make NO decisio
    - Expected format:
      ```json
      {
-       "action": "develop_task | run_validation | create_complete_pr | create_incomplete_pr | stop",
+       "action": "develop_task | review_task | validate_plan | create_complete_pr | create_incomplete_pr | stop",
        "description": "{task-description-from-task-planner}",
        "log": [ "{action-1-on-task}", "{action-2-on-task}" ]
      }
@@ -68,10 +68,22 @@ Your PRIMARY directive is to coordinate specialized agents - you make NO decisio
      - Output: Confirmation message
    - Loop back to step 4
 
-   **If action = "run_validation"**:
+   **If action = "review_task"**:
+   - Delegate to subagent "reviewer"
+     - Input: `{worktree_path}`
+     - Output: Confirmation message
+   - Loop back to step 4
+
+   **If action = "validate_plan"**:
    - Delegate to subagent "validator"
      - Input: `{worktree_path}`
      - Output: Confirmation message
+   - Check if `{worktree_path}/.agent-state/validator-review-feedback.json` exists:
+     - If it exists (validation failed):
+       - Delegate to subagent "planner"
+         - Input: `{worktree_path}`
+         - Output: Confirmation message
+     - If it does NOT exist (validation passed): no extra action needed
    - Loop back to step 4
 
    **If action = "create_complete_pr"**:
@@ -105,7 +117,7 @@ If user provides feedback after a PR is created/updated:
 
 1. Detect feedback: User message exactly matches "--review"
 2. Fetch PR review:
-   - Delegate to subagent "pr-reviewer"
+   - Delegate to subagent "pr-review-fetcher"
    - Input: `{worktree_path}`
    - Output: Confirmation message
    - On error: STOP and return error

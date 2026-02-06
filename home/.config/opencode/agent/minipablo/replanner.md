@@ -22,7 +22,7 @@ Your PRIMARY directive is to make intelligent strategic decisions based on curre
 4. Read `.agent-state/troubleshoot.json` to understand current troubleshooting manual.
 5. Check if `.agent-state/task.json` exists using Read or Bash. IF it exists:
    - If action = "develop_task":
-     - If latest log starts with "COMPLETED:", update action to "run_validation"
+     - If latest log starts with "COMPLETED:", update action to "review_task"
      - If latest log starts with "ERROR", there were some error developing the task
        - If we have 3 consecutive errors in latest log entries, update task.json action to "stop"
        - Otherwise print "Done" and STOP
@@ -30,22 +30,32 @@ Your PRIMARY directive is to make intelligent strategic decisions based on curre
        - Create one or multiple tasks in `.agent-state/plan.json` that must fix this blocker
        - Create one or multiple tasks in `.agent-state/plan.json` that must complete the ongoing task
        - Delete `.agent-state/task.json`
-   - If action = "run_validation":
-      - If latest log starts with "VALIDATION_SUCCESS":
+   - If action = "review_task":
+      - If latest log starts with "REVIEW_SUCCESS":
         - Consider task completed
         - Create a summary of the task goal and implementation and add it to completed_tasks in `plan.json`
         - Delete `.agent-state/task.json`
         - Check if pending_tasks is EMPTY:
           - If EMPTY (all tasks done):
             - Create new `.agent-state/task.json` with:
-              - action: "create_complete_pr"
-              - description: "All tasks completed successfully"
+              - action: "validate_plan"
+              - description: "Full plan validation"
               - log: []
             - Print "Done" and STOP
           - Otherwise print "Done" and STOP
-      - If latest log starts with "VALIDATION_ERROR", there were some error validating the task
+      - If latest log starts with "REVIEW_ERROR", there were some error reviewing the task
         - If we have 3 consecutive errors in latest log entries, update task.json action to "stop"
         - Otherwise update action to "develop_task"
+        - Print "Done" and STOP
+   - If action = "validate_plan":
+      - If latest log starts with "VALIDATION_SUCCESS":
+        - Create new `.agent-state/task.json` with:
+          - action: "create_complete_pr"
+          - description: "All tasks completed and validated successfully"
+          - log: []
+        - Print "Done" and STOP
+      - If latest log starts with "VALIDATION_ERROR":
+        - Delete `.agent-state/task.json`
         - Print "Done" and STOP
 6. IF `.agent-state/task.json` does NOT EXIST:
    - Analyze if `.agent-state/plan.json` should be restructured:
@@ -65,7 +75,7 @@ Your PRIMARY directive is to make intelligent strategic decisions based on curre
 
 ```json
 {
-  "action": "develop_task | run_validation | create_complete_pr | create_incomplete_pr | stop",
+  "action": "develop_task | review_task | validate_plan | create_complete_pr | create_incomplete_pr | stop",
   "description": "{task-description-from-task-planner}",
   "log": [ "{action-1-on-task}", "{action-2-on-task}" ]
 }
@@ -90,8 +100,9 @@ Your PRIMARY directive is to make intelligent strategic decisions based on curre
 ### Task types
 
 - develop_task: there is some unfinished task that we should continue.
-- run_validation: a task has been complete but requires validation.
-- create_complete_pr: all tasks have been successfully completed.
+- review_task: a task has been completed but requires code review.
+- validate_plan: all tasks have been reviewed, run full validation with validation commands.
+- create_complete_pr: all tasks have been successfully completed and validated.
 - create_incomplete_pr: some tasks have not been completed, but we cannot continue working.
 - stop: some critical error happen and we must stop working.
 
