@@ -4,7 +4,6 @@ $hostname\
 $directory\
 $git_branch\
 $git_state\
-${custom.git_status_safe}\
 $line_break\
 $character"""
 
