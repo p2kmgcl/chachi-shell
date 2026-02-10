@@ -36,8 +36,8 @@ get_agent_data() {
     local agent_dir="$1"
     local ticket_file="$agent_dir/ticket.json"
     local task_file="$agent_dir/task.json"
+    local action_file="$agent_dir/action.json"
     local plan_file="$agent_dir/plan.json"
-    local log_file="$agent_dir/task.log"
 
     local worktree_path="${agent_dir%/.agent-state}"
     local location="${worktree_path#$WORKTREES_DIR/}"
@@ -66,26 +66,19 @@ get_agent_data() {
         percentage=$(( (completed * 100) / total ))
     fi
 
-    if [[ -f "$task_file" ]]; then
-        task_action=$(jq -r '.action // "N/A"' "$task_file" 2>/dev/null)
-        task_desc=$(jq -r '.description // "N/A"' "$task_file" 2>/dev/null)
-    else
-        if [[ $pending -eq 0 && $completed -gt 0 ]]; then
-            task_action="done"
-            task_desc="All tasks completed"
-        elif [[ $pending -gt 0 ]]; then
-            task_action="planning"
-            task_desc="Planning next task"
-        else
-            task_action="N/A"
-            task_desc="N/A"
-        fi
+    if [[ -f "$action_file" ]]; then
+        task_action=$(jq -r '.action // "N/A"' "$action_file" 2>/dev/null)
     fi
 
-    if [[ -f "$log_file" ]]; then
-        last_log=$(tail -n 1 "$log_file" 2>/dev/null | sed 's/"/\\"/g')
-        if [[ -z "$last_log" ]]; then
-            last_log="N/A"
+    if [[ -f "$task_file" ]]; then
+        task_desc=$(jq -r '.description // "N/A"' "$task_file" 2>/dev/null)
+        last_log=$(jq -r '.log[-1] // "N/A"' "$task_file" 2>/dev/null)
+    else
+        if [[ $pending -eq 0 && $completed -gt 0 ]]; then
+            task_desc="All tasks completed"
+        elif [[ $pending -gt 0 && "$task_action" == "N/A" ]]; then
+            task_action="planning"
+            task_desc="Planning next task"
         fi
     fi
 
