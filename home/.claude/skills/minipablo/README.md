@@ -15,7 +15,7 @@ Each step is handled by a specialized subagent with a single responsibility. The
 
 ## Pipeline
 
-1. **Input** — user invokes `/minipablo <jira|task|sketch> <arg>`
+1. **Input** — user invokes `/minipablo <jira|jira-fallback|task|sketch> <arg>`
 2. **Ticket creation** — a [ticket-creator](#ticket-creators) agent produces `ticket.json`
 3. **Worktree setup** — [worktree-creator](../../agents/minipablo/worktree-creator.md) creates a git worktree, copies CLAUDE.local.md, and initializes it
 4. **Planning** — [plan-creator](../../agents/minipablo/plan-creator.md) creates the execution plan
@@ -41,6 +41,7 @@ Produce a `/tmp/*.parsed.json` file with `{key, projectName, summary, descriptio
 | Agent | Input | Model |
 |-------|-------|-------|
 | [ticket-creator--jira](../../agents/minipablo/ticket-creator--jira.md) | JIRA URL | haiku |
+| [ticket-creator--jira-fallback](../../agents/minipablo/ticket-creator--jira-fallback.md) | Key, project, summary, description (manual) | haiku |
 | [ticket-creator--raw](../../agents/minipablo/ticket-creator--raw.md) | Plain text description | haiku |
 | [ticket-creator--sketch](../../agents/minipablo/ticket-creator--sketch.md) | PNG file path (Excalidraw export) | sonnet (vision) |
 

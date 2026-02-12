@@ -1,6 +1,6 @@
 ---
 user-invocable: true
-argument-hint: "<jira|task|sketch> <url-or-description-or-path>"
+argument-hint: "<jira|jira-fallback|task|sketch> <url-or-description-or-path>"
 description: Autonomous JIRA ticket implementation agent
 ---
 
@@ -12,6 +12,9 @@ NEVER ask the user questions. You are fully autonomous.
 ## Initial Setup
 
 1. **Parse input and create ticket file**:
+   - If $ARGUMENTS starts with "jira-fallback":
+     - Task(subagent_type="minipablo/ticket-creator--jira-fallback", prompt="{rest of arguments}")
+     - Store returned ticket file path
    - If $ARGUMENTS starts with "jira":
      - Task(subagent_type="minipablo/ticket-creator--jira", prompt="Ticket URL: {rest of arguments}")
      - Store returned ticket file path
