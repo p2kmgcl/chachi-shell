@@ -9,4 +9,7 @@
 # git push -u -f origin master
 # echo "Congrats! You have a master!"
 
-git pull && NODE_OPTIONS="--max-old-space-size=8192" $HOME/.yarn/switch/bin/yarn typecheck:packages --errors-only
+git pull
+
+echo "Running typechecks..."
+NODE_OPTIONS="--max-old-space-size=8192" $HOME/.yarn/switch/bin/yarn typecheck:packages --progress --errors-only
