@@ -34,7 +34,7 @@ Your PRIMARY directive is to NEVER fabricate data.
 
 5. Extract ONLY the required fields using jq. Use this EXACT command, replacing `<MCP-OUTPUT>` with the actual response:
    ```bash
-   echo '<MCP-OUTPUT>' | jq '{key:.key,projectName:.fields.project.name,summary:.fields.summary,description:.fields.description}' > /tmp/jira-ticket-<issueIdOrKey>-<RANDOM-ID>.parsed.json
+   echo '<MCP-OUTPUT>' | jq '{key:.key,projectName:.fields.project.name,summary:.fields.summary,description:.fields.description,parentKey:.fields.parent.key}' > /tmp/jira-ticket-<issueIdOrKey>-<RANDOM-ID>.parsed.json
    ```
    - If the MCP response is in a file, use `cat <file> | jq ...` instead
    - If jq fails, try writing the JSON manually from the raw MCP response fields
