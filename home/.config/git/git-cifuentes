@@ -11,5 +11,7 @@
 
 git pull
 
-echo "Running typechecks..."
-NODE_OPTIONS="--max-old-space-size=8192" $HOME/.yarn/switch/bin/yarn typecheck:packages --progress --errors-only
+echo "Running greyhound typecheck..."
+$HOME/.yarn/switch/bin/yarn greyhound typecheck
+echo "Running greyhound lint..."
+$HOME/.yarn/switch/bin/yarn greyhound lint
