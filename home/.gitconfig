@@ -127,4 +127,4 @@
   st = status --short
 
 [include]
-  path = ~/.gitconfig.extra
+  path = ~/.gitconfig.local
