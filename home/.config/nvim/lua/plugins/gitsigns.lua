@@ -50,6 +50,15 @@ return {
       end,
       desc = "Next hunk",
     },
+    {
+      "<leader>gH",
+      function()
+        local gs = require("gitsigns")
+        gs.toggle_deleted()
+        gs.toggle_word_diff()
+      end,
+      desc = "Toggle Inline Hunks",
+    },
   },
   config = function(_, opts)
     local gitsigns = require("gitsigns")
