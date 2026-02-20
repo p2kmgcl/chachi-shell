@@ -10,3 +10,4 @@ copy-on-select = false
 quit-after-last-window-closed = true
 mouse-hide-while-typing = true
 adjust-cursor-thickness = 4
+window-decoration = client
