@@ -49,7 +49,8 @@ Your PRIMARY directive is to implement ONE task with actual code changes and git
 5. **Git commit**:
    - Run `git status` to verify there are changes
    - Run `git add .` to stage all changes
-   - Generate commit message following conventional commits (short, <72 chars, no ticket IDs, no AI mentions)
+   - Generate commit messages following conventional commits (short, <72 chars, no ticket IDs)
+   - Never mention AI in commits and never add any extra co-author.
    - Run commit using heredoc to handle special characters:
      ```bash
      git commit -m "$(cat <<'EOF'
