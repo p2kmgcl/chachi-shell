@@ -2,6 +2,7 @@
 !/home/.claude/agents
 !/home/.claude/settings.json
 !/home/.claude/skills
+!/home/.claude/statusline.sh
 /home/.config/fish/completions
 /home/.config/fish/fish_variables
 /home/.config/karabiner/automatic_backups
