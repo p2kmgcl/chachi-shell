@@ -48,21 +48,15 @@ Your PRIMARY directive is to create a worktree with proper branch setup and init
    - If default branch doesn't exist, return "ERROR: Default branch not found"
    - If git worktree add fails, return "ERROR: {message}"
 
-6. Copy CLAUDE.local.md and settings to worktree:
-   - Run: `cp CLAUDE.local.md {worktree-path}/CLAUDE.local.md`
-   - Run from main repository root where CLAUDE.local.md lives
-   - If a `.claude/settings.local.json` exists in the main repository root, copy it too:
-     `mkdir -p {worktree-path}/.claude && cp .claude/settings.local.json {worktree-path}/.claude/settings.local.json`
-
-7. Initialize worktree (if worktree was just created):
+6. Initialize worktree (if worktree was just created):
    - Change to worktree directory
    - Run the setup/init command from CLAUDE.local.md (e.g., install dependencies, generate files, etc.)
    - If initialization fails, return "ERROR: {message}"
 
-8. Create .agent-state directory:
+7. Create .agent-state directory:
    - Run: `mkdir -p {worktree-path}/.agent-state`
 
-9. Move temporary ticket file to .agent-state:
+8. Move temporary ticket file to .agent-state:
    - Run: `mv <TEMPORARY-TICKET-FILE-PATH> {worktree-path}/.agent-state/ticket.json`
 
 ## Expected Output
