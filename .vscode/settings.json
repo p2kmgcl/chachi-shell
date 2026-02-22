@@ -1,6 +1,0 @@
-{
-  "deno.enablePaths": [
-    "./liferay/ts-bin",
-  ],
-  "ansible.python.interpreterPath": "/bin/python"
-}
