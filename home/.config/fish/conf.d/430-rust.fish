@@ -2,22 +2,16 @@ if status is-interactive
     fish_add_path $HOME/.cargo/bin
 
     if test -f "$HOME/.cargo/bin/exa"
-        alias ls='exa'
-        alias ll='exa -l'
-        alias tree='exa --tree'
+        alias exa_list='exa -l'
+        alias exa_tree='exa --tree'
     end
 
     if test -f "$HOME/.cargo/bin/fd"
-        alias find='fd --color=never'
-    end
-
-    if test -f "$HOME/.cargo/bin/bat"
-        alias cat='bat'
+        alias fd_nocolor='fd --color=never'
     end
 
     if test -f "$HOME/.cargo/bin/btm"
-        alias top='btm --basic --theme default'
-        alias htop='btm --basic --theme default'
+        alias btm_basic='btm --basic --theme default'
     end
 
     if test -f "$HOME/.cargo/bin/zoxide"
