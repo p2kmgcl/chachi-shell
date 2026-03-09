@@ -27,5 +27,4 @@ COST_FMT=$(printf '$%.2f' "$COST")
 
 LINE2="${GREEN}${FILLED_BAR}${RESET}${EMPTY_BAR} ${PCT}% | ${YELLOW}${COST_FMT}${RESET} | ⏱ ${MINS}m ${SECS}s"
 
-echo -e "$LINE1"
-echo -e "$LINE2"
+echo -e "$LINE1 | $LINE2"
