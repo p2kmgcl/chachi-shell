@@ -1,17 +1,5 @@
 #!/bin/bash
-
-# echo "Getting your master..."
-# git checkout master
-# git fetch --all --prune
-# git checkout upstream/master
-# git branch -D master
-# git checkout -b master
-# git push -u -f origin master
-# echo "Congrats! You have a master!"
-
-git pull
-
-echo "Running greyhound typecheck..."
-$HOME/.yarn/switch/bin/yarn greyhound typecheck
-echo "Running greyhound lint..."
-$HOME/.yarn/switch/bin/yarn greyhound lint
+set -e
+echo "Getting your master..."
+git fetch --all --prune && git reset --hard origin/$(git branch --show-current) || exit 1
+[ -x "$HOME/.cifuentes.post.local.sh" ] && "$HOME/.cifuentes.post.local.sh"
