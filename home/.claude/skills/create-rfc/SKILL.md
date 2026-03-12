@@ -19,6 +19,8 @@ NEVER read files (except CLAUDE.local.md), NEVER run commands, NEVER make decisi
 ### 2. Fetch existing or create empty RFC
 
 - Task(subagent_type="rfc-fetcher")
+- If the rfc-fetcher returns an ERROR → show the error to the user and STOP
+- Verify `.agent-state/rfc.md` exists before proceeding — if missing, show "ERROR: rfc.md was not created" and STOP
 
 ### 3. Interactive discussion
 
@@ -64,7 +66,7 @@ When the user is satisfied with the RFC:
 3. Share with the user the URL of the updated Confluence page
 
 > **RFC Structure**
-> Read `.claude/skills/agent-state/rfc/SKILL.md` for the RFC document structure and follow it.
+> Read `$HOME/.claude/skills/agent-state/rfc/SKILL.md` for the RFC document structure and follow it.
 
 #### Discussion Phase 5: Clean Up Feedback
 

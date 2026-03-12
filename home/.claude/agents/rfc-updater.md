@@ -36,7 +36,7 @@ Your PRIMARY directive is to ensure an RFC page exists and update it using local
 7. **Link RFC to Jira ticket**:
    - Fetch the current ticket via `mcp__atlassian__getJiraIssue` using the cloudId and issueKey
    - Check if the Confluence page URL is already in the ticket description
-   - If not present: prepend `RFC: {confluencePageUrl}\n\n` to the existing description and update via `mcp__atlassian__editJiraIssue`
+   - If not present: prepend `{confluencePageUrl}\n\n` to the existing description and update via `mcp__atlassian__editJiraIssue` (bare URL — JIRA auto-renders it as a smart link card)
    - If the edit fails, return "ERROR: {error message}" and STOP
 
 ## Expected Output

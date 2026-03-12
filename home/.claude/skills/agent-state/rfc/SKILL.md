@@ -14,7 +14,7 @@ When present, rfc.md takes precedence over ticket.json's description as the sour
 ## Structure
 
 ### Jira ticket link
-`[{issueKey}: {summary}]({ticketUrl})` — first line of the document, always present.
+`{ticketUrl}` — first line of the document, always present, bare URL (Atlassian auto-renders it as a smart link card). Not a heading.
 
 ### Introduction (no heading)
 One paragraph immediately after the ticket link. Describe what this RFC proposes and what the reader should expect. No "Summary" heading — the paragraph speaks for itself.
@@ -36,14 +36,6 @@ One paragraph immediately after the ticket link. Describe what this RFC proposes
 - Performance, security, or observability implications
 - Dependencies on other teams or systems
 
-### Open Questions
-- Unresolved decisions that need input before or during implementation
-- Each question should include context on why it matters and what the options are
-- Remove questions as they get resolved (move answers into the relevant section)
-
-### Revision History
-- Bullet list of changes to the RFC, most recent first
-- Format: `YYYY-MM-DD: description of change`
 
 ## Rules
 
