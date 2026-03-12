@@ -42,3 +42,4 @@ One paragraph immediately after the ticket link. Describe what this RFC proposes
 - Do NOT repeat the page title as a heading in the body
 - Do NOT use a "Summary" heading — the intro paragraph serves that role
 - Task descriptions reference RFC sections for traceability
+- When referencing existing code (components, hooks, types, files), always link to the file in the repository using the `origin` remote URL. Derive the base URL by running `git remote get-url origin` and converting SSH format to HTTPS (e.g., `git@github.com:acme/my-repo.git` → `https://github.com/acme/my-repo`). Link to the default branch (e.g., `blob/main/<path>`). Do NOT wrap the link text in backticks — Confluence drops links when code marks and link marks are combined. Use plain text inside the link. Example: [MyComponent](https://github.com/acme/my-repo/blob/main/packages/components/MyComponent.tsx)
