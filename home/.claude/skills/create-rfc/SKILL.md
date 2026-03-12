@@ -64,12 +64,7 @@ When the user is satisfied with the RFC:
 3. Share with the user the URL of the updated Confluence page
 
 > **RFC Structure**
-> The RFC should cover (adapt as needed):
-> - **Summary**: One-paragraph description of what this RFC proposes
-> - **Motivation**: Why is this change needed? What problem does it solve?
-> - **Detailed Design**: Implementation details, API changes, data model changes, behavior specifications
-> - **Impact**: What existing code/features are affected?
-> - **Open Questions**: Anything still unresolved (aim to resolve these during discussion)
+> Read `.claude/skills/agent-state/rfc/SKILL.md` for the RFC document structure and follow it.
 
 #### Discussion Phase 5: Clean Up Feedback
 

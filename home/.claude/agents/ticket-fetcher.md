@@ -30,7 +30,7 @@ Your PRIMARY directive is to fetch JIRA ticket data and write it locally.
 
 4. Extract ONLY the required fields using jq. Use this EXACT command, replacing `<MCP-OUTPUT>` with the actual response:
    ```bash
-   echo '<MCP-OUTPUT>' | jq '{key:.key,projectName:.fields.project.name,summary:.fields.summary,description:.fields.description,parentKey:.fields.parent.key}' > .agent-state/ticket.json
+   echo '<MCP-OUTPUT>' | jq '{key:.key,projectName:.fields.project.name,summary:.fields.summary,description:.fields.description,parentKey:.fields.parent.key,url:("https://" + (.fields.project.self | split("/") | .[2]) + "/browse/" + .key)}' > .agent-state/ticket.json
    ```
    - If the MCP response is in a file, use `cat <file> | jq ...` instead
    - If content is too large for a shell argument, write to a temp file and use `--rawfile`
