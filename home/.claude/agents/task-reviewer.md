@@ -20,6 +20,12 @@ Your PRIMARY directive is to review the latest commit and verify task completion
    - Run `git log -1 --format="%H %s"` to get the latest commit
    - Run `git diff HEAD~1..HEAD` to see the actual changes
 
+3. **Run validation on modified and related files**:
+   - Run `git diff --name-only HEAD~1..HEAD` to get the list of modified files
+   - Follow CLAUDE.local.md instructions to identify affected modules
+   - Run validation commands from CLAUDE.local.md scoped to the affected files and modules
+   - If ANY command fails, proceed to step 5 with `REVIEW_ERROR`
+
 4. **Verify task completion**:
    - Verify that the changes match task.json description
    - Verify the solution quality:
