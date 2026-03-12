@@ -12,6 +12,9 @@ ICON_TICKET="🎫"
 ICON_TASK="🚂"
 ICON_PROGRESS="📊"
 ICON_LOG="📝"
+ICON_PR="🔗"
+ICON_RFC="📄"
+ICON_FILES="🗂️"
 
 get_terminal_width() {
     local width
@@ -38,6 +41,8 @@ get_agent_data() {
     local task_file="$agent_dir/task.json"
     local action_file="$agent_dir/action.json"
     local plan_file="$agent_dir/plan.json"
+    local pr_file="$agent_dir/pr-feedback.json"
+    local rfc_file="$agent_dir/rfc.md"
 
     local worktree_path="${agent_dir%/.agent-state}"
     local location="${worktree_path#$WORKTREES_DIR/}"
@@ -46,9 +51,16 @@ get_agent_data() {
     local ticket_summary="N/A"
     local task_action="N/A"
     local task_desc="N/A"
+    local task_id=""
+    local task_files=""
     local completed=0
     local pending=0
     local last_log="N/A"
+    local plan_title=""
+    local plan_summary=""
+    local pr_url=""
+    local pr_status=""
+    local has_rfc="false"
 
     if [[ -f "$ticket_file" ]]; then
         ticket_key=$(jq -r '.key // "N/A"' "$ticket_file" 2>/dev/null)
@@ -57,7 +69,9 @@ get_agent_data() {
 
     if [[ -f "$plan_file" ]]; then
         completed=$(jq -r '.completed_tasks | length' "$plan_file" 2>/dev/null)
-        pending=$(jq -r '.pending_tasks | length' "$plan_file" 2>/dev/null)
+        pending=$(jq -r '[.tasks[] | select(.status == "pending")] | length' "$plan_file" 2>/dev/null)
+        plan_title=$(jq -r '.title // ""' "$plan_file" 2>/dev/null)
+        plan_summary=$(jq -r '.summary // ""' "$plan_file" 2>/dev/null)
     fi
 
     local total=$((completed + pending))
@@ -71,7 +85,9 @@ get_agent_data() {
     fi
 
     if [[ -f "$task_file" ]]; then
+        task_id=$(jq -r '.id // ""' "$task_file" 2>/dev/null)
         task_desc=$(jq -r '.description // "N/A"' "$task_file" 2>/dev/null)
+        task_files=$(jq -r '(.files // []) | join(", ")' "$task_file" 2>/dev/null)
         last_log=$(jq -r '.log[-1] // "N/A"' "$task_file" 2>/dev/null)
     else
         if [[ $pending -eq 0 && $completed -gt 0 ]]; then
@@ -82,8 +98,35 @@ get_agent_data() {
         fi
     fi
 
-    printf '{"location":"%s","ticket_key":"%s","ticket_summary":"%s","task_action":"%s","task_desc":"%s","completed":"%s","pending":"%s","total":"%s","percentage":"%s","last_log":"%s"}\n' \
-        "$location" "$ticket_key" "$ticket_summary" "$task_action" "$task_desc" "$completed" "$pending" "$total" "$percentage" "$last_log"
+    if [[ -f "$pr_file" ]]; then
+        pr_url=$(jq -r '.pr_url // ""' "$pr_file" 2>/dev/null)
+        pr_status=$(jq -r '.status // ""' "$pr_file" 2>/dev/null)
+    fi
+
+    if [[ -f "$rfc_file" ]]; then
+        has_rfc="true"
+    fi
+
+    # Use jq --arg to safely encode all values as JSON strings
+    jq -n \
+        --arg location "$location" \
+        --arg ticket_key "$ticket_key" \
+        --arg ticket_summary "$ticket_summary" \
+        --arg task_action "$task_action" \
+        --arg task_id "$task_id" \
+        --arg task_desc "$task_desc" \
+        --arg task_files "$task_files" \
+        --arg completed "$completed" \
+        --arg pending "$pending" \
+        --arg total "$total" \
+        --arg percentage "$percentage" \
+        --arg last_log "$last_log" \
+        --arg plan_title "$plan_title" \
+        --arg plan_summary "$plan_summary" \
+        --arg pr_url "$pr_url" \
+        --arg pr_status "$pr_status" \
+        --arg has_rfc "$has_rfc" \
+        '$ARGS.named'
 }
 
 draw_progress_bar() {
@@ -132,27 +175,70 @@ draw_agent_card() {
     local agent_json="$1"
     local max_width="${2:-80}"
 
-    local location ticket_key ticket_summary task_action task_desc completed pending total percentage last_log
+    local location ticket_key ticket_summary task_action task_id task_desc task_files
+    local completed pending total percentage last_log
+    local plan_title plan_summary pr_url pr_status has_rfc
     location=$(echo "$agent_json" | jq -r '.location')
     ticket_key=$(echo "$agent_json" | jq -r '.ticket_key')
     ticket_summary=$(echo "$agent_json" | jq -r '.ticket_summary')
     task_action=$(echo "$agent_json" | jq -r '.task_action')
+    task_id=$(echo "$agent_json" | jq -r '.task_id')
     task_desc=$(echo "$agent_json" | jq -r '.task_desc')
+    task_files=$(echo "$agent_json" | jq -r '.task_files')
     completed=$(echo "$agent_json" | jq -r '.completed')
     pending=$(echo "$agent_json" | jq -r '.pending')
     total=$(echo "$agent_json" | jq -r '.total')
     percentage=$(echo "$agent_json" | jq -r '.percentage')
     last_log=$(echo "$agent_json" | jq -r '.last_log')
+    plan_title=$(echo "$agent_json" | jq -r '.plan_title')
+    plan_summary=$(echo "$agent_json" | jq -r '.plan_summary')
+    pr_url=$(echo "$agent_json" | jq -r '.pr_url')
+    pr_status=$(echo "$agent_json" | jq -r '.pr_status')
+    has_rfc=$(echo "$agent_json" | jq -r '.has_rfc')
 
     printf "%s %s\n" "$ICON_FOLDER" "$location"
     print_wrapped "$ICON_TICKET " "$ticket_key: $ticket_summary" 0 "$max_width"
+
+    if [[ -n "$plan_title" ]]; then
+        print_wrapped "  " "$plan_title" 0 "$max_width"
+    fi
+    if [[ -n "$plan_summary" ]]; then
+        print_wrapped "  " "$plan_summary" 1 "$max_width"
+    fi
+
     local progress_bar
     progress_bar=$(draw_progress_bar "$percentage")
     printf "%s Progress: %s/%s tasks (%s%%) %s\n" "$ICON_PROGRESS" "$completed" "$total" "$percentage" "$progress_bar"
 
+    # PR and RFC indicators
+    if [[ -n "$pr_url" || "$has_rfc" == "true" ]]; then
+        local indicators=""
+        if [[ -n "$pr_url" ]]; then
+            indicators="${ICON_PR} PR: ${pr_url}"
+            if [[ -n "$pr_status" ]]; then
+                indicators="${indicators} [${pr_status}]"
+            fi
+        fi
+        if [[ "$has_rfc" == "true" ]]; then
+            if [[ -n "$indicators" ]]; then
+                indicators="${indicators}  "
+            fi
+            indicators="${indicators}${ICON_RFC} RFC"
+        fi
+        print_wrapped "" "$indicators" 0 "$max_width"
+    fi
+
     echo ""
-    printf "%s %s\n" "$ICON_TASK" "$task_action"
+    local task_label="$task_action"
+    if [[ -n "$task_id" ]]; then
+        task_label="Task #${task_id}: ${task_action}"
+    fi
+    printf "%s %s\n" "$ICON_TASK" "$task_label"
     print_wrapped "  " "$task_desc" 0 "$max_width"
+
+    if [[ -n "$task_files" ]]; then
+        printf "%s %s\n" "$ICON_FILES" "$task_files"
+    fi
 
     if [[ "$last_log" != "N/A" && -n "$last_log" ]]; then
         echo ""
