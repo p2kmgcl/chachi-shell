@@ -32,13 +32,14 @@ Read task.json and action.json. Based on the current action and latest log entry
 
 **action = `review_task`**:
 - `REVIEW_SUCCESS:` →
-  - Create a summary of the task goal and implementation
-  - Add summary to completed_tasks in plan.json
+  - Move the task to completed_tasks in plan.json following the format spec. Compute `commit` via `git log -1 --format="%h %s"` and `summary` from the REVIEW_SUCCESS log entry.
+  - Remove the corresponding pending task from plan.json
   - If pending_tasks is NOT empty:
     - Pick next task (choose the one that makes implementation easiest, not necessarily first)
-    - Write new task.json + action.json: `{"action": "develop_task"}`
+    - Write new task.json with the picked task's fields + empty `log`
+    - Write action.json: `{"action": "develop_task"}`
   - If pending_tasks is EMPTY:
-    - Write task.json: `{"description": "Full plan validation", "log": []}`
+    - Write task.json: `{"action": "Full plan validation", "files": [], "rfc_section": "", "log": []}`
     - Write action.json: `{"action": "validate_plan"}`
 - `REVIEW_ERROR:` with 3+ consecutive errors in log → write action.json: `{"action": "stop"}`
 - `REVIEW_ERROR:` with < 3 consecutive errors → write action.json: `{"action": "develop_task"}`
@@ -53,7 +54,7 @@ Read task.json and action.json. Based on the current action and latest log entry
 
 - Pick next task from pending_tasks in plan.json
   - Choose the one that makes implementation easiest (not necessarily first in list)
-- Write task.json with the picked task
+- Write task.json with the picked task's fields + empty `log`
 - Write action.json: `{"action": "develop_task"}`
 
 ## Expected Output
