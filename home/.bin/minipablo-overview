@@ -58,6 +58,7 @@ get_agent_data() {
     local last_log="N/A"
     local plan_title=""
     local plan_summary=""
+    local ticket_url=""
     local pr_url=""
     local pr_status=""
     local has_rfc="false"
@@ -65,13 +66,14 @@ get_agent_data() {
     if [[ -f "$ticket_file" ]]; then
         ticket_key=$(jq -r '.key // "N/A"' "$ticket_file" 2>/dev/null)
         ticket_summary=$(jq -r '.summary // "N/A"' "$ticket_file" 2>/dev/null)
+        ticket_url=$(jq -r '.url // ""' "$ticket_file" 2>/dev/null)
     fi
 
     if [[ -f "$plan_file" ]]; then
         completed=$(jq -r '.completed_tasks | length' "$plan_file" 2>/dev/null)
-        pending=$(jq -r '[.tasks[] | select(.status == "pending")] | length' "$plan_file" 2>/dev/null)
+        pending=$(jq -r '.pending_tasks | length' "$plan_file" 2>/dev/null)
         plan_title=$(jq -r '.title // ""' "$plan_file" 2>/dev/null)
-        plan_summary=$(jq -r '.summary // ""' "$plan_file" 2>/dev/null)
+        plan_summary=$(jq -r '.source // ""' "$plan_file" 2>/dev/null)
     fi
 
     local total=$((completed + pending))
@@ -85,8 +87,8 @@ get_agent_data() {
     fi
 
     if [[ -f "$task_file" ]]; then
-        task_id=$(jq -r '.id // ""' "$task_file" 2>/dev/null)
-        task_desc=$(jq -r '.description // "N/A"' "$task_file" 2>/dev/null)
+        task_id=""
+        task_desc=$(jq -r '.action // "N/A"' "$task_file" 2>/dev/null)
         task_files=$(jq -r '(.files // []) | join(", ")' "$task_file" 2>/dev/null)
         last_log=$(jq -r '.log[-1] // "N/A"' "$task_file" 2>/dev/null)
     else
@@ -112,6 +114,7 @@ get_agent_data() {
         --arg location "$location" \
         --arg ticket_key "$ticket_key" \
         --arg ticket_summary "$ticket_summary" \
+        --arg ticket_url "$ticket_url" \
         --arg task_action "$task_action" \
         --arg task_id "$task_id" \
         --arg task_desc "$task_desc" \
@@ -175,12 +178,13 @@ draw_agent_card() {
     local agent_json="$1"
     local max_width="${2:-80}"
 
-    local location ticket_key ticket_summary task_action task_id task_desc task_files
+    local location ticket_key ticket_summary ticket_url task_action task_id task_desc task_files
     local completed pending total percentage last_log
     local plan_title plan_summary pr_url pr_status has_rfc
     location=$(echo "$agent_json" | jq -r '.location')
     ticket_key=$(echo "$agent_json" | jq -r '.ticket_key')
     ticket_summary=$(echo "$agent_json" | jq -r '.ticket_summary')
+    ticket_url=$(echo "$agent_json" | jq -r '.ticket_url')
     task_action=$(echo "$agent_json" | jq -r '.task_action')
     task_id=$(echo "$agent_json" | jq -r '.task_id')
     task_desc=$(echo "$agent_json" | jq -r '.task_desc')
@@ -197,7 +201,11 @@ draw_agent_card() {
     has_rfc=$(echo "$agent_json" | jq -r '.has_rfc')
 
     printf "%s %s\n" "$ICON_FOLDER" "$location"
-    print_wrapped "$ICON_TICKET " "$ticket_key: $ticket_summary" 0 "$max_width"
+    local ticket_line="$ticket_key: $ticket_summary"
+    if [[ -n "$ticket_url" ]]; then
+        ticket_line="$ticket_key: $ticket_summary ($ticket_url)"
+    fi
+    print_wrapped "$ICON_TICKET " "$ticket_line" 0 "$max_width"
 
     if [[ -n "$plan_title" ]]; then
         print_wrapped "  " "$plan_title" 0 "$max_width"
