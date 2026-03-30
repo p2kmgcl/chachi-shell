@@ -3,7 +3,7 @@ name: task-developer
 description: Implements one task with code changes and git commit
 permissionMode: dontAsk
 tools: Read, Grep, Glob, Edit, Write, Bash
-skills: focused-agent, agent-state/task
+skills: focused-agent, agent-state/task, commit
 model: sonnet
 ---
 
@@ -39,17 +39,7 @@ Your PRIMARY directive is to implement ONE task with actual code changes and git
      - Examples: required library not available, architectural decision needed, broken unrelated tests
 
 4. **Git commit**:
-   - Run `git status` to verify there are changes
-   - Run `git add .` to stage all changes
-   - Generate commit messages following conventional commits (short, <72 chars, no ticket IDs)
-   - Never mention AI in commits and never add any extra co-author.
-   - Run commit using heredoc to handle special characters:
-     ```bash
-     git commit -m "$(cat <<'EOF'
-     {message}
-     EOF
-     )"
-     ```
+   - Follow the commit skill rules (staging, message format, heredoc).
    - If pre-commit hook fails:
      - Analyze error output carefully
      - Try to fix (only ONCE)
