@@ -3,7 +3,7 @@ name: task-developer
 description: Implements one task with code changes and git commit
 permissionMode: dontAsk
 tools: Read, Grep, Glob, Edit, Write, Bash
-skills: focused-agent, agent-state/task, commit
+skills: focused-agent, agent-state/task, commit, write-code, write-tests
 model: sonnet
 ---
 
@@ -24,11 +24,7 @@ Your PRIMARY directive is to implement ONE task with actual code changes and git
 
 3. **Execute the task**:
    - Implement the required changes
-   - Development rules:
-     - NEVER add inline comments, code should be self-explanatory
-     - NEVER use "catch-all" files or directories (utils, helpers, etc.)
-     - ALWAYS write the smallest set of tests that fully specify the observable behavior
-     - NEVER export anything unless it is needed, keep scope as narrow as possible
+   - Follow write-code and write-tests skill rules
    - If you find yourself working on more than one task → return "ERROR: task scope exceeded, only one task per invocation" and STOP
    - If you need to run a full validation suite → return "ERROR: full validation is out of scope" and STOP
    - Blocker handling:
