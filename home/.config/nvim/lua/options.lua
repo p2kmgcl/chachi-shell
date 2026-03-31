@@ -38,7 +38,6 @@ vim.opt.splitbelow = true
 vim.opt.splitkeep = "screen"
 vim.opt.splitright = true
 vim.opt.tabstop = 2
-vim.opt.termguicolors = true
 vim.opt.timeoutlen = vim.g.vscode and 1000 or 300
 vim.opt.undofile = true
 vim.opt.undolevels = 10000
@@ -48,4 +47,5 @@ vim.opt.wildmode = "longest:full,full"
 vim.opt.winminwidth = 5
 vim.opt.wrap = false
 
+vim.o.pumborder = "rounded"
 vim.o.winborder = "rounded"

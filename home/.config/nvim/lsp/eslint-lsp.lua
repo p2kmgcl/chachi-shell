@@ -7,10 +7,8 @@ return {
   filetypes = {
     "javascript",
     "javascriptreact",
-    "javascript.jsx",
     "typescript",
     "typescriptreact",
-    "typescript.tsx",
   },
   root_markers = {
     {
@@ -68,7 +66,7 @@ return {
     }
 
     local pnp_file = config.root_dir .. "/.pnp.cjs"
-    local has_pnp = vim.loop.fs_stat(pnp_file) ~= nil
+    local has_pnp = vim.uv.fs_stat(pnp_file) ~= nil
     if has_pnp then
       config.settings.nodePath = config.root_dir .. "/.yarn/sdks"
     end

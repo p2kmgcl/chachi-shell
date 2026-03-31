@@ -1,4 +1,6 @@
 vim.keymap.set({ "n" }, "<leader>lr", function()
-  vim.lsp.stop_client(vim.lsp.get_clients())
+  for _, client in ipairs(vim.lsp.get_clients()) do
+    client:stop()
+  end
   vim.cmd('edit')
 end, { desc = "Restart all LSP servers" })

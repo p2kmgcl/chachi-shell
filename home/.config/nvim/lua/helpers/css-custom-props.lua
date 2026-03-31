@@ -4,7 +4,7 @@ local cache = { items = nil, root = nil, ts = 0 }
 local CACHE_MS = 5000
 
 local function now_ms()
-  return vim.loop.hrtime() / 1e6
+  return vim.uv.hrtime() / 1e6
 end
 
 local function project_root()
