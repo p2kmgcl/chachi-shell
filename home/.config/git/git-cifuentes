@@ -1,5 +1,21 @@
 #!/bin/bash
 set -e
-echo "Getting your master..."
-git fetch --all --prune && git reset --hard origin/$(git branch --show-current) || exit 1
+default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+current_branch=$(git branch --show-current)
+if [ "$current_branch" != "$default_branch" ]; then
+  echo "Error: not on $default_branch (currently on $current_branch)"
+  exit 1
+fi
+
+echo "Getting your master…"
+git fetch --all --prune || exit 1
+git reset --hard "origin/$default_branch"
+
+echo "Cleaning up gone branches…"
+for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do
+  echo "  Deleting $branch"
+  git branch -D "$branch"
+done
+
+echo "Running ~/.cifuentes.post.local.sh…"
 [ -x "$HOME/.cifuentes.post.local.sh" ] && "$HOME/.cifuentes.post.local.sh"
