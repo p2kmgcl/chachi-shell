@@ -1,0 +1,2 @@
+#!/bin/bash
+awk -v p="[$1]" '{print p, $0; fflush()}'
