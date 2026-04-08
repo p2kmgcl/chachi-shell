@@ -3,6 +3,7 @@ description: Coding standards to follow when writing or modifying code in any pr
 user-invocable: true
 ---
 
+- Invoke `local-rules` skill.
 - Let code speak for itself. Choose clear names, extract well-named functions, and use types
   to document intent instead of comments.
 - Group files by domain or feature (e.g. auth/, billing/), not by technical role

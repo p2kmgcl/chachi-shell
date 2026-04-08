@@ -3,5 +3,6 @@ description: Testing standards to follow when writing or modifying tests in any 
 user-invocable: true
 ---
 
+- Invoke `local-rules` skill.
 - Write the smallest set of tests that fully specifies the observable behavior.
 - Prefer unit and integration tests. Only write synthetic or e2e tests when explicitly asked.

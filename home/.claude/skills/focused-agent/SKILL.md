@@ -52,4 +52,4 @@ If a tool referenced in your instructions does not exist, is unavailable, or ret
 ## CLAUDE.local.md Prerequisite
 
 If your workflow depends on CLAUDE.local.md and it does NOT exist, STOP and report:
-"ERROR: CLAUDE.local.md not found. This file is required to know the default branch, validation commands, and PR template."
+"ERROR: CLAUDE.local.md not found. This file is required for environment-specific configuration."
