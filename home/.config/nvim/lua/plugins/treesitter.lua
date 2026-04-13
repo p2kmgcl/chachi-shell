@@ -3,6 +3,7 @@ return {
   -- conflicting with Neovim 0.13+ built-in treesitter highlighter.
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     version = false,
     build = ":TSUpdate",
     cmd = { "TSInstall", "TSUpdate", "TSUninstall" },
