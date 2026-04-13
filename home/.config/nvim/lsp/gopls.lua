@@ -1,7 +1,10 @@
 return {
   cmd = { "gopls" },
   root_markers = { "go.mod" },
-  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  filetypes = {
+    "go",
+    "gomod",
+  },
   settings = {
     gopls = {
       gofumpt = true,
