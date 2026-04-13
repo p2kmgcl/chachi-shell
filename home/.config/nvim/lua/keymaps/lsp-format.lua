@@ -40,7 +40,7 @@ local function format_with_stylelint(file)
     vim.cmd("write")
   end
 
-  local result = vim.system({ "npx", "stylelint", file, "--fix" }, { text = true }):wait()
+  local result = vim.system({ "npx", "--yes", "stylelint", file, "--fix" }, { text = true }):wait()
 
   if result.code ~= 0 then
     local output = (result.stderr ~= "" and result.stderr) or result.stdout
@@ -52,9 +52,9 @@ local function format_with_stylelint(file)
 end
 
 vim.keymap.set("n", "<leader>cf", function()
-  local use_stylelint = lsp_preference_filter({ name = "stylelint-lsp" })
+  local preferred = formatter_priority[vim.bo.filetype]
 
-  if use_stylelint then
+  if preferred and preferred[1] == "stylelint-lsp" then
     local file = vim.api.nvim_buf_get_name(0)
     format_with_stylelint(file)
   else
