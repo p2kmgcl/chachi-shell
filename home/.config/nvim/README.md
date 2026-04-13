@@ -1,0 +1,2 @@
+- Requires tree-sitter-cli (see rust config)
+- Requires installing LSP servers manually

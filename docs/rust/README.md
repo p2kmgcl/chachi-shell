@@ -24,8 +24,9 @@ rustup component add rust-analyzer
 - Rust code checker: `cargo install --locked bacon`
 - Alternative to top: `cargo install --locked bottom`
 - Disk usage: `cargo install --locked du-dust`
+- Tree-Sitter CLI: `cargo install --locked tree-sitter-cli`
 
-All together:
+All together (upgrade with same command):
 
 ```
 cargo install --locked \
@@ -38,5 +39,6 @@ cargo install --locked \
   bat \
   bacon \
   bottom \
-  du-dust
+  du-dust \
+  tree-sitter-cli
 ```
