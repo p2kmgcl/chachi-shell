@@ -72,6 +72,32 @@ return {
     end
   end,
   handlers = {
+    -- vscode-eslint-language-server sends a $/progress "begin" for initialization
+    -- but never sends the corresponding "end", leaving fidget.nvim showing a
+    -- permanent spinner. We stash the progress token on begin, then when we
+    -- receive an eslint/status notification we fire a synthetic "end" to dismiss it.
+    ["$/progress"] = function(err, result, ctx)
+      local value = result.value
+      if value and value.kind == "begin" then
+        local client = vim.lsp.get_client_by_id(ctx.client_id)
+        if client then
+          client._eslint_progress_token = result.token
+        end
+      end
+      return vim.lsp.handlers["$/progress"](err, result, ctx)
+    end,
+    ["eslint/status"] = function(_, _, ctx)
+      local client = vim.lsp.get_client_by_id(ctx.client_id)
+      if client and client._eslint_progress_token then
+        local token = client._eslint_progress_token
+        client._eslint_progress_token = nil
+        vim.lsp.handlers["$/progress"](nil, {
+          token = token,
+          value = { kind = "end", message = "Done" },
+        }, { client_id = client.id })
+      end
+      return {}
+    end,
     ["eslint/openDoc"] = function(_, result)
       if result then
         vim.ui.open(result.url)
