@@ -44,6 +44,7 @@ local function git_status()
   end
 
   get_snacks().picker.pick({
+    title = "Git status",
     items = items,
     preview = "git_diff",
     format = function(item)
