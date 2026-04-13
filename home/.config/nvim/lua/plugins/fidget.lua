@@ -6,11 +6,11 @@ return {
       suppress_on_insert = false,
       ignore_done_already = false,
       ignore_empty_message = false,
-      
+
       notification_group = function(msg)
         return msg.lsp_client.name
       end,
-      
+
       display = {
         render_limit = 20,
         done_ttl = 3,
@@ -24,13 +24,13 @@ return {
         priority = 30,
         skip_history = true,
       },
-      
+
       lsp = {
         progress_ringbuf_size = 100,
         log_handler = false,
       },
     },
-    
+
     notification = {
       override_vim_notify = true,
       poll_rate = 10,
@@ -55,7 +55,7 @@ return {
         relative = "editor",
       },
     },
-    
+
     logger = {
       level = vim.log.levels.WARN,
       max_size = 10000,
