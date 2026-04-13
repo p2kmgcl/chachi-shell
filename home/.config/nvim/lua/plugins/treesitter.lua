@@ -7,8 +7,12 @@ return {
     version = false,
     build = ":TSUpdate",
     cmd = { "TSInstall", "TSUpdate", "TSUninstall" },
-    opts = {
-      ensure_installed = {
+    lazy = false,
+    config = function()
+      local ts = require("nvim-treesitter")
+      ts.setup()
+
+      local ensure_installed = {
         "bash",
         "css",
         "csv",
@@ -43,10 +47,18 @@ return {
         "vimdoc",
         "xml",
         "yaml",
-      },
-    },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+      }
+
+      local installed = require("nvim-treesitter.config").get_installed()
+      local missing = vim.iter(ensure_installed)
+        :filter(function(parser)
+          return not vim.tbl_contains(installed, parser)
+        end)
+        :totable()
+
+      if #missing > 0 then
+        ts.install(missing)
+      end
     end,
   },
 
