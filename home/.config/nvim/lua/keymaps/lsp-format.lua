@@ -1,12 +1,12 @@
 local formatter_priority = {
   css = { "stylelint-lsp", "css-lsp" },
-  javascript = { "eslint-lsp", "tsgo", "vtsls" },
-  javascriptreact = { "eslint-lsp", "tsgo", "vtsls" },
+  javascript = { "eslint-lsp", "tsgo" },
+  javascriptreact = { "eslint-lsp", "tsgo" },
   less = { "stylelint-lsp", "css-lsp" },
   lua = { "stylua", "lua_ls" },
   scss = { "stylelint-lsp", "css-lsp" },
-  typescript = { "eslint-lsp", "tsgo", "vtsls" },
-  typescriptreact = { "eslint-lsp", "tsgo", "vtsls" },
+  typescript = { "eslint-lsp", "tsgo" },
+  typescriptreact = { "eslint-lsp", "tsgo" },
 }
 
 local function lsp_preference_filter(client)
