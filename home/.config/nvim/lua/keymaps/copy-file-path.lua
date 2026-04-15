@@ -1,0 +1,11 @@
+vim.keymap.set("n", "<leader>cy", function()
+  local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":~:.")
+  vim.fn.setreg("+", path)
+  vim.notify(path, vim.log.levels.INFO, { title = "Yanked current file project path" })
+end, { desc = "Yank file project path" })
+
+vim.keymap.set("n", "<leader>cY", function()
+  local path = vim.fn.expand("%:p")
+  vim.fn.setreg("+", path)
+  vim.notify(path, vim.log.levels.INFO, { title = "Yanked current file absolute path" })
+end, { desc = "Yank file absolute path" })

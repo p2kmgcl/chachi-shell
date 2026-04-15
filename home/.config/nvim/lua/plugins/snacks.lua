@@ -14,9 +14,10 @@ end
 
 local function copy_git_link()
   get_snacks().gitbrowse({
-    notify = true,
+    notify = false,
     open = function(url)
       vim.fn.setreg("+", url)
+      vim.notify(url, vim.log.levels.INFO, { title = "Yanked current file git link" })
     end,
   })
 end
@@ -158,8 +159,20 @@ return {
     { "<leader>,", function() get_snacks().picker.buffers() end, desc = "Buffers" },
     { "<leader><space>", find, desc = "Files" },
     { "<leader>bd", function() get_snacks().bufdelete(); end, desc = "Delete Buffer" },
-    { "<leader>gy", copy_git_link, desc = "Git Link (copy)", mode = { "n", "v" } },
-    { "<leader>gY", function() get_snacks().gitbrowse() end, desc = "Git Link (open)", mode = { "n", "v" } },
+    { "<leader>gy", copy_git_link, desc = "Yank git link", mode = { "n", "v" } },
+    { "<leader>gY", function()
+      local result = vim.system({ "git", "rev-parse", "--abbrev-ref", "origin/HEAD" }, { text = true }):wait()
+      local default_branch = result.stdout and result.stdout:match("origin/(.+)") or "main"
+      default_branch = vim.trim(default_branch)
+      get_snacks().gitbrowse({
+        branch = default_branch,
+        notify = false,
+        open = function(url)
+          vim.fn.setreg("+", url)
+          vim.notify(url, vim.log.levels.INFO, { title = "Yanked current file git link (" .. default_branch .. ")" })
+        end,
+      })
+    end, desc = "Yank git link (default branch)", mode = { "n", "v" } },
     { "<leader>gg", function() get_snacks().lazygit({ configure = false }) end, desc = "Lazygit" },
     { "<leader>gl", function() get_snacks().picker.git_log_file() end, desc = "Git Log File" },
     { "<leader>gs", git_status, desc = "Git Status" },
