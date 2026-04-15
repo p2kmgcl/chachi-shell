@@ -58,7 +58,7 @@
   tool = neovim
 
 [mergetool "neovim"]
-  cmd = nvim -d \"$REMOTE\" \"$MERGED\" \"$LOCAL\"
+  cmd = nvim -d "$REMOTE" "$MERGED" "$LOCAL"
   trustExitCode = false
   prompt = false
 
