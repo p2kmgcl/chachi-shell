@@ -10,11 +10,12 @@ vim.diagnostic.config({
   underline = true,
   severity_sort = true,
   virtual_lines = false,
-  virtual_text = false,
+  virtual_text = true,
   signs = { text = severity_map },
   float = {
     focusable = true,
     border = "rounded",
+    max_height = math.floor(vim.o.lines * 0.3),
   },
 })
 

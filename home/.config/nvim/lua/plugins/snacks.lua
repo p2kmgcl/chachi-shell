@@ -158,8 +158,6 @@ return {
     { "<leader>,", function() get_snacks().picker.buffers() end, desc = "Buffers" },
     { "<leader><space>", find, desc = "Files" },
     { "<leader>bd", function() get_snacks().bufdelete(); end, desc = "Delete Buffer" },
-    { "<leader>cd", function() get_snacks().picker.diagnostics_buffer() end, desc = "Code Diagnostics (current file)" },
-    { "<leader>cD", function() get_snacks().picker.diagnostics() end, desc = "Code Diagnostics (root)" },
     { "<leader>gy", copy_git_link, desc = "Git Link (copy)", mode = { "n", "v" } },
     { "<leader>gY", function() get_snacks().gitbrowse() end, desc = "Git Link (open)", mode = { "n", "v" } },
     { "<leader>gg", function() get_snacks().lazygit({ configure = false }) end, desc = "Lazygit" },
