@@ -12,9 +12,5 @@ return {
   },
   config = function(_, options)
     require("github-theme").setup(options)
-
-    pcall(function()
-      vim.cmd("colorscheme github_light_colorblind")
-    end)
   end,
 }
