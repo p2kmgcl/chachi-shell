@@ -18,23 +18,16 @@ return {
     {
       "<leader>gb",
       function()
-        require("gitsigns").blame_line()
+        require("gitsigns").blame_line({ full = true })
       end,
       desc = "Git Blame Line",
     },
     {
-      "<leader>gB",
-      function()
-        require("gitsigns").blame()
-      end,
-      desc = "Git Blame File",
-    },
-    {
       "<leader>gd",
       function()
-        require("gitsigns").preview_hunk()
+        require("gitsigns").diffthis()
       end,
-      desc = "Git Diff Hunk",
+      desc = "Git Diff",
     },
     {
       "[h",
@@ -49,15 +42,6 @@ return {
         require("gitsigns").nav_hunk("next")
       end,
       desc = "Next hunk",
-    },
-    {
-      "<leader>gH",
-      function()
-        local gs = require("gitsigns")
-        gs.toggle_deleted()
-        gs.toggle_word_diff()
-      end,
-      desc = "Toggle Inline Hunks",
     },
   },
   config = function(_, opts)
