@@ -1,6 +1,6 @@
 return {
   "nvim-mini/mini.animate",
-  event = "VeryLazy",
+  event = { "BufReadPre", "BufNewFile" },
   cond = vim.g.neovide == nil,
   opts = function(_, opts)
     local mouse_scrolled = false

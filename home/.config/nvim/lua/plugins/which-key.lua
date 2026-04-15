@@ -1,6 +1,6 @@
 return {
   "folke/which-key.nvim",
-  event = "VeryLazy",
+  lazy = false,
   opts = {
     spec = {
       { "<leader>b", group = "Buffer" },
