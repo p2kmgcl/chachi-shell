@@ -147,7 +147,7 @@ return {
       },
     },
     quickfile = { enabled = false },
-    scope = { enabled = true },
+    scope = { enabled = false },
     scroll = { enabled = false },
     statuscolumn = { enabled = true },
     words = { enabled = true },
