@@ -1,5 +1,5 @@
 set fish_greeting ""
 
-if test -f $HOME/.fish.local
-    source $HOME/.fish.local
+if test -f ~/.config/fish/config.local.fish
+    source ~/.config/fish/config.local.fish
 end
