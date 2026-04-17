@@ -16,4 +16,4 @@ for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do
   git branch -v -D "$branch" 2>&1 | prefix cleanup
 done
 
-[ -x "$HOME/.cifuentes.post.local.sh" ] && "$HOME/.cifuentes.post.local.sh" | prefix post
+[ -x "$HOME/.config/git/cifuentes-post.local.sh" ] && "$HOME/.config/git/cifuentes-post.local.sh" | prefix post
