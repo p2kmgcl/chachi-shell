@@ -92,5 +92,4 @@ link_thing .editorconfig
 link_thing .gitconfig
 link_thing .gitconfig.extra
 link_thing .ideavimrc
-link_thing .tmux.conf
 link_thing .wezterm.lua
