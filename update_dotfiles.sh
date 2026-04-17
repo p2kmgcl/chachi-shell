@@ -4,41 +4,49 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 . "$SCRIPT_DIR/lib/echo.sh"
 . "$SCRIPT_DIR/lib/transform.sh"
 . "$SCRIPT_DIR/lib/link.sh"
+. "$SCRIPT_DIR/lib/link_override.sh"
 
 if [ -z "$CHACHI_PATH" ]; then
   echo_error "dotfiles" "CHACHI_PATH is not set. Add this to your environment before running this script."
   exit 1
 fi
 
-link_thing .bin
-link_thing .ssh
+ENTRIES=(
+  .bin
+  .ssh
 
-link_thing .config/alacritty
-link_thing .config/environment.d
-link_thing .config/fish
-link_thing .config/git
-link_thing .config/ghostty
-link_thing .config/hypr
-link_thing .config/i3
-link_thing .config/karabiner
-link_thing .config/kitty
-link_thing .config/helix
-link_thing .config/lazygit
-link_thing .config/nushell
-link_thing .config/nvim
-link_thing .config/opencode
-link_thing .config/rofi
-link_thing .config/starship
-link_thing .config/sway
-link_thing .config/tmux
-link_thing .config/waybar
-link_thing .config/zed
+  .config/alacritty
+  .config/environment.d
+  .config/fish
+  .config/git
+  .config/ghostty
+  .config/hypr
+  .config/i3
+  .config/karabiner
+  .config/kitty
+  .config/helix
+  .config/lazygit
+  .config/nushell
+  .config/nvim
+  .config/opencode
+  .config/rofi
+  .config/starship
+  .config/sway
+  .config/tmux
+  .config/waybar
+  .config/zed
 
-link_thing .Xresources
-link_thing .bash_profile
-link_thing .bashrc
-link_thing .claude
-link_thing .editorconfig
-link_thing .gitconfig
-link_thing .ideavimrc
-link_thing .wezterm.lua
+  .Xresources
+  .bash_profile
+  .bashrc
+  .claude
+  .editorconfig
+  .gitconfig
+  .ideavimrc
+  .wezterm.lua
+)
+
+for entry in "${ENTRIES[@]}"; do
+  link_thing "$entry"
+  link_override "$entry"
+done

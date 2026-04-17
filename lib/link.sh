@@ -39,6 +39,7 @@ link_thing() {
     mv "$target_path" "$backup_path"
   fi
 
+  mkdir -p "$(dirname "$target_path")"
   ln -s "$source_path" "$target_path"
   echo_success "$thing_name" "'$target_path' → '$source_path'"
 }
