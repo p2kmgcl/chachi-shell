@@ -4,20 +4,18 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 . "$SCRIPT_DIR/lib/echo.sh"
 . "$SCRIPT_DIR/lib/transform.sh"
 . "$SCRIPT_DIR/lib/link.sh"
-. "$SCRIPT_DIR/lib/link_override.sh"
-. "$SCRIPT_DIR/lib/link_override_subtree.sh"
+. "$SCRIPT_DIR/lib/link_overrides.sh"
 
 if [ -z "$CHACHI_PATH" ]; then
   echo_error "dotfiles" "CHACHI_PATH is not set. Add this to your environment before running this script."
   exit 1
 fi
 
-ENTRIES=(
+ENTRIES_BASE=(
   .bin
   .ssh
 
   .config/alacritty
-  .config/environment.d
   .config/fish
   .config/git
   .config/ghostty
@@ -29,7 +27,6 @@ ENTRIES=(
   .config/lazygit
   .config/nushell
   .config/nvim
-  .config/opencode
   .config/rofi
   .config/starship
   .config/sway
@@ -47,8 +44,12 @@ ENTRIES=(
   .wezterm.lua
 )
 
-for entry in "${ENTRIES[@]}"; do
+for entry in "${ENTRIES_BASE[@]}"; do
+  if [ ! -e "$CHACHI_PATH/home/$entry" ]; then
+    echo_error "$entry" "missing base source at '$CHACHI_PATH/home/$entry'"
+    exit 1
+  fi
   link_thing "$entry"
-  link_override "$entry"
-  link_override_subtree "$entry"
 done
+
+link_all_overrides
