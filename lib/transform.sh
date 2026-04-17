@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Insert `.local` into a path's basename per the migration naming rule.
 # Leading `.` on a dotfile counts as part of the basename, not a separator,

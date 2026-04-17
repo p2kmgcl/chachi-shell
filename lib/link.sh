@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 link_thing() {
   local thing_name="$1"

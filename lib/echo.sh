@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo_success() {
   echo -e "\e[32;1m[$1]\e[0m\e[32m $2\e[0m"
