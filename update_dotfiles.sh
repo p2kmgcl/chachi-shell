@@ -55,5 +55,5 @@ done
 link_all_overrides
 
 if [ -n "${CHACHI_OVERRIDES_PATH:-}" ] && [ -x "$CHACHI_OVERRIDES_PATH/update_dotfiles.post.sh" ]; then
-  "$CHACHI_OVERRIDES_PATH/update_dotfiles.post.sh"
+  "$CHACHI_OVERRIDES_PATH/update_dotfiles.post.sh" 2>&1 | prefix "⏭️ update_dotfiles.post.sh"
 fi

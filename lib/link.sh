@@ -20,16 +20,16 @@ link_thing() {
     local existing_link="$(readlink $target_path)"
 
     if [ "$source_path" = "$existing_link" ]; then
-      echo_success "$thing_name" "already linked"
+      echo_ok "$thing_name"
       return 0
     else
-      echo_error "[$thing_name]" "'$target_path' is already a link to '$existing_link'"
+      echo_error "$thing_name" "'$target_path' is already a link to '$existing_link'"
       return 2
     fi
   fi
 
   if [ -e "$target_path" ]; then
-    echo_warning "$thing_name" "'$target_path' already exists, moving to '$backup_path'"
+    echo_side_effect "$thing_name" "'$target_path' already exists, moving to '$backup_path'"
 
     if [ -e "$backup_path" ]; then
       echo_error "$thing_name" "'$backup_path' backup directory already exists"
@@ -41,5 +41,5 @@ link_thing() {
 
   mkdir -p "$(dirname "$target_path")"
   ln -s "$source_path" "$target_path"
-  echo_success "$thing_name" "'$target_path' → '$source_path'"
+  echo_new "$thing_name" "'$target_path' → '$source_path'"
 }

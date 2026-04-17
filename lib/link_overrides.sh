@@ -22,12 +22,12 @@ link_all_overrides() {
     rel="${src#"$root/"}"
     transformed="$(compute_local_target "$rel")"
     target="$HOME/$transformed"
-    label="override $transformed"
+    label="☝️ $transformed"
 
     if [ -L "$target" ]; then
       existing_link="$(readlink "$target")"
       if [ "$src" = "$existing_link" ]; then
-        echo_success "$label" "already linked"
+        echo_ok "$label"
         continue
       else
         echo_error "$label" "'$target' is already a link to '$existing_link'"
@@ -42,6 +42,6 @@ link_all_overrides() {
 
     mkdir -p "$(dirname "$target")"
     ln -s "$src" "$target"
-    echo_success "$label" "'$target' → '$src'"
+    echo_new "$label" "'$target' → '$src'"
   done < <(find "$root" -type f -print0)
 }
