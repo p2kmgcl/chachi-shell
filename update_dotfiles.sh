@@ -5,6 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 . "$SCRIPT_DIR/lib/transform.sh"
 . "$SCRIPT_DIR/lib/link.sh"
 . "$SCRIPT_DIR/lib/link_override.sh"
+. "$SCRIPT_DIR/lib/link_override_subtree.sh"
 
 if [ -z "$CHACHI_PATH" ]; then
   echo_error "dotfiles" "CHACHI_PATH is not set. Add this to your environment before running this script."
@@ -49,4 +50,5 @@ ENTRIES=(
 for entry in "${ENTRIES[@]}"; do
   link_thing "$entry"
   link_override "$entry"
+  link_override_subtree "$entry"
 done
