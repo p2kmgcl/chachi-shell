@@ -53,3 +53,7 @@ for entry in "${ENTRIES_BASE[@]}"; do
 done
 
 link_all_overrides
+
+if [ -n "${CHACHI_OVERRIDES_PATH:-}" ] && [ -x "$CHACHI_OVERRIDES_PATH/update_dotfiles.post.sh" ]; then
+  "$CHACHI_OVERRIDES_PATH/update_dotfiles.post.sh"
+fi
