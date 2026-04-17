@@ -84,7 +84,6 @@ link_thing .config/tmux
 link_thing .config/waybar
 link_thing .config/zed
 
-link_thing .Xdefaults
 link_thing .Xresources
 link_thing .bash_profile
 link_thing .bashrc
