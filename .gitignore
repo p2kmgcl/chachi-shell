@@ -17,3 +17,7 @@
 /home/.ssh/id_*
 /home/.ssh/known_hosts
 /home/.ssh/known_hosts.old
+
+# Installer-created local override overlay symlinks (never tracked)
+*.local
+*.local.*
