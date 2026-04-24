@@ -1,8 +1,12 @@
 {
+  "format_on_save": "on",
   "agent_servers": {
     "claude-acp": {
-      "type": "registry"
-    }
+      "favorite_config_option_values": {
+        "model": ["default"],
+      },
+      "type": "registry",
+    },
   },
   "tabs": {
     "file_icons": true,
@@ -79,16 +83,22 @@
   "inline_code_actions": false,
   "languages": {
     "JavaScript": {
+      "language_servers": ["tsgo", "eslint", "!prettier"],
+      "formatter": "none",
       "code_actions_on_format": { "source.fixAll.eslint": true },
-      "language_servers": ["tsgo"],
+      "format_on_save": "off",
     },
     "TypeScript": {
+      "language_servers": ["tsgo", "eslint", "!prettier"],
+      "formatter": "none",
       "code_actions_on_format": { "source.fixAll.eslint": true },
-      "language_servers": ["tsgo"],
+      "format_on_save": "off",
     },
     "TSX": {
+      "language_servers": ["tsgo", "eslint", "!prettier"],
+      "formatter": "none",
       "code_actions_on_format": { "source.fixAll.eslint": true },
-      "language_servers": ["tsgo"],
+      "format_on_save": "off",
     },
   },
   "lsp": {
