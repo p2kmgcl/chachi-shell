@@ -1,40 +1,20 @@
 local function find_claude_pane()
-  local res = vim
-    .system({ "tmux", "list-panes", "-F", "#{pane_id} #{pane_current_command} #{pane_title}" })
-    :wait()
-  if res.code ~= 0 then
-    return nil, res.stderr or "tmux list-panes failed"
+  local result =
+    vim.system({ "tmux", "list-panes", "-f", "#{m/ri:claude,#{pane_title}}", "-F", "#{pane_id}" }):wait()
+
+  if result.code ~= 0 then
+    return nil, result.stderr or "tmux list-panes failed"
   end
-  for line in vim.gsplit(res.stdout or "", "\n", { plain = true }) do
-    if line:lower():match("claude") then
-      local pane_id = line:match("^(%%%d+)")
-      if pane_id then
-        return pane_id
-      end
-    end
+
+  local pane_id = (result.stdout or ""):match("(%%%d+)")
+  if pane_id then
+    return pane_id
   end
+
   return nil, "No tmux pane running claude found"
 end
 
-local function send_to_claude(with_range)
-  local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
-  if path == "" then
-    vim.notify("Buffer has no file", vim.log.levels.WARN, { title = "Tmux paste claude" })
-    return
-  end
-
-  local text = "@" .. path
-  if with_range then
-    local start_line = vim.fn.line("v")
-    local end_line = vim.fn.line(".")
-    if start_line > end_line then
-      start_line, end_line = end_line, start_line
-    end
-    local range = start_line == end_line and tostring(start_line) or (start_line .. "-" .. end_line)
-    text = text .. ":" .. range
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
-  end
-
+local function send(text)
   local pane, err = find_claude_pane()
   if not pane then
     vim.notify(err, vim.log.levels.ERROR, { title = "Tmux paste claude" })
@@ -62,10 +42,35 @@ local function send_to_claude(with_range)
   vim.notify(text .. " → " .. pane, vim.log.levels.INFO, { title = "Tmux paste claude" })
 end
 
-vim.keymap.set("n", "<leader>yl", function()
-  send_to_claude(false)
-end, { desc = "Paste file path to claude tmux pane" })
+local function buf_path()
+  local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
+  if path == "" then
+    vim.notify("Buffer has no file", vim.log.levels.WARN, { title = "Tmux paste claude" })
+    return nil
+  end
+  return path
+end
 
-vim.keymap.set("x", "<leader>yl", function()
-  send_to_claude(true)
-end, { desc = "Paste file path + line range to claude tmux pane" })
+local function send_file()
+  local path = buf_path()
+  if path then
+    send("@" .. path)
+  end
+end
+
+local function send_range()
+  local path = buf_path()
+  if not path then
+    return
+  end
+  local s, e = vim.fn.line("v"), vim.fn.line(".")
+  if s > e then
+    s, e = e, s
+  end
+  local range = s == e and tostring(s) or (s .. "-" .. e)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+  send("@" .. path .. ":" .. range)
+end
+
+vim.keymap.set("n", "<leader>cc", send_file, { desc = "[C]ode to [C]laude" })
+vim.keymap.set("x", "<leader>cc", send_range, { desc = "[C]ode to [C]laude" })
