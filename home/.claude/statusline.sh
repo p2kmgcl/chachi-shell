@@ -1,30 +1,26 @@
 #!/bin/bash
 input=$(cat)
 
-MODEL=$(echo "$input"  | jq -r '.model.display_name // "Claude"')
-CWD=$(echo "$input"   | jq -r '.workspace.current_dir // .cwd // "."')
-COST=$(echo "$input"  | jq -r '.cost.total_cost_usd // 0')
-PCT=$(echo "$input"   | jq -r '.context_window.used_percentage // 0')
-DUR=$(echo "$input"   | jq -r '.cost.total_duration_ms // 0')
-
-CYAN='\033[36m'; YELLOW='\033[33m'; GREEN='\033[32m'; RESET='\033[0m'
+MODEL=$(echo "$input" | jq -r '.model.display_name // "Claude"')
+CWD=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // "."')
+COST=$(echo "$input" | jq -r '.cost.total_cost_usd // 0')
+TRANSCRIPT=$(echo "$input" | jq -r '.transcript_path // ""')
 
 PROJECT="${CWD##*/}"
 BRANCH=$(git -C "$CWD" branch --show-current 2>/dev/null)
 
-LINE1="${CYAN}[${MODEL}]${RESET} 🗂  ${PROJECT}"
-[ -n "$BRANCH" ] && LINE1="${LINE1} | 🌿 ${BRANCH}"
+USED=0
+if [ -f "$TRANSCRIPT" ]; then
+  USED=$(tac "$TRANSCRIPT" | jq -r 'select(.message.usage) | .message.usage | (.input_tokens + (.cache_creation_input_tokens // 0) + (.cache_read_input_tokens // 0))' 2>/dev/null | head -1)
+  [ -z "$USED" ] && USED=0
+fi
 
-BAR_W=20
-FILLED=$(( (PCT * BAR_W) / 100 ))
-EMPTY=$(( BAR_W - FILLED ))
-FILLED_BAR=$(printf '%0.s█' $(seq 1 $FILLED) 2>/dev/null || true)
-EMPTY_BAR=$(printf '%0.s░' $(seq 1 $EMPTY) 2>/dev/null || true)
-
-MINS=$(( DUR / 60000 ))
-SECS=$(( (DUR % 60000) / 1000 ))
+fmt_tok() { awk -v n="$1" 'BEGIN{ if(n>=1000000)printf "%.1fM",n/1000000; else if(n>=1000)printf "%.1fk",n/1000; else printf "%d",n }'; }
+USED_FMT=$(fmt_tok "$USED")
 COST_FMT=$(printf '$%.2f' "$COST")
 
-LINE2="${GREEN}${FILLED_BAR}${RESET}${EMPTY_BAR} ${PCT}% | ${YELLOW}${COST_FMT}${RESET} | ⏱ ${MINS}m ${SECS}s"
+OUT="${PROJECT}"
+[ -n "$BRANCH" ] && OUT="${OUT} | ${BRANCH}"
+OUT="${OUT} | ${USED_FMT} | ${MODEL} | ${COST_FMT}"
 
-echo -e "$LINE1 | $LINE2"
+echo "$OUT"

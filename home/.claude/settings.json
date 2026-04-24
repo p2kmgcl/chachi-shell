@@ -1,5 +1,5 @@
 {
-  "model": "opus",
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
@@ -24,5 +24,10 @@
     }
   },
   "effortLevel": "medium",
-  "skipDangerousModePermissionPrompt": true
+  "awaySummaryEnabled": false,
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "light-daltonized",
+  "editorMode": "normal",
+  "verbose": true,
+  "preferredNotifChannel": "ghostty"
 }

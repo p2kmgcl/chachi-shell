@@ -1,4 +1,9 @@
 {
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
   "tabs": {
     "file_icons": true,
   },
@@ -6,16 +11,7 @@
     "border_size": 0,
     "inactive_opacity": 0.8,
   },
-  "agent": {
-    "default_model": {
-      "provider": "anthropic",
-      "model": "claude-opus-4-5-latest"
-    },
-    "default_profile": "ask",
-    "always_allow_tool_actions": true,
-  },
   "auto_install_extensions": {
-    "catppuccin": true,
     "dockerfile": true,
     "git-firefly": true,
     "github-classic": true,
@@ -24,17 +20,9 @@
     "toml": true,
     "tsgo": true,
   },
-  "bottom_dock_layout": "full",
   "buffer_font_family": "Maple Mono NF CN",
-  "buffer_font_size": 16,
-  "buffer_line_height": "standard",
-  "chat_panel": {
-    "button": "when_in_call",
-    "dock": "right",
-  },
-  "collaboration_panel": {
-    "button": false,
-  },
+  "buffer_font_size": 14.0,
+  "buffer_line_height": "comfortable",
   "current_line_highlight": "all",
   "diagnostics": {
     "button": true,
@@ -51,10 +39,6 @@
       "enabled": true,
     },
   },
-  "disable_ai": false,
-  "edit_predictions": {
-    "mode": "subtle",
-  },
   "expand_excerpt_lines": 0,
   "git": {
     "path_style": "file_name_first",
@@ -68,11 +52,10 @@
   "git_panel": {
     "collapse_untracked_diff": false,
     "scrollbar": {
-      "show": "auto"
+      "show": "auto",
     },
     "tree_view": true,
     "status_style": "label_color",
-    "dock": "right",
   },
   "gutter": {
     "breakpoints": false,
@@ -97,15 +80,15 @@
   "languages": {
     "JavaScript": {
       "code_actions_on_format": { "source.fixAll.eslint": true },
-      "language_servers": ["!vtsls", "tsgo"],
+      "language_servers": ["tsgo"],
     },
     "TypeScript": {
       "code_actions_on_format": { "source.fixAll.eslint": true },
-      "language_servers": ["!vtsls", "tsgo"],
+      "language_servers": ["tsgo"],
     },
     "TSX": {
       "code_actions_on_format": { "source.fixAll.eslint": true },
-      "language_servers": ["!vtsls", "tsgo"],
+      "language_servers": ["tsgo"],
     },
   },
   "lsp": {
@@ -140,19 +123,12 @@
     "thumb": "always",
     "thumb_border": "none",
   },
-  "notification_panel": {
-    "button": false,
-  },
-  "outline_panel": {
-    "button": false,
-  },
   "preferred_line_length": 80,
   "project_panel": {
     "drag_and_drop": true,
     "auto_fold_dirs": true,
     "auto_reveal_entries": true,
     "button": true,
-    "dock": "left",
     "entry_spacing": "standard",
     "file_icons": true,
     "folder_icons": true,
@@ -187,24 +163,18 @@
   },
   "terminal": {
     "scrollbar": {
-      "show": "auto"
+      "show": "auto",
     },
     "button": true,
     "default_height": 400,
-    "dock": "bottom",
     "font_family": "Maple Mono NF CN",
     "font_size": 12.0,
     "line_height": "standard",
     "toolbar": { "breadcrumbs": false },
   },
-  "title_bar": {
-    "show_branch_icon": true,
-    "show_branch_name": true,
-    "show_project_items": true,
-  },
   "theme": {
-    "dark": "Github Dark Colorblind",
-    "light": "Github Light Colorblind",
+    "dark": "GitHub Dark Colorblind",
+    "light": "GitHub Light Colorblind",
     "mode": "system",
   },
   "toolbar": {
