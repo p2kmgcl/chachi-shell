@@ -31,4 +31,21 @@ return {
     "package.json",
     ".git/",
   },
+  settings = {
+    typescript = {
+      preferences = {
+        importModuleSpecifier = "non-relative",
+        autoImportSpecifierExcludeRegexes = { "packages/", "^packages" },
+      },
+      tsserver = {
+        useSyntaxServer = "auto",
+        maxTsServerMemory = 1024 * 24,
+        nodePath = "node",
+        watchOptions = {
+          excludeDirectories = { "**/node_modules", "**/.yarn", "**/.sarif" },
+          excludeFiles = { ".pnp.cjs" },
+        },
+      },
+    },
+  }
 }
