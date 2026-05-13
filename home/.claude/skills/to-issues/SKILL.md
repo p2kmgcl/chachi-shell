@@ -13,6 +13,13 @@ Break a plan into independently-grabbable issues using vertical slices (tracer b
 
 Work from whatever is already in the conversation context. If the user passes an issue reference (issue number, URL, or path) as an argument, fetch it from the issue tracker and read its full body and comments.
 
+Identify the active PRD. PRDs live in `.agent-state/prds/<slug>/PRD.md`. From the conversation context, infer which slug this run is about:
+
+- If only one PRD directory exists, use it.
+- If multiple exist, pick the one the conversation is iterating on. Ask the user only if it's genuinely ambiguous.
+
+All subsequent file paths in this skill are scoped to that PRD's directory.
+
 ### 2. Explore the codebase (optional)
 
 If you have not already explored the codebase, do so to understand the current state of the code. Issue titles and descriptions should use the project's domain glossary vocabulary, and respect ADRs in the area you're touching.
@@ -49,7 +56,7 @@ Iterate until the user approves the breakdown.
 
 ### 5. Publish the issues to the issue tracker
 
-For each approved slice, create a file `<repository-root>/.agent-state/issue-X.md`.
+For each approved slice, create a file `<repository-root>/.agent-state/prds/<slug>/issue-X.md`, where `<slug>` is the active PRD identified in step 1. Issue numbers restart at 1 within each PRD.
 
 Create issues in dependency order (blockers first) so you can reference real issue identifiers in the "Blocked by" field.
 
@@ -62,7 +69,7 @@ blocked_by: [1, 2]
 
 ## Parent
 
-A reference to the PRD at `.agent-state/PRD.md`.
+A reference to the PRD at `.agent-state/prds/<slug>/PRD.md`.
 
 ## What to build
 

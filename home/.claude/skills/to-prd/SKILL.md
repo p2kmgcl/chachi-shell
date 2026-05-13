@@ -5,6 +5,8 @@ description: Turn the current conversation context into a PRD and publish it to 
 
 This skill takes the current conversation context and codebase understanding and produces a PRD. Do NOT interview the user — just synthesize what you already know.
 
+A repository can hold multiple PRDs at once, each in its own directory under `.agent-state/prds/<slug>/`.
+
 ## Process
 
 1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the PRD, and respect any ADRs in the area you're touching.
@@ -15,7 +17,17 @@ A deep module (as opposed to a shallow module) is one which encapsulates a lot o
 
 Check with the user that these modules match their expectations. Check with the user which modules they want tests written for.
 
-3. Write the PRD using the template below to `<repository-root>/.agent-state/PRD.md`. There is only ever ONE active PRD per repository — if the file already exists, overwrite it (after confirming with the user if prior issues exist alongside it).
+3. Pick a slug for the PRD.
+
+Generate a short kebab-case slug from the PRD's problem statement (e.g. `multi-prd-support`, `account-balance-widget`). The slug is the directory name under `.agent-state/prds/`.
+
+Then check `.agent-state/prds/` for a collision:
+
+- No collision → create `.agent-state/prds/<slug>/` and write the PRD there.
+- Collision, and the current conversation is iterating on the existing PRD → update that PRD in place. If the directory already contains `issue-*.md` files, confirm with the user before overwriting.
+- Collision, but the conversation is about a different topic that happens to produce the same slug → append a numeric suffix (`<slug>-2`, `<slug>-3`, …) and use that.
+
+4. Write the PRD to `<repository-root>/.agent-state/prds/<slug>/PRD.md` using the template below.
 
 <prd-template>
 

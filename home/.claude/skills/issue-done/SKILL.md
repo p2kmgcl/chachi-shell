@@ -15,11 +15,12 @@ The active issue should be obvious from the conversation context — it's the on
 
 If you can't tell:
 
-1. Read all `issue-N.md` files in `.agent-state/`.
-2. List those with `status: in-progress`.
-3. If exactly one, use it.
-4. If multiple, ask the user which one to mark done.
-5. If none, report: "No in-progress issue found." and stop.
+1. Identify the active PRD. PRDs live in `.agent-state/prds/<slug>/`. Infer the slug from conversation context; if only one PRD exists, use it; ask the user only if genuinely ambiguous.
+2. Read all `issue-N.md` files in that PRD's directory (`.agent-state/prds/<slug>/`).
+3. List those with `status: in-progress`.
+4. If exactly one, use it.
+5. If multiple, ask the user which one to mark done.
+6. If none, report: "No in-progress issue found." and stop.
 
 ### 2. Flip the status
 

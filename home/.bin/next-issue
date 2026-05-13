@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # next-issue: status board + picker for PRDs created by /to-prd and /to-issues.
-# Reads .agent-state/, presents an interactive menu, then invokes `claude`
-# with a prompt corresponding to the chosen action.
+# Reads .agent-state/prds/<slug>/, presents an interactive menu, then invokes
+# `claude` with a prompt corresponding to the chosen action.
 
 set -euo pipefail
 
@@ -13,9 +13,11 @@ Usage:
   next-issue          Show menu and act on selection.
   next-issue --help   Show this help.
 
-Reads .agent-state/PRD.md and .agent-state/issue-*.md from the current
-repository. Each issue must have YAML frontmatter with `status` and `title`
-(and optionally `blocked_by`).
+Reads .agent-state/prds/<slug>/PRD.md and .agent-state/prds/<slug>/issue-*.md
+from the current repository. Each issue must have YAML frontmatter with
+`status` and `title` (and optionally `blocked_by`).
+
+If multiple PRDs exist, prompts to pick one first.
 EOF
 }
 
@@ -26,12 +28,50 @@ fi
 
 repo_root=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
 state_dir="$repo_root/.agent-state"
-prd_path="$state_dir/PRD.md"
-prd_rel=".agent-state/PRD.md"
+prds_dir="$state_dir/prds"
 
 die() { echo "$*" >&2; exit 1; }
 
-[[ -f "$prd_path" ]] || die "No PRD found at $prd_rel. Run /to-prd first."
+# --- pick a PRD -----------------------------------------------------------
+
+[[ -d "$prds_dir" ]] || die "No PRDs found at .agent-state/prds/. Run /to-prd first."
+
+shopt -s nullglob
+prd_dirs=("$prds_dir"/*/)
+shopt -u nullglob
+
+[[ ${#prd_dirs[@]} -gt 0 ]] || die "No PRDs found at .agent-state/prds/. Run /to-prd first."
+
+declare -a prd_slugs
+for d in "${prd_dirs[@]}"; do
+    slug=$(basename "$d")
+    [[ -f "$d/PRD.md" ]] || continue
+    prd_slugs+=("$slug")
+done
+
+[[ ${#prd_slugs[@]} -gt 0 ]] || die "No PRD.md found in any .agent-state/prds/<slug>/."
+
+if [[ ${#prd_slugs[@]} -eq 1 ]]; then
+    prd_slug=${prd_slugs[0]}
+else
+    printf '\nMultiple PRDs found. Pick one:\n\n'
+    for i in "${!prd_slugs[@]}"; do
+        printf '  %d. %s\n' "$((i + 1))" "${prd_slugs[$i]}"
+    done
+    printf '\n'
+    while :; do
+        read -r -p "Choice: " choice </dev/tty || die "No input."
+        if [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ${#prd_slugs[@]} )); then
+            prd_slug=${prd_slugs[$((choice - 1))]}
+            break
+        fi
+        echo "Invalid choice: $choice" >&2
+    done
+fi
+
+prd_dir="$prds_dir/$prd_slug"
+prd_path="$prd_dir/PRD.md"
+prd_rel=".agent-state/prds/$prd_slug/PRD.md"
 
 # --- frontmatter parsing --------------------------------------------------
 
@@ -89,7 +129,7 @@ fm_blocked_by() {
 # --- collect issues -------------------------------------------------------
 
 shopt -s nullglob
-issue_files=("$state_dir"/issue-*.md)
+issue_files=("$prd_dir"/issue-*.md)
 shopt -u nullglob
 
 if [[ ${#issue_files[@]} -eq 0 ]]; then
@@ -148,7 +188,7 @@ if [[ $has_issues -eq 1 ]]; then
             [[ "$s" != "done" ]] && { all_done=0; break; }
         done
         if [[ $all_done -eq 1 ]]; then
-            echo "PRD complete."
+            echo "PRD '$prd_slug' complete."
             exit 0
         fi
     fi
@@ -216,7 +256,7 @@ menu_actions+=("amend")
 # --- render menu ----------------------------------------------------------
 
 print_menu() {
-    printf '\n'
+    printf '\nPRD: %s\n' "$prd_slug"
     for i in "${!menu_keys[@]}"; do
         local k=${menu_keys[$i]} l=${menu_labels[$i]} a=${menu_actions[$i]}
         if [[ "$a" == "spacer" ]]; then
@@ -293,7 +333,7 @@ case "$action" in
             set_status_in_progress "$path"
             echo "Marked issue #$n as in-progress."
         fi
-        exec claude "Lets work in @.agent-state/issue-$n.md /caveman /tdd"
+        exec claude "Lets work in @.agent-state/prds/$prd_slug/issue-$n.md /caveman /tdd"
         ;;
 
     to-issues)
@@ -301,14 +341,14 @@ case "$action" in
         ;;
 
     redefine)
-        printf 'This will DELETE %s and every issue-*.md. Continue? [y/N]: ' "$prd_rel"
+        printf 'This will DELETE the PRD directory .agent-state/prds/%s/ and every issue inside it. Continue? [y/N]: ' "$prd_slug"
         read -r confirm </dev/tty || confirm=""
         case "$confirm" in
             y|Y|yes|YES) ;;
             *) echo "Aborted."; exit 0 ;;
         esac
-        rm -f "$prd_path" "$state_dir"/issue-*.md
-        echo "Wiped $prd_rel and issues. Run /to-prd to start over."
+        rm -rf "$prd_dir"
+        echo "Wiped .agent-state/prds/$prd_slug/. Run /to-prd to start over."
         ;;
 
     amend)
