@@ -6,14 +6,6 @@ if status is-interactive
 
     fish_add_path $HOME/.local/bin
 
-    if test -z "$CHACHI_PATH"
-        if test -d "$HOME/Projects/chachi-shell"
-            set -gx CHACHI_PATH "$HOME/Projects/chachi-shell"
-        else if test -d "$HOME/chachi-shell"
-            set -gx CHACHI_PATH "$HOME/chachi-shell"
-        end
-    end
-
     if test -n "$CHACHI_PATH" -a -d "$CHACHI_PATH/home/.bin"
         fish_add_path $CHACHI_PATH/home/.bin
     end

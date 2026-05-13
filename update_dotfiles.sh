@@ -41,7 +41,11 @@ ENTRIES_BASE=(
   .editorconfig
   .gitconfig
   .ideavimrc
+  .profile
   .wezterm.lua
+  .zprofile
+  .zshenv
+  .zshrc
 )
 
 for entry in "${ENTRIES_BASE[@]}"; do
