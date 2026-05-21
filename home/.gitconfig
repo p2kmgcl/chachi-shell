@@ -97,6 +97,7 @@
   do-clean-all-non-git-files = clean --force -d -X
   do-clean-local-repository = gc --prune=now --aggressive
   do-ignore-changes-on-file = update-index --assume-unchanged
+  do-list-changed-files-vs-main = "!sh -c 'main=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null | sed s@^origin/@@); base=$(git merge-base HEAD origin/\"$main\"); { git diff --name-only \"$base\" HEAD; git diff --name-only HEAD; git ls-files --others --exclude-standard; } | sort -u'"
   do-list-conflict-files = diff --name-only --diff-filter=U
   do-list-files-in-a-commit = ls-tree -r --name-only
   do-make-file-disapear-from-history = !~/.config/git/git-do-make-file-disapear-from-history
