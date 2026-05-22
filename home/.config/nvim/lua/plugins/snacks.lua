@@ -1,15 +1,5 @@
-local function get_snacks(opts)
-  local options = { close_mini_files = true }
-  if opts then
-    options = vim.tbl_deep_extend("force", options, opts)
-  end
-
-  local snacks = require("snacks")
-  if options.close_mini_files then
-    local mini_files = require("mini.files")
-    mini_files.close()
-  end
-  return snacks
+local function get_snacks()
+  return require("snacks")
 end
 
 local function copy_git_link()
@@ -64,32 +54,30 @@ local function git_status()
 end
 
 local function grep()
-  local get_mini_files_path = require("helpers.get-mini-files-path")
-  local mini_files_path = get_mini_files_path({ close_explorer = true })
+  local explorer_path = require("helpers.get-explorer-path")()
 
   local title = "Grep"
-  if mini_files_path then
-    title = title .. " (" .. vim.fn.fnamemodify(mini_files_path, ":.") .. ")"
+  if explorer_path then
+    title = title .. " (" .. vim.fn.fnamemodify(explorer_path, ":.") .. ")"
   end
 
-  get_snacks({ close_explorer = false }).picker.grep({
+  get_snacks().picker.grep({
     title = title,
-    cwd = mini_files_path,
+    cwd = explorer_path,
   })
 end
 
 local function find()
-  local get_mini_files_path = require("helpers.get-mini-files-path")
-  local mini_files_path = get_mini_files_path({ close_explorer = true })
+  local explorer_path = require("helpers.get-explorer-path")()
 
   local title = "Find"
-  if mini_files_path then
-    title = title .. " (" .. vim.fn.fnamemodify(mini_files_path, ":.") .. ")"
+  if explorer_path then
+    title = title .. " (" .. vim.fn.fnamemodify(explorer_path, ":.") .. ")"
   end
 
-  get_snacks({ close_explorer = false }).picker.files({
+  get_snacks().picker.files({
     title = title,
-    cwd = mini_files_path,
+    cwd = explorer_path,
     hidden = true,
     ignored = false,
     follow = true,
@@ -103,12 +91,18 @@ return {
   opts = {
     bigfile = { enabled = true },
     dashboard = { enabled = false },
-    explorer = { enabled = false },
     image = { enabled = false },
     input = { enabled = true },
     notifier = { enabled = true },
     picker = {
       enabled = true,
+      icons = {
+        tree = {
+          vertical = "  ",
+          middle = "  ",
+          last = "  ",
+        },
+      },
       formatters = {
         file = {
           filename_first = true,
@@ -126,18 +120,6 @@ return {
         },
       },
       sources = {
-        explorer = {
-          hidden = true,
-          follow = true,
-          layout = {
-            preset = "sidebar",
-            preview = false,
-            layout = {
-              position = "right",
-              width = 80,
-            },
-          },
-        },
         grep = {
           hidden = true,
         },

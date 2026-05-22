@@ -7,12 +7,12 @@ return {
       "<leader>sr",
       function()
         local grug = require("grug-far")
-        local get_mini_files_path = require("helpers.get-mini-files-path")
+        local get_explorer_path = require("helpers.get-explorer-path")
 
         grug.open({
           transient = true,
           prefills = {
-            paths = get_mini_files_path({ close_explorer = true }),
+            paths = get_explorer_path(),
             flags = "--hidden",
           },
         })
