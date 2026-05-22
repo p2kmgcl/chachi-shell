@@ -38,7 +38,7 @@ return {
 
     return vim.tbl_deep_extend("force", opts, {
       resize = {
-        timing = animate.gen_timing.linear({ duration = 50, unit = "total" }),
+        timing = animate.gen_timing.linear({ duration = 0, unit = "total" }),
       },
       scroll = {
         timing = animate.gen_timing.linear({ duration = 100, unit = "total" }),
