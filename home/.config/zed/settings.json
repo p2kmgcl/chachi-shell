@@ -68,7 +68,7 @@
     "min_line_number_digits": 3,
     "runnables": false,
   },
-  "hide_mouse": "on_typing_and_movement",
+  "hide_mouse": "on_typing_and_action",
   "icon_theme": {
     "mode": "system",
     "light": "Zed (Default)",
