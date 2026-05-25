@@ -17,6 +17,10 @@ If a question can be answered by exploring the codebase, explore the codebase in
 
 ## Domain awareness
 
+> **`.agent-state/` is local-only and is not committed to the repo.** It is gitignored and exists only on the current machine. Never reference `.agent-state/` paths from committed artifacts — source code, comments, PR descriptions, commit messages, issues, RFCs, or any docs that ship with the repo. The contents are for agent context only; if a fact belongs in the repo, write it in the actual codebase or in committed docs instead.
+>
+> **For the same reason, prefer putting domain knowledge in agent-facing markdown files that live inside the repo** (e.g., `AGENTS.md`, `CLAUDE.md`, package-level `AGENTS.md`, or other committed docs) so project-wide information is shared with teammates and survives across machines. Reach for `.agent-state/CONTEXT.md` or `.agent-state/adr/` only when the information is genuinely agent-scratchpad state — not when it's something the team should also see.
+
 During codebase exploration, also look for existing documentation:
 
 ### File structure

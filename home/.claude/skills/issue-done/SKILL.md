@@ -7,6 +7,8 @@ description: Mark the issue currently being worked on as done. Use ONLY when the
 
 Mark the in-progress issue as `done`.
 
+> **`.agent-state/` is local-only and not committed to the repo.** It is gitignored and exists only on the current machine. Issue files under `.agent-state/prds/` are agent working state — never reference `.agent-state/` paths from committed artifacts (source, PR descriptions, commits, tracker issues, RFCs).
+
 ## Process
 
 ### 1. Identify the issue

@@ -1,5 +1,7 @@
 # CONTEXT.md Format
 
+> **`.agent-state/` is local-only and not committed to the repo.** CONTEXT.md and CONTEXT-MAP.md files under `.agent-state/` are gitignored agent working state. Never link to `.agent-state/` paths from committed artifacts.
+
 ## Structure
 
 ```md

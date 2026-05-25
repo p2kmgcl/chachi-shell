@@ -4,6 +4,8 @@ ADRs live in `.agent-state/adr/` and use sequential numbering: `0001-slug.md`, `
 
 Create the `.agent-state/adr/` directory lazily — only when the first ADR is needed.
 
+> **`.agent-state/` is local-only and not committed to the repo.** ADR files here are gitignored agent working state. Never link to `.agent-state/adr/` paths from committed artifacts (source, PR descriptions, commits, tracker issues, RFCs). If an ADR needs to be shared, publish its content to the team's docs system instead.
+
 ## Template
 
 ```md

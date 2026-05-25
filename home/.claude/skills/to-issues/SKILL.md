@@ -13,6 +13,8 @@ Break a plan into independently-grabbable issues using vertical slices (tracer b
 
 Work from whatever is already in the conversation context. If the user passes an issue reference (issue number, URL, or path) as an argument, fetch it from the issue tracker and read its full body and comments.
 
+> **`.agent-state/` is local-only and not committed to the repo.** It is gitignored and exists only on the current machine. PRDs and issue files written here are agent working state — never reference `.agent-state/` paths from committed artifacts (source, PR descriptions, commits, issues on the tracker, RFCs). When the issue is posted to the tracker, the tracker copy is the source of truth.
+
 Identify the active PRD. PRDs live in `.agent-state/prds/<slug>/PRD.md`. From the conversation context, infer which slug this run is about:
 
 - If only one PRD directory exists, use it.

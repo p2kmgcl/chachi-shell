@@ -7,6 +7,8 @@ This skill takes the current conversation context and codebase understanding and
 
 A repository can hold multiple PRDs at once, each in its own directory under `.agent-state/prds/<slug>/`.
 
+> **`.agent-state/` is local-only and not committed to the repo.** It is gitignored and exists only on the current machine. PRDs written here are working state for agents — never reference `.agent-state/` paths from committed artifacts (source code, PR descriptions, commit messages, issues, RFCs, or repo docs). If the PRD needs to be shared, publish it to the issue tracker or a docs system; don't link to the local path.
+
 ## Process
 
 1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the PRD, and respect any ADRs in the area you're touching.

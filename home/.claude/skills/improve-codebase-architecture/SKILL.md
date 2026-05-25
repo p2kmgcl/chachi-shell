@@ -9,6 +9,8 @@ Surface architectural friction and propose **deepening opportunities** — refac
 
 Domain documentation lives under `.agent-state/`: `CONTEXT.md`, `CONTEXT-MAP.md`, and ADRs under `.agent-state/adr/`.
 
+> **`.agent-state/` is local-only and not committed to the repo.** It is gitignored and exists only on the current machine. Never reference `.agent-state/` paths from committed artifacts — source code, comments, PR descriptions, commit messages, issues, RFCs, or any docs that ship with the repo. Use it as agent context only.
+
 ## Glossary
 
 Use these terms exactly in every suggestion. Consistent language is the point — don't drift into "component," "service," "API," or "boundary." Full definitions in [LANGUAGE.md](LANGUAGE.md).
