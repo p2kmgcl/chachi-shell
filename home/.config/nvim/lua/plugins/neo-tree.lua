@@ -38,10 +38,9 @@ return {
     },
   },
   keys = {
-    {
-      "<leader>e",
-      "<cmd>Neotree toggle<cr>",
-      desc = "Toggle Explorer (project root)",
-    },
+    { "<leader>ee", "<cmd>Neotree toggle<cr>", desc = "Explorer: toggle" },
+    { "<leader>ef", "<cmd>Neotree source=filesystem<cr>", desc = "Explorer: files" },
+    { "<leader>eg", "<cmd>Neotree source=git_status<cr>", desc = "Explorer: git status" },
+    { "<leader>eb", "<cmd>Neotree source=buffers<cr>", desc = "Explorer: buffers" },
   },
 }
