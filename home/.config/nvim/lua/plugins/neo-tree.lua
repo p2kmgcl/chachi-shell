@@ -8,6 +8,7 @@ return {
   },
   opts = {
     close_if_last_window = true,
+    enable_git_status = false,
     window = {
       position = "right",
       width = 30,
@@ -40,7 +41,6 @@ return {
   keys = {
     { "<leader>ee", "<cmd>Neotree toggle<cr>", desc = "Explorer: toggle" },
     { "<leader>ef", "<cmd>Neotree source=filesystem<cr>", desc = "Explorer: files" },
-    { "<leader>eg", "<cmd>Neotree source=git_status<cr>", desc = "Explorer: git status" },
     { "<leader>eb", "<cmd>Neotree source=buffers<cr>", desc = "Explorer: buffers" },
   },
 }
