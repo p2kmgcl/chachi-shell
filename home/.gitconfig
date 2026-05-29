@@ -14,7 +14,7 @@
   pager = delta
 
 [delta]
-  light = true
+  light = false
   max-line-length = 512
   navigate = true
 

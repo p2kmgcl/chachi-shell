@@ -23,7 +23,7 @@
   "awaySummaryEnabled": false,
   "autoMemoryEnabled": false,
   "skipDangerousModePermissionPrompt": true,
-  "theme": "light-daltonized",
+  "theme": "dark-daltonized",
   "editorMode": "normal",
   "verbose": true,
   "preferredNotifChannel": "ghostty"

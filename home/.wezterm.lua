@@ -12,7 +12,7 @@ config.font = wezterm.font({
 config.font_size = 16
 config.line_height = 1.1
 
-config.color_scheme = "Github"
+config.color_scheme = "GitHub Dark Default"
 config.window_background_opacity = 1.0
 
 config.enable_tab_bar = true
