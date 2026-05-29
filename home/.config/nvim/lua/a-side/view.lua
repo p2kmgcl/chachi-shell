@@ -44,9 +44,9 @@ local function apply_window_locals(winid)
   vim.wo[winid].winfixwidth = true
   vim.wo[winid].signcolumn = "no"
   vim.wo[winid].foldcolumn = "0"
-  vim.wo[winid].statusline = "─"
+  vim.wo[winid].statusline = " "
   vim.api.nvim_win_call(winid, function()
-    vim.opt_local.fillchars = vim.tbl_extend("force", vim.opt.fillchars:get(), { horiz = "─", stl = "─", stlnc = "─" })
+    vim.opt_local.fillchars = vim.tbl_extend("force", vim.opt.fillchars:get(), { horiz = " ", stl = " ", stlnc = " " })
   end)
   vim.wo[winid].winhighlight = "WinSeparator:AsideSeparator,StatusLine:AsideSeparator,StatusLineNC:AsideSeparator"
 end
