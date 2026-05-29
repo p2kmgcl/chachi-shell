@@ -3,6 +3,7 @@ vim.g.maplocalleader = "\\"
 
 require('options')
 require('lazy-setup')
+require('a-side.a-side')
 
 local require_all = require('helpers.require-all')
 require_all('keymaps')

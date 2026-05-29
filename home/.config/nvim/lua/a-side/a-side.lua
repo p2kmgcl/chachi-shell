@@ -1,0 +1,5 @@
+require('a-side.regions.buffers.buffers')
+require('a-side.regions.explorer.explorer')
+require('a-side.regions.git.git')
+require('a-side.view')
+require('a-side.keymaps')

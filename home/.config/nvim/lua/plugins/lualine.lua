@@ -2,6 +2,12 @@ return {
   "nvim-lualine/lualine.nvim",
   lazy = false,
   opts = {
+    options = {
+      disabled_filetypes = {
+        statusline = { "aside-buffers", "aside-explorer", "aside-git" },
+        winbar = { "aside-buffers", "aside-explorer", "aside-git" },
+      },
+    },
     sections = {
       lualine_a = {
         {
