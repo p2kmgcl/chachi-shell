@@ -185,7 +185,7 @@
   "theme": {
     "dark": "GitHub Dark Colorblind",
     "light": "GitHub Light Colorblind",
-    "mode": "system",
+    "mode": "dark",
   },
   "toolbar": {
     "breadcrumbs": false,

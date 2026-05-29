@@ -28,7 +28,7 @@ history = 99999
 [window]
 blur = false
 decorations = "full"
-decorations_theme_variant = "Light"
+decorations_theme_variant = "Dark"
 dynamic_padding = true
 dynamic_title = true
 opacity = 1.0
@@ -39,31 +39,31 @@ resize_increments = true
 [colors]
 draw_bold_text_with_bright_colors = true
 
-# https://github.com/alacritty/alacritty-theme/blob/master/themes/github_light_colorblind.toml
+# https://github.com/alacritty/alacritty-theme/blob/master/themes/github_dark_colorblind.toml
 
 [colors.primary]
-background = '#ffffff'
-foreground = '#0E1116'
+background = '#0d1117'
+foreground = '#b3b1ad'
 
 [colors.normal]
-black   = '#24292f'
-red     = '#cf222e'
-green   = '#116329'
-yellow  = '#4d2d00'
-blue    = '#0969da'
-magenta = '#8250df'
-cyan    = '#1b7c83'
-white   = '#6e7781'
+black   = '#484f58'
+red     = '#ff7b72'
+green   = '#3fb950'
+yellow  = '#d29922'
+blue    = '#58a6ff'
+magenta = '#bc8cff'
+cyan    = '#39c5cf'
+white   = '#b1bac4'
 
 [colors.bright]
-black   = '#57606a'
-red     = '#a40e26'
-green   = '#1a7f37'
-yellow  = '#633c01'
-blue    = '#218bff'
-magenta = '#a475f9'
-cyan    = '#3192aa'
-white   = '#8c959f'
+black   = '#6e7681'
+red     = '#ffa198'
+green   = '#56d364'
+yellow  = '#e3b341'
+blue    = '#79c0ff'
+magenta = '#d2a8ff'
+cyan    = '#56d4dd'
+white   = '#f0f6fc'
 
 [[colors.indexed_colors]]
 index = 16
@@ -71,4 +71,4 @@ color = '#d18616'
 
 [[colors.indexed_colors]]
 index = 17
-color = '#a40e26'
+color = '#ffa198'

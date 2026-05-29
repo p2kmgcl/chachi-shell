@@ -1,4 +1,4 @@
-theme = "github_light_colorblind"
+theme = "github_dark_colorblind"
 
 [editor]
 middle-click-paste = false
