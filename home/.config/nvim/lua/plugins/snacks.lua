@@ -94,6 +94,9 @@ return {
     image = { enabled = false },
     input = { enabled = true },
     notifier = { enabled = true },
+    styles = {
+      notification = { wo = { winblend = 0 } },
+    },
     picker = {
       enabled = true,
       icons = {
