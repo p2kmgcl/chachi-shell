@@ -1,15 +1,10 @@
 {
-  "model": "opus[1m]",
+  "model": "sonnet",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
-  "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": true
-  },
+  "enabledPlugins": {},
   "extraKnownMarketplaces": {
     "claude-code-plugins": {
       "source": {
@@ -26,10 +21,10 @@
   },
   "effortLevel": "medium",
   "awaySummaryEnabled": false,
+  "autoMemoryEnabled": false,
   "skipDangerousModePermissionPrompt": true,
   "theme": "light-daltonized",
   "editorMode": "normal",
   "verbose": true,
-  "preferredNotifChannel": "ghostty",
-  "autoMemoryEnabled": false
+  "preferredNotifChannel": "ghostty"
 }
