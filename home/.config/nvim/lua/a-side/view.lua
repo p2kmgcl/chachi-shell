@@ -14,11 +14,11 @@ local regions = {
 local scroll_indicators = require("a-side.decorators.scroll_indicators")
 local prevent_scroll_past_end = require("a-side.decorators.prevent_scroll_past_end")
 local quit_on_last_window = require("a-side.decorators.quit_on_last_window")
+local atomic_close = require("a-side.decorators.atomic_close")
 
 local bufnrs = {}
 local winids = {}
 local closing = false
-local close_autocmd_id
 local resize_autocmd_id
 local dir_autocmd_id
 
@@ -151,24 +151,6 @@ end
 local close -- forward declaration
 
 local function register_autocmds()
-  if close_autocmd_id then
-    pcall(vim.api.nvim_del_autocmd, close_autocmd_id)
-  end
-  close_autocmd_id = vim.api.nvim_create_autocmd("WinClosed", {
-    callback = function(args)
-      if closing then
-        return
-      end
-      local closed = tonumber(args.match)
-      for _, region in ipairs(regions) do
-        if winids[region.name] == closed then
-          close()
-          return
-        end
-      end
-    end,
-  })
-
   if resize_autocmd_id then
     pcall(vim.api.nvim_del_autocmd, resize_autocmd_id)
   end
@@ -239,6 +221,7 @@ local function open()
   for _, region in ipairs(regions) do
     table.insert(winid_list, winids[region.name])
   end
+  atomic_close.enable(winid_list, close)
   scroll_indicators.enable(winid_list)
   prevent_scroll_past_end.enable(winid_list)
   quit_on_last_window.enable(winid_list)
@@ -251,6 +234,7 @@ close = function()
     return
   end
   closing = true
+  atomic_close.disable()
   scroll_indicators.disable()
   prevent_scroll_past_end.disable()
   quit_on_last_window.disable()
@@ -265,10 +249,6 @@ close = function()
       pcall(vim.api.nvim_win_close, winid, true)
     end
     winids[region.name] = nil
-  end
-  if close_autocmd_id then
-    pcall(vim.api.nvim_del_autocmd, close_autocmd_id)
-    close_autocmd_id = nil
   end
   if resize_autocmd_id then
     pcall(vim.api.nvim_del_autocmd, resize_autocmd_id)
