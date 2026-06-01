@@ -15,34 +15,21 @@ ENTRIES_BASE=(
   .bin
   .ssh
 
-  .config/alacritty
   .config/fish
   .config/git
   .config/ghostty
-  .config/hypr
-  .config/i3
-  .config/karabiner
-  .config/kitty
-  .config/helix
   .config/lazygit
-  .config/nushell
   .config/nvim
-  .config/rofi
   .config/starship
-  .config/sway
   .config/tmux
-  .config/waybar
   .config/zed
 
-  .Xresources
   .bash_profile
   .bashrc
   .claude
   .editorconfig
   .gitconfig
-  .ideavimrc
   .profile
-  .wezterm.lua
   .zprofile
   .zshenv
   .zshrc

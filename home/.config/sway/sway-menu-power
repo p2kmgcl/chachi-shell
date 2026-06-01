@@ -1,4 +1,0 @@
-#!/bin/bash
-VERB=`echo -e "poweroff\nsuspend\nhibernate" | rofi -dmenu`
-if [ -z "$VERB" ]; then exit 0; fi
-systemctl "${VERB}"

@@ -1,8 +1,0 @@
-map Q gq
-set relativenumber
-set number
-set clipboard=unnamedplus
-set nohlsearch
-set noundofile
-set smartcase=true
-set wrap=false
