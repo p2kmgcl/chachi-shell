@@ -13,6 +13,7 @@ local regions = {
 }
 local scroll_indicators = require("a-side.decorators.scroll_indicators")
 local prevent_scroll_past_end = require("a-side.decorators.prevent_scroll_past_end")
+local quit_on_last_window = require("a-side.decorators.quit_on_last_window")
 
 local bufnrs = {}
 local winids = {}
@@ -240,6 +241,7 @@ local function open()
   end
   scroll_indicators.enable(winid_list)
   prevent_scroll_past_end.enable(winid_list)
+  quit_on_last_window.enable(winid_list)
 
   vim.api.nvim_set_current_win(prev_win)
 end
@@ -251,6 +253,7 @@ close = function()
   closing = true
   scroll_indicators.disable()
   prevent_scroll_past_end.disable()
+  quit_on_last_window.disable()
   for _, region in ipairs(regions) do
     if region.disable then
       region.disable()
