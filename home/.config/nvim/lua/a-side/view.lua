@@ -12,6 +12,7 @@ local regions = {
   require("a-side.regions.git.git"),
 }
 local scroll_indicators = require("a-side.ui.scroll_indicators")
+local prevent_scroll_past_end = require("a-side.ui.prevent_scroll_past_end")
 
 local bufnrs = {}
 local winids = {}
@@ -238,6 +239,7 @@ local function open()
     table.insert(winid_list, winids[region.name])
   end
   scroll_indicators.enable(winid_list)
+  prevent_scroll_past_end.enable(winid_list)
 
   vim.api.nvim_set_current_win(prev_win)
 end
@@ -248,6 +250,7 @@ close = function()
   end
   closing = true
   scroll_indicators.disable()
+  prevent_scroll_past_end.disable()
   for _, region in ipairs(regions) do
     if region.disable then
       region.disable()

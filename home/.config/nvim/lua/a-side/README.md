@@ -23,7 +23,8 @@ lua/a-side/
 │   │   ├── render.lua                  -- pure: state → lines + highlights
 │   │   ├── annotations.lua             -- fixed id → {text, hl} vocabulary
 │   │   └── icons.lua                   -- mini.icons wrapper
-│   └── scroll_indicators.lua           -- ↑/↓ overflow virtual text (ADR 0016)
+│   ├── scroll_indicators.lua           -- ↑/↓ overflow virtual text (ADR 0016)
+│   └── prevent_scroll_past_end.lua     -- clamp viewport; no blank space below last line (ADR 0019)
 ├── regions/
 │   ├── buffers/                        -- region: ui.tree + buffer-list parse
 │   │   ├── buffers.lua
@@ -76,6 +77,9 @@ All sidebar-related keymaps live here. Region modules do not bind keys themselve
 
 ### `ui/scroll_indicators.lua`
 Owns the `↑` / `↓` overflow virtual text shown in each region window when content extends beyond the visible area. Exports `enable(winids)`, `disable()`, and `refresh(winid)`. `view.lua` calls `enable` on open, `disable` on close, and `refresh` after every `recompute_heights()` call. A `WinScrolled` autocmd scoped to the three sidebar window IDs drives per-scroll updates. Extmarks are right-aligned (`virt_text_pos = 'right_align'`) and use the `AsideSeparator` highlight group. See `docs/0016-region-separators-and-overflow-indicators.md`.
+
+### `ui/prevent_scroll_past_end.lua`
+Prevents mouse-wheel scrolling from leaving blank space below the last buffer line in any sidebar window. Exports `enable(winids)` and `disable()`. On each `WinScrolled` event for a tracked window, computes `max_topline = max(1, line_count - height + 1)` and calls `winrestview` to clamp the viewport back if needed. `view.lua` calls `enable` on open and `disable` on close alongside `scroll_indicators`. See `docs/0019-prevent-scroll-past-end.md`.
 
 ### `regions/<name>/<name>.lua`
 Each region module exports a table:
