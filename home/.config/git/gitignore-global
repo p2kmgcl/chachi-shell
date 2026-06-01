@@ -24,5 +24,6 @@ jsconfig.json
 # Agent state
 CLAUDE.local.md
 CLAUDE.*.local.md
+.agent-state
 .agent-state/
 .claude/settings.local.json
