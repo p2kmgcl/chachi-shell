@@ -12,4 +12,4 @@ assert_eq 'CLAUDE.pr.local.md'                       "$(compute_local_target 'CL
 assert_eq 'settings.local.json'                      "$(compute_local_target 'settings.json')"                      'settings.json'
 assert_eq 'archive.tar.local.gz'                     "$(compute_local_target 'archive.tar.gz')"                     'archive.tar.gz'
 assert_eq 'Dockerfile.local'                         "$(compute_local_target 'Dockerfile')"                         'Dockerfile'
-assert_eq '.claude/skills/write-code/SKILL.local.md' "$(compute_local_target '.claude/skills/write-code/SKILL.md')" 'path with basename'
+assert_eq '.agents/skills/write-code/SKILL.local.md' "$(compute_local_target '.agents/skills/write-code/SKILL.md')" 'path with basename'

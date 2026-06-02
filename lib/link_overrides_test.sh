@@ -41,12 +41,12 @@ test_links_nested_file() {
   local overrides_dir home_dir
   overrides_dir="$(mktemp -d)"
   home_dir="$(mktemp -d)"
-  mkdir -p "$overrides_dir/home/.claude/skills/create-ticket"
-  echo 'override' > "$overrides_dir/home/.claude/skills/create-ticket/SKILL.md"
+  mkdir -p "$overrides_dir/home/.agents/skills/create-ticket"
+  echo 'override' > "$overrides_dir/home/.agents/skills/create-ticket/SKILL.md"
   CHACHI_OVERRIDES_PATH="$overrides_dir" HOME="$home_dir" _run_silently
   assert_eq \
-    "$overrides_dir/home/.claude/skills/create-ticket/SKILL.md" \
-    "$(readlink "$home_dir/.claude/skills/create-ticket/SKILL.local.md")" \
+    "$overrides_dir/home/.agents/skills/create-ticket/SKILL.md" \
+    "$(readlink "$home_dir/.agents/skills/create-ticket/SKILL.local.md")" \
     'nested file linked with .local transform'
   rm -rf "$overrides_dir" "$home_dir"
 }
@@ -69,18 +69,18 @@ test_handles_multiple_files() {
   local overrides_dir home_dir
   overrides_dir="$(mktemp -d)"
   home_dir="$(mktemp -d)"
-  mkdir -p "$overrides_dir/home/.claude/skills/a" "$overrides_dir/home/.claude/skills/b"
-  echo 'a' > "$overrides_dir/home/.claude/skills/a/SKILL.md"
-  echo 'b' > "$overrides_dir/home/.claude/skills/b/SKILL.md"
+  mkdir -p "$overrides_dir/home/.agents/skills/a" "$overrides_dir/home/.agents/skills/b"
+  echo 'a' > "$overrides_dir/home/.agents/skills/a/SKILL.md"
+  echo 'b' > "$overrides_dir/home/.agents/skills/b/SKILL.md"
   echo 'root' > "$overrides_dir/home/.bashrc"
   CHACHI_OVERRIDES_PATH="$overrides_dir" HOME="$home_dir" _run_silently
   assert_eq \
-    "$overrides_dir/home/.claude/skills/a/SKILL.md" \
-    "$(readlink "$home_dir/.claude/skills/a/SKILL.local.md")" \
+    "$overrides_dir/home/.agents/skills/a/SKILL.md" \
+    "$(readlink "$home_dir/.agents/skills/a/SKILL.local.md")" \
     'overlay A'
   assert_eq \
-    "$overrides_dir/home/.claude/skills/b/SKILL.md" \
-    "$(readlink "$home_dir/.claude/skills/b/SKILL.local.md")" \
+    "$overrides_dir/home/.agents/skills/b/SKILL.md" \
+    "$(readlink "$home_dir/.agents/skills/b/SKILL.local.md")" \
     'overlay B'
   assert_eq \
     "$overrides_dir/home/.bashrc" \
