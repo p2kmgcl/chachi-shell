@@ -14,7 +14,9 @@ fi
 ENTRIES_BASE=(
   .bin
   .ssh
-
+  .agents
+  .claude
+  .codex
   .config/fish
   .config/git
   .config/ghostty
@@ -26,7 +28,6 @@ ENTRIES_BASE=(
 
   .bash_profile
   .bashrc
-  .claude
   .editorconfig
   .gitconfig
   .profile

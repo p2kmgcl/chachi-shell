@@ -3,6 +3,8 @@
 !/home/.claude/settings.json
 !/home/.claude/skills
 !/home/.claude/statusline.sh
+/home/.codex/*
+!/home/.codex/config.toml
 /home/.config/fish/completions
 /home/.config/fish/fish_variables
 /home/.config/karabiner/automatic_backups
