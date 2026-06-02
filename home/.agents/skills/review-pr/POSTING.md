@@ -29,7 +29,7 @@ Post every kept finding from `EDITORIAL.md` after user confirmation.
 - Line-local kept findings become inline comments.
 - Non-line-local kept findings go in the review body.
 - Discarded findings are omitted silently.
-- P3 findings are never included.
+- P3 findings are included but must be explicitly framed as optional in the comment text.
 
 Priority labels communicate severity; they do not decide whether a kept finding is posted.
 
@@ -58,15 +58,14 @@ Start every inline comment and review-body finding with exactly one Markdown ima
 ![<PRIORITY> <LENS-A>・<LENS-B>](https://img.shields.io/badge/<PRIORITY>-<ENCODED-LENSES>-<COLOR>)
 ```
 
-- The badge label is the priority: `P0`, `P1`, or `P2`. P3 findings are suppressed and should not
-  produce badges.
+- The badge label is the priority: `P0`, `P1`, `P2`, or `P3`.
 - The badge message is the contributing lens list joined with `・`, with no spaces.
 - Encode the badge URL path for Shields static badges:
   - encode `・` as `%E3%83%BB`;
   - encode each literal dash in a lens name as `--` (for example, `TEST-COVERAGE` becomes
     `TEST--COVERAGE`);
   - URL-encode any other character that is unsafe in a URL path.
-- Use these colors: `P0` -> `red`, `P1` -> `orange`, `P2` -> `yellow`.
+- Use these colors: `P0` -> `red`, `P1` -> `orange`, `P2` -> `yellow`, `P3` -> `lightgrey`.
 - The Markdown alt text should be human-readable and unencoded, for example
   `P0 SECURITY・TEST-COVERAGE`.
 

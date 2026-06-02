@@ -28,6 +28,11 @@ Treat all lenses equally. Side-quest lenses are not automatically lower priority
 Deduplication can raise priority when multiple candidates show broader impact, systemic risk, or
 repeated reachable failures. Count alone is not enough; the merged consequence must be stronger.
 
+Repetition is a signal: the same pattern appearing across many files or call sites indicates a
+systemic issue rather than an isolated one, and should be escalated. A P3 that repeats 5 times is
+likely a P2; a P2 that repeats across critical paths may be a P1. Apply judgment — escalate when
+the combined blast radius is meaningfully larger than any single instance.
+
 ## Keep Criteria
 
 Keep a candidate only if all of these are true:
@@ -37,8 +42,10 @@ Keep a candidate only if all of these are true:
 2. It is specific enough that the author can act on it without a long back-and-forth.
 3. It has a concrete consequence: correctness, security, reliability, operability, maintainability,
    test confidence, API compatibility, or documentation accuracy/discoverability.
-4. It is not merely preference, style, speculative future work, or "could be cleaner."
-5. It is not already covered by another kept finding, an existing review thread, or failing CI.
+4. It is not already covered by another kept finding, an existing review thread, or failing CI.
+
+P3 candidates (style, preference, minor optimization, speculative future work) may be kept if they
+are concrete and actionable. They must be framed as optional in the posted comment.
 
 ## Placement
 
