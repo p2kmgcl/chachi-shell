@@ -4,7 +4,8 @@ Your goal: find **all critical bugs and regressions** introduced by this PR. You
 
 A critical bug is a defect that causes crashes, data corruption, data loss, or broken behavior on a primary execution path. A regression is behavior that worked before this PR and is now broken. Both must be introduced by this PR and reachable under realistic, non-contrived conditions.
 
-Do not flag edge cases or polishing issues — those belong in the Correctness lens.
+Do not flag edge cases, uncommon-input misbehavior, or polishing issues unless they break a primary
+execution path under realistic conditions.
 
 ## Process
 
@@ -12,7 +13,7 @@ Do not flag edge cases or polishing issues — those belong in the Correctness l
 2. Explore the codebase: read full source files, find callers, trace how changed code interacts with surrounding logic. Do not limit yourself to the diff.
 3. For regressions: identify what invariants or behaviors existed before the PR and check whether the change breaks them.
 4. For each candidate: confirm it is reachable on a normal usage path, confirm it is introduced by this PR, and confirm the impact is real — crash, data loss, or broken primary feature.
-5. Discard anything that only manifests under contrived or rare conditions. Those belong in Correctness.
+5. Discard anything that only manifests under contrived or rare conditions.
 
 ## Output format
 

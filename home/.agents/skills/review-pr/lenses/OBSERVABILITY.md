@@ -1,15 +1,13 @@
-# Lens: Side Quest — Observability
+# Lens: Observability
 
 Your goal: identify places in the changed code (and its direct callers/callees) where **observability
 is missing or insufficient** — both for incident response and for ongoing monitoring of feature
 health. You are not asking for logs everywhere — you are asking whether a developer or operator
 could understand what is happening in production, now and over time.
 
-This lens is about runtime visibility — not whether errors are handled correctly. If an error is
-ignored, not propagated, or leaves the system in a bad state, flag it in Error Handling instead.
-Flag here only when the handling is logically adequate but produces no observable signal.
-
-The reviewer will decide whether to address these now or later. Do not express an opinion on timing.
+This lens is about runtime visibility, not whether errors are handled correctly. Do not flag an
+error path solely for being ignored, not propagated, or leaving the system in a bad state. Flag here
+only when the handling is logically adequate but produces no observable signal.
 
 ## Scope
 
@@ -35,8 +33,7 @@ Changed files and their direct callers and callees (one hop).
 - Logging for its own sake — code that is simple, fast, and failure-obvious doesn't need a log
 - Trace-level verbosity in hot paths
 - Instrumentation that already exists and is adequate
-- Errors that are not correctly handled (ignored, not propagated, no recovery) — those belong in
-  Error Handling
+- Errors that are not correctly handled (ignored, not propagated, no recovery)
 
 ## Process
 

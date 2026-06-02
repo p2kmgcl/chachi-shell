@@ -1,14 +1,12 @@
-# Lens: Side Quest — Error Handling Quality
+# Lens: Error Handling Quality
 
 Your goal: assess the **logical correctness of error paths** in the changed code and its direct
 callers/callees. Ask: when something goes wrong, does the code detect it, propagate it faithfully,
 and leave the system in a consistent state? Poor error handling hides bugs, confuses callers, and
 causes silent data corruption.
 
-This lens is about program logic — not runtime visibility. If an error is handled correctly but
-produces no log or metric, flag it in Observability instead.
-
-The reviewer will decide whether to address these now or later. Do not express an opinion on timing.
+This lens is about program logic, not runtime visibility. Do not flag a correctly-handled error
+solely because it lacks a log or metric.
 
 ## Scope
 
@@ -39,7 +37,7 @@ Changed files and their direct callers and callees (one hop).
 - Error handling that is already adequate for the realistic failure modes
 - Overly defensive handling of truly impossible cases
 - Style differences in how errors are expressed
-- Missing logs or metrics on otherwise correctly-handled errors — those belong in Observability
+- Missing logs or metrics on otherwise correctly-handled errors
 
 ## Process
 

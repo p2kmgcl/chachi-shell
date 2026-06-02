@@ -1,11 +1,8 @@
 # Lens: Side Quest — Technical Debt
 
 Your goal: surface **pre-existing technical debt** that this PR happened to expose. You are not
-looking for bugs introduced by this PR — those are covered by other lenses. You are looking for
-smells, shortcuts, or gaps that were already there and that this PR made visible or interacted with.
-
-The reviewer will decide whether to address these now (as part of this PR) or later (as a follow-up).
-Do not express an opinion on timing.
+looking for bugs introduced by this PR. You are looking for smells, shortcuts, or gaps that were
+already there and that this PR made visible or interacted with.
 
 ## Scope
 

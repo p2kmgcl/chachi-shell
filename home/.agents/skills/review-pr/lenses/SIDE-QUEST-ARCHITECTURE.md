@@ -5,9 +5,6 @@ lands. These are opportunities the PR opens — not pre-existing debt and not bu
 introduced a pattern, extended a boundary, or shifted a responsibility in a way that suggests a
 better structural shape.
 
-The reviewer will decide whether to act now (fold into this PR) or later (separate effort).
-Do not express an opinion on timing.
-
 ## Scope
 
 Examine the changed files and their **direct callers and callees** (one hop). Stay anchored to what

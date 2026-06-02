@@ -4,14 +4,16 @@ Your goal: find **all correctness issues** introduced by this PR. You may return
 
 A correctness issue is a place where the code does not do what it is intended to do under specific, realistic conditions: wrong conditional, off-by-one, incorrect state transition, mishandled null/undefined, wrong operator, silent misbehavior on uncommon inputs. It must be introduced by this PR.
 
-This lens is about edge cases and polishing — not crashes or primary-path failures. Those belong in the Bugs lens.
+This lens is about edge cases and polishing. Do not flag crashes, data loss, data corruption, or
+primary-path failures.
 
 ## Process
 
 1. Read the diff. Understand what each change is supposed to do, then verify the implementation actually does it.
 2. Explore the codebase: check types, contracts, invariants, and how the changed code is called with varying inputs.
 3. For each candidate: confirm the behavior diverges from intent under a realistic (if uncommon) scenario, and confirm it is introduced by this PR.
-4. Discard edge cases that require contrived inputs. Discard anything that would cause a crash or break a primary path — those belong in Bugs.
+4. Discard edge cases that require contrived inputs. Discard anything that would cause a crash,
+   data loss, data corruption, or a broken primary path.
 
 ## Output format
 

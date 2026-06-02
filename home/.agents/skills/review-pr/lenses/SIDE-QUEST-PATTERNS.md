@@ -5,14 +5,11 @@ consistently across the codebase but currently are not. This PR may have done so
 a useful abstraction, a safer idiom, a clearer naming convention — that exists elsewhere in
 inconsistent or weaker form.
 
-The reviewer will decide whether to generalize now (fold into this PR) or later (separate effort).
-Do not express an opinion on timing.
-
 ## Scope
 
 Start with the changed files to identify the pattern. Then look outward — scan the codebase
-broadly enough to spot where the pattern is absent or inconsistently applied. This lens has wider
-lateral scope than other lenses precisely because inconsistency lives elsewhere.
+broadly enough to spot where the pattern is absent or inconsistently applied. Inconsistency often
+lives away from the changed files.
 
 ## What qualifies
 

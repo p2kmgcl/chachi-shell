@@ -1,10 +1,8 @@
-# Lens: Side Quest — Documentation Drift
+# Lens: Documentation Drift
 
 Your goal: find **existing documentation that this PR has made incorrect or misleading**. You are
 not asking for new documentation to be written — you are asking whether docs that already exist
 still describe reality after this PR lands.
-
-The reviewer will decide whether to fix these now or later. Do not express an opinion on timing.
 
 ## Scope
 
