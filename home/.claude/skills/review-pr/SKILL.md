@@ -6,40 +6,49 @@ description: "Review a GitHub PR and create a pending (draft) review with inline
 
 Three strict phases: **Analyze, Discuss, Post.** Do not skip ahead.
 
-1. Fetch PR metadata (description, CI status, existing reviews) and diff the base branch against
-   the PR head.
-2. **Scope to owned files only.** Read CODEOWNERS, look up the current `gh` user, and only review
-   files owned by the user or their teams. Mention skipped files briefly. Ask the user if none match.
-3. Analyze owned changes deeply. Use subagents and tools liberally to build context -- read full
-   source files, explore related code, find similar patterns in owned files, and check how changes
-   interact with the rest of the codebase. Don't limit yourself to the diff. Follow agent
-   instructions for review priorities.
-4. **Present an overview.** Assume the user hasn't looked at the PR yet. Include:
+## Phase 1 — Fetch
+
+1. Fetch PR metadata (description, CI status, existing reviews).
+2. Record the current branch name, then check out the PR branch: `gh pr checkout <number>`.
+   If the checkout fails, stop and tell the user — do not proceed to analysis.
+3. Fetch the diff once: `gh pr diff <number> > /tmp/pr-<number>.diff`.
+
+## Phase 2 — Analyze (fan-out)
+
+4. List all files in the `lenses/` directory next to this skill. Spawn one subagent per lens file
+   with this prompt (do not read the lens file yourself):
+
+   ```
+   Review the changes in PR #<number> in <owner>/<repo>. The PR branch is checked out locally.
+   The diff is at /tmp/pr-<number>.diff — read it first before exploring the codebase.
+   PR description: <description>
+   Follow the instructions in @PRIORITIES.md and @lenses/<LENS_FILE>.
+   You may read any file in the codebase to build context.
+   ```
+
+   Run all subagents in parallel.
+5. Collect findings. Each finding has a priority (P0–P3) defined in `PRIORITIES.md`. Apply these
+   rules to the collected results:
+   - **Suppress all P3 findings** — do not surface them to the user or post them to GitHub.
+   - Sort remaining findings P0 → P1 → P2.
+   - Deduplicate: if two lenses flag the same issue, merge into one finding and preserve all
+     contributing lens names — the merged comment will carry all their tags (e.g. `[P1][SECURITY][BUGS]`).
+
+## Phase 3 — Present & Discuss
+
+6. **Present an overview** to the user. Assume they haven't looked at the PR yet. Include:
    - What the PR does and why (from description + actual changes).
-   - CI status -- pass/fail, and what's failing if relevant.
-   - Existing reviews -- approvals, requested changes, or open threads worth knowing about.
-   - A short list of areas worth discussing -- one line each. Signal which items carry more risk
-     and why (share what you learned from the codebase that makes it important).
-   Keep each item brief. If the PR is clean, say so.
-5. **Discuss interactively.** Let the user drive by asking about specific areas. Keep each response
-   focused -- one concern at a time, at the depth that fits the question. Include short code
-   snippets when they help, but don't dump everything at once. Focus on PR changes, not
-   pre-existing code. Do **not** post anything to GitHub. Continue until the user explicitly says
-   to post.
-6. When told to post, turn discussed concerns into inline comments.
-   - Comment style: short, direct, human-sounding, conversational. No em dashes. Only include a
-     snippet if the fix isn't obvious.
-   - Write a review payload to a temp file and POST via
-     `gh api repos/{owner}/{repo}/pulls/{number}/reviews`:
-     ```json
-     {
-       "body": "Overall summary",
-       "comments": [
-         { "path": "file.ts", "line": 42, "side": "RIGHT", "body": "Comment" }
-       ]
-     }
-     ```
-   - **Omit `event`** to create a pending (draft) review. `side` must be `"RIGHT"`, `line` is the
-     line in the new file. All comments must be in this single payload.
-7. Clean up the temp file and the `pr-{number}` branch. Tell the user the review is **PENDING** and
-   they must submit it on GitHub.
+   - CI status — pass/fail, and what's failing if relevant.
+   - Existing reviews — approvals, requested changes, or open threads worth knowing about.
+   - All findings sorted by priority. For each: one-line summary, file + line, priority label.
+     Lead with P0s prominently. If no P0/P1 findings exist, say so explicitly.
+7. **Discuss interactively.** Let the user drive by asking about specific findings or areas. Keep
+   each response focused — one concern at a time. Do **not** post anything to GitHub yet.
+   Continue until the user explicitly says to post.
+
+## Phase 4 — Post
+
+8. Turn discussed concerns (P0–P2 only) into inline comments. See `POSTING.md` for format and
+   comment style rules.
+9. Delete `/tmp/pr-<number>.diff`. Check out the original branch and delete the `pr-{number}`
+   branch. Tell the user the review is **PENDING** and they must submit it on GitHub.
