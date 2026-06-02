@@ -1,6 +1,11 @@
 # Claude Code skills
 
-Personal collection of `~/.claude/skills/` skills, version-controlled in `chachi-shell` and symlinked into place by the dotfiles installer.
+Claude-facing skill metadata lives here. The actual skill instructions live in
+`~/.agents/skills/`, which the dotfiles installer links to the shared
+`agents/skills/` directory.
+
+Each `SKILL.md` points to its shared skill with a single
+`@~/.agents/skills/<skill-name>/SKILL.md` line.
 
 ## Workflow skills
 
