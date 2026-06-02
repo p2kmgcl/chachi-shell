@@ -53,3 +53,4 @@ Four strict phases: **Fetch, Analyze, Discuss, Post.** Do not skip ahead.
 7. Turn every kept finding into a single pending review. Use inline comments for line-local findings
    and the review body for non-line-local findings. See `POSTING.md` for format and style rules.
 8. Check out the original branch and delete the `pr-{number}` branch. Tell the user the review is **PENDING** and they must submit it on GitHub.
+9. Run `~/.agents/skills/review-pr/sync-viewed-files.sh <owner>/<repo> <pr_number>`. Surface any warnings but don't treat failures as blocking.
