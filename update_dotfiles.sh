@@ -17,7 +17,7 @@ ENTRIES_BASE=(
   .agents
   .claude
   .codex
-  .config/fish
+  .config/shell
   .config/git
   .config/ghostty
   .config/lazygit

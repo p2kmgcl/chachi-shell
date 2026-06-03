@@ -5,16 +5,10 @@
 !/home/.claude/statusline.sh
 /home/.codex/*
 !/home/.codex/config.toml
-/home/.config/fish/completions
-/home/.config/fish/fish_variables
-/home/.config/karabiner/automatic_backups
 /home/.config/lazygit/state.yml
-/home/.config/nushell/history.txt
 /home/.config/nvim/.netrwhist
 /home/.config/nvim/plugin
 /home/.config/nvim/undo-dir
-/home/.config/opencode/node_modules
-/home/.config/opencode/agent.local
 /home/.config/zed/prompts
 /home/.ssh/id_*
 /home/.ssh/known_hosts

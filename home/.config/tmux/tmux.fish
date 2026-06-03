@@ -1,1 +1,0 @@
-../fish/conf.d/100-tmux.fish

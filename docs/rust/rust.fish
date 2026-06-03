@@ -1,1 +1,0 @@
-../../home/.config/fish/conf.d/430-rust.fish

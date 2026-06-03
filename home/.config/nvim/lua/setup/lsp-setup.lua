@@ -4,7 +4,6 @@ vim.lsp.enable({
   -- "denols", -- Disabled to avoid conflicts with tsgo
   "dockerfile-language-server",
   "eslint-lsp",
-  "fish-lsp",
   "gopls",
   "html-lsp",
   "json-lsp",

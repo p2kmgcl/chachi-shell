@@ -17,6 +17,7 @@ gui:
     markedBaseCommitBgColor: []
     markedBaseCommitFgColor: [bold]
     selectedLineBgColor: [underline]
+    unstagedChangesColor: ['#E69F00']
 git:
   pagers:
     - colorarg: always

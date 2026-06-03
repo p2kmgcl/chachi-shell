@@ -172,6 +172,9 @@
     "metrics": false,
   },
   "terminal": {
+    "shell": {
+      "program": "/bin/zsh"
+    },
     "scrollbar": {
       "show": "auto",
     },
