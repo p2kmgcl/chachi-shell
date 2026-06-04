@@ -1,7 +1,12 @@
-_fzf_tab="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh"
+_fzf_tab_dir="$HOME/.fzf-tab"
 
-if [ -f "$_fzf_tab" ]; then
-  source "$_fzf_tab"
+if [ ! -d "$_fzf_tab_dir" ]; then
+  echo "📦 Cloning fzf-tab into $_fzf_tab_dir…"
+  git clone -q --depth 1 https://github.com/Aloxaf/fzf-tab "$_fzf_tab_dir"
 fi
 
-unset _fzf_tab
+if [ -f "$_fzf_tab_dir/fzf-tab.plugin.zsh" ]; then
+  source "$_fzf_tab_dir/fzf-tab.plugin.zsh"
+fi
+
+unset _fzf_tab_dir
