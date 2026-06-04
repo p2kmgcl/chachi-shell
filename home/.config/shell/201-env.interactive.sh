@@ -8,6 +8,3 @@ elif [ -n "$ZSH_VERSION" ]; then
 else
     export CURRENT_SHELL=$(ps -p $$ -o comm= | sed 's/^-//')
 fi
-
-export FZF_DEFAULT_COMMAND='rg --color=never --files --glob "!.git/*,!.gradle/*,!.hg/*,!.sass-cache/*,!.svn/*,!bower_components/*,!build/*,!classes/*,!CVS/*,!node_modules/*,!tmp/*"'
-export FZF_DEFAULT_OPTS='--color=bw'

@@ -7,6 +7,7 @@ fi
 
 if [ -f "$_fzf_tab_dir/fzf-tab.plugin.zsh" ]; then
   source "$_fzf_tab_dir/fzf-tab.plugin.zsh"
+  zstyle ':fzf-tab:*' fzf-flags ${(Q@z)FZF_DEFAULT_OPTS} '--prompt=❯ '
 fi
 
 unset _fzf_tab_dir
