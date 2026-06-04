@@ -25,7 +25,6 @@ rustup component add rust-analyzer
 - Alternative to top: `cargo install --locked bottom`
 - Disk usage: `cargo install --locked du-dust`
 - Tree-Sitter CLI: `cargo install --locked tree-sitter-cli`
-
 All together (upgrade with same command):
 
 ```

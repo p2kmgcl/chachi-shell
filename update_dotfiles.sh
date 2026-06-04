@@ -11,6 +11,9 @@ if [ -z "$CHACHI_PATH" ]; then
   exit 1
 fi
 
+# We need this to update some internal plugins
+git -C "$CHACHI_PATH" submodule update --init
+
 ENTRIES_BASE=(
   .bin
   .ssh
@@ -18,6 +21,7 @@ ENTRIES_BASE=(
   .claude
   .codex
   .config/shell
+  .config/zsh
   .config/git
   .config/ghostty
   .config/lazygit

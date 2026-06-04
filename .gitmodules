@@ -1,0 +1,3 @@
+[submodule "home/.config/zsh/plugins/fzf-tab"]
+	path = home/.config/zsh/plugins/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab
