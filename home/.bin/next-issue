@@ -6,7 +6,7 @@
 set -euo pipefail
 
 usage() {
-    cat <<'EOF'
+  cat <<'EOF'
 next-issue — pick the next issue to work on for a PRD.
 
 Usage:
@@ -22,15 +22,18 @@ EOF
 }
 
 if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
-    usage
-    exit 0
+  usage
+  exit 0
 fi
 
 repo_root=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
 state_dir="$repo_root/.agent-state"
 prds_dir="$state_dir/prds"
 
-die() { echo "$*" >&2; exit 1; }
+die() {
+  echo "$*" >&2
+  exit 1
+}
 
 # --- pick a PRD -----------------------------------------------------------
 
@@ -44,29 +47,29 @@ shopt -u nullglob
 
 declare -a prd_slugs
 for d in "${prd_dirs[@]}"; do
-    slug=$(basename "$d")
-    [[ -f "$d/PRD.md" ]] || continue
-    prd_slugs+=("$slug")
+  slug=$(basename "$d")
+  [[ -f "$d/PRD.md" ]] || continue
+  prd_slugs+=("$slug")
 done
 
 [[ ${#prd_slugs[@]} -gt 0 ]] || die "No PRD.md found in any .agent-state/prds/<slug>/."
 
 if [[ ${#prd_slugs[@]} -eq 1 ]]; then
-    prd_slug=${prd_slugs[0]}
+  prd_slug=${prd_slugs[0]}
 else
-    printf '\nMultiple PRDs found. Pick one:\n\n'
-    for i in "${!prd_slugs[@]}"; do
-        printf '  %d. %s\n' "$((i + 1))" "${prd_slugs[$i]}"
-    done
-    printf '\n'
-    while :; do
-        read -r -p "Choice: " choice </dev/tty || die "No input."
-        if [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ${#prd_slugs[@]} )); then
-            prd_slug=${prd_slugs[$((choice - 1))]}
-            break
-        fi
-        echo "Invalid choice: $choice" >&2
-    done
+  printf '\nMultiple PRDs found. Pick one:\n\n'
+  for i in "${!prd_slugs[@]}"; do
+    printf '  %d. %s\n' "$((i + 1))" "${prd_slugs[$i]}"
+  done
+  printf '\n'
+  while :; do
+    read -r -p "Choice: " choice </dev/tty || die "No input."
+    if [[ "$choice" =~ ^[0-9]+$ ]] && ((choice >= 1 && choice <= ${#prd_slugs[@]})); then
+      prd_slug=${prd_slugs[$((choice - 1))]}
+      break
+    fi
+    echo "Invalid choice: $choice" >&2
+  done
 fi
 
 prd_dir="$prds_dir/$prd_slug"
@@ -77,8 +80,8 @@ prd_rel=".agent-state/prds/$prd_slug/PRD.md"
 
 # Print value of a top-level key inside the YAML frontmatter at the head of $1.
 fm_get() {
-    local file=$1 key=$2
-    awk -v key="$key" '
+  local file=$1 key=$2
+  awk -v key="$key" '
         NR == 1 && /^---[[:space:]]*$/ { in_fm = 1; next }
         in_fm && /^---[[:space:]]*$/ { exit }
         in_fm {
@@ -99,8 +102,8 @@ fm_get() {
 # Print blocked_by as space-separated issue numbers.
 # Accepts inline `[1, 2]`, flow `1, 2`, or a YAML block list of `- N` items.
 fm_blocked_by() {
-    local file=$1
-    awk '
+  local file=$1
+  awk '
         NR == 1 && /^---[[:space:]]*$/ { in_fm = 1; next }
         in_fm && /^---[[:space:]]*$/ { exit }
         in_fm && /^blocked_by:/ {
@@ -133,65 +136,68 @@ issue_files=("$prd_dir"/issue-*.md)
 shopt -u nullglob
 
 if [[ ${#issue_files[@]} -eq 0 ]]; then
-    has_issues=0
+  has_issues=0
 else
-    has_issues=1
+  has_issues=1
 fi
 
 declare -a nums statuses titles blockeds paths
 
 if [[ $has_issues -eq 1 ]]; then
-    mapfile -t issue_files < <(
-        for f in "${issue_files[@]}"; do
-            n=$(basename "$f" | sed -E -n 's/^issue-([0-9]+)\.md$/\1/p')
-            [[ -n "$n" ]] && printf '%d\t%s\n' "$n" "$f"
-        done | sort -n | cut -f2-
-    )
-
+  mapfile -t issue_files < <(
     for f in "${issue_files[@]}"; do
-        n=$(basename "$f" | sed -E -n 's/^issue-([0-9]+)\.md$/\1/p')
-        status=$(fm_get "$f" status)
-        title=$(fm_get "$f" title)
-        blocked=$(fm_blocked_by "$f")
+      n=$(basename "$f" | sed -E -n 's/^issue-([0-9]+)\.md$/\1/p')
+      [[ -n "$n" ]] && printf '%d\t%s\n' "$n" "$f"
+    done | sort -n | cut -f2-
+  )
 
-        [[ -n "$status" ]] || die "Issue $f: missing 'status' in frontmatter."
-        [[ -n "$title"  ]] || die "Issue $f: missing 'title' in frontmatter."
+  for f in "${issue_files[@]}"; do
+    n=$(basename "$f" | sed -E -n 's/^issue-([0-9]+)\.md$/\1/p')
+    status=$(fm_get "$f" status)
+    title=$(fm_get "$f" title)
+    blocked=$(fm_blocked_by "$f")
 
-        nums+=("$n")
-        statuses+=("$status")
-        titles+=("$title")
-        blockeds+=("$blocked")
-        paths+=("$f")
+    [[ -n "$status" ]] || die "Issue $f: missing 'status' in frontmatter."
+    [[ -n "$title" ]] || die "Issue $f: missing 'title' in frontmatter."
+
+    nums+=("$n")
+    statuses+=("$status")
+    titles+=("$title")
+    blockeds+=("$blocked")
+    paths+=("$f")
+  done
+
+  declare -A status_by_num
+  for i in "${!nums[@]}"; do
+    status_by_num[${nums[$i]}]=${statuses[$i]}
+  done
+
+  is_blocked() {
+    local list=$1
+    [[ -z "$list" ]] && return 1
+    local dep
+    for dep in $list; do
+      case "${status_by_num[$dep]:-todo}" in
+      todo | in-progress) return 0 ;;
+      esac
     done
+    return 1
+  }
 
-    declare -A status_by_num
-    for i in "${!nums[@]}"; do
-        status_by_num[${nums[$i]}]=${statuses[$i]}
+  # All done?
+  if [[ ${#statuses[@]} -gt 0 ]]; then
+    all_done=1
+    for s in "${statuses[@]}"; do
+      [[ "$s" != "done" ]] && {
+        all_done=0
+        break
+      }
     done
-
-    is_blocked() {
-        local list=$1
-        [[ -z "$list" ]] && return 1
-        local dep
-        for dep in $list; do
-            case "${status_by_num[$dep]:-todo}" in
-                todo|in-progress) return 0 ;;
-            esac
-        done
-        return 1
-    }
-
-    # All done?
-    if [[ ${#statuses[@]} -gt 0 ]]; then
-        all_done=1
-        for s in "${statuses[@]}"; do
-            [[ "$s" != "done" ]] && { all_done=0; break; }
-        done
-        if [[ $all_done -eq 1 ]]; then
-            echo "PRD '$prd_slug' complete."
-            exit 0
-        fi
+    if [[ $all_done -eq 1 ]]; then
+      echo "PRD '$prd_slug' complete."
+      exit 0
     fi
+  fi
 fi
 
 # --- build menu -----------------------------------------------------------
@@ -203,41 +209,41 @@ fi
 declare -a menu_keys menu_labels menu_actions
 
 if [[ $has_issues -eq 0 ]]; then
-    menu_keys+=("1")
-    menu_labels+=("Generate issues from PRD")
-    menu_actions+=("to-issues")
+  menu_keys+=("1")
+  menu_labels+=("Generate issues from PRD")
+  menu_actions+=("to-issues")
 else
-    for i in "${!nums[@]}"; do
-        n=${nums[$i]}
-        s=${statuses[$i]}
-        t=${titles[$i]}
-        b=${blockeds[$i]}
+  for i in "${!nums[@]}"; do
+    n=${nums[$i]}
+    s=${statuses[$i]}
+    t=${titles[$i]}
+    b=${blockeds[$i]}
 
-        if [[ "$s" == "done" ]]; then
-            menu_keys+=("-")
-            menu_labels+=("[DONE] #$n — $t")
-            menu_actions+=("noop")
-            continue
-        fi
+    if [[ "$s" == "done" ]]; then
+      menu_keys+=("-")
+      menu_labels+=("[DONE] #$n — $t")
+      menu_actions+=("noop")
+      continue
+    fi
 
-        if [[ "$s" == "in-progress" ]]; then
-            menu_keys+=("$n")
-            menu_labels+=("Continue #$n — $t")
-            menu_actions+=("continue:$n")
-            continue
-        fi
+    if [[ "$s" == "in-progress" ]]; then
+      menu_keys+=("$n")
+      menu_labels+=("Continue #$n — $t")
+      menu_actions+=("continue:$n")
+      continue
+    fi
 
-        if is_blocked "$b"; then
-            menu_keys+=("-")
-            menu_labels+=("[BLOCKED] #$n — $t")
-            menu_actions+=("noop")
-            continue
-        fi
+    if is_blocked "$b"; then
+      menu_keys+=("-")
+      menu_labels+=("[BLOCKED] #$n — $t")
+      menu_actions+=("noop")
+      continue
+    fi
 
-        menu_keys+=("$n")
-        menu_labels+=("Start #$n — $t")
-        menu_actions+=("start:$n")
-    done
+    menu_keys+=("$n")
+    menu_labels+=("Start #$n — $t")
+    menu_actions+=("start:$n")
+  done
 fi
 
 # Spacer marker before R/A.
@@ -256,106 +262,109 @@ menu_actions+=("amend")
 # --- render menu ----------------------------------------------------------
 
 print_menu() {
-    printf '\nPRD: %s\n' "$prd_slug"
-    for i in "${!menu_keys[@]}"; do
-        local k=${menu_keys[$i]} l=${menu_labels[$i]} a=${menu_actions[$i]}
-        if [[ "$a" == "spacer" ]]; then
-            printf '\n'
-        elif [[ "$k" == "-" ]]; then
-            printf '     %s\n' "$l"
-        else
-            printf '  %s. %s\n' "$k" "$l"
-        fi
-    done
-    printf '\n'
+  printf '\nPRD: %s\n' "$prd_slug"
+  for i in "${!menu_keys[@]}"; do
+    local k=${menu_keys[$i]} l=${menu_labels[$i]} a=${menu_actions[$i]}
+    if [[ "$a" == "spacer" ]]; then
+      printf '\n'
+    elif [[ "$k" == "-" ]]; then
+      printf '     %s\n' "$l"
+    else
+      printf '  %s. %s\n' "$k" "$l"
+    fi
+  done
+  printf '\n'
 }
 
 # --- read choice ----------------------------------------------------------
 
 resolve_choice() {
-    local input=$1
-    local up
-    up=$(printf '%s' "$input" | tr '[:lower:]' '[:upper:]')
-    for i in "${!menu_keys[@]}"; do
-        local k=${menu_keys[$i]}
-        [[ "$k" == "-" || -z "$k" ]] && continue
-        if [[ "$k" == "$up" || "$k" == "$input" ]]; then
-            echo "${menu_actions[$i]}"
-            return 0
-        fi
-    done
-    return 1
+  local input=$1
+  local up
+  up=$(printf '%s' "$input" | tr '[:lower:]' '[:upper:]')
+  for i in "${!menu_keys[@]}"; do
+    local k=${menu_keys[$i]}
+    [[ "$k" == "-" || -z "$k" ]] && continue
+    if [[ "$k" == "$up" || "$k" == "$input" ]]; then
+      echo "${menu_actions[$i]}"
+      return 0
+    fi
+  done
+  return 1
 }
 
 print_menu
 
 action=""
 while :; do
-    read -r -p "Choice: " choice </dev/tty || die "No input."
-    if [[ -z "$choice" ]]; then
-        echo "Pick something." >&2
-        continue
-    fi
-    if action=$(resolve_choice "$choice"); then
-        break
-    fi
-    echo "Invalid choice: $choice" >&2
+  read -r -p "Choice: " choice </dev/tty || die "No input."
+  if [[ -z "$choice" ]]; then
+    echo "Pick something." >&2
+    continue
+  fi
+  if action=$(resolve_choice "$choice"); then
+    break
+  fi
+  echo "Invalid choice: $choice" >&2
 done
 
 # --- helpers --------------------------------------------------------------
 
 set_status_in_progress() {
-    local file=$1
-    # Frontmatter is required (we already errored if missing).
-    awk '
+  local file=$1
+  # Frontmatter is required (we already errored if missing).
+  awk '
         NR == 1 && /^---[[:space:]]*$/ { in_fm = 1; print; next }
         in_fm && /^---[[:space:]]*$/ { in_fm = 0; print; next }
         in_fm && /^status:/ { print "status: in-progress"; next }
         { print }
-    ' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+    ' "$file" >"$file.tmp" && mv "$file.tmp" "$file"
 }
 
 # --- act ------------------------------------------------------------------
 
 case "$action" in
-    continue:*|start:*)
-        n=${action#*:}
-        path=""
-        cur_status=""
-        for i in "${!nums[@]}"; do
-            if [[ "${nums[$i]}" == "$n" ]]; then
-                path=${paths[$i]}
-                cur_status=${statuses[$i]}
-                break
-            fi
-        done
-        if [[ "$cur_status" != "in-progress" ]]; then
-            set_status_in_progress "$path"
-            echo "Marked issue #$n as in-progress."
-        fi
-        exec claude "Lets work in @.agent-state/prds/$prd_slug/issue-$n.md /caveman /tdd"
-        ;;
+continue:* | start:*)
+  n=${action#*:}
+  path=""
+  cur_status=""
+  for i in "${!nums[@]}"; do
+    if [[ "${nums[$i]}" == "$n" ]]; then
+      path=${paths[$i]}
+      cur_status=${statuses[$i]}
+      break
+    fi
+  done
+  if [[ "$cur_status" != "in-progress" ]]; then
+    set_status_in_progress "$path"
+    echo "Marked issue #$n as in-progress."
+  fi
+  exec claude "Lets work in @.agent-state/prds/$prd_slug/issue-$n.md /caveman /tdd"
+  ;;
 
-    to-issues)
-        exec claude "@$prd_rel /caveman /to-issues"
-        ;;
+to-issues)
+  exec claude "@$prd_rel /caveman /to-issues"
+  ;;
 
-    redefine)
-        printf 'This will DELETE the PRD directory .agent-state/prds/%s/ and every issue inside it. Continue? [y/N]: ' "$prd_slug"
-        read -r confirm </dev/tty || confirm=""
-        case "$confirm" in
-            y|Y|yes|YES) ;;
-            *) echo "Aborted."; exit 0 ;;
-        esac
-        rm -rf "$prd_dir"
-        echo "Wiped .agent-state/prds/$prd_slug/. Run /to-prd to start over."
-        ;;
+redefine)
+  printf 'This will DELETE the PRD directory .agent-state/prds/%s/ and every issue inside it. Continue? [y/N]: ' "$prd_slug"
+  read -r confirm </dev/tty || confirm=""
+  case "$confirm" in
+  y | Y | yes | YES) ;;
+  *)
+    echo "Aborted."
+    exit 0
+    ;;
+  esac
+  rm -rf "$prd_dir"
+  echo "Wiped .agent-state/prds/$prd_slug/. Run /to-prd to start over."
+  ;;
 
-    amend)
-        exec claude "I want to make some changes to @$prd_rel /to-prd /caveman /grill-me"
-        ;;
+amend)
+  exec claude "I want to make some changes to @$prd_rel /to-prd /caveman /grill-me"
+  ;;
 
-    *)
-        die "Unknown action: $action"
-        ;;
+*)
+  die "Unknown action: $action"
+  ;;
 esac

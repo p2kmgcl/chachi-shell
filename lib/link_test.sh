@@ -13,7 +13,7 @@ test_links_file_when_target_missing() {
   base_dir="$(mktemp -d)"
   home_dir="$(mktemp -d)"
   mkdir -p "$base_dir/home"
-  echo 'base' > "$base_dir/home/.bashrc"
+  echo 'base' >"$base_dir/home/.bashrc"
   CHACHI_PATH="$base_dir" HOME="$home_dir" _link_thing_silently '.bashrc'
   assert_eq "$base_dir/home/.bashrc" "$(readlink "$home_dir/.bashrc")" 'file linked when missing'
   rm -rf "$base_dir" "$home_dir"
@@ -24,7 +24,7 @@ test_idempotent_on_correct_existing_link() {
   base_dir="$(mktemp -d)"
   home_dir="$(mktemp -d)"
   mkdir -p "$base_dir/home"
-  echo 'base' > "$base_dir/home/.bashrc"
+  echo 'base' >"$base_dir/home/.bashrc"
   CHACHI_PATH="$base_dir" HOME="$home_dir" _link_thing_silently '.bashrc'
   CHACHI_PATH="$base_dir" HOME="$home_dir" _link_thing_silently '.bashrc'
   assert_eq 0 $? 'rerun on correct existing link exits 0'
@@ -36,8 +36,8 @@ test_backs_up_existing_real_file() {
   base_dir="$(mktemp -d)"
   home_dir="$(mktemp -d)"
   mkdir -p "$base_dir/home"
-  echo 'base' > "$base_dir/home/.bashrc"
-  echo 'user original' > "$home_dir/.bashrc"
+  echo 'base' >"$base_dir/home/.bashrc"
+  echo 'user original' >"$home_dir/.bashrc"
   CHACHI_PATH="$base_dir" HOME="$home_dir" _link_thing_silently '.bashrc'
   assert_eq "$base_dir/home/.bashrc" "$(readlink "$home_dir/.bashrc")" 'target replaced with symlink'
   assert_eq 'user original' "$(cat "$home_dir/.bashrc.bak")" 'original content backed up'
@@ -49,9 +49,9 @@ test_fails_when_backup_already_exists() {
   base_dir="$(mktemp -d)"
   home_dir="$(mktemp -d)"
   mkdir -p "$base_dir/home"
-  echo 'base' > "$base_dir/home/.bashrc"
-  echo 'user' > "$home_dir/.bashrc"
-  echo 'existing backup' > "$home_dir/.bashrc.bak"
+  echo 'base' >"$base_dir/home/.bashrc"
+  echo 'user' >"$home_dir/.bashrc"
+  echo 'existing backup' >"$home_dir/.bashrc.bak"
   CHACHI_PATH="$base_dir" HOME="$home_dir" _link_thing_silently '.bashrc'
   assert_eq 3 $? 'fails with code 3 when .bak already exists'
   assert_eq 'user' "$(cat "$home_dir/.bashrc")" 'target untouched'
@@ -64,7 +64,7 @@ test_fails_when_source_file_target_directory() {
   base_dir="$(mktemp -d)"
   home_dir="$(mktemp -d)"
   mkdir -p "$base_dir/home"
-  echo 'base' > "$base_dir/home/.bashrc"
+  echo 'base' >"$base_dir/home/.bashrc"
   mkdir -p "$home_dir/.bashrc"
   CHACHI_PATH="$base_dir" HOME="$home_dir" _link_thing_silently '.bashrc'
   assert_eq 1 $? 'fails with code 1 when target is a directory'
@@ -76,7 +76,7 @@ test_fails_when_source_directory_target_file() {
   base_dir="$(mktemp -d)"
   home_dir="$(mktemp -d)"
   mkdir -p "$base_dir/home/.config"
-  echo 'not a dir' > "$home_dir/.config"
+  echo 'not a dir' >"$home_dir/.config"
   CHACHI_PATH="$base_dir" HOME="$home_dir" _link_thing_silently '.config'
   assert_eq 1 $? 'fails with code 1 when target is a file'
   rm -rf "$base_dir" "$home_dir"
@@ -88,7 +88,7 @@ test_fails_when_existing_symlink_points_elsewhere() {
   home_dir="$(mktemp -d)"
   other="$(mktemp)"
   mkdir -p "$base_dir/home"
-  echo 'base' > "$base_dir/home/.bashrc"
+  echo 'base' >"$base_dir/home/.bashrc"
   ln -s "$other" "$home_dir/.bashrc"
   CHACHI_PATH="$base_dir" HOME="$home_dir" _link_thing_silently '.bashrc'
   assert_eq 2 $? 'fails with code 2 when symlink points elsewhere'
@@ -144,11 +144,11 @@ test_link_dir_fails_when_existing_symlink_points_elsewhere() {
 test_link_dir_backs_up_existing_real_dir() {
   local src parent tgt
   src="$(mktemp -d)"
-  echo 'new content' > "$src/marker"
+  echo 'new content' >"$src/marker"
   parent="$(mktemp -d)"
   tgt="$parent/state"
   mkdir -p "$tgt"
-  echo 'pre-existing' > "$tgt/old"
+  echo 'pre-existing' >"$tgt/old"
   _link_dir_silently "$src" "$tgt" 'state'
   assert_eq "$src" "$(readlink "$tgt")" 'target replaced with symlink'
   assert_eq 'pre-existing' "$(cat "$parent/state.bak/old")" 'original dir backed up'
@@ -161,8 +161,8 @@ test_link_dir_fails_when_backup_already_exists() {
   parent="$(mktemp -d)"
   tgt="$parent/state"
   mkdir -p "$tgt" "$tgt.bak"
-  echo 'live' > "$tgt/file"
-  echo 'old-backup' > "$tgt.bak/file"
+  echo 'live' >"$tgt/file"
+  echo 'old-backup' >"$tgt.bak/file"
   _link_dir_silently "$src" "$tgt" 'state'
   assert_eq 3 $? 'fails with code 3 when .bak already exists'
   assert_eq 'live' "$(cat "$tgt/file")" 'target untouched'
@@ -175,7 +175,7 @@ test_link_dir_fails_when_target_is_file() {
   src="$(mktemp -d)"
   parent="$(mktemp -d)"
   tgt="$parent/state"
-  echo 'i am a file' > "$tgt"
+  echo 'i am a file' >"$tgt"
   _link_dir_silently "$src" "$tgt" 'state'
   assert_eq 1 $? 'fails with code 1 when target is a regular file'
   assert_eq 'i am a file' "$(cat "$tgt")" 'file untouched'

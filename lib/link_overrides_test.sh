@@ -28,7 +28,7 @@ test_links_top_level_file() {
   overrides_dir="$(mktemp -d)"
   home_dir="$(mktemp -d)"
   mkdir -p "$overrides_dir/home"
-  echo 'override' > "$overrides_dir/home/.bashrc"
+  echo 'override' >"$overrides_dir/home/.bashrc"
   CHACHI_OVERRIDES_PATH="$overrides_dir" HOME="$home_dir" _run_silently
   assert_eq \
     "$overrides_dir/home/.bashrc" \
@@ -42,7 +42,7 @@ test_links_nested_file() {
   overrides_dir="$(mktemp -d)"
   home_dir="$(mktemp -d)"
   mkdir -p "$overrides_dir/home/.agents/skills/create-ticket"
-  echo 'override' > "$overrides_dir/home/.agents/skills/create-ticket/SKILL.md"
+  echo 'override' >"$overrides_dir/home/.agents/skills/create-ticket/SKILL.md"
   CHACHI_OVERRIDES_PATH="$overrides_dir" HOME="$home_dir" _run_silently
   assert_eq \
     "$overrides_dir/home/.agents/skills/create-ticket/SKILL.md" \
@@ -56,7 +56,7 @@ test_creates_parent_dirs() {
   overrides_dir="$(mktemp -d)"
   home_dir="$(mktemp -d)"
   mkdir -p "$overrides_dir/home/dd/web-ui/.claude"
-  echo 'override' > "$overrides_dir/home/dd/web-ui/.claude/settings.json"
+  echo 'override' >"$overrides_dir/home/dd/web-ui/.claude/settings.json"
   CHACHI_OVERRIDES_PATH="$overrides_dir" HOME="$home_dir" _run_silently
   assert_eq \
     "$overrides_dir/home/dd/web-ui/.claude/settings.json" \
@@ -70,9 +70,9 @@ test_handles_multiple_files() {
   overrides_dir="$(mktemp -d)"
   home_dir="$(mktemp -d)"
   mkdir -p "$overrides_dir/home/.agents/skills/a" "$overrides_dir/home/.agents/skills/b"
-  echo 'a' > "$overrides_dir/home/.agents/skills/a/SKILL.md"
-  echo 'b' > "$overrides_dir/home/.agents/skills/b/SKILL.md"
-  echo 'root' > "$overrides_dir/home/.bashrc"
+  echo 'a' >"$overrides_dir/home/.agents/skills/a/SKILL.md"
+  echo 'b' >"$overrides_dir/home/.agents/skills/b/SKILL.md"
+  echo 'root' >"$overrides_dir/home/.bashrc"
   CHACHI_OVERRIDES_PATH="$overrides_dir" HOME="$home_dir" _run_silently
   assert_eq \
     "$overrides_dir/home/.agents/skills/a/SKILL.md" \
@@ -94,7 +94,7 @@ test_idempotent_rerun() {
   overrides_dir="$(mktemp -d)"
   home_dir="$(mktemp -d)"
   mkdir -p "$overrides_dir/home"
-  echo 'override' > "$overrides_dir/home/.bashrc"
+  echo 'override' >"$overrides_dir/home/.bashrc"
   CHACHI_OVERRIDES_PATH="$overrides_dir" HOME="$home_dir" _run_silently
   CHACHI_OVERRIDES_PATH="$overrides_dir" HOME="$home_dir" _run_silently
   assert_eq 0 $? 'idempotent rerun'
@@ -107,7 +107,7 @@ test_fails_on_wrong_existing_symlink() {
   home_dir="$(mktemp -d)"
   other="$(mktemp)"
   mkdir -p "$overrides_dir/home"
-  echo 'override' > "$overrides_dir/home/.bashrc"
+  echo 'override' >"$overrides_dir/home/.bashrc"
   ln -s "$other" "$home_dir/.bashrc.local"
   CHACHI_OVERRIDES_PATH="$overrides_dir" HOME="$home_dir" _run_silently
   assert_eq 2 $? 'fails with code 2 when overlay points elsewhere'
@@ -119,8 +119,8 @@ test_fails_on_real_file_at_target() {
   overrides_dir="$(mktemp -d)"
   home_dir="$(mktemp -d)"
   mkdir -p "$overrides_dir/home"
-  echo 'override' > "$overrides_dir/home/.bashrc"
-  echo 'real' > "$home_dir/.bashrc.local"
+  echo 'override' >"$overrides_dir/home/.bashrc"
+  echo 'real' >"$home_dir/.bashrc.local"
   CHACHI_OVERRIDES_PATH="$overrides_dir" HOME="$home_dir" _run_silently
   assert_eq 4 $? 'fails with code 4 for real file at overlay path'
   rm -rf "$overrides_dir" "$home_dir"

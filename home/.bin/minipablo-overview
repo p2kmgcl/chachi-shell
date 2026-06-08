@@ -17,346 +17,346 @@ ICON_RFC="📄"
 ICON_FILES="🗂️"
 
 get_terminal_width() {
-    local width
-    local stty_output
-    stty_output=$(stty size 2>/dev/null)
-    if [[ -n "$stty_output" ]]; then
-        width=$(echo "$stty_output" | awk '{print $2}')
-    else
-        width=$(tput cols 2>/dev/null || echo 80)
-    fi
-    if [[ -z "$width" || $width -lt $MIN_WIDTH ]]; then
-        width=$MIN_WIDTH
-    fi
-    echo "$width"
+  local width
+  local stty_output
+  stty_output=$(stty size 2>/dev/null)
+  if [[ -n "$stty_output" ]]; then
+    width=$(echo "$stty_output" | awk '{print $2}')
+  else
+    width=$(tput cols 2>/dev/null || echo 80)
+  fi
+  if [[ -z "$width" || $width -lt $MIN_WIDTH ]]; then
+    width=$MIN_WIDTH
+  fi
+  echo "$width"
 }
 
 find_agent_states() {
-    find "$WORKTREES_DIR" -maxdepth 3 -type d -name ".agent-state" 2>/dev/null | sort
+  find "$WORKTREES_DIR" -maxdepth 3 -type d -name ".agent-state" 2>/dev/null | sort
 }
 
 get_agent_data() {
-    local agent_dir="$1"
-    local ticket_file="$agent_dir/ticket.json"
-    local task_file="$agent_dir/task.json"
-    local action_file="$agent_dir/action.json"
-    local plan_file="$agent_dir/plan.json"
-    local pr_file="$agent_dir/pr-feedback.json"
-    local rfc_file="$agent_dir/rfc.md"
+  local agent_dir="$1"
+  local ticket_file="$agent_dir/ticket.json"
+  local task_file="$agent_dir/task.json"
+  local action_file="$agent_dir/action.json"
+  local plan_file="$agent_dir/plan.json"
+  local pr_file="$agent_dir/pr-feedback.json"
+  local rfc_file="$agent_dir/rfc.md"
 
-    local worktree_path="${agent_dir%/.agent-state}"
-    local location="${worktree_path#$WORKTREES_DIR/}"
+  local worktree_path="${agent_dir%/.agent-state}"
+  local location="${worktree_path#$WORKTREES_DIR/}"
 
-    local ticket_key="N/A"
-    local ticket_summary="N/A"
-    local task_action="N/A"
-    local task_desc="N/A"
-    local task_id=""
-    local task_files=""
-    local completed=0
-    local pending=0
-    local last_log="N/A"
-    local plan_title=""
-    local plan_summary=""
-    local ticket_url=""
-    local pr_url=""
-    local pr_status=""
-    local has_rfc="false"
+  local ticket_key="N/A"
+  local ticket_summary="N/A"
+  local task_action="N/A"
+  local task_desc="N/A"
+  local task_id=""
+  local task_files=""
+  local completed=0
+  local pending=0
+  local last_log="N/A"
+  local plan_title=""
+  local plan_summary=""
+  local ticket_url=""
+  local pr_url=""
+  local pr_status=""
+  local has_rfc="false"
 
-    if [[ -f "$ticket_file" ]]; then
-        ticket_key=$(jq -r '.key // "N/A"' "$ticket_file" 2>/dev/null)
-        ticket_summary=$(jq -r '.summary // "N/A"' "$ticket_file" 2>/dev/null)
-        ticket_url=$(jq -r '.url // ""' "$ticket_file" 2>/dev/null)
+  if [[ -f "$ticket_file" ]]; then
+    ticket_key=$(jq -r '.key // "N/A"' "$ticket_file" 2>/dev/null)
+    ticket_summary=$(jq -r '.summary // "N/A"' "$ticket_file" 2>/dev/null)
+    ticket_url=$(jq -r '.url // ""' "$ticket_file" 2>/dev/null)
+  fi
+
+  if [[ -f "$plan_file" ]]; then
+    completed=$(jq -r '.completed_tasks | length' "$plan_file" 2>/dev/null)
+    pending=$(jq -r '.pending_tasks | length' "$plan_file" 2>/dev/null)
+    plan_title=$(jq -r '.title // ""' "$plan_file" 2>/dev/null)
+    plan_summary=$(jq -r '.source // ""' "$plan_file" 2>/dev/null)
+  fi
+
+  local total=$((completed + pending))
+  local percentage=0
+  if [[ $total -gt 0 ]]; then
+    percentage=$(((completed * 100) / total))
+  fi
+
+  if [[ -f "$action_file" ]]; then
+    task_action=$(jq -r '.action // "N/A"' "$action_file" 2>/dev/null)
+  fi
+
+  if [[ -f "$task_file" ]]; then
+    task_id=""
+    task_desc=$(jq -r '.action // "N/A"' "$task_file" 2>/dev/null)
+    task_files=$(jq -r '(.files // []) | join(", ")' "$task_file" 2>/dev/null)
+    last_log=$(jq -r '.log[-1] // "N/A"' "$task_file" 2>/dev/null)
+  else
+    if [[ $pending -eq 0 && $completed -gt 0 ]]; then
+      task_desc="All tasks completed"
+    elif [[ $pending -gt 0 && "$task_action" == "N/A" ]]; then
+      task_action="planning"
+      task_desc="Planning next task"
     fi
+  fi
 
-    if [[ -f "$plan_file" ]]; then
-        completed=$(jq -r '.completed_tasks | length' "$plan_file" 2>/dev/null)
-        pending=$(jq -r '.pending_tasks | length' "$plan_file" 2>/dev/null)
-        plan_title=$(jq -r '.title // ""' "$plan_file" 2>/dev/null)
-        plan_summary=$(jq -r '.source // ""' "$plan_file" 2>/dev/null)
-    fi
+  if [[ -f "$pr_file" ]]; then
+    pr_url=$(jq -r '.pr_url // ""' "$pr_file" 2>/dev/null)
+    pr_status=$(jq -r '.status // ""' "$pr_file" 2>/dev/null)
+  fi
 
-    local total=$((completed + pending))
-    local percentage=0
-    if [[ $total -gt 0 ]]; then
-        percentage=$(( (completed * 100) / total ))
-    fi
+  if [[ -f "$rfc_file" ]]; then
+    has_rfc="true"
+  fi
 
-    if [[ -f "$action_file" ]]; then
-        task_action=$(jq -r '.action // "N/A"' "$action_file" 2>/dev/null)
-    fi
-
-    if [[ -f "$task_file" ]]; then
-        task_id=""
-        task_desc=$(jq -r '.action // "N/A"' "$task_file" 2>/dev/null)
-        task_files=$(jq -r '(.files // []) | join(", ")' "$task_file" 2>/dev/null)
-        last_log=$(jq -r '.log[-1] // "N/A"' "$task_file" 2>/dev/null)
-    else
-        if [[ $pending -eq 0 && $completed -gt 0 ]]; then
-            task_desc="All tasks completed"
-        elif [[ $pending -gt 0 && "$task_action" == "N/A" ]]; then
-            task_action="planning"
-            task_desc="Planning next task"
-        fi
-    fi
-
-    if [[ -f "$pr_file" ]]; then
-        pr_url=$(jq -r '.pr_url // ""' "$pr_file" 2>/dev/null)
-        pr_status=$(jq -r '.status // ""' "$pr_file" 2>/dev/null)
-    fi
-
-    if [[ -f "$rfc_file" ]]; then
-        has_rfc="true"
-    fi
-
-    # Use jq --arg to safely encode all values as JSON strings
-    jq -n \
-        --arg location "$location" \
-        --arg ticket_key "$ticket_key" \
-        --arg ticket_summary "$ticket_summary" \
-        --arg ticket_url "$ticket_url" \
-        --arg task_action "$task_action" \
-        --arg task_id "$task_id" \
-        --arg task_desc "$task_desc" \
-        --arg task_files "$task_files" \
-        --arg completed "$completed" \
-        --arg pending "$pending" \
-        --arg total "$total" \
-        --arg percentage "$percentage" \
-        --arg last_log "$last_log" \
-        --arg plan_title "$plan_title" \
-        --arg plan_summary "$plan_summary" \
-        --arg pr_url "$pr_url" \
-        --arg pr_status "$pr_status" \
-        --arg has_rfc "$has_rfc" \
-        '$ARGS.named'
+  # Use jq --arg to safely encode all values as JSON strings
+  jq -n \
+    --arg location "$location" \
+    --arg ticket_key "$ticket_key" \
+    --arg ticket_summary "$ticket_summary" \
+    --arg ticket_url "$ticket_url" \
+    --arg task_action "$task_action" \
+    --arg task_id "$task_id" \
+    --arg task_desc "$task_desc" \
+    --arg task_files "$task_files" \
+    --arg completed "$completed" \
+    --arg pending "$pending" \
+    --arg total "$total" \
+    --arg percentage "$percentage" \
+    --arg last_log "$last_log" \
+    --arg plan_title "$plan_title" \
+    --arg plan_summary "$plan_summary" \
+    --arg pr_url "$pr_url" \
+    --arg pr_status "$pr_status" \
+    --arg has_rfc "$has_rfc" \
+    '$ARGS.named'
 }
 
 draw_progress_bar() {
-    local percentage="$1"
-    local bar_width=20
-    local filled=$((percentage * bar_width / 100))
-    local empty=$((bar_width - filled))
+  local percentage="$1"
+  local bar_width=20
+  local filled=$((percentage * bar_width / 100))
+  local empty=$((bar_width - filled))
 
-    local bar=""
-    for ((i=0; i<filled; i++)); do
-        bar="${bar}█"
-    done
-    for ((i=0; i<empty; i++)); do
-        bar="${bar}░"
-    done
+  local bar=""
+  for ((i = 0; i < filled; i++)); do
+    bar="${bar}█"
+  done
+  for ((i = 0; i < empty; i++)); do
+    bar="${bar}░"
+  done
 
-    echo "$bar"
+  echo "$bar"
 }
 
 print_wrapped() {
-    local prefix="$1"
-    local text="$2"
-    local max_lines="${3:-0}"
-    local max_width="${4:-80}"
-    local width=$((max_width - ${#prefix}))
+  local prefix="$1"
+  local text="$2"
+  local max_lines="${3:-0}"
+  local max_width="${4:-80}"
+  local width=$((max_width - ${#prefix}))
 
-    local line_count=0
+  local line_count=0
 
-    echo "$text" | fold -w "$width" | while IFS= read -r line; do
-        if [[ $line_count -eq 0 ]]; then
-            printf "%s%s\n" "$prefix" "$line"
-        else
-            printf "%${#prefix}s%s\n" "" "$line"
-        fi
+  echo "$text" | fold -w "$width" | while IFS= read -r line; do
+    if [[ $line_count -eq 0 ]]; then
+      printf "%s%s\n" "$prefix" "$line"
+    else
+      printf "%${#prefix}s%s\n" "" "$line"
+    fi
 
-        line_count=$((line_count + 1))
+    line_count=$((line_count + 1))
 
-        if [[ $max_lines -gt 0 && $line_count -ge $max_lines ]]; then
-            printf "%${#prefix}s%s\n" "" "..."
-            break
-        fi
-    done
+    if [[ $max_lines -gt 0 && $line_count -ge $max_lines ]]; then
+      printf "%${#prefix}s%s\n" "" "..."
+      break
+    fi
+  done
 }
 
 draw_agent_card() {
-    local agent_json="$1"
-    local max_width="${2:-80}"
+  local agent_json="$1"
+  local max_width="${2:-80}"
 
-    local location ticket_key ticket_summary ticket_url task_action task_id task_desc task_files
-    local completed pending total percentage last_log
-    local plan_title plan_summary pr_url pr_status has_rfc
-    location=$(echo "$agent_json" | jq -r '.location')
-    ticket_key=$(echo "$agent_json" | jq -r '.ticket_key')
-    ticket_summary=$(echo "$agent_json" | jq -r '.ticket_summary')
-    ticket_url=$(echo "$agent_json" | jq -r '.ticket_url')
-    task_action=$(echo "$agent_json" | jq -r '.task_action')
-    task_id=$(echo "$agent_json" | jq -r '.task_id')
-    task_desc=$(echo "$agent_json" | jq -r '.task_desc')
-    task_files=$(echo "$agent_json" | jq -r '.task_files')
-    completed=$(echo "$agent_json" | jq -r '.completed')
-    pending=$(echo "$agent_json" | jq -r '.pending')
-    total=$(echo "$agent_json" | jq -r '.total')
-    percentage=$(echo "$agent_json" | jq -r '.percentage')
-    last_log=$(echo "$agent_json" | jq -r '.last_log')
-    plan_title=$(echo "$agent_json" | jq -r '.plan_title')
-    plan_summary=$(echo "$agent_json" | jq -r '.plan_summary')
-    pr_url=$(echo "$agent_json" | jq -r '.pr_url')
-    pr_status=$(echo "$agent_json" | jq -r '.pr_status')
-    has_rfc=$(echo "$agent_json" | jq -r '.has_rfc')
+  local location ticket_key ticket_summary ticket_url task_action task_id task_desc task_files
+  local completed pending total percentage last_log
+  local plan_title plan_summary pr_url pr_status has_rfc
+  location=$(echo "$agent_json" | jq -r '.location')
+  ticket_key=$(echo "$agent_json" | jq -r '.ticket_key')
+  ticket_summary=$(echo "$agent_json" | jq -r '.ticket_summary')
+  ticket_url=$(echo "$agent_json" | jq -r '.ticket_url')
+  task_action=$(echo "$agent_json" | jq -r '.task_action')
+  task_id=$(echo "$agent_json" | jq -r '.task_id')
+  task_desc=$(echo "$agent_json" | jq -r '.task_desc')
+  task_files=$(echo "$agent_json" | jq -r '.task_files')
+  completed=$(echo "$agent_json" | jq -r '.completed')
+  pending=$(echo "$agent_json" | jq -r '.pending')
+  total=$(echo "$agent_json" | jq -r '.total')
+  percentage=$(echo "$agent_json" | jq -r '.percentage')
+  last_log=$(echo "$agent_json" | jq -r '.last_log')
+  plan_title=$(echo "$agent_json" | jq -r '.plan_title')
+  plan_summary=$(echo "$agent_json" | jq -r '.plan_summary')
+  pr_url=$(echo "$agent_json" | jq -r '.pr_url')
+  pr_status=$(echo "$agent_json" | jq -r '.pr_status')
+  has_rfc=$(echo "$agent_json" | jq -r '.has_rfc')
 
-    printf "%s %s\n" "$ICON_FOLDER" "$location"
-    local ticket_line="$ticket_key: $ticket_summary"
-    if [[ -n "$ticket_url" ]]; then
-        ticket_line="$ticket_key: $ticket_summary ($ticket_url)"
+  printf "%s %s\n" "$ICON_FOLDER" "$location"
+  local ticket_line="$ticket_key: $ticket_summary"
+  if [[ -n "$ticket_url" ]]; then
+    ticket_line="$ticket_key: $ticket_summary ($ticket_url)"
+  fi
+  print_wrapped "$ICON_TICKET " "$ticket_line" 0 "$max_width"
+
+  if [[ -n "$plan_title" ]]; then
+    print_wrapped "  " "$plan_title" 0 "$max_width"
+  fi
+  if [[ -n "$plan_summary" ]]; then
+    print_wrapped "  " "$plan_summary" 1 "$max_width"
+  fi
+
+  local progress_bar
+  progress_bar=$(draw_progress_bar "$percentage")
+  printf "%s Progress: %s/%s tasks (%s%%) %s\n" "$ICON_PROGRESS" "$completed" "$total" "$percentage" "$progress_bar"
+
+  # PR and RFC indicators
+  if [[ -n "$pr_url" || "$has_rfc" == "true" ]]; then
+    local indicators=""
+    if [[ -n "$pr_url" ]]; then
+      indicators="${ICON_PR} PR: ${pr_url}"
+      if [[ -n "$pr_status" ]]; then
+        indicators="${indicators} [${pr_status}]"
+      fi
     fi
-    print_wrapped "$ICON_TICKET " "$ticket_line" 0 "$max_width"
-
-    if [[ -n "$plan_title" ]]; then
-        print_wrapped "  " "$plan_title" 0 "$max_width"
+    if [[ "$has_rfc" == "true" ]]; then
+      if [[ -n "$indicators" ]]; then
+        indicators="${indicators}  "
+      fi
+      indicators="${indicators}${ICON_RFC} RFC"
     fi
-    if [[ -n "$plan_summary" ]]; then
-        print_wrapped "  " "$plan_summary" 1 "$max_width"
-    fi
+    print_wrapped "" "$indicators" 0 "$max_width"
+  fi
 
-    local progress_bar
-    progress_bar=$(draw_progress_bar "$percentage")
-    printf "%s Progress: %s/%s tasks (%s%%) %s\n" "$ICON_PROGRESS" "$completed" "$total" "$percentage" "$progress_bar"
+  echo ""
+  local task_label="$task_action"
+  if [[ -n "$task_id" ]]; then
+    task_label="Task #${task_id}: ${task_action}"
+  fi
+  printf "%s %s\n" "$ICON_TASK" "$task_label"
+  print_wrapped "  " "$task_desc" 0 "$max_width"
 
-    # PR and RFC indicators
-    if [[ -n "$pr_url" || "$has_rfc" == "true" ]]; then
-        local indicators=""
-        if [[ -n "$pr_url" ]]; then
-            indicators="${ICON_PR} PR: ${pr_url}"
-            if [[ -n "$pr_status" ]]; then
-                indicators="${indicators} [${pr_status}]"
-            fi
-        fi
-        if [[ "$has_rfc" == "true" ]]; then
-            if [[ -n "$indicators" ]]; then
-                indicators="${indicators}  "
-            fi
-            indicators="${indicators}${ICON_RFC} RFC"
-        fi
-        print_wrapped "" "$indicators" 0 "$max_width"
-    fi
+  if [[ -n "$task_files" ]]; then
+    printf "%s %s\n" "$ICON_FILES" "$task_files"
+  fi
 
+  if [[ "$last_log" != "N/A" && -n "$last_log" ]]; then
     echo ""
-    local task_label="$task_action"
-    if [[ -n "$task_id" ]]; then
-        task_label="Task #${task_id}: ${task_action}"
-    fi
-    printf "%s %s\n" "$ICON_TASK" "$task_label"
-    print_wrapped "  " "$task_desc" 0 "$max_width"
-
-    if [[ -n "$task_files" ]]; then
-        printf "%s %s\n" "$ICON_FILES" "$task_files"
-    fi
-
-    if [[ "$last_log" != "N/A" && -n "$last_log" ]]; then
-        echo ""
-        printf "%s Last log:\n" "$ICON_LOG"
-        print_wrapped "  " "$last_log" 0 "$max_width"
-    fi
+    printf "%s Last log:\n" "$ICON_LOG"
+    print_wrapped "  " "$last_log" 0 "$max_width"
+  fi
 }
 
 display_agents() {
-    local loop_mode="$1"
-    
-    local term_width
-    term_width=$(get_terminal_width)
+  local loop_mode="$1"
 
-    local output
-    output=$(
+  local term_width
+  term_width=$(get_terminal_width)
 
-        local timestamp
-        timestamp=$(date +"%H:%M:%S")
+  local output
+  output=$(
 
-        local agent_dirs
-        mapfile -t agent_dirs < <(find_agent_states)
-        local agent_count=${#agent_dirs[@]}
+    local timestamp
+    timestamp=$(date +"%H:%M:%S")
 
-        if [[ $agent_count -eq 1 ]]; then
-            printf "%s MinipaBlo (%d agent)  -  Updated: %s\n" "$ICON_ROBOT" "$agent_count" "$timestamp"
-        elif [[ $agent_count -gt 1 ]]; then
-            printf "%s MinipaBlo (%d agents)  -  Updated: %s\n" "$ICON_ROBOT" "$agent_count" "$timestamp"
-        else
-            printf "%s MinipaBlo  -  Updated: %s\n" "$ICON_ROBOT" "$timestamp"
+    local agent_dirs
+    mapfile -t agent_dirs < <(find_agent_states)
+    local agent_count=${#agent_dirs[@]}
+
+    if [[ $agent_count -eq 1 ]]; then
+      printf "%s MinipaBlo (%d agent)  -  Updated: %s\n" "$ICON_ROBOT" "$agent_count" "$timestamp"
+    elif [[ $agent_count -gt 1 ]]; then
+      printf "%s MinipaBlo (%d agents)  -  Updated: %s\n" "$ICON_ROBOT" "$agent_count" "$timestamp"
+    else
+      printf "%s MinipaBlo  -  Updated: %s\n" "$ICON_ROBOT" "$timestamp"
+    fi
+    printf "%${term_width}s\n" "" | tr ' ' '='
+    echo ""
+
+    if [[ $agent_count -eq 0 ]]; then
+      echo "No agents currently running"
+      echo ""
+      echo "Agents will appear when found in:"
+      echo "  ~/Projects/worktrees/*/*/.agent-state"
+    else
+      local first=true
+      for agent_dir in "${agent_dirs[@]}"; do
+        if [[ "$first" == false ]]; then
+          echo ""
+          printf "%${term_width}s\n" "" | tr ' ' '-'
+          echo ""
         fi
-        printf "%${term_width}s\n" "" | tr ' ' '='
-        echo ""
+        first=false
 
-        if [[ $agent_count -eq 0 ]]; then
-            echo "No agents currently running"
-            echo ""
-            echo "Agents will appear when found in:"
-            echo "  ~/Projects/worktrees/*/*/.agent-state"
-        else
-            local first=true
-            for agent_dir in "${agent_dirs[@]}"; do
-                if [[ "$first" == false ]]; then
-                    echo ""
-                    printf "%${term_width}s\n" "" | tr ' ' '-'
-                    echo ""
-                fi
-                first=false
-
-                local agent_data
-                agent_data=$(get_agent_data "$agent_dir")
-                draw_agent_card "$agent_data" "$term_width"
-            done
-        fi
-
-        if [[ "$loop_mode" == "true" ]]; then
-            echo ""
-            printf "%${term_width}s\n" "" | tr ' ' '='
-            echo "Press Ctrl+C to exit"
-        fi
-    )
+        local agent_data
+        agent_data=$(get_agent_data "$agent_dir")
+        draw_agent_card "$agent_data" "$term_width"
+      done
+    fi
 
     if [[ "$loop_mode" == "true" ]]; then
-        clear
+      echo ""
+      printf "%${term_width}s\n" "" | tr ' ' '='
+      echo "Press Ctrl+C to exit"
     fi
-    echo "$output"
+  )
+
+  if [[ "$loop_mode" == "true" ]]; then
+    clear
+  fi
+  echo "$output"
 }
 
 main() {
-    if ! command -v jq &> /dev/null; then
-        echo "Error: jq is required but not installed."
-        echo "Install it with: brew install jq"
-        exit 1
-    fi
+  if ! command -v jq &>/dev/null; then
+    echo "Error: jq is required but not installed."
+    echo "Install it with: brew install jq"
+    exit 1
+  fi
 
-    local loop_mode=false
-    while [[ $# -gt 0 ]]; do
-        case "$1" in
-            --loop)
-                loop_mode=true
-                shift
-                ;;
-            -h|--help)
-                echo "Usage: minipablo-overview [--loop]"
-                echo ""
-                echo "Monitor minipablo agents in ~/Projects/worktrees"
-                echo ""
-                echo "Options:"
-                echo "  --loop        Auto-refresh every 5 seconds (default: print once and exit)"
-                echo "  -h, --help    Show this help message"
-                exit 0
-                ;;
-            *)
-                echo "Unknown option: $1"
-                echo "Use --help for usage information"
-                exit 1
-                ;;
-        esac
+  local loop_mode=false
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+    --loop)
+      loop_mode=true
+      shift
+      ;;
+    -h | --help)
+      echo "Usage: minipablo-overview [--loop]"
+      echo ""
+      echo "Monitor minipablo agents in ~/Projects/worktrees"
+      echo ""
+      echo "Options:"
+      echo "  --loop        Auto-refresh every 5 seconds (default: print once and exit)"
+      echo "  -h, --help    Show this help message"
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1"
+      echo "Use --help for usage information"
+      exit 1
+      ;;
+    esac
+  done
+
+  if [[ "$loop_mode" == "true" ]]; then
+    trap 'echo ""; echo "Exiting..."; exit 0' INT
+
+    while true; do
+      display_agents true
+      sleep "$REFRESH_INTERVAL"
     done
-
-    if [[ "$loop_mode" == "true" ]]; then
-        trap 'echo ""; echo "Exiting..."; exit 0' INT
-
-        while true; do
-            display_agents true
-            sleep "$REFRESH_INTERVAL"
-        done
-    else
-        display_agents false
-    fi
+  else
+    display_agents false
+  fi
 }
 
 main "$@"
