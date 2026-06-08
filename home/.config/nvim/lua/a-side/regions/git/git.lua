@@ -2,6 +2,7 @@ local status = require('a-side.regions.git.status')
 local watcher = require('a-side.regions.git.watcher')
 local paths = require('a-side.regions.git.paths')
 local tree = require('a-side.ui.tree.tree')
+local refresh_indicators = require('a-side.decorators.refresh_indicators')
 
 local M = {
   name = 'git',
@@ -15,11 +16,14 @@ local function branch_name(line)
     or line:match("^## (%S+)")
 end
 
+local POLL_MS = 10000
+
 local state = {
   bufnr = nil,
   toplevel = nil,
   gitdir = nil,
   watcher = nil,
+  poll_timer = nil,
   running = false,
   dirty = false,
   handle = nil,
@@ -53,6 +57,7 @@ local function ensure_handle()
     on_render = function()
       local ok, view = pcall(require, 'a-side.view')
       if ok then view.resize('git') end
+      refresh_indicators.tick(state.bufnr)
     end,
   })
 end
@@ -129,6 +134,7 @@ local function run()
       state.handle:render()
     else
       write_flat({ branch_line })
+      refresh_indicators.tick(state.bufnr)
     end
 
     if state.dirty then
@@ -164,6 +170,8 @@ function M.enable(bufnr)
     state.toplevel = info.toplevel
     state.gitdir = info.gitdir
     state.watcher = watcher.start(state.gitdir, run)
+    state.poll_timer = vim.uv.new_timer()
+    state.poll_timer:start(POLL_MS, POLL_MS, vim.schedule_wrap(run))
     run()
   end)
 
@@ -216,6 +224,11 @@ function M.cursor_path()
 end
 
 function M.disable()
+  if state.poll_timer then
+    state.poll_timer:stop()
+    if not state.poll_timer:is_closing() then state.poll_timer:close() end
+    state.poll_timer = nil
+  end
   if state.watcher then
     state.watcher.stop()
     state.watcher = nil

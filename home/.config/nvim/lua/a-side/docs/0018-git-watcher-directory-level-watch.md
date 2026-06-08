@@ -1,6 +1,6 @@
 # ADR 0018: git watcher — directory-level watch replaces per-file watch
 
-**Status:** Accepted
+**Status:** Superseded by ADR 0020
 **Date:** 2026-05-29
 **Supersedes:** ADR 0004 (watcher section only)
 
@@ -55,5 +55,6 @@ A timer ticking every few seconds as a safety net. Provides a ceiling on stalene
 ## Consequences
 
 - The watcher is now simpler: one handle, one timer, no per-file stat state, no mtime guard.
-- All operations that mutate `.git/` top-level entries trigger a refresh. In practice this means all real git operations. Unrelated writes to `.git/` subdirectories (objects, logs) do not fire the directory watch.
+- All operations that mutate `.git/` top-level entries trigger a refresh. In practice this means all real git operations.
+- Operations that write only to `.git/` subdirectories (e.g. `git fetch` updating `refs/remotes/`, `git commit` updating `refs/heads/`) do **not** fire the non-recursive directory watch. This turned out to be a coverage gap — see ADR 0020.
 - The debounce collapses the 2-3 events that a single git operation typically generates into one `git status` run, same as before.

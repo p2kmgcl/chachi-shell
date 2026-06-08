@@ -1,5 +1,6 @@
 local list = require('a-side.regions.buffers.list')
 local tree = require('a-side.ui.tree.tree')
+local refresh_indicators = require('a-side.decorators.refresh_indicators')
 
 local M = {
   name = 'buffers',
@@ -94,6 +95,7 @@ function M.enable(bufnr)
     on_render = function()
       local ok, view = pcall(require, 'a-side.view')
       if ok then view.resize('buffers') end
+      refresh_indicators.tick(state.bufnr)
     end,
   })
 

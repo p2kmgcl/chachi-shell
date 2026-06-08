@@ -2,6 +2,7 @@ local scan = require("a-side.regions.explorer.scan")
 local watcher = require("a-side.regions.explorer.watcher")
 local mutations = require("a-side.regions.explorer.mutations")
 local tree = require("a-side.ui.tree.tree")
+local refresh_indicators = require("a-side.decorators.refresh_indicators")
 
 local DEBOUNCE_MS = 100
 
@@ -183,6 +184,7 @@ function M.enable(bufnr)
       if ok then
         view.resize("explorer")
       end
+      refresh_indicators.tick(state.bufnr)
     end,
   })
 
