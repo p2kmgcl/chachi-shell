@@ -3,6 +3,7 @@ return {
   lazy = false,
   opts = {
     spec = {
+      { "<leader>a", group = "A-Side" },
       { "<leader>b", group = "Buffer" },
       { "<leader>c", group = "Code" },
       { "<leader>e", group = "Explorer" },
