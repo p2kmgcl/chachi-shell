@@ -26,5 +26,6 @@
   "theme": "dark-daltonized",
   "editorMode": "normal",
   "verbose": true,
-  "preferredNotifChannel": "ghostty"
+  "preferredNotifChannel": "ghostty",
+  "skipWorkflowUsageWarning": true
 }
