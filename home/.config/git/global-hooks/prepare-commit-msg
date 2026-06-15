@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Only run on fresh commits (skip amend, merge, squash, etc.)
+[ -n "$2" ] && exit 0
+
+LOCAL_HOOK="$(dirname "$0")/prepare-commit-msg.local"
+if [ -x "$LOCAL_HOOK" ]; then exec "$LOCAL_HOOK" "$@"; fi
+
+BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null)
+[ -z "$BRANCH" ] && exit 0
+
+# Strip author prefix if present (pattern: <author>/<rest>)
+REST=$(echo "$BRANCH" | sed -E 's|^[^/]+/||')
+
+TICKET=$(echo "$REST" | sed -E 's|^([A-Z]+-[0-9]+).*|\1|')
+[ "$TICKET" = "$REST" ] && TICKET=""
+
+DESC=$(echo "$REST" | sed -E 's|^[A-Z]+-[0-9]+-?||')
+
+case "$DESC" in
+  fix*|bug*|hotfix*) TYPE="fix" ;;
+  chore*|bump*|deps*|dep*|update*) TYPE="chore" ;;
+  docs*|doc*) TYPE="docs" ;;
+  test*) TYPE="test" ;;
+  refactor*) TYPE="refactor" ;;
+  *) TYPE="feat" ;;
+esac
+
+if [ -n "$TICKET" ]; then
+  printf '%s(%s): \n' "$TYPE" "$TICKET" > "$1"
+else
+  printf '%s: \n' "$TYPE" > "$1"
+fi

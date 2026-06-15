@@ -1,3 +1,9 @@
+customCommands:
+  - key: 'C'
+    context: 'files'
+    description: 'Commit with generated message'
+    command: 'TMPFILE=$(mktemp) && ~/.config/git/global-hooks/prepare-commit-msg "$TMPFILE" && git commit --edit --file="$TMPFILE"; rm -f "$TMPFILE"'
+    output: terminal
 confirmOnQuit: false
 os:
   editPreset: 'nvim-remote'

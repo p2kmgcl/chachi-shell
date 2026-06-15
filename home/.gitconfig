@@ -8,6 +8,7 @@
 [core]
   editor = nvim
   excludesfile = ~/.config/git/gitignore-global
+  hooksPath = ~/.config/git/global-hooks
   fsmonitor = true
   ignorecase = false
   untrackedcache = true
