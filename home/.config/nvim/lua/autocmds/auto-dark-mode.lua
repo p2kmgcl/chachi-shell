@@ -1,2 +1,2 @@
-vim.o.background = "dark"
-vim.cmd("colorscheme github_dark_colorblind")
+vim.o.background = "light"
+vim.cmd("colorscheme github_light_colorblind")
