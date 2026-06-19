@@ -23,9 +23,9 @@
   "awaySummaryEnabled": false,
   "autoMemoryEnabled": false,
   "skipDangerousModePermissionPrompt": true,
+  "skipWorkflowUsageWarning": true,
   "theme": "light-daltonized",
   "editorMode": "normal",
   "verbose": true,
-  "preferredNotifChannel": "ghostty",
-  "skipWorkflowUsageWarning": true
+  "preferredNotifChannel": "ghostty"
 }
