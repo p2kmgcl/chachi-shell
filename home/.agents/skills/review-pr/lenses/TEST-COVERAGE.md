@@ -1,51 +1,37 @@
 # Lens: Test Coverage
 
-Your goal: find **all meaningful test quality problems** introduced by this PR — missing coverage, bad tests, and over-testing. You may return zero findings. Return only findings you are genuinely confident about — do not pad the list, but do not cap it artificially either.
+Find all meaningful test quality problems introduced by this PR — missing coverage, bad tests, and over-testing. A meaningful finding is a realistic edge case left untested and likely to regress silently, a test that couples to implementation and undermines confidence, or a test that adds noise without protecting real behavior. Return only findings you are genuinely confident about. Reference `~/.agents/skills/tdd/tests.md` and `~/.agents/skills/tdd/mocking.md` for what constitutes good vs bad tests.
 
-Reference `~/.agents/skills/tdd/tests.md` and `~/.agents/skills/tdd/mocking.md` for what constitutes good vs bad tests.
+## Examples
+
+`parser/cron.py:L40: missing: leap-year branch added in this PR has no test. Silent regression risk. [P2]`
+
+`tests/test_orders.py:L88: bad test: mocks the internal OrderRepository. Breaks on any refactor, verifies nothing real. [P2]`
+
+`tests/test_utils.py:L12: over-testing: asserts the exact call count of a private helper. Tests how, not what. [P3]`
 
 ## Process
 
 1. Read the diff. Identify new logic paths: branches, error handlers, edge cases, state transitions.
 2. Read the existing and new tests for changed files.
-3. For each finding category below, assess the diff against the criteria.
-4. Discard findings that are low-risk, pre-existing, or already implicitly covered.
+3. Assess each path against the three categories below.
+4. Apply the priority rubric from `PRIORITIES.md`.
 
-## Finding Categories
+## Categories
 
-### 1. Missing coverage
+- **Missing coverage**: a realistic edge case or failure mode introduced by this PR with no test, likely to regress silently and not caught by types, runtime validation, or integration tests.
+- **Bad tests**: mocking internal collaborators, testing private methods or internal state, asserting on call counts/order/wiring, bypassing the public interface, or names/assertions that describe HOW rather than WHAT — tests that would break on a pure internal refactor.
+- **Over-testing**: obvious happy paths with no regression risk, duplicate tests of the same path, tests for imagined behavior not yet driven by real implementation, or tests scoped so tightly they verify data structures rather than user-facing outcomes.
 
-A meaningful gap is a realistic edge case or failure mode introduced by this PR that has no test and is likely to regress silently. Missing tests for obvious happy paths, pre-existing gaps, or trivial code do not qualify.
+## Priority
 
-For each uncovered path: assess whether it is realistic and whether a regression would be caught by other means (types, runtime validation, integration tests).
+- **P2**: an untested realistic failure mode likely to regress silently, or a bad test giving false confidence on important logic.
+- **P3**: a minor gap or a low-stakes test smell.
 
-### 2. Bad tests
+Escalate to P2 when the gap or bad test would let a real regression ship unnoticed. Do not inflate to P2 just to clear the suppression line.
 
-Tests that are present but undermine confidence or couple to implementation:
+## Boundaries
 
-- Mocking internal collaborators (classes/modules the codebase owns) — mock at system boundaries only
-- Testing private methods or internal state directly
-- Asserting on call counts, call order, or internal wiring
-- Bypassing the public interface to verify (e.g. querying the DB directly instead of using the retrieval API)
-- Test names or assertions that describe HOW the code works, not WHAT behavior it provides
-- Tests that would break on a pure internal refactor where observable behavior is unchanged
+Flag only findings that are realistic, introduced by this PR, and not already implicitly covered. Group findings by category. Omit a category that has no findings.
 
-### 3. Over-testing
-
-Tests that exist but add noise without protecting real behavior:
-
-- Testing obvious happy paths that carry no meaningful regression risk
-- Duplicate tests that cover the same logical path under different names
-- Tests written in bulk for imagined behavior not yet driven by real implementation (horizontal-slice anti-pattern)
-- Tests so tightly scoped they test data structures or function signatures rather than user-facing outcomes
-
-## Output format
-
-Return findings grouped into three sections: **Missing coverage**, **Bad tests**, **Over-testing**. Each finding must include:
-
-- File path and line number of the relevant test or untested logic
-- What the problem is (one sentence)
-- Why it matters — regression risk for missing coverage, false confidence or maintenance burden for bad/over tests (one sentence)
-- Priority label from `PRIORITIES.md`
-
-If a section has no findings, omit it.
+If you find nothing that meets the bar, return an empty list. That is the correct answer.

@@ -18,9 +18,11 @@ Four strict phases: **Fetch, Analyze, Discuss, Post.** Do not skip ahead.
    review output:
 
    ```
-   Review the changes in PR #<number> in <owner>/<repo>. The PR branch is checked out locally.
+   You are a specialized code reviewer with a single focused purpose: apply the lens defined below.
+   Review the local code changes for PR #<number> in <owner>/<repo>. The branch is checked out — browse the codebase with filesystem tools as you would any local project.
    PR description: <description>
-   Follow the instructions in @PRIORITIES.md and @lenses/<LENS_FILE>.
+   Apply this lens yourself — you own the review judgment and must not delegate it. You may use read-only helper agents (e.g. Explore) to search the codebase, but you must not spawn any agent capable of spawning others, must not invoke the review-pr skill, and must not apply any lens but your own.
+   Follow the instructions in @PRIORITIES.md and @lenses/<LENS_FILE>. Return output as specified in @LENS_OUTPUT.md — your entire response is the findings list (or `none`), with no preamble, summary, PR recap, or process notes. I already have the PR context.
    ```
 
    Run all subagents in parallel.
@@ -54,3 +56,4 @@ Four strict phases: **Fetch, Analyze, Discuss, Post.** Do not skip ahead.
    and the review body for non-line-local findings. See `POSTING.md` for format and style rules.
 8. Check out the original branch and delete the `pr-{number}` branch. Tell the user the review is **PENDING** and they must submit it on GitHub.
 9. Run `~/.agents/skills/review-pr/sync-viewed-files.sh <owner>/<repo> <pr_number>`. Surface any warnings but don't treat failures as blocking.
+10. **Record metrics** as described in `METRICS.md`.

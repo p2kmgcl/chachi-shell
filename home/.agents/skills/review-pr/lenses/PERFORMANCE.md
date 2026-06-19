@@ -1,28 +1,24 @@
 # Lens: Performance
 
-Your goal: find **all significant performance regressions** introduced by this PR. You may return zero. Return only findings you are genuinely confident about — do not pad the list, but do not cap it artificially either.
+Find all significant performance regressions introduced by this PR: a change that meaningfully degrades latency, throughput, or resource usage on a realistic workload. Valid findings affect a hot path with measurable impact, not micro-optimizations or theoretical inefficiencies.
 
-A valid finding is a change that meaningfully degrades latency, throughput, or resource usage on
-a realistic workload — not micro-optimizations or theoretical inefficiencies.
+## Examples
+
+`api/feed.py:L31: N+1: loads each author in a loop inside the post serializer. 100 posts = 101 queries. [P2]`
+
+`jobs/export.js:L77: unbounded: reads entire table into memory before writing. OOM once the table grows past ~1M rows. [P1]`
+
+`handlers/request.py:L19: blocking: synchronous HTTP call inside an async handler. Stalls the event loop on every request. [P1]`
 
 ## Process
 
-1. Read the diff. Look for: N+1 queries, missing indexes implied by new query patterns, unbounded
-   loops over large datasets, synchronous blocking in async paths, unnecessary recomputation.
+1. Read the diff. Look for: N+1 queries, missing indexes implied by new query patterns, unbounded loops over large datasets, synchronous blocking in async paths, unnecessary recomputation.
 2. Explore the codebase: understand data sizes, call frequency, existing caching patterns.
 3. For each candidate: confirm it affects a hot path and the impact is measurable, not theoretical.
-4. Discard anything that matters only at irrelevant scale.
+4. Apply the priority rubric from `PRIORITIES.md`.
 
-## Output format
+## Boundaries
 
-Return a list of findings. Each finding must include:
-- File path and line number
-- What the regression is (one sentence)
-- Why it matters on realistic data (one sentence)
-- Priority label from `PRIORITIES.md`
+Flag only hot-path regressions with measurable impact on realistic workloads.
 
-If nothing meets the bar, return an empty list.
-
-## Bias
-
-Do not flag inefficiencies in cold paths or speculative future problems.
+If you find nothing that meets the bar, return an empty list. That is the correct answer.

@@ -1,43 +1,32 @@
 # Lens: Documentation Drift
 
-Your goal: find **existing documentation that this PR has made incorrect or misleading**. You are
-not asking for new documentation to be written — you are asking whether docs that already exist
-still describe reality after this PR lands.
+Find existing documentation that this PR has made incorrect or misleading: comments, docstrings, READMEs, changelogs, architecture docs, or any prose that described reality accurately before this PR and no longer does. This lens is about drift, not gaps — docs live far from the code they describe, so cast wide.
 
-## Scope
+## Examples
 
-Check all documentation reachable from the changed code: inline comments, docstrings, READMEs,
-changelogs, architecture docs, and any other prose files in the repository. Cast wide here — docs
-live far from the code they describe.
+`README.md:L40: drift: documents --timeout default as 30s. This PR changed it to 10s. [P2]`
 
-## What qualifies
+`api/client.py:L12: drift: docstring says "returns None on miss" but the PR now raises KeyError. Callers following the doc will break. [P1]`
 
-- A comment or docstring that describes behavior the PR changed
-- A README or doc that describes an interface, flag, configuration, or flow the PR modified
-- A changelog or migration guide that is missing an entry for a user-visible change in this PR
-- An architectural doc or diagram that describes a structure this PR altered
-
-## What does not qualify
-
-- Code that has always been undocumented — this lens is about drift, not gaps
-- Comments that are vague but not wrong
-- Docs about unrelated parts of the system
+`docs/architecture.md:L88: drift: diagram shows the worker reading from the queue directly. This PR moved it behind the dispatcher. [P3]`
 
 ## Process
 
-1. Read the diff. List every behavioral or interface change: new parameters, changed defaults,
-   removed behavior, renamed things, altered contracts.
+1. Read the diff. List every behavioral or interface change: new parameters, changed defaults, removed behavior, renamed things, altered contracts.
 2. Search the repository for documentation referencing the changed symbols, files, or concepts.
 3. For each doc found: check whether it still accurately describes reality post-PR.
-4. Apply the priority rubric from `PRIORITIES.md` — don't assume a priority in advance.
-5. Discard docs that are still accurate.
+4. Apply the priority rubric from `PRIORITIES.md`.
 
-## Output format
+## Priority
 
-Return a list of findings. Each finding must include:
-- File path and line number of the **documentation** (not the code)
-- One-sentence description of what the doc says vs. what is now true
-- Why it matters (one sentence — who gets misled and how)
-- Priority label from `PRIORITIES.md`
+- **P1**: the stale doc will lead a caller to write broken code.
+- **P2**: the doc misleads, but a reader would likely catch the discrepancy against the code.
+- **P3**: cosmetic staleness with no real risk of misleading anyone.
+
+Do not inflate to P2 just to clear the suppression line.
+
+## Boundaries
+
+Flag only docs that were accurate before this PR and are now incorrect or misleading. This lens is about drift, not gaps.
 
 If you find nothing that meets the bar, return an empty list. That is the correct answer.
