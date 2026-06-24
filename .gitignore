@@ -3,8 +3,6 @@
 !/home/.claude/settings.json
 !/home/.claude/skills
 !/home/.claude/statusline.sh
-/home/.codex/*
-!/home/.codex/config.toml
 /home/.config/lazygit/state.yml
 /home/.config/nvim/.netrwhist
 /home/.config/nvim/plugin

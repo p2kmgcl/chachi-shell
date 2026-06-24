@@ -16,7 +16,6 @@ ENTRIES_BASE=(
   .ssh
   .agents
   .claude
-  .codex
   .config/shell
   .config/zsh
   .config/git
