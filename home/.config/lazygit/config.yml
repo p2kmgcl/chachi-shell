@@ -27,7 +27,7 @@ gui:
 git:
   pagers:
     - colorarg: always
-      pager: delta --paging=never --hunk-header-style=omit --file-decoration-style=ul
+      pager: delta --paging=never --hunk-header-style=omit --file-decoration-style=ul --side-by-side
   mainBranches:
     - master
     - main
