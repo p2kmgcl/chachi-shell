@@ -1,6 +1,7 @@
 export EDITOR='nvim'
 
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/.bin" ] && export PATH="$HOME/.bin:$PATH"
 
 if [ -n "$CHACHI_PATH" ] && [ -d "$CHACHI_PATH/home/.bin" ]; then
   export PATH="$CHACHI_PATH/home/.bin:$PATH"
