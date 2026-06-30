@@ -5,21 +5,25 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 # github-colorblind palette (dark canvas, legible over any wallpaper)
 # see docs/colorschemes/github-colorblind.md
-sketchybar --bar position=top height=40 blur_radius=30 color=0x400d1117 drawing=on
+sketchybar --bar position=top height=40 blur_radius=30 color=0x400d1117 margin=0 padding_left=8 padding_right=8 drawing=on
 
 ##### Changing Defaults #####
 # https://felixkratz.github.io/SketchyBar/config/items
 default=(
-  padding_left=5
-  padding_right=5
+  padding_left=4
+  padding_right=4
   icon.font="Maple Mono NF CN:Regular:14.0"
   label.font="Maple Mono NF CN:Regular:14.0"
   icon.color=0xfff0f6fc
   label.color=0xfff0f6fc
-  icon.padding_left=4
+  icon.padding_left=8
   icon.padding_right=4
   label.padding_left=4
-  label.padding_right=4
+  label.padding_right=8
+  background.color=0xcc3d444d
+  background.corner_radius=5
+  background.height=26
+  background.drawing=on
 )
 sketchybar --default "${default[@]}"
 
@@ -27,6 +31,8 @@ sketchybar --default "${default[@]}"
 sketchybar --add item aerospace_mode left \
   --set aerospace_mode \
   icon="󱗃" \
+  icon.padding_left=8 \
+  icon.padding_right=8 \
   label.drawing=off \
   label.padding_left=0 \
   label.padding_right=0
@@ -57,11 +63,12 @@ while IFS='|' read -r sid monitor_id sketchybar_display; do
         --subscribe space.$sid aerospace_workspace_change \
         --set space.$sid \
         display="$display_val" \
-        background.color=0x44f0f6fc \
+        background.color=0x663d444d \
         background.corner_radius=5 \
-        background.height=20 \
-        background.drawing=off \
+        background.drawing=on \
         icon.drawing=off \
+        icon.padding_left=0 \
+        icon.padding_right=0 \
         label="$sid" \
         label.padding_left=8 \
         label.padding_right=8 \
@@ -70,6 +77,9 @@ while IFS='|' read -r sid monitor_id sketchybar_display; do
         click_script="aerospace focus-monitor $monitor_id; aerospace workspace $sid" \
         script="$CONFIG_DIR/plugins/aerospace.sh $sid"
 done
+
+sketchybar --add bracket spaces '/space\..*/' \
+           --set spaces background.drawing=off
 
 ##### Adding Right Items #####
 sketchybar --add item clock right \

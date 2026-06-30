@@ -11,6 +11,6 @@ case $DAY in
   3|23)    SUFFIX="rd" ;;
   *)       SUFFIX="th" ;;
 esac
-LABEL="$(date '+%A'), $(date '+%B') ${DAY}${SUFFIX}, $(date '+%H:%M')"
+LABEL="$(date '+%A') $(date '+%B') ${DAY}${SUFFIX} $(date '+%H:%M')"
 sketchybar --set "$NAME" label="$LABEL"
 
