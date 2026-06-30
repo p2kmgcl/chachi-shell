@@ -22,11 +22,17 @@ default=(
 sketchybar --default "${default[@]}"
 
 ##### Adding Left Items #####
-sketchybar --add item chevron left \
-           --set chevron icon= label.drawing=off
+sketchybar --add item aerospace_mode left \
+  --set aerospace_mode \
+  icon="󱗃" \
+  label.drawing=off \
+  label.padding_left=0 \
+  label.padding_right=0
+
 
 # Aerospace workspaces
 sketchybar --add event aerospace_workspace_change
+
 aerospace list-workspaces --all \
   --format '%{workspace}|%{monitor-id}|%{monitor-appkit-nsscreen-screens-id}' |
 while IFS='|' read -r sid monitor_id sketchybar_display; do
