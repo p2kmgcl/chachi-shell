@@ -5,7 +5,7 @@ config-version = 2
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-  'exec-and-forget borders active_color=0x88000000 inactive_color=0x22000000 width=5.0',
+  'exec-and-forget borders active_color=0x88000000 inactive_color=0x00000000 width=4.0',
   'exec-and-forget sketchybar',
   'focus-monitor --wrap-around next',
   'workspace 1',
