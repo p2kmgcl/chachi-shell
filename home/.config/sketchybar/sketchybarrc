@@ -82,7 +82,15 @@ sketchybar --add bracket spaces '/space\..*/' \
            --set spaces background.drawing=off
 
 ##### Adding Right Items #####
-sketchybar --add item clock right \
+sketchybar --add item focus right \
+           --set focus \
+             update_freq=10 \
+             icon=󰗐 \
+             drawing=off \
+             label.drawing=off \
+             script="$PLUGIN_DIR/focus.sh" \
+           --subscribe focus system_woke \
+           --add item clock right \
            --set clock update_freq=10 icon=  script="$PLUGIN_DIR/clock.sh" \
            --add item volume right \
            --set volume script="$PLUGIN_DIR/volume.sh" \
