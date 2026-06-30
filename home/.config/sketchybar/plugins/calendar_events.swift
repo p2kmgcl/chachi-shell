@@ -40,7 +40,7 @@ requestAccess { granted in
     let timedEvents = events.filter { !$0.isAllDay }
 
     if let cur = timedEvents.first(where: { $0.startDate <= now && now < $0.endDate }) {
-        timed = "\(cur.title ?? "")・until \(fmt(cur.endDate.timeIntervalSince(now)))"
+        timed = "\(cur.title ?? "")・ends in \(fmt(cur.endDate.timeIntervalSince(now)))"
     } else if let next = timedEvents.first(where: { $0.startDate > now }) {
         timed = "\(next.title ?? "")・in \(fmt(next.startDate.timeIntervalSince(now)))"
     }
