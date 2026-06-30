@@ -60,7 +60,7 @@ while IFS='|' read -r sid monitor_id sketchybar_display; do
     fi
 
     sketchybar --add item space.$sid left \
-        --subscribe space.$sid aerospace_workspace_change \
+        --subscribe space.$sid aerospace_workspace_change front_app_switched \
         --set space.$sid \
         display="$display_val" \
         background.color=0x663d444d \
