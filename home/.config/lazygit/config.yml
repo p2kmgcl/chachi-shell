@@ -19,12 +19,19 @@ gui:
   filterMode: fuzzy
   commitLength:
     show: true
+  # github-colorblind palette (light) — see docs/colorschemes/github-colorblind.md
   theme:
-    cherryPickedCommitBgColor: [default]
-    markedBaseCommitBgColor: []
-    markedBaseCommitFgColor: [bold]
-    selectedLineBgColor: [underline]
-    unstagedChangesColor: ['#E69F00']
+    activeBorderColor: ['#0969da', bold]   # accent emphasis
+    inactiveBorderColor: ['#d1d9e0']       # border default
+    optionsTextColor: ['#0969da']          # accent / link
+    selectedLineBgColor: ['#ddf4ff']       # accent muted
+    selectedRangeBgColor: ['#ddf4ff']
+    cherryPickedCommitFgColor: ['#0969da'] # accent
+    cherryPickedCommitBgColor: ['#ddf4ff']
+    markedBaseCommitFgColor: ['#9a6700']   # attention
+    markedBaseCommitBgColor: ['#fff8c5']   # attention muted
+    unstagedChangesColor: ['#bc4c00']      # danger (orange)
+    defaultFgColor: ['#1f2328']            # fg default
 git:
   pagers:
     - colorarg: always

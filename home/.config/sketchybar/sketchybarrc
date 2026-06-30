@@ -3,7 +3,9 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 ##### Bar Appearance #####
 # https://felixkratz.github.io/SketchyBar/config/bar
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
-sketchybar --bar position=top height=40 blur_radius=30 color=0x40000000 drawing=on
+# github-colorblind palette (dark canvas, legible over any wallpaper)
+# see docs/colorschemes/github-colorblind.md
+sketchybar --bar position=top height=40 blur_radius=30 color=0x400d1117 drawing=on
 
 ##### Changing Defaults #####
 # https://felixkratz.github.io/SketchyBar/config/items
@@ -12,8 +14,8 @@ default=(
   padding_right=5
   icon.font="Maple Mono NF CN:Regular:14.0"
   label.font="Maple Mono NF CN:Regular:14.0"
-  icon.color=0xffffffff
-  label.color=0xffffffff
+  icon.color=0xfff0f6fc
+  label.color=0xfff0f6fc
   icon.padding_left=4
   icon.padding_right=4
   label.padding_left=4
@@ -55,7 +57,7 @@ while IFS='|' read -r sid monitor_id sketchybar_display; do
         --subscribe space.$sid aerospace_workspace_change \
         --set space.$sid \
         display="$display_val" \
-        background.color=0x44ffffff \
+        background.color=0x44f0f6fc \
         background.corner_radius=5 \
         background.height=20 \
         background.drawing=off \
