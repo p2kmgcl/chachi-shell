@@ -1,4 +1,5 @@
 PLUGIN_DIR="$CONFIG_DIR/plugins"
+source "$CONFIG_DIR/variables.sh"
 
 ##### Bar Appearance #####
 # https://felixkratz.github.io/SketchyBar/config/bar
@@ -12,8 +13,8 @@ sketchybar --bar position=top height=40 blur_radius=30 color=0x400d1117 margin=0
 default=(
   padding_left=4
   padding_right=4
-  icon.font="Maple Mono NF CN:Regular:14.0"
-  label.font="Maple Mono NF CN:Regular:14.0"
+  icon.font="$FONT_REGULAR"
+  label.font="$FONT_REGULAR"
   icon.color=0xfff0f6fc
   label.color=0xfff0f6fc
   icon.padding_left=8

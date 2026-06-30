@@ -3,6 +3,8 @@
 # make sure it's executable with:
 # chmod +x ~/.config/sketchybar/plugins/aerospace.sh
 
+source "$CONFIG_DIR/variables.sh"
+
 WS="$1"
 FOCUSED="${FOCUSED_WORKSPACE:-$(aerospace list-workspaces --focused 2>/dev/null)}"
 
@@ -73,14 +75,14 @@ if [ "$WS" = "$FOCUSED" ]; then
         label="$LABEL" \
         background.color=0xff1f6feb \
         label.color=0xffffffff \
-        label.font="Maple Mono NF CN:Bold:14.0"
+        label.font="$FONT_BOLD"
 elif [ "$WINDOWS" -gt 0 ]; then
     sketchybar --set "$NAME" \
         drawing=on \
         label="$LABEL" \
         background.color=0xcc3d444d \
         label.color=0xfff0f6fc \
-        label.font="Maple Mono NF CN:Regular:14.0"
+        label.font="$FONT_REGULAR"
 else
     sketchybar --set "$NAME" drawing=off
 fi
