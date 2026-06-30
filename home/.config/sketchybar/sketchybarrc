@@ -6,13 +6,22 @@ source "$CONFIG_DIR/variables.sh"
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 # github-colorblind palette (dark canvas, legible over any wallpaper)
 # see docs/colorschemes/github-colorblind.md
-sketchybar --bar position=top height=40 blur_radius=30 color=0x400d1117 margin=0 padding_left=8 padding_right=8 drawing=on
+sketchybar --bar \
+  position=top \
+  height=40 \
+  blur_radius=30 \
+  color=0x000d1117 \
+  margin=0 \
+  padding_left=16 \
+  padding_right=16 \
+  drawing=on
 
 ##### Changing Defaults #####
 # https://felixkratz.github.io/SketchyBar/config/items
 default=(
   padding_left=4
   padding_right=4
+  y_offset=-4
   icon.font="$FONT_REGULAR"
   label.font="$FONT_REGULAR"
   icon.color=0xfff0f6fc
