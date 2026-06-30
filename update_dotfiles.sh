@@ -17,6 +17,8 @@ ENTRIES_BASE=(
   .agents
   .claude
   .config/shell
+  .config/aerospace
+  .config/sketchybar
   .config/zsh
   .config/git
   .config/ghostty
