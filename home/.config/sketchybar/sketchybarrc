@@ -81,6 +81,9 @@ done
 sketchybar --add bracket spaces '/space\..*/' \
            --set spaces background.drawing=off
 
+sketchybar --add item calendar left \
+           --set calendar update_freq=60 icon= script="$PLUGIN_DIR/calendar.sh"
+
 ##### Adding Right Items #####
 sketchybar --add item focus right \
            --set focus \
@@ -97,9 +100,7 @@ sketchybar --add item focus right \
            --subscribe volume volume_change \
            --add item battery right \
            --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
-           --subscribe battery system_woke power_source_change \
-           --add item calendar right \
-           --set calendar update_freq=60 icon= script="$PLUGIN_DIR/calendar.sh"
+           --subscribe battery system_woke power_source_change
 
 ##### Reload on monitor connect/disconnect #####
 sketchybar --add item display_watcher q \
