@@ -8,7 +8,14 @@ source "$CONFIG_DIR/variables.sh"
 WS="$1"
 FOCUSED="${FOCUSED_WORKSPACE:-$(aerospace list-workspaces --focused 2>/dev/null)}"
 
-WINDOWS=$(aerospace list-windows --workspace "$WS" 2>/dev/null | wc -l | tr -d ' ')
+# Query windows once and reuse for both the count and the icon list. Each
+# aerospace CLI call is a round-trip to the server, so avoid doing it twice.
+WINDOW_LIST=$(aerospace list-windows --workspace "$WS" --format '%{app-name}|%{window-title}' 2>/dev/null | sort -u)
+if [ -n "$WINDOW_LIST" ]; then
+    WINDOWS=$(printf '%s\n' "$WINDOW_LIST" | wc -l | tr -d ' ')
+else
+    WINDOWS=0
+fi
 
 app_icon() {
     local app="$1"
@@ -58,7 +65,7 @@ if [ "$WINDOWS" -gt 0 ]; then
         [ "${seen[$icon]+_}" ] && continue
         seen[$icon]=1
         APP_ICONS="$APP_ICONS $icon"
-    done < <(aerospace list-windows --workspace "$WS" --format '%{app-name}|%{window-title}' 2>/dev/null | sort -u)
+    done < <(printf '%s\n' "$WINDOW_LIST")
 fi
 
 if [ -n "$APP_ICONS" ]; then

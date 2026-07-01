@@ -49,7 +49,11 @@ sketchybar --add item aerospace_mode left \
 
 
 # Aerospace workspaces
+# aerospace_workspace_change fires on focus change (cheap recolor via
+# aerospace_highlight.sh). aerospace_windows_change fires when window contents
+# change (full icon rebuild via aerospace.sh).
 sketchybar --add event aerospace_workspace_change
+sketchybar --add event aerospace_windows_change
 
 MONITOR_COUNT=$(aerospace list-monitors | wc -l | tr -d ' ')
 
@@ -70,8 +74,9 @@ while IFS='|' read -r sid monitor_id sketchybar_display; do
     fi
 
     sketchybar --add item space.$sid left \
-        --subscribe space.$sid aerospace_workspace_change front_app_switched \
+        --subscribe space.$sid aerospace_windows_change \
         --set space.$sid \
+        update_freq=10 \
         display="$display_val" \
         background.color=0x663d444d \
         background.corner_radius=5 \
@@ -90,6 +95,12 @@ done
 
 sketchybar --add bracket spaces '/space\..*/' \
            --set spaces background.drawing=off
+
+# Invisible driver: recolors the focused/previous workspace on focus change
+# without rebuilding every workspace's icons.
+sketchybar --add item space_highlight left \
+           --set space_highlight drawing=off script="$PLUGIN_DIR/aerospace_highlight.sh" \
+           --subscribe space_highlight aerospace_workspace_change
 
 sketchybar --add item calendar left \
            --set calendar update_freq=60 icon= script="$PLUGIN_DIR/calendar.sh"
