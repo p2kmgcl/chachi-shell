@@ -104,6 +104,9 @@ sketchybar --add item space_highlight left \
 
 sketchybar --add item calendar left \
            --set calendar update_freq=60 icon= script="$PLUGIN_DIR/calendar.sh"
+if [ "$MONITOR_COUNT" -gt 1 ]; then
+    sketchybar --set calendar display=1
+fi
 
 ##### Adding Right Items #####
 sketchybar --add item focus right \
