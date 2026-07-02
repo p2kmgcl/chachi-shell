@@ -207,7 +207,7 @@ function M.enable(bufnr)
   -- Clear clipboard when explorer window loses focus.
   vim.api.nvim_create_autocmd("WinLeave", {
     group = state.augroup,
-    buffer = bufnr,
+    buf = bufnr,
     callback = function()
       clear_clipboard()
     end,
