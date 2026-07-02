@@ -100,8 +100,13 @@ function M.enable(bufnr)
   })
 
   state.augroup = vim.api.nvim_create_augroup('ASideBuffers', { clear = true })
-  vim.api.nvim_create_autocmd({ 'BufAdd', 'BufDelete', 'BufModifiedSet' }, {
+  vim.api.nvim_create_autocmd({ 'BufAdd', 'BufDelete' }, {
     group = state.augroup,
+    callback = schedule_rebuild,
+  })
+  vim.api.nvim_create_autocmd('OptionSet', {
+    group = state.augroup,
+    pattern = 'modified',
     callback = schedule_rebuild,
   })
 
