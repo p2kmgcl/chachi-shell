@@ -1,12 +1,36 @@
 {
+  "icon_theme": {
+    "mode": "system",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "collaboration_panel": {
+    "button": false
+  },
+  "preview_tabs": {
+    "enable_preview_multibuffer_from_code_navigation": false,
+    "enable_preview_from_multibuffer": false,
+    "enable_keep_preview_on_code_navigation": false,
+    "enable_preview_from_file_finder": true
+  },
+  "markdown_preview_code_font_family": "M+1Code Nerd Font",
+  "markdown_preview_font_family": "M+1Code Nerd Font",
+  "outline_panel": {
+    "button": false,
+    "indent_size": 16.0
+  },
+  "debugger": {
+    "dock": "right"
+  },
   "active_pane_modifiers": {
     "inactive_opacity": 0.8,
   },
   "agent": {
+    "sidebar_side": "left",
     "auto_compact": {
       "threshold": "90%"
     },
-    "dock": "right",
+    "dock": "left",
     "enable_feedback": false,
     "expand_terminal_card": false,
     "play_sound_when_agent_done": "when_hidden",
@@ -15,6 +39,9 @@
   },
   "agent_servers": {
     "codex-acp": {
+      "default_config_options": {
+        "reasoning_effort": "high"
+      },
       "type": "registry"
     },
   },
@@ -29,8 +56,8 @@
     "toml": true,
     "tsgo": true,
   },
-  "buffer_font_family": "Maple Mono NF CN",
-  "buffer_font_size": 14.0,
+  "buffer_font_family": "M+1Code Nerd Font",
+  "buffer_font_size": 16.0,
   "diff_view_style": "unified",
   "edit_predictions": {
     "allow_data_collection": "no"
@@ -43,7 +70,7 @@
   },
   "git_panel": {
     "entry_primary_click_action": "file_diff",
-    "group_by": "none",
+    "group_by": "staging",
     "scrollbar": {
       "show": "auto",
     },
@@ -88,10 +115,13 @@
     },
   },
   "project_panel": {
+    "git_status_indicator": true,
+    "diagnostic_badges": true,
+    "bold_folder_labels": false,
+    "indent_size": 16.0,
     "entry_spacing": "standard",
     "hide_gitignore": true,
     "hide_root": true,
-    "indent_size": 24,
     "scrollbar": { "show": "auto" },
   },
   "scrollbar": {
@@ -102,10 +132,13 @@
   },
   "show_edit_predictions": false,
   "tab_bar": {
+    "show_pinned_tabs_in_separate_row": false,
     "show_nav_history_buttons": false,
     "show_tab_bar_buttons": false,
   },
   "tabs": {
+    "show_diagnostics": "all",
+    "git_status": true,
     "file_icons": true,
   },
   "telemetry": {
@@ -113,16 +146,17 @@
     "metrics": false,
   },
   "terminal": {
+    "dock": "right",
     "default_height": 400,
-    "font_family": "Maple Mono NF CN",
-    "font_size": 12.0,
+    "font_family": "M+1Code Nerd Font",
+    "font_size": 16.0,
     "line_height": "standard",
     "scrollbar": {
       "show": "auto",
     },
   },
   "theme": {
-    "dark": "GitHub Dark Colorblind",
+    "dark": "GitHub Dark Dimmed",
     "light": "GitHub Light Colorblind",
     "mode": "system",
   },
@@ -130,8 +164,8 @@
     "breadcrumbs": false,
     "quick_actions": false,
   },
-  "ui_font_family": "Maple Mono NF CN",
-  "ui_font_size": 14.0,
+  "ui_font_family": "M+1Code Nerd Font",
+  "ui_font_size": 16.0,
   "unnecessary_code_fade": 0.5,
   "vertical_scroll_margin": 999,
   "vim": {
