@@ -1,0 +1,4 @@
+interface:
+  display_name: "Slowdown"
+  short_description: "Use brief exchanges with one decision at a time"
+  default_prompt: "Use $slowdown to continue with brief exchanges and one decision at a time."
