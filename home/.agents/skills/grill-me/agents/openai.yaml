@@ -1,0 +1,4 @@
+interface:
+  display_name: "Grill Me"
+  short_description: "Reach common ground through focused questions"
+  default_prompt: "Use $grill-me to sharpen this plan through focused questions."
