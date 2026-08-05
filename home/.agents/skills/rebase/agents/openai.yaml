@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rebase"
+  short_description: "Update the current branch through rebase"
+  default_prompt: "Use $rebase to update the current branch onto its target."
