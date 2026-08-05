@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research"
+  short_description: "Resolve a bounded knowledge gap"
+  default_prompt: "Use $research to answer a bounded question that blocks my current task."
