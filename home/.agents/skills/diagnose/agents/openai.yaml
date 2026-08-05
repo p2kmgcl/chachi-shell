@@ -1,0 +1,4 @@
+interface:
+  display_name: "Diagnose"
+  short_description: "Find the evidenced cause of software issues"
+  default_prompt: "Use $diagnose to find why this software issue is happening."
