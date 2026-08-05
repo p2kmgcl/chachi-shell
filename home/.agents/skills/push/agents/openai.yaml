@@ -1,0 +1,4 @@
+interface:
+  display_name: "Push"
+  short_description: "Publish a branch and update its pull request"
+  default_prompt: "Use $push to publish the current branch and update its pull request."
