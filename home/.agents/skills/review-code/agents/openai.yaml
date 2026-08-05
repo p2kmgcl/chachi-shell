@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Code"
+  short_description: "Review current changes through focused code lenses"
+  default_prompt: "Use $review-code to review the current repository changes."
