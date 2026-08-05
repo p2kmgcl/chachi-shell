@@ -1,0 +1,4 @@
+interface:
+  display_name: "To Handoff"
+  short_description: "Preserve current context for a fresh agent"
+  default_prompt: "Use $to-handoff to preserve this conversation for another agent."
