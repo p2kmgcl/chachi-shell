@@ -1,8 +1,3 @@
-/home/.claude/*
-!/home/.claude/agents
-!/home/.claude/settings.json
-!/home/.claude/skills
-!/home/.claude/statusline.sh
 /home/.config/lazygit/state.yml
 /home/.config/nvim/.netrwhist
 /home/.config/nvim/plugin

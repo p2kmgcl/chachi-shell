@@ -15,7 +15,6 @@ ENTRIES_BASE=(
   .bin
   .ssh
   .agents
-  .claude
   .config/shell
   .config/aerospace
   .config/sketchybar
