@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Docs"
+  short_description: "Create durable repository documentation"
+  default_prompt: "Use $write-docs to document the package discussed in this conversation."

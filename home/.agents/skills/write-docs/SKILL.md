@@ -1,22 +1,41 @@
 ---
 name: write-docs
-description: Documentation standards to follow when creating or updating component docs in any project
+description:
+  Create or update durable codebase documentation for a package or aspect
+  inferred from the conversation. Use when the user asks to document the
+  codebase or when established knowledge belongs in permanent repository docs.
 ---
 
-Scope: changes in the current branch — committed, staged, or unstaged.
+Create or update durable codebase documentation for the package or aspect
+established by the conversation, giving humans and agents an accurate long-term
+explanation that fits the repository's documentation system.
 
-- Invoke `local-rules` skill.
-- Check if the project has a doc generator or scaffold tool before writing from scratch.
-- Update existing docs when branch changes add, rename, or remove public API surface. Keep
-  examples, descriptions, and API tables in sync with the current implementation.
-- Link to related docs instead of duplicating. Treat docs as interconnected wiki articles.
-- Reuse existing mocks, fixtures, and API helpers. Create new ones in their canonical
-  location, not inline in the docs.
-- Be brief. Only document what cannot be inferred from the API — intent, constraints,
-  gotchas. Let examples speak for themselves.
-- Show the simplest useful example first. Add separate sections only for meaningfully
-  different edge cases.
-- Every code example must be self-contained, runnable, and have a titled heading.
-- Prefer interactive examples over static props tables when the framework supports it.
-- Document only public API. Skip internals.
-- Mock or stub external dependencies so examples work without a running backend.
+**Target.** Infer the subject, purpose, and intended readers from the
+conversation. Inspect the relevant implementation and surrounding code to learn
+what the documentation needs to explain.
+
+**Context.** Read repository instructions and nearby or related documentation
+before choosing the content and format.
+
+**Conventions.** Follow the repository's established location, structure,
+language, linking, examples, and documentation tooling. Use its generator or
+scaffold when one supports the target.
+
+**Placement.** Extend the canonical existing documentation when it covers the
+target. Give a subject that needs its own durable home a new document in the
+established location, connected through the repository's navigation and linking
+patterns.
+
+**Accuracy.** Align the documentation with the implementation. When the
+conversation and implementation materially conflict, explain the discrepancy
+and resolve it with the user before finalizing the content.
+
+**Validation.** Compare claims and examples with the implementation, read the
+result in its surrounding documentation, and run every applicable documentation
+generator, build, or validation command. Finish with accurate, integrated
+documentation and successful checks.
+
+**Promotion.** After the durable documentation passes validation, inspect
+`.agent-state/` for temporary material it supersedes. Remove fully promoted
+files and trim promoted portions from working documents that still contain
+useful active context.
