@@ -1,0 +1,4 @@
+interface:
+  display_name: "Improve Architecture"
+  short_description: "Find and shape high-value architecture improvements"
+  default_prompt: "Use $improve-architecture to find and shape the strongest architecture improvement."
