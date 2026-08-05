@@ -1,0 +1,4 @@
+interface:
+  display_name: "Commit"
+  short_description: "Create atomic commits from current changes"
+  default_prompt: "Use $commit to create atomic commits from the current changes."
