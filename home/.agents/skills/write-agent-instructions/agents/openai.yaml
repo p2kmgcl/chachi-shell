@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Agent Instructions"
+  short_description: "Write concise instructions for agents"
+  default_prompt: "Use $write-agent-instructions to refine these agent instructions."
