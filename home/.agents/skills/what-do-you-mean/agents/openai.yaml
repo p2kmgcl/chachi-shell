@@ -1,0 +1,4 @@
+interface:
+  display_name: "What Do You Mean?"
+  short_description: "Explain the current question with more context"
+  default_prompt: "Use $what-do-you-mean to explain the last question in more detail."
