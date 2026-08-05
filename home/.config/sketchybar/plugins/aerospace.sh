@@ -29,7 +29,6 @@ app_icon() {
             esac
             ;;
         "Appgate SDP") echo "" ;;
-        "Claude") echo "󰚩" ;;
         "Codex") echo "󰚩" ;;
         "Finder") echo "" ;;
         "Ghostty") echo "" ;;
