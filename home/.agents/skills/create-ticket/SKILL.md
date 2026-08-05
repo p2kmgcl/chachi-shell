@@ -1,12 +1,38 @@
 ---
 name: create-ticket
-description: Create a JIRA ticket interactively — gathers requirements through conversation, proposes the ticket, and creates it after approval
+description:
+  Draft and create one or more Jira tickets from the conversation with explicit
+  approval. Use when the user wants to capture the current discussion as Jira
+  work, draft Jira tickets, or publish one or more tickets.
 ---
 
-1. Invoke `local-rules` skill.
-2. Ask the user what the ticket is about.
-3. Keep asking if there are more details to discuss. Do not move forward until the user explicitly confirms the definition is complete.
-4. Propose the full ticket (summary, type, description) and ask for approval.
-5. If the user does not approve, go back to step 3 and continue the conversation.
-6. On approval, create the ticket using Atlassian MCP tools with defaults from local rules.
-7. Show the ticket key and link: `https://<cloudId>/browse/<KEY>`
+Turn the conversation into the smallest approved set of brief Jira tickets and
+create exactly those tickets with the available Jira tools.
+
+**Context.** Use the existing conversation and ask only for information needed
+to draft an accurate ticket or determine its Jira project and issue type.
+Default to one ticket; split when the user requests multiple tickets or the
+conversation contains independently actionable work. Briefly explain an inferred
+split.
+
+**Content.** Give each ticket a concise, outcome-focused title without a
+ticket-type prefix or trailing punctuation. Begin its description with one or
+two brief paragraphs and no heading. When necessary, append
+`## Development details` or `## Acceptance criteria` with a plain bullet list.
+Omit either section when it adds no necessary information, and do not invent
+implementation details.
+
+**Routing.** Reuse the Jira project and issue type only when clear from the
+conversation or connected Jira context; otherwise ask for the missing value.
+
+**Approval.** Present the exact ticket set and routing metadata before creating
+anything. Require explicit approval and return to the draft after any requested
+revision. Treat approval as authorization for only the tickets shown.
+
+**Creation.** Create the approved tickets with the available Jira tools. If Jira
+access is unavailable, stop after the approved draft, state that access is
+unavailable, and neither save a substitute local file nor claim success. Do not
+automatically retry a failed creation because that could create duplicates.
+
+**Completion.** Return each created ticket's title, Jira key, and link. After a
+partial failure, distinguish the tickets created from those that failed.

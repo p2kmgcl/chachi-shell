@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Ticket"
+  short_description: "Draft and create approved Jira tickets"
+  default_prompt: "Use $create-ticket to turn this conversation into Jira tickets."
