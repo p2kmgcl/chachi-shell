@@ -55,12 +55,12 @@ test_creates_parent_dirs() {
   local overrides_dir home_dir
   overrides_dir="$(mktemp -d)"
   home_dir="$(mktemp -d)"
-  mkdir -p "$overrides_dir/home/dd/web-ui/.claude"
-  echo 'override' >"$overrides_dir/home/dd/web-ui/.claude/settings.json"
+  mkdir -p "$overrides_dir/home/project/.codex"
+  echo 'override' >"$overrides_dir/home/project/.codex/config.toml"
   CHACHI_OVERRIDES_PATH="$overrides_dir" HOME="$home_dir" _run_silently
   assert_eq \
-    "$overrides_dir/home/dd/web-ui/.claude/settings.json" \
-    "$(readlink "$home_dir/dd/web-ui/.claude/settings.local.json")" \
+    "$overrides_dir/home/project/.codex/config.toml" \
+    "$(readlink "$home_dir/project/.codex/config.local.toml")" \
     'missing parent dirs created under $HOME'
   rm -rf "$overrides_dir" "$home_dir"
 }
