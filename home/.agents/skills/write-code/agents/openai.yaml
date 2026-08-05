@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Code"
+  short_description: "Implement approved code slices with TDD"
+  default_prompt: "Use $write-code to implement this change as approved test-driven vertical slices."
