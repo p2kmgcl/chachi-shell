@@ -10,6 +10,8 @@
 This repo is a dotfiles management system.
 
 - A `docs/` directory keeps some extra notes
+- [Agent instructions](/home/.agents) document the shared agent
+  resources and skills
 - `update_dotfiles.sh` symlinks everything under `home/` into `$HOME`
 - `CHACHI_PATH` environment variable points to this repository
 - `CHACHI_OVERRIDES_PATH` is an optional environment variable that points to a parallel repository which machine-specific files (aka "local overrides")

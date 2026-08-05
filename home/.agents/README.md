@@ -45,38 +45,46 @@ its description matches the task, and users may invoke any skill explicitly.
 
 **Git operations.**
 
-- **`rebase`.** Update the current branch through a rebase and resolve simple
-  conflicts.
-- **`commit`.** Record a coherent change as one or more atomic commits.
-- **`push`.** Publish the current branch and create or update its pull request.
+- **[`rebase`](./skills/rebase/SKILL.md).** Update the current branch through a
+  rebase and resolve simple conflicts.
+- **[`commit`](./skills/commit/SKILL.md).** Record a coherent change as one or
+  more atomic commits.
+- **[`push`](./skills/push/SKILL.md).** Publish the current branch and create or
+  update its pull request.
 
 **Planning and investigation.**
 
-- **`grill-me`.** Lead a conversation to reach common ground on a plan,
-  decision, or idea.
-- **`diagnose`.** Find and explain the evidenced cause of unexpected software
-  behavior.
-- **`research`.** Resolve a bounded local or external knowledge gap so a larger
-  task or decision can continue.
-- **`review-code`.** Review current repository changes through focused lenses.
-- **`review-pull-request`.** Review a GitHub pull request and prepare a pending
-  inline review.
-- **`improve-architecture`.** Maintain a codebase by clarifying its structure,
-  updating documentation, and simplifying its design.
+- **[`grill-me`](./skills/grill-me/SKILL.md).** Lead a conversation to reach
+  common ground on a plan, decision, or idea.
+- **[`diagnose`](./skills/diagnose/SKILL.md).** Find and explain the evidenced
+  cause of unexpected software behavior.
+- **[`research`](./skills/research/SKILL.md).** Resolve a bounded local or
+  external knowledge gap so a larger task or decision can continue.
+- **[`review-code`](./skills/review-code/SKILL.md).** Review current repository
+  changes through focused lenses.
+- **[`review-pull-request`](./skills/review-pull-request/SKILL.md).** Review a
+  GitHub pull request and prepare a pending inline review.
+- **[`improve-architecture`](./skills/improve-architecture/SKILL.md).** Maintain
+  a codebase by clarifying its structure, updating documentation, and
+  simplifying its design.
 
 **Authoring.**
 
-- **`create-ticket`.** Create one or more Jira tickets from the conversation.
-- **`write-code`.** Produce or modify code using the shared coding discipline.
-- **`write-docs`.** Produce or update documentation.
-- **`write-agent-instructions`.** Produce or refine instructions written for
-  agents.
+- **[`create-ticket`](./skills/create-ticket/SKILL.md).** Create one or more Jira
+  tickets from the conversation.
+- **[`write-code`](./skills/write-code/SKILL.md).** Produce or modify code using
+  the shared coding discipline.
+- **[`write-docs`](./skills/write-docs/SKILL.md).** Produce or update
+  documentation.
+- **[`write-agent-instructions`](./skills/write-agent-instructions/SKILL.md).**
+  Produce or refine instructions written for agents.
 
 **Conversation control.**
 
-- **`to-handoff`.** Capture the conversation context in a local file so another
-  agent can continue the work.
-- **`slowdown`.** Reframe the conversation with shorter exchanges and one
-  decision at a time.
-- **`what-do-you-mean`.** Expand an unresolved statement or question with the
-  context needed to continue the conversation.
+- **[`to-handoff`](./skills/to-handoff/SKILL.md).** Capture the conversation
+  context in a local file so another agent can continue the work.
+- **[`slowdown`](./skills/slowdown/SKILL.md).** Reframe the conversation with
+  shorter exchanges and one decision at a time.
+- **[`what-do-you-mean`](./skills/what-do-you-mean/SKILL.md).** Expand an
+  unresolved statement or question with the context needed to continue the
+  conversation.
