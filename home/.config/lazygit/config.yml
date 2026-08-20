@@ -19,19 +19,19 @@ gui:
   filterMode: fuzzy
   commitLength:
     show: true
-  # github-colorblind palette (light) — see docs/colorschemes/github-colorblind.md
+  # github-colorblind palette (dark) — see docs/colorschemes/github-colorblind.md
   theme:
-    activeBorderColor: ['#0969da', bold] # accent emphasis
-    inactiveBorderColor: ['#d1d9e0'] # border default
-    optionsTextColor: ['#0969da'] # accent / link
-    selectedLineBgColor: ['#ddf4ff'] # accent muted
-    selectedRangeBgColor: ['#ddf4ff']
-    cherryPickedCommitFgColor: ['#0969da'] # accent
-    cherryPickedCommitBgColor: ['#ddf4ff']
-    markedBaseCommitFgColor: ['#9a6700'] # attention
-    markedBaseCommitBgColor: ['#fff8c5'] # attention muted
-    unstagedChangesColor: ['#bc4c00'] # danger (orange)
-    defaultFgColor: ['#1f2328'] # fg default
+    activeBorderColor: ['#1f6feb', bold] # accent emphasis
+    inactiveBorderColor: ['#3d444d'] # border default
+    optionsTextColor: ['#4493f8'] # accent / link
+    selectedLineBgColor: ['#388bfd1a'] # accent muted
+    selectedRangeBgColor: ['#388bfd1a']
+    cherryPickedCommitFgColor: ['#4493f8'] # accent
+    cherryPickedCommitBgColor: ['#388bfd1a']
+    markedBaseCommitFgColor: ['#d29922'] # attention
+    markedBaseCommitBgColor: ['#bb800926'] # attention muted
+    unstagedChangesColor: ['#f0883e'] # danger (orange)
+    defaultFgColor: ['#f0f6fc'] # fg default
 git:
   diffRenderers:
     - colorarg: always

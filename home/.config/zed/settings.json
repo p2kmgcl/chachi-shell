@@ -190,7 +190,7 @@
     },
   },
   "theme": {
-    "dark": "GitHub Dark Dimmed",
+    "dark": "GitHub Dark Colorblind",
     "light": "GitHub Light Colorblind",
     "mode": "dark",
   },
