@@ -26,6 +26,40 @@
     "inactive_opacity": 0.8,
   },
   "agent": {
+    "tool_permissions": {
+      "tools": {
+        "skill": {
+          "default": "allow"
+        }
+      }
+    },
+    "default_profile": "write",
+    "default_model": {
+      "provider": "openai-subscribed",
+      "model": "gpt-5.6-sol",
+      "enable_thinking": true,
+      "effort": "high"
+    },
+    "favorite_models": [
+      {
+        "provider": "openai-subscribed",
+        "model": "gpt-5.6-sol",
+        "enable_thinking": true,
+        "effort": "high"
+      },
+      {
+        "provider": "openai-subscribed",
+        "model": "gpt-5.6-terra",
+        "enable_thinking": true,
+        "effort": "medium"
+      },
+      {
+        "provider": "openai-subscribed",
+        "model": "gpt-5.6-luna",
+        "enable_thinking": true,
+        "effort": "medium"
+      }
+    ],
     "sidebar_side": "left",
     "auto_compact": {
       "threshold": "90%"
@@ -120,7 +154,7 @@
     "bold_folder_labels": false,
     "indent_size": 16.0,
     "entry_spacing": "standard",
-    "hide_gitignore": true,
+    "hide_gitignore": false,
     "hide_root": true,
     "scrollbar": { "show": "auto" },
   },
@@ -146,7 +180,7 @@
     "metrics": false,
   },
   "terminal": {
-    "dock": "right",
+    "dock": "bottom",
     "default_height": 400,
     "font_family": "M+1Code Nerd Font",
     "font_size": 16.0,
@@ -158,7 +192,7 @@
   "theme": {
     "dark": "GitHub Dark Dimmed",
     "light": "GitHub Light Colorblind",
-    "mode": "system",
+    "mode": "dark",
   },
   "toolbar": {
     "breadcrumbs": false,
@@ -172,5 +206,5 @@
     "highlight_on_yank_duration": 250,
     "use_system_clipboard": "always",
   },
-  "vim_mode": true,
+  "vim_mode": false,
 }
