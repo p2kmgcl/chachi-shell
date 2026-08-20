@@ -13,7 +13,6 @@ fi
 
 ENTRIES_BASE=(
   .bin
-  .ssh
   .agents
   .config/shell
   .config/aerospace
