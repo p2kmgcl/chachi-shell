@@ -30,6 +30,21 @@ return {
       desc = "Git Diff",
     },
     {
+      "<leader>hs",
+      function()
+        require("gitsigns").stage_hunk()
+      end,
+      desc = "Toggle stage hunk",
+    },
+    {
+      "<leader>hs",
+      function()
+        require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+      end,
+      mode = "v",
+      desc = "Toggle stage selected lines",
+    },
+    {
       "[h",
       function()
         require("gitsigns").nav_hunk("prev")
