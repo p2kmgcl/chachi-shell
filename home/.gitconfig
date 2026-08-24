@@ -18,10 +18,10 @@
   light = false
   max-line-length = 512
   navigate = true
-  minus-style = syntax "#db6d2826"
-  minus-emph-style = normal "#db6d2866"
-  plus-style = syntax "#388bfd26"
-  plus-emph-style = normal "#388bfd66"
+  minus-style = syntax "#2c1f1a"
+  minus-emph-style = normal "#5f361e"
+  plus-style = syntax "#132339"
+  plus-emph-style = normal "#1e4273"
 
 [diff]
   algorithm = histogram

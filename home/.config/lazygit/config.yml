@@ -24,12 +24,12 @@ gui:
     activeBorderColor: ['#1f6feb', bold] # accent emphasis
     inactiveBorderColor: ['#3d444d'] # border default
     optionsTextColor: ['#4493f8'] # accent / link
-    selectedLineBgColor: ['#388bfd1a'] # accent muted
-    selectedRangeBgColor: ['#388bfd1a']
+    selectedLineBgColor: ['#111d2e'] # accent muted over default background
+    selectedRangeBgColor: ['#111d2e']
     cherryPickedCommitFgColor: ['#4493f8'] # accent
-    cherryPickedCommitBgColor: ['#388bfd1a']
+    cherryPickedCommitBgColor: ['#111d2e']
     markedBaseCommitFgColor: ['#d29922'] # attention
-    markedBaseCommitBgColor: ['#bb800926'] # attention muted
+    markedBaseCommitBgColor: ['#272215'] # attention muted over default background
     unstagedChangesColor: ['#f0883e'] # danger (orange)
     defaultFgColor: ['#f0f6fc'] # fg default
 git:
