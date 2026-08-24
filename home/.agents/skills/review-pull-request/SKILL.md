@@ -1,19 +1,23 @@
 ---
 name: review-pull-request
 description:
-  Review a GitHub pull request in an isolated worktree, present its state and
-  code findings, and create a pending inline review after approval. Use when the
-  user asks to review a pull request or provides a GitHub pull-request
+  Review a GitHub pull request in the current local worktree, present its state
+  and code findings, and create a pending inline review after approval. Use
+  when the user asks to review a pull request or provides a GitHub pull-request
   reference.
 ---
 
-Review a pull request in an isolated worktree, combine its repository state with
-focused code findings, and create an approved pending GitHub review for the user
-to edit and submit.
+Review a pull request in the current user-owned worktree, combine its repository
+state with focused code findings, and create an approved pending GitHub review
+for the user to edit and submit.
 
 **Prepare.** Use the `gh` CLI to fetch the PR description, branch metadata, CI
-state, and review state. Create a dedicated temporary worktree for the PR and
-keep it through analysis and discussion.
+state, and review state. Confirm the PR belongs to the current repository and
+require a clean worktree, including no staged, unstaged, or untracked changes.
+Run `gh pr checkout <PR>` without `--force`, then verify local `HEAD` matches the
+PR head SHA. Stop and ask the user if the repository differs, the worktree is
+not clean, checkout fails, or the commits do not match; never stash, reset,
+discard, or overwrite local state.
 
 **Summarize.** Run one summary agent using [SUMMARY.md](./SUMMARY.md). Combine
 its concise “what and why” overview with CI and review state.
@@ -34,5 +38,5 @@ finding set is empty, report a clean review. Synchronize viewed files with
 synchronization failure as a warning. Tell the user the review remains pending
 for their manual editing and submission.
 
-**Clean up.** Remove the temporary worktree whenever the workflow ends,
-including setup, analysis, and posting failures.
+**Finish.** Leave the PR branch checked out and perform no branch restoration or
+worktree cleanup. Report the branch and commit left checked out.
