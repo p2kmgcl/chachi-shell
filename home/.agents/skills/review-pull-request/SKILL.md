@@ -14,10 +14,11 @@ for the user to edit and submit.
 **Prepare.** Use the `gh` CLI to fetch the PR description, branch metadata, CI
 state, and review state. Confirm the PR belongs to the current repository and
 require a clean worktree, including no staged, unstaged, or untracked changes.
-Run `gh pr checkout <PR>` without `--force`, then verify local `HEAD` matches the
-PR head SHA. Stop and ask the user if the repository differs, the worktree is
-not clean, checkout fails, or the commits do not match; never stash, reset,
-discard, or overwrite local state.
+Run `gh pr checkout <PR> --detach`, then verify local `HEAD` matches the PR head
+SHA. Detached checkout is the default because reviews are read-only and must
+not depend on the clone's remote-tracking refspecs. Stop and ask the user if the
+repository differs, the worktree is not clean, checkout fails, or the commits
+do not match; never stash, reset, discard, or overwrite local state.
 
 **Summarize.** Run one summary agent using [SUMMARY.md](./SUMMARY.md). Combine
 its concise “what and why” overview with CI and review state.
@@ -38,5 +39,5 @@ finding set is empty, report a clean review. Synchronize viewed files with
 synchronization failure as a warning. Tell the user the review remains pending
 for their manual editing and submission.
 
-**Finish.** Leave the PR branch checked out and perform no branch restoration or
-worktree cleanup. Report the branch and commit left checked out.
+**Finish.** Leave the PR commit checked out in detached-HEAD state and perform
+no branch restoration or worktree cleanup. Report the commit left checked out.
