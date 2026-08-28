@@ -44,6 +44,11 @@ for entry in "${ENTRIES_BASE[@]}"; do
   link_thing "$entry"
 done
 
+link_file \
+  "$CHACHI_PATH/home/.agents/AGENTS.md" \
+  "$HOME/.codex/AGENTS.md" \
+  ".codex/AGENTS.md"
+
 link_all_overrides
 
 if [ -n "${CHACHI_OVERRIDES_PATH:-}" ] && [ -x "$CHACHI_OVERRIDES_PATH/update_dotfiles.post.sh" ]; then

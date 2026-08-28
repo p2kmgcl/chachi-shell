@@ -99,6 +99,47 @@ _link_dir_silently() {
   link_dir "$@" >/dev/null 2>&1
 }
 
+_link_file_silently() {
+  link_file "$@" >/dev/null 2>&1
+}
+
+test_link_file_creates_symlink_when_target_missing() {
+  local src parent tgt
+  src="$(mktemp)"
+  parent="$(mktemp -d)"
+  tgt="$parent/.codex/AGENTS.md"
+  _link_file_silently "$src" "$tgt" 'Codex instructions'
+  assert_eq "$src" "$(readlink "$tgt")" 'file linked with parent created'
+  rm -rf "$src" "$parent"
+}
+
+test_link_file_idempotent_on_correct_existing_link() {
+  local src parent tgt
+  src="$(mktemp)"
+  parent="$(mktemp -d)"
+  mkdir -p "$parent/.codex"
+  tgt="$parent/.codex/AGENTS.md"
+  ln -s "$src" "$tgt"
+  _link_file_silently "$src" "$tgt" 'Codex instructions'
+  assert_eq 0 $? 'rerun on correct file link exits 0'
+  assert_eq "$src" "$(readlink "$tgt")" 'file symlink unchanged'
+  rm -rf "$src" "$parent"
+}
+
+test_link_file_fails_when_existing_symlink_points_elsewhere() {
+  local src other parent tgt
+  src="$(mktemp)"
+  other="$(mktemp)"
+  parent="$(mktemp -d)"
+  mkdir -p "$parent/.codex"
+  tgt="$parent/.codex/AGENTS.md"
+  ln -s "$other" "$tgt"
+  _link_file_silently "$src" "$tgt" 'Codex instructions'
+  assert_eq 2 $? 'different file symlink exits 2'
+  assert_eq "$other" "$(readlink "$tgt")" 'different file symlink untouched'
+  rm -rf "$src" "$other" "$parent"
+}
+
 test_link_dir_creates_symlink_when_target_missing() {
   local src tgt
   src="$(mktemp -d)"
@@ -202,6 +243,9 @@ test_fails_when_backup_already_exists
 test_fails_when_source_file_target_directory
 test_fails_when_source_directory_target_file
 test_fails_when_existing_symlink_points_elsewhere
+test_link_file_creates_symlink_when_target_missing
+test_link_file_idempotent_on_correct_existing_link
+test_link_file_fails_when_existing_symlink_points_elsewhere
 test_link_dir_creates_symlink_when_target_missing
 test_link_dir_creates_parent_dirs
 test_link_dir_idempotent_on_correct_existing_link
