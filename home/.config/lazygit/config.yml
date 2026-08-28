@@ -34,8 +34,12 @@ gui:
     defaultFgColor: ['#f0f6fc'] # fg default
 git:
   diffRenderers:
-    - colorarg: always
+    - name: unified
+      colorArg: always
       command: delta --paging=never --hunk-header-style=omit --file-decoration-style=ul
+    - name: side-by-side
+      colorArg: always
+      command: delta --paging=never --hunk-header-style=omit --file-decoration-style=ul --side-by-side
   mainBranches:
     - master
     - main
