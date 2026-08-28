@@ -1,9 +1,9 @@
 ---
 name: write-code
 description:
-  Implement code as approved test-driven vertical slices with atomic commits.
-  Use when the user asks to build a feature, fix an understood bug, refactor
-  code, or otherwise implement or modify production code.
+  Implement code and tests as approved test-driven vertical slices with atomic
+  commits. Use when the user asks to build a feature, fix an understood bug,
+  refactor code, or write or improve tests.
 ---
 
 Implement the requested code as user-approved vertical slices, keeping each
@@ -24,8 +24,9 @@ migrate in independently green batches, then contract.
 **Execute.** After approval, complete every slice in order without pausing while
 the plan remains valid:
 
-1. **Red.** Write one test through the approved seam and run it. Confirm it fails
-   for the missing behavior, not because the harness is broken.
+1. **Red.** Apply the [testing guidance](./testing.md) to map the behavior,
+   write the approved test, and confirm it fails for the missing behavior
+   rather than a broken harness.
 2. **Green.** Implement only enough production code to pass that test, then run
    the focused test again. Add the next test only after the current cycle is
    green.
@@ -40,12 +41,9 @@ the plan remains valid:
 test exercises the approved seam and passes before editing; then refactor in
 independently green increments instead of manufacturing a failing test.
 
-**Tests.** Write the smallest set that specifies observable behavior through
-public interfaces. Derive expected results independently from the
-implementation. Prefer unit or integration tests; use synthetic or end-to-end
-tests only when the user asks or the behavior has no cheaper trustworthy seam.
-Read [test examples](./tests.md) when choosing assertions and
-[mocking guidance](./mocking.md) when a system boundary requires a substitute.
+**Tests.** Read and apply [the testing guidance](./testing.md) whenever the task
+changes behavior or tests. It owns test value, design pressure, setup,
+expectations, durability, and failing-before proof.
 
 **Design.** Let code explain itself through precise names, focused functions,
 and types; comment only information the code cannot express. Default symbols to
