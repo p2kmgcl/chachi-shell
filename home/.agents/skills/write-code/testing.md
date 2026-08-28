@@ -12,7 +12,10 @@ proposed test will preserve.
 from the tested code's name or public interface. Observe the real result through
 the smallest stable seam; do not assert internal steps. Do not add a generic
 render, presence, or control-works test unless that fact is itself supported
-behavior needing protection.
+behavior needing protection. Avoid tests that restate transparent wiring, such
+as a feature flag directly showing or hiding a component. Treat the gate as
+setup unless it implements non-obvious policy, combines multiple conditions,
+causes side effects, or protects an explicit rollout contract.
 
 **TDD.** For new behavior, write the smallest test first and confirm it fails
 for the missing behavior. Let that test shape the production interface. If one
