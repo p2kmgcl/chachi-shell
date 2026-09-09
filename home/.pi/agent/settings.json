@@ -1,0 +1,25 @@
+{
+  "defaultModel": "gpt-5.6-sol",
+  "defaultProvider": "openai-codex",
+  "defaultThinkingLevel": "high",
+  "editorPaddingX": 1,
+  "enableInstallTelemetry": false,
+  "hideThinkingBlock": false,
+  "lastChangelogVersion": "0.85.1",
+  "packages": [
+    "npm:pi-web-access",
+    "npm:pi-subagents",
+    "npm:pi-mcp-adapter"
+  ],
+  "quietStartup": true,
+  "extensions": [
+    "-extensions/mac-system-theme.ts"
+  ],
+  "terminal": {
+    "showTerminalProgress": true
+  },
+  "theme": "dark",
+  "modelThinkingLevels": {
+    "openai-codex/gpt-5.6-sol": "high"
+  }
+}

@@ -25,6 +25,7 @@ ENTRIES_BASE=(
   .config/starship
   .config/tmux
   .config/zed
+  .pi/agent/settings.json
 
   .bash_profile
   .bashrc
