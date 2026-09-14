@@ -1,7 +1,7 @@
 # 0017 — Auto-open on UIEnter
 
 ## Status
-Accepted
+Superseded by [ADR 0022](0022-manual-open-on-startup.md)
 
 ## Context
 

@@ -185,11 +185,11 @@ One persistent scratch buffer per region for the session. Re-opening is instant;
 ### Per-tab, not global
 Splits are inherently per-tab in Neovim. No `TabEnter` autocmd mirrors the sidebar across tabs.
 
-### Auto-open on startup
-a-side opens automatically on every Neovim start via a one-shot `UIEnter` autocmd registered at module load time in `view.lua`. The trigger is `UIEnter` (not `VimEnter`) because it fires after the UI is attached and safe for window creation. Opening is unconditional — no check for git repo, argument list, or session state. See `docs/0017-auto-open-on-uienter.md`.
+### Closed on startup
+a-side stays closed when Neovim starts. Open or close it explicitly with `<leader>aa`; the per-region focus bindings (`<leader>ab`/`<leader>ae`/`<leader>ag`) also open it when needed. See `docs/0022-manual-open-on-startup.md`, which supersedes `docs/0017-auto-open-on-uienter.md`.
 
 ### Focus on open: stays in editor; per-region jumps explicit
-Neither auto-open nor `<leader>aa` (toggle-open) steal focus — opening the sidebar should never interrupt typing. To enter a region, use its explicit focus binding (`<leader>ab`/`<leader>ae`/`<leader>ag`) or any standard window motion (`<C-w>l`, etc.).
+`<leader>aa` (toggle-open) does not steal focus — opening the sidebar should never interrupt typing. To enter a region, use its explicit focus binding (`<leader>ab`/`<leader>ae`/`<leader>ag`) or any standard window motion (`<C-w>l`, etc.).
 
 ### Per-region filetypes
 Each region's buffer gets its own filetype: `aside-buffers`, `aside-explorer`, `aside-git`. This is the hook for region-specific syntax, highlights, and autocmds — target the filetype, not the buffer name. To target "all a-side regions," match the pattern `aside-*`.

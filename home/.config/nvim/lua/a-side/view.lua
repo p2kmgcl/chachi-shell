@@ -319,9 +319,4 @@ function M.cursor_path()
   return nil
 end
 
-vim.api.nvim_create_autocmd("UIEnter", {
-  once = true,
-  callback = open,
-})
-
 return M
