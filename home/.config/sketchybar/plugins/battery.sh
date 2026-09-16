@@ -25,14 +25,14 @@ fi
 # Icon color by energy mode
 # 0 = Automatic, 1 = Low Power, 2 = High Power
 case "$POWER_MODE" in
-  1) COLOR=0xfff5d060 ;; # bright yellow    — Low Power
-  2) COLOR=0xff00b4ff ;; # electric blue    — High Power
-  *) COLOR=0xfff0f6fc ;; # default white    — Automatic
+  1) COLOR=0xff9a6700 ;; # attention         — Low Power
+  2) COLOR=0xff0969da ;; # accent blue       — High Power
+  *) COLOR=0xff1f2328 ;; # default foreground — Automatic
 esac
 
 # Success blue when charging in automatic mode
 if [[ "$CHARGING" != "" ]] && [ "$POWER_MODE" = "0" ]; then
-  COLOR=0xff58a6ff
+  COLOR=0xff0969da
 fi
 
 sketchybar --set "$NAME" icon="$ICON" icon.color="$COLOR" label="${PERCENTAGE}%"

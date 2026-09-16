@@ -73,21 +73,21 @@ else
     LABEL="$WS"
 fi
 
-# github-colorblind palette — see docs/colorschemes/github-colorblind.md
+# github-colorblind light palette — see docs/colorschemes/github-colorblind.md
 # focused = accent emphasis (blue), occupied = neutral, empty = muted fg
 if [ "$WS" = "$FOCUSED" ]; then
     sketchybar --set "$NAME" \
         drawing=on \
         label="$LABEL" \
-        background.color=0xff1f6feb \
+        background.color=0xff0969da \
         label.color=0xffffffff \
         label.font="$FONT_BOLD"
 elif [ "$WINDOWS" -gt 0 ]; then
     sketchybar --set "$NAME" \
         drawing=on \
         label="$LABEL" \
-        background.color=0xcc3d444d \
-        label.color=0xfff0f6fc \
+        background.color=0xccd1d9e0 \
+        label.color=0xff1f2328 \
         label.font="$FONT_REGULAR"
 else
     sketchybar --set "$NAME" drawing=off

@@ -19,7 +19,7 @@ PREV="$PREV_WORKSPACE"
 if [ -n "$FOCUSED" ]; then
     sketchybar --set "space.$FOCUSED" \
         drawing=on \
-        background.color=0xff1f6feb \
+        background.color=0xff0969da \
         label.color=0xffffffff \
         label.font="$FONT_BOLD"
 fi
@@ -32,8 +32,8 @@ if [ -n "$PREV" ] && [ "$PREV" != "$FOCUSED" ]; then
     if [ "$WINDOWS" -gt 0 ]; then
         sketchybar --set "space.$PREV" \
             drawing=on \
-            background.color=0xcc3d444d \
-            label.color=0xfff0f6fc \
+            background.color=0xccd1d9e0 \
+            label.color=0xff1f2328 \
             label.font="$FONT_REGULAR"
     else
         sketchybar --set "space.$PREV" drawing=off

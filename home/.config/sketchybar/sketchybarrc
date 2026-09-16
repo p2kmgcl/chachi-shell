@@ -4,13 +4,13 @@ source "$CONFIG_DIR/variables.sh"
 ##### Bar Appearance #####
 # https://felixkratz.github.io/SketchyBar/config/bar
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
-# github-colorblind palette (dark canvas, legible over any wallpaper)
+# github-colorblind palette (light canvas, legible over any wallpaper)
 # see docs/colorschemes/github-colorblind.md
 sketchybar --bar \
   position=top \
   height=40 \
   blur_radius=30 \
-  color=0x000d1117 \
+  color=0x00ffffff \
   margin=0 \
   padding_left=16 \
   padding_right=16 \
@@ -24,13 +24,13 @@ default=(
   y_offset=-4
   icon.font="$FONT_REGULAR"
   label.font="$FONT_REGULAR"
-  icon.color=0xfff0f6fc
-  label.color=0xfff0f6fc
+  icon.color=0xff1f2328
+  label.color=0xff1f2328
   icon.padding_left=8
   icon.padding_right=4
   label.padding_left=4
   label.padding_right=8
-  background.color=0xcc3d444d
+  background.color=0xccf6f8fa
   background.corner_radius=5
   background.height=26
   background.drawing=on
@@ -78,7 +78,7 @@ while IFS='|' read -r sid monitor_id sketchybar_display; do
         --set space.$sid \
         update_freq=10 \
         display="$display_val" \
-        background.color=0x663d444d \
+        background.color=0x66d1d9e0 \
         background.corner_radius=5 \
         background.drawing=on \
         icon.drawing=off \

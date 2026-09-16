@@ -15,13 +15,13 @@
   pager = delta
 
 [delta]
-  light = false
+  light = true
   max-line-length = 512
   navigate = true
-  minus-style = syntax "#2c1f1a"
-  minus-emph-style = normal "#5f361e"
-  plus-style = syntax "#132339"
-  plus-emph-style = normal "#1e4273"
+  minus-style = syntax "#fff1e5"
+  minus-emph-style = normal "#ffd8b5"
+  plus-style = syntax "#ddf4ff"
+  plus-emph-style = normal "#b6e3ff"
 
 [diff]
   algorithm = histogram
