@@ -20,11 +20,15 @@ causes side effects, or protects an explicit rollout contract.
 **TDD.** For new behavior, write the smallest test first and confirm it fails
 for the missing behavior. Let that test shape the production interface. If one
 small behavior needs long preparation, custom mock systems, or unrelated
-objects, choose a simpler code shape before implementing it.
+objects, choose a simpler code shape before implementing it. Treat the test as
+development scaffolding until the retention review; reaching red and green does
+not make it part of the durable suite.
 
-**Setup.** The number of mocks does not measure complexity: simple substitutes
-for many existing APIs are acceptable. Treat custom mock behavior or extensive
-test-specific preparation as design pressure to simplify the production code.
+**Setup.** The number of mocks does not by itself prove that production code is
+too complex: simple substitutes for existing APIs may be acceptable. Their
+setup, coupling, and maintenance still count against the value of retaining the
+test. When preparation is large relative to the protected behavior, prefer a
+simpler seam or remove the test after it has served the TDD cycle.
 
 **Expectations.** Derive expected results from the requirement, a worked
 example, or another source independent of the implementation. Choose unit,
@@ -32,11 +36,15 @@ integration, or UI scope by the smallest stable place that exposes the real
 result. Avoid broad snapshots unless the complete output is the behavior being
 protected.
 
-**Durability.** A simple test may drive a TDD step even when its behavior is
-obvious. Before finishing, remove or combine it only when it adds no distinct
-protection: a stronger test already protects the same fact, it asserts an
-internal detail, or it verifies behavior delegated to a trusted dependency. If
-that behavior could break while every remaining test still passes, keep it.
+**Retention.** A red test proves that it helped develop the change, not that it
+deserves permanent maintenance. Keep it only when it protects important
+supported behavior involving a non-obvious rule, transformation, interaction,
+failure mode, or state transition with plausible regression risk. Its stable
+regression value must justify its setup, runtime, coupling, and maintenance
+cost. Combine overlapping protection and remove tests of transparent
+implementation choices, direct wiring, or trusted dependency behavior. A test
+may be deleted even when no remaining test would catch a deliberate reversal
+of the changed line.
 
 **Proof.** For new behavior, the initial red run proves the assertion is
 load-bearing. For existing behavior, temporarily break the relevant production

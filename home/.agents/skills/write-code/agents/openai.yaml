@@ -1,4 +1,4 @@
 interface:
   display_name: "Write Code"
-  short_description: "Implement approved code slices with TDD"
-  default_prompt: "Use $write-code to implement this change as approved test-driven vertical slices."
+  short_description: "Implement code with established practices and style"
+  default_prompt: "Use $write-code to implement this coding task following established workflows, engineering practices, testing guidance, design principles, and coding conventions."
