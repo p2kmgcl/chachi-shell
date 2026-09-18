@@ -1,4 +1,4 @@
 interface:
   display_name: "Commit"
-  short_description: "Create atomic commits from current changes"
-  default_prompt: "Use $commit to create atomic commits from the current changes."
+  short_description: "Create or rewrite atomic semantic commits"
+  default_prompt: "Use $commit to create or rewrite changes as atomic semantic commits."
