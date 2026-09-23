@@ -1,4 +1,4 @@
 interface:
   display_name: "Slowdown"
-  short_description: "Use brief exchanges with one decision at a time"
-  default_prompt: "Use $slowdown to continue with brief exchanges and one decision at a time."
+  short_description: "Shape responses for readers with ADHD"
+  default_prompt: "Use $slowdown to shape every response for ADHD-friendly action and pacing."
