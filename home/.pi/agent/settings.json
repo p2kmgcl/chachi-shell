@@ -4,8 +4,8 @@
   "defaultThinkingLevel": "high",
   "editorPaddingX": 1,
   "enableInstallTelemetry": false,
-  "hideThinkingBlock": false,
-  "lastChangelogVersion": "0.85.1",
+  "hideThinkingBlock": true,
+  "lastChangelogVersion": "1.0.4",
   "packages": [
     "npm:pi-web-access",
     "npm:pi-subagents",
@@ -13,7 +13,9 @@
   ],
   "quietStartup": true,
   "extensions": [
-    "-extensions/mac-system-theme.ts"
+    "-extensions/mac-system-theme.ts",
+    "+builtin:mcp",
+    "+builtin:tool-search"
   ],
   "terminal": {
     "showTerminalProgress": true
