@@ -46,8 +46,17 @@ the plan remains valid:
    changed test. A test's usefulness during TDD does not justify retaining it.
 5. **Verify.** Run the slice's focused tests and applicable static checks after
    test cleanup.
-6. **Commit.** Apply the [commit skill](../commit/SKILL.md) to record only this
-   independently coherent, passing slice.
+6. **Commit.** Apply the [commit skill](../commit/SKILL.md) to record passing
+   work in its logical commit, following the iterative history policy below.
+
+**Iterative history.** Treat user corrections that refine the same logical
+change as part of that change, not automatically as new commits. Inspect the
+branch's semantic sequence before committing: amend the relevant latest local,
+unshared commit, or fold the correction into an earlier one with fixup/rebase.
+Keep new commits for independently meaningful changes; remove superseded
+implementation churn while preserving logical boundaries and the final tree.
+Recheck affected work after restructuring. Ask before rewriting published,
+shared, or unrelated commits.
 
 **Refactors.** For a behavior-preserving refactor, establish that an existing
 test exercises the approved seam and passes before editing; then refactor in
