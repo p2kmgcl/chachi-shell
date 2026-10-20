@@ -21,6 +21,9 @@ local winids = {}
 local closing = false
 local resize_autocmd_id
 local dir_autocmd_id
+local focus_autocmd_id
+local last_focused_region
+local previous_win
 
 local function ensure_buffer(region)
   local bufnr = bufnrs[region.name]
@@ -70,6 +73,14 @@ local function find_region(name)
   for _, region in ipairs(regions) do
     if region.name == name then
       return region
+    end
+  end
+end
+
+local function region_name_for_window(winid)
+  for _, region in ipairs(regions) do
+    if winids[region.name] == winid then
+      return region.name
     end
   end
 end
@@ -151,6 +162,34 @@ end
 local close -- forward declaration
 
 local function register_autocmds()
+  if focus_autocmd_id then
+    pcall(vim.api.nvim_del_autocmd, focus_autocmd_id)
+  end
+  focus_autocmd_id = vim.api.nvim_create_autocmd({ "WinLeave", "WinEnter" }, {
+    callback = function(ev)
+      if closing then
+        return
+      end
+      local winid = vim.api.nvim_get_current_win()
+      if ev.event == "WinLeave" then
+        previous_win = winid
+        return
+      end
+      local name = region_name_for_window(winid)
+      if not name then
+        return
+      end
+      if not region_name_for_window(previous_win) then
+        local remembered = winids[last_focused_region]
+        if remembered and vim.api.nvim_win_is_valid(remembered) then
+          vim.api.nvim_set_current_win(remembered)
+          name = last_focused_region
+        end
+      end
+      last_focused_region = name
+    end,
+  })
+
   if resize_autocmd_id then
     pcall(vim.api.nvim_del_autocmd, resize_autocmd_id)
   end
@@ -258,6 +297,11 @@ close = function()
     pcall(vim.api.nvim_del_autocmd, dir_autocmd_id)
     dir_autocmd_id = nil
   end
+  if focus_autocmd_id then
+    pcall(vim.api.nvim_del_autocmd, focus_autocmd_id)
+    focus_autocmd_id = nil
+  end
+  previous_win = nil
   closing = false
 end
 
@@ -304,6 +348,7 @@ function M.focus(name)
   end
   local winid = winids[name]
   if winid and vim.api.nvim_win_is_valid(winid) then
+    last_focused_region = name
     vim.api.nvim_set_current_win(winid)
   end
 end

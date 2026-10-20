@@ -57,6 +57,7 @@ Owns:
 - Three persistent scratch buffers (one per region, `bufhidden=hide`).
 - Three current window handles (per tab, recreated on each open).
 - The public `toggle()`, `focus(name)`, and `resize(name)` functions.
+- Focus memory: entering from an editor window restores the last focused region; moving between regions and explicit per-region focus bindings remain unrestricted.
 - The atomic-close invariant: any one of the three windows closing closes the other two (see Design decisions).
 - The height algorithm: `Buffers` and `Git` share an 80% budget allocated proportionally to their content (floor 4 each); `Explorer` absorbs the remainder with a guaranteed floor of 4. See `docs/0011-shared-budget-for-buffers-and-git-heights.md`.
 - The width algorithm: the longest line across all three region buffers drives the column width, clamped to `[MIN, MAX]` where `MIN = 30` and `MAX = floor(0.4 * vim.o.columns)`. The three regions share the column by Neovim's split semantics; view sets it once.
@@ -112,6 +113,7 @@ Module-local state in `view.lua`:
 |------------------|-------------------------------------------|---------------------------------|
 | `bufnrs[name]`   | Lazily created on first open; persists.   | `vim.api.nvim_buf_is_valid`     |
 | `winids[name]`   | Created on open, cleared on close.        | `vim.api.nvim_win_is_valid`     |
+| `last_focused_region` | Session; survives sidebar close/reopen. | Resolved through current `winids` |
 
 One persistent buffer per region for the session. Re-opening reuses them. The atomic-close autocmd is registered once at first open and listens only for the three currently-tracked window IDs.
 
@@ -174,7 +176,7 @@ Width and heights both recompute on every `view.resize(name)` call, and width al
 ### Atomic close via scoped `WinClosed`
 The sidebar is a single thing. Closing any one of the three windows (via `:q`, `<C-w>c`, or anything else) closes the other two. This is enforced by a `WinClosed` autocmd scoped to the three tracked window IDs.
 
-This is a narrowing of the original "never via autocmds" rule. The rule now reads: **autocmds that react to incidental user editing activity (TextChanged, `BufWritePost`, …) are forbidden; scoped autocmds that maintain a-side's own internal invariants (`WinClosed` for atomic close), react to layout/canvas changes (`VimResized` for width clamping, `DirChanged` for re-anchoring repo-aware regions), or observe state changes of a region's own data source (`BufAdd`/`BufDelete`/`BufModifiedSet` for the Buffers region, `BufEnter` for the Explorer region's auto-reveal) are allowed.** The underlying principle: observe your own data source; don't react to incidental editing activity outside it. Libuv mechanisms (`fs_event`, timers) owned by a region's producer are not autocmds and are not constrained by this rule — see `docs/0004-git-region-live-updates-via-fs-watcher.md`. Background: `docs/0001-a-side-becomes-widget-container.md`, `docs/0003-explorer-driven-width.md`, `docs/0006-buffers-region-live-updates-via-buffer-list-events.md`.
+This is a narrowing of the original "never via autocmds" rule. The rule now reads: **autocmds that react to incidental user editing activity (TextChanged, `BufWritePost`, …) are forbidden; scoped autocmds that maintain a-side's own internal invariants (`WinClosed` for atomic close, `WinLeave`/`WinEnter` for focus memory), react to layout/canvas changes (`VimResized` for width clamping, `DirChanged` for re-anchoring repo-aware regions), or observe state changes of a region's own data source (`BufAdd`/`BufDelete`/`BufModifiedSet` for the Buffers region, `BufEnter` for the Explorer region's auto-reveal) are allowed.** The underlying principle: observe your own data source; don't react to incidental editing activity outside it. Libuv mechanisms (`fs_event`, timers) owned by a region's producer are not autocmds and are not constrained by this rule — see `docs/0004-git-region-live-updates-via-fs-watcher.md`. Background: `docs/0001-a-side-becomes-widget-container.md`, `docs/0003-explorer-driven-width.md`, `docs/0006-buffers-region-live-updates-via-buffer-list-events.md`.
 
 ### Vertical split, not floating window
 A split cooperates with `<C-w>` motions, resizes, and `winfixwidth`. A float would overlay code and require manual repositioning on terminal resize.
@@ -188,8 +190,10 @@ Splits are inherently per-tab in Neovim. No `TabEnter` autocmd mirrors the sideb
 ### Closed on startup
 a-side stays closed when Neovim starts. Open or close it explicitly with `<leader>aa`; the per-region focus bindings (`<leader>ab`/`<leader>ae`/`<leader>ag`) also open it when needed. See `docs/0022-manual-open-on-startup.md`, which supersedes `docs/0017-auto-open-on-uienter.md`.
 
-### Focus on open: stays in editor; per-region jumps explicit
-`<leader>aa` (toggle-open) does not steal focus — opening the sidebar should never interrupt typing. To enter a region, use its explicit focus binding (`<leader>ab`/`<leader>ae`/`<leader>ag`) or any standard window motion (`<C-w>l`, etc.).
+### Focus on open: stays in editor; returning restores the last region
+`<leader>aa` (toggle-open) does not steal focus — opening the sidebar should never interrupt typing. Entering from an editor window with a window motion (`<C-l>`, `<C-w>l`, etc.) restores the last focused region, independently of the editor cursor's screen position. Before any region has been focused, entry follows normal window navigation. The remembered region survives sidebar close/reopen.
+
+Moving between sidebar regions still follows normal window navigation. Explicit focus bindings (`<leader>ab`/`<leader>ae`/`<leader>ag`) always select their requested region and update the remembered region. Focus tracking is active only while the sidebar is open and ignores window changes during atomic close.
 
 ### Per-region filetypes
 Each region's buffer gets its own filetype: `aside-buffers`, `aside-explorer`, `aside-git`. This is the hook for region-specific syntax, highlights, and autocmds — target the filetype, not the buffer name. To target "all a-side regions," match the pattern `aside-*`.
@@ -213,7 +217,7 @@ Window-locals on each region window: `nonumber`, `norelativenumber`, `nowrap`, `
 - **Real content for a region**: replace the placeholder `render(bufnr)` in `regions/<name>/<name>.lua`. Producers may add internal files under their own folder (`regions/buffers/sources.lua`, etc.) without touching siblings. Locking discipline: `modifiable=true`, write, `modifiable=false`.
 - **Adding a region**: create `regions/<name>/<name>.lua`, add it to the region list in `view.lua`, add its focus binding to `keymaps.lua`. Three files; intentional.
 - **More keymaps**: add to `keymaps.lua`. Region modules remain pure renderers.
-- **Reacting to editor events**: scoped autocmds that maintain internal invariants or react to layout/canvas changes belong in `view.lua` or a new submodule required from the barrel. Autocmds that react to user editing activity (TabEnter, BufEnter, TextChanged, etc.) are still off-limits.
+- **Reacting to editor events**: scoped autocmds that maintain internal invariants (including focus memory) or react to layout/canvas changes belong in `view.lua` or a new submodule required from the barrel. Regions may observe their own data sources as described above; incidental editing events remain off-limits.
 - **Configurability**: when the second caller for any knob appears, introduce a single config table in the barrel and thread it through `view.setup(opts)`. Not before.
 
 ## What this plugin deliberately is not
