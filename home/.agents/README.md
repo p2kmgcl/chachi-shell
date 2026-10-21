@@ -22,13 +22,14 @@ Other tools can point at `agents/skills/` directly.
 
 ## Documentation
 
-**Lifecycle.** Agent documentation follows `to-handoff → grill-me → write-docs`,
-moving from temporary agent-only state to permanent codebase documentation for
-agents and humans.
+**Lifecycle.** Agent documentation moves from conversation and investigation
+through `grill-me` to `write-docs`, turning working context into permanent
+codebase documentation for agents and humans.
 
-**Handoffs.** `to-handoff` preserves the current context under
-[`.agent-state/`](./AGENT-STATE.md). These local, short-term files optimize
-information retention and use whatever structure best serves the next agent.
+**Delegation.** `delegate` passes the task and relevant context directly in a
+new Pi agent's initial prompt in a new Seniore workspace. The agents coordinate
+through Seniore peer messages, without intermediate handoff files. The original
+session is deleted only after the replacement confirms it has begun the work.
 
 **Grilling.** `grill-me` combines relevant handoffs, the conversation, and
 existing codebase documentation to resolve the information needed for the
@@ -81,8 +82,9 @@ its description matches the task, and users may invoke any skill explicitly.
 
 **Conversation control.**
 
-- **[`to-handoff`](./skills/to-handoff/SKILL.md).** Capture the conversation
-  context in a local file so another agent can continue the work.
+- **[`delegate`](./skills/delegate/SKILL.md).** Transfer the task and context to
+  a new Seniore workspace and Pi agent, then retire the original session after
+  confirmation.
 - **[`slowdown`](./skills/slowdown/SKILL.md).** Reframe the conversation with
   shorter exchanges and one decision at a time.
 - **[`what-do-you-mean`](./skills/what-do-you-mean/SKILL.md).** Expand an

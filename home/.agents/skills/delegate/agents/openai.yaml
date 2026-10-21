@@ -1,0 +1,4 @@
+interface:
+  display_name: "Delegate"
+  short_description: "Hand over work to a new Seniore workspace"
+  default_prompt: "Use $delegate to transfer this task and context directly to a new Seniore workspace and agent, then retire this session after the replacement confirms it has begun."
