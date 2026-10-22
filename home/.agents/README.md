@@ -33,11 +33,13 @@ session is deleted only after the replacement confirms it has begun the work.
 
 **Grilling.** `grill-me` combines relevant handoffs, the conversation, and
 existing codebase documentation to resolve the information needed for the
-current plan or design.
+current plan or design, including ambiguous domain terms and contradictions
+between claimed behavior and the code.
 
 **Codebase documentation.** `write-docs` creates durable documentation for one
-package or aspect of the codebase. It inspects nearby examples and repository
-conventions before choosing the content and format.
+package or aspect of the codebase, including confirmed domain terminology and
+consequential architectural decisions. It follows existing documentation
+conventions rather than imposing a new layout.
 
 ## Skills
 
@@ -61,6 +63,8 @@ its description matches the task, and users may invoke any skill explicitly.
   cause of unexpected software behavior.
 - **[`research`](./skills/research/SKILL.md).** Resolve a bounded local or
   external knowledge gap so a larger task or decision can continue.
+- **[`retro`](./skills/retro/SKILL.md).** Review a coding session and propose
+  evidence-backed improvements to the agent's environment and workflows.
 - **[`review-code`](./skills/review-code/SKILL.md).** Review current repository
   changes through focused lenses.
 - **[`review-pull-request`](./skills/review-pull-request/SKILL.md).** Review a

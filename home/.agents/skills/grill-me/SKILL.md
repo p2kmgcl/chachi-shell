@@ -17,6 +17,14 @@ understand the current state.
 dependent decisions one at a time. Ask one question, include a recommended
 answer, and wait for the user's response.
 
+**Domain language.** When domain concepts matter, check the established
+glossary and challenge ambiguous, overloaded, or conflicting terms. Propose
+precise names and use concrete edge cases to test the boundaries between
+concepts. Compare claimed behavior with the code and resolve contradictions
+with the user rather than silently choosing one. Include agreed meanings and
+decisions in the confirmed understanding; leave durable records to
+[write-docs](../write-docs/SKILL.md).
+
 **Ownership.** Resolve discoverable facts through the environment and reserve
 questions for decisions the user must make.
 

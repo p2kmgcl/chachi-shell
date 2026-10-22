@@ -3,7 +3,8 @@ name: write-docs
 description:
   Create or update durable codebase documentation for a package or aspect
   inferred from the conversation. Use when the user asks to document the
-  codebase or when established knowledge belongs in permanent repository docs.
+  codebase, domain terminology or architectural decisions need durable records,
+  or established knowledge belongs in permanent repository docs.
 ---
 
 Create or update durable codebase documentation for the package or aspect
@@ -25,6 +26,19 @@ scaffold when one supports the target.
 target. Give a subject that needs its own durable home a new document in the
 established location, connected through the repository's navigation and linking
 patterns.
+
+**Terminology.** When recording domain language, extend the established
+glossary with confirmed canonical terms, precise definitions, and distinctions
+from related concepts. Keep implementation details and design decisions out of
+the glossary. Create a glossary only when there is a resolved term to record;
+follow repository conventions rather than imposing a new documentation layout.
+
+**Decisions.** Create an ADR only for a confirmed decision that is costly to
+reverse, surprising without context, and the result of a real trade-off. Record
+the context, alternatives, chosen direction, and consequences using the
+repository's conventions. Preserve historical decisions and link superseding
+records rather than silently rewriting their rationale. Do not turn routine
+choices or unresolved proposals into ADRs.
 
 **Accuracy.** Align the documentation with the implementation. When the
 conversation and implementation materially conflict, explain the discrepancy

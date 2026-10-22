@@ -1,0 +1,4 @@
+interface:
+  display_name: "Retro"
+  short_description: "Improve future agent runs from session evidence"
+  default_prompt: "Use $retro to review this coding session and recommend evidence-backed improvements to the agent environment and workflows."
