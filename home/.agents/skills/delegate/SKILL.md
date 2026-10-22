@@ -11,16 +11,26 @@ Use Seniore to create the workspace, spawn a new agent, coordinate, then
 self-destroy once the replacement confirms it has begun the work.
 
 **Context.** Give the replacement a self-contained brief directly, without
-handoff files. Preserve the user's task, constraints, findings and evidence,
-decisions and reasons, relevant paths, attempts and verification results,
-existing approvals, unresolved questions, and next steps. Distinguish facts
-from assumptions and omit secret values.
+handoff files. Preserve the user's goal, agreed scope and solution, constraints,
+findings and evidence, decisions and reasons, rejected alternatives, relevant
+paths, current execution state, attempts and verification results, existing
+approvals, unresolved questions, and next concrete step. State what the user
+has already agreed to and the discretion granted; distinguish facts from
+assumptions and omit secret values.
 
-**Task.** Ask the replacement to carry out the task in its new workspace,
-respecting repository instructions and pending user approvals. Tell it how to
-contact your session, to confirm directly once it has understood the context
-and begun a concrete step, and to continue without waiting for you. It should
-execute the task, not repeat this delegation workflow.
+**Execution.** Tell the replacement it is continuing an ongoing task, not
+starting a new planning conversation. It should begin the next concrete step
+and carry out the agreed work autonomously, respecting repository instructions
+and inherited approvals rather than asking the user to approve them again.
+Preserve genuinely pending approvals; do not invent authorization or reopen
+settled decisions. It should execute the task, not repeat this delegation
+workflow.
+
+**Coordination.** Tell the replacement how to contact your session and to
+confirm directly once it has understood the context and begun a concrete step,
+then continue without waiting for you. Explain that your session will disappear
+after that confirmation: the replacement owns the task and should ask the user
+directly if blocked or if a new decision or approval is needed.
 
 **Retirement.** Wait for that explicit confirmation from the replacement;
 message delivery or session activity alone is insufficient. Then tell the user

@@ -22,12 +22,17 @@ relevant code and tests, and recent commit conventions. Identify the project's
 focused and full verification commands. Preserve unrelated existing changes and
 record the starting revision for the final comparison.
 
-**Plan.** Before editing, propose an ordered list of vertical slices and wait for
-approval. For each slice, state the complete observable behavior it delivers,
-the seam and behavior to test, its focused verification, and its atomic commit
-outcome. Keep every slice narrow but end-to-end across the layers it needs. Put
-enabling refactors first; sequence unavoidable wide migrations as expand,
-migrate in independently green batches, then contract.
+**Plan.** Check the conversation or inherited delegation brief for the user's
+agreed scope and approach. That agreement satisfies plan approval: organize
+the remaining work into vertical slices and resume at the first incomplete
+slice without requesting confirmation again, provided the scope and approach
+remain unchanged. If no such agreement exists, propose an ordered list of
+vertical slices and wait for approval before editing. For each slice, state
+the complete observable behavior it delivers, the seam and behavior to test,
+its focused verification, and its atomic commit outcome. Keep every slice
+narrow but end-to-end across the layers it needs. Put enabling refactors first;
+sequence unavoidable wide migrations as expand, migrate in independently green
+batches, then contract.
 
 **Execute.** After approval, complete every slice in order without pausing while
 the plan remains valid:
