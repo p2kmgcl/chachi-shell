@@ -35,7 +35,8 @@ sequence unavoidable wide migrations as expand, migrate in independently green
 batches, then contract.
 
 **Execute.** After approval, complete every slice in order without pausing while
-the plan remains valid:
+the plan remains valid. For behavior-preserving work, use the Refactors or Test
+cleanup branch below instead of manufacturing a Red/Green cycle:
 
 1. **Red.** Apply the [testing guidance](./testing.md) to map the behavior,
    write the approved test, and confirm it fails for the missing behavior
@@ -66,6 +67,14 @@ shared, or unrelated commits.
 **Refactors.** For a behavior-preserving refactor, establish that an existing
 test exercises the approved seam and passes before editing; then refactor in
 independently green increments instead of manufacturing a failing test.
+
+**Test cleanup.** For an approved existing-suite cleanup, establish a passing
+baseline and apply [the testing guidance](./testing.md) to assess affected tests
+as keep, rewrite, merge, or delete. Explain each affected test's distinct
+protection, the reason for its disposition, and any protection lost. Preserve
+required contracts and keep uncertain deletion candidates or rewrite them. Make
+behavior-preserving changes in independently green increments, then verify and
+commit as above; do not invent new behavior or a failing test to justify cleanup.
 
 **Tests.** Read and apply [the testing guidance](./testing.md) whenever the task
 changes behavior or tests. It owns test value, design pressure, setup,

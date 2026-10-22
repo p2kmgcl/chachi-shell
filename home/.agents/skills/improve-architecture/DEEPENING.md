@@ -23,6 +23,8 @@ test adapters. Keep seams used only by the implementation inside the module so
 the external interface remains small.
 
 **Testing.** Exercise observable outcomes through the deepened module's
-interface. Once those tests preserve the required behavior, replace shallow
-module tests with the interface-level coverage so internal refactors retain the
-same test surface.
+interface. Apply the shared [testing guidance](../write-code/testing.md) for
+retention: replace shallow-module tests when interface-level tests preserve
+their required protection, rather than retaining both by default. Broader tests
+do not automatically supersede narrower ones; retain distinct protection against
+different failures or contracts. Keep tests independent of internal refactors.

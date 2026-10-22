@@ -1,15 +1,18 @@
 # Lens: Test Coverage
 
-Find meaningful test gaps, implementation-coupled tests, and redundant tests
-introduced by the reviewed changes.
+Find meaningful test gaps, false confidence, implementation coupling, and
+redundancy introduced by the reviewed changes.
 
-**Investigate.** Map new branches, failure modes, edge cases, and state
-transitions to existing tests. Evaluate tests through observable behavior and
-public interfaces.
+**Investigate.** Apply the shared [testing guidance](../../write-code/testing.md)
+for test value, boundaries, expectations, and retention. Map supported behavior
+and plausible regressions to existing protection; an uncovered branch alone is
+not a finding. Check for expected values copied from production logic and
+assertions that cannot detect the claimed regression.
 
 **Categories.** Use `missing` for realistic uncovered regressions, `coupled` for
-tests tied to private structure or collaborator wiring, and `redundant` for
-tests that repeat existing confidence without protecting distinct behavior.
+tests tied to private structure or collaborator wiring, `redundant` for tests
+that add no distinct protection, and `false-confidence` for assertions that do
+not establish the claimed behavior.
 
 **Qualify.** Use P2 when a realistic regression can ship silently or an
 important test creates false confidence, and P3 for a minor gap or low-stakes
