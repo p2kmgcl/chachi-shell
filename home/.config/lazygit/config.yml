@@ -8,6 +8,7 @@ confirmOnQuit: false
 os:
   editPreset: 'nvim-remote'
 gui:
+  mouseEvents: true
   sidePanelWidth: 0.2
   expandFocusedSidePanel: true
   showFileTree: true
