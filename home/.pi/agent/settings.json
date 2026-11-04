@@ -1,17 +1,33 @@
 {
-  "defaultModel": "gpt-5.6-sol",
+  "defaultModel": "openai/gpt-6.1-sol",
   "defaultProvider": "openai-codex",
-  "defaultThinkingLevel": "high",
+  "defaultThinkingLevel": "medium",
   "editorPaddingX": 1,
   "enableInstallTelemetry": false,
   "hideThinkingBlock": true,
-  "lastChangelogVersion": "1.0.4",
+  "lastChangelogVersion": "1.5.0",
   "packages": [
     "npm:pi-web-access",
     "npm:pi-subagents",
-    "npm:pi-mcp-adapter"
   ],
   "quietStartup": true,
+  "subagents": {
+    "defaultThinking": "medium",
+    "agentOverrides": {
+      "worker": {
+        "thinking": "medium"
+      },
+      "reviewer": {
+        "thinking": "medium"
+      },
+      "oracle": {
+        "thinking": "medium"
+      },
+      "evidence-auditor": {
+        "thinking": "medium"
+      }
+    }
+  },
   "extensions": [
     "-extensions/mac-system-theme.ts",
     "+builtin:mcp",
@@ -23,5 +39,9 @@
   "theme": "light",
   "modelThinkingLevels": {
     "openai-codex/gpt-5.6-sol": "high"
+  },
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.46.0",
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.84.0",
   }
 }
