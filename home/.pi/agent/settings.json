@@ -36,7 +36,7 @@
   "terminal": {
     "showTerminalProgress": true
   },
-  "theme": "light",
+  "theme": "system",
   "modelThinkingLevels": {
     "openai-codex/gpt-5.6-sol": "high"
   },

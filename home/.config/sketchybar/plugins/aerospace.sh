@@ -4,6 +4,7 @@
 # chmod +x ~/.config/sketchybar/plugins/aerospace.sh
 
 source "$CONFIG_DIR/variables.sh"
+source "$CONFIG_DIR/theme.sh"
 
 WS="$1"
 FOCUSED="${FOCUSED_WORKSPACE:-$(aerospace list-workspaces --focused 2>/dev/null)}"
@@ -73,21 +74,21 @@ else
     LABEL="$WS"
 fi
 
-# github-colorblind light palette — see docs/colorschemes/github-colorblind.md
+# github-colorblind palette — see docs/colorschemes/github-colorblind.md
 # focused = accent emphasis (blue), occupied = neutral, empty = muted fg
 if [ "$WS" = "$FOCUSED" ]; then
     sketchybar --set "$NAME" \
         drawing=on \
         label="$LABEL" \
-        background.color=0xff0969da \
-        label.color=0xffffffff \
+        background.color="$BAR_ACCENT" \
+        label.color="$BAR_ACCENT_FOREGROUND" \
         label.font="$FONT_BOLD"
 elif [ "$WINDOWS" -gt 0 ]; then
     sketchybar --set "$NAME" \
         drawing=on \
         label="$LABEL" \
-        background.color=0xccd1d9e0 \
-        label.color=0xff1f2328 \
+        background.color="$BAR_OCCUPIED_BACKGROUND" \
+        label.color="$BAR_FOREGROUND" \
         label.font="$FONT_REGULAR"
 else
     sketchybar --set "$NAME" drawing=off

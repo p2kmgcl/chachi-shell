@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+source "$CONFIG_DIR/theme.sh"
 
 BATT="$(pmset -g batt)"
 PMSET="$(pmset -g)"
@@ -25,14 +27,14 @@ fi
 # Icon color by energy mode
 # 0 = Automatic, 1 = Low Power, 2 = High Power
 case "$POWER_MODE" in
-  1) COLOR=0xff9a6700 ;; # attention         — Low Power
-  2) COLOR=0xff0969da ;; # accent blue       — High Power
-  *) COLOR=0xff1f2328 ;; # default foreground — Automatic
+  1) COLOR="$BAR_ATTENTION" ;; # attention         — Low Power
+  2) COLOR="$BAR_ACCENT" ;; # accent blue       — High Power
+  *) COLOR="$BAR_FOREGROUND" ;; # default foreground — Automatic
 esac
 
 # Success blue when charging in automatic mode
 if [[ "$CHARGING" != "" ]] && [ "$POWER_MODE" = "0" ]; then
-  COLOR=0xff0969da
+  COLOR="$BAR_ACCENT"
 fi
 
 sketchybar --set "$NAME" icon="$ICON" icon.color="$COLOR" label="${PERCENTAGE}%"
