@@ -5,10 +5,10 @@
   "editorPaddingX": 1,
   "enableInstallTelemetry": false,
   "hideThinkingBlock": true,
-  "lastChangelogVersion": "1.5.0",
+  "lastChangelogVersion": "1.5.2",
   "packages": [
     "npm:pi-web-access",
-    "npm:pi-subagents",
+    "npm:pi-subagents"
   ],
   "quietStartup": true,
   "subagents": {
@@ -41,7 +41,7 @@
     "openai-codex/gpt-5.6-sol": "high"
   },
   "extensionChangelogVersions": {
-    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.46.0",
-    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.84.0",
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.47.0",
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.88.1"
   }
 }
