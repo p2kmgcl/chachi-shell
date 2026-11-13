@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Lazygit owns the terminal, so delta cannot reliably query its background.
+# Read macOS appearance afresh for each diff instead.
+if [ "$(uname -s)" = Darwin ]; then
+  appearance=$(defaults read -g AppleInterfaceStyle 2>/dev/null || true)
+  if [ "$appearance" = Dark ]; then
+    feature=colorblind-dark
+  else
+    feature=colorblind-light
+  fi
+  export DELTA_FEATURES="${DELTA_FEATURES:+$DELTA_FEATURES }$feature"
+fi
+
+exec delta "$@"

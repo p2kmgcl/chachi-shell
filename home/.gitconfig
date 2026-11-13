@@ -12,17 +12,27 @@
   fsmonitor = true
   ignorecase = false
   untrackedcache = true
-  pager = delta
+  pager = ~/.config/git/delta-pager
 
 [delta]
-  detect-dark-light = always
   max-line-length = 512
   navigate = true
-  # ANSI red/green follow Ghostty's colorblind orange/blue palette.
-  minus-style = red normal
-  minus-emph-style = bold red normal
-  plus-style = green normal
-  plus-emph-style = bold green normal
+
+[delta "colorblind-light"]
+  light = true
+  syntax-theme = GitHub
+  minus-style = syntax "#fff1e5"
+  minus-emph-style = syntax "#ffd8b5"
+  plus-style = syntax "#ddf4ff"
+  plus-emph-style = syntax "#b6e3ff"
+
+[delta "colorblind-dark"]
+  dark = true
+  syntax-theme = Monokai Extended
+  minus-style = syntax "#2c1f1a"
+  minus-emph-style = syntax "#5f361e"
+  plus-style = syntax "#132339"
+  plus-emph-style = syntax "#1e4273"
 
 [diff]
   algorithm = histogram
@@ -53,7 +63,7 @@
   version = 4
 
 [interactive]
-  diffFilter = delta --color-only
+  diffFilter = ~/.config/git/delta-pager --color-only
 
 [log]
   abbrevCommit = true
