@@ -6,6 +6,14 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TESTS_PASSED=0
 TESTS_FAILED=0
 
+record_missing_command() {
+  if [ "$1" -eq 127 ]; then
+    TESTS_FAILED=$((TESTS_FAILED + 1))
+    printf 'FAIL: command not found: %s\n' "$2" >&2
+  fi
+}
+trap 'record_missing_command "$?" "$BASH_COMMAND"' ERR
+
 assert_eq() {
   local expected="$1"
   local actual="$2"

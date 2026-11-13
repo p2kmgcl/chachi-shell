@@ -19,6 +19,18 @@ test_links_file_when_target_missing() {
   rm -rf "$base_dir" "$home_dir"
 }
 
+test_links_directory_when_target_missing() {
+  local base_dir home_dir
+  base_dir="$(mktemp -d)"
+  home_dir="$(mktemp -d)"
+  mkdir -p "$base_dir/home/.config"
+  echo 'base' >"$base_dir/home/.config/marker"
+  CHACHI_PATH="$base_dir" HOME="$home_dir" _link_thing_silently '.config'
+  assert_eq "$base_dir/home/.config" "$(readlink "$home_dir/.config")" 'directory linked when missing'
+  assert_eq 'base' "$(cat "$home_dir/.config/marker")" 'linked directory contents accessible'
+  rm -rf "$base_dir" "$home_dir"
+}
+
 test_idempotent_on_correct_existing_link() {
   local base_dir home_dir
   base_dir="$(mktemp -d)"
