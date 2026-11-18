@@ -20,7 +20,8 @@ a draft PR when the branch has none. Keep the review state of an existing PR.
 **Refresh the PR.** After each push, regenerate the title and body from the
 complete branch diff against the PR base. Make the title imperative and shorter
 than 70 characters. Follow [PR-DESCRIPTION.md](./PR-DESCRIPTION.md) for the
-body. Treat commit history as the detailed change record and the PR description
-as a cohesive overview of the branch’s current state.
+body, including Mermaid-first explanations of flow changes. Treat commit history
+as the detailed change record and the PR description as a cohesive overview of
+the branch’s current state.
 
 **Finish.** Return the PR URL.

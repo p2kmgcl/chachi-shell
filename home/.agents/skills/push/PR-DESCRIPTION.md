@@ -11,6 +11,16 @@ parts with periods or commas. Copy every template heading verbatim.
 record. Write the PR description as a cohesive overview of the branch in its
 current state.
 
+**Flow diagrams.** When the branch changes control flow, data flow, workflows,
+state transitions, or component interactions, use GitHub-rendered Mermaid
+diagrams as the primary explanation, with brief supporting prose. Embed each
+diagram in the existing section it supports, such as `Motivation` for the overall
+approach or `QA Instructions` for a verification workflow. Never add a section
+or heading just for diagrams. Show before and after when the contrast explains
+the change. Otherwise show the resulting flow and label what changed. Include
+only relevant actors, branches, and states verified against the diff and
+surrounding code. Do not force diagrams for non-flow changes.
+
 ## Motivation
 
 **Ticket.** Make the ticket link the first line. Derive its key, summary, and
@@ -30,9 +40,9 @@ Refactor the widget loader to use the new API.
 ## Changes
 
 **When useful.** Include this section when one to five short bullets add context
-beyond the diff, such as subtle behavior, timing, invariants, migration
-considerations, or rationale for an unusual approach. Use natural language and
-helpful links.
+beyond the diff and diagrams in other sections, such as subtle behavior, timing,
+invariants, migration considerations, or rationale for an unusual approach.
+Use helpful links. Do not add this section solely to hold a diagram.
 
 **Example.**
 
@@ -86,12 +96,28 @@ shared components, feature gates, and user populations.
 
 ## Template
 
-```markdown
+````markdown
 ## Motivation
 
 <!-- ticket link is the first line -->
 
 [{ticket-key} {ticket-summary}]({ticket-url}) {single-paragraph-description}
+
+<!-- For flow changes, embed a diagram here or in another relevant existing section.
+Example below. Omit or replace it to match the branch. -->
+
+```mermaid
+flowchart LR
+  subgraph Before
+    A[Options query] --> B[Render selected value]
+  end
+  subgraph After
+    C[Selection state] --> D[Render selected value]
+    E[Options query] --> F[Render available options]
+  end
+```
+
+The selected value now renders without waiting for options.
 
 ## Changes
 
@@ -108,4 +134,4 @@ shared components, feature gates, and user populations.
 ## Blast radius
 
 {one-to-five-affected-areas}
-```
+````
