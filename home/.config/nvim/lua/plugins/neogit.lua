@@ -73,7 +73,7 @@ end
 
 local function fold_commit_details(buf)
   local win = vim.fn.bufwinid(buf)
-  if win == -1 or vim.api.nvim_win_get_config(win).relative == "" then
+  if win == -1 then
     return
   end
 
@@ -81,17 +81,21 @@ local function fold_commit_details(buf)
   if comment == "" then
     return
   end
-  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-  for row = 2, #lines do
-    if vim.startswith(lines[row], comment) then
-      vim.api.nvim_win_call(win, function()
-        vim.wo[win].foldmethod = "manual"
-        vim.wo[win].foldtext = "' Git details (zo to open)'"
-        vim.cmd(("%d,$fold"):format(row))
-      end)
+  vim.api.nvim_win_call(win, function()
+    -- Neogit sets this buffer-local mapping, unlike the standalone Git editor.
+    if vim.fn.maparg("<C-c><C-k>", "n", false, true).buffer ~= 1 then
       return
     end
-  end
+    local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+    for row = 2, #lines do
+      if vim.startswith(lines[row], comment) then
+        vim.wo[win][0].foldmethod = "manual"
+        vim.wo[win][0].foldtext = "' Git details (zo to open)'"
+        vim.cmd(("%d,$fold"):format(row))
+        return
+      end
+    end
+  end)
 end
 
 return {
@@ -102,7 +106,7 @@ return {
   },
   opts = {
     graph_style = "unicode",
-    commit_editor = { kind = "floating", show_staged_diff = false },
+    commit_editor = { kind = "tab", show_staged_diff = false },
     mappings = { status = { C = commit_with_generated_message } },
     signs = {
       item = { "", "" },
@@ -116,7 +120,7 @@ return {
       pattern = "gitcommit",
       callback = function(event)
         if vim.fs.basename(vim.api.nvim_buf_get_name(event.buf)) == "COMMIT_EDITMSG" then
-          -- Neogit opens the float and inserts its help after setting the filetype.
+          -- Neogit opens the editor and inserts its help after setting the filetype.
           vim.schedule(function()
             fold_commit_details(event.buf)
           end)
