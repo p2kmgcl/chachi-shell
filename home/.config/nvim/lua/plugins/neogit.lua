@@ -71,6 +71,29 @@ local function commit_with_generated_message()
   vim.notify("Generating commit message from staged changes…")
 end
 
+local function fold_commit_details(buf)
+  local win = vim.fn.bufwinid(buf)
+  if win == -1 or vim.api.nvim_win_get_config(win).relative == "" then
+    return
+  end
+
+  local comment = vim.trim(vim.bo[buf].commentstring:match("^(.-)%%s") or "#")
+  if comment == "" then
+    return
+  end
+  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+  for row = 2, #lines do
+    if vim.startswith(lines[row], comment) then
+      vim.api.nvim_win_call(win, function()
+        vim.wo[win].foldmethod = "manual"
+        vim.wo[win].foldtext = "' Git details (zo to open)'"
+        vim.cmd(("%d,$fold"):format(row))
+      end)
+      return
+    end
+  end
+end
+
 return {
   "NeogitOrg/neogit",
   cmd = "Neogit",
@@ -79,10 +102,26 @@ return {
   },
   opts = {
     graph_style = "unicode",
+    commit_editor = { kind = "floating", show_staged_diff = false },
     mappings = { status = { C = commit_with_generated_message } },
     signs = {
       item = { "", "" },
       section = { "", "" },
     },
   },
+  config = function(_, opts)
+    require("neogit").setup(opts)
+    vim.api.nvim_create_autocmd("FileType", {
+      group = vim.api.nvim_create_augroup("ChachiNeogitCommitEditor", { clear = true }),
+      pattern = "gitcommit",
+      callback = function(event)
+        if vim.fs.basename(vim.api.nvim_buf_get_name(event.buf)) == "COMMIT_EDITMSG" then
+          -- Neogit opens the float and inserts its help after setting the filetype.
+          vim.schedule(function()
+            fold_commit_details(event.buf)
+          end)
+        end
+      end,
+    })
+  end,
 }
