@@ -8,6 +8,7 @@
   "lualine.nvim": { "branch": "master", "commit": "221ce6b2d999187044529f49da6554a92f740a96" },
   "mini.ai": { "branch": "main", "commit": "a4f5648dedf435e6306205135d1babb563b55d28" },
   "mini.icons": { "branch": "main", "commit": "eab3e692d796d78ea6ffc978d8a380ff26fcf4e3" },
+  "neogit": { "branch": "master", "commit": "17929b7b0b9c05fe3dfc788fbba9881eb9c1cbec" },
   "nvim-treesitter": { "branch": "main", "commit": "610734c5d3e59761d5f79318d120633374537fa5" },
   "nvim-treesitter-context": { "branch": "master", "commit": "8decd73460d26ef0a0befb745d022dd1fc2c38b8" },
   "schemastore.nvim": { "branch": "main", "commit": "a7a40007c34b784585811dace3b7e1cc16669228" },

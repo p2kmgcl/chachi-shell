@@ -12,47 +12,6 @@ local function copy_git_link()
   })
 end
 
-local function git_status()
-  local items = {}
-  local handle = io.popen("git status --porcelain")
-  if handle then
-    local result = handle:read("*a")
-    handle:close()
-
-    for line in result:gmatch("[^\r\n]+") do
-      local status = line:sub(1, 2)
-      local file_or_dir = line:sub(4)
-
-      if file_or_dir:sub(-1) == "/" then
-        for file in vim.fs.dir(file_or_dir) do
-          local file_name = file_or_dir .. file
-          table.insert(items, { status = status, file = file_name, text = file_name })
-        end
-      else
-        table.insert(items, { status = status, file = file_or_dir, text = file_or_dir })
-      end
-    end
-  end
-
-  get_snacks().picker.pick({
-    title = "Git status",
-    items = items,
-    preview = "git_diff",
-    format = function(item)
-      local package_or_dir = vim.fs.dirname(item.file)
-      local basename = vim.fs.basename(item.file)
-
-      return {
-        { item.status, "SnacksPickerIconField" },
-        { " ", "SnacksPickerDelim" },
-        { basename, "SnacksPickerFile" },
-        { " ", "SnacksPickerDelim" },
-        { package_or_dir, "SnacksPickerPathHidden" },
-      }
-    end,
-  })
-end
-
 local function grep()
   local explorer_path = require("helpers.get-explorer-path")()
 
@@ -123,6 +82,10 @@ return {
         },
       },
       sources = {
+        -- Keep manually opened commit pickers from checking out on Enter.
+        git_log = { confirm = "focus_preview" },
+        git_log_file = { confirm = "focus_preview" },
+        git_log_line = { confirm = "focus_preview" },
         grep = {
           hidden = true,
         },
@@ -158,9 +121,6 @@ return {
         end,
       })
     end, desc = "Yank git link (default branch)", mode = { "n", "v" } },
-    { "<leader>gg", function() get_snacks().lazygit({ configure = false }) end, desc = "Lazygit" },
-    { "<leader>gl", function() get_snacks().picker.git_log_file() end, desc = "Git Log File" },
-    { "<leader>gs", git_status, desc = "Git Status" },
     { "<leader>lc", function() get_snacks().picker.lsp_config() end, desc = "Checkhealth" },
     { "<leader>sg", grep, desc = "Grep" },
     { "<leader>sh", function() get_snacks().picker.help() end, desc = "Help Pages" },
