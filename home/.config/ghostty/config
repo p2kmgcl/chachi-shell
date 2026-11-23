@@ -9,6 +9,7 @@ window-padding-balance = true
 copy-on-select = false
 quit-after-last-window-closed = true
 mouse-hide-while-typing = true
+mouse-shift-capture = true
 adjust-cursor-thickness = 4
 window-decoration = client
 macos-option-as-alt = true
